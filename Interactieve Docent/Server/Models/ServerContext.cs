@@ -19,6 +19,6 @@ namespace Server.Models
         {
         }
 
-        public System.Data.Entity.DbSet<Server.Models.Question> Questions { get; set; }
+        public DbSet<Server.Models.Question> Questions { get; set; }
     }
 }

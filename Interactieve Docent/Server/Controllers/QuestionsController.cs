@@ -17,7 +17,7 @@ namespace Server.Controllers
     {
         private ServerContext db = new ServerContext();
 
-        // GET: api/Questions
+        // GET: api/Question
         public IQueryable<Question> GetQuestions()
         {
             return db.Questions;
