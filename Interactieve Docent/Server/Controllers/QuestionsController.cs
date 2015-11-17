@@ -45,7 +45,7 @@ namespace Server.Controllers
                 return BadRequest(ModelState);
             }
 
-            if (id != question.id)
+            if (id != question.Id)
             {
                 return BadRequest();
             }
@@ -83,7 +83,7 @@ namespace Server.Controllers
             db.Questions.Add(question);
             await db.SaveChangesAsync();
 
-            return CreatedAtRoute("DefaultApi", new { id = question.id }, question);
+            return CreatedAtRoute("DefaultApi", new { id = question.Id }, question);
         }
 
         // DELETE: api/Questions/5
@@ -113,7 +113,7 @@ namespace Server.Controllers
 
         private bool QuestionExists(int id)
         {
-            return db.Questions.Count(e => e.id == id) > 0;
+            return db.Questions.Count(e => e.Id == id) > 0;
         }
     }
 }
