@@ -17,6 +17,7 @@ namespace Server.Models
     
         public ServerContext() : base("name=ServerContext")
         {
+            //this.Configuration.ProxyCreationEnabled = false;
         }
 
         public DbSet<Server.Models.Question> Questions { get; set; }
