@@ -20,5 +20,7 @@ namespace Server.Models
         }
 
         public DbSet<Server.Models.Question> Questions { get; set; }
+
+        public System.Data.Entity.DbSet<Server.Models.List> Lists { get; set; }
     }
 }

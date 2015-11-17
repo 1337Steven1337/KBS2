@@ -9,14 +9,16 @@ namespace Server.Models
 {
     [KnownType(typeof(Server.Models.Question))]
     [KnownType(typeof(Server.Models.List))]
-    [KnownType(typeof(Server.Models.PredefinedAnswer))]
     [DataContract]
     public class PredefinedAnswer
     {
         [Key]
+        [DataMember]
         public int id { get; set; }
+        [DataMember]
         public string text { get; set; }
 
+        [DataMember]
         public Question question { get; set; }
     }
 }

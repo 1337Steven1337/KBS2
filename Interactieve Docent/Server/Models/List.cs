@@ -7,15 +7,16 @@ using System.Web;
 
 namespace Server.Models
 {
-    [KnownType(typeof(Server.Models.Question))]
-    [KnownType(typeof(Server.Models.List))]
-    [KnownType(typeof(Server.Models.PredefinedAnswer))]
     [DataContract]
+    [KnownType(typeof(Server.Models.Question))]
     public class List
     {
         [Key]
+        [DataMember]
         public int Id { get; set; }
+        [DataMember]
         public string Name { get; set; }
+        [DataMember]
         public ICollection<Question> Questions { get; set; }
 
         public List()
