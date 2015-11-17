@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 using System.Web.Http;
 using System.Web.Http.Description;
 using Server.Models;
+using Server.Models.DTO;
 
 namespace Server.Controllers
 {
@@ -18,9 +19,16 @@ namespace Server.Controllers
         private ServerContext db = new ServerContext();
 
         // GET: api/Question
-        public IQueryable<Question> GetQuestions()
+        public IQueryable<QuestionDTO> GetQuestions()
         {
-            return db.Questions;
+            var questions = from q in db.Questions
+                        select new QuestionDTO()
+                        {
+                            Id = q.Id,
+                            Text = q.Text
+                        };
+
+            return questions;
         }
 
         // GET: api/Questions/5
