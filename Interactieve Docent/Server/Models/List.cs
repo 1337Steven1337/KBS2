@@ -8,12 +8,15 @@ using System.Web;
 namespace Server.Models
 {
     [KnownType(typeof(Server.Models.Question))]
+    [KnownType(typeof(Server.Models.List))]
+    [KnownType(typeof(Server.Models.PredefinedAnswer))]
+    [DataContract]
     public class List
     {
         [Key]
         public int Id { get; set; }
         public string Name { get; set; }
-        public virtual ICollection<Question> Questions { get; set; }
+        public ICollection<Question> Questions { get; set; }
 
         public List()
         {

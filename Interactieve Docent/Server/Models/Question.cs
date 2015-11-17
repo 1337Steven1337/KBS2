@@ -15,9 +15,9 @@ namespace Server.Models
         public int Id { get; set; }
         public string Text { get; set; }
 
-        public virtual List List { get; set; }
-        public virtual ICollection<PredefinedAnswer> PredefinedAnswers { get; set; }
-
+        public List List { get; set; }
+        public ICollection<PredefinedAnswer> PredefinedAnswers { get; set; }
+        
         public Question()
         {
             this.PredefinedAnswers = new List<PredefinedAnswer>();
