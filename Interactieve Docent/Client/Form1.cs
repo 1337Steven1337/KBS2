@@ -15,6 +15,7 @@ namespace Client
         public Form1()
         {
             InitializeComponent();
+            Application.Run(new diagram(3,6));
         }
     }
 }
