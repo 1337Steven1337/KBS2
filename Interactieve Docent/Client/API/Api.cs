@@ -9,11 +9,7 @@ namespace Client.API
 {
     public class Api
     {
-        public Api()
-        {
-        }
-
-        public T Execute<T>(RestRequest request) where T : new()
+        public static T Execute<T>(RestRequest request) where T : new()
         {
             var client = new RestClient();
             client.BaseUrl = new Uri(Properties.Api.Default.Host);

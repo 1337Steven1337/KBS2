@@ -21,12 +21,10 @@ namespace Server.Controllers
         // GET: api/Question
         public IQueryable<QuestionDTO> GetQuestions()
         {
-            var questions = from q in db.Questions
-                        select new QuestionDTO()
-                        {
-                            Id = q.Id,
-                            Text = q.Text
-                        };
+            var questions = from q in db.Questions select new QuestionDTO() {
+                Id = q.Id,
+                Text = q.Text
+            };
 
             return questions;
         }

@@ -50,6 +50,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="API\Entity.cs" />
     <Compile Include="API\List.cs" />
     <Compile Include="Properties\Api.Designer.cs">
       <AutoGen>True</AutoGen>

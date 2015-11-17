@@ -7,19 +7,43 @@ using System.Threading.Tasks;
 
 namespace Client.API
 {
-    public class Question
+    public class Question : Entity
     {
-        public int id { get; set; }
-        public string Text { get; set; }
+        private string _text = null;
+
+        public int Id { get; private set; }
+
+        public string Text {
+            get
+            {
+                if(!this._fetched && this._text == null)
+                {
+                    this.fetch();
+                }
+
+                return this._text;
+            }
+            set
+            {
+                this._text = value;
+            }
+        }
+
+        public static Question getById(int id)
+        {
+            return Question.getById<Question>(id, "Questions");
+        }
 
         public static List<Question> getAll()
         {
-            Api api = new Api();
+            return Question.getAll<Question>("Questions");
+        }
 
-            var request = new RestRequest();
-            request.Resource = "Questions";
-
-            return api.Execute<List<Question>>(request);
+        protected override void fetch()
+        {
+            Question q = Question.getById(this.Id);
+            this.copyValues<Question>(this, q);
+            this._fetched = true;
         }
     }
 }

@@ -7,26 +7,24 @@ using System.Threading.Tasks;
 
 namespace Client.API
 {
-    class List
+    public class List
     {
-        public int id { get; set; }
+        public int Id { get; private set; }
         public string Name { get; set; }
 
         public List<Question> Questions { get; set; }
 
         public List()
         {
-            this.Questions = new List<Question>();
+            //this.Questions = new List<int>();
         }
 
         public static List<List> getAll()
         {
-            Api api = new Api();
-
             var request = new RestRequest();
-            request.Resource = "Questions";
+            request.Resource = "Lists";
 
-            return api.Execute<List<List>>(request);
+            return Api.Execute<List<List>>(request);
         }
     }
 }

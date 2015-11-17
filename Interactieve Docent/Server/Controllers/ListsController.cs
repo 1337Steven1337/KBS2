@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 using System.Web.Http;
 using System.Web.Http.Description;
 using Server.Models;
+using Server.Models.DTO;
 
 namespace Server.Controllers
 {
@@ -18,9 +19,15 @@ namespace Server.Controllers
         private ServerContext db = new ServerContext();
 
         // GET: api/Lists
-        public IQueryable<List> GetLists()
+        public IQueryable<ListDTO> GetLists()
         {
-            return db.Lists;
+            var Lists = from q in db.Lists select new ListDTO() {
+                                Id = q.Id,
+                                Name = q.Name,
+                                Questions = q.Questions.Select(C => new QuestionDTO{ Id = C.Id }).ToList<QuestionDTO>()
+            };
+
+            return Lists;
         }
 
         // GET: api/Lists/5
