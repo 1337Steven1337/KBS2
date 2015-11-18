@@ -7,10 +7,10 @@ using System.Data.SqlClient;
 
 namespace Client.API
 {
-    class UserAnswer : Entity
+    public class UserAnswer : Entity
     {
         public int Id { get; private set; }
-
+        public PredefinedAnswer PredefinedAnswer { get; set; }
 
         public static UserAnswer getById(int id)
         {

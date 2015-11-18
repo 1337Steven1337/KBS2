@@ -13,6 +13,9 @@ namespace Server.Models
     {
         [Key]
         [DataMember]
-        public int Id { get; set; } //abc
+        public int Id { get; set; }
+
+        [DataMember]
+        public PredefinedAnswer PredefinedAnswer { get; set; }
     }
 }

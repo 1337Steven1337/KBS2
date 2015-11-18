@@ -35,6 +35,8 @@ namespace Server.Controllers
         public async Task<IHttpActionResult> GetUserAnswer(int id)
         {
             UserAnswer userAnswer = await db.UserAnswers.FindAsync(id);
+            UserAnswerDTO uaDTO = new UserAnswerDTO(userAnswer);
+
             if (userAnswer == null)
             {
                 return NotFound();
