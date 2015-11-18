@@ -52,6 +52,12 @@
   <ItemGroup>
     <Compile Include="API\Entity.cs" />
     <Compile Include="API\List.cs" />
+    <Compile Include="DocentForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DocentForm.Designer.cs">
+      <DependentUpon>DocentForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Properties\Api.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
@@ -67,6 +73,9 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="DocentForm.resx">
+      <DependentUpon>DocentForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
