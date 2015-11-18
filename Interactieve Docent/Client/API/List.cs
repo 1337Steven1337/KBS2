@@ -16,7 +16,6 @@ namespace Client.API
 
         public List()
         {
-            //this.Questions = new List<int>();
         }
 
         public static List<List> getAll()
@@ -25,6 +24,14 @@ namespace Client.API
             request.Resource = "Lists";
 
             return Api.Execute<List<List>>(request);
+        }
+
+        public static List getListById(int Id)
+        {
+            var request = new RestRequest();
+            request.Resource = "Lists";
+
+            return Api.Execute<List>(request);
         }
     }
 }

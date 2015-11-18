@@ -25,11 +25,17 @@ namespace Client
 
         private void button1_Click(object sender, EventArgs e)
         {
-            List<Question> test = Question.getAll();
-
             List<List> lists = List.getAll();
             List list = lists.First();
 
+            Console.WriteLine(list.Questions.First().Text);
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            List list = List.getListById(1);
+
+            Console.WriteLine("-----------" + list.Name + "-----------");
             Console.WriteLine(list.Questions.First().Text);
         }
     }

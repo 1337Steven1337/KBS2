@@ -9,7 +9,7 @@ namespace Client.API
 {
     public class Question : Entity
     {
-        private string _text = null;
+        private string _text = "JAJAJAJAAJ";
 
         public int Id { get; private set; }
 
