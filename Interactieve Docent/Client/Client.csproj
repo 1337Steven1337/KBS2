@@ -59,6 +59,7 @@
     <Compile Include="API\Entity.cs" />
     <Compile Include="API\List.cs" />
     <Compile Include="API\PredefinedAnswer.cs" />
+    <Compile Include="API\UserAnswer.cs" />
     <Compile Include="DocentForm.cs">
       <SubType>Form</SubType>
     </Compile>
