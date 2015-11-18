@@ -16,7 +16,11 @@ namespace Client
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new DocentForm());
+
+            int[] aantallen = new int[] {6,4,10,20};
+            string[] antwoordnamen = new string[] {"ja","nee","misschien","NEE!!"};
+            string vraagNaam = "we gaan tot 6 uur door";
+            Application.Run(new diagram(aantallen,antwoordnamen,vraagNaam));
         }
     }
 }

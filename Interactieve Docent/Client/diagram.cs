@@ -13,37 +13,57 @@ namespace Client
 {
     public partial class diagram : Form
     {
-        public diagram(int aantalJa,int aantalNee)
+
+
+        //als er geen namen worden meegegeven
+        public diagram(int[] aantallen, string vraagNaam)
         {
             InitializeComponent();
-            //maken van x.y punt voor ja
-            DataPoint ja = new DataPoint();
-            ja.XValue = 0;
-            double[] aantalja = { aantalJa };
-            ja.YValues = aantalja;
 
-            //maken van x.y punt voor ja
-            DataPoint nee = new DataPoint();
-            nee.XValue = 0;
-            double[] aantalnee = { aantalNee };
-            nee.YValues = aantalnee;
+            string[] antwoordnamen = new string[aantallen.Length];
 
-            //aanmaken van staaf ja
-            Series seriesja = new Series();
-            seriesja.ChartArea = "ChartArea1";
-            seriesja.Legend = "Legend1";
-            seriesja.Name = "ja";
-            seriesja.Points.Add(ja);
+            for (int i = 0; i < aantallen.Length; i++)
+            {
+                antwoordnamen[i] = i + 1 + "";
+            }
+            
+            for (int i = 0; i < antwoordnamen.Length; i++)
+            {
+                chart1.Series.Add(MaakStaaf(antwoordnamen[i], aantallen[i]));
+            }
 
-            //aanmaken van staaf nee
-            Series seriesnee = new Series();
-            seriesnee.ChartArea = "ChartArea1";
-            seriesnee.Legend = "Legend1";
-            seriesnee.Name = "nee";
-            seriesnee.Points.Add(nee);
+            textBox1.Text = vraagNaam;
 
-            chart1.Series.Add(seriesnee);
-            chart1.Series.Add(seriesja);
+            Invalidate();
         }
-    }
+
+        public diagram(int[] aantallen, string[] antwoordnamen, string vraagNaam)
+        {
+            InitializeComponent();
+
+            for (int i = 0; i < antwoordnamen.Length; i++)
+            {
+                chart1.Series.Add(MaakStaaf(antwoordnamen[i], aantallen[i]));
+            }
+
+            textBox1.Text = vraagNaam;
+
+            Invalidate();
+        }
+        public Series MaakStaaf(string andwoordnaam, int aantal)
+        {
+            DataPoint staaf = new DataPoint();
+            staaf.XValue = 1;
+            double[] aantallen = { aantal };
+            staaf.YValues = aantallen;
+
+            Series series = new Series();
+            series.ChartArea = "ChartArea1";
+            series.Legend = "Legend1";
+            series.Name = andwoordnaam;
+            series.Points.Add(staaf);
+            return series;
+        }
+
+     }
 }
