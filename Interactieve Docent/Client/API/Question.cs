@@ -10,13 +10,13 @@ namespace Client.API
     public class Question : Entity
     {
         private string _text = null;
+        private List<PredefinedAnswer> _predefinedAnswers = null;
 
         public int Id { get; private set; }
-
         public string Text {
             get
             {
-                if(!this._fetched && this._text == null)
+                if (!this._fetched && this._text == null)
                 {
                     this.fetch();
                 }
@@ -26,6 +26,21 @@ namespace Client.API
             set
             {
                 this._text = value;
+            }
+        }
+        public List<PredefinedAnswer> PredefinedAnswers {
+            get
+            {
+                if (!this._fetched && this._predefinedAnswers == null)
+                {
+                    this.fetch();
+                }
+
+                return this._predefinedAnswers;
+            }
+            set
+            {
+                this._predefinedAnswers = value;
             }
         }
 

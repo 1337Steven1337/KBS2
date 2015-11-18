@@ -5,8 +5,9 @@ using System.Web;
 
 namespace Server.Models.DTO
 {
-    public class AnswerDTO
+    public class PredefinedAnswerDTO
     {
-
+        public int Id { get; set; }
+        public string Text { get; set; }
     }
 }

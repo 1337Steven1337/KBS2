@@ -7,7 +7,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using Client.API;
 
 namespace Client
 {
@@ -27,7 +26,7 @@ namespace Client
             tableMainWrapper.Width = this.Width / 100 * 50;
             //Main table in the center of the Form
             tableMainWrapper.Location = new Point(this.ClientSize.Width / 2 - tableMainWrapper.Size.Width / 2);
-        
+
             warningLabel.ForeColor = Color.Red;
         }
 

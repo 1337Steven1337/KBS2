@@ -11,6 +11,7 @@ namespace Client.API
     public abstract class Entity
     {
         protected bool _fetched = false;
+        protected abstract void fetch();
 
         protected void copyValues<T>(T target, T source)
         {
@@ -25,8 +26,6 @@ namespace Client.API
                     prop.SetValue(target, value, null);
             }
         }
-
-        protected abstract void fetch();
 
         public static T getById<T>(int id, string resource) where T : new()
         {
