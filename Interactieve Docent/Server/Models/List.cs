@@ -14,9 +14,11 @@ namespace Server.Models
         [Key]
         [DataMember]
         public int Id { get; set; }
-        
+
         [DataMember]
+        [Required(ErrorMessage="Enter a name")]
         public string Name { get; set; }
+
         [DataMember]
         public ICollection<Question> Questions { get; set; }
 

@@ -33,10 +33,10 @@ namespace Client
 
         private void button2_Click(object sender, EventArgs e)
         {
-            List list = List.getListById(1);
+            List list = List.getById(1);
 
             Console.WriteLine("-----------" + list.Name + "-----------");
-            Console.WriteLine(list.Questions.First().Text);
+            
         }
     }
 }

@@ -11,6 +11,8 @@ using System.Web.Http;
 using System.Web.Http.Description;
 using Server.Models;
 using Server.Models.DTO;
+using System.IO;
+using System.Web;
 
 namespace Server.Controllers
 {
@@ -24,10 +26,10 @@ namespace Server.Controllers
             var Lists = from q in db.Lists
                        select new ListDTO()
                        {
-                           Id = q.Id,
-                           Name = q.Name,
-                           Questions = q.Questions.Select(C => new QuestionDTO { Id = C.Id, Text = C.Text, Answers = (C.PredefinedAnswers.Select(V => new AnswerDTO { Id = V.id, Text = V.text, QuestionId = V.question.Id })).ToList<AnswerDTO>() }).ToList<QuestionDTO>()
-                       };
+                                Id = q.Id,
+                                Name = q.Name,
+                           Questions = q.Questions.Select(C => new QuestionDTO { Id = C.Id, Text = C.Text, PredefinedAnswers = (C.PredefinedAnswers.Select(V => new PredefinedAnswerDTO { Id = V.id, Text = V.text, QuestionId = V.question.Id })).ToList<PredefinedAnswerDTO>() }).ToList<QuestionDTO>()
+            };
 
             return Lists;
         }
@@ -39,10 +41,10 @@ namespace Server.Controllers
             var Lists = from q in db.Lists
                        where q.Id == id
                        select new ListDTO()
-                       {
+            {
                            Id = q.Id,
                            Name = q.Name,
-                           Questions = q.Questions.Select(C => new QuestionDTO { Id = C.Id , Text = C.Text, Answers = (C.PredefinedAnswers.Select(V => new AnswerDTO { Id = V.id, Text = V.text, QuestionId = V.question.Id})).ToList<AnswerDTO>() }).ToList<QuestionDTO>()
+                           Questions = q.Questions.Select(C => new QuestionDTO { Id = C.Id , Text = C.Text, PredefinedAnswers = (C.PredefinedAnswers.Select(V => new PredefinedAnswerDTO { Id = V.id, Text = V.text, QuestionId = V.question.Id})).ToList<PredefinedAnswerDTO>() }).ToList<QuestionDTO>()
                        };
                         
           
@@ -87,7 +89,7 @@ namespace Server.Controllers
 
         // POST: api/Lists
         [ResponseType(typeof(List))]
-        public async Task<IHttpActionResult> PostList(List list)
+        public async Task<IHttpActionResult> PostList([FromBody] List list)
         {
             if (!ModelState.IsValid)
             {
