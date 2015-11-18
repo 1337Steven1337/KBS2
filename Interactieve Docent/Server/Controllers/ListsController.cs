@@ -11,6 +11,8 @@ using System.Web.Http;
 using System.Web.Http.Description;
 using Server.Models;
 using Server.Models.DTO;
+using System.IO;
+using System.Web;
 
 namespace Server.Controllers
 {
@@ -22,9 +24,9 @@ namespace Server.Controllers
         public IQueryable<ListDTO> GetLists()
         {
             var Lists = from q in db.Lists select new ListDTO() {
-                                Id = q.Id,
-                                Name = q.Name,
-                                Questions = q.Questions.Select(C => new QuestionDTO{ Id = C.Id }).ToList<QuestionDTO>()
+                Id = q.Id,
+                Name = q.Name,
+                Questions = q.Questions.Select(C => new QuestionDTO{ Id = C.Id }).ToList<QuestionDTO>()
             };
 
             return Lists;
@@ -80,7 +82,7 @@ namespace Server.Controllers
 
         // POST: api/Lists
         [ResponseType(typeof(List))]
-        public async Task<IHttpActionResult> PostList(List list)
+        public async Task<IHttpActionResult> PostList([FromBody] List list)
         {
             if (!ModelState.IsValid)
             {

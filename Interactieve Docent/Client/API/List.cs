@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Client.API
 {
-    public class List
+    public class List : Entity
     {
         public int Id { get; private set; }
         public string Name { get; set; }
@@ -16,15 +16,41 @@ namespace Client.API
 
         public List()
         {
+
+        }
+
+        public List(bool shouldFetch = true)
+        {
+            this._fetched = !shouldFetch;
             //this.Questions = new List<int>();
+        }
+
+        public void save()
+        {
+            RestRequest request = new RestRequest(Method.POST);
+            request.RequestFormat = DataFormat.Json;
+            request.AddParameter("Name", this.Name);
+
+            List q = Api.Execute<List>(request);
+            this.copyValues<List>(this, q);
+            this._fetched = true;
+        }
+
+        public static List getById(int id)
+        {
+            return List.getById<List>(id, "Lists");
         }
 
         public static List<List> getAll()
         {
-            var request = new RestRequest();
-            request.Resource = "Lists";
+            return List.getAll<List>("Lists");
+        }
 
-            return Api.Execute<List<List>>(request);
+        protected override void fetch()
+        {
+            List q = List.getById(this.Id);
+            this.copyValues<List>(this, q);
+            this._fetched = true;
         }
     }
 }
