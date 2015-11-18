@@ -48,7 +48,7 @@ namespace Client
             }
         }
 
-        private void btnOpslaan_Click(object sender, EventArgs e)
+        public void btnOpslaan_Click(object sender, EventArgs e)
         {
             if (ValidateEmptyFields())
             {
@@ -57,7 +57,15 @@ namespace Client
             else
             {
                 warningLabel.Text = "";
+                
+                Opslaan();
             }
+        }
+
+        public void Opslaan()
+        {
+            //Upload vraag naar server
+            //try - catch voor het opslaan
         }
     }
 }

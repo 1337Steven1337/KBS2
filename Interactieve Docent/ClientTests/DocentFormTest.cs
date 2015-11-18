@@ -1,16 +1,18 @@
 ﻿using System;
 using Client;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace ClientTests
 {
     [TestClass]
     public class DocentFormTest
     {
+        Client.DocentForm df = new DocentForm();
         [TestMethod]
         public void ValidateEmptyFieldsSomeEmpty()
         {
-            Client.DocentForm df = new DocentForm();
             Boolean expected = true;
             Boolean result = df.ValidateEmptyFields();
             Assert.AreEqual(expected, result, "Fields are not displayed as empty!");
@@ -19,7 +21,7 @@ namespace ClientTests
         [TestMethod]
         public void btnOpslaan_Click()
         {
-            
+            df.Opslaan();
         }
     }
 }
