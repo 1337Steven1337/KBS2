@@ -40,6 +40,7 @@
             this.btnJa = new System.Windows.Forms.RadioButton();
             this.btnNee = new System.Windows.Forms.RadioButton();
             this.labelAntwoord = new System.Windows.Forms.Label();
+            this.warningLabel = new System.Windows.Forms.Label();
             this.tableMainWrapper.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.tijdVeld)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.puntenVeld)).BeginInit();
@@ -62,6 +63,7 @@
             this.tableMainWrapper.Controls.Add(this.btnOpslaan, 1, 4);
             this.tableMainWrapper.Controls.Add(this.tableWrapButtons, 1, 3);
             this.tableMainWrapper.Controls.Add(this.labelAntwoord, 0, 3);
+            this.tableMainWrapper.Controls.Add(this.warningLabel, 0, 4);
             this.tableMainWrapper.Location = new System.Drawing.Point(0, 0);
             this.tableMainWrapper.Name = "tableMainWrapper";
             this.tableMainWrapper.RowCount = 5;
@@ -182,6 +184,14 @@
             this.labelAntwoord.TabIndex = 16;
             this.labelAntwoord.Text = "Antwoord:";
             // 
+            // warningLabel
+            // 
+            this.warningLabel.AutoSize = true;
+            this.warningLabel.Location = new System.Drawing.Point(3, 384);
+            this.warningLabel.Name = "warningLabel";
+            this.warningLabel.Size = new System.Drawing.Size(0, 17);
+            this.warningLabel.TabIndex = 17;
+            // 
             // DocentForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -209,9 +219,10 @@
         private System.Windows.Forms.NumericUpDown tijdVeld;
         private System.Windows.Forms.NumericUpDown puntenVeld;
         private System.Windows.Forms.Button btnOpslaan;
-        private System.Windows.Forms.TableLayoutPanel tableWrapButtons;
         private System.Windows.Forms.Label labelAntwoord;
+        private System.Windows.Forms.TableLayoutPanel tableWrapButtons;
         private System.Windows.Forms.RadioButton btnJa;
         private System.Windows.Forms.RadioButton btnNee;
+        private System.Windows.Forms.Label warningLabel;
     }
 }
