@@ -50,6 +50,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Answers.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Answers.Designer.cs">
+      <DependentUpon>Answers.cs</DependentUpon>
+    </Compile>
     <Compile Include="API\Entity.cs" />
     <Compile Include="API\List.cs" />
     <Compile Include="API\PredefinedAnswer.cs" />
@@ -80,6 +86,9 @@
     <Compile Include="StudentVraag.Designer.cs">
       <DependentUpon>StudentVraag.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="Answers.resx">
+      <DependentUpon>Answers.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="DocentForm.resx">
       <DependentUpon>DocentForm.cs</DependentUpon>
     </EmbeddedResource>
