@@ -23,12 +23,10 @@ namespace Server.Controllers
         // GET: api/Lists
         public IQueryable<ListDTO> GetLists()
         {
-            var Lists = from q in db.Lists
-                       select new ListDTO()
-                       {
-                                Id = q.Id,
-                                Name = q.Name,
-                           Questions = q.Questions.Select(C => new QuestionDTO { Id = C.Id, Text = C.Text, PredefinedAnswers = (C.PredefinedAnswers.Select(V => new PredefinedAnswerDTO { Id = V.id, Text = V.text, QuestionId = V.question.Id })).ToList<PredefinedAnswerDTO>() }).ToList<QuestionDTO>()
+            var Lists = from q in db.Lists select new ListDTO() {
+                Id = q.Id,
+                Name = q.Name,
+                Questions = q.Questions.Select(C => new QuestionDTO{ Id = C.Id }).ToList<QuestionDTO>()
             };
 
             return Lists;
@@ -36,20 +34,15 @@ namespace Server.Controllers
 
         // GET: api/Lists/5
         [ResponseType(typeof(List))]
-        public IQueryable<ListDTO> GetList(int id)
+        public async Task<IHttpActionResult> GetList(int id)
         {
-            var Lists = from q in db.Lists
-                       where q.Id == id
-                       select new ListDTO()
+            List list = await db.Lists.FindAsync(id);
+            if (list == null)
             {
-                           Id = q.Id,
-                           Name = q.Name,
-                           Questions = q.Questions.Select(C => new QuestionDTO { Id = C.Id , Text = C.Text, PredefinedAnswers = (C.PredefinedAnswers.Select(V => new PredefinedAnswerDTO { Id = V.id, Text = V.text, QuestionId = V.question.Id})).ToList<PredefinedAnswerDTO>() }).ToList<QuestionDTO>()
-                       };
-                        
-          
+                return NotFound();
+            }
 
-            return Lists;
+            return Ok(list);
         }
 
         // PUT: api/Lists/5
