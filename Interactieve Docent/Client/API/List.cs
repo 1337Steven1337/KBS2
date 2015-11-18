@@ -29,7 +29,9 @@ namespace Client.API
         {
             RestRequest request = new RestRequest(Method.POST);
             request.RequestFormat = DataFormat.Json;
+            request.AddHeader("Content-Type", "application/json");
             request.AddParameter("Name", this.Name);
+            request.Resource = "Lists";
 
             List q = Api.Execute<List>(request);
             this.copyValues<List>(this, q);
