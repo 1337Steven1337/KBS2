@@ -22,10 +22,10 @@ namespace Server.Controllers
         public IQueryable<UserAnswerDTO> GetUserAnswers()
         {
             var ua = from q in db.UserAnswers
-                            select new UserAnswerDTO()
-                            {
-                                Id = q.Id
-                            };
+                     select new UserAnswerDTO()
+                     {
+                         Id = q.Id
+                     };
 
             return ua;
         }
