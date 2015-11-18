@@ -50,6 +50,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Answers.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Answers.Designer.cs">
+      <DependentUpon>Answers.cs</DependentUpon>
+    </Compile>
     <Compile Include="API\Entity.cs" />
     <Compile Include="API\List.cs" />
     <Compile Include="API\PredefinedAnswer.cs" />
