@@ -52,6 +52,7 @@
   <ItemGroup>
     <Compile Include="API\Entity.cs" />
     <Compile Include="API\List.cs" />
+    <Compile Include="API\PredefinedAnswer.cs" />
     <Compile Include="Properties\Api.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
