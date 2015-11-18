@@ -52,7 +52,6 @@
   </Choose>
   <ItemGroup>
     <Compile Include="DocentFormTest.cs" />
-    <Compile Include="DocentFormTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
