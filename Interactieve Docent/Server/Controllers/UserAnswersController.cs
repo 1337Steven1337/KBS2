@@ -31,18 +31,18 @@ namespace Server.Controllers
         }
 
         // GET: api/UserAnswers/5
-        [ResponseType(typeof(UserAnswer))]
+        [ResponseType(typeof(UserAnswerDTO))]
         public async Task<IHttpActionResult> GetUserAnswer(int id)
         {
             UserAnswer userAnswer = await db.UserAnswers.FindAsync(id);
-            UserAnswerDTO uaDTO = new UserAnswerDTO(userAnswer);
 
             if (userAnswer == null)
             {
                 return NotFound();
             }
 
-            return Ok(userAnswer);
+            UserAnswerDTO uaDTO = new UserAnswerDTO(userAnswer);
+            return Ok(uaDTO);
         }
 
         // PUT: api/UserAnswers/5

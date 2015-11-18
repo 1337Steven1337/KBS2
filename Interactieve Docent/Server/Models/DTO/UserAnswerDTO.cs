@@ -10,6 +10,8 @@ namespace Server.Models.DTO
         public int Id { get; set; }
         public PredefinedAnswerDTO PredefinedAnswer { get; set; }
 
+        public UserAnswerDTO() { }
+
         public UserAnswerDTO(UserAnswer ua)
         {
             this.Id = ua.Id;
