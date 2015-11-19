@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Client.API;
 
 namespace Client
 {
@@ -34,11 +35,11 @@ namespace Client
         //Deze functie wordt nog aan gewerkt!
         public Boolean ValidateEmptyFields()
         {
-            if (String.IsNullOrEmpty(vraagVeld.Text))
+            if (String.IsNullOrEmpty(questionField.Text))
             {
                 return true;
             }
-            else if (!btnJa.Checked && !btnNee.Checked)
+            else if (!btnYes.Checked && !btnNo.Checked)
             {                
                 return true;
             }
@@ -57,6 +58,21 @@ namespace Client
             else
             {
                 warningLabel.Text = "";
+
+                String question = questionField.Text;
+                int time = (int)timeField.Value;
+                bool noAnswer = btnNo.Checked;
+                bool yesAnswer = btnYes.Checked;
+
+                List list = new List();
+                list.Name = "Toetsvragen Test lijst";
+                list.save();
+
+                Question q = new Question();
+                q.Text = question;
+                //q.list = list;
+                //q.save();
+
             }
         }
     }
