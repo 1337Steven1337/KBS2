@@ -33,7 +33,6 @@ namespace Client
             List<UserAnswer> answers = this.question.UserAnswers;
             int yes = answers.Select(answer => answer.Id == 1).ToList().Count;
 
-
             aantalLabel1.Text = "Aantal keer ja: ";
             aantalLabel2.Text = "Aantal keer nee: ";
         }
