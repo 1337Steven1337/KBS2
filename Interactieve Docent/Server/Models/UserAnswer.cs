@@ -21,5 +21,7 @@ namespace Server.Models
 
         [DataMember]
         public Question Question { get; set; }
+
+
     }
 }

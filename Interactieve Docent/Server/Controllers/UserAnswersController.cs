@@ -26,8 +26,7 @@ namespace Server.Controllers
                      {
                          Id = q.Id,
                          QuestionId = q.Question.Id,
-                         PredefinedAnswerId = q.PredefinedAnswer.Id,
-                         PredefinedAnswer = q.PredefinedAnswer.Text
+                         PredefinedAnswer = q.PredefinedAnswer
                      };
 
             return ua;
@@ -43,8 +42,7 @@ namespace Server.Controllers
                         {
                             Id = ua.Id,
                             QuestionId = ua.Question.Id,
-                            PredefinedAnswerId = ua.PredefinedAnswer.Id,
-                            PredefinedAnswer = ua.PredefinedAnswer.Text
+                            PredefinedAnswer = ua.PredefinedAnswer
                         };
             UserAnswerDTO lijst = Lists.First();
             return lijst;
