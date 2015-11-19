@@ -25,6 +25,10 @@ namespace Client
 
         private void button1_Click(object sender, EventArgs e)
         {
+            Question question = Question.getById(3);
+            Answers answer = new Answers(question);
+            answer.Show();
+            Console.WriteLine("Hallo");
 
             List lists = List.getById(1);
 

@@ -39,6 +39,8 @@ namespace Server.Controllers
                 return NotFound();
             }
 
+            QuestionDTO qDTO = new QuestionDTO(question);
+
             return Ok(question);
         }
 

@@ -22,25 +22,27 @@ namespace Server.Controllers
         public IQueryable<UserAnswerDTO> GetUserAnswers()
         {
             var ua = from q in db.UserAnswers
-                            select new UserAnswerDTO()
-                            {
-                                Id = q.Id
-                            };
+                     select new UserAnswerDTO()
+                     {
+                         Id = q.Id
+                     };
 
             return ua;
         }
 
         // GET: api/UserAnswers/5
-        [ResponseType(typeof(UserAnswer))]
+        [ResponseType(typeof(UserAnswerDTO))]
         public async Task<IHttpActionResult> GetUserAnswer(int id)
         {
             UserAnswer userAnswer = await db.UserAnswers.FindAsync(id);
+
             if (userAnswer == null)
             {
                 return NotFound();
             }
 
-            return Ok(userAnswer);
+            UserAnswerDTO uaDTO = new UserAnswerDTO(userAnswer);
+            return Ok(uaDTO);
         }
 
         // PUT: api/UserAnswers/5

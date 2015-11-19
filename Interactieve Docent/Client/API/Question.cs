@@ -11,9 +11,11 @@ namespace Client.API
     {
         private string _text = null;
         private List<PredefinedAnswer> _predefinedAnswers = null;
+        private List<UserAnswer> _userAnswers = null;
 
         public int Id { get; private set; }
-        public string Text {
+        public string Text
+        {
             get
             {
                 if (!this._fetched && this._text == null)
@@ -28,6 +30,7 @@ namespace Client.API
                 this._text = value;
             }
         }
+
         public List<PredefinedAnswer> PredefinedAnswers {
             get
             {
@@ -42,6 +45,29 @@ namespace Client.API
             {
                 this._predefinedAnswers = value;
             }
+        }
+
+        public List<UserAnswer> UserAnswers
+        {
+            get
+            {
+                if (!this._fetched && this._userAnswers == null)
+                {
+                    this.fetch();
+                }
+
+                return this._userAnswers;
+            }
+            set
+            {
+                this._userAnswers = value;
+            }
+        }
+
+
+        public Question ()
+        {
+            this._fetched = true;
         }
 
         public static Question getById(int id)

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Client.API;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -14,69 +15,36 @@ namespace Client
     {
         private List<string> answers = new List<string>();
         private static Size startRes = new Size();
-        private int countJa, countNee;
+        private Question question;
 
-
-        public Answers()
+        public Answers(Question question)
         {
             InitializeComponent();
             startRes.Width = (int)(Screen.PrimaryScreen.WorkingArea.Width * 0.8);
             startRes.Height = (int)(Screen.PrimaryScreen.WorkingArea.Height * 0.8);
             this.ClientSize = new Size(startRes.Width, startRes.Height);
+
+            this.question = question;
         }
 
         private void Anwoorden_Load(object sender, EventArgs e)
         {
-            aantalLabel1.Text = "Aantal keer ja: ";
-            aantalLabel2.Text = "Aantal keer nee: ";
+            List<UserAnswer> answers = this.question.UserAnswers;
+//            int yes = answers.Select(answer => answer.Id == 1).ToList().Count;
 
-            answers.Add("JA");
-            answers.Add("JA");
-            answers.Add("NEE");
-            answers.Add("NEE");
-            answers.Add("JA");
-            answers.Add("NEE");
+//            aantalLabel1.Text = "Aantal keer ja: " + yes;
+//            aantalLabel2.Text = "Aantal keer nee: ";
         }
 
         private void ReadAnswers()
         {
             string temp = "";
-            foreach (String a in answers)
-            {
-                temp += a + "\n";
-            }
             this.AnswersTextbox.Text = temp;
-        }
-
-        private void ReadAnswersYes()
-        {
-            foreach (String a in answers)
-            {
-                if (a == "JA" || a == "Ja" || a == "ja")
-                {
-                    countJa++;
-                }
-            }
-            aantalLabel1.Text += countJa;
-        }
-
-        private void ReadAnswersNo()
-        {
-            foreach (String a in answers)
-            {
-                if (a == "NEE" || a == "Nee" || a == "nee")
-                {
-                    countNee++;
-                }
-            }
-            aantalLabel2.Text += countNee;
         }
 
         private void btn_ShowAnswers_Click(object sender, EventArgs e)
         {
-            ReadAnswers();
-            ReadAnswersYes();
-            ReadAnswersNo();
+            
         }
     }
 }

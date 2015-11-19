@@ -59,6 +59,7 @@
     <Compile Include="API\Entity.cs" />
     <Compile Include="API\List.cs" />
     <Compile Include="API\PredefinedAnswer.cs" />
+    <Compile Include="API\UserAnswer.cs" />
     <Compile Include="DocentForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -80,6 +81,9 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Answers.resx">
+      <DependentUpon>Answers.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="DocentForm.resx">
       <DependentUpon>DocentForm.cs</DependentUpon>
     </EmbeddedResource>
