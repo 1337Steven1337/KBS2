@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Runtime.Serialization;
 using System.Web;
@@ -19,9 +20,15 @@ namespace Server.Models
         public string Text { get; set; }
 
         [DataMember]
-        public List List { get; set; }
+        public int List_Id { get; set; }
+
+        [DataMember]
+        [ForeignKey("List_Id")]
+        public virtual List List { get; set; }
+
         [DataMember]
         public ICollection<PredefinedAnswer> PredefinedAnswers { get; set; }
+
         [DataMember]
         public ICollection<UserAnswer> UserAnswers { get; set; }
         
