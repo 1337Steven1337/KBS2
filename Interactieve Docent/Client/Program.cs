@@ -17,12 +17,15 @@ namespace Client
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
 
-            int[] aantallen = new int[] {6,4,10,59};
-            string[] antwoordnamen = new string[] {"Q, ","Q is the ","answer to ","EVERYTHING!!"};
-            string vraagNaam = "Wat doen we aan het fileprobleem? En de politiek dan?";
-            Application.Run(new diagram(aantallen,antwoordnamen,vraagNaam));
-
-            Application.Run(new DocentForm());
+            //test scenario
+            int[] aantallen = new int[] { 6, 4, 10, 5, 0, 2, 4, 1, 7 }; //waardes
+            string[] antwoordnamen = new string[] { "piet", "henk", "klaas", "jan", "kees", "truus", "hans", "alex", "simon" }; //namen van antwoorden
+            string vraagNaam = "wat is je naam"; //naam van vraag
+            if (aantallen.Length != antwoordnamen.Length) { Console.WriteLine("antwoorden aantallen niet gelijk"); } //bugfix
+            else
+            {
+                Application.Run(new diagram(aantallen, antwoordnamen, vraagNaam)); //maak diagram
+            }
         }
     }
 }
