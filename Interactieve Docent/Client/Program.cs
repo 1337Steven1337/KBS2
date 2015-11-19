@@ -18,9 +18,9 @@ namespace Client
             Application.SetCompatibleTextRenderingDefault(false);
 
             //test scenario
-            int[] aantallen = new int[] { 6, 4, 10, 5, 0, 2, 4, 1, 7 }; //waardes
+            int[] aantallen = new int[] { 6, 4, 10, 5, 111, 2, 4, 1, 7 }; //waardes
             string[] antwoordnamen = new string[] { "piet", "henk", "klaas", "jan", "kees", "truus", "hans", "alex", "simon" }; //namen van antwoorden
-            string vraagNaam = "wat is je naam"; //naam van vraag
+            string vraagNaam = "Vote for president"; //naam van vraag
             if (aantallen.Length != antwoordnamen.Length) { Console.WriteLine("antwoorden aantallen niet gelijk"); } //bugfix
             else
             {

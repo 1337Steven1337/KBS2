@@ -54,7 +54,6 @@ namespace Client
         //maken van een staaf
         public Series MaakStaaf(string andwoordnaam, int aantal)
         {
-            //
             DataPoint staaf = new DataPoint();
             staaf.XValue = 1;               //x-as waarde(waarde niet relevant zolang alles maar gelijk)
             double[] aantallen = { aantal };//y-as waarde
@@ -67,6 +66,5 @@ namespace Client
             series.Points.Add(staaf);
             return series;
         }
-
     }
 }
