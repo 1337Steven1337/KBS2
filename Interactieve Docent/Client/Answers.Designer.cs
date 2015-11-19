@@ -36,7 +36,7 @@
             // 
             // btn_ShowAnswers
             // 
-            this.btn_ShowAnswers.Location = new System.Drawing.Point(315, 394);
+            this.btn_ShowAnswers.Location = new System.Drawing.Point(315, 413);
             this.btn_ShowAnswers.Name = "btn_ShowAnswers";
             this.btn_ShowAnswers.Size = new System.Drawing.Size(88, 38);
             this.btn_ShowAnswers.TabIndex = 1;
@@ -48,7 +48,7 @@
             // 
             this.AnswersTextbox.Location = new System.Drawing.Point(110, 67);
             this.AnswersTextbox.Name = "AnswersTextbox";
-            this.AnswersTextbox.Size = new System.Drawing.Size(293, 283);
+            this.AnswersTextbox.Size = new System.Drawing.Size(293, 292);
             this.AnswersTextbox.TabIndex = 2;
             this.AnswersTextbox.Text = "";
             // 
@@ -68,7 +68,7 @@
             this.aantalLabel2.Size = new System.Drawing.Size(0, 20);
             this.aantalLabel2.TabIndex = 4;
             // 
-            // Anwoorden
+            // Answers
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -77,7 +77,7 @@
             this.Controls.Add(this.aantalLabel1);
             this.Controls.Add(this.AnswersTextbox);
             this.Controls.Add(this.btn_ShowAnswers);
-            this.Name = "Anwoorden";
+            this.Name = "Answers";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Anwoorden";
             this.Load += new System.EventHandler(this.Anwoorden_Load);

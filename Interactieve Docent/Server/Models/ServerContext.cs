@@ -25,5 +25,7 @@ namespace Server.Models
         public System.Data.Entity.DbSet<Server.Models.List> Lists { get; set; }
 
         public System.Data.Entity.DbSet<Server.Models.UserAnswer> UserAnswers { get; set; }
+
+        public System.Data.Entity.DbSet<Server.Models.PredefinedAnswer> PredefinedAnswers { get; set; }
     }
 }
