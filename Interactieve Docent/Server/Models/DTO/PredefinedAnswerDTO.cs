@@ -17,9 +17,5 @@ namespace Server.Models.DTO
             this.Id = PreAnswer.Id;
             this.Text = PreAnswer.Text;
         }
-
-        public PredefinedAnswerDTO()
-        {
-        }
     }
 }
