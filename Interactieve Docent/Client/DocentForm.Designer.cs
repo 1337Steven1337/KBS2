@@ -64,21 +64,25 @@
             this.tableMainWrapper.Controls.Add(this.tableWrapButtons, 1, 3);
             this.tableMainWrapper.Controls.Add(this.labelAntwoord, 0, 3);
             this.tableMainWrapper.Controls.Add(this.warningLabel, 0, 4);
+            this.tableMainWrapper.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tableMainWrapper.ForeColor = System.Drawing.SystemColors.ControlText;
             this.tableMainWrapper.Location = new System.Drawing.Point(0, 0);
+            this.tableMainWrapper.Margin = new System.Windows.Forms.Padding(4);
             this.tableMainWrapper.Name = "tableMainWrapper";
             this.tableMainWrapper.RowCount = 5;
             this.tableMainWrapper.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
             this.tableMainWrapper.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
             this.tableMainWrapper.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
             this.tableMainWrapper.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
-            this.tableMainWrapper.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 50F));
-            this.tableMainWrapper.Size = new System.Drawing.Size(678, 434);
+            this.tableMainWrapper.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 62F));
+            this.tableMainWrapper.Size = new System.Drawing.Size(848, 542);
             this.tableMainWrapper.TabIndex = 2;
             // 
             // labelVraag
             // 
             this.labelVraag.AutoSize = true;
-            this.labelVraag.Location = new System.Drawing.Point(3, 0);
+            this.labelVraag.Location = new System.Drawing.Point(4, 0);
+            this.labelVraag.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelVraag.Name = "labelVraag";
             this.labelVraag.Size = new System.Drawing.Size(50, 17);
             this.labelVraag.TabIndex = 8;
@@ -87,7 +91,8 @@
             // labelTijd
             // 
             this.labelTijd.AutoSize = true;
-            this.labelTijd.Location = new System.Drawing.Point(3, 96);
+            this.labelTijd.Location = new System.Drawing.Point(4, 120);
+            this.labelTijd.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelTijd.Name = "labelTijd";
             this.labelTijd.Size = new System.Drawing.Size(152, 17);
             this.labelTijd.TabIndex = 9;
@@ -96,7 +101,8 @@
             // labelPunten
             // 
             this.labelPunten.AutoSize = true;
-            this.labelPunten.Location = new System.Drawing.Point(3, 192);
+            this.labelPunten.Location = new System.Drawing.Point(4, 240);
+            this.labelPunten.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelPunten.Name = "labelPunten";
             this.labelPunten.Size = new System.Drawing.Size(100, 17);
             this.labelPunten.TabIndex = 10;
@@ -105,34 +111,38 @@
             // vraagVeld
             // 
             this.vraagVeld.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.vraagVeld.Location = new System.Drawing.Point(206, 3);
+            this.vraagVeld.Location = new System.Drawing.Point(258, 4);
+            this.vraagVeld.Margin = new System.Windows.Forms.Padding(4);
             this.vraagVeld.Name = "vraagVeld";
-            this.vraagVeld.Size = new System.Drawing.Size(469, 90);
+            this.vraagVeld.Size = new System.Drawing.Size(586, 112);
             this.vraagVeld.TabIndex = 11;
             this.vraagVeld.Text = "";
             // 
             // tijdVeld
             // 
             this.tijdVeld.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tijdVeld.Location = new System.Drawing.Point(206, 99);
+            this.tijdVeld.Location = new System.Drawing.Point(258, 124);
+            this.tijdVeld.Margin = new System.Windows.Forms.Padding(4);
             this.tijdVeld.Name = "tijdVeld";
-            this.tijdVeld.Size = new System.Drawing.Size(469, 22);
+            this.tijdVeld.Size = new System.Drawing.Size(586, 22);
             this.tijdVeld.TabIndex = 12;
             // 
             // puntenVeld
             // 
             this.puntenVeld.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.puntenVeld.Location = new System.Drawing.Point(206, 195);
+            this.puntenVeld.Location = new System.Drawing.Point(258, 244);
+            this.puntenVeld.Margin = new System.Windows.Forms.Padding(4);
             this.puntenVeld.Name = "puntenVeld";
-            this.puntenVeld.Size = new System.Drawing.Size(469, 22);
+            this.puntenVeld.Size = new System.Drawing.Size(586, 22);
             this.puntenVeld.TabIndex = 13;
             // 
             // btnOpslaan
             // 
             this.btnOpslaan.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btnOpslaan.Location = new System.Drawing.Point(206, 387);
+            this.btnOpslaan.Location = new System.Drawing.Point(258, 484);
+            this.btnOpslaan.Margin = new System.Windows.Forms.Padding(4);
             this.btnOpslaan.Name = "btnOpslaan";
-            this.btnOpslaan.Size = new System.Drawing.Size(469, 44);
+            this.btnOpslaan.Size = new System.Drawing.Size(586, 54);
             this.btnOpslaan.TabIndex = 14;
             this.btnOpslaan.Text = "Opslaan";
             this.btnOpslaan.UseVisualStyleBackColor = true;
@@ -146,17 +156,19 @@
             this.tableWrapButtons.Controls.Add(this.btnJa, 0, 0);
             this.tableWrapButtons.Controls.Add(this.btnNee, 1, 0);
             this.tableWrapButtons.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableWrapButtons.Location = new System.Drawing.Point(206, 291);
+            this.tableWrapButtons.Location = new System.Drawing.Point(258, 364);
+            this.tableWrapButtons.Margin = new System.Windows.Forms.Padding(4);
             this.tableWrapButtons.Name = "tableWrapButtons";
             this.tableWrapButtons.RowCount = 1;
             this.tableWrapButtons.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableWrapButtons.Size = new System.Drawing.Size(469, 90);
+            this.tableWrapButtons.Size = new System.Drawing.Size(586, 112);
             this.tableWrapButtons.TabIndex = 15;
             // 
             // btnJa
             // 
             this.btnJa.AutoSize = true;
-            this.btnJa.Location = new System.Drawing.Point(3, 3);
+            this.btnJa.Location = new System.Drawing.Point(4, 4);
+            this.btnJa.Margin = new System.Windows.Forms.Padding(4);
             this.btnJa.Name = "btnJa";
             this.btnJa.Size = new System.Drawing.Size(44, 21);
             this.btnJa.TabIndex = 0;
@@ -167,7 +179,8 @@
             // btnNee
             // 
             this.btnNee.AutoSize = true;
-            this.btnNee.Location = new System.Drawing.Point(237, 3);
+            this.btnNee.Location = new System.Drawing.Point(297, 4);
+            this.btnNee.Margin = new System.Windows.Forms.Padding(4);
             this.btnNee.Name = "btnNee";
             this.btnNee.Size = new System.Drawing.Size(55, 21);
             this.btnNee.TabIndex = 1;
@@ -178,7 +191,8 @@
             // labelAntwoord
             // 
             this.labelAntwoord.AutoSize = true;
-            this.labelAntwoord.Location = new System.Drawing.Point(3, 288);
+            this.labelAntwoord.Location = new System.Drawing.Point(4, 360);
+            this.labelAntwoord.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelAntwoord.Name = "labelAntwoord";
             this.labelAntwoord.Size = new System.Drawing.Size(71, 17);
             this.labelAntwoord.TabIndex = 16;
@@ -187,19 +201,24 @@
             // warningLabel
             // 
             this.warningLabel.AutoSize = true;
-            this.warningLabel.Location = new System.Drawing.Point(3, 384);
+            this.warningLabel.Location = new System.Drawing.Point(4, 480);
+            this.warningLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.warningLabel.Name = "warningLabel";
             this.warningLabel.Size = new System.Drawing.Size(0, 17);
             this.warningLabel.TabIndex = 17;
             // 
             // DocentForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(678, 434);
+            this.ClientSize = new System.Drawing.Size(848, 542);
             this.Controls.Add(this.tableMainWrapper);
+            this.Font = new System.Drawing.Font("Courier New", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ForeColor = System.Drawing.Color.LightSteelBlue;
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "DocentForm";
-            this.Text = "DocentForm";
+            this.Text = "Vraag stellen";
+            this.Load += new System.EventHandler(this.DocentForm_Load);
             this.tableMainWrapper.ResumeLayout(false);
             this.tableMainWrapper.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.tijdVeld)).EndInit();

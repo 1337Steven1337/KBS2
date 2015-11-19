@@ -17,10 +17,12 @@ namespace Client
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
 
-            int[] aantallen = new int[] {6,4,10,20};
-            string[] antwoordnamen = new string[] {"ja","nee","misschien","NEE!!"};
-            string vraagNaam = "we gaan tot 6 uur door";
+            int[] aantallen = new int[] {6,4,10,59};
+            string[] antwoordnamen = new string[] {"Q, ","Q is the ","answer to ","EVERYTHING!!"};
+            string vraagNaam = "Wat doen we aan het fileprobleem? En de politiek dan?";
             Application.Run(new diagram(aantallen,antwoordnamen,vraagNaam));
+
+            Application.Run(new DocentForm());
         }
     }
 }
