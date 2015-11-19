@@ -23,16 +23,13 @@ namespace Client
             //Center the Form in the middle of the screen
             this.StartPosition = FormStartPosition.CenterScreen;
 
-            //Maintable 50% of the Form
-            tableMainWrapper.Width = this.Width / 100 * 50;
-            //Main table in the center of the Form
-            tableMainWrapper.Location = new Point(this.ClientSize.Width / 2 - tableMainWrapper.Size.Width / 2);
-
             warningLabel.ForeColor = Color.Red;
+            warningLabel.Text = "";
+            
         }
 
 
-        //Deze functie wordt nog aan gewerkt!
+        //Check if there are empty fields
         public Boolean ValidateEmptyFields()
         {
             if (String.IsNullOrEmpty(questionField.Text))
@@ -49,8 +46,10 @@ namespace Client
             }
         }
 
-        private void btnOpslaan_Click(object sender, EventArgs e)
+        //Save question button
+        private void btnSave_Click(object sender, EventArgs e)
         {
+            List.getAll();
             if (ValidateEmptyFields())
             {
                 warningLabel.Text = "Niet alle velden zijn ingevoerd!";
@@ -70,8 +69,8 @@ namespace Client
 
                 Question q = new Question();
                 q.Text = question;
-                //q.list = list;
-                //q.save();
+                q.list = list;
+                q.save();
 
             }
         }

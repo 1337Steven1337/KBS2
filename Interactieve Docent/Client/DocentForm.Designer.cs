@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.tableMainWrapper = new System.Windows.Forms.TableLayoutPanel();
+            this.tableMain = new System.Windows.Forms.TableLayoutPanel();
             this.labelQuestion = new System.Windows.Forms.Label();
             this.labelTime = new System.Windows.Forms.Label();
             this.labelPoints = new System.Windows.Forms.Label();
@@ -41,64 +41,70 @@
             this.btnNo = new System.Windows.Forms.RadioButton();
             this.labelAnswer = new System.Windows.Forms.Label();
             this.warningLabel = new System.Windows.Forms.Label();
-            this.tableMainWrapper.SuspendLayout();
+            this.tableMain.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.timeField)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pointsField)).BeginInit();
             this.tableWrapButtons.SuspendLayout();
             this.SuspendLayout();
             // 
-            // tableMainWrapper
+            // tableMain
             // 
-            this.tableMainWrapper.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.tableMainWrapper.BackColor = System.Drawing.Color.Transparent;
-            this.tableMainWrapper.ColumnCount = 2;
-            this.tableMainWrapper.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 30F));
-            this.tableMainWrapper.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 70F));
-            this.tableMainWrapper.Controls.Add(this.labelQuestion, 0, 0);
-            this.tableMainWrapper.Controls.Add(this.labelTime, 0, 1);
-            this.tableMainWrapper.Controls.Add(this.labelPoints, 0, 2);
-            this.tableMainWrapper.Controls.Add(this.questionField, 1, 0);
-            this.tableMainWrapper.Controls.Add(this.timeField, 1, 1);
-            this.tableMainWrapper.Controls.Add(this.pointsField, 1, 2);
-            this.tableMainWrapper.Controls.Add(this.btnSave, 1, 4);
-            this.tableMainWrapper.Controls.Add(this.tableWrapButtons, 1, 3);
-            this.tableMainWrapper.Controls.Add(this.labelAnswer, 0, 3);
-            this.tableMainWrapper.Controls.Add(this.warningLabel, 0, 4);
-            this.tableMainWrapper.Location = new System.Drawing.Point(0, 0);
-            this.tableMainWrapper.Name = "tableMainWrapper";
-            this.tableMainWrapper.RowCount = 5;
-            this.tableMainWrapper.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
-            this.tableMainWrapper.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
-            this.tableMainWrapper.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
-            this.tableMainWrapper.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
-            this.tableMainWrapper.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 50F));
-            this.tableMainWrapper.Size = new System.Drawing.Size(678, 434);
-            this.tableMainWrapper.TabIndex = 2;
+            this.tableMain.BackColor = System.Drawing.Color.Transparent;
+            this.tableMain.ColumnCount = 2;
+            this.tableMain.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 30F));
+            this.tableMain.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 70F));
+            this.tableMain.Controls.Add(this.labelQuestion, 0, 0);
+            this.tableMain.Controls.Add(this.labelTime, 0, 1);
+            this.tableMain.Controls.Add(this.labelPoints, 0, 2);
+            this.tableMain.Controls.Add(this.questionField, 1, 0);
+            this.tableMain.Controls.Add(this.timeField, 1, 1);
+            this.tableMain.Controls.Add(this.pointsField, 1, 2);
+            this.tableMain.Controls.Add(this.btnSave, 1, 4);
+            this.tableMain.Controls.Add(this.tableWrapButtons, 1, 3);
+            this.tableMain.Controls.Add(this.labelAnswer, 0, 3);
+            this.tableMain.Controls.Add(this.warningLabel, 0, 4);
+            this.tableMain.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableMain.Location = new System.Drawing.Point(0, 0);
+            this.tableMain.Name = "tableMain";
+            this.tableMain.RowCount = 5;
+            this.tableMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.tableMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.tableMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.tableMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.tableMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 50F));
+            this.tableMain.Size = new System.Drawing.Size(678, 434);
+            this.tableMain.TabIndex = 2;
             // 
             // labelQuestion
             // 
+            this.labelQuestion.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.labelQuestion.AutoSize = true;
-            this.labelQuestion.Location = new System.Drawing.Point(3, 0);
+            this.labelQuestion.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelQuestion.Location = new System.Drawing.Point(123, 0);
             this.labelQuestion.Name = "labelQuestion";
-            this.labelQuestion.Size = new System.Drawing.Size(50, 17);
+            this.labelQuestion.Size = new System.Drawing.Size(77, 25);
             this.labelQuestion.TabIndex = 8;
             this.labelQuestion.Text = "Vraag:";
             // 
             // labelTime
             // 
+            this.labelTime.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.labelTime.AutoSize = true;
-            this.labelTime.Location = new System.Drawing.Point(3, 96);
+            this.labelTime.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelTime.Location = new System.Drawing.Point(67, 96);
             this.labelTime.Name = "labelTime";
-            this.labelTime.Size = new System.Drawing.Size(152, 17);
+            this.labelTime.Size = new System.Drawing.Size(133, 50);
             this.labelTime.TabIndex = 9;
             this.labelTime.Text = "Tijdslimiet (Seconden):";
             // 
             // labelPoints
             // 
+            this.labelPoints.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.labelPoints.AutoSize = true;
-            this.labelPoints.Location = new System.Drawing.Point(3, 192);
+            this.labelPoints.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelPoints.Location = new System.Drawing.Point(47, 192);
             this.labelPoints.Name = "labelPoints";
-            this.labelPoints.Size = new System.Drawing.Size(100, 17);
+            this.labelPoints.Size = new System.Drawing.Size(153, 25);
             this.labelPoints.TabIndex = 10;
             this.labelPoints.Text = "Aantal punten:";
             // 
@@ -136,7 +142,7 @@
             this.btnSave.TabIndex = 14;
             this.btnSave.Text = "Opslaan";
             this.btnSave.UseVisualStyleBackColor = true;
-            this.btnSave.Click += new System.EventHandler(this.btnOpslaan_Click);
+            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
             // tableWrapButtons
             // 
@@ -177,31 +183,36 @@
             // 
             // labelAnswer
             // 
+            this.labelAnswer.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.labelAnswer.AutoSize = true;
-            this.labelAnswer.Location = new System.Drawing.Point(3, 288);
+            this.labelAnswer.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelAnswer.Location = new System.Drawing.Point(90, 288);
             this.labelAnswer.Name = "labelAnswer";
-            this.labelAnswer.Size = new System.Drawing.Size(71, 17);
+            this.labelAnswer.Size = new System.Drawing.Size(110, 25);
             this.labelAnswer.TabIndex = 16;
             this.labelAnswer.Text = "Antwoord:";
             // 
             // warningLabel
             // 
+            this.warningLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.warningLabel.AutoSize = true;
-            this.warningLabel.Location = new System.Drawing.Point(3, 384);
+            this.warningLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.warningLabel.Location = new System.Drawing.Point(96, 384);
             this.warningLabel.Name = "warningLabel";
-            this.warningLabel.Size = new System.Drawing.Size(0, 17);
+            this.warningLabel.Size = new System.Drawing.Size(104, 17);
             this.warningLabel.TabIndex = 17;
+            this.warningLabel.Text = "warningLabel";
             // 
             // DocentForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(678, 434);
-            this.Controls.Add(this.tableMainWrapper);
+            this.Controls.Add(this.tableMain);
             this.Name = "DocentForm";
             this.Text = "DocentForm";
-            this.tableMainWrapper.ResumeLayout(false);
-            this.tableMainWrapper.PerformLayout();
+            this.tableMain.ResumeLayout(false);
+            this.tableMain.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.timeField)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pointsField)).EndInit();
             this.tableWrapButtons.ResumeLayout(false);
@@ -211,7 +222,7 @@
         }
 
         #endregion
-        private System.Windows.Forms.TableLayoutPanel tableMainWrapper;
+        private System.Windows.Forms.TableLayoutPanel tableMain;
         private System.Windows.Forms.Label labelQuestion;
         private System.Windows.Forms.Label labelTime;
         private System.Windows.Forms.Label labelPoints;
