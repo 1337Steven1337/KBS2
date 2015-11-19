@@ -11,7 +11,6 @@ namespace Server.Models.DTO
         public PredefinedAnswerDTO PredefinedAnswer { get; set; }
 
         public UserAnswerDTO() { }
-
         public UserAnswerDTO(UserAnswer ua)
         {
             this.Id = ua.Id;
