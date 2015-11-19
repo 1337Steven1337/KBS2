@@ -15,7 +15,8 @@ namespace Client.API
 
         protected void copyValues<T>(T target, T source)
         {
-            Type t = typeof(T);
+            if (target != null && source != null) { 
+                Type t = typeof(T);
 
             var properties = t.GetProperties().Where(prop => prop.CanRead && prop.CanWrite);
 
@@ -25,6 +26,7 @@ namespace Client.API
                 if (value != null)
                     prop.SetValue(target, value, null);
             }
+        }
         }
 
         public static T getById<T>(int id, string resource) where T : new()
