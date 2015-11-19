@@ -20,6 +20,10 @@ namespace Server.Models
 
         [DataMember]
         public List List { get; set; }
+
+        //[DataMember]
+        //public int List_Id { get; set; }
+
         [DataMember]
         public ICollection<PredefinedAnswer> PredefinedAnswers { get; set; }
         

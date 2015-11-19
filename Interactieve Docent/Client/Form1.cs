@@ -25,10 +25,10 @@ namespace Client
 
         private void button1_Click(object sender, EventArgs e)
         {
-            List list = new List(true);
-            list.Name = "Abcdefgh";
-            list.save();
-
+            //List list = new List(true);
+            //list.Name = "Abcdefgh";
+            //list.save();
+            List.getAll();
         }
     }
 }
