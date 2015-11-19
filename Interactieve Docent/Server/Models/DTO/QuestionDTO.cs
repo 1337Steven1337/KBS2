@@ -14,6 +14,8 @@ namespace Server.Models.DTO
 
         public List<UserAnswerDTO> UserAnswers { get; set; }
 
+        public QuestionDTO() { }
+
         public QuestionDTO(Question question)
         {
             this.Id = question.Id;
