@@ -12,6 +12,7 @@ namespace Client.API
         private string _text = null;
         private List<PredefinedAnswer> _predefinedAnswers = null;
         private List<UserAnswer> _userAnswers = null;
+        private List _list = null;
 
         public int Id { get; private set; }
         public string Text
@@ -31,7 +32,25 @@ namespace Client.API
             }
         }
 
-        public List<PredefinedAnswer> PredefinedAnswers {
+        public List list
+        {
+            get
+            {
+                if (!this._fetched && this._list == null)
+                {
+                    this.fetch();
+                }
+
+                return this._list;
+            }
+            set
+            {
+                this._list = value;
+            }
+        }
+
+        public List<PredefinedAnswer> PredefinedAnswers
+        {
             get
             {
                 if (!this._fetched && this._predefinedAnswers == null)
@@ -64,10 +83,17 @@ namespace Client.API
             }
         }
 
-
-        public Question ()
+        public void save()
         {
-            this._fetched = true;
+            RestRequest request = new RestRequest(Method.POST);
+            request.RequestFormat = DataFormat.Json;
+            request.AddHeader("Content-Type", "application/json");
+            request.AddParameter("Text", this.Text);
+            request.AddParameter("List_Id", this.list.Id);
+            request.Resource = "Questions";
+
+            List q = Api.Execute<List>(request);
+            this.Id = q.Id;
         }
 
         public static Question getById(int id)
