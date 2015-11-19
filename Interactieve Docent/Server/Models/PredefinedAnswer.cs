@@ -14,11 +14,11 @@ namespace Server.Models
     {
         [Key]
         [DataMember]
-        public int id { get; set; }
+        public int Id { get; set; }
         [DataMember]
-        public string text { get; set; }
+        public string Text { get; set; }
 
         [DataMember]
-        public Question question { get; set; }
+        public Question Question { get; set; }
     }
 }
