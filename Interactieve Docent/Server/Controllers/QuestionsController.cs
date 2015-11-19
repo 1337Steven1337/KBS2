@@ -29,19 +29,22 @@ namespace Server.Controllers
             return questions;
         }
 
-        // GET: api/Questions/5
-        [ResponseType(typeof(Question))]
-        public async Task<IHttpActionResult> GetQuestion(int id)
+        // GET: api/Question/5
+        [ResponseType(typeof(QuestionDTO))]
+        public QuestionDTO GetQuestionById(int id)
         {
-            Question question = await db.Questions.FindAsync(id);
-            if (question == null)
-            {
-                return NotFound();
-            }
+            var vragen = from q in db.Questions
+                        where q.Id == id
+                        select new QuestionDTO()
+                        {
+                            Id = q.Id,
+                            Text = q.Text,
+                            ListId = q.List.Id,
+                            PredefinedAnswers = q.PredefinedAnswers.Select(V => new PredefinedAnswerDTO { Id = V.Id, Text = V.Text, QuestionId = V.Question.Id }).ToList<PredefinedAnswerDTO>()
+                        };
 
-            QuestionDTO qDTO = new QuestionDTO(question);
-
-            return Ok(question);
+            QuestionDTO vraag = vragen.First();
+            return vraag;
         }
 
         // PUT: api/Questions/5

@@ -12,10 +12,5 @@ namespace Server.Models.DTO
         public int QuestionId { get; set; }
 
         public PredefinedAnswerDTO() { }
-        public PredefinedAnswerDTO(PredefinedAnswer PreAnswer)
-        {
-            this.Id = PreAnswer.Id;
-            this.Text = PreAnswer.Text;
-        }
     }
 }

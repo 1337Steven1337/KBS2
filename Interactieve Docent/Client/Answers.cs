@@ -46,5 +46,10 @@ namespace Client
         {
             
         }
+
+        private void AnswersTextbox_TextChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }

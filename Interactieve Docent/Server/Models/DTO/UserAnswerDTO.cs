@@ -8,16 +8,10 @@ namespace Server.Models.DTO
     public class UserAnswerDTO
     {
         public int Id { get; set; }
-        public PredefinedAnswerDTO PredefinedAnswer { get; set; }
+        public int QuestionId { get; set; }
+        public int PredefinedAnswerId { get; set; }
+        public String PredefinedAnswer { get; set; }
 
         public UserAnswerDTO() { }
-        public UserAnswerDTO(UserAnswer ua)
-        {
-            this.Id = ua.Id;
-            if (PredefinedAnswer != null)
-            {
-                this.PredefinedAnswer = new PredefinedAnswerDTO(ua.PredefinedAnswer);
-            }
-        }
     }
 }

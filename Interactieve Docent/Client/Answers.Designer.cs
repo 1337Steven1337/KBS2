@@ -51,6 +51,7 @@
             this.AnswersTextbox.Size = new System.Drawing.Size(293, 292);
             this.AnswersTextbox.TabIndex = 2;
             this.AnswersTextbox.Text = "";
+            this.AnswersTextbox.TextChanged += new System.EventHandler(this.AnswersTextbox_TextChanged);
             // 
             // aantalLabel1
             // 

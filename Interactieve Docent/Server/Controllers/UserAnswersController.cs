@@ -24,7 +24,10 @@ namespace Server.Controllers
             var ua = from q in db.UserAnswers
                      select new UserAnswerDTO()
                      {
-                         Id = q.Id
+                         Id = q.Id,
+                         QuestionId = q.Question.Id,
+                         PredefinedAnswerId = q.PredefinedAnswer.Id,
+                         PredefinedAnswer = q.PredefinedAnswer.Text
                      };
 
             return ua;
@@ -32,17 +35,19 @@ namespace Server.Controllers
 
         // GET: api/UserAnswers/5
         [ResponseType(typeof(UserAnswerDTO))]
-        public async Task<IHttpActionResult> GetUserAnswer(int id)
+        public UserAnswerDTO GetList(int id)
         {
-            UserAnswer userAnswer = await db.UserAnswers.FindAsync(id);
-
-            if (userAnswer == null)
-            {
-                return NotFound();
-            }
-
-            UserAnswerDTO uaDTO = new UserAnswerDTO(userAnswer);
-            return Ok(uaDTO);
+            var Lists = from ua in db.UserAnswers
+                        where ua.Id == id
+                        select new UserAnswerDTO()
+                        {
+                            Id = ua.Id,
+                            QuestionId = ua.Question.Id,
+                            PredefinedAnswerId = ua.PredefinedAnswer.Id,
+                            PredefinedAnswer = ua.PredefinedAnswer.Text
+                        };
+            UserAnswerDTO lijst = Lists.First();
+            return lijst;
         }
 
         // PUT: api/UserAnswers/5
