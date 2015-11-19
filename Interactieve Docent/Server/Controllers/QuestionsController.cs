@@ -23,7 +23,10 @@ namespace Server.Controllers
         {
             var questions = from q in db.Questions select new QuestionDTO() {
                 Id = q.Id,
-                Text = q.Text
+                Text = q.Text,
+                ListId = q.List.Id,
+                PredefinedAnswers = q.PredefinedAnswers.Select(V => new PredefinedAnswerDTO { Id = V.Id, Text = V.Text, QuestionId = V.Question.Id }).ToList<PredefinedAnswerDTO>()
+
             };
 
             return questions;

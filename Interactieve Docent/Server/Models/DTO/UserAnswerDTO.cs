@@ -9,8 +9,7 @@ namespace Server.Models.DTO
     {
         public int Id { get; set; }
         public int QuestionId { get; set; }
-        public int PredefinedAnswerId { get; set; }
-        public String PredefinedAnswer { get; set; }
+        public PredefinedAnswer PredefinedAnswer { get; set; }
 
         public UserAnswerDTO() { }
     }
