@@ -34,5 +34,10 @@ namespace Client
             list.Name = "Abcdefgh";
             list.save();
         }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+          //  diagram diagram = new diagram
+        }
     }
 }
