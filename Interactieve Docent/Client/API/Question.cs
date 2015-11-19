@@ -28,6 +28,7 @@ namespace Client.API
                 this._text = value;
             }
         }
+
         public List<PredefinedAnswer> PredefinedAnswers {
             get
             {
