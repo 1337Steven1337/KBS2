@@ -14,7 +14,10 @@ namespace Server.Models.DTO
         public UserAnswerDTO(UserAnswer ua)
         {
             this.Id = ua.Id;
-            this.PredefinedAnswer = new PredefinedAnswerDTO(ua.PredefinedAnswer);
+            if (PredefinedAnswer != null)
+            {
+                this.PredefinedAnswer = new PredefinedAnswerDTO(ua.PredefinedAnswer);
+            }
         }
     }
 }

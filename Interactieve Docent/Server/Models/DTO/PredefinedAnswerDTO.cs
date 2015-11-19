@@ -11,6 +11,7 @@ namespace Server.Models.DTO
         public string Text { get; set; }
         public int QuestionId { get; set; }
 
+        public PredefinedAnswerDTO() { }
         public PredefinedAnswerDTO(PredefinedAnswer PreAnswer)
         {
             this.Id = PreAnswer.Id;
