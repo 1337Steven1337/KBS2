@@ -15,7 +15,6 @@ namespace Client
     {
         private List<string> answers = new List<string>();
         private static Size startRes = new Size();
-        private int countJa, countNee;
         private Question question;
 
         public Answers(Question question)
@@ -33,7 +32,7 @@ namespace Client
             List<UserAnswer> answers = this.question.UserAnswers;
             int yes = answers.Select(answer => answer.Id == 1).ToList().Count;
 
-            aantalLabel1.Text = "Aantal keer ja: ";
+            aantalLabel1.Text = "Aantal keer ja: " + yes;
             aantalLabel2.Text = "Aantal keer nee: ";
         }
 
@@ -43,35 +42,9 @@ namespace Client
             this.AnswersTextbox.Text = temp;
         }
 
-        private void ReadAnswersYes()
-        {
-            foreach (String a in answers)
-            {
-                if (a == "JA" || a == "Ja" || a == "ja")
-                {
-                    countJa++;
-                }
-            }
-            aantalLabel1.Text += countJa;
-        }
-
-        private void ReadAnswersNo()
-        {
-            foreach (String a in answers)
-            {
-                if (a == "NEE" || a == "Nee" || a == "nee")
-                {
-                    countNee++;
-                }
-            }
-            aantalLabel2.Text += countNee;
-        }
-
         private void btn_ShowAnswers_Click(object sender, EventArgs e)
         {
-            ReadAnswers();
-            ReadAnswersYes();
-            ReadAnswersNo();
+            
         }
     }
 }

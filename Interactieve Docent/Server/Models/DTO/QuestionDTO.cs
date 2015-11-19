@@ -11,5 +11,21 @@ namespace Server.Models.DTO
         public string Text { get; set; }
 
         public List<PredefinedAnswerDTO> PredefinedAnswers { get; set; }
+
+        public List<UserAnswerDTO> UserAnswers { get; set; }
+
+        public QuestionDTO(Question question)
+        {
+            this.Id = question.Id;
+            this.Text = question.Text;
+
+            //DIT LATER NOG AANPASSEN
+            foreach(PredefinedAnswer preAnswer in question.PredefinedAnswers)
+            {
+                this.PredefinedAnswers.Add(null);
+            }
+            this.PredefinedAnswers = question.PredefinedAnswers.;
+            this.UserAnswers = question.
+        }
     }
 }
