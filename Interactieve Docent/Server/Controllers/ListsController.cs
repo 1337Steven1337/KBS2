@@ -44,9 +44,6 @@ namespace Server.Controllers
                             Name = q.Name,
                             Questions = q.Questions.Select(C => new QuestionDTO { Id = C.Id, Text = C.Text, PredefinedAnswers = (C.PredefinedAnswers.Select(V => new PredefinedAnswerDTO { Id = V.id, Text = V.text, QuestionId = V.question.Id })).ToList<PredefinedAnswerDTO>() }).ToList<QuestionDTO>()
                         };
-
-
-
             return Lists;
         }
 
