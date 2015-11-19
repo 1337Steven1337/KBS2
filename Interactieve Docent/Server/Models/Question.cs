@@ -22,6 +22,8 @@ namespace Server.Models
         public List List { get; set; }
         [DataMember]
         public ICollection<PredefinedAnswer> PredefinedAnswers { get; set; }
+        [DataMember]
+        public ICollection<UserAnswer> UserAnswers { get; set; }
         
         public Question()
         {

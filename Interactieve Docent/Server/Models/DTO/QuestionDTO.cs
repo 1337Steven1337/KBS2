@@ -18,14 +18,20 @@ namespace Server.Models.DTO
         {
             this.Id = question.Id;
             this.Text = question.Text;
+            this.PredefinedAnswers = new List<PredefinedAnswerDTO>();
+            this.UserAnswers = new List<UserAnswerDTO>();
 
             //DIT LATER NOG AANPASSEN
             foreach(PredefinedAnswer preAnswer in question.PredefinedAnswers)
             {
-                this.PredefinedAnswers.Add(null);
+                this.PredefinedAnswers.Add(new PredefinedAnswerDTO(preAnswer));
             }
-            this.PredefinedAnswers = question.PredefinedAnswers.;
-            this.UserAnswers = question.
+            
+            //DIT LATER NOG AANPASSEN
+            foreach(UserAnswer uAnswer in question.UserAnswers)
+            {
+                this.UserAnswers.Add(new UserAnswerDTO(uAnswer));
+            }
         }
     }
 }
