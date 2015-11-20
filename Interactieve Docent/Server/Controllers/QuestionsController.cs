@@ -11,10 +11,11 @@ using System.Web.Http;
 using System.Web.Http.Description;
 using Server.Models;
 using Server.Models.DTO;
+using Server.Hubs;
 
 namespace Server.Controllers
 {
-    public class QuestionsController : ApiController
+    public class QuestionsController : ApiControllerWithHub<EventHub>
     {
         private ServerContext db = new ServerContext();
 
@@ -96,6 +97,9 @@ namespace Server.Controllers
 
             db.Questions.Add(question);
             await db.SaveChangesAsync();
+
+            var subscribed = Hub.Clients.Group(question.List_Id.ToString());
+            subscribed.QuestionAdded(new QuestionDTO(question));
 
             return CreatedAtRoute("DefaultApi", new { id = question.Id }, question);
         }

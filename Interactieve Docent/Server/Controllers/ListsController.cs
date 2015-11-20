@@ -13,10 +13,12 @@ using Server.Models;
 using Server.Models.DTO;
 using System.IO;
 using System.Web;
+using Server;
+using Server.Hubs;
 
 namespace Server.Controllers
 {
-    public class ListsController : ApiController
+    public class ListsController : ApiControllerWithHub<EventHub>
     {
         private ServerContext db = new ServerContext();
 

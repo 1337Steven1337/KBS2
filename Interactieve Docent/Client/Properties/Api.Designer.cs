@@ -25,7 +25,7 @@ namespace Client.Properties {
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("http://localhost:57017/api/")]
+        [global::System.Configuration.DefaultSettingValueAttribute("http://localhost:57017/")]
         public string Host {
             get {
                 return ((string)(this["Host"]));
@@ -34,10 +34,19 @@ namespace Client.Properties {
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("7979")]
-        public int Port {
+        [global::System.Configuration.DefaultSettingValueAttribute("signalr")]
+        public string SignalR {
             get {
-                return ((int)(this["Port"]));
+                return ((string)(this["SignalR"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("api")]
+        public string Rest {
+            get {
+                return ((string)(this["Rest"]));
             }
         }
     }

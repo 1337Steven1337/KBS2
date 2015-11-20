@@ -12,5 +12,15 @@ namespace Server.Models.DTO
         public int ListId { get; set; }
         public List<PredefinedAnswerDTO> PredefinedAnswers { get; set; }
         
+        public QuestionDTO()
+        {
+
+        }
+        public QuestionDTO(Question q)
+        {
+            this.Id = q.Id;
+            this.Text = q.Text;
+            this.ListId = q.List_Id;
+        }
     }
 }

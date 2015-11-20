@@ -3,10 +3,13 @@
   <Profiles />
   <Settings>
     <Setting Name="Host" Type="System.String" Scope="Application">
-      <Value Profile="(Default)">http://localhost:57017/api/</Value>
+      <Value Profile="(Default)">http://localhost:57017/</Value>
     </Setting>
-    <Setting Name="Port" Type="System.Int32" Scope="Application">
-      <Value Profile="(Default)">7979</Value>
+    <Setting Name="SignalR" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">signalr</Value>
+    </Setting>
+    <Setting Name="Rest" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">api</Value>
     </Setting>
   </Settings>
 </SettingsFile>
