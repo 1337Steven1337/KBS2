@@ -70,6 +70,9 @@ namespace Server.Controllers
             try
             {
                 await db.SaveChangesAsync();
+
+                var subscribed = Hub.Clients.Group(question.List_Id.ToString());
+                subscribed.QuestionUpdated(new QuestionDTO(question));
             }
             catch (DbUpdateConcurrencyException)
             {
@@ -116,6 +119,9 @@ namespace Server.Controllers
 
             db.Questions.Remove(question);
             await db.SaveChangesAsync();
+
+            var subscribed = Hub.Clients.Group(question.List_Id.ToString());
+            subscribed.QuestionRemoved(new QuestionDTO(question));
 
             return Ok(question);
         }
