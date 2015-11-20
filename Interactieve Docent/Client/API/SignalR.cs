@@ -1,4 +1,5 @@
 ﻿using Client.API.EventArgs;
+using Client.API.Models;
 using Microsoft.AspNet.SignalR.Client;
 using System;
 using System.Collections.Generic;

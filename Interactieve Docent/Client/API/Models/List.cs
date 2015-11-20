@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Client.API
+namespace Client.API.Models
 {
     public class List : Entity
     {

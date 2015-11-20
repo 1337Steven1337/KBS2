@@ -66,10 +66,10 @@
     </Compile>
     <Compile Include="API\Entity.cs" />
     <Compile Include="API\EventArgs\SubscriptionStatus.cs" />
-    <Compile Include="API\List.cs" />
-    <Compile Include="API\PredefinedAnswer.cs" />
+    <Compile Include="API\Models\List.cs" />
+    <Compile Include="API\Models\PredefinedAnswer.cs" />
     <Compile Include="API\SignalR.cs" />
-    <Compile Include="API\UserAnswer.cs" />
+    <Compile Include="API\Models\UserAnswer.cs" />
     <Compile Include="Docent\DocentControlUI.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -100,7 +100,7 @@
       <DependentUpon>Api.settings</DependentUpon>
     </Compile>
     <Compile Include="API\Api.cs" />
-    <Compile Include="API\Question.cs" />
+    <Compile Include="API\Models\Question.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
