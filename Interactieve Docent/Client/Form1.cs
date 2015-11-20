@@ -25,17 +25,23 @@ namespace Client
 
         private void button1_Click(object sender, EventArgs e)
         {
-            Console.WriteLine("Hallo");
-
-            List lists = List.getById(1);
-
-            Console.WriteLine(lists.Name);
+            List<Question> q = Question.getAll();
+            foreach (Question fag in q)
+            {
+                Console.WriteLine("-----" + fag.Text  + "-----");
+                foreach (PredefinedAnswer p in fag.PredefinedAnswers)
+                {
+                    Console.WriteLine(p.Text);
+                }
+            }
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
-            List<UserAnswer> ua = UserAnswer.getAll();
-            Console.WriteLine(ua.First().PredefinedAnswer.Text);
+            Question q = Question.getById(3);
+            Console.WriteLine(q.Text);
+            //UserAnswer ua = UserAnswer.getById(1);
+            //Console.WriteLine(ua.PredefinedAnswer.Text);
         }
     }
 }
