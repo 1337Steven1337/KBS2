@@ -55,7 +55,7 @@ namespace Client
                 Console.WriteLine(vragenlijst.Id + "\t" + vragenlijst.Name);
                 foreach (Question vraag in vragenlijst.Questions)
                 {
-                    Console.WriteLine("\t" + vraag.Id + "\t" + vraag.Text + "\t" + vraag.list);
+                    Console.WriteLine("\t" + vraag.Id + "\t" + vraag.Text + "\t");
                 }
 
             }
