@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Client.API
+namespace Client.API.Models
 {
     public class Question : Entity
     {
@@ -32,7 +32,7 @@ namespace Client.API
             }
         }
 
-        public List list
+        public List List
         {
             get
             {
@@ -89,7 +89,7 @@ namespace Client.API
             request.RequestFormat = DataFormat.Json;
             request.AddHeader("Content-Type", "application/json");
             request.AddParameter("Text", this.Text);
-            request.AddParameter("List_Id", this.list.Id);
+            request.AddParameter("List_Id", this.List.Id);
             request.Resource = "Questions";
 
             List q = Api.Execute<List>(request);
@@ -108,9 +108,9 @@ namespace Client.API
 
         protected override void fetch()
         {
+            this._fetched = true;
             Question q = Question.getById(this.Id);
             this.copyValues<Question>(this, q);
-            this._fetched = true;
         }
     }
 }

@@ -25,7 +25,7 @@ namespace Server.Controllers
                      select new UserAnswerDTO()
                      {
                          Id = q.Id,
-                         QuestionId = q.Question.Id,
+                         Question_Id = q.Question.Id,
                          PredefinedAnswer = q.PredefinedAnswer
                      };
 
@@ -41,7 +41,7 @@ namespace Server.Controllers
                         select new UserAnswerDTO()
                         {
                             Id = ua.Id,
-                            QuestionId = ua.Question.Id,
+                            Question_Id = ua.Question.Id,
                             PredefinedAnswer = ua.PredefinedAnswer
                         };
             UserAnswerDTO lijst = Lists.First();

@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using Client.API;
+using Client.API.Models;
 
 namespace Client
 {
@@ -15,7 +15,7 @@ namespace Client
     {
         public DocentForm()
         {
-            InitializeComponent();
+            InitializeComponent();            
             //Form width 80% of the whole screen
             this.Width = Screen.PrimaryScreen.Bounds.Width / 100 * 80;
             //Form height 80% of the whole screen
@@ -25,7 +25,6 @@ namespace Client
 
             warningLabel.ForeColor = Color.Red;
             warningLabel.Text = "";
-            
         }
 
 
@@ -49,7 +48,17 @@ namespace Client
         //Save question button
         private void btnSave_Click(object sender, EventArgs e)
         {
-            List.getAll();
+            List<List> lijst = List.getAll();
+            foreach (List vragenlijst in lijst)
+            {
+                Console.WriteLine(vragenlijst.Id + "\t" + vragenlijst.Name);
+                foreach (Question vraag in vragenlijst.Questions)
+                {
+                    Console.WriteLine("\t" + vraag.Id + "\t" + vraag.Text + "\t");
+                }
+
+            }
+            /*List.getAll();
             if (ValidateEmptyFields())
             {
                 warningLabel.Text = "Niet alle velden zijn ingevoerd!";
@@ -72,7 +81,7 @@ namespace Client
                 q.list = list;
                 q.save();
 
-            }
+            }*/
         }
     }
 }
