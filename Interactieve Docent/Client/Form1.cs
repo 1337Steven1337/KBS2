@@ -1,4 +1,5 @@
-﻿using Client.API;
+﻿using Client.API.Models;
+using Microsoft.AspNet.SignalR.Client;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -25,18 +26,13 @@ namespace Client
 
         private void button1_Click(object sender, EventArgs e)
         {
-            List<List> lists = List.getAll();
-            List list = lists.First();
 
-            Console.WriteLine(list.Questions.First().Text);
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
-            List list = List.getById(1);
-
-            Console.WriteLine("-----------" + list.Name + "-----------");
-            
+            Question q = Question.getById(3);
+            Console.WriteLine(q.Text);
         }
     }
 }

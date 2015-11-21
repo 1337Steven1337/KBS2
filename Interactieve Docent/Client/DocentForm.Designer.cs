@@ -28,123 +28,129 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.tableMainWrapper = new System.Windows.Forms.TableLayoutPanel();
-            this.labelVraag = new System.Windows.Forms.Label();
-            this.labelTijd = new System.Windows.Forms.Label();
-            this.labelPunten = new System.Windows.Forms.Label();
-            this.vraagVeld = new System.Windows.Forms.RichTextBox();
-            this.tijdVeld = new System.Windows.Forms.NumericUpDown();
-            this.puntenVeld = new System.Windows.Forms.NumericUpDown();
-            this.btnOpslaan = new System.Windows.Forms.Button();
+            this.tableMain = new System.Windows.Forms.TableLayoutPanel();
+            this.labelQuestion = new System.Windows.Forms.Label();
+            this.labelTime = new System.Windows.Forms.Label();
+            this.labelPoints = new System.Windows.Forms.Label();
+            this.questionField = new System.Windows.Forms.RichTextBox();
+            this.timeField = new System.Windows.Forms.NumericUpDown();
+            this.pointsField = new System.Windows.Forms.NumericUpDown();
+            this.btnSave = new System.Windows.Forms.Button();
             this.tableWrapButtons = new System.Windows.Forms.TableLayoutPanel();
-            this.btnJa = new System.Windows.Forms.RadioButton();
-            this.btnNee = new System.Windows.Forms.RadioButton();
-            this.labelAntwoord = new System.Windows.Forms.Label();
+            this.btnYes = new System.Windows.Forms.RadioButton();
+            this.btnNo = new System.Windows.Forms.RadioButton();
+            this.labelAnswer = new System.Windows.Forms.Label();
             this.warningLabel = new System.Windows.Forms.Label();
-            this.tableMainWrapper.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.tijdVeld)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.puntenVeld)).BeginInit();
+            this.tableMain.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.timeField)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pointsField)).BeginInit();
             this.tableWrapButtons.SuspendLayout();
             this.SuspendLayout();
             // 
-            // tableMainWrapper
+            // tableMain
             // 
-            this.tableMainWrapper.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.tableMainWrapper.BackColor = System.Drawing.Color.Transparent;
-            this.tableMainWrapper.ColumnCount = 2;
-            this.tableMainWrapper.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 30F));
-            this.tableMainWrapper.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 70F));
-            this.tableMainWrapper.Controls.Add(this.labelVraag, 0, 0);
-            this.tableMainWrapper.Controls.Add(this.labelTijd, 0, 1);
-            this.tableMainWrapper.Controls.Add(this.labelPunten, 0, 2);
-            this.tableMainWrapper.Controls.Add(this.vraagVeld, 1, 0);
-            this.tableMainWrapper.Controls.Add(this.tijdVeld, 1, 1);
-            this.tableMainWrapper.Controls.Add(this.puntenVeld, 1, 2);
-            this.tableMainWrapper.Controls.Add(this.btnOpslaan, 1, 4);
-            this.tableMainWrapper.Controls.Add(this.tableWrapButtons, 1, 3);
-            this.tableMainWrapper.Controls.Add(this.labelAntwoord, 0, 3);
-            this.tableMainWrapper.Controls.Add(this.warningLabel, 0, 4);
-            this.tableMainWrapper.Location = new System.Drawing.Point(0, 0);
-            this.tableMainWrapper.Name = "tableMainWrapper";
-            this.tableMainWrapper.RowCount = 5;
-            this.tableMainWrapper.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
-            this.tableMainWrapper.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
-            this.tableMainWrapper.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
-            this.tableMainWrapper.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
-            this.tableMainWrapper.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 50F));
-            this.tableMainWrapper.Size = new System.Drawing.Size(678, 434);
-            this.tableMainWrapper.TabIndex = 2;
+            this.tableMain.BackColor = System.Drawing.Color.Transparent;
+            this.tableMain.ColumnCount = 2;
+            this.tableMain.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 30F));
+            this.tableMain.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 70F));
+            this.tableMain.Controls.Add(this.labelQuestion, 0, 0);
+            this.tableMain.Controls.Add(this.labelTime, 0, 1);
+            this.tableMain.Controls.Add(this.labelPoints, 0, 2);
+            this.tableMain.Controls.Add(this.questionField, 1, 0);
+            this.tableMain.Controls.Add(this.timeField, 1, 1);
+            this.tableMain.Controls.Add(this.pointsField, 1, 2);
+            this.tableMain.Controls.Add(this.btnSave, 1, 4);
+            this.tableMain.Controls.Add(this.tableWrapButtons, 1, 3);
+            this.tableMain.Controls.Add(this.labelAnswer, 0, 3);
+            this.tableMain.Controls.Add(this.warningLabel, 0, 4);
+            this.tableMain.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableMain.Location = new System.Drawing.Point(0, 0);
+            this.tableMain.Name = "tableMain";
+            this.tableMain.RowCount = 5;
+            this.tableMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.tableMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.tableMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.tableMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.tableMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 50F));
+            this.tableMain.Size = new System.Drawing.Size(678, 434);
+            this.tableMain.TabIndex = 2;
             // 
-            // labelVraag
+            // labelQuestion
             // 
-            this.labelVraag.AutoSize = true;
-            this.labelVraag.Location = new System.Drawing.Point(3, 0);
-            this.labelVraag.Name = "labelVraag";
-            this.labelVraag.Size = new System.Drawing.Size(50, 17);
-            this.labelVraag.TabIndex = 8;
-            this.labelVraag.Text = "Vraag:";
+            this.labelQuestion.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.labelQuestion.AutoSize = true;
+            this.labelQuestion.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelQuestion.Location = new System.Drawing.Point(123, 0);
+            this.labelQuestion.Name = "labelQuestion";
+            this.labelQuestion.Size = new System.Drawing.Size(77, 25);
+            this.labelQuestion.TabIndex = 8;
+            this.labelQuestion.Text = "Vraag:";
             // 
-            // labelTijd
+            // labelTime
             // 
-            this.labelTijd.AutoSize = true;
-            this.labelTijd.Location = new System.Drawing.Point(3, 96);
-            this.labelTijd.Name = "labelTijd";
-            this.labelTijd.Size = new System.Drawing.Size(152, 17);
-            this.labelTijd.TabIndex = 9;
-            this.labelTijd.Text = "Tijdslimiet (Seconden):";
+            this.labelTime.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.labelTime.AutoSize = true;
+            this.labelTime.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelTime.Location = new System.Drawing.Point(67, 96);
+            this.labelTime.Name = "labelTime";
+            this.labelTime.Size = new System.Drawing.Size(133, 50);
+            this.labelTime.TabIndex = 9;
+            this.labelTime.Text = "Tijdslimiet (Seconden):";
             // 
-            // labelPunten
+            // labelPoints
             // 
-            this.labelPunten.AutoSize = true;
-            this.labelPunten.Location = new System.Drawing.Point(3, 192);
-            this.labelPunten.Name = "labelPunten";
-            this.labelPunten.Size = new System.Drawing.Size(100, 17);
-            this.labelPunten.TabIndex = 10;
-            this.labelPunten.Text = "Aantal punten:";
+            this.labelPoints.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.labelPoints.AutoSize = true;
+            this.labelPoints.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelPoints.Location = new System.Drawing.Point(47, 192);
+            this.labelPoints.Name = "labelPoints";
+            this.labelPoints.Size = new System.Drawing.Size(153, 25);
+            this.labelPoints.TabIndex = 10;
+            this.labelPoints.Text = "Aantal punten:";
             // 
-            // vraagVeld
+            // questionField
             // 
-            this.vraagVeld.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.vraagVeld.Location = new System.Drawing.Point(206, 3);
-            this.vraagVeld.Name = "vraagVeld";
-            this.vraagVeld.Size = new System.Drawing.Size(469, 90);
-            this.vraagVeld.TabIndex = 11;
-            this.vraagVeld.Text = "";
+            this.questionField.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.questionField.Location = new System.Drawing.Point(206, 3);
+            this.questionField.Name = "questionField";
+            this.questionField.Size = new System.Drawing.Size(469, 90);
+            this.questionField.TabIndex = 11;
+            this.questionField.Text = "";
             // 
-            // tijdVeld
+            // timeField
             // 
-            this.tijdVeld.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tijdVeld.Location = new System.Drawing.Point(206, 99);
-            this.tijdVeld.Name = "tijdVeld";
-            this.tijdVeld.Size = new System.Drawing.Size(469, 22);
-            this.tijdVeld.TabIndex = 12;
+            this.timeField.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.timeField.Location = new System.Drawing.Point(206, 99);
+            this.timeField.Name = "timeField";
+            this.timeField.Size = new System.Drawing.Size(469, 22);
+            this.timeField.TabIndex = 12;
             // 
-            // puntenVeld
+            // pointsField
             // 
-            this.puntenVeld.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.puntenVeld.Location = new System.Drawing.Point(206, 195);
-            this.puntenVeld.Name = "puntenVeld";
-            this.puntenVeld.Size = new System.Drawing.Size(469, 22);
-            this.puntenVeld.TabIndex = 13;
+            this.pointsField.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pointsField.Location = new System.Drawing.Point(206, 195);
+            this.pointsField.Name = "pointsField";
+            this.pointsField.Size = new System.Drawing.Size(469, 22);
+            this.pointsField.TabIndex = 13;
             // 
-            // btnOpslaan
+            // btnSave
             // 
-            this.btnOpslaan.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btnOpslaan.Location = new System.Drawing.Point(206, 387);
-            this.btnOpslaan.Name = "btnOpslaan";
-            this.btnOpslaan.Size = new System.Drawing.Size(469, 44);
-            this.btnOpslaan.TabIndex = 14;
-            this.btnOpslaan.Text = "Opslaan";
-            this.btnOpslaan.UseVisualStyleBackColor = true;
-            this.btnOpslaan.Click += new System.EventHandler(this.btnOpslaan_Click);
+            this.btnSave.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnSave.Location = new System.Drawing.Point(206, 387);
+            this.btnSave.Name = "btnSave";
+            this.btnSave.Size = new System.Drawing.Size(469, 44);
+            this.btnSave.TabIndex = 14;
+            this.btnSave.Text = "Opslaan";
+            this.btnSave.UseVisualStyleBackColor = true;
+            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
             // tableWrapButtons
             // 
             this.tableWrapButtons.ColumnCount = 2;
             this.tableWrapButtons.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableWrapButtons.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableWrapButtons.Controls.Add(this.btnJa, 0, 0);
-            this.tableWrapButtons.Controls.Add(this.btnNee, 1, 0);
+            this.tableWrapButtons.Controls.Add(this.btnYes, 0, 0);
+            this.tableWrapButtons.Controls.Add(this.btnNo, 1, 0);
             this.tableWrapButtons.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableWrapButtons.Location = new System.Drawing.Point(206, 291);
             this.tableWrapButtons.Name = "tableWrapButtons";
@@ -153,57 +159,62 @@
             this.tableWrapButtons.Size = new System.Drawing.Size(469, 90);
             this.tableWrapButtons.TabIndex = 15;
             // 
-            // btnJa
+            // btnYes
             // 
-            this.btnJa.AutoSize = true;
-            this.btnJa.Location = new System.Drawing.Point(3, 3);
-            this.btnJa.Name = "btnJa";
-            this.btnJa.Size = new System.Drawing.Size(44, 21);
-            this.btnJa.TabIndex = 0;
-            this.btnJa.TabStop = true;
-            this.btnJa.Text = "Ja";
-            this.btnJa.UseVisualStyleBackColor = true;
+            this.btnYes.AutoSize = true;
+            this.btnYes.Location = new System.Drawing.Point(3, 3);
+            this.btnYes.Name = "btnYes";
+            this.btnYes.Size = new System.Drawing.Size(44, 21);
+            this.btnYes.TabIndex = 0;
+            this.btnYes.TabStop = true;
+            this.btnYes.Text = "Ja";
+            this.btnYes.UseVisualStyleBackColor = true;
             // 
-            // btnNee
+            // btnNo
             // 
-            this.btnNee.AutoSize = true;
-            this.btnNee.Location = new System.Drawing.Point(237, 3);
-            this.btnNee.Name = "btnNee";
-            this.btnNee.Size = new System.Drawing.Size(55, 21);
-            this.btnNee.TabIndex = 1;
-            this.btnNee.TabStop = true;
-            this.btnNee.Text = "Nee";
-            this.btnNee.UseVisualStyleBackColor = true;
+            this.btnNo.AutoSize = true;
+            this.btnNo.Location = new System.Drawing.Point(237, 3);
+            this.btnNo.Name = "btnNo";
+            this.btnNo.Size = new System.Drawing.Size(55, 21);
+            this.btnNo.TabIndex = 1;
+            this.btnNo.TabStop = true;
+            this.btnNo.Text = "Nee";
+            this.btnNo.UseVisualStyleBackColor = true;
             // 
-            // labelAntwoord
+            // labelAnswer
             // 
-            this.labelAntwoord.AutoSize = true;
-            this.labelAntwoord.Location = new System.Drawing.Point(3, 288);
-            this.labelAntwoord.Name = "labelAntwoord";
-            this.labelAntwoord.Size = new System.Drawing.Size(71, 17);
-            this.labelAntwoord.TabIndex = 16;
-            this.labelAntwoord.Text = "Antwoord:";
+            this.labelAnswer.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.labelAnswer.AutoSize = true;
+            this.labelAnswer.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelAnswer.Location = new System.Drawing.Point(90, 288);
+            this.labelAnswer.Name = "labelAnswer";
+            this.labelAnswer.Size = new System.Drawing.Size(110, 25);
+            this.labelAnswer.TabIndex = 16;
+            this.labelAnswer.Text = "Antwoord:";
             // 
             // warningLabel
             // 
+            this.warningLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.warningLabel.AutoSize = true;
-            this.warningLabel.Location = new System.Drawing.Point(3, 384);
+            this.warningLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.warningLabel.Location = new System.Drawing.Point(96, 384);
             this.warningLabel.Name = "warningLabel";
-            this.warningLabel.Size = new System.Drawing.Size(0, 17);
+            this.warningLabel.Size = new System.Drawing.Size(104, 17);
             this.warningLabel.TabIndex = 17;
+            this.warningLabel.Text = "warningLabel";
             // 
             // DocentForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(678, 434);
-            this.Controls.Add(this.tableMainWrapper);
+            this.Controls.Add(this.tableMain);
             this.Name = "DocentForm";
             this.Text = "DocentForm";
-            this.tableMainWrapper.ResumeLayout(false);
-            this.tableMainWrapper.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.tijdVeld)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.puntenVeld)).EndInit();
+            this.tableMain.ResumeLayout(false);
+            this.tableMain.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.timeField)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pointsField)).EndInit();
             this.tableWrapButtons.ResumeLayout(false);
             this.tableWrapButtons.PerformLayout();
             this.ResumeLayout(false);
@@ -211,18 +222,18 @@
         }
 
         #endregion
-        private System.Windows.Forms.TableLayoutPanel tableMainWrapper;
-        private System.Windows.Forms.Label labelVraag;
-        private System.Windows.Forms.Label labelTijd;
-        private System.Windows.Forms.Label labelPunten;
-        private System.Windows.Forms.RichTextBox vraagVeld;
-        private System.Windows.Forms.NumericUpDown tijdVeld;
-        private System.Windows.Forms.NumericUpDown puntenVeld;
-        private System.Windows.Forms.Button btnOpslaan;
-        private System.Windows.Forms.Label labelAntwoord;
+        private System.Windows.Forms.TableLayoutPanel tableMain;
+        private System.Windows.Forms.Label labelQuestion;
+        private System.Windows.Forms.Label labelTime;
+        private System.Windows.Forms.Label labelPoints;
+        private System.Windows.Forms.RichTextBox questionField;
+        private System.Windows.Forms.NumericUpDown timeField;
+        private System.Windows.Forms.NumericUpDown pointsField;
+        private System.Windows.Forms.Button btnSave;
+        private System.Windows.Forms.Label labelAnswer;
         private System.Windows.Forms.TableLayoutPanel tableWrapButtons;
-        private System.Windows.Forms.RadioButton btnJa;
-        private System.Windows.Forms.RadioButton btnNee;
+        private System.Windows.Forms.RadioButton btnYes;
+        private System.Windows.Forms.RadioButton btnNo;
         private System.Windows.Forms.Label warningLabel;
     }
 }

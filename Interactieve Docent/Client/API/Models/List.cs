@@ -5,11 +5,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Client.API
+namespace Client.API.Models
 {
     public class List : Entity
     {
-        public int Id { get; private set; }
+        public int Id { get; set; }
         public string Name { get; set; }
 
         public List<Question> Questions { get; set; }
@@ -29,7 +29,9 @@ namespace Client.API
         {
             RestRequest request = new RestRequest(Method.POST);
             request.RequestFormat = DataFormat.Json;
+            request.AddHeader("Content-Type", "application/json");
             request.AddParameter("Name", this.Name);
+            request.Resource = "Lists";
 
             List q = Api.Execute<List>(request);
             this.copyValues<List>(this, q);

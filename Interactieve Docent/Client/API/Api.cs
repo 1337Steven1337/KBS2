@@ -12,7 +12,7 @@ namespace Client.API
         public static T Execute<T>(RestRequest request) where T : new()
         {
             var client = new RestClient();
-            client.BaseUrl = new Uri(Properties.Api.Default.Host);
+            client.BaseUrl = new Uri(Properties.Api.Default.Host + Properties.Api.Default.Rest);
             var response = client.Execute<T>(request);
 
             if (response.ErrorException != null)

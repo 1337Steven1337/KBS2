@@ -11,10 +11,11 @@ using System.Web.Http;
 using System.Web.Http.Description;
 using Server.Models;
 using Server.Models.DTO;
+using Server.Hubs;
 
 namespace Server.Controllers
 {
-    public class QuestionsController : ApiController
+    public class QuestionsController : ApiControllerWithHub<EventHub>
     {
         private ServerContext db = new ServerContext();
 
@@ -23,23 +24,31 @@ namespace Server.Controllers
         {
             var questions = from q in db.Questions select new QuestionDTO() {
                 Id = q.Id,
-                Text = q.Text
+                Text = q.Text,
+                List_Id = q.List.Id,
+                PredefinedAnswers = q.PredefinedAnswers.Select(V => new PredefinedAnswerDTO { Id = V.Id, Text = V.Text, Question_Id = V.Question.Id }).ToList<PredefinedAnswerDTO>()
+
             };
 
             return questions;
         }
 
-        // GET: api/Questions/5
-        [ResponseType(typeof(Question))]
-        public async Task<IHttpActionResult> GetQuestion(int id)
+        // GET: api/Question/5
+        [ResponseType(typeof(QuestionDTO))]
+        public QuestionDTO GetQuestionById(int id)
         {
-            Question question = await db.Questions.FindAsync(id);
-            if (question == null)
-            {
-                return NotFound();
-            }
+            var vragen = from q in db.Questions
+                        where q.Id == id
+                        select new QuestionDTO()
+                        {
+                            Id = q.Id,
+                            Text = q.Text,
+                            List_Id = q.List.Id,
+                            PredefinedAnswers = q.PredefinedAnswers.Select(V => new PredefinedAnswerDTO { Id = V.Id, Text = V.Text, Question_Id = V.Question.Id }).ToList<PredefinedAnswerDTO>()
+                        };
 
-            return Ok(question);
+            QuestionDTO vraag = vragen.First();
+            return vraag;
         }
 
         // PUT: api/Questions/5
@@ -61,6 +70,9 @@ namespace Server.Controllers
             try
             {
                 await db.SaveChangesAsync();
+
+                var subscribed = Hub.Clients.Group(question.List_Id.ToString());
+                subscribed.QuestionUpdated(new QuestionDTO(question));
             }
             catch (DbUpdateConcurrencyException)
             {
@@ -89,6 +101,9 @@ namespace Server.Controllers
             db.Questions.Add(question);
             await db.SaveChangesAsync();
 
+            var subscribed = Hub.Clients.Group(question.List_Id.ToString());
+            subscribed.QuestionAdded(new QuestionDTO(question));
+
             return CreatedAtRoute("DefaultApi", new { id = question.Id }, question);
         }
 
@@ -104,6 +119,9 @@ namespace Server.Controllers
 
             db.Questions.Remove(question);
             await db.SaveChangesAsync();
+
+            var subscribed = Hub.Clients.Group(question.List_Id.ToString());
+            subscribed.QuestionRemoved(new QuestionDTO(question));
 
             return Ok(question);
         }

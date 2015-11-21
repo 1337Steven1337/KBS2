@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Client.API.Models;
 
 namespace Client
 {
@@ -14,7 +15,7 @@ namespace Client
     {
         public DocentForm()
         {
-            InitializeComponent();
+            InitializeComponent();            
             //Form width 80% of the whole screen
             this.Width = Screen.PrimaryScreen.Bounds.Width / 100 * 80;
             //Form height 80% of the whole screen
@@ -22,23 +23,19 @@ namespace Client
             //Center the Form in the middle of the screen
             this.StartPosition = FormStartPosition.CenterScreen;
 
-            //Maintable 50% of the Form
-            tableMainWrapper.Width = this.Width / 100 * 50;
-            //Main table in the center of the Form
-            tableMainWrapper.Location = new Point(this.ClientSize.Width / 2 - tableMainWrapper.Size.Width / 2);
-
             warningLabel.ForeColor = Color.Red;
+            warningLabel.Text = "";
         }
 
 
-        //Deze functie wordt nog aan gewerkt!
+        //Check if there are empty fields
         public Boolean ValidateEmptyFields()
         {
-            if (String.IsNullOrEmpty(vraagVeld.Text))
+            if (String.IsNullOrEmpty(questionField.Text))
             {
                 return true;
             }
-            else if (!btnJa.Checked && !btnNee.Checked)
+            else if (!btnYes.Checked && !btnNo.Checked)
             {                
                 return true;
             }
@@ -48,8 +45,20 @@ namespace Client
             }
         }
 
-        private void btnOpslaan_Click(object sender, EventArgs e)
+        //Save question button
+        private void btnSave_Click(object sender, EventArgs e)
         {
+            List<List> lijst = List.getAll();
+            foreach (List vragenlijst in lijst)
+            {
+                Console.WriteLine(vragenlijst.Id + "\t" + vragenlijst.Name);
+                foreach (Question vraag in vragenlijst.Questions)
+                {
+                    Console.WriteLine("\t" + vraag.Id + "\t" + vraag.Text + "\t");
+                }
+
+            }
+            /*List.getAll();
             if (ValidateEmptyFields())
             {
                 warningLabel.Text = "Niet alle velden zijn ingevoerd!";
@@ -57,7 +66,22 @@ namespace Client
             else
             {
                 warningLabel.Text = "";
-            }
+
+                String question = questionField.Text;
+                int time = (int)timeField.Value;
+                bool noAnswer = btnNo.Checked;
+                bool yesAnswer = btnYes.Checked;
+
+                List list = new List();
+                list.Name = "Toetsvragen Test lijst";
+                list.save();
+
+                Question q = new Question();
+                q.Text = question;
+                q.list = list;
+                q.save();
+
+            }*/
         }
     }
 }

@@ -13,43 +13,41 @@ using Server.Models;
 using Server.Models.DTO;
 using System.IO;
 using System.Web;
+using Server;
+using Server.Hubs;
 
 namespace Server.Controllers
 {
-    public class ListsController : ApiController
+    public class ListsController : ApiControllerWithHub<EventHub>
     {
         private ServerContext db = new ServerContext();
 
         // GET: api/Lists
         public IQueryable<ListDTO> GetLists()
         {
-            var Lists = from q in db.Lists
-                       select new ListDTO()
-                       {
-                                Id = q.Id,
-                                Name = q.Name,
-                           Questions = q.Questions.Select(C => new QuestionDTO { Id = C.Id, Text = C.Text, PredefinedAnswers = (C.PredefinedAnswers.Select(V => new PredefinedAnswerDTO { Id = V.id, Text = V.text, QuestionId = V.question.Id })).ToList<PredefinedAnswerDTO>() }).ToList<QuestionDTO>()
+            var Lists = from q in db.Lists select new ListDTO() {
+                Id = q.Id,
+                Name = q.Name,
+                Questions = q.Questions.Select(C => new QuestionDTO{ Id = C.Id }).ToList<QuestionDTO>()
             };
 
             return Lists;
         }
 
         // GET: api/Lists/5
-        [ResponseType(typeof(List))]
-        public IQueryable<ListDTO> GetList(int id)
+        [ResponseType(typeof(ListDTO))]
+        public ListDTO GetList(int id)
         {
             var Lists = from q in db.Lists
-                       where q.Id == id
-                       select new ListDTO()
-            {
-                           Id = q.Id,
-                           Name = q.Name,
-                           Questions = q.Questions.Select(C => new QuestionDTO { Id = C.Id , Text = C.Text, PredefinedAnswers = (C.PredefinedAnswers.Select(V => new PredefinedAnswerDTO { Id = V.id, Text = V.text, QuestionId = V.question.Id})).ToList<PredefinedAnswerDTO>() }).ToList<QuestionDTO>()
-                       };
-                        
-          
-
-            return Lists;
+                        where q.Id == id
+                        select new ListDTO()
+                        {
+                            Id = q.Id,
+                            Name = q.Name,
+                            Questions = q.Questions.Select(C => new QuestionDTO { Id = C.Id, Text = C.Text, PredefinedAnswers = (C.PredefinedAnswers.Select(V => new PredefinedAnswerDTO { Id = V.Id, Text = V.Text, Question_Id = V.Question.Id })).ToList<PredefinedAnswerDTO>() }).ToList<QuestionDTO>()
+                        };
+            ListDTO lijst = Lists.First();
+            return lijst;
         }
 
         // PUT: api/Lists/5

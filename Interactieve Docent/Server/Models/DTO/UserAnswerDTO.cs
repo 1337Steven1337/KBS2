@@ -5,12 +5,12 @@ using System.Web;
 
 namespace Server.Models.DTO
 {
-    public class PredefinedAnswerDTO
+    public class UserAnswerDTO
     {
         public int Id { get; set; }
-        public string Text { get; set; }
         public int Question_Id { get; set; }
+        public PredefinedAnswer PredefinedAnswer { get; set; }
 
-        public PredefinedAnswerDTO() { }
+        public UserAnswerDTO() { }
     }
 }
