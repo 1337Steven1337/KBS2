@@ -7,13 +7,18 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Client.API.Models;
 
 namespace Client
 {
     public partial class DocentControlUI : Form
     {
+        private PanelLeft panelLeft;
+        private PanelMiddle panelMiddle;
+        private PanelRight panelRight;
+
         public DocentControlUI()
-        {       
+        {                   
             InitializeComponent();
             TableLayoutPanel panelsTable = new TableLayoutPanel();
             FormBorderStyle = FormBorderStyle.Sizable;
@@ -24,13 +29,18 @@ namespace Client
             panelsTable.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 33.3F));
             panelsTable.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 33.3F));
             
-            PanelLeft panelLeft = new PanelLeft(this, panelsTable);
-            PanelMiddle panelMiddle = new PanelMiddle(this, panelsTable);
-            PanelRight panelRight = new PanelRight(this, panelsTable);  
-            
-                    
-                      
+            panelLeft = new PanelLeft(this, panelsTable);
+            panelMiddle = new PanelMiddle(this, panelsTable);
+            panelRight = new PanelRight(this, panelsTable);
+
+            panelLeft.listBox.SelectedIndexChanged += listBox_SelectedIndexChanged;
+                                    
             this.Controls.Add(panelsTable);
+        }
+
+        private void listBox_SelectedIndexChanged(object sender, System.EventArgs e)
+        {
+            panelMiddle.loadQuestionList((int)panelLeft.listBox.SelectedValue);
         }
     }
 }
