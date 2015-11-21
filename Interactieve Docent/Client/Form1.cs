@@ -40,8 +40,6 @@ namespace Client
         {
             Question q = Question.getById(3);
             Console.WriteLine(q.Text);
-            //UserAnswer ua = UserAnswer.getById(1);
-            //Console.WriteLine(ua.PredefinedAnswer.Text);
         }
     }
 }
