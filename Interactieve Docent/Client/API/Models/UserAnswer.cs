@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Data.SqlClient;
 
-namespace Client.API
+namespace Client.API.Models
 {
     public class UserAnswer : Entity
     {

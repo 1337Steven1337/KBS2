@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using Client.API;
+using Client.API.Models;
 
 namespace Client
 {
@@ -15,7 +15,7 @@ namespace Client
     {
         public DocentForm()
         {
-            InitializeComponent();
+            InitializeComponent();            
             //Form width 80% of the whole screen
             this.Width = Screen.PrimaryScreen.Bounds.Width / 100 * 80;
             //Form height 80% of the whole screen
@@ -25,7 +25,6 @@ namespace Client
 
             warningLabel.ForeColor = Color.Red;
             warningLabel.Text = "";
-            
         }
 
 

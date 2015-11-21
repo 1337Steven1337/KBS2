@@ -13,10 +13,12 @@ using Server.Models;
 using Server.Models.DTO;
 using System.IO;
 using System.Web;
+using Server;
+using Server.Hubs;
 
 namespace Server.Controllers
 {
-    public class ListsController : ApiController
+    public class ListsController : ApiControllerWithHub<EventHub>
     {
         private ServerContext db = new ServerContext();
 
@@ -42,7 +44,7 @@ namespace Server.Controllers
                         {
                             Id = q.Id,
                             Name = q.Name,
-                            Questions = q.Questions.Select(C => new QuestionDTO { Id = C.Id, Text = C.Text, PredefinedAnswers = (C.PredefinedAnswers.Select(V => new PredefinedAnswerDTO { Id = V.Id, Text = V.Text, QuestionId = V.Question.Id })).ToList<PredefinedAnswerDTO>() }).ToList<QuestionDTO>()
+                            Questions = q.Questions.Select(C => new QuestionDTO { Id = C.Id, Text = C.Text, PredefinedAnswers = (C.PredefinedAnswers.Select(V => new PredefinedAnswerDTO { Id = V.Id, Text = V.Text, Question_Id = V.Question.Id })).ToList<PredefinedAnswerDTO>() }).ToList<QuestionDTO>()
                         };
             ListDTO lijst = Lists.First();
             return lijst;

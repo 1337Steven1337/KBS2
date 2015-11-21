@@ -1,4 +1,5 @@
-﻿using Client.API;
+﻿using Client.API.Models;
+using Microsoft.AspNet.SignalR.Client;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -25,15 +26,7 @@ namespace Client
 
         private void button1_Click(object sender, EventArgs e)
         {
-            List<Question> q = Question.getAll();
-            foreach (Question fag in q)
-            {
-                Console.WriteLine("-----" + fag.Text  + "-----");
-                foreach (PredefinedAnswer p in fag.PredefinedAnswers)
-                {
-                    Console.WriteLine(p.Text);
-                }
-            }
+
         }
 
         private void button2_Click(object sender, EventArgs e)
