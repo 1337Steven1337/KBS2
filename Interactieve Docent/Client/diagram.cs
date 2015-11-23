@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Client.API.Models;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -43,6 +44,33 @@ namespace Client
             series.Name = answerName; //name column
             series.Points.Add(Column);
             return series;
+        }
+
+        public void updateDiagram()
+        {
+            Question question = Question.getById(3);
+            Dictionary<string, int> questionVotes = new Dictionary<string, int>();
+
+            foreach (PredefinedAnswer preAnswer in question.PredefinedAnswers)
+            {
+                if (!questionVotes.ContainsKey(preAnswer.Text))
+                {
+                    questionVotes[preAnswer.Text] = 0;
+                }
+            }
+
+            foreach (UserAnswer answer in question.UserAnswers)
+            {
+                string text = question.PredefinedAnswers.Find(x => x.Id == answer.PredefinedAnswer_Id).Text;
+                questionVotes[text] += 1;
+            }
+
+
+            List<int> votes = questionVotes.Values.ToList<int>();
+            List<string> questions = questionVotes.Keys.ToList<string>();
+
+            diagram diagram = new diagram(votes, questions, question.Text);
+            diagram.Show();
         }
     }
 }
