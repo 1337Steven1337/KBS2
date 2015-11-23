@@ -86,6 +86,9 @@
     <Compile Include="API\Models\PredefinedAnswer.cs" />
     <Compile Include="API\Models\Question.cs" />
     <Compile Include="API\Models\UserAnswer.cs" />
+    <Compile Include="Docent\AddList.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Docent\DocentControlUI.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -135,6 +138,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="DocentForm.resx">
       <DependentUpon>DocentForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Docent\AddList.resx">
+      <DependentUpon>AddList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Docent\DocentControlUI.resx">
+      <DependentUpon>DocentControlUI.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
