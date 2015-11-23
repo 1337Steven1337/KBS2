@@ -14,18 +14,25 @@ namespace Client
 {
     public partial class diagram : Form
     {
+        public List<int> values{ get;}
+        public List<string> answerNames { get; }
+        public string question { get; }
+
         public diagram(List<int> values, List<string> answerNames, string question)
         {
+            this.values = values;
+            this.answerNames = answerNames;
+            this.question = question;
 
             InitializeComponent();
 
             //add columns to the diagram
-            for (int i = 0; i < answerNames.Count; i++)
+            for (int i = 0; i < this.answerNames.Count; i++)
             {
-                chart1.Series.Add(CreateColumn(answerNames[i], values[i]));
+                chart1.Series.Add(CreateColumn(this.answerNames[i], this.values[i]));
             }
             //add question above the diagram
-            textBox1.Text = question;
+            textBox1.Text = this.question;
 
             Invalidate();
         }
