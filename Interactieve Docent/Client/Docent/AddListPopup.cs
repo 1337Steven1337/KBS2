@@ -10,59 +10,64 @@ using System.Windows.Forms;
 
 namespace Client.Docent
 {
-    public partial class DeleteList : Form
+    public partial class AddListPopup : Form
     {
+        public string name;
         public Boolean valid = false;
-        private TableLayoutPanel mainTable, bottomTable;
-        private Label title;
+        private TableLayoutPanel mainTable;
+        private Label label;
         private Button buttonOk, buttonCancel;
+        private TextBox textBox;
 
-        public DeleteList()
+        public AddListPopup()
         {
+            //Generating Grid Layout setup
             mainTable = new TableLayoutPanel();
             mainTable.Dock = DockStyle.Fill;
 
             //Top row with label and textBox
-            title = new Label();
-            title.Dock = DockStyle.Fill;
-            title.Text = "Weet u zeker dat u de lijst wilt verwijderen?";
-            title.Font = new Font("", 12);
-            mainTable.Controls.Add(title, 0, 0);
+            label = new Label();
+            label.Dock = DockStyle.Fill;
+            label.Text = "Name list:";
+            label.Font = new Font("", 12);
+            mainTable.Controls.Add(label, 0, 0);
+
+            textBox = new TextBox();
+            textBox.Dock = DockStyle.Fill;
+            mainTable.Controls.Add(textBox, 1, 0);
 
             //Bottom row with Ok-button and Cancel-button
-            bottomTable = new TableLayoutPanel();
-            bottomTable.Dock = DockStyle.Bottom;
-
             buttonOk = new Button();
             buttonOk.Dock = DockStyle.Fill;
             buttonOk.Text = "Ok";
             buttonOk.Click += buttonOk_Click;
-            bottomTable.Controls.Add(buttonOk,0,0);
+            mainTable.Controls.Add(buttonOk, 0, 1);
 
             buttonCancel = new Button();
             buttonCancel.Dock = DockStyle.Fill;
             buttonCancel.Text = "Cancel";
             buttonCancel.Click += buttonCancel_Click;
-            bottomTable.Controls.Add(buttonCancel, 1,0);
+            mainTable.Controls.Add(buttonCancel, 1, 1);
 
-            bottomTable.Controls.Add(new Label(), 0, 1);         
-
-            mainTable.Controls.Add(bottomTable, 0, 1);
             Controls.Add(mainTable);
             FormBorderStyle = FormBorderStyle.FixedDialog;
-            Size = new Size(350, 140);
+            Size = new Size(240,95);
             StartPosition = FormStartPosition.CenterParent;
         }
 
         private void buttonOk_Click(object sender, EventArgs e)
         {
-            valid = true;
-            Close();
+            name = textBox.Text;
+                if (name.Count() > 0)
+                {
+                valid = true;
+                this.Close();
+                }
         }
 
         private void buttonCancel_Click(object sender, EventArgs e)
         {
-            Close();
+            this.Close();
         }
     }
 }

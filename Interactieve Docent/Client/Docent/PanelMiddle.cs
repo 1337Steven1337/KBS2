@@ -40,7 +40,7 @@ namespace Client
 
         public void deleteQuestion()
         {
-            Docent.DeleteList delete = new Docent.DeleteList();
+            Docent.DeletePopup delete = new Docent.DeletePopup();
             delete.ShowDialog();
 
             if (delete.valid)

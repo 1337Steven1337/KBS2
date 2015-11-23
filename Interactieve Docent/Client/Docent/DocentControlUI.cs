@@ -42,6 +42,7 @@ namespace Client
             panelLeft.leftBottomButton.Click += AddList_Click;
             panelLeft.rightBottomButton.Click += DeleteList_Click;
             panelLeft.listBox.PreviewKeyDown += new PreviewKeyDownEventHandler(leftListBox_keyDown);
+            panelLeft.listBox.MouseDoubleClick += new MouseEventHandler(leftListBox_doubleClick);
 
             panelMiddle.rightBottomButton.Click += DeleteQuestion_Click;
             panelMiddle.listBox.PreviewKeyDown += new PreviewKeyDownEventHandler(middleListBox_keyDown);
@@ -104,6 +105,16 @@ namespace Client
             {
                 panelMiddle.deleteQuestion();
             }
+        }
+
+        private void leftListBox_doubleClick(object sender, MouseEventArgs e)
+        {
+            int index = panelLeft.listBox.IndexFromPoint(e.Location);
+            if (index != System.Windows.Forms.ListBox.NoMatches)
+            {
+                panelLeft.doubleClick(index);
+            }
+            
         }
     }
 }
