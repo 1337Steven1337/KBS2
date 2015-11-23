@@ -22,6 +22,8 @@ namespace Client
 
             leftBottomButton.Click += leftButton_Click;
             leftBottomButton.Text = "Add List";
+            rightBottomButton.Click += rightButton_Click;
+            rightBottomButton.Text = "Delete List";
 
             middleRow.Controls.Add(listBox);
             LoadList();
@@ -40,14 +42,30 @@ namespace Client
 
         public void leftButton_Click(object sender, EventArgs e)
         {
-            Docent.AddList newList = new Docent.AddList();
-            newList.ShowDialog();
+            Docent.AddList add = new Docent.AddList();
+            add.ShowDialog();
 
-            if (newList.valid)
+            if (add.valid)
             {
                 List list = new List();
-                list.Name = newList.name;
+                list.Name = add.name;
                 list.save();
+
+                LoadList();
+            }
+        }
+
+        public void rightButton_Click(object sender, EventArgs e)
+        {
+            Docent.DeleteList delete = new Docent.DeleteList();
+            delete.ShowDialog();
+
+            if (delete.valid)
+            {
+                List list = new List();
+                int id = Convert.ToInt32(listBox.SelectedValue);
+                list.Id = id;
+                list.delete();
 
                 LoadList();
             }
