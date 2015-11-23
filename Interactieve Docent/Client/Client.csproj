@@ -74,7 +74,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Answers.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Answers.Designer.cs">
+      <DependentUpon>Answers.cs</DependentUpon>
+    </Compile>
     <Compile Include="API\Entity.cs" />
+    <Compile Include="API\EventArgs\SubscriptionStatus.cs" />
     <Compile Include="API\Models\List.cs" />
     <Compile Include="API\Models\PredefinedAnswer.cs" />
     <Compile Include="API\Models\Question.cs" />
@@ -85,12 +92,25 @@
     <Compile Include="DocentForm.Designer.cs">
       <DependentUpon>DocentForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Docent\PanelLayout.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Docent\PanelRight.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Docent\PanelMiddle.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Docent\PanelLeft.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Properties\Api.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <DependentUpon>Api.settings</DependentUpon>
     </Compile>
     <Compile Include="API\Api.cs" />
+    <Compile Include="API\Models\Question.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -99,17 +119,17 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="StudentVraag.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="StudentVraag.Designer.cs">
-      <DependentUpon>StudentVraag.cs</DependentUpon>
-    </Compile>
+    <EmbeddedResource Include="Answers.resx">
+      <DependentUpon>Answers.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="DocentForm.resx">
       <DependentUpon>DocentForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Docent\PanelLayout.resx">
+      <DependentUpon>PanelLayout.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
