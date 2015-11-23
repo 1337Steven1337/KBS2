@@ -24,7 +24,7 @@ namespace Server.Models
 
         public List()
         {
-            this.Questions = new List<Question>();
+            //this.Questions = new List<Question>();
         }
     }
 }
