@@ -16,9 +16,19 @@ namespace Client
         public Label title;
         public TableLayoutPanel mainTable, bottomRow;
 
-        public PanelLayout(Form mainForm, TableLayoutPanel panelsTable)
+        public PanelLayout(Form mainForm)
         {
             this.mainForm = mainForm;
+
+            mainTable = new TableLayoutPanel();
+            mainTable.ColumnCount = 1;
+            mainTable.RowCount = 3;
+            mainTable.Dock = DockStyle.Fill;
+            mainTable.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
+            mainTable.RowStyles.Add(new RowStyle(SizeType.Percent, 20));
+            mainTable.RowStyles.Add(new RowStyle(SizeType.Percent, 80));
+            mainTable.RowStyles.Add(new RowStyle(SizeType.Percent, 10));
+
             //Top row has Panel with a Title.
             title = new Label();
             title.Dock = DockStyle.Fill;
@@ -63,14 +73,6 @@ namespace Client
         public void updateLayout()
         {
             //Maintable, the table is splitted in 3 rows - TOP ROW 20% / MIDDLE ROW 80% / BOTTOM ROW 10%
-            mainTable = new TableLayoutPanel();
-            mainTable.ColumnCount = 1;
-            mainTable.RowCount = 3;
-            mainTable.Dock = DockStyle.Fill;
-            mainTable.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
-            mainTable.RowStyles.Add(new RowStyle(SizeType.Percent, 20));
-            mainTable.RowStyles.Add(new RowStyle(SizeType.Percent, 80));
-            mainTable.RowStyles.Add(new RowStyle(SizeType.Percent, 10));
             mainTable.Controls.Add(topRow, 0, 0);
             mainTable.Controls.Add(middleRow, 0, 1);
             mainTable.Controls.Add(bottomRow, 0, 2);

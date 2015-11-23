@@ -10,7 +10,7 @@ namespace Client
 {
     class PanelRight : PanelLayout
     {
-        public PanelRight(Form mainForm, TableLayoutPanel panelsTable) : base(mainForm, panelsTable)
+        public PanelRight(Form mainForm, TableLayoutPanel panelsTable) : base(mainForm)
         {
 
 

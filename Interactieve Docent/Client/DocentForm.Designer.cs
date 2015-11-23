@@ -65,15 +65,14 @@
             this.tableMain.Controls.Add(this.warningLabel, 0, 4);
             this.tableMain.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableMain.Location = new System.Drawing.Point(0, 0);
-            this.tableMain.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.tableMain.Name = "tableMain";
             this.tableMain.RowCount = 5;
             this.tableMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
             this.tableMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
             this.tableMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
             this.tableMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
-            this.tableMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 62F));
-            this.tableMain.Size = new System.Drawing.Size(763, 542);
+            this.tableMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 50F));
+            this.tableMain.Size = new System.Drawing.Size(638, 354);
             this.tableMain.TabIndex = 2;
             // 
             // labelQuestion
@@ -81,9 +80,9 @@
             this.labelQuestion.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.labelQuestion.AutoSize = true;
             this.labelQuestion.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelQuestion.Location = new System.Drawing.Point(137, 0);
+            this.labelQuestion.Location = new System.Drawing.Point(111, 0);
             this.labelQuestion.Name = "labelQuestion";
-            this.labelQuestion.Size = new System.Drawing.Size(88, 29);
+            this.labelQuestion.Size = new System.Drawing.Size(77, 25);
             this.labelQuestion.TabIndex = 8;
             this.labelQuestion.Text = "Vraag:";
             // 
@@ -92,9 +91,9 @@
             this.labelTime.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.labelTime.AutoSize = true;
             this.labelTime.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelTime.Location = new System.Drawing.Point(69, 120);
+            this.labelTime.Location = new System.Drawing.Point(55, 76);
             this.labelTime.Name = "labelTime";
-            this.labelTime.Size = new System.Drawing.Size(156, 58);
+            this.labelTime.Size = new System.Drawing.Size(236, 25);
             this.labelTime.TabIndex = 9;
             this.labelTime.Text = "Tijdslimiet (Seconden):";
             // 
@@ -103,47 +102,43 @@
             this.labelPoints.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.labelPoints.AutoSize = true;
             this.labelPoints.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelPoints.Location = new System.Drawing.Point(47, 240);
+            this.labelPoints.Location = new System.Drawing.Point(35, 152);
             this.labelPoints.Name = "labelPoints";
-            this.labelPoints.Size = new System.Drawing.Size(178, 29);
+            this.labelPoints.Size = new System.Drawing.Size(153, 25);
             this.labelPoints.TabIndex = 10;
             this.labelPoints.Text = "Aantal punten:";
             // 
             // questionField
             // 
             this.questionField.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.questionField.Location = new System.Drawing.Point(231, 4);
-            this.questionField.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.questionField.Location = new System.Drawing.Point(194, 3);
             this.questionField.Name = "questionField";
-            this.questionField.Size = new System.Drawing.Size(529, 112);
+            this.questionField.Size = new System.Drawing.Size(441, 70);
             this.questionField.TabIndex = 11;
             this.questionField.Text = "";
             // 
             // timeField
             // 
             this.timeField.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.timeField.Location = new System.Drawing.Point(231, 124);
-            this.timeField.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.timeField.Location = new System.Drawing.Point(194, 79);
             this.timeField.Name = "timeField";
-            this.timeField.Size = new System.Drawing.Size(529, 26);
+            this.timeField.Size = new System.Drawing.Size(441, 22);
             this.timeField.TabIndex = 12;
             // 
             // pointsField
             // 
             this.pointsField.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pointsField.Location = new System.Drawing.Point(231, 244);
-            this.pointsField.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.pointsField.Location = new System.Drawing.Point(194, 155);
             this.pointsField.Name = "pointsField";
-            this.pointsField.Size = new System.Drawing.Size(529, 26);
+            this.pointsField.Size = new System.Drawing.Size(441, 22);
             this.pointsField.TabIndex = 13;
             // 
             // btnSave
             // 
             this.btnSave.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btnSave.Location = new System.Drawing.Point(231, 484);
-            this.btnSave.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.btnSave.Location = new System.Drawing.Point(194, 307);
             this.btnSave.Name = "btnSave";
-            this.btnSave.Size = new System.Drawing.Size(529, 54);
+            this.btnSave.Size = new System.Drawing.Size(441, 44);
             this.btnSave.TabIndex = 14;
             this.btnSave.Text = "Opslaan";
             this.btnSave.UseVisualStyleBackColor = true;
@@ -157,21 +152,19 @@
             this.tableWrapButtons.Controls.Add(this.btnYes, 0, 0);
             this.tableWrapButtons.Controls.Add(this.btnNo, 1, 0);
             this.tableWrapButtons.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableWrapButtons.Location = new System.Drawing.Point(231, 364);
-            this.tableWrapButtons.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.tableWrapButtons.Location = new System.Drawing.Point(194, 231);
             this.tableWrapButtons.Name = "tableWrapButtons";
             this.tableWrapButtons.RowCount = 1;
             this.tableWrapButtons.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableWrapButtons.Size = new System.Drawing.Size(529, 112);
+            this.tableWrapButtons.Size = new System.Drawing.Size(441, 70);
             this.tableWrapButtons.TabIndex = 15;
             // 
             // btnYes
             // 
             this.btnYes.AutoSize = true;
-            this.btnYes.Location = new System.Drawing.Point(3, 4);
-            this.btnYes.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.btnYes.Location = new System.Drawing.Point(3, 3);
             this.btnYes.Name = "btnYes";
-            this.btnYes.Size = new System.Drawing.Size(51, 24);
+            this.btnYes.Size = new System.Drawing.Size(44, 21);
             this.btnYes.TabIndex = 0;
             this.btnYes.TabStop = true;
             this.btnYes.Text = "Ja";
@@ -180,10 +173,9 @@
             // btnNo
             // 
             this.btnNo.AutoSize = true;
-            this.btnNo.Location = new System.Drawing.Point(267, 4);
-            this.btnNo.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.btnNo.Location = new System.Drawing.Point(223, 3);
             this.btnNo.Name = "btnNo";
-            this.btnNo.Size = new System.Drawing.Size(63, 24);
+            this.btnNo.Size = new System.Drawing.Size(55, 21);
             this.btnNo.TabIndex = 1;
             this.btnNo.TabStop = true;
             this.btnNo.Text = "Nee";
@@ -194,9 +186,9 @@
             this.labelAnswer.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.labelAnswer.AutoSize = true;
             this.labelAnswer.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelAnswer.Location = new System.Drawing.Point(95, 360);
+            this.labelAnswer.Location = new System.Drawing.Point(78, 228);
             this.labelAnswer.Name = "labelAnswer";
-            this.labelAnswer.Size = new System.Drawing.Size(130, 29);
+            this.labelAnswer.Size = new System.Drawing.Size(110, 25);
             this.labelAnswer.TabIndex = 16;
             this.labelAnswer.Text = "Antwoord:";
             // 
@@ -205,19 +197,18 @@
             this.warningLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.warningLabel.AutoSize = true;
             this.warningLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.warningLabel.Location = new System.Drawing.Point(110, 480);
+            this.warningLabel.Location = new System.Drawing.Point(84, 304);
             this.warningLabel.Name = "warningLabel";
-            this.warningLabel.Size = new System.Drawing.Size(115, 20);
+            this.warningLabel.Size = new System.Drawing.Size(104, 17);
             this.warningLabel.TabIndex = 17;
             this.warningLabel.Text = "warningLabel";
             // 
             // DocentForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(763, 542);
+            this.ClientSize = new System.Drawing.Size(1139, 438);
             this.Controls.Add(this.tableMain);
-            this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name = "DocentForm";
             this.Text = "DocentForm";
             this.tableMain.ResumeLayout(false);
