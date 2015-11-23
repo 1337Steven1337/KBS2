@@ -38,6 +38,19 @@ namespace Client.API.Models
             this._fetched = true;
         }
 
+        public void delete()
+        {
+            RestRequest request = new RestRequest(Method.DELETE);
+            request.RequestFormat = DataFormat.Json;
+            request.AddHeader("Content-Type", "application/json");
+            request.AddParameter("Id", this.Id);
+            request.Resource = "Lists";
+
+            List q = Api.Execute<List>(request);
+            this.copyValues<List>(this, q);
+            this._fetched = true;
+        }
+
         public static List getById(int id)
         {
             return List.getById<List>(id, "Lists");

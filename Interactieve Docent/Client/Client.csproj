@@ -101,6 +101,12 @@
     <Compile Include="Docent\AddList.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Docent\DeleteList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Docent\DeleteList.Designer.cs">
+      <DependentUpon>DeleteList.cs</DependentUpon>
+    </Compile>
     <Compile Include="Docent\DocentControlUI.cs">
       <SubType>Form</SubType>
     </Compile>

@@ -132,6 +132,18 @@ namespace Client.API.Models
             this.Id = q.Id;
         }
 
+        public void delete()
+        {
+            RestRequest request = new RestRequest(Method.DELETE);
+            request.RequestFormat = DataFormat.Json;
+            request.AddHeader("Content-Type", "application/json");
+            request.AddParameter("Id", this.Id);
+            request.Resource = "Questions";
+
+            List q = Api.Execute<List>(request);
+            this.Id = q.Id;
+        }
+
         public static Question getById(int id)
         {
             return Question.getById<Question>(id, "Questions");
