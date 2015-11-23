@@ -86,6 +86,12 @@
     <Compile Include="API\Models\PredefinedAnswer.cs" />
     <Compile Include="API\Models\Question.cs" />
     <Compile Include="API\Models\UserAnswer.cs" />
+    <Compile Include="Docent\DocentControlUI.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Docent\DocentControlUI.designer.cs">
+      <DependentUpon>DocentControlUI.cs</DependentUpon>
+    </Compile>
     <Compile Include="DocentForm.cs">
       <SubType>Form</SubType>
     </Compile>
