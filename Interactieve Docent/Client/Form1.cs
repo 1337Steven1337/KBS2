@@ -1,4 +1,5 @@
 ﻿using Client.API.Models;
+using Client.Student;
 using Microsoft.AspNet.SignalR;
 using System;
 using System.Collections.Generic;
@@ -26,7 +27,8 @@ namespace Client
 
         private void button1_Click(object sender, EventArgs e)
         {
-
+            Questions questions = new Questions(61);
+            questions.ShowDialog();
         }
 
         private void button2_Click(object sender, EventArgs e)

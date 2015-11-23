@@ -19,7 +19,7 @@ namespace Client.API
         #endregion
 
         #region Events
-        public event ConnectionStatusChanged connectionStatusCHanged;
+        public event ConnectionStatusChanged connectionStatusChanged;
         public event SubscriptionStatusChanged subscriptionStatusChanged;
         public event NewQuestionAdded newQuestionAdded;
         #endregion
@@ -102,9 +102,9 @@ namespace Client.API
         /// <param name="obj">The object with the relevant fields</param>
         private void Connection_StateChanged(StateChange obj)
         {
-            if(this.connectionStatusCHanged != null)
+            if(this.connectionStatusChanged != null)
             {
-                this.connectionStatusCHanged(obj);
+                this.connectionStatusChanged(obj);
             }
         }
         #endregion
