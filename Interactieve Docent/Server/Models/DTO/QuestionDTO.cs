@@ -13,6 +13,7 @@ namespace Server.Models.DTO
         public int Points { get; set; }
         public int List_Id { get; set; }
         public List<PredefinedAnswerDTO> PredefinedAnswers { get; set; }
+        public List<UserAnswerDTO> UserAnswers { get; set; }
         
         public QuestionDTO()
         {

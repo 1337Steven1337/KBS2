@@ -101,6 +101,12 @@
     <Compile Include="Docent\AddList.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Docent\DeleteList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Docent\DeleteList.Designer.cs">
+      <DependentUpon>DeleteList.cs</DependentUpon>
+    </Compile>
     <Compile Include="Docent\DocentControlUI.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -178,6 +184,7 @@
     <EmbeddedResource Include="StudentVraag.resx">
       <DependentUpon>StudentVraag.cs</DependentUpon>
     </EmbeddedResource>
+    <None Include="ClassDiagram1.cd" />
     <None Include="Properties\Api.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Api.Designer.cs</LastGenOutput>

@@ -45,13 +45,14 @@ namespace Server.Controllers
         public QuestionDTO GetQuestionById(int id)
         {
             var vragen = from q in db.Questions
-                        where q.Id == id
-                        select new QuestionDTO()
-                        {
-                            Id = q.Id,
-                            Text = q.Text,
-                            List_Id = q.List.Id,
-                            PredefinedAnswers = q.PredefinedAnswers.Select(V => new PredefinedAnswerDTO { Id = V.Id, Text = V.Text, Question_Id = V.Question.Id }).ToList<PredefinedAnswerDTO>()
+                         where q.Id == id
+                         select new QuestionDTO()
+                         {
+                             Id = q.Id,
+                             Text = q.Text,
+                             List_Id = q.List.Id,
+                             PredefinedAnswers = q.PredefinedAnswers.Select(V => new PredefinedAnswerDTO { Id = V.Id, Text = V.Text, Question_Id = V.Question.Id }).ToList<PredefinedAnswerDTO>(),
+                             UserAnswers = q.UserAnswers.Select(V => new UserAnswerDTO { Id = V.Id, Question_Id = V.Question_Id, PredefinedAnswer_Id = V.PredefinedAnswer_Id }).ToList<UserAnswerDTO>()
                         };
 
             QuestionDTO vraag = vragen.First();

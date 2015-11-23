@@ -16,7 +16,7 @@ namespace Client.API.Models
         private List<UserAnswer> _userAnswers = null;
         private List _list = null;
 
-        public int Id { get; private set; }
+        public int Id { get; set; }
         public string Text
         {
             get
@@ -126,6 +126,18 @@ namespace Client.API.Models
             request.AddHeader("Content-Type", "application/json");
             request.AddParameter("Text", this.Text);
             request.AddParameter("List_Id", this.List.Id);
+            request.Resource = "Questions";
+
+            List q = Api.Execute<List>(request);
+            this.Id = q.Id;
+        }
+
+        public void delete()
+        {
+            RestRequest request = new RestRequest(Method.DELETE);
+            request.RequestFormat = DataFormat.Json;
+            request.AddHeader("Content-Type", "application/json");
+            request.AddParameter("Id", this.Id);
             request.Resource = "Questions";
 
             List q = Api.Execute<List>(request);
