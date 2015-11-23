@@ -16,7 +16,7 @@ namespace Client.API.Models
         private List<UserAnswer> _userAnswers = null;
         private List _list = null;
 
-        public int Id { get; private set; }
+        public int Id { get; set; }
         public string Text
         {
             get

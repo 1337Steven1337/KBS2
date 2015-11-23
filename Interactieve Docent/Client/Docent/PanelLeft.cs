@@ -20,9 +20,7 @@ namespace Client
             listBox = new ListBox();
             listBox.Dock = DockStyle.Fill;
 
-            leftBottomButton.Click += leftButton_Click;
             leftBottomButton.Text = "Add List";
-            rightBottomButton.Click += rightButton_Click;
             rightBottomButton.Text = "Delete List";
 
             middleRow.Controls.Add(listBox);
@@ -40,7 +38,7 @@ namespace Client
             listBox.ValueMember = "Id";            
         }
 
-        public void leftButton_Click(object sender, EventArgs e)
+        public void AddList()
         {
             Docent.AddList add = new Docent.AddList();
             add.ShowDialog();
@@ -55,7 +53,7 @@ namespace Client
             }
         }
 
-        public void rightButton_Click(object sender, EventArgs e)
+        public void DeleteList()
         {
             Docent.DeleteList delete = new Docent.DeleteList();
             delete.ShowDialog();

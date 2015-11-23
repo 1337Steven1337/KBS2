@@ -18,7 +18,7 @@ namespace Client
         private PanelRight panelRight;
 
         public DocentControlUI()
-        {                   
+        {
             InitializeComponent();
             TableLayoutPanel panelsTable = new TableLayoutPanel();
             FormBorderStyle = FormBorderStyle.Sizable;
@@ -28,19 +28,39 @@ namespace Client
             panelsTable.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 33.3F));
             panelsTable.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 33.3F));
             panelsTable.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 33.3F));
-            
+
             panelLeft = new PanelLeft(this, panelsTable);
             panelMiddle = new PanelMiddle(this, panelsTable);
             panelRight = new PanelRight(this, panelsTable);
 
             panelLeft.listBox.SelectedIndexChanged += listBox_SelectedIndexChanged;
-                                    
+
+            panelLeft.leftBottomButton.Click += AddList_Click;
+            panelLeft.rightBottomButton.Click += DeleteList_Click;
+
+            panelMiddle.rightBottomButton.Click += DeleteQuestion_Click;
+
             this.Controls.Add(panelsTable);
         }
 
         private void listBox_SelectedIndexChanged(object sender, System.EventArgs e)
         {
             panelMiddle.loadQuestionList((int)panelLeft.listBox.SelectedValue);
+        }
+
+        private void AddList_Click(object sender, EventArgs e)
+        {
+            panelLeft.AddList();
+        }
+
+        private void DeleteList_Click(object sender, EventArgs e)
+        {
+            panelLeft.DeleteList();
+        }
+
+        private void DeleteQuestion_Click(object sender, EventArgs e)
+        {
+            panelMiddle.deleteQuestion();
         }
     }
 }
