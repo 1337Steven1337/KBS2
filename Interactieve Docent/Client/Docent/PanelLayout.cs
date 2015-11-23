@@ -18,16 +18,14 @@ namespace Client
 
         public PanelLayout(Form mainForm)
         {
-            this.mainForm = mainForm;
-
+            this.mainForm = mainForm;            
             mainTable = new TableLayoutPanel();
             mainTable.ColumnCount = 1;
             mainTable.RowCount = 3;
             mainTable.Dock = DockStyle.Fill;
-            mainTable.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
-            mainTable.RowStyles.Add(new RowStyle(SizeType.Percent, 20));
-            mainTable.RowStyles.Add(new RowStyle(SizeType.Percent, 80));
-            mainTable.RowStyles.Add(new RowStyle(SizeType.Percent, 10));
+            mainTable.RowStyles.Add(new RowStyle(SizeType.Percent, 10F));
+            mainTable.RowStyles.Add(new RowStyle(SizeType.Percent, 80F));
+            mainTable.RowStyles.Add(new RowStyle(SizeType.Percent, 10F));
 
             //Top row has Panel with a Title.
             title = new Label();
@@ -39,13 +37,13 @@ namespace Client
 
             topRow = new Panel();
             topRow.Dock = DockStyle.Fill;
-            topRow.BackColor = ColorTranslator.FromHtml("#002649");
+            topRow.BackColor = ColorTranslator.FromHtml("#009898");
             topRow.Margin = new Padding(0);
             topRow.Controls.Add(title);
 
             //Middlerow has just a Panel
             middleRow = new Panel();
-            middleRow.BackColor = ColorTranslator.FromHtml("#003666");
+            middleRow.BackColor = ColorTranslator.FromHtml("#D7D7D7");
             middleRow.Dock = DockStyle.Fill;
             middleRow.Margin = new Padding(0);
 
@@ -61,7 +59,6 @@ namespace Client
             rightBottomButton.Margin = new Padding(0);
 
             bottomRow = new TableLayoutPanel();
-            bottomRow.ColumnCount = 2;
             bottomRow.Dock = DockStyle.Fill;
             bottomRow.Margin = new Padding(0);
             bottomRow.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
@@ -75,7 +72,7 @@ namespace Client
             //Maintable, the table is splitted in 3 rows - TOP ROW 20% / MIDDLE ROW 80% / BOTTOM ROW 10%
             mainTable.Controls.Add(topRow, 0, 0);
             mainTable.Controls.Add(middleRow, 0, 1);
-            mainTable.Controls.Add(bottomRow, 0, 2);
+            mainTable.Controls.Add(bottomRow, 0, 2);            
         }
     }
 }

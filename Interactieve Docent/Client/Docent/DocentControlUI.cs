@@ -20,6 +20,8 @@ namespace Client
         public DocentControlUI()
         {                   
             InitializeComponent();
+            this.Load += listBox_SelectedIndexChanged;     
+                   
             TableLayoutPanel panelsTable = new TableLayoutPanel();
             FormBorderStyle = FormBorderStyle.Sizable;
             WindowState = FormWindowState.Maximized;
@@ -29,18 +31,42 @@ namespace Client
             panelsTable.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 33.3F));
             panelsTable.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 33.3F));
             
-            panelLeft = new PanelLeft(this, panelsTable);
+            panelLeft = new PanelLeft(this, panelsTable);            
             panelMiddle = new PanelMiddle(this, panelsTable);
             panelRight = new PanelRight(this, panelsTable);
+          
+            panelLeft.listBox.SelectedIndexChanged += listBox_SelectedIndexChanged;        
+            panelMiddle.leftBottomButton.Click += loadAddQuestionFormHandler;
+            panelRight.leftBottomButton.Click += saveQuestionHandler;
 
-            panelLeft.listBox.SelectedIndexChanged += listBox_SelectedIndexChanged;
-                                    
             this.Controls.Add(panelsTable);
         }
 
         private void listBox_SelectedIndexChanged(object sender, System.EventArgs e)
         {
-            panelMiddle.loadQuestionList((int)panelLeft.listBox.SelectedValue);
+            panelMiddle.loadQuestionList((int)panelLeft.listBox.SelectedValue);           
+        }
+
+        private void loadAddQuestionFormHandler(object sender, System.EventArgs e)
+        {
+            panelRight.loadAddQuestionForm();
+        }
+
+        private void saveQuestionHandler(object sender, EventArgs e)
+        {
+            String question = panelRight.questionField.Text;
+            int time = (int)panelRight.timeField.Value;
+            int points = (int)panelRight.pointsField.Value;
+
+            int listId = (int)panelLeft.listBox.SelectedValue;
+
+            Question q = new Question();
+            q.Text = question;
+            q.List = List.getById(listId);
+            q.save();
+
+            //reload question list
+            panelMiddle.loadQuestionList(listId);
         }
     }
 }
