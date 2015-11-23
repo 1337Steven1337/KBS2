@@ -16,8 +16,15 @@ namespace Server.Models
         [Key]
         [DataMember]
         public int Id { get; set; }
+
         [DataMember]
         public string Text { get; set; }
+
+        [DataMember]
+        public int Time { get; set; }
+
+        [DataMember]
+        public int Points { get; set; }
 
         [DataMember]
         public int List_Id { get; set; }
