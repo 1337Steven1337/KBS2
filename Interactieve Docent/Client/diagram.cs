@@ -1,6 +1,4 @@
 ﻿using Client.API.Models;
-using Client.Student;
-using Microsoft.AspNet.SignalR;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -10,31 +8,47 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Windows.Forms.DataVisualization.Charting;
 
 namespace Client
 {
-    public partial class Form1 : Form
+    public partial class diagram : Form
     {
-        public Form1()
+        public diagram(List<int> values, List<string> answerNames, string question)
         {
+
             InitializeComponent();
 
-            foreach (Question text in Question.getAll())
+            //add columns to the diagram
+            for (int i = 0; i < answerNames.Count; i++)
             {
-                comboBox1.Items.Add(text.Text);
-        }
+                chart1.Series.Add(CreateColumn(answerNames[i], values[i]));
+            }
+            //add question above the diagram
+            textBox1.Text = question;
+
+            Invalidate();
         }
 
-        private void Form1_Load(object sender, EventArgs e)
+        //create column
+        public Series CreateColumn(string answerName, int value)
         {
+            DataPoint Column = new DataPoint();
+            Column.XValue = 5;             //x value
+            double[] values = { value };  //y value
+            Column.YValues = values;
 
+            Series series = new Series();
+            series.ChartArea = "ChartArea1";
+            series.Legend = "Legend1";
+            series.Name = answerName; //name column
+            series.Points.Add(Column);
+            return series;
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        public void updateDiagram()
         {
-
-            int question_Id = comboBox1.SelectedIndex + 1 ;
-            Question question = Question.getById(question_Id);
+            Question question = Question.getById(3);
             Dictionary<string, int> questionVotes = new Dictionary<string, int>();
 
             foreach (PredefinedAnswer preAnswer in question.PredefinedAnswers)
@@ -58,12 +72,5 @@ namespace Client
             diagram diagram = new diagram(votes, questions, question.Text);
             diagram.Show();
         }
-
-        private void button2_Click(object sender, EventArgs e)
-        {
-            Question q = Question.getById(3);
-            Console.WriteLine(q.Text);
-        }
-
     }
 }

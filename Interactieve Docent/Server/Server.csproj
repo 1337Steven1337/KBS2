@@ -180,10 +180,11 @@
     <Compile Include="Models\DTO\ListDTO.cs" />
     <Compile Include="Models\DTO\QuestionDTO.cs" />
     <Compile Include="Models\DTO\UserAnswerDTO.cs" />
+    <Compile Include="Models\Context\IDocentAppContext.cs" />
     <Compile Include="Models\List.cs" />
     <Compile Include="Models\PredefinedAnswer.cs" />
     <Compile Include="Models\Question.cs" />
-    <Compile Include="Models\ServerContext.cs" />
+    <Compile Include="Models\Context\ServerContext.cs" />
     <Compile Include="Models\UserAnswer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
@@ -191,8 +192,6 @@
   <ItemGroup>
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
-    <Content Include="Scripts\jquery.signalR-2.1.2.js" />
-    <Content Include="Scripts\jquery.signalR-2.1.2.min.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>

@@ -15,12 +15,19 @@ using System.IO;
 using System.Web;
 using Server;
 using Server.Hubs;
+using Server.Models.Context;
 
 namespace Server.Controllers
 {
     public class ListsController : ApiControllerWithHub<EventHub>
     {
-        private ServerContext db = new ServerContext();
+        private IDocentAppContext db = new ServerContext();
+
+        public ListsController() { }
+        public ListsController(IDocentAppContext context)
+        {
+            this.db = context;
+        }
 
         // GET: api/Lists
         public IQueryable<ListDTO> GetLists()
@@ -64,7 +71,7 @@ namespace Server.Controllers
                 return BadRequest();
             }
 
-            db.Entry(list).State = EntityState.Modified;
+            db.MarkAsModified(list);
 
             try
             {

@@ -11,6 +11,7 @@ namespace Client
 {
     class PanelMiddle : PanelLayout
     {
+        private int questionId;
         public ListBox listBox;
 
         public PanelMiddle(Form mainForm, TableLayoutPanel panelsTable) : base(mainForm)
@@ -18,8 +19,11 @@ namespace Client
             listBox = new ListBox();
             listBox.Dock = DockStyle.Fill;
             middleRow.Controls.Add(listBox);
+            rightBottomButton.Text = "Delete Question";
+            listBox.BorderStyle = BorderStyle.None;
 
-            leftBottomButton.Click += addQuestion;
+            middleRow.Controls.Add(listBox);
+            leftBottomButton.Text = "Nieuwe vraag";
             //Place the maintable in 2/3 of the panelsTable !! ALWAYS END OF CONSTUCTOR !!
             updateLayout();
             panelsTable.Controls.Add(mainTable, 1, 0);
@@ -27,15 +31,33 @@ namespace Client
 
         public void loadQuestionList(int listIndex)
         {
+            questionId = listIndex;
             title.Text = "Vragen uit lijst: " + List.getById(listIndex).Name;                        
             listBox.DataSource = List.getById(listIndex).Questions;
             listBox.DisplayMember = "Text";
             listBox.ValueMember = "Id";
         }
 
-        private void addQuestion(object sender, EventArgs e)
+        public void deleteQuestion()
         {
+            Docent.DeleteList delete = new Docent.DeleteList();
+            delete.ShowDialog();
 
+            if (delete.valid)
+            {
+                int selected = listBox.SelectedIndex;
+
+                Question question = new Question();
+                int id = Convert.ToInt32(listBox.SelectedValue);
+                question.Id = id;
+                question.delete();
+
+                loadQuestionList(questionId);
+
+                if (selected != 0){
+                    listBox.SelectedIndex = selected - 1;
+                }
+            }
         }
     }
 }

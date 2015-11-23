@@ -19,20 +19,64 @@ namespace Client
             title.Text = "VragenLijsten";
             listBox = new ListBox();
             listBox.Dock = DockStyle.Fill;
+            listBox.BorderStyle = BorderStyle.None;
+
+            leftBottomButton.Text = "Add List";
+            rightBottomButton.Text = "Delete List";
 
             middleRow.Controls.Add(listBox);
             LoadList();
-            
+            middleRow.Controls.Add(listBox);
             //Place the maintable in 1/3 of the panelsTable !! ALWAYS END OF CONSTUCTOR !!
             updateLayout();
             panelsTable.Controls.Add(mainTable, 0, 0);
         }
 
+        //Load all question lists in a Listbox
         public void LoadList()
         {
             listBox.DataSource = List.getAll();
             listBox.DisplayMember = "Name";
             listBox.ValueMember = "Id";            
+        }
+
+        public void AddList()
+        {
+            Docent.AddList add = new Docent.AddList();
+            add.ShowDialog();
+
+            if (add.valid)
+            {
+                List list = new List();
+                list.Name = add.name;
+                list.save();
+
+                LoadList();
+            }
+        }
+
+        public void DeleteList()
+        {
+
+            Docent.DeleteList delete = new Docent.DeleteList();
+            delete.ShowDialog();
+
+            if (delete.valid)
+            {
+                int selected = listBox.SelectedIndex;
+
+                List list = new List();
+                int id = Convert.ToInt32(listBox.SelectedValue);
+                list.Id = id;
+                list.delete();
+
+                LoadList();
+
+                if (selected != 0)
+                {
+                    listBox.SelectedIndex = selected - 1;
+                }
+            }
         }
     }
 }
