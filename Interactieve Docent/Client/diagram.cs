@@ -33,7 +33,7 @@ namespace Client
         {
             DataPoint staaf = new DataPoint();
             staaf.XValue = 5;               //x-as waarde
-            double[] aantallen = { aantal, 6 };//y-as waarde
+            double[] aantallen = { aantal};//y-as waarde
             staaf.YValues = aantallen;
 
             Series series = new Series();
