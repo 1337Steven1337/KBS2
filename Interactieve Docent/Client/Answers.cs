@@ -8,12 +8,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using MetroFramework.Forms;
 
 
 namespace Client
 {
-    public partial class Answers : MetroForm
+    public partial class Answers : Form
     {
         private List<string> answers = new List<string>();
         private static Size startRes = new Size();

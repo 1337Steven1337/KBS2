@@ -110,7 +110,6 @@
       <DependentUpon>Api.settings</DependentUpon>
     </Compile>
     <Compile Include="API\Api.cs" />
-    <Compile Include="API\Models\Question.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
