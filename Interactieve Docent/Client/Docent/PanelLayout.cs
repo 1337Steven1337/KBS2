@@ -11,7 +11,7 @@ namespace Client
     class PanelLayout : Panel
     {
         public Form mainForm;
-        public Panel panel, middleRow, topRow;
+        public Panel middleRow, topRow;
         public Button leftBottomButton, rightBottomButton;
         public Label title;
         public TableLayoutPanel mainTable, bottomRow;
