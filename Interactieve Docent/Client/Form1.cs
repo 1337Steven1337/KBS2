@@ -1,5 +1,5 @@
 ﻿using Client.API.Models;
-using Microsoft.AspNet.SignalR.Client;
+using Microsoft.AspNet.SignalR;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;

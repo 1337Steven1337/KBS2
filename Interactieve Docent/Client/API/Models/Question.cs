@@ -10,6 +10,8 @@ namespace Client.API.Models
     public class Question : Entity
     {
         private string _text = null;
+        private int _time = -1;
+        private int _points = -1;
         private List<PredefinedAnswer> _predefinedAnswers = null;
         private List<UserAnswer> _userAnswers = null;
         private List _list = null;
@@ -29,6 +31,40 @@ namespace Client.API.Models
             set
             {
                 this._text = value;
+            }
+        }
+
+        public int Time
+        {
+            get
+            {
+                if (!this._fetched && this._time == -1)
+                {
+                    this.fetch();
+                }
+
+                return this._time;
+            }
+            set
+            {
+                this._time = value;
+            }
+        }
+
+        public int Points
+        {
+            get
+            {
+                if (!this._fetched && this._points == -1)
+                {
+                    this.fetch();
+                }
+
+                return this._points;
+            }
+            set
+            {
+                this._points = value;
             }
         }
 
