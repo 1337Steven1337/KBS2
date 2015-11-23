@@ -37,8 +37,10 @@ namespace Client
 
             panelLeft.leftBottomButton.Click += AddList_Click;
             panelLeft.rightBottomButton.Click += DeleteList_Click;
+            panelLeft.listBox.PreviewKeyDown += new PreviewKeyDownEventHandler(leftListBox_keyDown);
 
             panelMiddle.rightBottomButton.Click += DeleteQuestion_Click;
+            panelMiddle.listBox.PreviewKeyDown += new PreviewKeyDownEventHandler(middleListBox_keyDown);
 
             this.Controls.Add(panelsTable);
         }
@@ -61,6 +63,21 @@ namespace Client
         private void DeleteQuestion_Click(object sender, EventArgs e)
         {
             panelMiddle.deleteQuestion();
+        }
+
+        private void leftListBox_keyDown(object sender, PreviewKeyDownEventArgs e)
+        {
+            if (e.KeyCode == Keys.Delete)
+            {
+                panelLeft.DeleteList();
+            }
+        }
+        private void middleListBox_keyDown(object sender, PreviewKeyDownEventArgs e)
+        {
+            if (e.KeyCode == Keys.Delete)
+            {
+                panelMiddle.deleteQuestion();
+            }
         }
     }
 }

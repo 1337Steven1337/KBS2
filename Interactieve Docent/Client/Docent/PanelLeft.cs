@@ -55,17 +55,25 @@ namespace Client
 
         public void DeleteList()
         {
+
             Docent.DeleteList delete = new Docent.DeleteList();
             delete.ShowDialog();
 
             if (delete.valid)
             {
+                int selected = listBox.SelectedIndex;
+
                 List list = new List();
                 int id = Convert.ToInt32(listBox.SelectedValue);
                 list.Id = id;
                 list.delete();
 
                 LoadList();
+
+                if (selected != 0)
+                {
+                    listBox.SelectedIndex = selected - 1;
+                }
             }
         }
     }
