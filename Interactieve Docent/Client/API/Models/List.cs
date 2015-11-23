@@ -11,6 +11,7 @@ namespace Client.API.Models
     {
         public int Id { get; set; }
         public string Name { get; set; }
+        public bool Ended { get; set; }
 
         public List<Question> Questions { get; set; }
 

@@ -1,6 +1,6 @@
 ﻿namespace Client
 {
-    partial class StudentVraag
+    partial class StudentQuestion
     {
         /// <summary>
         /// Required designer variable.
