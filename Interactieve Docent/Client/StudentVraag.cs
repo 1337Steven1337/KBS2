@@ -26,7 +26,7 @@ namespace Client
         static int ButtonCounter = 0;
         static int QuestionListCounter = 0;
         Label QuestionLabel;
-        static int KeepTrackOfTimer = 0;
+        static int KeepTrackOfTimer=0;
         Button nee;
         List<Button> ButtonList;
         Button ja;
@@ -43,7 +43,7 @@ namespace Client
 
 
         public StudentVraag()
-        {
+        { 
             InitializeComponent();
             countdown.Interval = 200;
             countdown.Tick += countdown_Tick;
@@ -55,18 +55,18 @@ namespace Client
             QuestionLabel = new Label();
             QuestionLabel.Width = Width;
             //QuestionLabel.AutoSize = false;
-            DoWeStillHaveTime = progress();
+           DoWeStillHaveTime = progress();
             QuestionLabel.Text = vraag();
             QuestionLabel.TextAlign = ContentAlignment.MiddleCenter;
             //lijst van buttons
-            ButtonList = new List<Button>();
+            ButtonList=new List<Button>();
             Controls.Add(QuestionLabel);
             //vaste knoppen
             ja = options("ja");
             nee = options("nee");
             nee.Click += button_click;
             ja.Click += button_click;
-
+            
             Controls.Add(DoWeStillHaveTime);
             Controls.Add(nee);
             Controls.Add(ja);
@@ -119,7 +119,7 @@ namespace Client
             }
             else
             {
-                vraagtext = "Wachten op vraag van leraar...";
+                vraagtext= "Wachten op vraag van leraar...";
                 if (previousState == State.visible)
                 {
 
@@ -176,7 +176,7 @@ namespace Client
 
         private void isValidQuestion()
         {
-            Debug.WriteLine("Voor de Isvalid Functie:" + QuestionLabel.Text);
+            Debug.WriteLine("Voor de Isvalid Functie:"+QuestionLabel.Text);
             if (KeepTrackOfQuestion == 0)
             {
                 if (DoWeStillHaveTime.Visible == false)
@@ -200,7 +200,7 @@ namespace Client
         {
 
             isValidQuestion();
-
+            
         }
     }
 }
