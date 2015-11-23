@@ -13,33 +13,34 @@ namespace Client
 {
     public partial class diagram : Form
     {
-       public diagram(int[] aantallen, string[] antwoordnamen, string vraagNaam) {
-           
+        public diagram(int[] values, string[] answerNames, string question)
+        {
+
             InitializeComponent();
 
-            //alle staven toevoegen aan diagram
-            for (int i = 0; i < antwoordnamen.Length; i++)
+            //add coloms to the diagram
+            for (int i = 0; i < answerNames.Length; i++)
             {
-                chart1.Series.Add(MaakStaaf(antwoordnamen[i], aantallen[i]));
+                chart1.Series.Add(CreateColom(answerNames[i], values[i]));
             }
-            //vraag toevoegen boven het scherm
-            textBox1.Text = vraagNaam;
+            //add question above the diagram
+            textBox1.Text = question;
 
             Invalidate();
         }
-      
-        //maken van een staaf
-        public Series MaakStaaf(string andwoordnaam, int aantal)
+
+        //create colom
+        public Series CreateColom(string answerName, int value)
         {
             DataPoint staaf = new DataPoint();
-            staaf.XValue = 5;               //x-as waarde
-            double[] aantallen = { aantal};//y-as waarde
-            staaf.YValues = aantallen;
+            staaf.XValue = 5;             //x value
+            double[] values = { value };  //y value
+            staaf.YValues = values;
 
             Series series = new Series();
             series.ChartArea = "ChartArea1";
             series.Legend = "Legend1";
-            series.Name = andwoordnaam; //naam staaf
+            series.Name = answerName; //name colom
             series.Points.Add(staaf);
             return series;
         }
