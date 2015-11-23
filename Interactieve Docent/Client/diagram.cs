@@ -18,10 +18,10 @@ namespace Client
 
             InitializeComponent();
 
-            //add coloms to the diagram
+            //add columns to the diagram
             for (int i = 0; i < answerNames.Count; i++)
             {
-                chart1.Series.Add(CreateColom(answerNames[i], values[i]));
+                chart1.Series.Add(CreateColumn(answerNames[i], values[i]));
             }
             //add question above the diagram
             textBox1.Text = question;
@@ -29,19 +29,19 @@ namespace Client
             Invalidate();
         }
 
-        //create colom
-        public Series CreateColom(string answerName, int value)
+        //create column
+        public Series CreateColumn(string answerName, int value)
         {
-            DataPoint staaf = new DataPoint();
-            staaf.XValue = 5;             //x value
+            DataPoint Column = new DataPoint();
+            Column.XValue = 5;             //x value
             double[] values = { value };  //y value
-            staaf.YValues = values;
+            Column.YValues = values;
 
             Series series = new Series();
             series.ChartArea = "ChartArea1";
             series.Legend = "Legend1";
-            series.Name = answerName; //name colom
-            series.Points.Add(staaf);
+            series.Name = answerName; //name column
+            series.Points.Add(Column);
             return series;
         }
     }
