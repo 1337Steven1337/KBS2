@@ -17,6 +17,23 @@ namespace Client
         public Form1()
         {
             InitializeComponent();
+
+            Random rnd = new Random();
+            List<int> aantallen = new List<int>(); //waardes
+            aantallen.Add(3);
+            aantallen.Add(4);
+            aantallen.Add(5);
+
+            List<string> antwoordnamen = new List<string>();
+            antwoordnamen.Add("ja");
+            antwoordnamen.Add("nee");
+            antwoordnamen.Add("misschien");
+
+            string vraagNaam = "Naar huis?"; //naam van vraag
+
+            diagram diagram = new diagram(aantallen, antwoordnamen, vraagNaam);
+            diagram.Show();
+
         }
 
         private void Form1_Load(object sender, EventArgs e)

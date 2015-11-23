@@ -13,13 +13,13 @@ namespace Client
 {
     public partial class diagram : Form
     {
-        public diagram(int[] values, string[] answerNames, string question)
+        public diagram(List<int> values, List<string> answerNames, string question)
         {
 
             InitializeComponent();
 
             //add coloms to the diagram
-            for (int i = 0; i < answerNames.Length; i++)
+            for (int i = 0; i < answerNames.Count; i++)
             {
                 chart1.Series.Add(CreateColom(answerNames[i], values[i]));
             }
