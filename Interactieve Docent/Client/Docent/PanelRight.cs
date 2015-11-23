@@ -10,9 +10,15 @@ namespace Client
 {
     class PanelRight : PanelLayout
     {
+        private TableLayoutPanel formTable;
         public PanelRight(Form mainForm, TableLayoutPanel panelsTable) : base(mainForm)
         {
+            formTable.Dock = DockStyle.Fill;
+            formTable.ColumnCount = 1;
+            //formTable.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
 
+
+            middleRow.Controls.Add(formTable);
 
             //Place the maintable in 3/3 of the panelsTable !! ALWAYS END OF CONSTUCTOR !!
             updateLayout();

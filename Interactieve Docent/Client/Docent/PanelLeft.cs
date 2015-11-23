@@ -23,8 +23,6 @@ namespace Client
             middleRow.Controls.Add(listBox);
             LoadList();
             
-            leftBottomButton.Click += removeList;
-
             //Place the maintable in 1/3 of the panelsTable !! ALWAYS END OF CONSTUCTOR !!
             updateLayout();
             panelsTable.Controls.Add(mainTable, 0, 0);
@@ -36,12 +34,5 @@ namespace Client
             listBox.DisplayMember = "Name";
             listBox.ValueMember = "Id";            
         }
-
-        private void removeList(object sender, EventArgs e)
-        {
-            MessageBox.Show("Weet u zeker dat u de lijst: " + listBox.SelectedItem.ToString() +" wilt verwijderen?");            
-        }
-
-
     }
 }

@@ -19,6 +19,7 @@ namespace Client
             listBox.Dock = DockStyle.Fill;
             middleRow.Controls.Add(listBox);
 
+            leftBottomButton.Click += addQuestion;
             //Place the maintable in 2/3 of the panelsTable !! ALWAYS END OF CONSTUCTOR !!
             updateLayout();
             panelsTable.Controls.Add(mainTable, 1, 0);
@@ -30,6 +31,11 @@ namespace Client
             listBox.DataSource = List.getById(listIndex).Questions;
             listBox.DisplayMember = "Text";
             listBox.ValueMember = "Id";
+        }
+
+        private void addQuestion(object sender, EventArgs e)
+        {
+
         }
     }
 }

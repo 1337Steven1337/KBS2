@@ -48,17 +48,7 @@ namespace Client
         //Save question button
         private void btnSave_Click(object sender, EventArgs e)
         {
-            List<List> lijst = List.getAll();
-            foreach (List vragenlijst in lijst)
-            {
-                Console.WriteLine(vragenlijst.Id + "\t" + vragenlijst.Name);
-                foreach (Question vraag in vragenlijst.Questions)
-                {
-                    Console.WriteLine("\t" + vraag.Id + "\t" + vraag.Text + "\t");
-                }
-
-            }
-            /*List.getAll();
+            List.getAll();
             if (ValidateEmptyFields())
             {
                 warningLabel.Text = "Niet alle velden zijn ingevoerd!";
@@ -78,10 +68,10 @@ namespace Client
 
                 Question q = new Question();
                 q.Text = question;
-                q.list = list;
+                q.List = list;
                 q.save();
 
-            }*/
+            }
         }
     }
 }
