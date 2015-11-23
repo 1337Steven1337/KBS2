@@ -20,6 +20,9 @@ namespace Client
             listBox = new ListBox();
             listBox.Dock = DockStyle.Fill;
 
+            leftBottomButton.Click += leftButton_Click;
+            leftBottomButton.Text = "Add List";
+
             middleRow.Controls.Add(listBox);
             LoadList();
             
@@ -33,6 +36,21 @@ namespace Client
             listBox.DataSource = List.getAll();
             listBox.DisplayMember = "Name";
             listBox.ValueMember = "Id";            
+        }
+
+        public void leftButton_Click(object sender, EventArgs e)
+        {
+            Docent.AddList newList = new Docent.AddList();
+            newList.ShowDialog();
+
+            if (newList.valid)
+            {
+                List list = new List();
+                list.Name = newList.name;
+                list.save();
+
+                LoadList();
+            }
         }
     }
 }
