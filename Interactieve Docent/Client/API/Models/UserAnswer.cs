@@ -11,6 +11,7 @@ namespace Client.API.Models
     {
         public int Id { get; private set; }
         public PredefinedAnswer PredefinedAnswer { get; set; }
+        public int PredefinedAnswer_Id { get; set; }
 
         public static UserAnswer getById(int id)
         {
