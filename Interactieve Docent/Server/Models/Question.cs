@@ -11,6 +11,7 @@ namespace Server.Models
     [DataContract]
     [KnownType(typeof(Server.Models.List))]
     [KnownType(typeof(Server.Models.PredefinedAnswer))]
+    [KnownType(typeof(Server.Models.UserAnswer))]
     public class Question
     {
         [Key]

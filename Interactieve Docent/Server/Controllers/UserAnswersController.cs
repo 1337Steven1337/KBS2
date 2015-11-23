@@ -1,22 +1,26 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
+﻿using System.Data;
 using System.Data.Entity;
 using System.Data.Entity.Infrastructure;
 using System.Linq;
 using System.Net;
-using System.Net.Http;
 using System.Threading.Tasks;
 using System.Web.Http;
 using System.Web.Http.Description;
 using Server.Models;
 using Server.Models.DTO;
+using Server.Models.Context;
 
 namespace Server.Controllers
 {
     public class UserAnswersController : ApiController
     {
-        private ServerContext db = new ServerContext();
+        private IDocentAppContext db = new ServerContext();
+
+        public UserAnswersController() { }
+        public UserAnswersController(IDocentAppContext context)
+        {
+            this.db = context;
+        }
 
         // GET: api/UserAnswers
         public IQueryable<UserAnswerDTO> GetUserAnswers()
@@ -62,7 +66,7 @@ namespace Server.Controllers
                 return BadRequest();
             }
 
-            db.Entry(userAnswer).State = EntityState.Modified;
+            db.MarkAsModified(userAnswer);
 
             try
             {

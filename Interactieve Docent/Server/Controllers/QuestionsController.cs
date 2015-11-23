@@ -12,12 +12,19 @@ using System.Web.Http.Description;
 using Server.Models;
 using Server.Models.DTO;
 using Server.Hubs;
+using Server.Models.Context;
 
 namespace Server.Controllers
 {
     public class QuestionsController : ApiControllerWithHub<EventHub>
     {
-        private ServerContext db = new ServerContext();
+        private IDocentAppContext db = new ServerContext();
+
+        public QuestionsController() { }
+        public QuestionsController(IDocentAppContext context)
+        {
+            this.db = context;
+        }
 
         // GET: api/Question
         public IQueryable<QuestionDTO> GetQuestions()
@@ -38,13 +45,14 @@ namespace Server.Controllers
         public QuestionDTO GetQuestionById(int id)
         {
             var vragen = from q in db.Questions
-                        where q.Id == id
-                        select new QuestionDTO()
-                        {
-                            Id = q.Id,
-                            Text = q.Text,
-                            List_Id = q.List.Id,
-                            PredefinedAnswers = q.PredefinedAnswers.Select(V => new PredefinedAnswerDTO { Id = V.Id, Text = V.Text, Question_Id = V.Question.Id }).ToList<PredefinedAnswerDTO>()
+                         where q.Id == id
+                         select new QuestionDTO()
+                         {
+                             Id = q.Id,
+                             Text = q.Text,
+                             List_Id = q.List.Id,
+                             PredefinedAnswers = q.PredefinedAnswers.Select(V => new PredefinedAnswerDTO { Id = V.Id, Text = V.Text, Question_Id = V.Question.Id }).ToList<PredefinedAnswerDTO>(),
+                             UserAnswers = q.UserAnswers.Select(V => new UserAnswerDTO { Id = V.Id, Question_Id = V.Question_Id, PredefinedAnswer_Id = V.PredefinedAnswer_Id }).ToList<UserAnswerDTO>()
                         };
 
             QuestionDTO vraag = vragen.First();
@@ -65,7 +73,7 @@ namespace Server.Controllers
                 return BadRequest();
             }
 
-            db.Entry(question).State = EntityState.Modified;
+            db.MarkAsModified(question);
 
             try
             {

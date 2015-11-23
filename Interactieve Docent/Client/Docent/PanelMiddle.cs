@@ -11,12 +11,15 @@ namespace Client
 {
     class PanelMiddle : PanelLayout
     {
+        private int questionId;
         public ListBox listBox;
 
         public PanelMiddle(Form mainForm, TableLayoutPanel panelsTable) : base(mainForm)
         {
             listBox = new ListBox();
             listBox.Dock = DockStyle.Fill;
+            middleRow.Controls.Add(listBox);
+            rightBottomButton.Text = "Delete Question";
             listBox.BorderStyle = BorderStyle.None;
 
             middleRow.Controls.Add(listBox);
@@ -28,10 +31,33 @@ namespace Client
 
         public void loadQuestionList(int listIndex)
         {
+            questionId = listIndex;
             title.Text = "Vragen uit lijst: " + List.getById(listIndex).Name;                        
             listBox.DataSource = List.getById(listIndex).Questions;
             listBox.DisplayMember = "Text";
             listBox.ValueMember = "Id";
+        }
+
+        public void deleteQuestion()
+        {
+            Docent.DeleteList delete = new Docent.DeleteList();
+            delete.ShowDialog();
+
+            if (delete.valid)
+            {
+                int selected = listBox.SelectedIndex;
+
+                Question question = new Question();
+                int id = Convert.ToInt32(listBox.SelectedValue);
+                question.Id = id;
+                question.delete();
+
+                loadQuestionList(questionId);
+
+                if (selected != 0){
+                    listBox.SelectedIndex = selected - 1;
+                }
+            }
         }
     }
 }

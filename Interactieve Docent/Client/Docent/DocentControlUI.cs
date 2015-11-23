@@ -31,20 +31,27 @@ namespace Client
             panelsTable.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 33.3F));
             panelsTable.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 33.3F));
             
-            panelLeft = new PanelLeft(this, panelsTable);            
+            panelLeft = new PanelLeft(this, panelsTable);
             panelMiddle = new PanelMiddle(this, panelsTable);
             panelRight = new PanelRight(this, panelsTable);
-          
-            panelLeft.listBox.SelectedIndexChanged += listBox_SelectedIndexChanged;        
+
+            panelLeft.listBox.SelectedIndexChanged += listBox_SelectedIndexChanged;
             panelMiddle.leftBottomButton.Click += loadAddQuestionFormHandler;
             panelRight.leftBottomButton.Click += saveQuestionHandler;
+                                    
+            panelLeft.leftBottomButton.Click += AddList_Click;
+            panelLeft.rightBottomButton.Click += DeleteList_Click;
+            panelLeft.listBox.PreviewKeyDown += new PreviewKeyDownEventHandler(leftListBox_keyDown);
+
+            panelMiddle.rightBottomButton.Click += DeleteQuestion_Click;
+            panelMiddle.listBox.PreviewKeyDown += new PreviewKeyDownEventHandler(middleListBox_keyDown);
 
             this.Controls.Add(panelsTable);
         }
 
         private void listBox_SelectedIndexChanged(object sender, System.EventArgs e)
         {
-            panelMiddle.loadQuestionList((int)panelLeft.listBox.SelectedValue);           
+            panelMiddle.loadQuestionList((int)panelLeft.listBox.SelectedValue);
         }
 
         private void loadAddQuestionFormHandler(object sender, System.EventArgs e)
@@ -67,6 +74,36 @@ namespace Client
 
             //reload question list
             panelMiddle.loadQuestionList(listId);
+        }
+
+        private void AddList_Click(object sender, EventArgs e)
+        {
+            panelLeft.AddList();
+        }
+
+        private void DeleteList_Click(object sender, EventArgs e)
+        {
+            panelLeft.DeleteList();
+        }
+
+        private void DeleteQuestion_Click(object sender, EventArgs e)
+        {
+            panelMiddle.deleteQuestion();
+        }
+
+        private void leftListBox_keyDown(object sender, PreviewKeyDownEventArgs e)
+        {
+            if (e.KeyCode == Keys.Delete)
+            {
+                panelLeft.DeleteList();
+            }
+        }
+        private void middleListBox_keyDown(object sender, PreviewKeyDownEventArgs e)
+        {
+            if (e.KeyCode == Keys.Delete)
+            {
+                panelMiddle.deleteQuestion();
+            }
         }
     }
 }
