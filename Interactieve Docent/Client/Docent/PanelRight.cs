@@ -10,7 +10,7 @@ namespace Client
 {
     class PanelRight : PanelLayout
     {
-        private TableLayoutPanel formTable;
+        private TableLayoutPanel formTable = new TableLayoutPanel();
         public PanelRight(Form mainForm, TableLayoutPanel panelsTable) : base(mainForm)
         {
             formTable.Dock = DockStyle.Fill;
