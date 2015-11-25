@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -14,27 +15,35 @@ namespace Client
 {
     public partial class diagram : Form
     {
-        public List<int> values{ get;}
-        public List<string> answerNames { get; }
-        public string question { get; }
+        public List<string> questions;
+        public List<int> votes;
+        Dictionary<string, int> questionVotes = new Dictionary<string, int>();
+        public Question question;
+        public int Question_Id;
 
-        public diagram(List<int> values, List<string> answerNames, string question)
+        public diagram(int Question_Id)
         {
-            this.values = values;
-            this.answerNames = answerNames;
-            this.question = question;
-
+            this.Question_Id = Question_Id;
             InitializeComponent();
+            Controller();
+            Invalidate();
+        }
 
+        public void Controller(){
+            GetData();
+            MakeDiagram(votes, questions, question.Text);
+        }
+
+        public void MakeDiagram(List<int> values, List<string> answerNames, string question)
+        {
+            
             //add columns to the diagram
-            for (int i = 0; i < this.answerNames.Count; i++)
+            for (int i = 0; i < answerNames.Count; i++)
             {
-                chart1.Series.Add(CreateColumn(this.answerNames[i], this.values[i]));
+                chart1.Series.Add(CreateColumn(answerNames[i], values[i]));
             }
             //add question above the diagram
-            textBox1.Text = this.question;
-
-            Invalidate();
+            textBox1.Text = question;
         }
 
         //create column
@@ -53,11 +62,13 @@ namespace Client
             return series;
         }
 
-        public void updateDiagram()
+        public void GetData()
         {
-            Question question = Question.getById(3);
-            Dictionary<string, int> questionVotes = new Dictionary<string, int>();
+            //select a question
+            question = Question.getById(Question_Id);
+            
 
+            //if the predefinedanswer is empty zet votes to zero
             foreach (PredefinedAnswer preAnswer in question.PredefinedAnswers)
             {
                 if (!questionVotes.ContainsKey(preAnswer.Text))
@@ -66,6 +77,7 @@ namespace Client
                 }
             }
 
+            //for every given answer were the userAnswer_Id is equal to a PredefinedAnswer_Id add one to votes
             foreach (UserAnswer answer in question.UserAnswers)
             {
                 string text = question.PredefinedAnswers.Find(x => x.Id == answer.PredefinedAnswer_Id).Text;
@@ -73,11 +85,23 @@ namespace Client
             }
 
 
-            List<int> votes = questionVotes.Values.ToList<int>();
-            List<string> questions = questionVotes.Keys.ToList<string>();
-
-            diagram diagram = new diagram(votes, questions, question.Text);
-            diagram.Show();
+            votes = questionVotes.Values.ToList<int>();
+            questions = questionVotes.Keys.ToList<string>();
+            
         }
+
+        private void OnChange(object sender, SqlNotificationEventArgs e)
+        {
+            SqlDependency dependency = sender as SqlDependency;
+
+            // Notices are only a one shot deal so remove the existing one so a new one can be added
+
+            dependency.OnChange -= OnChange;
+
+            // Fire the event
+            Controller();
+
+        }
+        
     }
 }
