@@ -11,6 +11,7 @@ namespace Client.API.Models
     {
         public int Id { get; set; }
         public string Name { get; set; }
+        public bool Ended { get; set; }
 
         public List<Question> Questions { get; set; }
 
@@ -36,6 +37,18 @@ namespace Client.API.Models
             List q = Api.Execute<List>(request);
             this.copyValues<List>(this, q);
             this._fetched = true;
+        }
+
+        public void update()
+        {
+            RestRequest request = new RestRequest(Method.PUT);
+            request.RequestFormat = DataFormat.Json;
+            request.AddHeader("Content-Type", "application/json");
+            request.AddParameter("Id", this.Id);
+            request.AddParameter("Name", this.Name);
+            request.Resource = "Lists/" + this.Id;
+
+            List q = Api.Execute<List>(request);
         }
 
         public void delete()

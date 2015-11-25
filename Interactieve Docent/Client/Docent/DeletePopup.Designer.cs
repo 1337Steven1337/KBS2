@@ -1,6 +1,6 @@
 ﻿namespace Client.Docent
 {
-    partial class DeleteList
+    partial class DeletePopup
     {
         /// <summary>
         /// Required designer variable.

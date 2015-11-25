@@ -31,9 +31,9 @@ namespace Client
         public void MakeDiagram(List<int> values, List<string> answerNames, string question)
         {
             //add columns to the diagram
-            for (int i = 0; i < answerNames.Count; i++)
+            for (int i = 0; i < this.answerNames.Count; i++)
             {
-                chart1.Series.Add(CreateColumn(answerNames[i], values[i]));
+                chart1.Series.Add(CreateColumn(this.answerNames[i], this.values[i]));
             }
             //add question above the diagram
             textBox1.Text = question;
@@ -93,7 +93,7 @@ namespace Client
 
             // Fire the event
             diagram();
-            
+
         }
         
     }
