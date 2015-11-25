@@ -188,6 +188,9 @@
     <EmbeddedResource Include="Student\Questions.resx">
       <DependentUpon>Questions.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Student\testclass.resx">
+      <DependentUpon>testclass.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="ClassDiagram1.cd" />
     <None Include="Properties\Api.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
