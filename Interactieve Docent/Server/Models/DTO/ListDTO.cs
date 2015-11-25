@@ -11,5 +11,15 @@ namespace Server.Models.DTO
         public string Name { get; set; }
 
         public List<QuestionDTO> Questions { get; set;  }
+
+        public ListDTO()
+        {
+
+        }
+        public ListDTO(List q)
+        {
+            this.Id = q.Id;
+            this.Name = q.Name;
+        }
     }
 }
