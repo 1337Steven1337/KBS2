@@ -12,6 +12,7 @@ namespace Client.API.Models
         private string _text = null;
         private int _time = -1;
         private int _points = -1;
+        private int _list_Id = -1;
         private List<PredefinedAnswer> _predefinedAnswers = null;
         private List<UserAnswer> _userAnswers = null;
         private List _list = null;
@@ -65,6 +66,23 @@ namespace Client.API.Models
             set
             {
                 this._points = value;
+            }
+        }
+
+        public int List_Id
+        {
+            get
+            {
+                if(!this._fetched && this._list_Id == -1)
+                {
+                    this.fetch();
+                }
+
+                return this._list_Id;
+            }
+            set
+            {
+                this._list_Id = value;
             }
         }
 
