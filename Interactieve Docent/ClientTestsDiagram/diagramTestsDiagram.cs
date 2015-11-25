@@ -24,7 +24,7 @@ namespace Client.TestsDiagram
             b.Add("b");
             b.Add("c");
 
-            diagram Diagram = new diagram(1);
+            diagram Diagram = new diagram(3);
 
             CollectionAssert.AllItemsAreNotNull(Diagram.votes);
             CollectionAssert.AllItemsAreNotNull(Diagram.questions);

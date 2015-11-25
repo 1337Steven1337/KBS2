@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using RestSharp;
 
 namespace Client.API.Models
 {
@@ -26,6 +27,18 @@ namespace Client.API.Models
             {
                 this._text = value;
             }
+        }
+
+        public void save(int questionId)
+        {
+            RestRequest request = new RestRequest(Method.POST);
+            request.RequestFormat = DataFormat.Json;
+            request.AddHeader("Content-Type", "application/json");
+            request.AddParameter("Text", this.Text);
+            request.AddParameter("Question_Id", questionId);
+            request.Resource = "PredefinedAnswers";
+
+            PredefinedAnswer q = Api.Execute<PredefinedAnswer>(request);
         }
 
         public static PredefinedAnswer getById(int id)
