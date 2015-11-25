@@ -55,14 +55,14 @@ namespace Client
             List<int> votes = questionVotes.Values.ToList<int>();
             List<string> questions = questionVotes.Keys.ToList<string>();
 
-            diagram diagram = new diagram(votes, questions, question.Text);
+            diagram diagram = new diagram();
             diagram.Show();
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
-            Question q = Question.getById(3);
-            Console.WriteLine(q.Text);
+            DocentControlUI docentControlUI = new DocentControlUI();
+            docentControlUI.Show();
         }
 
     }
