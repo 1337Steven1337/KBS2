@@ -26,7 +26,6 @@ namespace Client
 
             middleRow.Controls.Add(listBox);
             LoadList();
-            middleRow.Controls.Add(listBox);
             //Place the maintable in 1/3 of the panelsTable !! ALWAYS END OF CONSTUCTOR !!
             updateLayout();
             panelsTable.Controls.Add(mainTable, 0, 0);

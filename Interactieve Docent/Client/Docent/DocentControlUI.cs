@@ -65,13 +65,24 @@ namespace Client
             String question = panelRight.questionField.Text;
             int time = (int)panelRight.timeField.Value;
             int points = (int)panelRight.pointsField.Value;
-
             int listId = (int)panelLeft.listBox.SelectedValue;
 
-            Question q = new Question();
+            List list = new List();
+            list.Id = listId;            
+
+            Question q = new Question(false);
             q.Text = question;
-            q.List = List.getById(listId);
+            q.Time = time;
+            q.Points = points;
+            q.List = list;
             q.save();
+
+            PredefinedAnswer pa;
+            foreach (String answer in panelRight.predefinedAnswersList.Items)
+            {
+                pa = new PredefinedAnswer() { Text = answer };
+                pa.save(q.Id);                
+            }
 
             //reload question list
             panelMiddle.loadQuestionList(listId);
