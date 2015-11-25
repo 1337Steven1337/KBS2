@@ -24,11 +24,11 @@ namespace Client.TestsDiagram
             b.Add("b");
             b.Add("c");
 
-            diagram Diagram = new diagram(a,b,"test");
+            diagram Diagram = new diagram();
 
-            CollectionAssert.AllItemsAreNotNull(Diagram.values);
-            CollectionAssert.AllItemsAreNotNull(Diagram.answerNames);
-            Assert.AreEqual(Diagram.values.Count,Diagram.answerNames.Count);
+            CollectionAssert.AllItemsAreNotNull(Diagram.votes);
+            CollectionAssert.AllItemsAreNotNull(Diagram.questions);
+            Assert.AreEqual(Diagram.votes.Count,Diagram.questions.Count);
           
             Console.WriteLine("test");
         }
