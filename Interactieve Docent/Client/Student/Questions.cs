@@ -19,10 +19,12 @@ namespace Client.Student
         private int List_Id { get; set; }
         private int currentQuestionIndex = -1;
         private bool busy = false;
+        static int ButtonCounter = 0;
+        static int ButtonCounterHorizontal = 0;
+        static int ButtonCounterVertical = 1;
         private List<Button> answerButtons = new List<Button>();
 
         private ProgressBar timerProgressBar;
-        private Label questionLabel;
 
         private List list = null;
         private Question currentQuestion = null;
@@ -31,8 +33,12 @@ namespace Client.Student
         public Questions(int List_Id)
         {
             InitializeComponent();
-
             this.List_Id = List_Id;
+
+            // tijdelijke button
+            button1.Location = new Point(this.Location.X , this.Location.Y + this.Size.Height - ((this.Height / 10 * 3)));
+            button1.Size = new Size(this.Width,(this.Height/10*3));
+
         }
 
         private void Questions_Load(object sender, EventArgs e)
@@ -45,19 +51,28 @@ namespace Client.Student
             this.signalR.connect();
 
             this.goToNextQuestion();
-
-
-            //Controls.Add(timerProgressBar);
-            //Controls.Add(questionLabel);
         }
 
         private Button createAnswerButton(PredefinedAnswer answer)
         {
             Button option = new Button();
             option.Text = answer.Text;
-            option.Name = answer.Id.ToString();
+            option.Location = new Point(Width / 2 + option.Width * (ButtonCounterHorizontal), Height - option.Height * (4 - ButtonCounterVertical));
+            ButtonCounter++;
+            if (ButtonCounter % 2 == 0)
+            {
+                ButtonCounterVertical++;
+                ButtonCounter = 0;
+            }
+            if (ButtonCounterHorizontal <= 2)
+            {
+                ButtonCounterHorizontal += 1;
+            }
+            else
+            {
+                ButtonCounterHorizontal = 0;
+            }
 
-            layoutPanel.Controls.Add(option, 0, 0);
 
             return option;
         }
@@ -80,6 +95,8 @@ namespace Client.Student
                 cleanUpPreviousQuestion();
                 currentQuestion = Question.getById(list.Questions[currentQuestionIndex].Id);
 
+
+                questionLabel.Text = currentQuestion.Text;
                 Console.WriteLine(currentQuestion.PredefinedAnswers.Count);
 
                 foreach (PredefinedAnswer pa in currentQuestion.PredefinedAnswers)
@@ -132,13 +149,6 @@ namespace Client.Student
             return SecondsLeft;
         }
 
-        private Label createQuestionLabel()
-        {
-            Label QuestionLabel = new Label();
-            QuestionLabel.Width = Width;
-            QuestionLabel.TextAlign = ContentAlignment.MiddleCenter;
 
-            return QuestionLabel;
-        }
     }
 }
