@@ -155,7 +155,6 @@
     <Compile Include="Student\Questions.Designer.cs">
       <DependentUpon>Questions.cs</DependentUpon>
     </Compile>
-    <Compile Include="Student\testclass.cs" />
     <EmbeddedResource Include="Answers.resx">
       <DependentUpon>Answers.cs</DependentUpon>
     </EmbeddedResource>

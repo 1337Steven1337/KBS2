@@ -103,6 +103,16 @@ namespace Client.API.Models
             }
         }
 
+        public Question()
+        {
+
+        }
+
+        public Question(bool shouldFetch = true)
+        {
+            this._fetched = !shouldFetch;
+        }
+
         public List<PredefinedAnswer> PredefinedAnswers
         {
             get
