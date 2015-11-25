@@ -48,19 +48,19 @@ namespace Client
             questionFieldLabel.Text = "Vraag: ";
             questionFieldLabel.Dock = DockStyle.Fill;
 
-            pointsField = new NumericUpDown();
-            pointsField.Dock = DockStyle.Fill;
-
-            pointsFieldLabel = new Label();
-            pointsFieldLabel.Text = "Punten vraag: ";
-            pointsFieldLabel.Dock = DockStyle.Fill;
-
             timeField = new NumericUpDown();
             timeField.Dock = DockStyle.Fill;
 
             timeFieldLabel = new Label();
             timeFieldLabel.Text = "Tijdslimiet (seconden): ";
             timeFieldLabel.Dock = DockStyle.Fill;
+                   
+            pointsField = new NumericUpDown();
+            pointsField.Dock = DockStyle.Fill;
+
+            pointsFieldLabel = new Label();
+            pointsFieldLabel.Text = "Punten vraag: ";
+            pointsFieldLabel.Dock = DockStyle.Fill;
 
             predefinedAnswersListLabel = new Label();
             predefinedAnswersListLabel.Text = "Antwoorden: ";
@@ -80,17 +80,17 @@ namespace Client
             addAnswerBtn.Click += addAnswerHandler;
 
             removeAnswerBtn = new Button();
-            removeAnswerBtn.Text = "X";            
+            removeAnswerBtn.Text = "x";            
             removeAnswerBtn.Click += removeAnswerHandler;
 
             addQuestionForm.Controls.Add(questionFieldLabel, 0, 0);
             addQuestionForm.Controls.Add(questionField, 1, 0);
 
-            addQuestionForm.Controls.Add(pointsFieldLabel, 0, 1);
-            addQuestionForm.Controls.Add(pointsField, 1, 1);
+            addQuestionForm.Controls.Add(timeFieldLabel, 0, 1);
+            addQuestionForm.Controls.Add(timeField, 1, 1);
 
-            addQuestionForm.Controls.Add(timeFieldLabel, 0, 2);
-            addQuestionForm.Controls.Add(timeField, 1, 2);
+            addQuestionForm.Controls.Add(pointsFieldLabel, 0, 2);
+            addQuestionForm.Controls.Add(pointsField, 1, 2);
             
             addQuestionForm.Controls.Add(predefinedAnswersListLabel, 0, 3);
             addQuestionForm.Controls.Add(predefinedAnswersList, 1, 3);

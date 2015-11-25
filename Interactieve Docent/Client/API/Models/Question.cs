@@ -153,6 +153,8 @@ namespace Client.API.Models
             request.RequestFormat = DataFormat.Json;
             request.AddHeader("Content-Type", "application/json");
             request.AddParameter("Text", this.Text);
+            request.AddParameter("Time", this.Time);
+            request.AddParameter("Points", this.Points);
             request.AddParameter("List_Id", this.List.Id);
             request.Resource = "Questions";
 
