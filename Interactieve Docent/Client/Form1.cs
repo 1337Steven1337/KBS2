@@ -55,7 +55,7 @@ namespace Client
             List<int> votes = questionVotes.Values.ToList<int>();
             List<string> questions = questionVotes.Keys.ToList<string>();
 
-            diagram diagram = new diagram(votes, questions, question.Text);
+            diagram diagram = new diagram();
             diagram.Show();
         }
 
