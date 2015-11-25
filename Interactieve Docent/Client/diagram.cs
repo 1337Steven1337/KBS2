@@ -19,9 +19,11 @@ namespace Client
         public List<int> votes;
         Dictionary<string, int> questionVotes = new Dictionary<string, int>();
         public Question question;
+        public int Question_Id;
 
-        public diagram()
+        public diagram(int Question_Id)
         {
+            this.Question_Id = Question_Id;
             InitializeComponent();
             Controller();
             Invalidate();
@@ -63,7 +65,7 @@ namespace Client
         public void GetData()
         {
             //select a question
-            question = Question.getById(3);
+            question = Question.getById(Question_Id);
             
 
             //if the predefinedanswer is empty zet votes to zero
