@@ -9,10 +9,12 @@ using System.Web.Http.Description;
 using Server.Models;
 using Server.Models.DTO;
 using Server.Models.Context;
+using Server;
+using Server.Hubs;
 
 namespace Server.Controllers
 {
-    public class UserAnswersController : ApiController
+    public class UserAnswersController : ApiControllerWithHub<EventHub>
     {
         private IDocentAppContext db = new ServerContext();
 
@@ -40,7 +42,7 @@ namespace Server.Controllers
         [ResponseType(typeof(UserAnswerDTO))]
         public UserAnswerDTO GetList(int id)
         {
-            var Lists = from ua in db.UserAnswers
+            var userAnswers = from ua in db.UserAnswers
                         where ua.Id == id
                         select new UserAnswerDTO()
                         {
@@ -48,8 +50,8 @@ namespace Server.Controllers
                             Question_Id = ua.Question.Id,
                             PredefinedAnswer = ua.PredefinedAnswer
                         };
-            UserAnswerDTO lijst = Lists.First();
-            return lijst;
+
+            return userAnswers.FirstOrDefault(x => x.Id == x.Id);
         }
 
         // PUT: api/UserAnswers/5
@@ -95,9 +97,13 @@ namespace Server.Controllers
             {
                 return BadRequest(ModelState);
             }
-
+            
             db.UserAnswers.Add(userAnswer);
             await db.SaveChangesAsync();
+
+            Question question = db.Questions.Find(userAnswer.Question_Id);
+
+            this.getSubscribed(question.List_Id).UserAnswerAdded(new UserAnswerDTO(userAnswer));
 
             return CreatedAtRoute("DefaultApi", new { id = userAnswer.Id }, userAnswer);
         }

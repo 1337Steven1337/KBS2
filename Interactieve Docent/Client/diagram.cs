@@ -1,8 +1,10 @@
-﻿using Client.API.Models;
+﻿using Client.API;
+using Client.API.Models;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -14,27 +16,79 @@ namespace Client
 {
     public partial class diagram : Form
     {
-        public List<int> values{ get;}
-        public List<string> answerNames { get; }
-        public string question { get; }
+        public List<string> questions;
+        public List<int> votes;
 
-        public diagram(List<int> values, List<string> answerNames, string question)
+        public int Question_Id;
+
+        public Question question;
+
+        private SignalR signalR;
+
+        Dictionary<string, int> questionVotes = new Dictionary<string, int>();
+
+        public diagram(int Question_Id)
         {
-            this.values = values;
-            this.answerNames = answerNames;
-            this.question = question;
-
+            this.Question_Id = Question_Id;
             InitializeComponent();
+            Invalidate();
+        }
+
+        private void diagram_Load(object sender, EventArgs e)
+        {
+            //select a question
+            question = Question.getById(Question_Id);
+            Controller();
+            this.signalR = new SignalR();
+            this.signalR.connectionStatusChanged += SignalR_connectionStatusChanged;
+            this.signalR.subscriptionStatusChanged += SignalR_subscriptionStatusChanged;
+            this.signalR.newUserAnswerAdded += SignalR_newUserAnswerAdded;
+            this.signalR.connect();
+        }
+
+        private void SignalR_newUserAnswerAdded(UserAnswer userAnswer)
+        {
+            this.question.UserAnswers.Add(userAnswer);
+            Controller();
+        }
+
+        private void SignalR_subscriptionStatusChanged(API.EventArgs.SubscriptionStatus message)
+        {
+            
+        }
+
+        private void SignalR_connectionStatusChanged(Microsoft.AspNet.SignalR.Client.StateChange message)
+        {
+            if(message.NewState == Microsoft.AspNet.SignalR.Client.ConnectionState.Connected)
+            {
+                signalR.subscribe(question.List_Id);
+            }
+            else if(message.NewState == Microsoft.AspNet.SignalR.Client.ConnectionState.Connecting){
+
+            }
+            else
+            {
+                MessageBox.Show("Helaas! Faggot..");
+            }
+        }
+
+        public void Controller()
+        {
+            GetData();
+            this.Invoke((Action)delegate () { MakeDiagram(votes, questions, question.Text); });
+        }
+
+        public void MakeDiagram(List<int> values, List<string> answerNames, string question)
+        {
+            chart1.Series.Clear();
 
             //add columns to the diagram
-            for (int i = 0; i < this.answerNames.Count; i++)
+            for (int i = 0; i < answerNames.Count; i++)
             {
-                chart1.Series.Add(CreateColumn(this.answerNames[i], this.values[i]));
+                chart1.Series.Add(CreateColumn(answerNames[i], values[i]));
             }
             //add question above the diagram
-            textBox1.Text = this.question;
-
-            Invalidate();
+            textBox1.Text = question;
         }
 
         //create column
@@ -53,31 +107,42 @@ namespace Client
             return series;
         }
 
-        public void updateDiagram()
+        public void GetData()
         {
-            Question question = Question.getById(3);
-            Dictionary<string, int> questionVotes = new Dictionary<string, int>();
-
+            //if the predefinedanswer is empty zet votes to zero
             foreach (PredefinedAnswer preAnswer in question.PredefinedAnswers)
             {
-                if (!questionVotes.ContainsKey(preAnswer.Text))
-                {
-                    questionVotes[preAnswer.Text] = 0;
-                }
+                questionVotes[preAnswer.Text] = 0;
             }
 
+            //for every given answer were the userAnswer_Id is equal to a PredefinedAnswer_Id add one to votes
             foreach (UserAnswer answer in question.UserAnswers)
             {
                 string text = question.PredefinedAnswers.Find(x => x.Id == answer.PredefinedAnswer_Id).Text;
                 questionVotes[text] += 1;
             }
 
+            votes = questionVotes.Values.ToList<int>();
+            questions = questionVotes.Keys.ToList<string>();
+            
+        }
 
-            List<int> votes = questionVotes.Values.ToList<int>();
-            List<string> questions = questionVotes.Keys.ToList<string>();
+        private void OnChange(object sender, SqlNotificationEventArgs e)
+        {
+            SqlDependency dependency = sender as SqlDependency;
 
-            diagram diagram = new diagram(votes, questions, question.Text);
-            diagram.Show();
+            // Notices are only a one shot deal so remove the existing one so a new one can be added
+
+            dependency.OnChange -= OnChange;
+
+            // Fire the event
+            Controller();
+
+        }
+
+        private void chart1_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

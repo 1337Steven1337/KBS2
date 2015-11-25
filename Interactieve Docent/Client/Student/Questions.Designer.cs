@@ -28,29 +28,36 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.layoutPanel = new System.Windows.Forms.TableLayoutPanel();
+            this.questionLabel = new System.Windows.Forms.Label();
+            this.button1 = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
-            // layoutPanel
+            // questionLabel
             // 
-            this.layoutPanel.ColumnCount = 2;
-            this.layoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 74.1554F));
-            this.layoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25.84459F));
-            this.layoutPanel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.layoutPanel.Location = new System.Drawing.Point(0, 0);
-            this.layoutPanel.Name = "layoutPanel";
-            this.layoutPanel.RowCount = 2;
-            this.layoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 92.05479F));
-            this.layoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 7.945206F));
-            this.layoutPanel.Size = new System.Drawing.Size(593, 365);
-            this.layoutPanel.TabIndex = 0;
+            this.questionLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.questionLabel.Location = new System.Drawing.Point(50, 50);
+            this.questionLabel.Name = "questionLabel";
+            this.questionLabel.Size = new System.Drawing.Size(668, 262);
+            this.questionLabel.TabIndex = 0;
+            this.questionLabel.Text = "label1";
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(0, 375);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(891, 187);
+            this.button1.TabIndex = 1;
+            this.button1.Text = "button1";
+            this.button1.UseVisualStyleBackColor = true;
             // 
             // Questions
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(593, 365);
-            this.Controls.Add(this.layoutPanel);
+            this.ClientSize = new System.Drawing.Size(890, 562);
+            this.Controls.Add(this.button1);
+            this.Controls.Add(this.questionLabel);
+            this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "Questions";
             this.Text = "Questions";
             this.Load += new System.EventHandler(this.Questions_Load);
@@ -60,6 +67,7 @@
 
         #endregion
 
-        private System.Windows.Forms.TableLayoutPanel layoutPanel;
+        private System.Windows.Forms.Label questionLabel;
+        private System.Windows.Forms.Button button1;
     }
 }

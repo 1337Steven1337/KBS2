@@ -45,7 +45,7 @@ namespace Server.Controllers
         [ResponseType(typeof(ListDTO))]
         public ListDTO GetList(int id)
         {
-            var Lists = from q in db.Lists
+            var lists = from q in db.Lists
                         where q.Id == id
                         select new ListDTO()
                         {
@@ -53,8 +53,8 @@ namespace Server.Controllers
                             Name = q.Name,
                             Questions = q.Questions.Select(C => new QuestionDTO { Id = C.Id, Text = C.Text, PredefinedAnswers = (C.PredefinedAnswers.Select(V => new PredefinedAnswerDTO { Id = V.Id, Text = V.Text, Question_Id = V.Question.Id })).ToList<PredefinedAnswerDTO>() }).ToList<QuestionDTO>()
                         };
-            ListDTO lijst = Lists.First();
-            return lijst;
+
+            return lists.FirstOrDefault(x => x.Id == x.Id);
         }
 
         // PUT: api/Lists/5
@@ -76,6 +76,8 @@ namespace Server.Controllers
             try
             {
                 await db.SaveChangesAsync();
+
+                this.getSubscribed(list.Id).ListUpdated(new ListDTO(list));
             }
             catch (DbUpdateConcurrencyException)
             {
