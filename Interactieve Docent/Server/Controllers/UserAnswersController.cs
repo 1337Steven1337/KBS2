@@ -40,7 +40,7 @@ namespace Server.Controllers
         [ResponseType(typeof(UserAnswerDTO))]
         public UserAnswerDTO GetList(int id)
         {
-            var Lists = from ua in db.UserAnswers
+            var userAnswers = from ua in db.UserAnswers
                         where ua.Id == id
                         select new UserAnswerDTO()
                         {
@@ -48,8 +48,8 @@ namespace Server.Controllers
                             Question_Id = ua.Question.Id,
                             PredefinedAnswer = ua.PredefinedAnswer
                         };
-            UserAnswerDTO lijst = Lists.First();
-            return lijst;
+
+            return userAnswers.FirstOrDefault(x => x.Id == x.Id);
         }
 
         // PUT: api/UserAnswers/5

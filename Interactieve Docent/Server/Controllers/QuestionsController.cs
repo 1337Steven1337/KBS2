@@ -44,7 +44,7 @@ namespace Server.Controllers
         [ResponseType(typeof(QuestionDTO))]
         public QuestionDTO GetQuestionById(int id)
         {
-            var vragen = from q in db.Questions
+            var questions = from q in db.Questions
                          where q.Id == id
                          select new QuestionDTO()
                          {
@@ -55,8 +55,7 @@ namespace Server.Controllers
                              UserAnswers = q.UserAnswers.Select(V => new UserAnswerDTO { Id = V.Id, Question_Id = V.Question_Id, PredefinedAnswer_Id = V.PredefinedAnswer_Id }).ToList<UserAnswerDTO>()
                         };
 
-            QuestionDTO vraag = vragen.First();
-            return vraag;
+            return questions.FirstOrDefault(x => x.Id == x.Id);
         }
 
         // PUT: api/Questions/5
