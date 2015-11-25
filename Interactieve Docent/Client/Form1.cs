@@ -71,8 +71,8 @@ namespace Client
 
         private void button2_Click(object sender, EventArgs e)
         {
-            Question q = Question.getById(3);
-            Console.WriteLine(q.Text);
+            DocentControlUI docentControlUI = new DocentControlUI();
+            docentControlUI.Show();
         }
     }
 }
