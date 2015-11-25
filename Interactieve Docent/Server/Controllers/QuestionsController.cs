@@ -79,8 +79,7 @@ namespace Server.Controllers
             {
                 await db.SaveChangesAsync();
 
-                var subscribed = Hub.Clients.Group(question.List_Id.ToString());
-                subscribed.QuestionUpdated(new QuestionDTO(question));
+                this.getSubscribed(question.List_Id).QuestionUpdated(new QuestionDTO(question));
             }
             catch (DbUpdateConcurrencyException)
             {
@@ -109,8 +108,7 @@ namespace Server.Controllers
             db.Questions.Add(question);
             await db.SaveChangesAsync();
 
-            var subscribed = Hub.Clients.Group(question.List_Id.ToString());
-            subscribed.QuestionAdded(new QuestionDTO(question));
+            this.getSubscribed(question.List_Id).QuestionAdded(new QuestionDTO(question));
 
             return CreatedAtRoute("DefaultApi", new { id = question.Id }, question);
         }
@@ -128,8 +126,7 @@ namespace Server.Controllers
             db.Questions.Remove(question);
             await db.SaveChangesAsync();
 
-            var subscribed = Hub.Clients.Group(question.List_Id.ToString());
-            subscribed.QuestionRemoved(new QuestionDTO(question));
+            this.getSubscribed(question.List_Id).QuestionRemoved(new QuestionDTO(question));
 
             return Ok(question);
         }

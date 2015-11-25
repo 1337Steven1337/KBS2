@@ -76,6 +76,8 @@ namespace Server.Controllers
             try
             {
                 await db.SaveChangesAsync();
+
+                this.getSubscribed(list.Id).ListUpdated(new ListDTO(list));
             }
             catch (DbUpdateConcurrencyException)
             {
