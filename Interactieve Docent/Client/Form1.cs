@@ -15,6 +15,7 @@ namespace Client
 {
     public partial class Form1 : Form
     {
+        public int Question_Id;
         public Form1()
         {
             InitializeComponent();
@@ -22,7 +23,7 @@ namespace Client
             foreach (Question text in Question.getAll())
             {
                 comboBox1.Items.Add(text.Text);
-        }
+            }
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -32,30 +33,17 @@ namespace Client
 
         private void button1_Click(object sender, EventArgs e)
         {
-
-            int question_Id = comboBox1.SelectedIndex + 1 ;
-            Question question = Question.getById(question_Id);
-            Dictionary<string, int> questionVotes = new Dictionary<string, int>();
-
-            foreach (PredefinedAnswer preAnswer in question.PredefinedAnswers)
+            if(comboBox1.SelectedIndex > -1)
             {
-                if (!questionVotes.ContainsKey(preAnswer.Text))
-                {
-                    questionVotes[preAnswer.Text] = 0;
-                }
+                this.Question_Id = comboBox1.SelectedIndex + 1;
             }
-
-            foreach (UserAnswer answer in question.UserAnswers)
+            else
             {
-                string text = question.PredefinedAnswers.Find(x => x.Id == answer.PredefinedAnswer_Id).Text;
-                questionVotes[text] += 1;
+                this.Question_Id = 3;
             }
-
-
-            List<int> votes = questionVotes.Values.ToList<int>();
-            List<string> questions = questionVotes.Keys.ToList<string>();
-
-            diagram diagram = new diagram();
+            
+            
+            diagram diagram = new diagram(this.Question_Id);
             diagram.Show();
         }
 
