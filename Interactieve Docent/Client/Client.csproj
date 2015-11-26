@@ -202,7 +202,6 @@
     <Compile Include="View\Question\ViewQuestion.Designer.cs">
       <DependentUpon>ViewQuestion.cs</DependentUpon>
     </Compile>
-    <Compile Include="View\UserAnswer\IUserAnswerView.cs" />
     <Compile Include="View\UserAnswer\ViewUserAnswer.cs">
       <SubType>Form</SubType>
     </Compile>

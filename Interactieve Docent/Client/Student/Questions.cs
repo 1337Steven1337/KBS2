@@ -11,6 +11,7 @@ using System.Windows.Forms;
 using Client.API;
 using Microsoft.AspNet.SignalR.Client;
 using ConnectionState = Microsoft.AspNet.SignalR.Client.ConnectionState;
+using System.Diagnostics;
 
 namespace Client.Student
 {
@@ -28,6 +29,8 @@ namespace Client.Student
         private List list = null;
         private Question currentQuestion = null;
         private Timer questionTimer = new Timer();
+        private Timer progressBarTimer = new Timer();
+        private int ticksDone = 0;
         private SignalR signalR = null;
 
         public Questions(int List_Id)
@@ -60,9 +63,19 @@ namespace Client.Student
         }
 
 
-        private void Question_TimerStop(object sender, EventArgs e){
+        private void Question_UpdateProgressBar(object sender, EventArgs e)
+        {
+            ticksDone++;
+            //questionTimeProgressBar.Value = (int)(ticksDone / (currentQuestion.Time * 1000) * 100);
+            questionTimeProgressBar.Value = (int)(50);
+            Console.WriteLine(ticksDone);
+        }
+
+        private void Question_TimerStop(object sender, EventArgs e)
+        {
             questionTimer.Stop();
-            MessageBox.Show("Tijd is voorbij!");
+            progressBarTimer.Stop();
+            ticksDone = 0;
         }
 
         private void Questions_Load(object sender, EventArgs e)
@@ -118,13 +131,16 @@ namespace Client.Student
                 busy = true;
                 cleanUpPreviousQuestion();
                 currentQuestion = Question.getById(list.Questions[currentQuestionIndex].Id);
-                MessageBox.Show("" + currentQuestion.Time);
-               // questionTimer.Interval = currentQuestion.Time * 1000;
-               // questionTimer.Tick += Question_TimerStop;
-               // questionTimer.Start();
+                questionTimer.Interval = currentQuestion.Time * 1000;
+                questionTimer.Tick += Question_TimerStop;
+                questionTimer.Start();
+
+                progressBarTimer.Interval = 1;
+                progressBarTimer.Tick += Question_UpdateProgressBar;
+                progressBarTimer.Start();
+                
 
                 questionLabel.Text = currentQuestion.Text;
-                Console.WriteLine(currentQuestion.PredefinedAnswers.Count);
 
                 foreach (PredefinedAnswer pa in currentQuestion.PredefinedAnswers)
                 {
