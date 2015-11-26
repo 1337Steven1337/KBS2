@@ -16,6 +16,7 @@ namespace Client.Student
 {
     public partial class Questions : Form
     {
+        public int percentageofHeigt { get; set; }
         private int List_Id { get; set; }
         private int currentQuestionIndex = -1;
         private bool busy = false;
@@ -23,7 +24,7 @@ namespace Client.Student
         static int ButtonCounterHorizontal = 0;
         static int ButtonCounterVertical = 1;
         private List<Button> answerButtons = new List<Button>();
-
+        private Button option = null;
         private ProgressBar timerProgressBar;
 
         private List list = null;
@@ -55,26 +56,51 @@ namespace Client.Student
 
         private Button createAnswerButton(PredefinedAnswer answer)
         {
-            Button option = new Button();
+
+
+            option = new Button();
+            answerButtons.Add(option);
             option.Text = answer.Text;
-            option.Location = new Point(Width / 2 + option.Width * (ButtonCounterHorizontal), Height - option.Height * (4 - ButtonCounterVertical));
-            ButtonCounter++;
-            if (ButtonCounter % 2 == 0)
+            answerButtons.Add(option);
+            //option.Location = new Point(Width / 2 + option.Width * (ButtonCounterHorizontal), Height - option.Height * (4 - ButtonCounterVertical));
+            return option;
+        }
+
+
+        private void adjustSizeOfButtons(PredefinedAnswer PA)
+        {
+
+            if (option == null)
             {
-                ButtonCounterVertical++;
-                ButtonCounter = 0;
+                option = createAnswerButton(PA);
             }
-            if (ButtonCounterHorizontal <= 2)
+            //bereken de grootte
+            int precentagePerButton = (int)Math.Ceiling((double)currentQuestion.PredefinedAnswers.Count / 2);
+            int heightcounter = 0;
+            int locationY = 0;
+            int locationX = 0;
+            int WorkingArea = 0;
+            float ButtonListCounter = 0;
+            //y locatie berekenen
+            ButtonListCounter = (int) Math.Floor((double)currentQuestion.PredefinedAnswers.Count/2);
+            percentageofHeigt = 30;
+            if (ButtonListCounter % 1 == 0)
             {
-                ButtonCounterHorizontal += 1;
+                locationX = 0;
             }
             else
             {
-                ButtonCounterHorizontal = 0;
+                locationX = Width / 2;
             }
 
+            WorkingArea = (Height/100)*30;
+            //ken de hoogte toe
+            option.Height = WorkingArea/precentagePerButton;
+            locationY = option.Height*(int)ButtonListCounter;
 
-            return option;
+            //heightcounter = (int)Math.Floor(ButtonListCounter - 0.5);
+            option.Location = new Point();
+
         }
 
         private void cleanUpPreviousQuestion()
@@ -101,7 +127,7 @@ namespace Client.Student
 
                 foreach (PredefinedAnswer pa in currentQuestion.PredefinedAnswers)
                 {
-                    createAnswerButton(pa);
+                    adjustSizeOfButtons(pa);
                 }
             }
             else if (list.Ended)
