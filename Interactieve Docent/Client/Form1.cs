@@ -55,7 +55,7 @@ namespace Client
 
             QuestionListFactory factory = new QuestionListFactory();
             Console.WriteLine("Before fetch");
-            factory.getById(2, test);
+            factory.findById(2, test);
             Console.WriteLine("After fetch");
         }
 
