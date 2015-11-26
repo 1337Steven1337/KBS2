@@ -1,5 +1,7 @@
 ﻿using RestSharp;
 using System;
+using System.Collections.Generic;
+using System.Collections.Specialized;
 using System.Threading;
 
 namespace Client.Factory
@@ -16,15 +18,39 @@ namespace Client.Factory
             client.AddDefaultHeader("Content-Type", "application/json");
         }
 
-        public void getById<T>(int id, string resource, Action<T> callback) where T : new()
+        protected void save<T>(Dictionary<String, object> data, string resource, Action<T> callback) where T : new()
+        {
+            RestRequest request = new RestRequest();
+            request.Resource = resource;
+            request.Method = Method.POST;
+
+            foreach(KeyValuePair<string, object> entry in data)
+            {
+                request.AddParameter(entry.Key, entry.Value);
+            }
+                        
+            this.client.ExecuteAsync<T>(request, response => {
+                callback(response.Data);
+            });
+        }
+
+        protected void findById<T>(int id, string resource, Action<T> callback) where T : new()
         {
             RestRequest request = new RestRequest();
             request.Resource = resource;
             request.AddParameter("Id", id);
 
-            CancellationTokenSource cancellationTokenSource = new CancellationTokenSource();
-
             this.client.ExecuteAsync<T>(request, response => {
+                callback(response.Data);
+            });
+        }
+
+        protected void findAll<T>(string resource, Action<List<T>> callback) where T : new()
+        {
+            RestRequest request = new RestRequest();
+            request.Resource = resource;
+
+            this.client.ExecuteAsync<List<T>>(request, response => {
                 callback(response.Data);
             });
         }
