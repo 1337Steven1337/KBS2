@@ -11,25 +11,33 @@ using System.Windows.Forms;
 using Client.API;
 using Microsoft.AspNet.SignalR.Client;
 using ConnectionState = Microsoft.AspNet.SignalR.Client.ConnectionState;
+using System.Diagnostics;
 
 namespace Client.Student
 {
     public partial class Questions : Form
     {
         public int percentageofHeigt { get; set; }
+
         private int List_Id { get; set; }
         private int currentQuestionIndex = -1;
+
+        private static int ButtonCounter = 0;
+        private static int ButtonCounterHorizontal = 0;
+        private static int ButtonCounterVertical = 1;
+
         private bool busy = false;
-        static int ButtonCounter = 0;
-        static int ButtonCounterHorizontal = 0;
-        static int ButtonCounterVertical = 1;
-        private List<Button> answerButtons = new List<Button>();
+
         private Button option = null;
-        private ProgressBar timerProgressBar;
 
         private List list = null;
+        private List<Button> answerButtons = new List<Button>();
+
+        private ProgressBar timerProgressBar;
+
         private Question currentQuestion = null;
         private Timer questionTimer = new Timer();
+        private Timer progressBarTimer = new Timer();
         private SignalR signalR = null;
 
         public Questions(int List_Id)
@@ -62,9 +70,15 @@ namespace Client.Student
         }
 
 
-        private void Question_TimerStop(object sender, EventArgs e){
+        private void Question_UpdateProgressBar(object sender, EventArgs e)
+        {
+            questionTimeProgressBar.Value -= questionTimeProgressBar.Maximum / currentQuestion.Time / 100;
+        }
+
+        private void Question_TimerStop(object sender, EventArgs e)
+        {
             questionTimer.Stop();
-            MessageBox.Show("Tijd is voorbij!");
+            progressBarTimer.Stop();
         }
 
         private void Questions_Load(object sender, EventArgs e)
@@ -99,9 +113,9 @@ namespace Client.Student
 
 
                 if (option == null)
-                {
+            {
                     option = createAnswerButton(PA);
-                }
+            }
                 //bereken de grootte
                 int precentagePerButton = (int) Math.Ceiling((double) currentQuestion.PredefinedAnswers.Count/2);
                 int heightcounter = 0;
@@ -113,13 +127,13 @@ namespace Client.Student
                 ButtonListCounter = (int) Math.Floor((double) currentQuestion.PredefinedAnswers.Count/2);
                 percentageofHeigt = 30;
                 if (ButtonListCounter%1 == 0)
-                {
+            {
                     locationX = 0;
-                }
-                else
-                {
+            }
+            else
+            {
                     locationX = Width/2;
-                }
+            }
 
                 WorkingArea = (Height/100)*30;
                 //ken de hoogte toe
@@ -129,7 +143,7 @@ namespace Client.Student
                 //heightcounter = (int)Math.Floor(ButtonListCounter - 0.5);
                 option.Location = new Point(locationY,locationX);
             }
-            }
+        }
 
         private void cleanUpPreviousQuestion()
         {
@@ -148,13 +162,20 @@ namespace Client.Student
                 busy = true;
                 cleanUpPreviousQuestion();
                 currentQuestion = Question.getById(list.Questions[currentQuestionIndex].Id);
-                MessageBox.Show("" + currentQuestion.Time);
-               // questionTimer.Interval = currentQuestion.Time * 1000;
-               // questionTimer.Tick += Question_TimerStop;
-               // questionTimer.Start();
+
+                questionTimeProgressBar.Maximum = currentQuestion.Time * 1000;
+                questionTimeProgressBar.Value = currentQuestion.Time * 1000;
+
+                questionTimer.Interval = currentQuestion.Time * 1000;
+                questionTimer.Tick += Question_TimerStop;
+                questionTimer.Start();
+
+                progressBarTimer.Interval = 10;
+                progressBarTimer.Tick += Question_UpdateProgressBar;
+                progressBarTimer.Start();
+                
 
                 questionLabel.Text = currentQuestion.Text;
-                Console.WriteLine(currentQuestion.PredefinedAnswers.Count);
 
 
                     adjustSizeOfButtons(currentQuestion);
@@ -208,6 +229,6 @@ namespace Client.Student
         private void richTextBox1_TextChanged(object sender, EventArgs e)
         {
 
+        }
     }
-}
 }

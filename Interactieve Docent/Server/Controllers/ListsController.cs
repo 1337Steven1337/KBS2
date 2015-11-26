@@ -52,7 +52,7 @@ namespace Server.Controllers
                         {
                             Id = q.Id,
                             Name = q.Name,
-                            Questions = q.Questions.Select(C => new QuestionDTO { Id = C.Id, Text = C.Text, PredefinedAnswers = (C.PredefinedAnswers.Select(V => new PredefinedAnswerDTO { Id = V.Id, Text = V.Text, Question_Id = V.Question.Id })).ToList<PredefinedAnswerDTO>() }).ToList<QuestionDTO>()
+                            Questions = q.Questions.Select(C => new QuestionDTO { Id = C.Id, Text = C.Text, Time = C.Time, Points = C.Points, List_Id = C.List_Id, PredefinedAnswers = (C.PredefinedAnswers.Select(V => new PredefinedAnswerDTO { Id = V.Id, Text = V.Text, Question_Id = V.Question.Id })).ToList<PredefinedAnswerDTO>()}).ToList<QuestionDTO>()
                         };
 
             return lists.FirstOrDefault(x => x.Id == x.Id);

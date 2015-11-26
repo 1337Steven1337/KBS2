@@ -1,18 +1,20 @@
-﻿using Client.View.Question;
+﻿using Client.View.Diagram;
 using System.Windows.Forms;
 
 namespace Client.Controller
 {
-    public class QuestionController
+    public class DiagramController
     {
-        IQuestionView view;
+        IDiagramView view;
         Panel panel;
 
-        public QuestionController(IQuestionView view, Panel panel)
+        public DiagramController(IDiagramView view, Panel panel)
         {
             this.panel = panel;
             this.view = view;
             this.view.setController(this);
+
+            panel.Controls.Add(view.getPanel());
         }
     }
 }

@@ -33,8 +33,10 @@ namespace Server.Controllers
                 Id = q.Id,
                 Text = q.Text,
                 List_Id = q.List.Id,
-                PredefinedAnswers = q.PredefinedAnswers.Select(V => new PredefinedAnswerDTO { Id = V.Id, Text = V.Text, Question_Id = V.Question.Id }).ToList<PredefinedAnswerDTO>()
-
+                Time = q.Time,
+                Points = q.Points,
+                PredefinedAnswers = q.PredefinedAnswers.Select(V => new PredefinedAnswerDTO { Id = V.Id, Text = V.Text, Question_Id = V.Question.Id }).ToList<PredefinedAnswerDTO>(),
+                UserAnswers = q.UserAnswers.Select(UA => new UserAnswerDTO {Id = UA.Id, Question_Id = UA.Question_Id, PredefinedAnswer_Id = UA.PredefinedAnswer_Id}).ToList<UserAnswerDTO>()                
             };
 
             return questions;
@@ -51,9 +53,11 @@ namespace Server.Controllers
                              Id = q.Id,
                              Text = q.Text,
                              List_Id = q.List.Id,
+                             Time = q.Time,
+                             Points = q.Points,
                              PredefinedAnswers = q.PredefinedAnswers.Select(V => new PredefinedAnswerDTO { Id = V.Id, Text = V.Text, Question_Id = V.Question.Id }).ToList<PredefinedAnswerDTO>(),
-                             UserAnswers = q.UserAnswers.Select(V => new UserAnswerDTO { Id = V.Id, Question_Id = V.Question_Id, PredefinedAnswer_Id = V.PredefinedAnswer_Id }).ToList<UserAnswerDTO>()
-                        };
+                             UserAnswers = q.UserAnswers.Select(UA => new UserAnswerDTO { Id = UA.Id, Question_Id = UA.Question_Id, PredefinedAnswer_Id = UA.PredefinedAnswer_Id }).ToList<UserAnswerDTO>()
+                         };
 
             return questions.FirstOrDefault(x => x.Id == x.Id);
         }

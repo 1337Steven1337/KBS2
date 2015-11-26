@@ -34,6 +34,7 @@
             this.chatBox = new System.Windows.Forms.RichTextBox();
             this.chatBoxMessage = new System.Windows.Forms.RichTextBox();
             this.sendMessageButton = new System.Windows.Forms.Button();
+            this.label1 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // questionLabel
@@ -57,9 +58,13 @@
             // questionTimeProgressBar
             // 
             this.questionTimeProgressBar.Location = new System.Drawing.Point(0, 315);
+            this.questionTimeProgressBar.Maximum = 1000;
             this.questionTimeProgressBar.Name = "questionTimeProgressBar";
             this.questionTimeProgressBar.Size = new System.Drawing.Size(621, 58);
+            this.questionTimeProgressBar.Step = 1;
             this.questionTimeProgressBar.TabIndex = 2;
+            this.questionTimeProgressBar.Tag = "Time";
+            this.questionTimeProgressBar.Value = 1000;
             // 
             // chatBox
             // 
@@ -89,11 +94,22 @@
             this.sendMessageButton.Text = "Send";
             this.sendMessageButton.UseVisualStyleBackColor = true;
             // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.BackColor = System.Drawing.Color.Transparent;
+            this.label1.Location = new System.Drawing.Point(297, 332);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(33, 20);
+            this.label1.TabIndex = 6;
+            this.label1.Text = "Tijd";
+            // 
             // Questions
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(890, 562);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.sendMessageButton);
             this.Controls.Add(this.chatBoxMessage);
             this.Controls.Add(this.chatBox);
@@ -105,6 +121,7 @@
             this.Text = "Questions";
             this.Load += new System.EventHandler(this.Questions_Load);
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -116,5 +133,6 @@
         private System.Windows.Forms.RichTextBox chatBox;
         private System.Windows.Forms.RichTextBox chatBoxMessage;
         private System.Windows.Forms.Button sendMessageButton;
+        private System.Windows.Forms.Label label1;
     }
 }
