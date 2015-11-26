@@ -1,5 +1,4 @@
-﻿using Client.API.Models;
-using RestSharp;
+﻿using Client.Model;
 using System;
 using System.Collections.Generic;
 using System.Windows.Forms;

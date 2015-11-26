@@ -29,6 +29,8 @@
         private void InitializeComponent()
         {
             this.labelTitle = new System.Windows.Forms.Label();
+            this.panel = new System.Windows.Forms.Panel();
+            this.listBoxQuestion = new System.Windows.Forms.ListBox();
             this.SuspendLayout();
             // 
             // labelTitle
@@ -41,11 +43,29 @@
             this.labelTitle.TabIndex = 0;
             this.labelTitle.Text = "Question";
             // 
+            // panel
+            // 
+            this.panel.Location = new System.Drawing.Point(27, 76);
+            this.panel.Name = "panel";
+            this.panel.Size = new System.Drawing.Size(200, 100);
+            this.panel.TabIndex = 1;
+            // 
+            // listBoxQuestion
+            // 
+            this.listBoxQuestion.FormattingEnabled = true;
+            this.listBoxQuestion.ItemHeight = 16;
+            this.listBoxQuestion.Location = new System.Drawing.Point(69, 206);
+            this.listBoxQuestion.Name = "listBoxQuestion";
+            this.listBoxQuestion.Size = new System.Drawing.Size(120, 84);
+            this.listBoxQuestion.TabIndex = 2;
+            // 
             // ViewQuestion
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(282, 253);
+            this.ClientSize = new System.Drawing.Size(338, 400);
+            this.Controls.Add(this.listBoxQuestion);
+            this.Controls.Add(this.panel);
             this.Controls.Add(this.labelTitle);
             this.Name = "ViewQuestion";
             this.Text = "ViewQuestion";
@@ -57,5 +77,7 @@
         #endregion
 
         private System.Windows.Forms.Label labelTitle;
+        private System.Windows.Forms.Panel panel;
+        private System.Windows.Forms.ListBox listBoxQuestion;
     }
 }
