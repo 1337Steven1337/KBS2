@@ -17,6 +17,9 @@ namespace Client.View.Question
             this.controller = controller;
         }
 
-
+        public Panel getPanel()
+        {
+            return panel;
+        }
     }
 }
