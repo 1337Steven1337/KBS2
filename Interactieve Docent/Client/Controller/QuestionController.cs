@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Client.View.Question;
+﻿using Client.View.Question;
 
 namespace Client.Controller
 {
@@ -16,7 +11,5 @@ namespace Client.Controller
             this.view = view;
             this.view.setController(this);
         }
-
-
     }
 }
