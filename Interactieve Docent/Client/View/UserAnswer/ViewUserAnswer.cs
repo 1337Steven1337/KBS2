@@ -11,6 +11,7 @@ using Client.Controller;
 
 namespace Client.View.UserAnswer
 {
+    //extend Form and implement IUserAnswerView
     public partial class ViewUserAnswer : Form, IUserAnswerView
     {
         private UserAnswerController Controller;
