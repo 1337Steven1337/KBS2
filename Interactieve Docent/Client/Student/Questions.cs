@@ -17,20 +17,29 @@ namespace Client.Student
     public partial class Questions : Form
     {
         public int percentageofHeigt { get; set; }
+
         private int List_Id { get; set; }
         private int currentQuestionIndex = -1;
+
+        private static int ButtonCounter = 0;
+        private static int ButtonCounterHorizontal = 0;
+        private static int ButtonCounterVertical = 1;
+
         private bool busy = false;
-        static int ButtonCounter = 0;
-        static int ButtonCounterHorizontal = 0;
-        static int ButtonCounterVertical = 1;
-        private List<Button> answerButtons = new List<Button>();
+        
         private Button option = null;
-        private ProgressBar timerProgressBar;
 
         private List list = null;
+        private List<Button> answerButtons = new List<Button>();
+
+        private ProgressBar timerProgressBar;
+
         private Question currentQuestion = null;
-        private Timer questionTimer = new Timer();
+
         private SignalR signalR = null;
+
+        private Timer questionTimer = new Timer();
+
 
         public Questions(int List_Id)
         {
@@ -92,41 +101,44 @@ namespace Client.Student
         }
 
 
-        private void adjustSizeOfButtons(PredefinedAnswer PA)
+        private void adjustSizeOfButtons(Question Q)
+            {
+            foreach (PredefinedAnswer PA in Q.PredefinedAnswers)
             {
 
-            if (option == null)
-            {
-                option = createAnswerButton(PA);
+
+                if (option == null)
+                {
+                    option = createAnswerButton(PA);
+                }
+                //bereken de grootte
+                int precentagePerButton = (int) Math.Ceiling((double) currentQuestion.PredefinedAnswers.Count/2);
+                int heightcounter = 0;
+                int locationY = 0;
+                int locationX = 0;
+                int WorkingArea = 0;
+                float ButtonListCounter = 0;
+                //y locatie berekenen
+                ButtonListCounter = (int) Math.Floor((double) currentQuestion.PredefinedAnswers.Count/2);
+                percentageofHeigt = 30;
+                if (ButtonListCounter%1 == 0)
+                {
+                    locationX = 0;
+                }
+                else
+                {
+                    locationX = Width/2;
+                }
+
+                WorkingArea = (Height/100)*30;
+                //ken de hoogte toe
+                option.Height = WorkingArea/precentagePerButton;
+                locationY = option.Height*(int) ButtonListCounter;
+
+                //heightcounter = (int)Math.Floor(ButtonListCounter - 0.5);
+                option.Location = new Point(locationY,locationX);
             }
-            //bereken de grootte
-            int precentagePerButton = (int)Math.Ceiling((double)currentQuestion.PredefinedAnswers.Count / 2);
-            int heightcounter = 0;
-            int locationY = 0;
-            int locationX = 0;
-            int WorkingArea = 0;
-            float ButtonListCounter = 0;
-            //y locatie berekenen
-            ButtonListCounter = (int) Math.Floor((double)currentQuestion.PredefinedAnswers.Count/2);
-            percentageofHeigt = 30;
-            if (ButtonListCounter % 1 == 0)
-            {
-                locationX = 0;
             }
-            else
-            {
-                locationX = Width / 2;
-            }
-
-            WorkingArea = (Height/100)*30;
-            //ken de hoogte toe
-            option.Height = WorkingArea/precentagePerButton;
-            locationY = option.Height*(int)ButtonListCounter;
-
-            //heightcounter = (int)Math.Floor(ButtonListCounter - 0.5);
-            option.Location = new Point();
-
-        }
 
         private void cleanUpPreviousQuestion()
         {
@@ -153,10 +165,9 @@ namespace Client.Student
                 questionLabel.Text = currentQuestion.Text;
                 Console.WriteLine(currentQuestion.PredefinedAnswers.Count);
 
-                foreach (PredefinedAnswer pa in currentQuestion.PredefinedAnswers)
-                {
-                    adjustSizeOfButtons(pa);
-                }
+
+                    adjustSizeOfButtons(currentQuestion);
+                
             }
             else if (list.Ended)
             {

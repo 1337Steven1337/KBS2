@@ -1,4 +1,6 @@
 ﻿using Client.API.Models;
+using Client.Factory;
+using Client.Model;
 using Client.Student;
 using Microsoft.AspNet.SignalR;
 using System;
@@ -21,10 +23,10 @@ namespace Client
         {
             InitializeComponent();
 
-            foreach (Question text in Question.getAll())
+            /**foreach (Question text in Question.getAll())
             {
                 comboBox1.Items.Add(text.Text);
-            }
+            }*///
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -32,9 +34,14 @@ namespace Client
 
         }
 
+        private void test(QuestionList list)
+        {
+            Console.WriteLine("List fetched");
+        }
+
         private void button1_Click(object sender, EventArgs e)
         {
-            if(comboBox1.SelectedIndex > -1)
+            /**if(comboBox1.SelectedIndex > -1)
             {
                 this.Question_Id = comboBox1.SelectedIndex + 1;
             }
@@ -44,7 +51,12 @@ namespace Client
             }
             
             diagram diagram = new diagram(this.Question_Id);
-            diagram.Show();
+            diagram.Show();**/
+
+            QuestionListFactory factory = new QuestionListFactory();
+            Console.WriteLine("Before fetch");
+            factory.getById(2, test);
+            Console.WriteLine("After fetch");
         }
 
         private void button2_Click(object sender, EventArgs e)
