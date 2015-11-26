@@ -16,6 +16,7 @@ namespace Client
     public partial class Form1 : Form
     {
         public int Question_Id;
+        public int List_Id;
         public Form1()
         {
             InitializeComponent();
@@ -41,7 +42,6 @@ namespace Client
             {
                 this.Question_Id = 3;
             }
-            
             
             diagram diagram = new diagram(this.Question_Id);
             diagram.Show();
