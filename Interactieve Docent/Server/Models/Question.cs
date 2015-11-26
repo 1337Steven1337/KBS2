@@ -9,7 +9,7 @@ using System.Web;
 namespace Server.Models
 {
     [DataContract]
-    [KnownType(typeof(Server.Models.List))]
+    [KnownType(typeof(Server.Models.QuestionList))]
     [KnownType(typeof(Server.Models.PredefinedAnswer))]
     [KnownType(typeof(Server.Models.UserAnswer))]
     public class Question
@@ -32,7 +32,7 @@ namespace Server.Models
 
         [DataMember]
         [ForeignKey("List_Id")]
-        public virtual List List { get; set; }
+        public virtual QuestionList List { get; set; }
 
         [DataMember]
         public ICollection<PredefinedAnswer> PredefinedAnswers { get; set; }

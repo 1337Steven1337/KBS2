@@ -21,7 +21,7 @@ namespace Server.Models.Context
         }
 
         public DbSet<Server.Models.Question> Questions { get; set; }
-        public DbSet<Server.Models.List> Lists { get; set; }
+        public DbSet<Server.Models.QuestionList> QuestionLists { get; set; }
         public DbSet<Server.Models.UserAnswer> UserAnswers { get; set; }
         public DbSet<Server.Models.PredefinedAnswer> PredefinedAnswers { get; set; }
 
@@ -30,7 +30,7 @@ namespace Server.Models.Context
             Entry(item).State = EntityState.Modified;
         }
 
-        public void MarkAsModified(List item)
+        public void MarkAsModified(QuestionList item)
         {
             Entry(item).State = EntityState.Modified;
         }

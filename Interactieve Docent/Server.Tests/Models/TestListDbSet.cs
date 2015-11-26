@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 
 namespace Server.Tests.Models
 {
-    class TestListDbSet : TestDbSet<List>
+    class TestListDbSet : TestDbSet<QuestionList>
     {
-        public override List Find(params object[] keyValues)
+        public override QuestionList Find(params object[] keyValues)
         {
             return this.SingleOrDefault(list => list.Id == (int)keyValues.Single());
         }

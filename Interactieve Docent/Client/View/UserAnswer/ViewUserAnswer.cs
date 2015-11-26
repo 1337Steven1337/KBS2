@@ -22,7 +22,7 @@ namespace Client.View.UserAnswer
 
         public void setController(UserAnswerController Controller)
         {
-            this.Controller = Controller
+            this.Controller = Controller;
         }
     }
 }
