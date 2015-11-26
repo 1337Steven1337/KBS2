@@ -1,10 +1,10 @@
-﻿using Client.API.Models;
+﻿using Client.Model;
 using System;
 using System.Collections.Generic;
 
 namespace Client.Factory
 {
-    class PredefinedAnswerFactory : AbstractFactory
+    public class PredefinedAnswerFactory : AbstractFactory
     {
         private const string resource = "PredefinedAnswers";
 
@@ -12,6 +12,7 @@ namespace Client.Factory
         {
             Dictionary<string, object> values = new Dictionary<string, object>();
             values.Add("Text", answer.Text);
+            values.Add("Question_Id", answer.Question_Id);
 
             this.save<PredefinedAnswer>(values, resource, callback);
         }
