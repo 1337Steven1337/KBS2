@@ -5,10 +5,10 @@ using System.Text;
 using System.Threading.Tasks;
 using Client.Controller;
 
-namespace Client.View.Question
+namespace Client.View.QuestionList
 {
-    public interface IQuestionView
+    public interface IQuestionListView
     {
-        void setController(QuestionController controller);
+        void setController(QuestionListController controller);
     }
 }
