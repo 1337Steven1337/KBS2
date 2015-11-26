@@ -22,7 +22,7 @@ namespace Client.View.PredefinedAnswer
 
         public void setController(PredefinedAnswerController Controller)
         {
-            this.Controller = Controller
+            this.Controller = Controller;
         }
     }
 }

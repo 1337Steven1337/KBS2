@@ -32,7 +32,8 @@ namespace Server.Controllers
         // GET: api/Lists
         public IQueryable<ListDTO> GetLists()
         {
-            var Lists = from q in db.Lists select new ListDTO() {
+            var Lists = from q in db.QuestionLists
+                        select new ListDTO() {
                 Id = q.Id,
                 Name = q.Name,
                 Questions = q.Questions.Select(C => new QuestionDTO{ Id = C.Id }).ToList<QuestionDTO>()
@@ -45,7 +46,7 @@ namespace Server.Controllers
         [ResponseType(typeof(ListDTO))]
         public ListDTO GetList(int id)
         {
-            var lists = from q in db.Lists
+            var lists = from q in db.QuestionLists
                         where q.Id == id
                         select new ListDTO()
                         {
@@ -59,7 +60,7 @@ namespace Server.Controllers
 
         // PUT: api/Lists/5
         [ResponseType(typeof(void))]
-        public async Task<IHttpActionResult> PutList(int id, List list)
+        public async Task<IHttpActionResult> PutList(int id, QuestionList list)
         {
             if (!ModelState.IsValid)
             {
@@ -95,31 +96,31 @@ namespace Server.Controllers
         }
 
         // POST: api/Lists
-        [ResponseType(typeof(List))]
-        public async Task<IHttpActionResult> PostList([FromBody] List list)
+        [ResponseType(typeof(QuestionList))]
+        public async Task<IHttpActionResult> PostList([FromBody] QuestionList list)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            db.Lists.Add(list);
+            db.QuestionLists.Add(list);
             await db.SaveChangesAsync();
 
             return CreatedAtRoute("DefaultApi", new { id = list.Id }, list);
         }
 
         // DELETE: api/Lists/5
-        [ResponseType(typeof(List))]
+        [ResponseType(typeof(QuestionList))]
         public async Task<IHttpActionResult> DeleteList(int id)
         {
-            List list = await db.Lists.FindAsync(id);
+            QuestionList list = await db.QuestionLists.FindAsync(id);
             if (list == null)
             {
                 return NotFound();
             }
 
-            db.Lists.Remove(list);
+            db.QuestionLists.Remove(list);
             await db.SaveChangesAsync();
 
             return Ok(list);
@@ -136,7 +137,7 @@ namespace Server.Controllers
 
         private bool ListExists(int id)
         {
-            return db.Lists.Count(e => e.Id == id) > 0;
+            return db.QuestionLists.Count(e => e.Id == id) > 0;
         }
     }
 }
