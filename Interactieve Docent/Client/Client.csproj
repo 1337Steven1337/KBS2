@@ -157,6 +157,8 @@
     <Compile Include="Docent\PanelLeft.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Factory\AbstractFactory.cs" />
+    <Compile Include="Factory\QuestionListFactory.cs" />
     <Compile Include="IContext.cs" />
     <Compile Include="Main.cs">
       <SubType>Form</SubType>
