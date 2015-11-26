@@ -159,6 +159,8 @@
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Factory\AbstractFactory.cs" />
+    <Compile Include="Factory\PredefinedAnswerFactory.cs" />
+    <Compile Include="Factory\QuestionFactory.cs" />
     <Compile Include="Factory\QuestionListFactory.cs" />
     <Compile Include="IContext.cs" />
     <Compile Include="Main.cs">
@@ -271,6 +273,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="View\Diagram\ViewDiagram.resx">
       <DependentUpon>ViewDiagram.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\QuestionList\ViewQuestionList.resx">
+      <DependentUpon>ViewQuestionList.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="View\Question\ViewQuestion.resx">
       <DependentUpon>ViewQuestion.cs</DependentUpon>

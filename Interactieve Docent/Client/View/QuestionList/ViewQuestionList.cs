@@ -18,11 +18,24 @@ namespace Client.View.QuestionList
         public ViewQuestionList()
         {
             InitializeComponent();
+            
         }
 
         public void setController(QuestionListController controller)
         {
             this.controller = controller;
+        }
+
+        public void loadList()
+        {
+            listBoxQuestionLists.DataSource = List.getAll();
+            listBoxQuestionLists.DisplayMember = "Name";
+            listBoxQuestionLists.ValueMember = "Id";
+        }
+
+        public Panel getPanel()
+        {
+            return panel;
         }
     }
 }

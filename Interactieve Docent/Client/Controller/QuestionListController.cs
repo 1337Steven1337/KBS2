@@ -13,10 +13,8 @@ namespace Client.Controller
             this.panel = panel;
             this.view = view;
             this.view.setController(this);
-
-            Label q = new Label();
-            q.Text = "wdwad";
-            panel.Controls.Add(q);
+                       
+            panel.Controls.Add(view.getPanel());
         }
     }
 }
