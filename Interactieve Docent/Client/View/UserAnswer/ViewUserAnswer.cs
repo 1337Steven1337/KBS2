@@ -11,7 +11,7 @@ using Client.Controller;
 
 namespace Client.View.UserAnswer
 {
-    public partial class ViewUserAnswer : Form, IUserAnswerView
+    public partial class ViewUserAnswer : Form
     {
         private UserAnswerController Controller;
 
@@ -22,7 +22,7 @@ namespace Client.View.UserAnswer
 
         public void setController(UserAnswerController Controller)
         {
-            this.Controller = Controller
+            this.Controller = Controller;
         }
     }
 }
