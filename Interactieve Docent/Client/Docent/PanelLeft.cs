@@ -1,15 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using Client.API.Models;
 
 namespace Client
 {
-    
+
     class PanelLeft : PanelLayout
     {
         public ListBox listBox;
@@ -43,9 +38,13 @@ namespace Client
         public void LoadList(int selected)
         {
             listBox.DataSource = List.getAll();
-            if (selected != 0)
+            if (selected < listBox.Items.Count)
+                if(selected < 0)
+                {
+                    selected = 0;
+                }
             {
-                listBox.SelectedIndex = selected - 1;
+                listBox.SelectedIndex = selected;
             }
             listBox.DisplayMember = "Name";
             listBox.ValueMember = "Id";
@@ -62,7 +61,7 @@ namespace Client
                 list.Name = add.name;
                 list.save();
 
-                LoadList();
+                LoadList(listBox.Items.Count);
             }
         }
 
@@ -81,7 +80,7 @@ namespace Client
                 list.Id = id;
                 list.delete();
 
-                LoadList(selectedIndex);
+                LoadList(selectedIndex-1);
             }
         }
 
@@ -101,7 +100,7 @@ namespace Client
                 list.Name = name;
                 list.update();
 
-                LoadList(selectedIndex+1);
+                LoadList(selectedIndex);
             }
         }
     }
