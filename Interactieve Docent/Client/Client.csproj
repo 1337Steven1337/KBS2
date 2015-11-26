@@ -33,6 +33,14 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Microsoft.AspNet.SignalR.Client, Version=2.2.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.AspNet.SignalR.Client.2.2.0\lib\net45\Microsoft.AspNet.SignalR.Client.dll</HintPath>
       <Private>True</Private>
@@ -70,7 +78,16 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Net.Http.Formatting, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.5.2.3\lib\net45\System.Net.Http.Formatting.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.Http, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Core.5.2.3\lib\net45\System.Web.Http.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System.Windows.Forms.DataVisualization" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -96,6 +113,10 @@
     <Compile Include="API\Models\Question.cs" />
     <Compile Include="API\Models\UserAnswer.cs" />
     <Compile Include="API\SignalR.cs" />
+    <Compile Include="Controller\PredefinedAnswerController.cs" />
+    <Compile Include="Controller\QuestionController.cs" />
+    <Compile Include="Controller\QuestionListController.cs" />
+    <Compile Include="Controller\UserAnswerController.cs" />
     <Compile Include="diagram.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -135,6 +156,11 @@
     <Compile Include="Docent\PanelLeft.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="IContext.cs" />
+    <Compile Include="Model\PredefinedAnswer.cs" />
+    <Compile Include="Model\Question.cs" />
+    <Compile Include="Model\QuestionList.cs" />
+    <Compile Include="Model\UserAnswer.cs" />
     <Compile Include="Properties\Api.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
@@ -155,8 +181,33 @@
     <Compile Include="Student\Questions.Designer.cs">
       <DependentUpon>Questions.cs</DependentUpon>
     </Compile>
-    <Compile Include="Student\testclass.cs">
+    <Compile Include="View\PredefinedAnswer\IPredefinedAnswerView.cs" />
+    <Compile Include="View\PredefinedAnswer\ViewPredefinedAnswer.cs">
       <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\PredefinedAnswer\ViewPredefinedAnswer.Designer.cs">
+      <DependentUpon>ViewPredefinedAnswer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\QuestionList\IQuestionListView.cs" />
+    <Compile Include="View\QuestionList\ViewQuestionList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\QuestionList\ViewQuestionList.Designer.cs">
+      <DependentUpon>ViewQuestionList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\Question\IQuestionView.cs" />
+    <Compile Include="View\Question\ViewQuestion.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\Question\ViewQuestion.Designer.cs">
+      <DependentUpon>ViewQuestion.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\UserAnswer\IUserAnswerView.cs" />
+    <Compile Include="View\UserAnswer\ViewUserAnswer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\UserAnswer\ViewUserAnswer.Designer.cs">
+      <DependentUpon>ViewUserAnswer.cs</DependentUpon>
     </Compile>
     <EmbeddedResource Include="Answers.resx">
       <DependentUpon>Answers.cs</DependentUpon>
@@ -188,6 +239,12 @@
     <EmbeddedResource Include="Student\Questions.resx">
       <DependentUpon>Questions.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Student\testclass.resx">
+      <DependentUpon>testclass.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\Question\ViewQuestion.resx">
+      <DependentUpon>ViewQuestion.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="ClassDiagram1.cd" />
     <None Include="Properties\Api.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -207,6 +264,7 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

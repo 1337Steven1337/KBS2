@@ -29,17 +29,42 @@ namespace Client.Student
 
         private List list = null;
         private Question currentQuestion = null;
+        private Timer questionTimer = new Timer();
         private SignalR signalR = null;
 
         public Questions(int List_Id)
         {
             InitializeComponent();
             this.List_Id = List_Id;
+            this.Size = new Size((int)(Screen.PrimaryScreen.Bounds.Width * 0.8), (int)(Screen.PrimaryScreen.Bounds.Height * 0.8));
 
             // tijdelijke button
-            button1.Location = new Point(this.Location.X , this.Location.Y + this.Size.Height - ((this.Height / 10 * 3)));
-            button1.Size = new Size(this.Width,(this.Height/10*3));
+            questionLabel.Size = new Size((int)(this.Width/10*7) - 50,(int)(this.Height/10*5) - 50);
 
+            questionLabel.Location = new Point(50,50);
+
+
+            chatBox.Size = new Size(this.Width/10*3,this.Height/10*9);
+            chatBoxMessage.Size = new Size(this.Width/10*2, this.Height/10);
+            sendMessageButton.Size = new Size(this.Width/10, this.Height/10);
+
+            chatBox.Location = new Point(this.Width/10*7,0);
+            chatBoxMessage.Location = new Point(this.Width/10*7,this.Location.Y+chatBox.Height);
+            sendMessageButton.Location = new Point(this.Width/10*9, this.Location.Y+chatBox.Height);
+
+
+            tempBtn.Size = new Size(this.Width / 10 * 7, (this.Height / 10 * 3));
+            questionTimeProgressBar.Size = new Size(this.Width/10*7,this.Size.Height/10);
+
+            tempBtn.Location = new Point(this.Location.X, this.Location.Y + this.Size.Height - ((this.Height / 10 * 3)));
+            questionTimeProgressBar.Location = new Point(0,this.Location.Y + this.Size.Height/2 + this.Size.Height/10);
+
+        }
+
+
+        private void Question_TimerStop(object sender, EventArgs e){
+            questionTimer.Stop();
+            MessageBox.Show("Tijd is voorbij!");
         }
 
         private void Questions_Load(object sender, EventArgs e)
@@ -68,7 +93,7 @@ namespace Client.Student
 
 
         private void adjustSizeOfButtons(PredefinedAnswer PA)
-        {
+            {
 
             if (option == null)
             {
@@ -120,7 +145,10 @@ namespace Client.Student
                 busy = true;
                 cleanUpPreviousQuestion();
                 currentQuestion = Question.getById(list.Questions[currentQuestionIndex].Id);
-
+                MessageBox.Show("" + currentQuestion.Time);
+               // questionTimer.Interval = currentQuestion.Time * 1000;
+               // questionTimer.Tick += Question_TimerStop;
+               // questionTimer.Start();
 
                 questionLabel.Text = currentQuestion.Text;
                 Console.WriteLine(currentQuestion.PredefinedAnswers.Count);
@@ -175,6 +203,9 @@ namespace Client.Student
             return SecondsLeft;
         }
 
+        private void richTextBox1_TextChanged(object sender, EventArgs e)
+        {
 
     }
+}
 }

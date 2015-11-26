@@ -24,13 +24,13 @@ namespace Client.TestsDiagram
             b.Add("b");
             b.Add("c");
 
-            diagram Diagram = new diagram();
+            diagram Diagram = new diagram(3);
 
-            CollectionAssert.AllItemsAreNotNull(Diagram.votes);
-            CollectionAssert.AllItemsAreNotNull(Diagram.questions);
-            Assert.AreEqual(Diagram.votes.Count,Diagram.questions.Count);
+            CollectionAssert.AllItemsAreNotNull(a);
+            CollectionAssert.AllItemsAreNotNull(b);
+            Assert.AreEqual(a.Count, b.Count);
           
-            Console.WriteLine("test");
+            Console.WriteLine("test klaar");
         }
     }
 }
