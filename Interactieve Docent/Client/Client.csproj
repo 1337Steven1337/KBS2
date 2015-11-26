@@ -113,6 +113,7 @@
     <Compile Include="API\Models\Question.cs" />
     <Compile Include="API\Models\UserAnswer.cs" />
     <Compile Include="API\SignalR.cs" />
+    <Compile Include="Controller\DiagramController.cs" />
     <Compile Include="Controller\PredefinedAnswerController.cs" />
     <Compile Include="Controller\QuestionController.cs" />
     <Compile Include="Controller\QuestionListController.cs" />
@@ -190,6 +191,13 @@
     <Compile Include="Student\Questions.Designer.cs">
       <DependentUpon>Questions.cs</DependentUpon>
     </Compile>
+    <Compile Include="View\Diagram\IDiagramView.cs" />
+    <Compile Include="View\Diagram\ViewDiagram.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\Diagram\ViewDiagram.Designer.cs">
+      <DependentUpon>ViewDiagram.cs</DependentUpon>
+    </Compile>
     <Compile Include="View\PredefinedAnswer\IPredefinedAnswerView.cs" />
     <Compile Include="View\PredefinedAnswer\ViewPredefinedAnswer.cs">
       <SubType>Form</SubType>
@@ -211,6 +219,7 @@
     <Compile Include="View\Question\ViewQuestion.Designer.cs">
       <DependentUpon>ViewQuestion.cs</DependentUpon>
     </Compile>
+    <Compile Include="View\UserAnswer\IUserAnswerView.cs" />
     <Compile Include="View\UserAnswer\ViewUserAnswer.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -259,6 +268,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Student\testclass.resx">
       <DependentUpon>testclass.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\Diagram\ViewDiagram.resx">
+      <DependentUpon>ViewDiagram.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="View\Question\ViewQuestion.resx">
       <DependentUpon>ViewQuestion.cs</DependentUpon>
