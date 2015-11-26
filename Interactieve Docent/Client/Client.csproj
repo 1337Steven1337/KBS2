@@ -162,6 +162,7 @@
     <Compile Include="Factory\PredefinedAnswerFactory.cs" />
     <Compile Include="Factory\QuestionFactory.cs" />
     <Compile Include="Factory\QuestionListFactory.cs" />
+    <Compile Include="Factory\UserAnswerFactory.cs" />
     <Compile Include="IContext.cs" />
     <Compile Include="Main.cs">
       <SubType>Form</SubType>
