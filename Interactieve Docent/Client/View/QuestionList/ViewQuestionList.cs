@@ -28,7 +28,7 @@ namespace Client.View.QuestionList
 
         public void loadList()
         {
-            listBoxQuestionLists.DataSource = List.getAll();
+            //listBoxQuestionLists.DataSource = QuestionList.getAll();
             listBoxQuestionLists.DisplayMember = "Name";
             listBoxQuestionLists.ValueMember = "Id";
         }
