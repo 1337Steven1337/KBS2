@@ -11,23 +11,33 @@ using System.Windows.Forms;
 using Client.API;
 using Microsoft.AspNet.SignalR.Client;
 using ConnectionState = Microsoft.AspNet.SignalR.Client.ConnectionState;
+using System.Diagnostics;
 
 namespace Client.Student
 {
     public partial class Questions : Form
     {
+        public int percentageofHeigt { get; set; }
+
         private int List_Id { get; set; }
         private int currentQuestionIndex = -1;
-        private bool busy = false;
-        static int ButtonCounter = 0;
-        static int ButtonCounterHorizontal = 0;
-        static int ButtonCounterVertical = 1;
-        private List<Button> answerButtons = new List<Button>();
 
+        private static int ButtonCounter = 0;
+        private static int ButtonCounterHorizontal = 0;
+        private static int ButtonCounterVertical = 1;
+
+        private bool busy = false;
+
+        private Button option = null;
 
         private List list = null;
+        private List<Button> answerButtons = new List<Button>();
+
+        private ProgressBar timerProgressBar;
+
         private Question currentQuestion = null;
         private Timer questionTimer = new Timer();
+        private Timer progressBarTimer = new Timer();
         private SignalR signalR = null;
 
         public Questions(int List_Id)
@@ -60,9 +70,15 @@ namespace Client.Student
         }
 
 
-        private void Question_TimerStop(object sender, EventArgs e){
+        private void Question_UpdateProgressBar(object sender, EventArgs e)
+        {
+            questionTimeProgressBar.Value -= questionTimeProgressBar.Maximum / currentQuestion.Time / 100;
+        }
+
+        private void Question_TimerStop(object sender, EventArgs e)
+        {
             questionTimer.Stop();
-            MessageBox.Show("Tijd is voorbij!");
+            progressBarTimer.Stop();
         }
 
         private void Questions_Load(object sender, EventArgs e)
@@ -79,26 +95,54 @@ namespace Client.Student
 
         private Button createAnswerButton(PredefinedAnswer answer)
         {
-            Button option = new Button();
+
+
+            option = new Button();
+            answerButtons.Add(option);
             option.Text = answer.Text;
-            option.Location = new Point(Width / 2 + option.Width * (ButtonCounterHorizontal), Height - option.Height * (4 - ButtonCounterVertical));
-            ButtonCounter++;
-            if (ButtonCounter % 2 == 0)
+            answerButtons.Add(option);
+            //option.Location = new Point(Width / 2 + option.Width * (ButtonCounterHorizontal), Height - option.Height * (4 - ButtonCounterVertical));
+            return option;
+        }
+
+
+        private void adjustSizeOfButtons(Question Q)
             {
-                ButtonCounterVertical++;
-                ButtonCounter = 0;
+            foreach (PredefinedAnswer PA in Q.PredefinedAnswers)
+            {
+
+
+                if (option == null)
+            {
+                    option = createAnswerButton(PA);
             }
-            if (ButtonCounterHorizontal <= 2)
+                //bereken de grootte
+                int precentagePerButton = (int) Math.Ceiling((double) currentQuestion.PredefinedAnswers.Count/2);
+                int heightcounter = 0;
+                int locationY = 0;
+                int locationX = 0;
+                int WorkingArea = 0;
+                float ButtonListCounter = 0;
+                //y locatie berekenen
+                ButtonListCounter = (int) Math.Floor((double) currentQuestion.PredefinedAnswers.Count/2);
+                percentageofHeigt = 30;
+                if (ButtonListCounter%1 == 0)
             {
-                ButtonCounterHorizontal += 1;
+                    locationX = 0;
             }
             else
             {
-                ButtonCounterHorizontal = 0;
+                    locationX = Width/2;
             }
 
+                WorkingArea = (Height/100)*30;
+                //ken de hoogte toe
+                option.Height = WorkingArea/precentagePerButton;
+                locationY = option.Height*(int) ButtonListCounter;
 
-            return option;
+                //heightcounter = (int)Math.Floor(ButtonListCounter - 0.5);
+                option.Location = new Point(locationY,locationX);
+            }
         }
 
         private void cleanUpPreviousQuestion()
@@ -118,18 +162,24 @@ namespace Client.Student
                 busy = true;
                 cleanUpPreviousQuestion();
                 currentQuestion = Question.getById(list.Questions[currentQuestionIndex].Id);
-                MessageBox.Show("" + currentQuestion.Time);
-               // questionTimer.Interval = currentQuestion.Time * 1000;
-               // questionTimer.Tick += Question_TimerStop;
-               // questionTimer.Start();
+
+                questionTimeProgressBar.Maximum = currentQuestion.Time * 1000;
+                questionTimeProgressBar.Value = currentQuestion.Time * 1000;
+
+                questionTimer.Interval = currentQuestion.Time * 1000;
+                questionTimer.Tick += Question_TimerStop;
+                questionTimer.Start();
+
+                progressBarTimer.Interval = 10;
+                progressBarTimer.Tick += Question_UpdateProgressBar;
+                progressBarTimer.Start();
+                
 
                 questionLabel.Text = currentQuestion.Text;
-                Console.WriteLine(currentQuestion.PredefinedAnswers.Count);
 
-                foreach (PredefinedAnswer pa in currentQuestion.PredefinedAnswers)
-                {
-                    createAnswerButton(pa);
-                }
+
+                    adjustSizeOfButtons(currentQuestion);
+                
             }
             else if (list.Ended)
             {

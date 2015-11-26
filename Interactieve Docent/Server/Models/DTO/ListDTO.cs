@@ -16,7 +16,7 @@ namespace Server.Models.DTO
         {
 
         }
-        public ListDTO(List q)
+        public ListDTO(QuestionList q)
         {
             this.Id = q.Id;
             this.Name = q.Name;

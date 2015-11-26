@@ -10,39 +10,36 @@ using System.Threading.Tasks;
 using System.Web.Http;
 using System.Web.Http.Description;
 using Server.Models;
-using Server.Models.DTO;
-using System.IO;
-using System.Web;
-using Server;
-using Server.Hubs;
 using Server.Models.Context;
+using Server.Models.DTO;
 
 namespace Server.Controllers
 {
-    public class ListsController : ApiControllerWithHub<EventHub>
+    public class QuestionListsController : ApiController
     {
         private IDocentAppContext db = new ServerContext();
 
-        public ListsController() { }
-        public ListsController(IDocentAppContext context)
+        public QuestionListsController() { }
+        public QuestionListsController(IDocentAppContext context)
         {
             this.db = context;
         }
 
-        // GET: api/Lists
+        // GET: api/QuestionLists
         public IQueryable<ListDTO> GetLists()
         {
             var QuestionLists = from q in db.QuestionLists
-                        select new ListDTO() {
-                Id = q.Id,
-                Name = q.Name,
-                Questions = q.Questions.Select(C => new QuestionDTO{ Id = C.Id }).ToList<QuestionDTO>()
-            };
+                                select new ListDTO()
+                                {
+                                    Id = q.Id,
+                                    Name = q.Name,
+                                    Questions = q.Questions.Select(C => new QuestionDTO { Id = C.Id }).ToList<QuestionDTO>()
+                                };
 
             return QuestionLists;
         }
 
-        // GET: api/Lists/5
+        // GET: api/QuestionLists/5
         [ResponseType(typeof(ListDTO))]
         public ListDTO GetList(int id)
         {
@@ -52,37 +49,35 @@ namespace Server.Controllers
                         {
                             Id = q.Id,
                             Name = q.Name,
-                            Questions = q.Questions.Select(C => new QuestionDTO { Id = C.Id, Text = C.Text, Time = C.Time, Points = C.Points, List_Id = C.List_Id, PredefinedAnswers = (C.PredefinedAnswers.Select(V => new PredefinedAnswerDTO { Id = V.Id, Text = V.Text, Question_Id = V.Question.Id })).ToList<PredefinedAnswerDTO>()}).ToList<QuestionDTO>()
+                            Questions = q.Questions.Select(C => new QuestionDTO { Id = C.Id, Text = C.Text, Time = C.Time, Points = C.Points, List_Id = C.List_Id, PredefinedAnswers = (C.PredefinedAnswers.Select(V => new PredefinedAnswerDTO { Id = V.Id, Text = V.Text, Question_Id = V.Question.Id })).ToList<PredefinedAnswerDTO>() }).ToList<QuestionDTO>()
                         };
 
             return lists.FirstOrDefault(x => x.Id == x.Id);
         }
 
-        // PUT: api/Lists/5
+        // PUT: api/QuestionLists/5
         [ResponseType(typeof(void))]
-        public async Task<IHttpActionResult> PutList(int id, QuestionList list)
+        public async Task<IHttpActionResult> PutQuestionList(int id, QuestionList questionList)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            if (id != list.Id)
+            if (id != questionList.Id)
             {
                 return BadRequest();
             }
 
-            db.MarkAsModified(list);
+            db.MarkAsModified(questionList);
 
             try
             {
                 await db.SaveChangesAsync();
-
-                this.getSubscribed(list.Id).ListUpdated(new ListDTO(list));
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!ListExists(id))
+                if (!QuestionListExists(id))
                 {
                     return NotFound();
                 }
@@ -95,35 +90,35 @@ namespace Server.Controllers
             return StatusCode(HttpStatusCode.NoContent);
         }
 
-        // POST: api/Lists
+        // POST: api/QuestionLists
         [ResponseType(typeof(QuestionList))]
-        public async Task<IHttpActionResult> PostList([FromBody] QuestionList list)
+        public async Task<IHttpActionResult> PostQuestionList(QuestionList questionList)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            db.QuestionLists.Add(list);
+            db.QuestionLists.Add(questionList);
             await db.SaveChangesAsync();
 
-            return CreatedAtRoute("DefaultApi", new { id = list.Id }, list);
+            return CreatedAtRoute("DefaultApi", new { id = questionList.Id }, questionList);
         }
 
-        // DELETE: api/Lists/5
+        // DELETE: api/QuestionLists/5
         [ResponseType(typeof(QuestionList))]
-        public async Task<IHttpActionResult> DeleteList(int id)
+        public async Task<IHttpActionResult> DeleteQuestionList(int id)
         {
-            QuestionList list = await db.QuestionLists.FindAsync(id);
-            if (list == null)
+            QuestionList questionList = await db.QuestionLists.FindAsync(id);
+            if (questionList == null)
             {
                 return NotFound();
             }
 
-            db.QuestionLists.Remove(list);
+            db.QuestionLists.Remove(questionList);
             await db.SaveChangesAsync();
 
-            return Ok(list);
+            return Ok(questionList);
         }
 
         protected override void Dispose(bool disposing)
@@ -135,7 +130,7 @@ namespace Server.Controllers
             base.Dispose(disposing);
         }
 
-        private bool ListExists(int id)
+        private bool QuestionListExists(int id)
         {
             return db.QuestionLists.Count(e => e.Id == id) > 0;
         }

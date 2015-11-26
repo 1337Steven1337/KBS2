@@ -113,8 +113,12 @@
     <Compile Include="API\Models\Question.cs" />
     <Compile Include="API\Models\UserAnswer.cs" />
     <Compile Include="API\SignalR.cs" />
+    <Compile Include="Controller\DiagramController.cs" />
+    <Compile Include="Controller\PredefinedAnswerController.cs" />
     <Compile Include="Controller\QuestionController.cs" />
     <Compile Include="Controller\QuestionListController.cs" />
+    <Compile Include="Controller\UserAnswerController.cs" />
+    <Compile Include="Controller\TabsController.cs" />
     <Compile Include="diagram.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -154,9 +158,21 @@
     <Compile Include="Docent\PanelLeft.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Factory\AbstractFactory.cs" />
+    <Compile Include="Factory\PredefinedAnswerFactory.cs" />
+    <Compile Include="Factory\QuestionFactory.cs" />
+    <Compile Include="Factory\QuestionListFactory.cs" />
     <Compile Include="IContext.cs" />
+    <Compile Include="Main.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Main.Designer.cs">
+      <DependentUpon>Main.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Model\PredefinedAnswer.cs" />
     <Compile Include="Model\Question.cs" />
     <Compile Include="Model\QuestionList.cs" />
+    <Compile Include="Model\UserAnswer.cs" />
     <Compile Include="Properties\Api.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
@@ -177,6 +193,20 @@
     <Compile Include="Student\Questions.Designer.cs">
       <DependentUpon>Questions.cs</DependentUpon>
     </Compile>
+    <Compile Include="View\Diagram\IDiagramView.cs" />
+    <Compile Include="View\Diagram\ViewDiagram.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\Diagram\ViewDiagram.Designer.cs">
+      <DependentUpon>ViewDiagram.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\PredefinedAnswer\IPredefinedAnswerView.cs" />
+    <Compile Include="View\PredefinedAnswer\ViewPredefinedAnswer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\PredefinedAnswer\ViewPredefinedAnswer.Designer.cs">
+      <DependentUpon>ViewPredefinedAnswer.cs</DependentUpon>
+    </Compile>
     <Compile Include="View\QuestionList\IQuestionListView.cs" />
     <Compile Include="View\QuestionList\ViewQuestionList.cs">
       <SubType>Form</SubType>
@@ -190,6 +220,20 @@
     </Compile>
     <Compile Include="View\Question\ViewQuestion.Designer.cs">
       <DependentUpon>ViewQuestion.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\UserAnswer\IUserAnswerView.cs" />
+    <Compile Include="View\UserAnswer\ViewUserAnswer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\UserAnswer\ViewUserAnswer.Designer.cs">
+      <DependentUpon>ViewUserAnswer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\Tabs\ITabsView.cs" />
+    <Compile Include="View\Tabs\ViewTabs.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\Tabs\ViewTabs.Designer.cs">
+      <DependentUpon>ViewTabs.cs</DependentUpon>
     </Compile>
     <EmbeddedResource Include="Answers.resx">
       <DependentUpon>Answers.cs</DependentUpon>
@@ -209,6 +253,9 @@
     <EmbeddedResource Include="Docent\PanelLayout.resx">
       <DependentUpon>PanelLayout.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Main.resx">
+      <DependentUpon>Main.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -223,6 +270,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Student\testclass.resx">
       <DependentUpon>testclass.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\Diagram\ViewDiagram.resx">
+      <DependentUpon>ViewDiagram.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\QuestionList\ViewQuestionList.resx">
+      <DependentUpon>ViewQuestionList.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="View\Question\ViewQuestion.resx">
       <DependentUpon>ViewQuestion.cs</DependentUpon>

@@ -24,7 +24,7 @@ namespace Server.Tests.Controllers
             var item = GetTestList();
 
             var result =
-                await controller.PostList(item) as CreatedAtRouteNegotiatedContentResult<List>;
+                await controller.PostList(item) as CreatedAtRouteNegotiatedContentResult<QuestionList>;
 
             Assert.IsNotNull(result);
             Assert.AreEqual(result.RouteName, "DefaultApi");
@@ -32,9 +32,9 @@ namespace Server.Tests.Controllers
             Assert.AreEqual(result.Content.Name, item.Name);
         }
 
-        private List GetTestList()
+        private QuestionList GetTestList()
         {
-            return new List() { Id = 3, Name = "Test list" };
+            return new QuestionList() { Id = 3, Name = "Test list" };
         }
     }
 }

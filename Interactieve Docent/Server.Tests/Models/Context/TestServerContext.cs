@@ -15,20 +15,20 @@ namespace Server.Tests.Models.Context
         public TestServerContext()
         {
             this.Questions = new TestQuestionDbSet();
-            this.Lists = new TestListDbSet();
+            this.QuestionLists = new TestListDbSet();
             this.UserAnswers = new TestUserAnswerDbSet();
             this.PredefinedAnswers = new TestPredefinedAnswerDbSet();
         }
 
         public DbSet<Server.Models.Question> Questions { get; set; }
-        public DbSet<Server.Models.List> Lists { get; set; }
+        public DbSet<Server.Models.QuestionList> QuestionLists { get; set; }
         public DbSet<Server.Models.UserAnswer> UserAnswers { get; set; }
         public DbSet<Server.Models.PredefinedAnswer> PredefinedAnswers { get; set; }
 
-        public void MarkAsModified(Question item) {}
-        public void MarkAsModified(List item) {}
-        public void MarkAsModified(UserAnswer item) {}
-        public void MarkAsModified(PredefinedAnswer item) {}
+        public void MarkAsModified(Question item) { }
+        public void MarkAsModified(QuestionList item) { }
+        public void MarkAsModified(UserAnswer item) { }
+        public void MarkAsModified(PredefinedAnswer item) { }
 
         public int SaveChanges()
         {

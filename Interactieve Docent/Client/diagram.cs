@@ -16,16 +16,16 @@ namespace Client
 {
     public partial class diagram : Form
     {
+        public int Question_Id;
+
         public List<string> questions;
         public List<int> votes;
 
-        public int Question_Id;
-
         public Question question;
+        
+        private Dictionary<string, int> questionVotes = new Dictionary<string, int>();
 
         private SignalR signalR;
-
-        Dictionary<string, int> questionVotes = new Dictionary<string, int>();
 
         public diagram(int Question_Id)
         {
