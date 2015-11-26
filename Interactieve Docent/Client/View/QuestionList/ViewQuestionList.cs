@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Client.Controller;
+using Client.Factory;
 
 namespace Client.View.QuestionList
 {
@@ -28,7 +29,7 @@ namespace Client.View.QuestionList
 
         public void loadList()
         {
-            listBoxQuestionLists.DataSource = List.getAll();
+            //listBoxQuestionLists.DataSource = List.getAll();
             listBoxQuestionLists.DisplayMember = "Name";
             listBoxQuestionLists.ValueMember = "Id";
         }
