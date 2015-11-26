@@ -1,4 +1,4 @@
-﻿using Client.API.Models;
+﻿using Client.Model;
 using Client.Student;
 using Microsoft.AspNet.SignalR;
 using System;
@@ -21,10 +21,10 @@ namespace Client
         {
             InitializeComponent();
 
-            foreach (Question text in Question.getAll())
-            {
-                comboBox1.Items.Add(text.Text);
-            }
+            //foreach (Question text in Question.getAll())
+            //{
+            //    comboBox1.Items.Add(text.Text);
+            //}
         }
 
         private void Form1_Load(object sender, EventArgs e)
