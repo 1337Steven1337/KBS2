@@ -38,6 +38,7 @@ namespace Client
             panelLeft.listBox.SelectedIndexChanged += listBox_SelectedIndexChanged;
             panelMiddle.leftBottomButton.Click += loadAddQuestionFormHandler;
             panelRight.leftBottomButton.Click += saveQuestionHandler;
+            panelMiddle.listBox.SelectedIndexChanged += listBoxMiddle_SelectedIndexChanged;
                                     
             panelLeft.leftBottomButton.Click += AddList_Click;
             panelLeft.rightBottomButton.Click += DeleteList_Click;
@@ -55,12 +56,17 @@ namespace Client
             panelMiddle.loadQuestionList((int)panelLeft.listBox.SelectedValue);
         }
 
+        private void listBoxMiddle_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            //panelRight.loadQuestionForm(panelMiddle.listBox.SelectedValue);
+        }
+
         private void loadAddQuestionFormHandler(object sender, System.EventArgs e)
         {
             panelRight.loadAddQuestionForm();
         }
 
-        private void saveQuestionHandler(object sender, EventArgs e)
+        public void saveQuestionHandler(object sender, EventArgs e)
         {
             String question = panelRight.questionField.Text;
             int time = (int)panelRight.timeField.Value;
@@ -87,6 +93,8 @@ namespace Client
             //reload question list
             panelMiddle.loadQuestionList(listId);
         }
+
+
 
         private void AddList_Click(object sender, EventArgs e)
         {

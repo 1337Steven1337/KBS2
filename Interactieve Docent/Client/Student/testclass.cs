@@ -19,7 +19,7 @@ namespace Client
         invisible
     }
 
-    public partial class StudentQuestion : Form
+    public partial class testclass : Form
     {
 
         //De questionID is om de vraag uit de database te halen alsmede het antwoord
@@ -50,9 +50,9 @@ namespace Client
 
 
 
-        public StudentQuestion()
+        public testclass()
         {
-            InitializeComponent();
+            //InitializeComponent();
             countdown.Interval = 1;
             countdown.Tick += countdown_Tick;
 
@@ -87,7 +87,7 @@ namespace Client
 
 
             countdown.Start();
-            InitializeComponent();
+            //InitializeComponent();
         }
 
         public List<Question> GetQuestionFromDB(int id)
@@ -98,7 +98,7 @@ namespace Client
 
         //eventhandler countdown timer
         private void countdown_Tick(Object myObject, EventArgs myEventArgs)
-        { 
+        {
             if (ProgressbarIsAllowed == true)
             {
                 DoWeStillHaveTime.Text = howMuch.ToString();
@@ -110,15 +110,15 @@ namespace Client
                     //vraag();
                     if (ButtonList[0].Visible == true)
                     {
-                        Debug.WriteLine("De buttonlist[0] versie!");
-                        isValidQuestion();
+                        //Debug.WriteLine("De buttonlist[0] versie!"); b
+                       //  isValidQuestion();
                     }
                 }
                 KeepTrackOfTimer++;
 
-                if (KeepTrackOfTimer%100 == 0)
+                if (KeepTrackOfTimer % 100 == 0)
                 {
-                    
+
                 }
 
             }
@@ -178,7 +178,7 @@ namespace Client
 
             Button option = new Button();
             option.Text = text;
-            option.Location = new Point(Width/2+option.Width*(ButtoncounterHorizontal), Height - option.Height * (4 - ButtonCounterVertical));
+            option.Location = new Point(Width / 2 + option.Width * (ButtoncounterHorizontal), Height - option.Height * (4 - ButtonCounterVertical));
             ButtonCounter++;
             if (ButtonCounter % 2 == 0)
             {
@@ -206,7 +206,7 @@ namespace Client
             SecondsLeft.Size = new System.Drawing.Size(Width, 23);
             SecondsLeft.TabIndex = 0;
             SecondsLeft.Maximum = testTime;
-            
+
             SecondsLeft.Step = 1;
 
             return SecondsLeft;
@@ -238,6 +238,24 @@ namespace Client
         {
 
             isValidQuestion();
+
+        }
+
+        private void InitializeComponent()
+        {
+            this.SuspendLayout();
+            // 
+            // testclass
+            // 
+            this.ClientSize = new System.Drawing.Size(278, 244);
+            this.Name = "testclass";
+            this.Load += new System.EventHandler(this.testclass_Load);
+            this.ResumeLayout(false);
+
+        }
+
+        private void testclass_Load(object sender, EventArgs e)
+        {
 
         }
     }
