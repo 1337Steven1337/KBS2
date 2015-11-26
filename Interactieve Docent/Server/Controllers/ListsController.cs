@@ -32,14 +32,14 @@ namespace Server.Controllers
         // GET: api/Lists
         public IQueryable<ListDTO> GetLists()
         {
-            var Lists = from q in db.QuestionLists
+            var QuestionLists = from q in db.QuestionLists
                         select new ListDTO() {
                 Id = q.Id,
                 Name = q.Name,
                 Questions = q.Questions.Select(C => new QuestionDTO{ Id = C.Id }).ToList<QuestionDTO>()
             };
 
-            return Lists;
+            return QuestionLists;
         }
 
         // GET: api/Lists/5
