@@ -15,9 +15,10 @@ namespace Client.Controller
             this.panel = panel;
             this.view = view;
             this.view.setController(this);
+                       
+            panel.Controls.Add(view.getPanel());
 
             loadList();
-            panel.Controls.Add(view.getPanel());
         }
 
         private void loadList()
