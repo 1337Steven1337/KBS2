@@ -11,9 +11,5 @@ namespace Client.Model
         public int Id { get; private set; }
         public int Question_Id { get; private set; }
         public int PredefintedAnswer_Id { get; private set; }
-
-        public Question Question;
-
-        public PredefinedAnswer PredefinedAnswer;
     }
 }
