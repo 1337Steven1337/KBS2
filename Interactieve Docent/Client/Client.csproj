@@ -188,6 +188,8 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Service\SignalR\Client.cs" />
+    <Compile Include="Service\SignalR\EventArgs\SubscriptionStatus.cs" />
     <Compile Include="Student\Questions.cs">
       <SubType>Form</SubType>
     </Compile>

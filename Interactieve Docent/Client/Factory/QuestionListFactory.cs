@@ -14,6 +14,11 @@ namespace Client.Factory
     {
         private const string resource = "QuestionLists";
 
+        public QuestionListFactory()
+        {
+            
+        }
+
         public void save(QuestionList list, Action<QuestionList> callback)
         {
             Dictionary<string, object> values = new Dictionary<string, object>();
