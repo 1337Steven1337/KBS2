@@ -16,10 +16,10 @@ namespace Client
 {
     public partial class diagram : Form
     {
+        public int Question_Id;
+
         public List<string> questions;
         public List<int> votes;
-
-        public int Question_Id;
 
         public Question question;
         

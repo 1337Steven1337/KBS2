@@ -30,7 +30,6 @@ namespace Client.Student
         private Question currentQuestion = null;
         private Timer questionTimer = new Timer();
         private Timer progressBarTimer = new Timer();
-        private int ticksDone = 0;
         private SignalR signalR = null;
 
         public Questions(int List_Id)
@@ -65,17 +64,13 @@ namespace Client.Student
 
         private void Question_UpdateProgressBar(object sender, EventArgs e)
         {
-            ticksDone++;
-            //questionTimeProgressBar.Value = (int)(ticksDone / (currentQuestion.Time * 1000) * 100);
-            questionTimeProgressBar.Value = (int)(50);
-            Console.WriteLine(ticksDone);
+            questionTimeProgressBar.Value -= questionTimeProgressBar.Maximum / currentQuestion.Time / 100;
         }
 
         private void Question_TimerStop(object sender, EventArgs e)
         {
             questionTimer.Stop();
             progressBarTimer.Stop();
-            ticksDone = 0;
         }
 
         private void Questions_Load(object sender, EventArgs e)
@@ -131,11 +126,15 @@ namespace Client.Student
                 busy = true;
                 cleanUpPreviousQuestion();
                 currentQuestion = Question.getById(list.Questions[currentQuestionIndex].Id);
+
+                questionTimeProgressBar.Maximum = currentQuestion.Time * 1000;
+                questionTimeProgressBar.Value = currentQuestion.Time * 1000;
+
                 questionTimer.Interval = currentQuestion.Time * 1000;
                 questionTimer.Tick += Question_TimerStop;
                 questionTimer.Start();
 
-                progressBarTimer.Interval = 1;
+                progressBarTimer.Interval = 10;
                 progressBarTimer.Tick += Question_UpdateProgressBar;
                 progressBarTimer.Start();
                 

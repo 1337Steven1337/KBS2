@@ -10,7 +10,7 @@ namespace Server.Models.Context
     public interface IDocentAppContext : IDisposable
     {
         DbSet<Server.Models.Question> Questions { get; set; }
-        DbSet<Server.Models.List> Lists { get; set; }
+        DbSet<Server.Models.QuestionList> QuestionLists { get; set; }
         DbSet<Server.Models.UserAnswer> UserAnswers { get; set; }
         DbSet<Server.Models.PredefinedAnswer> PredefinedAnswers { get; set; }
 
@@ -18,7 +18,7 @@ namespace Server.Models.Context
         Task<int> SaveChangesAsync();
 
         void MarkAsModified(Question item);
-        void MarkAsModified(List item);
+        void MarkAsModified(QuestionList item);
         void MarkAsModified(UserAnswer item);
         void MarkAsModified(PredefinedAnswer item);
     }
