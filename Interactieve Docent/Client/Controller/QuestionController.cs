@@ -6,8 +6,8 @@ namespace Client.Controller
 {
     public class QuestionController
     {
-        IQuestionView view;
-        Panel panel;
+        private IQuestionView view;
+        private Panel panel;
         private QuestionFactory factory = new QuestionFactory();
 
         public QuestionController(IQuestionView view, Panel panel)
@@ -16,12 +16,12 @@ namespace Client.Controller
             this.view = view;
             this.view.setController(this);
 
-            panel.Controls.Add(view.getPanel());
+            this.panel.Controls.Add(view.getPanel());
         }
 
         private void loadQuestion()
         {
-            //factory.findAll(this.view.fillList);
+            factory.findAll(this.panel, this.view.fillList);
         }
     }
 }
