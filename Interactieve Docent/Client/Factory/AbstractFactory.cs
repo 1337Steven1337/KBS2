@@ -48,7 +48,7 @@ namespace Client.Factory
         {
             this.findAllAsync<T>(resource, o =>
             {
-                control.Invoke(callback);
+                control.Invoke(callback, o);
             });
         }
 

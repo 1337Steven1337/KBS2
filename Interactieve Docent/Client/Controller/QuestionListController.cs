@@ -17,11 +17,13 @@ namespace Client.Controller
             this.view.setController(this);
                        
             panel.Controls.Add(view.getPanel());
+
+            loadList();
         }
 
         private void loadList()
         {
-            factory.findAll(this.view.fillList);
+            factory.findAll(panel, this.view.fillList);
         }
     }
 }
