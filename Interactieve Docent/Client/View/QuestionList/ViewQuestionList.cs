@@ -24,5 +24,6 @@ namespace Client.View.QuestionList
         {
             this.controller = controller;
         }
+
     }
 }
