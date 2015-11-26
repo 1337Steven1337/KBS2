@@ -89,13 +89,6 @@
             this.sendMessageButton.Text = "Send";
             this.sendMessageButton.UseVisualStyleBackColor = true;
             // 
-            // flowLayoutPanel1
-            // 
-            this.flowLayoutPanel1.Location = new System.Drawing.Point(-88, 255);
-            this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(1, 0);
-            this.flowLayoutPanel1.TabIndex = 2;
-            // 
             // Questions
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
