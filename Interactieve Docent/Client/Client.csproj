@@ -117,6 +117,7 @@
     <Compile Include="Controller\QuestionController.cs" />
     <Compile Include="Controller\QuestionListController.cs" />
     <Compile Include="Controller\UserAnswerController.cs" />
+    <Compile Include="Controller\TabsController.cs" />
     <Compile Include="diagram.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -156,7 +157,15 @@
     <Compile Include="Docent\PanelLeft.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Factory\AbstractFactory.cs" />
+    <Compile Include="Factory\QuestionListFactory.cs" />
     <Compile Include="IContext.cs" />
+    <Compile Include="Main.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Main.Designer.cs">
+      <DependentUpon>Main.cs</DependentUpon>
+    </Compile>
     <Compile Include="Model\PredefinedAnswer.cs" />
     <Compile Include="Model\Question.cs" />
     <Compile Include="Model\QuestionList.cs" />
@@ -208,6 +217,13 @@
     <Compile Include="View\UserAnswer\ViewUserAnswer.Designer.cs">
       <DependentUpon>ViewUserAnswer.cs</DependentUpon>
     </Compile>
+    <Compile Include="View\Tabs\ITabsView.cs" />
+    <Compile Include="View\Tabs\ViewTabs.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\Tabs\ViewTabs.Designer.cs">
+      <DependentUpon>ViewTabs.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="Answers.resx">
       <DependentUpon>Answers.cs</DependentUpon>
     </EmbeddedResource>
@@ -225,6 +241,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Docent\PanelLayout.resx">
       <DependentUpon>PanelLayout.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Main.resx">
+      <DependentUpon>Main.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
