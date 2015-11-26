@@ -28,44 +28,45 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.listBox1 = new System.Windows.Forms.ListBox();
-            this.panel1.SuspendLayout();
+            this.panel = new System.Windows.Forms.Panel();
+            this.listBoxQuestionLists = new System.Windows.Forms.ListBox();
+            this.panel.SuspendLayout();
             this.SuspendLayout();
             // 
-            // panel1
+            // panel
             // 
-            this.panel1.Controls.Add(this.listBox1);
-            this.panel1.Location = new System.Drawing.Point(0, -1);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(280, 250);
-            this.panel1.TabIndex = 0;
+            this.panel.Controls.Add(this.listBoxQuestionLists);
+            this.panel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel.Location = new System.Drawing.Point(0, 0);
+            this.panel.Name = "panel";
+            this.panel.Size = new System.Drawing.Size(282, 253);
+            this.panel.TabIndex = 0;
             // 
-            // listBox1
+            // listBoxQuestionLists
             // 
-            this.listBox1.FormattingEnabled = true;
-            this.listBox1.ItemHeight = 16;
-            this.listBox1.Location = new System.Drawing.Point(0, 0);
-            this.listBox1.Name = "listBox1";
-            this.listBox1.Size = new System.Drawing.Size(120, 84);
-            this.listBox1.TabIndex = 0;
+            this.listBoxQuestionLists.FormattingEnabled = true;
+            this.listBoxQuestionLists.ItemHeight = 16;
+            this.listBoxQuestionLists.Location = new System.Drawing.Point(80, 54);
+            this.listBoxQuestionLists.Name = "listBoxQuestionLists";
+            this.listBoxQuestionLists.Size = new System.Drawing.Size(120, 84);
+            this.listBoxQuestionLists.TabIndex = 0;
             // 
             // ViewQuestionList
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(282, 253);
-            this.Controls.Add(this.panel1);
+            this.Controls.Add(this.panel);
             this.Name = "ViewQuestionList";
             this.Text = "ViewQuestionList";
-            this.panel1.ResumeLayout(false);
+            this.panel.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
-        private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.ListBox listBox1;
+        private System.Windows.Forms.Panel panel;
+        private System.Windows.Forms.ListBox listBoxQuestionLists;
     }
 }
