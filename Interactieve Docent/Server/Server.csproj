@@ -171,6 +171,7 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\ListsController.cs" />
     <Compile Include="Controllers\PredefinedAnswersController.cs" />
+    <Compile Include="Controllers\QuestionListsController.cs" />
     <Compile Include="Controllers\QuestionsController.cs" />
     <Compile Include="Controllers\UserAnswersController.cs" />
     <Compile Include="Global.asax.cs">
