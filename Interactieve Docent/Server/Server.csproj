@@ -182,7 +182,7 @@
     <Compile Include="Models\DTO\QuestionDTO.cs" />
     <Compile Include="Models\DTO\UserAnswerDTO.cs" />
     <Compile Include="Models\Context\IDocentAppContext.cs" />
-    <Compile Include="Models\List.cs" />
+    <Compile Include="Models\QuestionList.cs" />
     <Compile Include="Models\PredefinedAnswer.cs" />
     <Compile Include="Models\Question.cs" />
     <Compile Include="Models\Context\ServerContext.cs" />

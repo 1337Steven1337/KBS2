@@ -15,8 +15,8 @@ namespace Client
 {
     public partial class Form1 : Form
     {
-        public int Question_Id;
-        public int List_Id;
+        private int Question_Id;
+
         public Form1()
         {
             InitializeComponent();

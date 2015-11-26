@@ -9,7 +9,7 @@ namespace Server.Models
 {
     [DataContract]
     [KnownType(typeof(Server.Models.Question))]
-    public class List
+    public class QuestionList
     {
         [Key]
         [DataMember]
@@ -22,7 +22,7 @@ namespace Server.Models
         [DataMember]
         public ICollection<Question> Questions { get; set; }
 
-        public List()
+        public QuestionList()
         {
             //this.Questions = new List<Question>();
         }
