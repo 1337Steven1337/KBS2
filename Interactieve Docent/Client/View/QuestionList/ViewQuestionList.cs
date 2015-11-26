@@ -26,9 +26,9 @@ namespace Client.View.QuestionList
             this.controller = controller;
         }
 
-        public void loadList()
+        public void fillList(List<Model.QuestionList> lists)
         {
-            listBoxQuestionLists.DataSource = List.getAll();
+            listBoxQuestionLists.DataSource = lists;
             listBoxQuestionLists.DisplayMember = "Name";
             listBoxQuestionLists.ValueMember = "Id";
         }

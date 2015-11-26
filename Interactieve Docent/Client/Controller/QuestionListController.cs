@@ -1,12 +1,14 @@
-﻿using Client.View.QuestionList;
+﻿using Client.Factory;
+using Client.View.QuestionList;
 using System.Windows.Forms;
 
 namespace Client.Controller
 {
     public class QuestionListController
     {
-        IQuestionListView view;
-        Panel panel;
+        private IQuestionListView view;
+        private Panel panel;
+        private QuestionListFactory factory = new QuestionListFactory();
 
         public QuestionListController(IQuestionListView view, Panel panel)
         {
@@ -15,6 +17,11 @@ namespace Client.Controller
             this.view.setController(this);
                        
             panel.Controls.Add(view.getPanel());
+        }
+
+        private void loadList()
+        {
+            factory.findAll(this.view.fillList);
         }
     }
 }

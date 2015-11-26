@@ -1,4 +1,5 @@
 ﻿using Client.Controller;
+using System.Collections.Generic;
 using System.Windows.Forms;
 
 namespace Client.View.QuestionList
@@ -7,5 +8,6 @@ namespace Client.View.QuestionList
     {
         void setController(QuestionListController controller);
         Panel getPanel();
+        void fillList(List<Model.QuestionList> lists);
     }
 }
