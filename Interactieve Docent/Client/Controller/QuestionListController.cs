@@ -1,16 +1,22 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Client.View.QuestionList;
+using System.Windows.Forms;
 
 namespace Client.Controller
 {
     public class QuestionListController
     {
-        public QuestionListController()
-        {
+        IQuestionListView view;
+        Panel panel;
 
+        public QuestionListController(IQuestionListView view, Panel panel)
+        {
+            this.panel = panel;
+            this.view = view;
+            this.view.setController(this);
+
+            Label q = new Label();
+            q.Text = "wdwad";
+            panel.Controls.Add(q);
         }
     }
 }
