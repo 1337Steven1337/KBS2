@@ -113,8 +113,10 @@
     <Compile Include="API\Models\Question.cs" />
     <Compile Include="API\Models\UserAnswer.cs" />
     <Compile Include="API\SignalR.cs" />
+    <Compile Include="Controller\PredefinedAnswerController.cs" />
     <Compile Include="Controller\QuestionController.cs" />
     <Compile Include="Controller\QuestionListController.cs" />
+    <Compile Include="Controller\UserAnswerController.cs" />
     <Compile Include="diagram.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -155,8 +157,10 @@
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="IContext.cs" />
+    <Compile Include="Model\PredefinedAnswer.cs" />
     <Compile Include="Model\Question.cs" />
     <Compile Include="Model\QuestionList.cs" />
+    <Compile Include="Model\UserAnswer.cs" />
     <Compile Include="Properties\Api.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
@@ -177,6 +181,13 @@
     <Compile Include="Student\Questions.Designer.cs">
       <DependentUpon>Questions.cs</DependentUpon>
     </Compile>
+    <Compile Include="View\PredefinedAnswer\IPredefinedAnswerView.cs" />
+    <Compile Include="View\PredefinedAnswer\ViewPredefinedAnswer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\PredefinedAnswer\ViewPredefinedAnswer.Designer.cs">
+      <DependentUpon>ViewPredefinedAnswer.cs</DependentUpon>
+    </Compile>
     <Compile Include="View\QuestionList\IQuestionListView.cs" />
     <Compile Include="View\QuestionList\ViewQuestionList.cs">
       <SubType>Form</SubType>
@@ -190,6 +201,13 @@
     </Compile>
     <Compile Include="View\Question\ViewQuestion.Designer.cs">
       <DependentUpon>ViewQuestion.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\UserAnswer\IUserAnswerView.cs" />
+    <Compile Include="View\UserAnswer\ViewUserAnswer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\UserAnswer\ViewUserAnswer.Designer.cs">
+      <DependentUpon>ViewUserAnswer.cs</DependentUpon>
     </Compile>
     <EmbeddedResource Include="Answers.resx">
       <DependentUpon>Answers.cs</DependentUpon>
