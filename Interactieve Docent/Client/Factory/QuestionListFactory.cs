@@ -6,6 +6,7 @@ using System.Collections.Specialized;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace Client.Factory
 {
@@ -27,9 +28,14 @@ namespace Client.Factory
             this.findById<QuestionList>(id, resource, callback);
         }
 
-        public void findAll(Action<List<QuestionList>> callback)
+        public void findAll(Control control, Action<List<QuestionList>> callback)
         {
-            this.findAll<QuestionList>(resource, callback);
+            this.findAll<QuestionList>(resource, control, callback);
+        }
+
+        public void findAllAsync(Action<List<QuestionList>> callback)
+        {
+            this.findAllAsync<QuestionList>(resource, callback);
         }
     }
 }

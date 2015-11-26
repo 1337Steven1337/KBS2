@@ -2,6 +2,7 @@
 using RestSharp;
 using System;
 using System.Collections.Generic;
+using System.Windows.Forms;
 
 namespace Client.Factory
 {
@@ -25,9 +26,14 @@ namespace Client.Factory
             this.findById<Question>(id, resource, callback);
         }
 
-        public void findAll(Action<List<Question>> callback)
+        public void findAll(Control control, Action<List<Question>> callback)
         {
-            this.findAll<Question>(resource, callback);
+            this.findAll<Question>(resource, control, callback);
+        }
+
+        public void findAllAsync(Action<List<Question>> callback)
+        {
+            this.findAllAsync<Question>(resource, callback);
         }
     }
 }

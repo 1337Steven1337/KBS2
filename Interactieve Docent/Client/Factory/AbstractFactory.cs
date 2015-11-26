@@ -1,8 +1,7 @@
 ﻿using RestSharp;
 using System;
 using System.Collections.Generic;
-using System.Collections.Specialized;
-using System.Threading;
+using System.Windows.Forms;
 
 namespace Client.Factory
 {
@@ -45,7 +44,15 @@ namespace Client.Factory
             });
         }
 
-        protected void findAll<T>(string resource, Action<List<T>> callback) where T : new()
+        protected void findAll<T>(string resource, Control control, Action<List<T>> callback) where T : new()
+        {
+            this.findAllAsync<T>(resource, o =>
+            {
+                control.Invoke(callback);
+            });
+        }
+
+        protected void findAllAsync<T>(string resource, Action<List<T>> callback) where T : new()
         {
             RestRequest request = new RestRequest();
             request.Resource = resource;
