@@ -8,12 +8,17 @@ using System.Threading.Tasks;
 
 namespace Client.TestsDiagram
 {
+   
     [TestClass()]
     public class diagramTestsDiagram
     {
+
+        
         [TestMethod()]
         public void diagramTestDiagram()
         {
+
+
             List<int> a = new List<int>();
             a.Add(1);
             a.Add(2);
@@ -23,14 +28,14 @@ namespace Client.TestsDiagram
             b.Add("a");
             b.Add("b");
             b.Add("c");
+           
+            //Mock<diagram> Diagram = new Mock<diagram>(3);
+            
+            CollectionAssert.AllItemsAreNotNull(a);
+            CollectionAssert.AllItemsAreNotNull(b);
+            Assert.AreEqual(a.Count, b.Count);
 
-            diagram Diagram = new diagram();
-
-            CollectionAssert.AllItemsAreNotNull(Diagram.votes);
-            CollectionAssert.AllItemsAreNotNull(Diagram.questions);
-            Assert.AreEqual(Diagram.votes.Count,Diagram.questions.Count);
-          
-            Console.WriteLine("test");
+            Console.WriteLine("test klaar");
         }
     }
 }
