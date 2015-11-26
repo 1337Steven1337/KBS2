@@ -22,10 +22,10 @@ namespace Client
         public int Question_Id;
 
         public Question question;
+        
+        private Dictionary<string, int> questionVotes = new Dictionary<string, int>();
 
         private SignalR signalR;
-
-        Dictionary<string, int> questionVotes = new Dictionary<string, int>();
 
         public diagram(int Question_Id)
         {
