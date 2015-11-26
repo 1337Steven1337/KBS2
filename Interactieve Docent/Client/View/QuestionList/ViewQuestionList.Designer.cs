@@ -44,11 +44,12 @@
             // 
             // listBoxQuestionLists
             // 
+            this.listBoxQuestionLists.Dock = System.Windows.Forms.DockStyle.Fill;
             this.listBoxQuestionLists.FormattingEnabled = true;
             this.listBoxQuestionLists.ItemHeight = 16;
-            this.listBoxQuestionLists.Location = new System.Drawing.Point(80, 54);
+            this.listBoxQuestionLists.Location = new System.Drawing.Point(0, 0);
             this.listBoxQuestionLists.Name = "listBoxQuestionLists";
-            this.listBoxQuestionLists.Size = new System.Drawing.Size(120, 84);
+            this.listBoxQuestionLists.Size = new System.Drawing.Size(282, 253);
             this.listBoxQuestionLists.TabIndex = 0;
             // 
             // ViewQuestionList

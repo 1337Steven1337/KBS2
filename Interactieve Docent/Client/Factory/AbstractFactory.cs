@@ -1,21 +1,20 @@
 ﻿using RestSharp;
 using System;
 using System.Collections.Generic;
-using System.Collections.Specialized;
-using System.Threading;
+using System.Windows.Forms;
 
 namespace Client.Factory
 {
     public abstract class AbstractFactory
     {
         #region Instances
-        private RestClient client = new RestClient();
+        private RestClient restClient = new RestClient();
         #endregion
 
         public AbstractFactory()
         {
-            client.BaseUrl = new Uri(Properties.Api.Default.Host + Properties.Api.Default.Rest);
-            client.AddDefaultHeader("Content-Type", "application/json");
+            restClient.BaseUrl = new Uri(Properties.Api.Default.Host + Properties.Api.Default.Rest);
+            restClient.AddDefaultHeader("Content-Type", "application/json");
         }
 
         protected void save<T>(Dictionary<String, object> data, string resource, Action<T> callback) where T : new()
@@ -29,7 +28,7 @@ namespace Client.Factory
                 request.AddParameter(entry.Key, entry.Value);
             }
                         
-            this.client.ExecuteAsync<T>(request, response => {
+            this.restClient.ExecuteAsync<T>(request, response => {
                 callback(response.Data);
             });
         }
@@ -40,17 +39,25 @@ namespace Client.Factory
             request.Resource = resource;
             request.AddParameter("Id", id);
 
-            this.client.ExecuteAsync<T>(request, response => {
+            this.restClient.ExecuteAsync<T>(request, response => {
                 callback(response.Data);
             });
         }
 
-        protected void findAll<T>(string resource, Action<List<T>> callback) where T : new()
+        protected void findAll<T>(string resource, Control control, Action<List<T>> callback) where T : new()
+        {
+            this.findAllAsync<T>(resource, o =>
+            {
+                control.Invoke(callback, o);
+            });
+        }
+
+        protected void findAllAsync<T>(string resource, Action<List<T>> callback) where T : new()
         {
             RestRequest request = new RestRequest();
             request.Resource = resource;
 
-            this.client.ExecuteAsync<List<T>>(request, response => {
+            this.restClient.ExecuteAsync<List<T>>(request, response => {
                 callback(response.Data);
             });
         }

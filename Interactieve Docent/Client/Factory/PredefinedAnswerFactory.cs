@@ -1,6 +1,7 @@
 ﻿using Client.Model;
 using System;
 using System.Collections.Generic;
+using System.Windows.Forms;
 
 namespace Client.Factory
 {
@@ -22,9 +23,14 @@ namespace Client.Factory
             this.findById<PredefinedAnswer>(id, resource, callback);
         }
 
-        public void findAll(Action<List<PredefinedAnswer>> callback)
+        public void findAll(Control control, Action<List<PredefinedAnswer>> callback)
         {
-            this.findAll<PredefinedAnswer>(resource, callback);
+            this.findAll<PredefinedAnswer>(resource, control, callback);
+        }
+
+        public void findAllAsync(Action<List<PredefinedAnswer>> callback)
+        {
+            this.findAllAsync<PredefinedAnswer>(resource, callback);
         }
     }
 }
