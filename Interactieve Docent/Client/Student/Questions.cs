@@ -19,20 +19,50 @@ namespace Client.Student
         private int List_Id { get; set; }
         private int currentQuestionIndex = -1;
         private bool busy = false;
+        static int ButtonCounter = 0;
+        static int ButtonCounterHorizontal = 0;
+        static int ButtonCounterVertical = 1;
         private List<Button> answerButtons = new List<Button>();
 
-        private ProgressBar timerProgressBar;
-        private Label questionLabel;
 
         private List list = null;
         private Question currentQuestion = null;
+        private Timer questionTimer = new Timer();
         private SignalR signalR = null;
 
         public Questions(int List_Id)
         {
             InitializeComponent();
-
             this.List_Id = List_Id;
+            this.Size = new Size((int)(Screen.PrimaryScreen.Bounds.Width * 0.8), (int)(Screen.PrimaryScreen.Bounds.Height * 0.8));
+
+            // tijdelijke button
+            questionLabel.Size = new Size((int)(this.Width/10*7) - 50,(int)(this.Height/10*5) - 50);
+
+            questionLabel.Location = new Point(50,50);
+
+
+            chatBox.Size = new Size(this.Width/10*3,this.Height/10*9);
+            chatBoxMessage.Size = new Size(this.Width/10*2, this.Height/10);
+            sendMessageButton.Size = new Size(this.Width/10, this.Height/10);
+
+            chatBox.Location = new Point(this.Width/10*7,0);
+            chatBoxMessage.Location = new Point(this.Width/10*7,this.Location.Y+chatBox.Height);
+            sendMessageButton.Location = new Point(this.Width/10*9, this.Location.Y+chatBox.Height);
+
+
+            tempBtn.Size = new Size(this.Width / 10 * 7, (this.Height / 10 * 3));
+            questionTimeProgressBar.Size = new Size(this.Width/10*7,this.Size.Height/10);
+
+            tempBtn.Location = new Point(this.Location.X, this.Location.Y + this.Size.Height - ((this.Height / 10 * 3)));
+            questionTimeProgressBar.Location = new Point(0,this.Location.Y + this.Size.Height/2 + this.Size.Height/10);
+
+        }
+
+
+        private void Question_TimerStop(object sender, EventArgs e){
+            questionTimer.Stop();
+            MessageBox.Show("Tijd is voorbij!");
         }
 
         private void Questions_Load(object sender, EventArgs e)
@@ -45,19 +75,28 @@ namespace Client.Student
             this.signalR.connect();
 
             this.goToNextQuestion();
-
-
-            //Controls.Add(timerProgressBar);
-            //Controls.Add(questionLabel);
         }
 
         private Button createAnswerButton(PredefinedAnswer answer)
         {
             Button option = new Button();
             option.Text = answer.Text;
-            option.Name = answer.Id.ToString();
+            option.Location = new Point(Width / 2 + option.Width * (ButtonCounterHorizontal), Height - option.Height * (4 - ButtonCounterVertical));
+            ButtonCounter++;
+            if (ButtonCounter % 2 == 0)
+            {
+                ButtonCounterVertical++;
+                ButtonCounter = 0;
+            }
+            if (ButtonCounterHorizontal <= 2)
+            {
+                ButtonCounterHorizontal += 1;
+            }
+            else
+            {
+                ButtonCounterHorizontal = 0;
+            }
 
-            layoutPanel.Controls.Add(option, 0, 0);
 
             return option;
         }
@@ -79,7 +118,12 @@ namespace Client.Student
                 busy = true;
                 cleanUpPreviousQuestion();
                 currentQuestion = Question.getById(list.Questions[currentQuestionIndex].Id);
+                MessageBox.Show("" + currentQuestion.Time);
+               // questionTimer.Interval = currentQuestion.Time * 1000;
+               // questionTimer.Tick += Question_TimerStop;
+               // questionTimer.Start();
 
+                questionLabel.Text = currentQuestion.Text;
                 Console.WriteLine(currentQuestion.PredefinedAnswers.Count);
 
                 foreach (PredefinedAnswer pa in currentQuestion.PredefinedAnswers)
@@ -132,13 +176,9 @@ namespace Client.Student
             return SecondsLeft;
         }
 
-        private Label createQuestionLabel()
+        private void richTextBox1_TextChanged(object sender, EventArgs e)
         {
-            Label QuestionLabel = new Label();
-            QuestionLabel.Width = Width;
-            QuestionLabel.TextAlign = ContentAlignment.MiddleCenter;
 
-            return QuestionLabel;
         }
     }
 }

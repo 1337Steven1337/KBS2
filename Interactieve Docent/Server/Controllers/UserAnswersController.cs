@@ -9,10 +9,12 @@ using System.Web.Http.Description;
 using Server.Models;
 using Server.Models.DTO;
 using Server.Models.Context;
+using Server;
+using Server.Hubs;
 
 namespace Server.Controllers
 {
-    public class UserAnswersController : ApiController
+    public class UserAnswersController : ApiControllerWithHub<EventHub>
     {
         private IDocentAppContext db = new ServerContext();
 
@@ -95,9 +97,13 @@ namespace Server.Controllers
             {
                 return BadRequest(ModelState);
             }
-
+            
             db.UserAnswers.Add(userAnswer);
             await db.SaveChangesAsync();
+
+            Question question = db.Questions.Find(userAnswer.Question_Id);
+
+            this.getSubscribed(question.List_Id).UserAnswerAdded(new UserAnswerDTO(userAnswer));
 
             return CreatedAtRoute("DefaultApi", new { id = userAnswer.Id }, userAnswer);
         }

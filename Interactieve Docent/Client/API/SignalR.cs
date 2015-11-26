@@ -16,12 +16,14 @@ namespace Client.API
         public delegate void ConnectionStatusChanged(StateChange message);
         public delegate void SubscriptionStatusChanged(SubscriptionStatus message);
         public delegate void NewQuestionAdded(Question question);
+        public delegate void NewUserAnswerAdded(UserAnswer userAnswer);
         #endregion
 
         #region Events
         public event ConnectionStatusChanged connectionStatusChanged;
         public event SubscriptionStatusChanged subscriptionStatusChanged;
         public event NewQuestionAdded newQuestionAdded;
+        public event NewUserAnswerAdded newUserAnswerAdded;
         #endregion
 
         #region Properties
@@ -43,6 +45,7 @@ namespace Client.API
             this.proxy = this.connection.CreateHubProxy("EventHub");
 
             this.proxy.On<Question>("QuestionAdded", this.onQuestionAdded);
+            this.proxy.On<UserAnswer>("UserAnswerAdded", this.onUserAnswerAdded);
 
             try
             {
@@ -93,6 +96,18 @@ namespace Client.API
             if(this.newQuestionAdded != null)
             {
                 this.newQuestionAdded(q);
+            }
+        }
+
+        /// <summary>
+        /// Calls the useranswer added event
+        /// </summary>
+        /// <param name="ua">The useranswer which was added to the list</param>
+        private void onUserAnswerAdded(UserAnswer ua)
+        {
+            if(this.newUserAnswerAdded != null)
+            {
+                this.newUserAnswerAdded(ua);
             }
         }
 

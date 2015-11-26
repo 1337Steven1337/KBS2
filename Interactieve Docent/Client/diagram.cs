@@ -1,4 +1,5 @@
-﻿using Client.API.Models;
+﻿using Client.API;
+using Client.API.Models;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -17,26 +18,70 @@ namespace Client
     {
         public List<string> questions;
         public List<int> votes;
-        Dictionary<string, int> questionVotes = new Dictionary<string, int>();
-        public Question question;
+
         public int Question_Id;
+
+        public Question question;
+
+        private SignalR signalR;
+
+        Dictionary<string, int> questionVotes = new Dictionary<string, int>();
 
         public diagram(int Question_Id)
         {
             this.Question_Id = Question_Id;
             InitializeComponent();
-            Controller();
             Invalidate();
         }
 
-        public void Controller(){
+        private void diagram_Load(object sender, EventArgs e)
+        {
+            //select a question
+            question = Question.getById(Question_Id);
+            Controller();
+            this.signalR = new SignalR();
+            this.signalR.connectionStatusChanged += SignalR_connectionStatusChanged;
+            this.signalR.subscriptionStatusChanged += SignalR_subscriptionStatusChanged;
+            this.signalR.newUserAnswerAdded += SignalR_newUserAnswerAdded;
+            this.signalR.connect();
+        }
+
+        private void SignalR_newUserAnswerAdded(UserAnswer userAnswer)
+        {
+            this.question.UserAnswers.Add(userAnswer);
+            Controller();
+        }
+
+        private void SignalR_subscriptionStatusChanged(API.EventArgs.SubscriptionStatus message)
+        {
+            
+        }
+
+        private void SignalR_connectionStatusChanged(Microsoft.AspNet.SignalR.Client.StateChange message)
+        {
+            if(message.NewState == Microsoft.AspNet.SignalR.Client.ConnectionState.Connected)
+            {
+                signalR.subscribe(question.List_Id);
+            }
+            else if(message.NewState == Microsoft.AspNet.SignalR.Client.ConnectionState.Connecting){
+
+            }
+            else
+            {
+                MessageBox.Show("Helaas! Faggot..");
+            }
+        }
+
+        public void Controller()
+        {
             GetData();
-            MakeDiagram(votes, questions, question.Text);
+            this.Invoke((Action)delegate () { MakeDiagram(votes, questions, question.Text); });
         }
 
         public void MakeDiagram(List<int> values, List<string> answerNames, string question)
         {
-            
+            chart1.Series.Clear();
+
             //add columns to the diagram
             for (int i = 0; i < answerNames.Count; i++)
             {
@@ -64,17 +109,10 @@ namespace Client
 
         public void GetData()
         {
-            //select a question
-            question = Question.getById(Question_Id);
-            
-
             //if the predefinedanswer is empty zet votes to zero
             foreach (PredefinedAnswer preAnswer in question.PredefinedAnswers)
             {
-                if (!questionVotes.ContainsKey(preAnswer.Text))
-                {
-                    questionVotes[preAnswer.Text] = 0;
-                }
+                questionVotes[preAnswer.Text] = 0;
             }
 
             //for every given answer were the userAnswer_Id is equal to a PredefinedAnswer_Id add one to votes
@@ -83,7 +121,6 @@ namespace Client
                 string text = question.PredefinedAnswers.Find(x => x.Id == answer.PredefinedAnswer_Id).Text;
                 questionVotes[text] += 1;
             }
-
 
             votes = questionVotes.Values.ToList<int>();
             questions = questionVotes.Keys.ToList<string>();
@@ -102,6 +139,10 @@ namespace Client
             Controller();
 
         }
-        
+
+        private void chart1_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
