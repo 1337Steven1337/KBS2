@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Client.Model
 {
-    class PredefinedAnswer
+    public class PredefinedAnswer
     {
         public int Id { get; private set; }
         public int Question_Id { get; private set; }

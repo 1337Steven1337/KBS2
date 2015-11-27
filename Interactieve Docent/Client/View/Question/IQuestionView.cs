@@ -1,14 +1,13 @@
-﻿using System;
+﻿using Client.Controller;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Client.Controller;
+using System.Windows.Forms;
 
 namespace Client.View.Question
 {
     public interface IQuestionView
     {
         void setController(QuestionController controller);
+        Panel getPanel();
+        void fillList(List<Model.Question> list);
     }
 }

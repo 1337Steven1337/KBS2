@@ -2,7 +2,7 @@
 using Client.Controller;
 using Client.View.Tabs;
 using Client.View.QuestionList;
-using Client.View.Question;
+using Client.View.Diagram;
 
 namespace Client
 {
@@ -14,20 +14,21 @@ namespace Client
         {
             ViewTabs view = new ViewTabs();
             controller = new TabsController(view);
-
+            
             InitializeComponent();
         }
 
         private void button1_Click(object sender, System.EventArgs e)
         {
             ViewQuestionList view = new ViewQuestionList();
-            QuestionListController controller = new QuestionListController(view, panel);
+            QuestionListController controller = new QuestionListController(view, panel);                                   
         }
 
         private void button2_Click(object sender, System.EventArgs e)
         {
-            ViewQuestion view = new ViewQuestion();
-            QuestionController controller = new QuestionController(view, panel);
+            ViewDiagram view = new ViewDiagram();
+            DiagramController controller = new DiagramController(view, panel);
         }
+
     }
 }

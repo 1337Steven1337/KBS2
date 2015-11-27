@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Client.Controller;
+using Client.Factory;
 
 namespace Client.View.QuestionList
 {
@@ -18,11 +19,24 @@ namespace Client.View.QuestionList
         public ViewQuestionList()
         {
             InitializeComponent();
+            
         }
 
         public void setController(QuestionListController controller)
         {
             this.controller = controller;
+        }
+
+        public void fillList(List<Model.QuestionList> lists)
+        {
+            listBoxQuestionLists.DataSource = lists;
+            listBoxQuestionLists.DisplayMember = "Name";
+            listBoxQuestionLists.ValueMember = "Id";
+        }
+
+        public Panel getPanel()
+        {
+            return panel;
         }
     }
 }
