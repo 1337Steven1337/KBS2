@@ -1,4 +1,5 @@
 ﻿using Client.Model;
+using Microsoft.AspNet.SignalR.Client;
 using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
@@ -7,8 +8,58 @@ namespace Client.Factory
 {
     public class QuestionFactory : AbstractFactory
     {
-        private const string resource = "Questions";
+        #region Delegates
+        public delegate void QuestionAdded(Question question);
+        public delegate void QuestionRemoved(Question question);
+        public delegate void QuestionUpdated(Question question);
+        #endregion
 
+        #region Events
+        public event QuestionAdded questionAdded;
+        public event QuestionRemoved questionRemoved;
+        public event QuestionUpdated questionUpdated;
+        #endregion
+
+        #region Constants
+        private const string resource = "Questions";
+        #endregion
+
+        #region Constructors
+        public QuestionFactory()
+        {
+            this.signalRClient.proxy.On<Question>("QuestionAdded", this.onQuestionAdded);
+            this.signalRClient.proxy.On<Question>("QuestionRemoved", this.onQuestionRemoved);
+            this.signalRClient.proxy.On<Question>("QuestionUpdated", this.onQuestionUpdated);
+        }
+        #endregion
+
+        #region Actions
+        private void onQuestionAdded(Question q)
+        {
+            if (this.questionAdded != null)
+            {
+                this.questionAdded(q);
+            }
+        }
+
+        private void onQuestionRemoved(Question q)
+        {
+            if (this.questionRemoved != null)
+            {
+                this.questionRemoved(q);
+            }
+        }
+
+        private void onQuestionUpdated(Question q)
+        {
+            if (this.questionUpdated != null)
+            {
+                this.questionUpdated(q);
+            }
+        }
+        #endregion
+
+        #region Methods
         public void save(Question question, Action<Question> callback)
         {
             Dictionary<string, object> values = new Dictionary<string, object>();
@@ -34,5 +85,6 @@ namespace Client.Factory
         {
             this.findAllAsync<Question>(resource, callback);
         }
+        #endregion
     }
 }

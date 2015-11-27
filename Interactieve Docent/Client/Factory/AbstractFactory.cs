@@ -1,4 +1,5 @@
-﻿using RestSharp;
+﻿using Client.Service.SignalR;
+using RestSharp;
 using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
@@ -9,12 +10,15 @@ namespace Client.Factory
     {
         #region Instances
         private RestClient restClient = new RestClient();
+        protected SignalRClient signalRClient = null;
         #endregion
 
         public AbstractFactory()
         {
-            restClient.BaseUrl = new Uri(Properties.Api.Default.Host + Properties.Api.Default.Rest);
-            restClient.AddDefaultHeader("Content-Type", "application/json");
+            this.restClient.BaseUrl = new Uri(Properties.Api.Default.Host + Properties.Api.Default.Rest);
+            this.restClient.AddDefaultHeader("Content-Type", "application/json");
+
+            this.signalRClient = SignalRClient.getInstance();
         }
 
         protected void save<T>(Dictionary<String, object> data, string resource, Action<T> callback) where T : new()

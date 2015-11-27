@@ -1,4 +1,5 @@
 ﻿using Client.Model;
+using Microsoft.AspNet.SignalR.Client;
 using RestSharp;
 using System;
 using System.Collections.Generic;
@@ -13,11 +14,6 @@ namespace Client.Factory
     public class QuestionListFactory : AbstractFactory
     {
         private const string resource = "QuestionLists";
-
-        public QuestionListFactory()
-        {
-            
-        }
 
         public void save(QuestionList list, Action<QuestionList> callback)
         {

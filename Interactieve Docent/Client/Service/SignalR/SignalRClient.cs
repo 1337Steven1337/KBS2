@@ -5,7 +5,7 @@ using System.Net.Http;
 
 namespace Client.Service.SignalR
 {
-    public class Client
+    public class SignalRClient
     {
         #region Delegates
         public delegate void ConnectionStatusChanged(StateChange message);
@@ -19,11 +19,17 @@ namespace Client.Service.SignalR
 
         #region Properties
         private int subscribed = -1;
+        private static SignalRClient client { get; set; }
 
-        public IHubProxy proxy { get; private set; }
         private HubConnection connection { get; set; }
+        public IHubProxy proxy { get; private set; }
+        #endregion
 
-        private static Client client { get; set; }
+        #region Constructors
+        private SignalRClient()
+        {
+
+        }
         #endregion
 
         #region Methods
@@ -89,14 +95,14 @@ namespace Client.Service.SignalR
             }
         }
 
-        public static Client getInstance()
+        public static SignalRClient getInstance()
         {
-            if(Client.client == null)
+            if(SignalRClient.client == null)
             {
-                Client.client = new Client();
+                SignalRClient.client = new SignalRClient();
             }
 
-            return Client.client;
+            return SignalRClient.client;
         }
         #endregion
     }
