@@ -12,7 +12,7 @@ using Client.Controller;
 namespace Client.View.UserAnswer
 {
     //extend Form and implement IUserAnswerView
-    public partial class ViewUserAnswer : Form, IUserAnswerView
+    public partial class ViewUserAnswer : Form
     {
         private UserAnswerController Controller;
 

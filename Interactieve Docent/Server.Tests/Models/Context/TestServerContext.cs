@@ -21,7 +21,7 @@ namespace Server.Tests.Models.Context
         }
 
         public DbSet<Server.Models.Question> Questions { get; set; }
-        public DbSet<Server.Models.QuestionList> QuestionLists { get; set; }
+        public DbSet<Server.Models.QuestionList> QuestionList { get; set; }
         public DbSet<Server.Models.UserAnswer> UserAnswers { get; set; }
         public DbSet<Server.Models.PredefinedAnswer> PredefinedAnswers { get; set; }
 

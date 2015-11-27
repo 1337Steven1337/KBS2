@@ -33,11 +33,9 @@ namespace Client.Student
         private List list = null;
         private List<Button> answerButtons = new List<Button>();
 
-        private ProgressBar timerProgressBar;
-
         private Question currentQuestion = null;
         private Timer questionTimer = new Timer();
-        private Timer progressBarTimer = new Timer();
+        private int TimerLimit = -1;
         private SignalR signalR = null;
 
         public Questions(int List_Id)
@@ -50,7 +48,6 @@ namespace Client.Student
             questionLabel.Size = new Size((int)(this.Width/10*7) - 50,(int)(this.Height/10*5) - 50);
 
             questionLabel.Location = new Point(50,50);
-
 
             chatBox.Size = new Size(this.Width/10*3,this.Height/10*9);
             chatBoxMessage.Size = new Size(this.Width/10*2, this.Height/10);
@@ -67,18 +64,22 @@ namespace Client.Student
             tempBtn.Location = new Point(this.Location.X, this.Location.Y + this.Size.Height - ((this.Height / 10 * 3)));
             questionTimeProgressBar.Location = new Point(0,this.Location.Y + this.Size.Height/2 + this.Size.Height/10);
 
+            timeLabel.Location = new Point(questionTimeProgressBar.Location.X + questionTimeProgressBar.Width / 2 - timeLabel.Width / 2, questionTimeProgressBar.Location.Y + questionTimeProgressBar.Height / 2 - timeLabel.Height / 2);
+
         }
 
 
-        private void Question_UpdateProgressBar(object sender, EventArgs e)
+        private void Question_Timer(object sender, EventArgs e)
         {
-            questionTimeProgressBar.Value -= questionTimeProgressBar.Maximum / currentQuestion.Time / 100;
-        }
-
-        private void Question_TimerStop(object sender, EventArgs e)
-        {
-            questionTimer.Stop();
-            progressBarTimer.Stop();
+            if (questionTimeProgressBar.Value > 0)
+            {
+                questionTimeProgressBar.Value--;
+                timeLabel.Text = "" +  questionTimeProgressBar.Value;
+            }else if (questionTimeProgressBar.Value <= 0)
+            {
+                questionTimer.Stop();
+                goToNextQuestion();
+            }
         }
 
         private void Questions_Load(object sender, EventArgs e)
@@ -162,23 +163,16 @@ namespace Client.Student
                 busy = true;
                 cleanUpPreviousQuestion();
                 currentQuestion = Question.getById(list.Questions[currentQuestionIndex].Id);
-
-                questionTimeProgressBar.Maximum = currentQuestion.Time * 1000;
-                questionTimeProgressBar.Value = currentQuestion.Time * 1000;
-
-                questionTimer.Interval = currentQuestion.Time * 1000;
-                questionTimer.Tick += Question_TimerStop;
+                questionTimeProgressBar.Maximum = currentQuestion.Time;
+                questionTimeProgressBar.Value = currentQuestion.Time;
+                TimerLimit = currentQuestion.Time;
+                questionTimer.Interval = 1000;
+                questionTimer.Tick += Question_Timer;
                 questionTimer.Start();
-
-                progressBarTimer.Interval = 10;
-                progressBarTimer.Tick += Question_UpdateProgressBar;
-                progressBarTimer.Start();
-                
-
                 questionLabel.Text = currentQuestion.Text;
 
 
-                    adjustSizeOfButtons(currentQuestion);
+               adjustSizeOfButtons(currentQuestion);
                 
             }
             else if (list.Ended)
