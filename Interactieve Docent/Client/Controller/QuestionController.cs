@@ -1,4 +1,5 @@
 ﻿using Client.View.Question;
+using Client.View.PanelLayout;
 using System.Windows.Forms;
 using Client.Factory;
 
@@ -7,21 +8,29 @@ namespace Client.Controller
     public class QuestionController
     {
         private IQuestionView view;
-        private Panel panel;
+        private TableLayoutPanel mainTable, threeColTable;
+        private ListBox listBox;
+        private CustomPanel customPanel;
         private QuestionFactory factory = new QuestionFactory();
 
-        public QuestionController(IQuestionView view, Panel panel)
+        public QuestionController(IQuestionView view, TableLayoutPanel mainTable, TableLayoutPanel threeColTable)
         {
-            this.panel = panel;
+            this.mainTable = mainTable;
+            this.threeColTable = threeColTable;
+            this.listBox = view.getListBox();
+            this.customPanel = view.getCustomPanel();
             this.view = view;
             this.view.setController(this);
 
-            this.panel.Controls.Add(view.getPanel());
+            customPanel.middleRow.Controls.Add(listBox);
+
+            threeColTable.Controls.Add(customPanel.getPanel(), 1, 0);
         }
 
-        private void loadQuestion()
+        public void loadQuestions(int listId)
         {
-            factory.findAll(this.panel, this.view.fillList);
+            view.listId = listId;
+            factory.findAll(mainTable, this.view.fillList);
         }
     }
 }

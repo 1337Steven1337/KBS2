@@ -1,13 +1,18 @@
 ﻿using Client.Controller;
 using System.Collections.Generic;
 using System.Windows.Forms;
+using Client.View.PanelLayout;
+using Client.Model;
+using System;
 
 namespace Client.View.Question
 {
     public interface IQuestionView
     {
         void setController(QuestionController controller);
-        Panel getPanel();
+        ListBox getListBox();
+        CustomPanel getCustomPanel();
         void fillList(List<Model.Question> list);
+        int listId { get; set; }
     }
 }

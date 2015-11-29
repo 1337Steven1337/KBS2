@@ -1,29 +1,48 @@
 ﻿using Client.Factory;
 using Client.View.QuestionList;
 using System.Windows.Forms;
+using Client.View.Question;
+using Client.View.PanelLayout;
 
 namespace Client.Controller
 {
     public class QuestionListController
     {
         private IQuestionListView view;
-        private Panel panel;
+        private TableLayoutPanel mainTable, threeColTable;
+        private ListBox listBox;
+        private CustomPanel customPanel;
         private QuestionListFactory factory = new QuestionListFactory();
+        private QuestionController questionController;
 
-        public QuestionListController(IQuestionListView view, Panel panel)
+        public QuestionListController(IQuestionListView view, TableLayoutPanel mainTable, TableLayoutPanel threeColTable, QuestionController questionController)
         {
-            this.panel = panel;
+            this.mainTable = mainTable;
+            this.threeColTable = threeColTable;
+            this.listBox = view.getListBox();
+            this.customPanel = view.getCustomPanel();
             this.view = view;
             this.view.setController(this);
-                       
-            panel.Controls.Add(view.getPanel());
+            this.questionController = questionController;
 
-            loadList();
+            customPanel.middleRow.Controls.Add(listBox);
+            customPanel.title.Text = "VragenLijsten";
+
+            threeColTable.Controls.Add(customPanel.getPanel(), 0, 0);
+            mainTable.Controls.Add(threeColTable, 1, 0);
+
+            loadLists();
+            listBox.SelectedIndexChanged += listBox_SelectedIndexChanged;
         }
 
-        private void loadList()
+        private void loadLists()
         {
-            factory.findAll(panel, this.view.fillList);
+            factory.findAll(mainTable, this.view.fillList);
+        }
+
+        private void listBox_SelectedIndexChanged(object sender, System.EventArgs e)
+        {
+            questionController.loadQuestions(62);
         }
     }
 }

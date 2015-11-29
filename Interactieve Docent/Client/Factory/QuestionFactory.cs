@@ -27,9 +27,9 @@ namespace Client.Factory
         #region Constructors
         public QuestionFactory()
         {
-            this.signalRClient.proxy.On<Question>("QuestionAdded", this.onQuestionAdded);
-            this.signalRClient.proxy.On<Question>("QuestionRemoved", this.onQuestionRemoved);
-            this.signalRClient.proxy.On<Question>("QuestionUpdated", this.onQuestionUpdated);
+            //this.signalRClient.proxy.On<Question>("QuestionAdded", this.onQuestionAdded);
+            //this.signalRClient.proxy.On<Question>("QuestionRemoved", this.onQuestionRemoved);
+            //this.signalRClient.proxy.On<Question>("QuestionUpdated", this.onQuestionUpdated);
         }
         #endregion
 

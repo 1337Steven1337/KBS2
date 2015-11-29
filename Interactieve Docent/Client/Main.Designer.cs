@@ -32,9 +32,11 @@
             this.button2 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
             this.panel = new System.Windows.Forms.Panel();
-            this.tableLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
+            this.threeColTable = new System.Windows.Forms.TableLayoutPanel();
+            this.mainTable = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanelTabs = new System.Windows.Forms.TableLayoutPanel();
-            this.tableLayoutPanel.SuspendLayout();
+            this.panel.SuspendLayout();
+            this.mainTable.SuspendLayout();
             this.tableLayoutPanelTabs.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -49,7 +51,6 @@
             this.button1.TabIndex = 0;
             this.button1.Text = "Beheren lijsten";
             this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // button2
             // 
@@ -78,27 +79,42 @@
             // 
             // panel
             // 
+            this.panel.Controls.Add(this.threeColTable);
             this.panel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel.Location = new System.Drawing.Point(253, 3);
             this.panel.Name = "panel";
             this.panel.Size = new System.Drawing.Size(606, 480);
             this.panel.TabIndex = 3;
             // 
-            // tableLayoutPanel
+            // threeColTable
             // 
-            this.tableLayoutPanel.ColumnCount = 2;
-            this.tableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 250F));
-            this.tableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
-            this.tableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel.Controls.Add(this.panel, 1, 0);
-            this.tableLayoutPanel.Controls.Add(this.tableLayoutPanelTabs, 0, 0);
-            this.tableLayoutPanel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel.Location = new System.Drawing.Point(0, 0);
-            this.tableLayoutPanel.Name = "tableLayoutPanel";
-            this.tableLayoutPanel.RowCount = 1;
-            this.tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel.Size = new System.Drawing.Size(862, 486);
-            this.tableLayoutPanel.TabIndex = 4;
+            this.threeColTable.ColumnCount = 3;
+            this.threeColTable.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
+            this.threeColTable.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
+            this.threeColTable.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
+            this.threeColTable.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.threeColTable.Location = new System.Drawing.Point(0, 0);
+            this.threeColTable.Name = "threeColTable";
+            this.threeColTable.RowCount = 1;
+            this.threeColTable.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.threeColTable.Size = new System.Drawing.Size(606, 480);
+            this.threeColTable.TabIndex = 0;
+            // 
+            // mainTable
+            // 
+            this.mainTable.ColumnCount = 2;
+            this.mainTable.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 250F));
+            this.mainTable.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.mainTable.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.mainTable.Controls.Add(this.tableLayoutPanelTabs, 0, 0);
+            this.mainTable.Controls.Add(this.panel, 1, 0);
+            this.mainTable.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.mainTable.Location = new System.Drawing.Point(0, 0);
+            this.mainTable.Name = "mainTable";
+            this.mainTable.RowCount = 1;
+            this.mainTable.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.mainTable.Size = new System.Drawing.Size(862, 486);
+            this.mainTable.TabIndex = 4;
             // 
             // tableLayoutPanelTabs
             // 
@@ -122,11 +138,12 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(862, 486);
-            this.Controls.Add(this.tableLayoutPanel);
+            this.Controls.Add(this.mainTable);
             this.Name = "Main";
             this.Text = "Main";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
-            this.tableLayoutPanel.ResumeLayout(false);
+            this.panel.ResumeLayout(false);
+            this.mainTable.ResumeLayout(false);
             this.tableLayoutPanelTabs.ResumeLayout(false);
             this.tableLayoutPanelTabs.PerformLayout();
             this.ResumeLayout(false);
@@ -139,7 +156,8 @@
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.Panel panel;
-        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel;
+        private System.Windows.Forms.TableLayoutPanel mainTable;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanelTabs;
+        private System.Windows.Forms.TableLayoutPanel threeColTable;
     }
 }

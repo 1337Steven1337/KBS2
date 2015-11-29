@@ -125,6 +125,12 @@
     <Compile Include="diagram.Designer.cs">
       <DependentUpon>diagram.cs</DependentUpon>
     </Compile>
+    <Compile Include="DocentForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DocentForm.Designer.cs">
+      <DependentUpon>DocentForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Docent\AddListPopup.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -140,22 +146,16 @@
     <Compile Include="Docent\DocentControlUI.designer.cs">
       <DependentUpon>DocentControlUI.cs</DependentUpon>
     </Compile>
-    <Compile Include="DocentForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="DocentForm.Designer.cs">
-      <DependentUpon>DocentForm.cs</DependentUpon>
-    </Compile>
     <Compile Include="Docent\PanelLayout.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Docent\PanelRight.cs">
+    <Compile Include="Docent\PanelLeft.cs">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Docent\PanelMiddle.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Docent\PanelLeft.cs">
+    <Compile Include="Docent\PanelRight.cs">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Factory\AbstractFactory.cs" />
@@ -203,6 +203,8 @@
     <Compile Include="View\Diagram\ViewDiagram.Designer.cs">
       <DependentUpon>ViewDiagram.cs</DependentUpon>
     </Compile>
+    <Compile Include="View\PanelLayout\CustomPanel.cs" />
+    <Compile Include="View\PanelLayout\PLayout.cs" />
     <Compile Include="View\PredefinedAnswer\IPredefinedAnswerView.cs" />
     <Compile Include="View\PredefinedAnswer\ViewPredefinedAnswer.cs">
       <SubType>Form</SubType>
@@ -250,11 +252,11 @@
     <EmbeddedResource Include="Docent\DocentControlUI.resx">
       <DependentUpon>DocentControlUI.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Form1.resx">
-      <DependentUpon>Form1.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Docent\PanelLayout.resx">
       <DependentUpon>PanelLayout.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form1.resx">
+      <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Main.resx">
       <DependentUpon>Main.cs</DependentUpon>
@@ -276,6 +278,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="View\Diagram\ViewDiagram.resx">
       <DependentUpon>ViewDiagram.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\PanelLayout\PLayout.resx">
+      <DependentUpon>PLayout.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="View\QuestionList\ViewQuestionList.resx">
       <DependentUpon>ViewQuestionList.cs</DependentUpon>

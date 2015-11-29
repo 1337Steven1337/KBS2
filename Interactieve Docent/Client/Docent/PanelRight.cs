@@ -18,7 +18,7 @@ namespace Client
         private TextBox predefinedAnswerField;
         private Button addAnswerBtn, removeAnswerBtn;
 
-        public PanelRight(Form mainForm, TableLayoutPanel panelsTable) : base(mainForm)
+        public PanelRight(Form mainForm, TableLayoutPanel panelsTable) : base()
         {
             bottomRow.Controls.Clear();
             bottomRow.Controls.Add(leftBottomButton, 0, 0);

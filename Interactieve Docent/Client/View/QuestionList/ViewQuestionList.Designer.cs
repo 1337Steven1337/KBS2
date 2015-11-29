@@ -28,19 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.panel = new System.Windows.Forms.Panel();
             this.listBoxQuestionLists = new System.Windows.Forms.ListBox();
-            this.panel.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // panel
-            // 
-            this.panel.Controls.Add(this.listBoxQuestionLists);
-            this.panel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel.Location = new System.Drawing.Point(0, 0);
-            this.panel.Name = "panel";
-            this.panel.Size = new System.Drawing.Size(282, 253);
-            this.panel.TabIndex = 0;
             // 
             // listBoxQuestionLists
             // 
@@ -57,17 +46,15 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(282, 253);
-            this.Controls.Add(this.panel);
+            this.Controls.Add(this.listBoxQuestionLists);
             this.Name = "ViewQuestionList";
             this.Text = "ViewQuestionList";
-            this.panel.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
-        private System.Windows.Forms.Panel panel;
         private System.Windows.Forms.ListBox listBoxQuestionLists;
     }
 }
