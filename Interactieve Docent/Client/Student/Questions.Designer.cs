@@ -56,6 +56,7 @@
             this.tempBtn.TabIndex = 1;
             this.tempBtn.Text = "Tijdelijke button";
             this.tempBtn.UseVisualStyleBackColor = true;
+            tempBtn.Hide();
             // 
             // questionTimeProgressBar
             // 
