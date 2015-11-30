@@ -1,6 +1,7 @@
 ﻿using Client.API.Models;
 using Client.Factory;
 using Client.Model;
+using Client.Service.SignalR;
 using Client.Student;
 using Microsoft.AspNet.SignalR;
 using System;

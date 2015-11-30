@@ -2,6 +2,7 @@
 using Client.View.QuestionList;
 using System.Windows.Forms;
 using Client.View.Question;
+using Client.Model;
 using Client.View.PanelLayout;
 
 namespace Client.Controller
@@ -10,7 +11,7 @@ namespace Client.Controller
     {
         private IQuestionListView view;
         private TableLayoutPanel mainTable, threeColTable;
-        private ListBox listBox;
+        private ListBox listBoxQuestionLists;
         private CustomPanel customPanel;
         private QuestionListFactory factory = new QuestionListFactory();
         private QuestionController questionController;
@@ -19,20 +20,20 @@ namespace Client.Controller
         {
             this.mainTable = mainTable;
             this.threeColTable = threeColTable;
-            this.listBox = view.getListBox();
+            this.listBoxQuestionLists = view.getListBox();
             this.customPanel = view.getCustomPanel();
             this.view = view;
             this.view.setController(this);
             this.questionController = questionController;
 
-            customPanel.middleRow.Controls.Add(listBox);
+            customPanel.middleRow.Controls.Add(listBoxQuestionLists);
             customPanel.title.Text = "VragenLijsten";
 
             threeColTable.Controls.Add(customPanel.getPanel(), 0, 0);
             mainTable.Controls.Add(threeColTable, 1, 0);
 
             loadLists();
-            listBox.SelectedIndexChanged += listBox_SelectedIndexChanged;
+            listBoxQuestionLists.SelectedIndexChanged += listBox_SelectedIndexChanged;
         }
 
         private void loadLists()
@@ -42,7 +43,7 @@ namespace Client.Controller
 
         private void listBox_SelectedIndexChanged(object sender, System.EventArgs e)
         {
-            questionController.loadQuestions(62);
+            questionController.loadQuestions((int)listBoxQuestionLists.SelectedValue);
         }
     }
 }
