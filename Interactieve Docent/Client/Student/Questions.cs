@@ -135,7 +135,8 @@ namespace Client.Student
                 option.Height = this.ClientSize.Height / 10 * 3 / percentagePerButton;
                 locationY = (this.ClientSize.Height / 10 * 7) + (option.Height * (int)ButtonHeightCounter);
                 option.Location = new Point(locationX, locationY);
-
+                //set de answerID
+                option.ImageIndex = PA.Id;
                 //Add button to controls
                 Controls.Add(option);
             }
@@ -143,9 +144,12 @@ namespace Client.Student
 
         private void AnswerSaveHandler(object sender, System.EventArgs e)
         {
+            Button btn = (Button)sender;
             UserAnswer ua = new UserAnswer();
-            ua.PredefinedAnswer_Id = 0;
-            //ua.Question_ID = currentQuestionIndex;
+            ua.PredefinedAnswer_Id = btn.ImageIndex;
+            ua.Question_ID = currentQuestion.Id;
+            ua.saveAnswer();
+            goToNextQuestion();
         }
 
         private void cleanUpPreviousQuestion()
