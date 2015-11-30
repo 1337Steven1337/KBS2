@@ -18,7 +18,6 @@ namespace Client
 
         public PanelLayout()
         {
-            this.mainForm = mainForm;
             mainTable = new TableLayoutPanel();
             mainTable.ColumnCount = 1;
             mainTable.RowCount = 3;
