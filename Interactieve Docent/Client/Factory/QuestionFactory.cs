@@ -60,7 +60,7 @@ namespace Client.Factory
         #endregion
 
         #region Methods
-        public void saveAsync(Question question, Action<Question> callback)
+        private Dictionary<string, object> getFields(Question question)
         {
             Dictionary<string, object> values = new Dictionary<string, object>();
             values.Add("Text", question.Text);
@@ -68,23 +68,37 @@ namespace Client.Factory
             values.Add("Points", question.Points);
             values.Add("List_Id", question.List_Id);
 
-            this.saveAsync<Question>(values, resource, callback);
+            return values;
+        }
+
+        public void delete(Question question, Control control, Action<Question> callback)
+        {
+            this.delete<Question>(question.Id, resource, control, callback);
+        }
+
+        public void deleteAsync(Question question, Action<Question> callback)
+        {
+            this.deleteAsync<Question>(question.Id, resource, callback);
+        }
+
+        public void saveAsync(Question question, Action<Question> callback)
+        {
+            this.saveAsync<Question>(this.getFields(question), resource, callback);
         }
 
         public void save(Question question, Control control, Action<Question> callback)
         {
-            Dictionary<string, object> values = new Dictionary<string, object>();
-            values.Add("Text", question.Text);
-            values.Add("Time", question.Time);
-            values.Add("Points", question.Points);
-            values.Add("List_Id", question.List_Id);
-
-            this.save<Question>(values, resource, control, callback);
+            this.save<Question>(this.getFields(question), resource, control, callback);
         }
 
-        public void findById(int id, Action<Question> callback)
+        public void findByIdAsync(int id, Control control, Action<Question> callback)
         {
-            this.findById<Question>(id, resource, callback);
+            this.findByIdAsync<Question>(id, resource, callback);
+        }
+
+        public void findById(int id, Control control, Action<Question> callback)
+        {
+            this.findById<Question>(id, resource, control, callback);
         }
 
         public void findAll(Control control, Action<List<Question>> callback)

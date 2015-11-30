@@ -35,6 +35,8 @@ namespace Client.Controller
 
             customPanel.leftBottomButton.Text = "Nieuwe lijst";
             customPanel.leftBottomButton.Click += new System.EventHandler(newList);
+            customPanel.rightBottomButton.Text = "Verwijder lijst";
+            customPanel.rightBottomButton.Click += new System.EventHandler(deleteList);
 
             threeColTable.Controls.Add(customPanel.getPanel(), 0, 0);
             mainTable.Controls.Add(threeColTable, 1, 0);
@@ -54,13 +56,44 @@ namespace Client.Controller
                 string name = dlg.text;
                 QuestionList ql = new QuestionList();
                 ql.Name = name;
-                factory.save(ql, this.view.getListBox(), process);
+                factory.save(ql, this.view.getListBox(), processAdd);
             }
         }
-        
-        private void process(QuestionList ql)
+
+
+
+        public void deleteList(object sender, EventArgs e)
+        {
+            ViewDeleteList dlg = new ViewDeleteList();
+            dlg.StartPosition = FormStartPosition.CenterParent;
+            dlg.ShowDialog();
+
+            if (dlg.valid)
+            {
+                int id = (int)listBoxQuestionLists.SelectedValue;
+                QuestionList ql = new QuestionList();
+                ql.Id = id;
+                factory.delete(ql, this.view.getListBox(), processDelete);
+            }
+        }
+
+        private void processAdd(QuestionList ql)
         {
             this.QuestionLists.Add(ql);
+        }
+
+        private void processDelete(QuestionList ql)
+        {
+            int i;
+            for (i = 0;  i < this.QuestionLists.Count; i++)
+            {
+                if(this.QuestionLists[i].Id == ql.Id)
+                {
+                    break;
+                }
+            }
+
+            this.QuestionLists.RemoveAt(i);
         }
 
         private void loadLists()

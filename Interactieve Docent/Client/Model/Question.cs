@@ -14,5 +14,11 @@ namespace Client.Model
         public int List_Id { get; set; }
 
         public string Text { get; set; }
+
+        public QuestionList QuestionList { get; set; }
+
+        public List<PredefinedAnswer> PredefinedAnswers { get; set; }
+
+        public List<UserAnswer> UserAnswers { get; set; }
     }
 }

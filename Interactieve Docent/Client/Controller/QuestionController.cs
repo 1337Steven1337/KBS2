@@ -2,11 +2,21 @@
 using Client.View.PanelLayout;
 using System.Windows.Forms;
 using Client.Factory;
+using Client.Event;
+using Client.Model;
 
 namespace Client.Controller
 {
     public class QuestionController
     {
+        #region Delegates
+        public delegate void SelectedIndexChanged(QuestionControllerSelectedIndexChanged message);
+        #endregion
+
+        #region Events
+        public event SelectedIndexChanged selectedIndexChanged;
+        #endregion
+
         private IQuestionView view;
         private TableLayoutPanel mainTable, threeColTable;
         private ListBox listBoxQuestion;
@@ -22,9 +32,19 @@ namespace Client.Controller
             this.view = view;
             this.view.setController(this);
 
+            this.listBoxQuestion.SelectedIndexChanged += ListBoxQuestion_SelectedIndexChanged;
+
             customPanel.middleRow.Controls.Add(listBoxQuestion);
 
             threeColTable.Controls.Add(customPanel.getPanel(), 1, 0);
+        }
+
+        private void ListBoxQuestion_SelectedIndexChanged(object sender, System.EventArgs e)
+        {
+            if(this.selectedIndexChanged != null)
+            {
+                this.selectedIndexChanged(new QuestionControllerSelectedIndexChanged((Question)this.listBoxQuestion.SelectedItem));
+            }
         }
 
         public void loadQuestions(int listId)

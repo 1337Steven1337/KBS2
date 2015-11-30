@@ -17,14 +17,7 @@ namespace Client
     public partial class diagram : Form
     {
         #region Variables & Instances
-        public int Question_Id;
-
-        public List<string> questions;
-        public List<int> votes;
-
-        public Question question;
-        
-        private Dictionary<string, int> questionVotes = new Dictionary<string, int>();
+        private int Question_Id;
 
         private SignalR UserAnswerFactory;
         #endregion
@@ -81,7 +74,6 @@ namespace Client
         #region Methodes
         public void Controller()
         {
-            GetData();
             this.Invoke((Action)delegate () { MakeDiagram(votes, questions, question.Text); });
         }
 
@@ -113,26 +105,11 @@ namespace Client
             series.Points.Add(Column);
             return series;
         }
-
-        public void GetData()
-        {
-            //if the predefinedanswer is empty zet votes to zero
-            foreach (PredefinedAnswer preAnswer in question.PredefinedAnswers)
-            {
-                questionVotes[preAnswer.Text] = 0;
-            }
-
-            //for every given answer were the userAnswer_Id is equal to a PredefinedAnswer_Id add one to votes
-            foreach (UserAnswer answer in question.UserAnswers)
-            {
-                string text = question.PredefinedAnswers.Find(x => x.Id == answer.PredefinedAnswer_Id).Text;
-                questionVotes[text] += 1;
-            }
-
-            votes = questionVotes.Values.ToList<int>();
-            questions = questionVotes.Keys.ToList<string>();
-            
-        }
         #endregion
+
+        private void chart1_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
