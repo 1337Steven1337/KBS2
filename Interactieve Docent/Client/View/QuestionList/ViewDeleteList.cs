@@ -11,7 +11,7 @@ using System.Windows.Forms;
 namespace Client.View.QuestionList
 {
     public partial class ViewDeleteList : Form
-    {
+    { 
         public Boolean valid { get; set; }
 
         public ViewDeleteList()
