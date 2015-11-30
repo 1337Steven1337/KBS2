@@ -213,6 +213,12 @@
       <DependentUpon>ViewPredefinedAnswer.cs</DependentUpon>
     </Compile>
     <Compile Include="View\QuestionList\IQuestionListView.cs" />
+    <Compile Include="View\QuestionList\ViewDeleteList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\QuestionList\ViewDeleteList.Designer.cs">
+      <DependentUpon>ViewDeleteList.cs</DependentUpon>
+    </Compile>
     <Compile Include="View\QuestionList\ViewNewQuestionList.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -284,6 +290,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="View\PanelLayout\PLayout.resx">
       <DependentUpon>PLayout.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\QuestionList\ViewDeleteList.resx">
+      <DependentUpon>ViewDeleteList.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="View\QuestionList\ViewNewQuestionList.resx">
       <DependentUpon>ViewNewQuestionList.cs</DependentUpon>
