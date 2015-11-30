@@ -15,7 +15,7 @@ namespace Client.API
         #region Delegates
         public delegate void ConnectionStatusChanged(StateChange message);
         public delegate void SubscriptionStatusChanged(SubscriptionStatus message);
-        public delegate void NewQuestionAdded(Question question);
+        public delegate void NewQuestionAdded(Model.Question question);
         public delegate void NewUserAnswerAdded(UserAnswer userAnswer);
         #endregion
 
@@ -44,7 +44,7 @@ namespace Client.API
 
             this.proxy = this.connection.CreateHubProxy("EventHub");
 
-            this.proxy.On<Question>("QuestionAdded", this.onQuestionAdded);
+            this.proxy.On<Model.Question>("QuestionAdded", this.onQuestionAdded);
             this.proxy.On<UserAnswer>("UserAnswerAdded", this.onUserAnswerAdded);
 
             try
@@ -91,7 +91,7 @@ namespace Client.API
         /// Calls the question added event
         /// </summary>
         /// <param name="q">The question which was added to the list</param>
-        private void onQuestionAdded(Question q)
+        private void onQuestionAdded(Model.Question q)
         {
             if(this.newQuestionAdded != null)
             {

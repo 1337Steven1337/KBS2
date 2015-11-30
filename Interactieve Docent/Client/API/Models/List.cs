@@ -13,7 +13,7 @@ namespace Client.API.Models
         public string Name { get; set; }
         public bool Ended { get; set; }
 
-        public List<Question> Questions { get; set; }
+        public List<Model.Question> Questions { get; set; }
 
         public List()
         {
