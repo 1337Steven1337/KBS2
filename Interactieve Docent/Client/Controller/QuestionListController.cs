@@ -60,6 +60,8 @@ namespace Client.Controller
             }
         }
 
+
+
         public void deleteList(object sender, EventArgs e)
         {
             ViewDeleteList dlg = new ViewDeleteList();
