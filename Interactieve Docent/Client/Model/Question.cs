@@ -11,7 +11,7 @@ namespace Client.Model
         public int Id { get; private set; }
         public int Points { get; set; }
         public int Time { get; set; }
-        public int List_Id { get; private set; }
+        public int List_Id { get; set; }
 
         public string Text { get; set; }
 

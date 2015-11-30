@@ -15,13 +15,13 @@ namespace Server.Tests.Models.Context
         public TestServerContext()
         {
             this.Questions = new TestQuestionDbSet();
-            this.QuestionLists = new TestListDbSet();
             this.UserAnswers = new TestUserAnswerDbSet();
+            this.QuestionLists = new TestListDbSet();
             this.PredefinedAnswers = new TestPredefinedAnswerDbSet();
         }
 
         public DbSet<Server.Models.Question> Questions { get; set; }
-        public DbSet<Server.Models.QuestionList> QuestionList { get; set; }
+        public DbSet<Server.Models.QuestionList> QuestionLists { get; set; }
         public DbSet<Server.Models.UserAnswer> UserAnswers { get; set; }
         public DbSet<Server.Models.PredefinedAnswer> PredefinedAnswers { get; set; }
 

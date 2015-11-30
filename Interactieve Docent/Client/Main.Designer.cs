@@ -74,7 +74,7 @@
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(238, 27);
             this.button3.TabIndex = 2;
-            this.button3.Text = "Lijst Openzetten/Sluiten";
+            this.button3.Text = "Vragen openen";
             this.button3.UseVisualStyleBackColor = true;
             // 
             // panel
