@@ -60,6 +60,16 @@ namespace Client.Factory
         #endregion
 
         #region Methods
+        public void delete(UserAnswer answer, Control control, Action<UserAnswer> callback)
+        {
+            this.delete<UserAnswer>(answer.Id, resource, control, callback);
+        }
+
+        public void deleteAsync(UserAnswer answer, Action<UserAnswer> callback)
+        {
+            this.deleteAsync<UserAnswer>(answer.Id, resource, callback);
+        }
+
         public void saveAsync(UserAnswer answer, Action<UserAnswer> callback)
         {
             Dictionary<string, object> values = new Dictionary<string, object>();

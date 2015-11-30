@@ -9,6 +9,16 @@ namespace Client.Factory
     {
         private const string resource = "PredefinedAnswers";
 
+        public void delete(PredefinedAnswer answer, Control control, Action<PredefinedAnswer> callback)
+        {
+            this.delete<PredefinedAnswer>(answer.Id, resource, control, callback);
+        }
+
+        public void deleteAsync(PredefinedAnswer answer, Action<PredefinedAnswer> callback)
+        {
+            this.deleteAsync<PredefinedAnswer>(answer.Id, resource, callback);
+        }
+
         public void saveAsync(PredefinedAnswer answer, Action<PredefinedAnswer> callback)
         {
             Dictionary<string, object> values = new Dictionary<string, object>();

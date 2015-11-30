@@ -83,6 +83,16 @@ namespace Client.Factory
         }
         #endregion
 
+        public void delete(QuestionList list, Control control, Action<QuestionList> callback)
+        {
+            this.delete<QuestionList>(list.Id, resource, control, callback);
+        }
+
+        public void deleteAsync(QuestionList list, Action<QuestionList> callback)
+        {
+            this.deleteAsync<QuestionList>(list.Id, resource, callback);
+        }
+
         public void saveAsync(QuestionList list, Action<QuestionList> callback)
         {
             Dictionary<string, object> values = new Dictionary<string, object>();
