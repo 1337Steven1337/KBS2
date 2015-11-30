@@ -60,13 +60,22 @@ namespace Client.Factory
         #endregion
 
         #region Methods
-        public void save(UserAnswer answer, Action<UserAnswer> callback)
+        public void saveAsync(UserAnswer answer, Action<UserAnswer> callback)
         {
             Dictionary<string, object> values = new Dictionary<string, object>();
             values.Add("Question_Id", answer.Question_Id);
             values.Add("PredefinedAnswer_Id", answer.PredefinedAnswer_Id);
 
-            this.save<UserAnswer>(values, resource, callback);
+            this.saveAsync<UserAnswer>(values, resource, callback);
+        }
+
+        public void save(UserAnswer answer, Control control, Action<UserAnswer> callback)
+        {
+            Dictionary<string, object> values = new Dictionary<string, object>();
+            values.Add("Question_Id", answer.Question_Id);
+            values.Add("PredefinedAnswer_Id", answer.PredefinedAnswer_Id);
+
+            this.save<UserAnswer>(values, resource, control, callback);
         }
 
         public void findById(int id, Action<UserAnswer> callback)

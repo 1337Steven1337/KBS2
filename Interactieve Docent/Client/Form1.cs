@@ -49,7 +49,7 @@ namespace Client
             ql.Name = "Test list 99999";
             ql.Ended = false;
 
-            qlf.save(ql, null);
+            //qlf.save(ql, null);
         }
 
         private void test(QuestionList list)

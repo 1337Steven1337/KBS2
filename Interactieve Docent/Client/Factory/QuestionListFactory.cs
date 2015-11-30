@@ -82,13 +82,22 @@ namespace Client.Factory
         }
         #endregion
 
-        public void save(QuestionList list, Action<QuestionList> callback)
+        public void saveAsync(QuestionList list, Action<QuestionList> callback)
         {
             Dictionary<string, object> values = new Dictionary<string, object>();
             values.Add("Name", list.Name);
             values.Add("Ended", list.Ended);
 
-            this.save<QuestionList>(values, resource, callback);
+            this.saveAsync<QuestionList>(values, resource, callback);
+        }
+
+        public void save(QuestionList list, Control control, Action<QuestionList> callback)
+        {
+            Dictionary<string, object> values = new Dictionary<string, object>();
+            values.Add("Name", list.Name);
+            values.Add("Ended", list.Ended);
+
+            this.save<QuestionList>(values, resource, control, callback);
         }
 
         public void findById(int id, Action<QuestionList> callback)
