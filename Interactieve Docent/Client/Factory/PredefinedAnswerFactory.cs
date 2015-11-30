@@ -9,13 +9,22 @@ namespace Client.Factory
     {
         private const string resource = "PredefinedAnswers";
 
-        public void save(PredefinedAnswer answer, Action<PredefinedAnswer> callback)
+        public void saveAsync(PredefinedAnswer answer, Action<PredefinedAnswer> callback)
         {
             Dictionary<string, object> values = new Dictionary<string, object>();
             values.Add("Text", answer.Text);
             values.Add("Question_Id", answer.Question_Id);
 
-            this.save<PredefinedAnswer>(values, resource, callback);
+            this.saveAsync<PredefinedAnswer>(values, resource, callback);
+        }
+
+        public void save(PredefinedAnswer answer, Control control, Action<PredefinedAnswer> callback)
+        {
+            Dictionary<string, object> values = new Dictionary<string, object>();
+            values.Add("Text", answer.Text);
+            values.Add("Question_Id", answer.Question_Id);
+
+            this.save<PredefinedAnswer>(values, resource, control, callback);
         }
 
         public void findById(int id, Action<PredefinedAnswer> callback)

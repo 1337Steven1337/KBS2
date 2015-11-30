@@ -60,7 +60,7 @@ namespace Client.Factory
         #endregion
 
         #region Methods
-        public void save(Question question, Action<Question> callback)
+        public void saveAsync(Question question, Action<Question> callback)
         {
             Dictionary<string, object> values = new Dictionary<string, object>();
             values.Add("Text", question.Text);
@@ -68,7 +68,18 @@ namespace Client.Factory
             values.Add("Points", question.Points);
             values.Add("List_Id", question.List_Id);
 
-            this.save<Question>(values, resource, callback);
+            this.saveAsync<Question>(values, resource, callback);
+        }
+
+        public void save(Question question, Control control, Action<Question> callback)
+        {
+            Dictionary<string, object> values = new Dictionary<string, object>();
+            values.Add("Text", question.Text);
+            values.Add("Time", question.Time);
+            values.Add("Points", question.Points);
+            values.Add("List_Id", question.List_Id);
+
+            this.save<Question>(values, resource, control, callback);
         }
 
         public void findById(int id, Action<Question> callback)

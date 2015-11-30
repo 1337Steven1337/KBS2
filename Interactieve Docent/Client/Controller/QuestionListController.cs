@@ -54,7 +54,7 @@ namespace Client.Controller
                 string name = dlg.text;
                 QuestionList ql = new QuestionList();
                 ql.Name = name;
-                factory.save(ql, process);
+                factory.save(ql, this.view.getListBox(), process);
             }
         }
         

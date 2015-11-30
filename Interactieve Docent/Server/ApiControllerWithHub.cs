@@ -20,9 +20,14 @@ namespace Server
             get { return hub.Value; }
         }
 
+        protected dynamic getSubscribed(string id)
+        {
+            return Hub.Clients.Group(id);
+        }
+
         protected dynamic getSubscribed(int id)
         {
-            return Hub.Clients.Group(id.ToString());
+            return this.getSubscribed(id.ToString());
         }
     }
 }

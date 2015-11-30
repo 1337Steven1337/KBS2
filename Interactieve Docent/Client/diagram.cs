@@ -16,6 +16,7 @@ namespace Client
 {
     public partial class diagram : Form
     {
+        #region Variables & Instances
         public int Question_Id;
 
         public List<string> questions;
@@ -25,8 +26,10 @@ namespace Client
         
         private Dictionary<string, int> questionVotes = new Dictionary<string, int>();
 
-        private SignalR signalR;
+        private SignalR UserAnswerFactory;
+        #endregion
 
+        #region Constructor & Onload
         public diagram(int Question_Id)
         {
             this.Question_Id = Question_Id;
@@ -39,13 +42,15 @@ namespace Client
             //select a question
             question = Question.getById(Question_Id);
             Controller();
-            this.signalR = new SignalR();
-            this.signalR.connectionStatusChanged += SignalR_connectionStatusChanged;
-            this.signalR.subscriptionStatusChanged += SignalR_subscriptionStatusChanged;
-            this.signalR.newUserAnswerAdded += SignalR_newUserAnswerAdded;
-            this.signalR.connect();
+            this.UserAnswerFactory = new SignalR();
+            this.UserAnswerFactory.connectionStatusChanged += SignalR_connectionStatusChanged;
+            this.UserAnswerFactory.subscriptionStatusChanged += SignalR_subscriptionStatusChanged;
+            this.UserAnswerFactory.newUserAnswerAdded += SignalR_newUserAnswerAdded;
+            this.UserAnswerFactory.connect();
         }
+        #endregion
 
+        #region Events
         private void SignalR_newUserAnswerAdded(UserAnswer userAnswer)
         {
             this.question.UserAnswers.Add(userAnswer);
@@ -61,7 +66,7 @@ namespace Client
         {
             if(message.NewState == Microsoft.AspNet.SignalR.Client.ConnectionState.Connected)
             {
-                signalR.subscribe(question.List_Id);
+                UserAnswerFactory.subscribe(question.List_Id);
             }
             else if(message.NewState == Microsoft.AspNet.SignalR.Client.ConnectionState.Connecting){
 
@@ -71,7 +76,9 @@ namespace Client
                 MessageBox.Show("Helaas! Faggot..");
             }
         }
+        #endregion
 
+        #region Methodes
         public void Controller()
         {
             GetData();
@@ -126,23 +133,6 @@ namespace Client
             questions = questionVotes.Keys.ToList<string>();
             
         }
-
-        private void OnChange(object sender, SqlNotificationEventArgs e)
-        {
-            SqlDependency dependency = sender as SqlDependency;
-
-            // Notices are only a one shot deal so remove the existing one so a new one can be added
-
-            dependency.OnChange -= OnChange;
-
-            // Fire the event
-            Controller();
-
-        }
-
-        private void chart1_Click(object sender, EventArgs e)
-        {
-
-        }
+        #endregion
     }
 }

@@ -21,22 +21,30 @@ namespace Client.Factory
             this.signalRClient = SignalRClient.getInstance();
         }
 
-        protected void save<T>(Dictionary<String, object> data, string resource, Action<T> callback) where T : new()
+        protected void saveAsync<T>(Dictionary<String, object> data, string resource, Action<T> callback) where T : new()
         {
             RestRequest request = new RestRequest();
             request.Resource = resource;
             request.Method = Method.POST;
 
-            foreach(KeyValuePair<string, object> entry in data)
+            foreach (KeyValuePair<string, object> entry in data)
             {
                 request.AddParameter(entry.Key, entry.Value);
             }
-                        
+
             this.restClient.ExecuteAsync<T>(request, response => {
                 if (callback != null)
                 {
                     callback(response.Data);
                 }
+            });
+        }
+
+        protected void save<T>(Dictionary<String, object> data, string resource, Control control, Action<T> callback) where T : new()
+        {
+            this.saveAsync<T>(data, resource, o =>
+            {
+                control.Invoke(callback, o);
             });
         }
 
