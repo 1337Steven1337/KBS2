@@ -71,7 +71,15 @@ namespace Client.Factory
             });
         }
 
-        protected void findById<T>(int id, string resource, Action<T> callback) where T : new()
+        protected void findById<T>(int id, string resource, Control control, Action<T> callback) where T : new()
+        {
+            this.findByIdAsync<T>(id, resource, o =>
+            {
+                control.Invoke(callback, o);
+            });
+        }
+
+        protected void findByIdAsync<T>(int id, string resource, Action<T> callback) where T : new()
         {
             RestRequest request = new RestRequest();
             request.Resource = resource;

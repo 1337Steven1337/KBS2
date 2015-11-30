@@ -70,27 +70,33 @@ namespace Client.Factory
             this.deleteAsync<UserAnswer>(answer.Id, resource, callback);
         }
 
-        public void saveAsync(UserAnswer answer, Action<UserAnswer> callback)
+        private Dictionary<string, object> getFields(UserAnswer answer)
         {
             Dictionary<string, object> values = new Dictionary<string, object>();
             values.Add("Question_Id", answer.Question_Id);
             values.Add("PredefinedAnswer_Id", answer.PredefinedAnswer_Id);
 
-            this.saveAsync<UserAnswer>(values, resource, callback);
+            return values;
+        }
+
+        public void saveAsync(UserAnswer answer, Action<UserAnswer> callback)
+        {
+            this.saveAsync<UserAnswer>(this.getFields(answer), resource, callback);
         }
 
         public void save(UserAnswer answer, Control control, Action<UserAnswer> callback)
         {
-            Dictionary<string, object> values = new Dictionary<string, object>();
-            values.Add("Question_Id", answer.Question_Id);
-            values.Add("PredefinedAnswer_Id", answer.PredefinedAnswer_Id);
-
-            this.save<UserAnswer>(values, resource, control, callback);
+            this.save<UserAnswer>(this.getFields(answer), resource, control, callback);
         }
 
-        public void findById(int id, Action<UserAnswer> callback)
+        public void findByIdAsync(int id, Action<UserAnswer> callback)
         {
-            this.findById<UserAnswer>(id, resource, callback);
+            this.findByIdAsync<UserAnswer>(id, resource, callback);
+        }
+
+        public void findById(int id, Control control, Action<UserAnswer> callback)
+        {
+            this.findById<UserAnswer>(id, resource, control, callback);
         }
 
         public void findAll(Control control, Action<List<UserAnswer>> callback)

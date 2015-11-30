@@ -12,6 +12,8 @@ using Client.API;
 using Microsoft.AspNet.SignalR.Client;
 using ConnectionState = Microsoft.AspNet.SignalR.Client.ConnectionState;
 using System.Diagnostics;
+using Client.Service.SignalR;
+using Client.Factory;
 
 namespace Client.Student
 {
@@ -24,17 +26,16 @@ namespace Client.Student
 
         private Button option = null;
 
-        private List list = null;
+        private Model.QuestionList list = null;
         private List<Button> answerButtons = new List<Button>();
 
         private Question currentQuestion = null;
         private Timer questionTimer = new Timer();
         private int TimerLimit = -1;
-        private SignalR signalR = null;
 
         float ButtonListCounter = 2;
 
-
+        SignalRClient client;
 
         public Questions(int List_Id)
         {
@@ -43,23 +44,49 @@ namespace Client.Student
             this.List_Id = List_Id;
             this.Size = new Size((int)(Screen.PrimaryScreen.Bounds.Width * 0.8), (int)(Screen.PrimaryScreen.Bounds.Height * 0.8));
 
+                chatBox.Size = new Size(this.ClientSize.Width / 10 * 3, this.ClientSize.Height / 10 * 9);
+                chatBoxMessage.Size = new Size(this.ClientSize.Width / 10 * 2, this.ClientSize.Height / 10);
+                sendMessageButton.Size = new Size(this.ClientSize.Width / 10, this.ClientSize.Height / 10);
 
-            chatBox.Size = new Size(this.ClientSize.Width / 10 * 3, this.ClientSize.Height / 10 * 9);
-            chatBoxMessage.Size = new Size(this.ClientSize.Width / 10 * 2, this.ClientSize.Height / 10);
-            sendMessageButton.Size = new Size(this.ClientSize.Width / 10, this.ClientSize.Height / 10);
-
-            chatBox.Location = new Point(this.ClientSize.Width / 10 * 7, 0);
-            chatBoxMessage.Location = new Point(this.ClientSize.Width / 10 * 7, this.Location.Y + chatBox.Height);
-            sendMessageButton.Location = new Point(this.ClientSize.Width / 10 * 9, this.Location.Y + chatBox.Height);
+                chatBox.Location = new Point(this.ClientSize.Width / 10 * 7, 0);
+                chatBoxMessage.Location = new Point(this.ClientSize.Width / 10 * 7, this.Location.Y + chatBox.Height);
+                sendMessageButton.Location = new Point(this.ClientSize.Width / 10 * 9, this.Location.Y + chatBox.Height);
 
 
-            questionTimeProgressBar.Size = new Size(this.ClientSize.Width / 10 * 7, this.ClientSize.Height / 10);
-            questionTimeProgressBar.Location = new Point(0, this.Location.Y + this.ClientSize.Height / 2 + this.ClientSize.Height / 10 - 5);
+                questionTimeProgressBar.Size = new Size(this.ClientSize.Width / 10 * 7, this.ClientSize.Height / 10);
+                questionTimeProgressBar.Location = new Point(0, this.Location.Y + this.ClientSize.Height / 2 + this.ClientSize.Height / 10 - 5);
 
-            timeLabel.Location = new Point(questionTimeProgressBar.Location.X + questionTimeProgressBar.Width / 2 - timeLabel.Width / 2, questionTimeProgressBar.Location.Y + questionTimeProgressBar.Height / 2 - timeLabel.Height / 2);
+                timeLabel.Location = new Point(questionTimeProgressBar.Location.X + questionTimeProgressBar.Width / 2 - timeLabel.Width / 2, questionTimeProgressBar.Location.Y + questionTimeProgressBar.Height / 2 - timeLabel.Height / 2);
 
+            client = SignalRClient.getInstance();
+            client.connectionStatusChanged += Client_connectionStatusChanged;
+            client.connect();
+
+            QuestionFactory factory = new QuestionFactory();
+            factory.questionAdded += Factory_questionAdded;
         }
 
+        private void Factory_questionAdded(Model.Question question)
+        {
+            if (this.list == null)
+            {
+                this.list = new Model.QuestionList();
+                list.Name = "Realtime test";
+                list.Id = 123456321;
+                this.list.Questions.Add(question);
+            }
+            else
+            {
+                this.list.Questions.Add(question);
+            }
+            
+             goToNextQuestion();
+        }
+
+        private void Client_connectionStatusChanged(StateChange message)
+        {
+            client.subscribe(this.List_Id);
+        }
 
         private void Question_Timer(object sender, EventArgs e)
         {
@@ -78,15 +105,7 @@ namespace Client.Student
 
         private void Questions_Load(object sender, EventArgs e)
         {
-            this.list = List.getById(this.List_Id);
-
-            this.signalR = new SignalR();
-            this.signalR.connectionStatusChanged += this.SignalROnConnectionStatusChanged;
-            this.signalR.newQuestionAdded += this.SignalROnNewQuestionAdded;
-            this.signalR.connect();
-
-            this.goToNextQuestion();
-
+            // Wait for teacher to ask a question.
         }
 
         private Button createAnswerButton(PredefinedAnswer answer)
@@ -148,7 +167,7 @@ namespace Client.Student
             UserAnswer ua = new UserAnswer();
             ua.PredefinedAnswer_Id = btn.ImageIndex;
             ua.Question_ID = currentQuestion.Id;
-            ua.saveAnswer();
+            ua.saveAnswer();            
             goToNextQuestion();
         }
 
@@ -162,41 +181,40 @@ namespace Client.Student
 
         private void goToNextQuestion()
         {
-            foreach (Button b in answerButtons)
-            {
-                Controls.Remove(b);
-            }
-            answerButtons.Clear();
-            currentQuestionIndex++;
-
-            if (list.Questions.Count - 1 >= currentQuestionIndex)
-            {
-                busy = true;
+                questionTimer.Stop();
+                questionTimeProgressBar.Value = questionTimeProgressBar.Maximum;
                 cleanUpPreviousQuestion();
-                currentQuestion = Question.getById(list.Questions[currentQuestionIndex].Id);
-                questionTimeProgressBar.Maximum = currentQuestion.Time * 1000;
-                questionTimeProgressBar.Value = currentQuestion.Time * 1000;
-                TimerLimit = currentQuestion.Time;
-                questionTimer.Interval = 100;
-                questionTimer.Tick += Question_Timer;
-                questionTimer.Start();
-                questionLabel.Text = currentQuestion.Text;
-                adjustSizeOfButtons(currentQuestion);
-            }
-            else if (list.Ended)
-            {
-                MessageBox.Show("Ended");
-            }
-            else
-            {
-                MessageBox.Show("Snackbar");
-                busy = false;
+                answerButtons.Clear();
 
+                currentQuestionIndex++;
 
-            }
+                if (list.Questions.Count - 1 >= currentQuestionIndex)
+                {
+                    busy = true;
+                    cleanUpPreviousQuestion();
+                    currentQuestion = Question.getById(list.Questions[currentQuestionIndex].Id);
+                    questionTimeProgressBar.Maximum = currentQuestion.Time * 1000;
+                    questionTimeProgressBar.Value = currentQuestion.Time * 1000;
+                    TimerLimit = currentQuestion.Time;
+                    questionTimer.Interval = 100;
+                    questionTimer.Tick += Question_Timer;
+                    questionTimer.Start();
+                    questionLabel.Text = currentQuestion.Text;
+                    adjustSizeOfButtons(currentQuestion);
+                }
+                else if (list.Ended)
+                {
+                    MessageBox.Show("Realtime vragenlijst af.");
+                }
+                else
+                {
+                    questionTimer.Stop();
+                    MessageBox.Show("Snackbar");
+                    busy = false;
+                }
         }
 
-        private void SignalROnNewQuestionAdded(Question question)
+        private void SignalROnNewQuestionAdded(Model.Question question)
         {
             list.Questions.Add(question);
 
@@ -207,14 +225,7 @@ namespace Client.Student
             }
         }
 
-        private void SignalROnConnectionStatusChanged(StateChange message)
-        {
-            if (message.NewState == ConnectionState.Connected)
-            {
-                signalR.subscribe(list.Id);
-            }
-        }
-
+   
         private ProgressBar createProgressBar()
         {
             ProgressBar SecondsLeft = new ProgressBar();

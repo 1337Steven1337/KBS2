@@ -1,8 +1,10 @@
 ﻿using Client.API.Models;
+using Client.Controller;
 using Client.Factory;
 using Client.Model;
 using Client.Service.SignalR;
 using Client.Student;
+using Client.View.Diagram;
 using Microsoft.AspNet.SignalR;
 using System;
 using System.Collections.Generic;
@@ -73,7 +75,7 @@ namespace Client
 
             QuestionListFactory factory = new QuestionListFactory();
             Console.WriteLine("Before fetch");
-            factory.findById(2, test);
+            factory.findByIdAsync(2, test);
             Console.WriteLine("After fetch");
         }
 

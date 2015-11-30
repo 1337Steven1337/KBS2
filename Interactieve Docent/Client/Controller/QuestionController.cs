@@ -10,6 +10,14 @@ namespace Client.Controller
 {
     public class QuestionController
     {
+        #region Delegates
+        public delegate void SelectedIndexChanged(QuestionControllerSelectedIndexChanged message);
+        #endregion
+
+        #region Events
+        public event SelectedIndexChanged selectedIndexChanged;
+        #endregion
+
         private IQuestionView view;
         private TableLayoutPanel mainTable, threeColTable;
         private ListBox listBoxQuestion;
@@ -25,6 +33,8 @@ namespace Client.Controller
             this.customPanel = view.getCustomPanel();
             this.view = view;
             this.view.setController(this);
+
+            this.listBoxQuestion.SelectedIndexChanged += ListBoxQuestion_SelectedIndexChanged;
 
             customPanel.middleRow.Controls.Add(listBoxQuestion);
             customPanel.rightBottomButton.Text = "Delete";

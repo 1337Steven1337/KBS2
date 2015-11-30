@@ -10,6 +10,7 @@ namespace Client
     public partial class Main : Form
     {
         private TabsController controller;
+        private QuestionController controllerQuestion;
 
         public Main()
         {
@@ -19,7 +20,7 @@ namespace Client
             controller = new TabsController(view);
 
             ViewQuestion questionView = new ViewQuestion();
-            QuestionController controllerQuestion = new QuestionController(questionView, mainTable, threeColTable);
+            controllerQuestion = new QuestionController(questionView, mainTable, threeColTable);
 
             ViewQuestionList listView = new ViewQuestionList();
             QuestionListController controllerList = new QuestionListController(listView, mainTable, threeColTable, controllerQuestion);
@@ -29,7 +30,7 @@ namespace Client
         {
             panel.Controls.Clear();
             ViewDiagram view = new ViewDiagram();
-            DiagramController controller = new DiagramController(view, panel);
+            DiagramController controller = new DiagramController(view, controllerQuestion);
         }
 
         private void button3_Click(object sender, System.EventArgs e)
@@ -37,6 +38,11 @@ namespace Client
             panel.Controls.Clear();
             ViewQuestion view = new ViewQuestion();
             //QuestionController controller = new QuestionController(view, panel);
+        }
+
+        private void tableLayoutPanelTabs_Paint(object sender, PaintEventArgs e)
+        {
+
         }
     }
 }

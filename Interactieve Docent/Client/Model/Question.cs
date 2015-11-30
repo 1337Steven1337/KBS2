@@ -21,5 +21,9 @@ namespace Client.Model
         {
             return Text;
         }
+
+        public List<PredefinedAnswer> PredefinedAnswers { get; set; }
+
+        public List<UserAnswer> UserAnswers { get; set; }
     }
 }
