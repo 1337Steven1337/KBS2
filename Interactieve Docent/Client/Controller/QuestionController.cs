@@ -16,6 +16,7 @@ namespace Client.Controller
             this.view = view;
             this.view.setController(this);
 
+            loadQuestion();
             this.panel.Controls.Add(view.getPanel());
         }
 
