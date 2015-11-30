@@ -32,5 +32,12 @@ namespace Client
             ViewDiagram view = new ViewDiagram();
             DiagramController controller = new DiagramController(view, panel);
         }
+
+        private void button3_Click(object sender, System.EventArgs e)
+        {
+            panel.Controls.Clear();
+            ViewQuestion view = new ViewQuestion();
+            //QuestionController controller = new QuestionController(view, panel);
+        }
     }
 }
