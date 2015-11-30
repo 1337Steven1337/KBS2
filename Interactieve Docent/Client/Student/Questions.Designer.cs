@@ -29,7 +29,6 @@
         private void InitializeComponent()
         {
             this.questionLabel = new System.Windows.Forms.Label();
-            this.tempBtn = new System.Windows.Forms.Button();
             this.questionTimeProgressBar = new System.Windows.Forms.ProgressBar();
             this.chatBox = new System.Windows.Forms.RichTextBox();
             this.chatBoxMessage = new System.Windows.Forms.RichTextBox();
@@ -46,17 +45,6 @@
             this.questionLabel.Size = new System.Drawing.Size(918, 466);
             this.questionLabel.TabIndex = 0;
             this.questionLabel.Text = "label1";
-            // 
-            // tempBtn
-            // 
-            this.tempBtn.Location = new System.Drawing.Point(0, 577);
-            this.tempBtn.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.tempBtn.Name = "tempBtn";
-            this.tempBtn.Size = new System.Drawing.Size(1336, 288);
-            this.tempBtn.TabIndex = 1;
-            this.tempBtn.Text = "Tijdelijke button";
-            this.tempBtn.UseVisualStyleBackColor = true;
-            tempBtn.Hide();
             // 
             // questionTimeProgressBar
             // 
@@ -107,7 +95,7 @@
             this.timeLabel.Location = new System.Drawing.Point(446, 511);
             this.timeLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.timeLabel.Name = "timeLabel";
-            this.timeLabel.Size = new System.Drawing.Size(112, 25);
+            this.timeLabel.Size = new System.Drawing.Size(39, 24);
             this.timeLabel.TabIndex = 6;
             this.timeLabel.Text = "Tijd";
             // 

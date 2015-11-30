@@ -49,10 +49,6 @@ namespace Client.Student
             this.List_Id = List_Id;
             this.Size = new Size((int)(Screen.PrimaryScreen.Bounds.Width * 0.8), (int)(Screen.PrimaryScreen.Bounds.Height * 0.8));
 
-            // tijdelijke button
-            questionLabel.Size = new Size((int)(this.Width / 10 * 7) - 50, (int)(this.Height / 10 * 5) - 50);
-
-            questionLabel.Location = new Point(50, 50);
 
             chatBox.Size = new Size(this.Width / 10 * 3, this.Height / 10 * 9);
             chatBoxMessage.Size = new Size(this.Width / 10 * 2, this.Height / 10);
@@ -63,10 +59,7 @@ namespace Client.Student
             sendMessageButton.Location = new Point(this.Width / 10 * 9, this.Location.Y + chatBox.Height);
 
 
-            tempBtn.Size = new Size(this.Width / 10 * 7, (this.Height / 10 * 3));
             questionTimeProgressBar.Size = new Size(this.Width / 10 * 7, this.Size.Height / 10);
-
-            tempBtn.Location = new Point(this.Location.X, this.Location.Y + this.Size.Height - ((this.Height / 10 * 3)));
             questionTimeProgressBar.Location = new Point(0, this.Location.Y + this.Size.Height / 2 + this.Size.Height / 10);
 
             timeLabel.Location = new Point(questionTimeProgressBar.Location.X + questionTimeProgressBar.Width / 2 - timeLabel.Width / 2, questionTimeProgressBar.Location.Y + questionTimeProgressBar.Height / 2 - timeLabel.Height / 2);
@@ -78,11 +71,12 @@ namespace Client.Student
         {
             if (questionTimeProgressBar.Value > 0)
             {
-                questionTimeProgressBar.Value--;
-                timeLabel.Text = "" + questionTimeProgressBar.Value;
+                questionTimeProgressBar.Value -= 100;
+                timeLabel.Text = "" + Math.Ceiling(questionTimeProgressBar.Value / 1000.00);
             }
             else if (questionTimeProgressBar.Value <= 0)
             {
+                questionTimer.Tick -= Question_Timer;
                 questionTimer.Stop();
                 goToNextQuestion();
             }
@@ -182,17 +176,14 @@ namespace Client.Student
                 busy = true;
                 cleanUpPreviousQuestion();
                 currentQuestion = Question.getById(list.Questions[currentQuestionIndex].Id);
-                questionTimeProgressBar.Maximum = currentQuestion.Time;
-                questionTimeProgressBar.Value = currentQuestion.Time;
+                questionTimeProgressBar.Maximum = currentQuestion.Time * 1000;
+                questionTimeProgressBar.Value = currentQuestion.Time * 1000;
                 TimerLimit = currentQuestion.Time;
-                questionTimer.Interval = 1000;
+                questionTimer.Interval = 100;
                 questionTimer.Tick += Question_Timer;
                 questionTimer.Start();
                 questionLabel.Text = currentQuestion.Text;
-
-
                 adjustSizeOfButtons(currentQuestion);
-
             }
             else if (list.Ended)
             {
@@ -200,6 +191,7 @@ namespace Client.Student
             }
             else
             {
+                MessageBox.Show("Snackbar");
                 busy = false;
 
 
