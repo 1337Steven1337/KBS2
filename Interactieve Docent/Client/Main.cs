@@ -4,7 +4,6 @@ using Client.View.Tabs;
 using Client.View.QuestionList;
 using Client.View.Question;
 using Client.View.Diagram;
-using Client.View.Question;
 
 namespace Client
 {

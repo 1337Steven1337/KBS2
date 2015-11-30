@@ -273,9 +273,6 @@
     <EmbeddedResource Include="Student\Questions.resx">
       <DependentUpon>Questions.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Student\testclass.resx">
-      <DependentUpon>testclass.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="View\Diagram\ViewDiagram.resx">
       <DependentUpon>ViewDiagram.cs</DependentUpon>
     </EmbeddedResource>
