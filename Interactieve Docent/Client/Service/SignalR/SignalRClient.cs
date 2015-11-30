@@ -19,16 +19,25 @@ namespace Client.Service.SignalR
 
         #region Properties
         private int subscribed = -1;
+        private int doSubscribe = -1;
         private static SignalRClient client { get; set; }
 
         private HubConnection connection { get; set; }
         public IHubProxy proxy { get; private set; }
+        public ConnectionState state
+        {
+            get
+            {
+                return (this.connection == null) ? ConnectionState.Disconnected : this.connection.State;
+            }
+        }
         #endregion
 
         #region Constructors
         private SignalRClient()
         {
-
+            this.connection = new HubConnection(Properties.Api.Default.Host + Properties.Api.Default.SignalR);
+            this.proxy = this.connection.CreateHubProxy("EventHub");
         }
         #endregion
 
@@ -38,10 +47,7 @@ namespace Client.Service.SignalR
         /// </summary>
         public async void connect()
         {
-            this.connection = new HubConnection(Properties.Api.Default.Host + Properties.Api.Default.SignalR);
             this.connection.StateChanged += Connection_StateChanged;
-
-            this.proxy = this.connection.CreateHubProxy("EventHub");
 
             try
             {
@@ -59,17 +65,35 @@ namespace Client.Service.SignalR
         /// <param name="id">The id of the list to subscribe to</param>
         public async void subscribe(int id)
         {
-            if (this.subscribed > 0)
+            this.connectionStatusChanged -= SignalRClient_connectionStatusChanged;
+
+            if (this.state == ConnectionState.Connected)
             {
-                this.unsubscribe(this.subscribed);
+                if (this.subscribed > 0)
+                {
+                    this.unsubscribe(this.subscribed);
+                }
+
+                this.subscribed = id;
+                await this.proxy.Invoke("Subscribe", this.subscribed);
+
+                if (this.subscriptionStatusChanged != null)
+                {
+                    this.subscriptionStatusChanged(new SubscriptionStatus(this.subscribed));
+                }
             }
-
-            this.subscribed = id;
-            await this.proxy.Invoke("Subscribe", this.subscribed);
-
-            if (this.subscriptionStatusChanged != null)
+            else
             {
-                this.subscriptionStatusChanged(new SubscriptionStatus(this.subscribed));
+                this.doSubscribe = id;
+                this.connectionStatusChanged += SignalRClient_connectionStatusChanged;
+            }
+        }
+
+        private void SignalRClient_connectionStatusChanged(StateChange message)
+        {
+            if (this.doSubscribe > -1)
+            {
+                this.subscribe(this.doSubscribe);
             }
         }
 

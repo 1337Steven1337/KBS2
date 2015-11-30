@@ -37,7 +37,7 @@ namespace Client
         {
             panel.Controls.Clear();
             ViewQuestion view = new ViewQuestion();
-            QuestionController controller = new QuestionController(view, panel);
+            //QuestionController controller = new QuestionController(view, panel);
         }
     }
 }

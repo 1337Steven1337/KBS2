@@ -33,7 +33,10 @@ namespace Client.Factory
             }
                         
             this.restClient.ExecuteAsync<T>(request, response => {
-                callback(response.Data);
+                if (callback != null)
+                {
+                    callback(response.Data);
+                }
             });
         }
 
