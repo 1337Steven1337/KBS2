@@ -32,9 +32,9 @@ namespace Client.View.QuestionList
 
         public void fillList(List<Model.QuestionList> lists)
         {
-            listBoxQuestionLists.DataSource = lists;
             listBoxQuestionLists.DisplayMember = "Name";
             listBoxQuestionLists.ValueMember = "Id";
+            listBoxQuestionLists.DataSource = lists;
         }
 
         public ListBox getListBox()

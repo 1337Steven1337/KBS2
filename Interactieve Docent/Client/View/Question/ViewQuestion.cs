@@ -32,15 +32,9 @@ namespace Client.View.Question
 
         public void fillList(List<Model.Question> list)
         {
-            foreach (var item in list)
-            {
-                if(item.List_Id == listId)
-                {
-                    listBoxQuestion.DataSource = list;
-                    listBoxQuestion.DisplayMember = "Text";
-                    listBoxQuestion.ValueMember = "Id";
-                }
-            }
+            listBoxQuestion.DataSource = list.FindAll(x => x.List_Id == listId);
+            listBoxQuestion.DisplayMember = "Text";
+            listBoxQuestion.ValueMember = "Id";                
         }
 
         public CustomPanel getCustomPanel()

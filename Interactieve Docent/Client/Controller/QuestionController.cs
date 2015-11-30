@@ -9,7 +9,7 @@ namespace Client.Controller
     {
         private IQuestionView view;
         private TableLayoutPanel mainTable, threeColTable;
-        private ListBox listBox;
+        private ListBox listBoxQuestion;
         private CustomPanel customPanel;
         private QuestionFactory factory = new QuestionFactory();
 
@@ -17,12 +17,12 @@ namespace Client.Controller
         {
             this.mainTable = mainTable;
             this.threeColTable = threeColTable;
-            this.listBox = view.getListBox();
+            this.listBoxQuestion = view.getListBox();
             this.customPanel = view.getCustomPanel();
             this.view = view;
             this.view.setController(this);
 
-            customPanel.middleRow.Controls.Add(listBox);
+            customPanel.middleRow.Controls.Add(listBoxQuestion);
 
             threeColTable.Controls.Add(customPanel.getPanel(), 1, 0);
         }
