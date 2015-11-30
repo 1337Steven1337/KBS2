@@ -22,10 +22,6 @@ namespace Client.Student
         private int List_Id { get; set; }
         private int currentQuestionIndex = -1;
 
-        private static int ButtonCounter = 0;
-        private static int ButtonCounterHorizontal = 0;
-        private static int ButtonCounterVertical = 1;
-
         private bool busy = false;
 
         private Button option = null;
@@ -120,7 +116,6 @@ namespace Client.Student
                 option.Click += AnswerSaveHandler;
                 //bereken de grootte
                 int precentagePerButton = (int)Math.Ceiling((double)currentQuestion.PredefinedAnswers.Count / 2);
-                int heightcounter = 0;
                 int locationY = 0;
                 int locationX = 0;
                 int WorkingArea = 0;

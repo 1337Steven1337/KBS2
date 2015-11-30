@@ -109,7 +109,6 @@
             this.Controls.Add(this.chatBoxMessage);
             this.Controls.Add(this.chatBox);
             this.Controls.Add(this.questionTimeProgressBar);
-            this.Controls.Add(this.tempBtn);
             this.Controls.Add(this.questionLabel);
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "Questions";
@@ -123,7 +122,6 @@
         #endregion
 
         private System.Windows.Forms.Label questionLabel;
-        private System.Windows.Forms.Button tempBtn;
         private System.Windows.Forms.ProgressBar questionTimeProgressBar;
         private System.Windows.Forms.RichTextBox chatBox;
         private System.Windows.Forms.RichTextBox chatBoxMessage;
