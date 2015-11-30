@@ -17,8 +17,6 @@ namespace Client.Student
 {
     public partial class Questions : Form
     {
-        public int percentageofHeigt { get; set; }
-
         private int List_Id { get; set; }
         private int currentQuestionIndex = -1;
 
@@ -46,17 +44,17 @@ namespace Client.Student
             this.Size = new Size((int)(Screen.PrimaryScreen.Bounds.Width * 0.8), (int)(Screen.PrimaryScreen.Bounds.Height * 0.8));
 
 
-            chatBox.Size = new Size(this.Width / 10 * 3, this.Height / 10 * 9);
-            chatBoxMessage.Size = new Size(this.Width / 10 * 2, this.Height / 10);
-            sendMessageButton.Size = new Size(this.Width / 10, this.Height / 10);
+            chatBox.Size = new Size(this.ClientSize.Width / 10 * 3, this.ClientSize.Height / 10 * 9);
+            chatBoxMessage.Size = new Size(this.ClientSize.Width / 10 * 2, this.ClientSize.Height / 10);
+            sendMessageButton.Size = new Size(this.ClientSize.Width / 10, this.ClientSize.Height / 10);
 
-            chatBox.Location = new Point(this.Width / 10 * 7, 0);
-            chatBoxMessage.Location = new Point(this.Width / 10 * 7, this.Location.Y + chatBox.Height);
-            sendMessageButton.Location = new Point(this.Width / 10 * 9, this.Location.Y + chatBox.Height);
+            chatBox.Location = new Point(this.ClientSize.Width / 10 * 7, 0);
+            chatBoxMessage.Location = new Point(this.ClientSize.Width / 10 * 7, this.Location.Y + chatBox.Height);
+            sendMessageButton.Location = new Point(this.ClientSize.Width / 10 * 9, this.Location.Y + chatBox.Height);
 
 
-            questionTimeProgressBar.Size = new Size(this.Width / 10 * 7, this.Size.Height / 10);
-            questionTimeProgressBar.Location = new Point(0, this.Location.Y + this.Size.Height / 2 + this.Size.Height / 10);
+            questionTimeProgressBar.Size = new Size(this.ClientSize.Width / 10 * 7, this.ClientSize.Height / 10);
+            questionTimeProgressBar.Location = new Point(0, this.Location.Y + this.ClientSize.Height / 2 + this.ClientSize.Height / 10 - 5);
 
             timeLabel.Location = new Point(questionTimeProgressBar.Location.X + questionTimeProgressBar.Width / 2 - timeLabel.Width / 2, questionTimeProgressBar.Location.Y + questionTimeProgressBar.Height / 2 - timeLabel.Height / 2);
 
@@ -88,17 +86,14 @@ namespace Client.Student
             this.signalR.connect();
 
             this.goToNextQuestion();
-            
+
         }
 
         private Button createAnswerButton(PredefinedAnswer answer)
         {
-
-
             option = new Button();
             answerButtons.Add(option);
             option.Text = answer.Text;
-            //option.Location = new Point(Width / 2 + option.Width * (ButtonCounterHorizontal), Height - option.Height * (4 - ButtonCounterVertical));
             return option;
         }
 
@@ -108,22 +103,23 @@ namespace Client.Student
             foreach (PredefinedAnswer PA in Q.PredefinedAnswers)
             {
 
-                
+
                 if (currentQuestion.PredefinedAnswers.Count > answerButtons.Count)
                 {
                     option = createAnswerButton(PA);
                 }
+
+                //Adding eventhandler
                 option.Click += AnswerSaveHandler;
-                //bereken de grootte
-                int precentagePerButton = (int)Math.Ceiling((double)currentQuestion.PredefinedAnswers.Count / 2);
+
+                //Initializing variables 
+                int percentagePerButton = (int)Math.Ceiling((double)currentQuestion.PredefinedAnswers.Count / 2);
                 int locationY = 0;
                 int locationX = 0;
-                int WorkingArea = 0;
                 int ButtonHeightCounter = 0;
-                //y locatie berekenen
-                percentageofHeigt = 30;
-                ButtonHeightCounter = 0;
-                ButtonHeightCounter = (int) Math.Floor((double) (answerButtons.Count-1)/2);
+
+                //Calculate Y location
+                ButtonHeightCounter = (int)Math.Floor((double)(answerButtons.Count - 1) / 2);
                 ButtonListCounter = answerButtons.Count;
 
                 if (ButtonListCounter % 2 != 0)
@@ -132,26 +128,28 @@ namespace Client.Student
                 }
                 else
                 {
-                    locationX = (Width-chatBox.Width) / 2;
+                    locationX = this.ClientSize.Width / 10 * 7 / 2;
                 }
 
-                option.Width = (Width-chatBox.Width)/2;
-                WorkingArea = (Height / 100) * 30;
-                //ken de hoogte toe
-                option.Height = WorkingArea / precentagePerButton;
-                locationY = option.Height * (int)ButtonHeightCounter + (Height/100)*70;
-
-                //heightcounter = (int)Math.Floor(ButtonListCounter - 0.5);
+                option.Width = this.ClientSize.Width / 10 * 7 / 2;
+                option.Height = this.ClientSize.Height / 10 * 3 / percentagePerButton;
+                locationY = (this.ClientSize.Height / 10 * 7) + (option.Height * (int)ButtonHeightCounter);
                 option.Location = new Point(locationX, locationY);
+                //set de answerID
+                option.ImageIndex = PA.Id;
+                //Add button to controls
                 Controls.Add(option);
             }
         }
 
         private void AnswerSaveHandler(object sender, System.EventArgs e)
         {
+            Button btn = (Button)sender;
             UserAnswer ua = new UserAnswer();
-            ua.PredefinedAnswer_Id = 0;
-            //ua.Question_ID = currentQuestionIndex;
+            ua.PredefinedAnswer_Id = btn.ImageIndex;
+            ua.Question_ID = currentQuestion.Id;
+            ua.saveAnswer();
+            goToNextQuestion();
         }
 
         private void cleanUpPreviousQuestion()
@@ -164,6 +162,11 @@ namespace Client.Student
 
         private void goToNextQuestion()
         {
+            foreach (Button b in answerButtons)
+            {
+                Controls.Remove(b);
+            }
+            answerButtons.Clear();
             currentQuestionIndex++;
 
             if (list.Questions.Count - 1 >= currentQuestionIndex)

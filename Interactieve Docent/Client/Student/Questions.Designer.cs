@@ -110,7 +110,9 @@
             this.Controls.Add(this.chatBox);
             this.Controls.Add(this.questionTimeProgressBar);
             this.Controls.Add(this.questionLabel);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.MaximizeBox = false;
             this.Name = "Questions";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Questions";

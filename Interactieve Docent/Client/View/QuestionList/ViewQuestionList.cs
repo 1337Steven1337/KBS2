@@ -10,6 +10,7 @@ using System.Windows.Forms;
 using Client.Controller;
 using Client.View.PanelLayout;
 using Client.Factory;
+using Client.Model;
 
 namespace Client.View.QuestionList
 {
@@ -23,19 +24,17 @@ namespace Client.View.QuestionList
             InitializeComponent();
             customPanel = new CustomPanel();
 
+            listBoxQuestionLists.DisplayMember = "Name";
+            listBoxQuestionLists.ValueMember = "Id";
+
         }
 
         public void setController(QuestionListController controller)
         {
             this.controller = controller;
+            listBoxQuestionLists.DataSource = this.controller.QuestionLists;
         }
 
-        public void fillList(List<Model.QuestionList> lists)
-        {
-            listBoxQuestionLists.DisplayMember = "Name";
-            listBoxQuestionLists.ValueMember = "Id";
-            listBoxQuestionLists.DataSource = lists;
-        }
 
         public ListBox getListBox()
         {
@@ -45,6 +44,11 @@ namespace Client.View.QuestionList
         public CustomPanel getCustomPanel()
         {
             return customPanel;
-        }   
+        }
+
+        public void fillList(List<Model.QuestionList> lists)
+        {
+           //throw new NotImplementedException();
+        }
     }
 }

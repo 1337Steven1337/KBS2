@@ -38,14 +38,14 @@
             this.listBoxQuestionLists.ItemHeight = 16;
             this.listBoxQuestionLists.Location = new System.Drawing.Point(0, 0);
             this.listBoxQuestionLists.Name = "listBoxQuestionLists";
-            this.listBoxQuestionLists.Size = new System.Drawing.Size(282, 253);
+            this.listBoxQuestionLists.Size = new System.Drawing.Size(281, 302);
             this.listBoxQuestionLists.TabIndex = 0;
             // 
             // ViewQuestionList
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(282, 253);
+            this.ClientSize = new System.Drawing.Size(281, 302);
             this.Controls.Add(this.listBoxQuestionLists);
             this.Name = "ViewQuestionList";
             this.Text = "ViewQuestionList";
