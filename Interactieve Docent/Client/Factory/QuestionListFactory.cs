@@ -111,9 +111,14 @@ namespace Client.Factory
             this.save<QuestionList>(values, resource, control, callback);
         }
 
-        public void findById(int id, Action<QuestionList> callback)
+        public void findByIdAsync(int id, Action<QuestionList> callback)
         {
-            this.findById<QuestionList>(id, resource, callback);
+            this.findByIdAsync<QuestionList>(id, resource, callback);
+        }
+
+        public void findById(int id, Control control, Action<QuestionList> callback)
+        {
+            this.findById<QuestionList>(id, resource, control, callback);
         }
 
         public void findAll(Control control, Action<List<QuestionList>> callback)

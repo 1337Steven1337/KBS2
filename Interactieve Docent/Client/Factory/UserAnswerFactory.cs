@@ -88,9 +88,14 @@ namespace Client.Factory
             this.save<UserAnswer>(values, resource, control, callback);
         }
 
-        public void findById(int id, Action<UserAnswer> callback)
+        public void findByIdAsync(int id, Action<UserAnswer> callback)
         {
-            this.findById<UserAnswer>(id, resource, callback);
+            this.findByIdAsync<UserAnswer>(id, resource, callback);
+        }
+
+        public void findById(int id, Control control, Action<UserAnswer> callback)
+        {
+            this.findById<UserAnswer>(id, resource, control, callback);
         }
 
         public void findAll(Control control, Action<List<UserAnswer>> callback)

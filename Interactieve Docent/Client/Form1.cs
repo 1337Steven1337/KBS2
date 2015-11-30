@@ -73,7 +73,7 @@ namespace Client
 
             QuestionListFactory factory = new QuestionListFactory();
             Console.WriteLine("Before fetch");
-            factory.findById(2, test);
+            factory.findByIdAsync(2, test);
             Console.WriteLine("After fetch");
         }
 

@@ -37,9 +37,14 @@ namespace Client.Factory
             this.save<PredefinedAnswer>(values, resource, control, callback);
         }
 
-        public void findById(int id, Action<PredefinedAnswer> callback)
+        public void findByIdAsync(int id, Action<PredefinedAnswer> callback)
         {
-            this.findById<PredefinedAnswer>(id, resource, callback);
+            this.findByIdAsync<PredefinedAnswer>(id, resource, callback);
+        }
+
+        public void findById(int id, Control control, Action<PredefinedAnswer> callback)
+        {
+            this.findById<PredefinedAnswer>(id, resource, control, callback);
         }
 
         public void findAll(Control control, Action<List<PredefinedAnswer>> callback)
