@@ -56,7 +56,7 @@ namespace Client.Controller
                 string name = dlg.text;
                 QuestionList ql = new QuestionList();
                 ql.Name = name;
-                factory.save(ql, this.view.getListBox(), process);
+                factory.save(ql, this.view.getListBox(), processAdd);
             }
         }
 
@@ -71,13 +71,27 @@ namespace Client.Controller
                 int id = (int)listBoxQuestionLists.SelectedValue;
                 QuestionList ql = new QuestionList();
                 ql.Id = id;
-                factory.delete(ql, this.view.getListBox(), process);
+                factory.delete(ql, this.view.getListBox(), processDelete);
             }
         }
 
-        private void process(QuestionList ql)
+        private void processAdd(QuestionList ql)
         {
             this.QuestionLists.Add(ql);
+        }
+
+        private void processDelete(QuestionList ql)
+        {
+            int i;
+            for (i = 0;  i < this.QuestionLists.Count; i++)
+            {
+                if(this.QuestionLists[i].Id == ql.Id)
+                {
+                    break;
+                }
+            }
+
+            this.QuestionLists.RemoveAt(i);
         }
 
         private void loadLists()
