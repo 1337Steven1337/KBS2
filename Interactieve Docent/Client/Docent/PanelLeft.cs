@@ -9,7 +9,7 @@ namespace Client
     {
         public ListBox listBox;
 
-        public PanelLeft(Form mainForm, TableLayoutPanel panelsTable) : base(mainForm)
+        public PanelLeft(Form mainForm, TableLayoutPanel panelsTable) : base()
         {
             title.Text = "VragenLijsten";
             listBox = new ListBox();

@@ -33,52 +33,59 @@ namespace Client.Student
         private List list = null;
         private List<Button> answerButtons = new List<Button>();
 
-        private ProgressBar timerProgressBar;
-
         private Question currentQuestion = null;
         private Timer questionTimer = new Timer();
-        private Timer progressBarTimer = new Timer();
+        private int TimerLimit = -1;
         private SignalR signalR = null;
+
+        float ButtonListCounter = 2;
+
+
 
         public Questions(int List_Id)
         {
+
             InitializeComponent();
             this.List_Id = List_Id;
             this.Size = new Size((int)(Screen.PrimaryScreen.Bounds.Width * 0.8), (int)(Screen.PrimaryScreen.Bounds.Height * 0.8));
 
             // tijdelijke button
-            questionLabel.Size = new Size((int)(this.Width/10*7) - 50,(int)(this.Height/10*5) - 50);
+            questionLabel.Size = new Size((int)(this.Width / 10 * 7) - 50, (int)(this.Height / 10 * 5) - 50);
 
-            questionLabel.Location = new Point(50,50);
+            questionLabel.Location = new Point(50, 50);
 
+            chatBox.Size = new Size(this.Width / 10 * 3, this.Height / 10 * 9);
+            chatBoxMessage.Size = new Size(this.Width / 10 * 2, this.Height / 10);
+            sendMessageButton.Size = new Size(this.Width / 10, this.Height / 10);
 
-            chatBox.Size = new Size(this.Width/10*3,this.Height/10*9);
-            chatBoxMessage.Size = new Size(this.Width/10*2, this.Height/10);
-            sendMessageButton.Size = new Size(this.Width/10, this.Height/10);
-
-            chatBox.Location = new Point(this.Width/10*7,0);
-            chatBoxMessage.Location = new Point(this.Width/10*7,this.Location.Y+chatBox.Height);
-            sendMessageButton.Location = new Point(this.Width/10*9, this.Location.Y+chatBox.Height);
+            chatBox.Location = new Point(this.Width / 10 * 7, 0);
+            chatBoxMessage.Location = new Point(this.Width / 10 * 7, this.Location.Y + chatBox.Height);
+            sendMessageButton.Location = new Point(this.Width / 10 * 9, this.Location.Y + chatBox.Height);
 
 
             tempBtn.Size = new Size(this.Width / 10 * 7, (this.Height / 10 * 3));
-            questionTimeProgressBar.Size = new Size(this.Width/10*7,this.Size.Height/10);
+            questionTimeProgressBar.Size = new Size(this.Width / 10 * 7, this.Size.Height / 10);
 
             tempBtn.Location = new Point(this.Location.X, this.Location.Y + this.Size.Height - ((this.Height / 10 * 3)));
-            questionTimeProgressBar.Location = new Point(0,this.Location.Y + this.Size.Height/2 + this.Size.Height/10);
+            questionTimeProgressBar.Location = new Point(0, this.Location.Y + this.Size.Height / 2 + this.Size.Height / 10);
+
+            timeLabel.Location = new Point(questionTimeProgressBar.Location.X + questionTimeProgressBar.Width / 2 - timeLabel.Width / 2, questionTimeProgressBar.Location.Y + questionTimeProgressBar.Height / 2 - timeLabel.Height / 2);
 
         }
 
 
-        private void Question_UpdateProgressBar(object sender, EventArgs e)
+        private void Question_Timer(object sender, EventArgs e)
         {
-            questionTimeProgressBar.Value -= questionTimeProgressBar.Maximum / currentQuestion.Time / 100;
-        }
-
-        private void Question_TimerStop(object sender, EventArgs e)
-        {
-            questionTimer.Stop();
-            progressBarTimer.Stop();
+            if (questionTimeProgressBar.Value > 0)
+            {
+                questionTimeProgressBar.Value--;
+                timeLabel.Text = "" + questionTimeProgressBar.Value;
+            }
+            else if (questionTimeProgressBar.Value <= 0)
+            {
+                questionTimer.Stop();
+                goToNextQuestion();
+            }
         }
 
         private void Questions_Load(object sender, EventArgs e)
@@ -91,6 +98,7 @@ namespace Client.Student
             this.signalR.connect();
 
             this.goToNextQuestion();
+            
         }
 
         private Button createAnswerButton(PredefinedAnswer answer)
@@ -100,49 +108,61 @@ namespace Client.Student
             option = new Button();
             answerButtons.Add(option);
             option.Text = answer.Text;
-            answerButtons.Add(option);
             //option.Location = new Point(Width / 2 + option.Width * (ButtonCounterHorizontal), Height - option.Height * (4 - ButtonCounterVertical));
             return option;
         }
 
 
         private void adjustSizeOfButtons(Question Q)
-            {
+        {
             foreach (PredefinedAnswer PA in Q.PredefinedAnswers)
             {
 
-
-                if (option == null)
-            {
+                
+                if (currentQuestion.PredefinedAnswers.Count > answerButtons.Count)
+                {
                     option = createAnswerButton(PA);
-            }
+                }
+                option.Click += AnswerSaveHandler;
                 //bereken de grootte
-                int precentagePerButton = (int) Math.Ceiling((double) currentQuestion.PredefinedAnswers.Count/2);
+                int precentagePerButton = (int)Math.Ceiling((double)currentQuestion.PredefinedAnswers.Count / 2);
                 int heightcounter = 0;
                 int locationY = 0;
                 int locationX = 0;
                 int WorkingArea = 0;
-                float ButtonListCounter = 0;
+                int ButtonHeightCounter = 0;
                 //y locatie berekenen
-                ButtonListCounter = (int) Math.Floor((double) currentQuestion.PredefinedAnswers.Count/2);
                 percentageofHeigt = 30;
-                if (ButtonListCounter%1 == 0)
-            {
-                    locationX = 0;
-            }
-            else
-            {
-                    locationX = Width/2;
-            }
+                ButtonHeightCounter = 0;
+                ButtonHeightCounter = (int) Math.Floor((double) (answerButtons.Count-1)/2);
+                ButtonListCounter = answerButtons.Count;
 
-                WorkingArea = (Height/100)*30;
+                if (ButtonListCounter % 2 != 0)
+                {
+                    locationX = 0;
+                }
+                else
+                {
+                    locationX = (Width-chatBox.Width) / 2;
+                }
+
+                option.Width = (Width-chatBox.Width)/2;
+                WorkingArea = (Height / 100) * 30;
                 //ken de hoogte toe
-                option.Height = WorkingArea/precentagePerButton;
-                locationY = option.Height*(int) ButtonListCounter;
+                option.Height = WorkingArea / precentagePerButton;
+                locationY = option.Height * (int)ButtonHeightCounter + (Height/100)*70;
 
                 //heightcounter = (int)Math.Floor(ButtonListCounter - 0.5);
-                option.Location = new Point(locationY,locationX);
+                option.Location = new Point(locationX, locationY);
+                Controls.Add(option);
             }
+        }
+
+        private void AnswerSaveHandler(object sender, System.EventArgs e)
+        {
+            UserAnswer ua = new UserAnswer();
+            ua.PredefinedAnswer_Id = 0;
+            ua.Question_ID = currentQuestionIndex;
         }
 
         private void cleanUpPreviousQuestion()
@@ -162,24 +182,17 @@ namespace Client.Student
                 busy = true;
                 cleanUpPreviousQuestion();
                 currentQuestion = Question.getById(list.Questions[currentQuestionIndex].Id);
-
-                questionTimeProgressBar.Maximum = currentQuestion.Time * 1000;
-                questionTimeProgressBar.Value = currentQuestion.Time * 1000;
-
-                questionTimer.Interval = currentQuestion.Time * 1000;
-                questionTimer.Tick += Question_TimerStop;
+                questionTimeProgressBar.Maximum = currentQuestion.Time;
+                questionTimeProgressBar.Value = currentQuestion.Time;
+                TimerLimit = currentQuestion.Time;
+                questionTimer.Interval = 1000;
+                questionTimer.Tick += Question_Timer;
                 questionTimer.Start();
-
-                progressBarTimer.Interval = 10;
-                progressBarTimer.Tick += Question_UpdateProgressBar;
-                progressBarTimer.Start();
-                
-
                 questionLabel.Text = currentQuestion.Text;
 
 
-                    adjustSizeOfButtons(currentQuestion);
-                
+                adjustSizeOfButtons(currentQuestion);
+
             }
             else if (list.Ended)
             {

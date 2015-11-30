@@ -14,7 +14,7 @@ namespace Client
         private int questionId;
         public ListBox listBox;
 
-        public PanelMiddle(Form mainForm, TableLayoutPanel panelsTable) : base(mainForm)
+        public PanelMiddle(Form mainForm, TableLayoutPanel panelsTable) : base()
         {
             listBox = new ListBox();
             listBox.Dock = DockStyle.Fill;

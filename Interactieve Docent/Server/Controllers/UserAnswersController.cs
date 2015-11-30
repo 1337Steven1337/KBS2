@@ -73,6 +73,9 @@ namespace Server.Controllers
             try
             {
                 await db.SaveChangesAsync();
+
+                Question question = db.Questions.Find(userAnswer.Question_Id);
+                this.getSubscribed(question.List_Id).UserAnswerUpdated(new UserAnswerDTO(userAnswer));
             }
             catch (DbUpdateConcurrencyException)
             {
@@ -102,7 +105,6 @@ namespace Server.Controllers
             await db.SaveChangesAsync();
 
             Question question = db.Questions.Find(userAnswer.Question_Id);
-
             this.getSubscribed(question.List_Id).UserAnswerAdded(new UserAnswerDTO(userAnswer));
 
             return CreatedAtRoute("DefaultApi", new { id = userAnswer.Id }, userAnswer);
@@ -120,6 +122,9 @@ namespace Server.Controllers
 
             db.UserAnswers.Remove(userAnswer);
             await db.SaveChangesAsync();
+
+            Question question = db.Questions.Find(userAnswer.Question_Id);
+            this.getSubscribed(question.List_Id).UserAnswerRemoved(new UserAnswerDTO(userAnswer));
 
             return Ok(userAnswer);
         }

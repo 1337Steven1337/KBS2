@@ -8,7 +8,7 @@ using System.Windows.Forms;
 
 namespace Client
 {
-    public class PanelLayout : Panel
+    public class PLayout
     {
         public Form mainForm;
         public Panel middleRow, topRow;
@@ -16,9 +16,8 @@ namespace Client
         public Label title;
         public TableLayoutPanel mainTable, bottomRow;
 
-        public PanelLayout()
+        public PLayout()
         {
-            this.mainForm = mainForm;
             mainTable = new TableLayoutPanel();
             mainTable.ColumnCount = 1;
             mainTable.RowCount = 3;
@@ -72,12 +71,9 @@ namespace Client
             mainTable.Controls.Add(bottomRow, 0, 2);
         }
 
-        public void updateLayout()
+        public TableLayoutPanel getPanel()
         {
-            //Maintable, the table is splitted in 3 rows - TOP ROW 20% / MIDDLE ROW 80% / BOTTOM ROW 10%
-            mainTable.Controls.Add(topRow, 0, 0);
-            mainTable.Controls.Add(middleRow, 0, 1);
-            mainTable.Controls.Add(bottomRow, 0, 2);
+            return mainTable;
         }
     }
 }

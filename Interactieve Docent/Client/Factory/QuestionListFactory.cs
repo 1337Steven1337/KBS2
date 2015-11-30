@@ -1,4 +1,5 @@
 ﻿using Client.Model;
+using Microsoft.AspNet.SignalR.Client;
 using RestSharp;
 using System;
 using System.Collections.Generic;
