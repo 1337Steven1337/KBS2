@@ -16,5 +16,9 @@ namespace Client.Model
         public string Text { get; set; }
 
         public QuestionList QuestionList { get; set; }
+
+        public List<PredefinedAnswer> PredefinedAnswers { get; set; }
+
+        public List<UserAnswer> UserAnswers { get; set; }
     }
 }
