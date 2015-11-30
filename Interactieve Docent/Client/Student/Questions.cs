@@ -162,7 +162,7 @@ namespace Client.Student
         {
             UserAnswer ua = new UserAnswer();
             ua.PredefinedAnswer_Id = 0;
-            ua.Question_ID = currentQuestionIndex;
+            //ua.Question_ID = currentQuestionIndex;
         }
 
         private void cleanUpPreviousQuestion()

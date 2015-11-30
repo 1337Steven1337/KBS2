@@ -34,7 +34,7 @@ namespace Client.View.QuestionList
         {
             listBoxQuestionLists.DataSource = lists;
             listBoxQuestionLists.DisplayMember = "Name";
-            listBoxQuestionLists.ValueMember = "Id";
+            listBoxQuestionLists.ValueMember = "Id2";
         }
 
         public ListBox getListBox()

@@ -2,6 +2,7 @@
 using Client.View.QuestionList;
 using System.Windows.Forms;
 using Client.View.Question;
+using Client.Model;
 using Client.View.PanelLayout;
 
 namespace Client.Controller
@@ -42,7 +43,8 @@ namespace Client.Controller
 
         private void listBox_SelectedIndexChanged(object sender, System.EventArgs e)
         {
-            questionController.loadQuestions(62);
+            Model.QuestionList list = (Model.QuestionList)listBox.SelectedValue;
+            questionController.loadQuestions(list.Id);
         }
     }
 }
