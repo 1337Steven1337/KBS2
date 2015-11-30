@@ -43,6 +43,7 @@ namespace Client.Controller
 
             loadLists();
             listBoxQuestionLists.SelectedIndexChanged += listBox_SelectedIndexChanged;
+            listBoxQuestionLists.PreviewKeyDown += new PreviewKeyDownEventHandler(Delete_keyDown);
         }
 
         public void newList(object sender, EventArgs e)
@@ -66,6 +67,7 @@ namespace Client.Controller
         {
             ViewDeleteList dlg = new ViewDeleteList();
             dlg.StartPosition = FormStartPosition.CenterParent;
+            dlg.setText(listBoxQuestionLists.SelectedItem.ToString());
             dlg.ShowDialog();
 
             if (dlg.valid)
@@ -106,6 +108,14 @@ namespace Client.Controller
             foreach(QuestionList q in lists)
             {
                 this.QuestionLists.Add(q);
+            }
+        }
+
+        private void Delete_keyDown(object sender, PreviewKeyDownEventArgs e)
+        {
+            if (e.KeyCode == Keys.Delete)
+            {
+                deleteList(sender, e);
             }
         }
 

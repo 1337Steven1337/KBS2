@@ -232,6 +232,12 @@
       <DependentUpon>ViewQuestionList.cs</DependentUpon>
     </Compile>
     <Compile Include="View\Question\IQuestionView.cs" />
+    <Compile Include="View\Question\ViewDeleteQuestion.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\Question\ViewDeleteQuestion.Designer.cs">
+      <DependentUpon>ViewDeleteQuestion.cs</DependentUpon>
+    </Compile>
     <Compile Include="View\Question\ViewQuestion.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -299,6 +305,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="View\QuestionList\ViewQuestionList.resx">
       <DependentUpon>ViewQuestionList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\Question\ViewDeleteQuestion.resx">
+      <DependentUpon>ViewDeleteQuestion.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="View\Question\ViewQuestion.resx">
       <DependentUpon>ViewQuestion.cs</DependentUpon>

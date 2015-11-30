@@ -8,7 +8,7 @@ namespace Client.Model
 {
     public class Question
     {
-        public int Id { get; private set; }
+        public int Id { get; set; }
         public int Points { get; set; }
         public int Time { get; set; }
         public int List_Id { get; set; }
@@ -16,5 +16,10 @@ namespace Client.Model
         public string Text { get; set; }
 
         public QuestionList QuestionList { get; set; }
+
+        public override string ToString()
+        {
+            return Text;
+        }
     }
 }

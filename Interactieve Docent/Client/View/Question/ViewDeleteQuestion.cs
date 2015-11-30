@@ -8,27 +8,27 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace Client.View.QuestionList
+namespace Client.View.Question
 {
-    public partial class ViewDeleteList : Form
-    { 
+    public partial class ViewDeleteQuestion : Form
+    {
         public Boolean valid { get; set; }
 
-        public ViewDeleteList()
+        public ViewDeleteQuestion()
         {
-            InitializeComponent();
             valid = false;
+            InitializeComponent();
         }
 
         private void buttonOk_Click(object sender, EventArgs e)
         {
             valid = true;
-            this.Close();
+            Close();
         }
 
         private void buttonCancel_Click(object sender, EventArgs e)
         {
-            this.Close();
+            Close();
         }
 
         public void setText(string text)
