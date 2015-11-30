@@ -14,8 +14,6 @@ namespace Client.Controller
         public List<string> questions;
         public List<int> votes;
 
-        private Dictionary<string, int> questionVotes = new Dictionary<string, int>();
-
         private IDiagramView view;
 
         private Panel panel;
@@ -38,7 +36,7 @@ namespace Client.Controller
 
         private void QuestionController_selectedIndexChanged(Event.QuestionControllerSelectedIndexChanged message)
         {
-            factory.findById(message.question.Id, this.SetQuestion);
+            factory.findById(message.question.Id, this.view.getPanel(), this.SetQuestion);
         }
         #endregion
 
@@ -46,20 +44,19 @@ namespace Client.Controller
 
         public void SetQuestion(Question q)
         {
-            this.view.getPanel().Invoke((Action)delegate ()
-            {
-                this.Question = q;
+            this.Question = q;
 
-                if (this.Question.PredefinedAnswers != null && this.Question.UserAnswers != null)
-                {
-                    this.GetData();
-                    this.view.Make(this.votes, this.questions, this.Question.Text);
-                }
-            });
+            if (this.Question.PredefinedAnswers != null && this.Question.UserAnswers != null)
+            {
+                this.GetData();
+                this.view.Make(this.votes, this.questions, this.Question.Text);
+            }
         }
 
         private void GetData()
         {
+             Dictionary<string, int> questionVotes = new Dictionary<string, int>();
+
             //if the predefinedanswer is empty zet votes to zero
             foreach (PredefinedAnswer preAnswer in Question.PredefinedAnswers)
             {
@@ -72,7 +69,7 @@ namespace Client.Controller
                 string text = Question.PredefinedAnswers.Find(x => x.Id == answer.PredefinedAnswer_Id).Text;
                 questionVotes[text] += 1;
             }
-
+            
             votes = questionVotes.Values.ToList<int>();
             questions = questionVotes.Keys.ToList<string>();
         }
