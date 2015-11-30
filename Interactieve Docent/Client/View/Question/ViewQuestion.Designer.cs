@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.listBoxQuestion = new System.Windows.Forms.ListBox();
+            this.panel.SuspendLayout();
             this.SuspendLayout();
             // 
             // listBoxQuestion
@@ -49,6 +50,7 @@
             this.Controls.Add(this.listBoxQuestion);
             this.Name = "ViewQuestion";
             this.Text = "ViewQuestion";
+            this.panel.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
