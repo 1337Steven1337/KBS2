@@ -93,22 +93,23 @@ namespace Client.Factory
             this.deleteAsync<QuestionList>(list.Id, resource, callback);
         }
 
-        public void saveAsync(QuestionList list, Action<QuestionList> callback)
+        private Dictionary<string, object> getFields(QuestionList list)
         {
             Dictionary<string, object> values = new Dictionary<string, object>();
             values.Add("Name", list.Name);
             values.Add("Ended", list.Ended);
 
-            this.saveAsync<QuestionList>(values, resource, callback);
+            return values;
+        }
+
+        public void saveAsync(QuestionList list, Action<QuestionList> callback)
+        {
+            this.saveAsync<QuestionList>(this.getFields(list), resource, callback);
         }
 
         public void save(QuestionList list, Control control, Action<QuestionList> callback)
         {
-            Dictionary<string, object> values = new Dictionary<string, object>();
-            values.Add("Name", list.Name);
-            values.Add("Ended", list.Ended);
-
-            this.save<QuestionList>(values, resource, control, callback);
+            this.save<QuestionList>(this.getFields(list), resource, control, callback);
         }
 
         public void findByIdAsync(int id, Action<QuestionList> callback)

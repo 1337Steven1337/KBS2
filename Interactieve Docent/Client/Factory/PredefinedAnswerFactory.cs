@@ -19,22 +19,23 @@ namespace Client.Factory
             this.deleteAsync<PredefinedAnswer>(answer.Id, resource, callback);
         }
 
-        public void saveAsync(PredefinedAnswer answer, Action<PredefinedAnswer> callback)
+        private Dictionary<string, object> getFields(PredefinedAnswer answer)
         {
             Dictionary<string, object> values = new Dictionary<string, object>();
             values.Add("Text", answer.Text);
             values.Add("Question_Id", answer.Question_Id);
 
-            this.saveAsync<PredefinedAnswer>(values, resource, callback);
+            return values;
+        }
+
+        public void saveAsync(PredefinedAnswer answer, Action<PredefinedAnswer> callback)
+        {
+            this.saveAsync<PredefinedAnswer>(this.getFields(answer), resource, callback);
         }
 
         public void save(PredefinedAnswer answer, Control control, Action<PredefinedAnswer> callback)
         {
-            Dictionary<string, object> values = new Dictionary<string, object>();
-            values.Add("Text", answer.Text);
-            values.Add("Question_Id", answer.Question_Id);
-
-            this.save<PredefinedAnswer>(values, resource, control, callback);
+            this.save<PredefinedAnswer>(this.getFields(answer), resource, control, callback);
         }
 
         public void findByIdAsync(int id, Action<PredefinedAnswer> callback)

@@ -17,16 +17,17 @@ namespace Client.View.QuestionList
     public partial class  ViewQuestionList : Form, IQuestionListView
     {
         private QuestionListController controller;
-        private CustomPanel customPanel;
+        private CustomPanel customPanelQuestionList;
 
         public ViewQuestionList()
         {
             InitializeComponent();
-            customPanel = new CustomPanel();
+            //customPanel = new CustomPanel();
 
             listBoxQuestionLists.DisplayMember = "Name";
             listBoxQuestionLists.ValueMember = "Id";
 
+            customPanelQuestionList = new CustomPanel();
         }
 
         public void setController(QuestionListController controller)
@@ -43,8 +44,8 @@ namespace Client.View.QuestionList
         
         public CustomPanel getCustomPanel()
         {
-            return customPanel;
-        }
+            return customPanelQuestionList;
+        }   
 
         public void fillList(List<Model.QuestionList> lists)
         {

@@ -13,25 +13,25 @@ namespace Client.Controller
     public class QuestionListController
     {
         private IQuestionListView view;
-        private TableLayoutPanel mainTable, threeColTable;
+        private TableLayoutPanel threeColTable;
         private ListBox listBoxQuestionLists;
-        private CustomPanel customPanel;
+        private CustomPanel customPanelQuestionList;
         private QuestionListFactory factory = new QuestionListFactory();
         private QuestionController questionController;
+        private CustomPanel customPanel;
         public BindingList<QuestionList> QuestionLists = new BindingList<QuestionList>();
 
-        public QuestionListController(IQuestionListView view, TableLayoutPanel mainTable, TableLayoutPanel threeColTable, QuestionController questionController)
+        public QuestionListController(IQuestionListView view, TableLayoutPanel threeColTable, QuestionController questionController)
         {
-            this.mainTable = mainTable;
             this.threeColTable = threeColTable;
             this.listBoxQuestionLists = view.getListBox();
-            this.customPanel = view.getCustomPanel();
+            this.customPanelQuestionList =  customPanel = view.getCustomPanel();
             this.view = view;
             this.view.setController(this);
             this.questionController = questionController;
 
-            customPanel.middleRow.Controls.Add(listBoxQuestionLists);
-            customPanel.title.Text = "VragenLijsten";
+            customPanelQuestionList.middleRow.Controls.Add(listBoxQuestionLists);
+            customPanelQuestionList.title.Text = "VragenLijsten";
 
             customPanel.leftBottomButton.Text = "Nieuwe lijst";
             customPanel.leftBottomButton.Click += new System.EventHandler(newList);
@@ -39,10 +39,11 @@ namespace Client.Controller
             customPanel.rightBottomButton.Click += new System.EventHandler(deleteList);
 
             threeColTable.Controls.Add(customPanel.getPanel(), 0, 0);
-            mainTable.Controls.Add(threeColTable, 1, 0);
+            threeColTable.Controls.Add(customPanelQuestionList.getPanel(), 0, 0);
 
             loadLists();
             listBoxQuestionLists.SelectedIndexChanged += listBox_SelectedIndexChanged;
+            listBoxQuestionLists.PreviewKeyDown += new PreviewKeyDownEventHandler(Delete_keyDown);
         }
 
         public void newList(object sender, EventArgs e)
@@ -66,6 +67,7 @@ namespace Client.Controller
         {
             ViewDeleteList dlg = new ViewDeleteList();
             dlg.StartPosition = FormStartPosition.CenterParent;
+            dlg.setText(listBoxQuestionLists.SelectedItem.ToString());
             dlg.ShowDialog();
 
             if (dlg.valid)
@@ -98,7 +100,7 @@ namespace Client.Controller
 
         private void loadLists()
         {
-            factory.findAll(mainTable, this.fillList);
+            factory.findAll(threeColTable, this.fillList);
         }
 
         private void fillList(List<QuestionList> lists)
@@ -106,6 +108,14 @@ namespace Client.Controller
             foreach(QuestionList q in lists)
             {
                 this.QuestionLists.Add(q);
+            }
+        }
+
+        private void Delete_keyDown(object sender, PreviewKeyDownEventArgs e)
+        {
+            if (e.KeyCode == Keys.Delete)
+            {
+                deleteList(sender, e);
             }
         }
 

@@ -18,11 +18,15 @@ namespace Client.View.Question
         {
             InitializeComponent();
             customPanel = new CustomPanel();
+
+            listBoxQuestion.DisplayMember = "Text";
+            listBoxQuestion.ValueMember = "Id";            
         }
 
         public void setController(QuestionController controller)
         {
             this.controller = controller;
+            listBoxQuestion.DataSource = this.controller.Questions;
         }
 
         public ListBox getListBox()
@@ -30,25 +34,16 @@ namespace Client.View.Question
             return listBoxQuestion;
         }
 
-        public void fillList(List<Model.Question> list)
-        {
-            List<Model.Question> requested = new List<Model.Question>();
-            foreach (var item in list)
-            {
-                if(item.List_Id == listId)
-                {
-                    requested.Add(item);
-                    
-                }
-            }
-            listBoxQuestion.DataSource = requested;
-                    listBoxQuestion.DisplayMember = "Text";
-                    listBoxQuestion.ValueMember = "Id";
-                }
-
         public CustomPanel getCustomPanel()
         {
             return customPanel;
+        }
+
+        public void fillList(List<Model.Question> list)
+        {
+            listBoxQuestion.DisplayMember = "Text";
+            listBoxQuestion.ValueMember = "Id";
+            listBoxQuestion.DataSource = list.FindAll(x => x.List_Id == listId);
         }
     }
 }
