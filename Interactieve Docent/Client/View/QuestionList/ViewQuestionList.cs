@@ -22,7 +22,7 @@ namespace Client.View.QuestionList
         public ViewQuestionList()
         {
             InitializeComponent();
-            customPanel = new CustomPanel();
+            //customPanel = new CustomPanel();
 
             listBoxQuestionLists.DisplayMember = "Name";
             listBoxQuestionLists.ValueMember = "Id";

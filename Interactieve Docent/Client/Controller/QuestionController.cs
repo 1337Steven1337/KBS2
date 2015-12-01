@@ -4,6 +4,8 @@ using Client.Factory;
 using System;
 using Client.Model;
 using System.ComponentModel;
+using Client.View.PanelLayout;
+using Client.Event;
 
 namespace Client.Controller
 {
@@ -23,6 +25,8 @@ namespace Client.Controller
         private CustomPanel customPanel;
         private QuestionFactory factory = new QuestionFactory();
         public BindingList<Question> Questions = new BindingList<Question>();
+        private IQuestionView questionView;
+        private IAddQuestionView addQuestionView;
 
         public QuestionController(IQuestionView questionView, TableLayoutPanel threeColTable)
         {
@@ -60,6 +64,14 @@ namespace Client.Controller
             customPanel.rightBottomButton.Click += new System.EventHandler(deleteQuestion);
 
             threeColTable.Controls.Add(addQuestionView.getCustomPanel().getPanel(), 2, 0);
+        }
+
+        private void ListBoxQuestion_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if(this.selectedIndexChanged != null)
+            {
+                this.selectedIndexChanged(new QuestionControllerSelectedIndexChanged((Question)this.listBoxQuestion.SelectedItem));
+            }
         }
 
         public void deleteQuestion(object sender, EventArgs e)
@@ -120,7 +132,7 @@ namespace Client.Controller
             q.Points = (int)addQuestionView.getPointsField().Value;
             q.List_Id = questionView.listId; //QuestionView.ListId krijgt 0, moet nog gefixt worden (dus het listId)
             
-            factory.save(q, null);
+            factory.saveAsync(q, null);
 
             //PredefinedAnswer pa;
             //foreach (String answer in panelRight.predefinedAnswersList.Items)

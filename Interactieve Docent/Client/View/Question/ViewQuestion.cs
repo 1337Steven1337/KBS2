@@ -10,7 +10,7 @@ namespace Client.View.Question
     public partial class ViewQuestion : Form, IQuestionView
     {
         private QuestionController controller;
-        private CustomPanel customPanelQuestion;
+        private CustomPanel customPanel;
 
         public int listId { get; set;}
 
@@ -20,8 +20,7 @@ namespace Client.View.Question
             customPanel = new CustomPanel();
 
             listBoxQuestion.DisplayMember = "Text";
-            listBoxQuestion.ValueMember = "Id";
-            customPanelQuestion = new CustomPanel();            
+            listBoxQuestion.ValueMember = "Id";            
         }
 
         public void setController(QuestionController controller)
@@ -38,14 +37,13 @@ namespace Client.View.Question
         public CustomPanel getCustomPanel()
         {
             return customPanel;
-            listBoxQuestion.DisplayMember = "Text";
-            listBoxQuestion.ValueMember = "Id";
-            listBoxQuestion.DataSource = list.FindAll(x => x.List_Id == listId);
-                }
+        }
 
         public void fillList(List<Model.Question> list)
         {
-            return customPanelQuestion;
+            listBoxQuestion.DisplayMember = "Text";
+            listBoxQuestion.ValueMember = "Id";
+            listBoxQuestion.DataSource = list.FindAll(x => x.List_Id == listId);
         }
     }
 }

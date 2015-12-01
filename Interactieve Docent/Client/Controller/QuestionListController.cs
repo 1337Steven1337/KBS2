@@ -18,13 +18,14 @@ namespace Client.Controller
         private CustomPanel customPanelQuestionList;
         private QuestionListFactory factory = new QuestionListFactory();
         private QuestionController questionController;
+        private CustomPanel customPanel;
         public BindingList<QuestionList> QuestionLists = new BindingList<QuestionList>();
 
         public QuestionListController(IQuestionListView view, TableLayoutPanel threeColTable, QuestionController questionController)
         {
             this.threeColTable = threeColTable;
             this.listBoxQuestionLists = view.getListBox();
-            this.customPanelQuestionList = view.getCustomPanel();
+            this.customPanelQuestionList =  customPanel = view.getCustomPanel();
             this.view = view;
             this.view.setController(this);
             this.questionController = questionController;
@@ -38,7 +39,7 @@ namespace Client.Controller
             customPanel.rightBottomButton.Click += new System.EventHandler(deleteList);
 
             threeColTable.Controls.Add(customPanel.getPanel(), 0, 0);
-            mainTable.Controls.Add(threeColTable, 1, 0);
+            threeColTable.Controls.Add(customPanelQuestionList.getPanel(), 0, 0);
 
             loadLists();
             listBoxQuestionLists.SelectedIndexChanged += listBox_SelectedIndexChanged;
@@ -99,7 +100,7 @@ namespace Client.Controller
 
         private void loadLists()
         {
-            factory.findAll(mainTable, this.fillList);
+            factory.findAll(threeColTable, this.fillList);
         }
 
         private void fillList(List<QuestionList> lists)
