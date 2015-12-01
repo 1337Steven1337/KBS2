@@ -46,6 +46,11 @@ namespace Client.Controller
         #endregion
 
         #region Events
+        private void QuestionController_selectedIndexChanged(Event.QuestionControllerSelectedIndexChanged message)
+        {
+             Factory.findById(message.question.Id, this.View.getPanel(), this.SetQuestion);
+        }
+        
         private void SignalRClient_connectionStatusChanged(Microsoft.AspNet.SignalR.Client.StateChange message)
         {
             if (message.NewState == Microsoft.AspNet.SignalR.Client.ConnectionState.Connected)
@@ -58,13 +63,8 @@ namespace Client.Controller
             }
             else
             {
-                MessageBox.Show("Helaas! Faggot..");
+                MessageBox.Show("Helaas! Er is iets fout gegaan..");
             }
-        }
-        
-        private void QuestionController_selectedIndexChanged(Event.QuestionControllerSelectedIndexChanged message)
-        {
-            Factory.findById(message.question.Id, this.View.getPanel(), this.SetQuestion);
         }
         
         private void SignalR_newUserAnswerAdded(UserAnswer userAnswer)
