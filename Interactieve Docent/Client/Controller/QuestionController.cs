@@ -13,14 +13,14 @@ namespace Client.Controller
     public class QuestionController
     {
         #region Delegates
-        public delegate void SelectedIndexChanged(QuestionControllerSelectedIndexChanged message);
+        public delegate void SelectedIndexChanged(Question message);
         #endregion
 
         #region Declare Events
         public event SelectedIndexChanged selectedIndexChanged;
         #endregion
 
-        #region Variables
+        #region Properties
         private int listId;
         private TableLayoutPanel threeColTable;
         private ListBox listBoxQuestion;
@@ -72,7 +72,7 @@ namespace Client.Controller
             addQuestionView.getCustomPanel().leftBottomButton.Click += saveQuestionHandler;
             addQuestionView.getAddAnswerBtn().Click += addAnswerToListBox;
             addQuestionView.getRemoveAnswerBtn().Click += removeAnswerFromListBox;
-            
+
 
             
 
@@ -89,7 +89,7 @@ namespace Client.Controller
         {
             if(this.selectedIndexChanged != null)
             {
-                this.selectedIndexChanged(new QuestionControllerSelectedIndexChanged((Question)this.listBoxQuestion.SelectedItem));
+                this.selectedIndexChanged((Question)this.listBoxQuestion.SelectedItem);
             }
         }
         #endregion

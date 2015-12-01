@@ -152,7 +152,6 @@
     <Compile Include="Docent\PanelRight.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Event\QuestionControllerSelectedIndexChanged.cs" />
     <Compile Include="Factory\AbstractFactory.cs" />
     <Compile Include="Factory\PredefinedAnswerFactory.cs" />
     <Compile Include="Factory\QuestionFactory.cs" />

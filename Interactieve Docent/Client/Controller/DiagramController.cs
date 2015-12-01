@@ -20,6 +20,7 @@ namespace Client.Controller
         private Question Question;
 
         private QuestionFactory Factory = new QuestionFactory();
+        private UserAnswerFactory UserAnswerFactory = new UserAnswerFactory();
 
         private SignalRClient SignalRClient;
         #endregion
@@ -31,22 +32,30 @@ namespace Client.Controller
             this.View.setController(this);
             this.SignalRClient = SignalRClient.getInstance();
 
-            if(this.SignalRClient.state != Microsoft.AspNet.SignalR.Client.ConnectionState.Connected && this.SignalRClient.state != Microsoft.AspNet.SignalR.Client.ConnectionState.Connecting)
-            {
-                this.SignalRClient.connectionStatusChanged += SignalRClient_connectionStatusChanged;
-                this.SignalRClient.connect();
-            }
-
             questionController.selectedIndexChanged += QuestionController_selectedIndexChanged;
 
+            this.UserAnswerFactory.userAnswerAdded += UserAnswerFactory_userAnswerAdded;
+
             view.Show();
+        }
+
+        private void UserAnswerFactory_userAnswerAdded(UserAnswer answer)
+        {
+            if (this.Question.UserAnswers == null)
+            {
+                this.Question.UserAnswers = new List<UserAnswer>();
+            }
+
+            this.Question.UserAnswers.Add(answer);
+
+            this.View.getPanel().Invoke((Action)delegate () { Redraw(); });
         }
         #endregion
 
         #region Events
-        private void QuestionController_selectedIndexChanged(Event.QuestionControllerSelectedIndexChanged message)
+        private void QuestionController_selectedIndexChanged(Question question)
         {
-             Factory.findById(message.question.Id, this.View.getPanel(), this.SetQuestion);
+             Factory.findById(question.Id, this.View.getPanel(), this.SetQuestion);
         }
         
         private void SignalRClient_connectionStatusChanged(Microsoft.AspNet.SignalR.Client.StateChange message)
@@ -64,18 +73,6 @@ namespace Client.Controller
                 MessageBox.Show("Helaas! Er is iets fout gegaan..");
             }
         }
-        
-        private void SignalR_newUserAnswerAdded(UserAnswer userAnswer)
-        {
-            if(this.Question.UserAnswers == null)
-            {
-                this.Question.UserAnswers = new List<UserAnswer>();
-            }
-
-            this.Question.UserAnswers.Add(userAnswer);
-
-            Redraw();
-        }
 
         private void SignalR_subscriptionStatusChanged(API.EventArgs.SubscriptionStatus message)
         {
@@ -88,7 +85,8 @@ namespace Client.Controller
         public void SetQuestion(Question q)
         {
             this.Question = q;
-            Redraw();
+            this.SignalRClient.subscribe(q.List_Id);
+            this.View.getPanel().Invoke((Action)delegate () { Redraw(); });
         }
 
         private void Redraw()
