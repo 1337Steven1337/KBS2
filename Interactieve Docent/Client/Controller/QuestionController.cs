@@ -5,20 +5,20 @@ using System;
 using Client.Model;
 using System.ComponentModel;
 using Client.View.PanelLayout;
-using Client.Event;
 
 namespace Client.Controller
 {
     public class QuestionController
     {
         #region Delegates
-        public delegate void SelectedIndexChanged(QuestionControllerSelectedIndexChanged message);
+        public delegate void SelectedIndexChanged(Question message);
         #endregion
 
         #region Declare Events
         public event SelectedIndexChanged selectedIndexChanged;
         #endregion
 
+        #region Properties
         private TableLayoutPanel threeColTable;
         private ListBox listBoxQuestion;
         private CustomPanel customPanel;
@@ -78,7 +78,7 @@ namespace Client.Controller
         {
             if(this.selectedIndexChanged != null)
             {
-                this.selectedIndexChanged(new QuestionControllerSelectedIndexChanged((Question)this.listBoxQuestion.SelectedItem));
+                this.selectedIndexChanged((Question)this.listBoxQuestion.SelectedItem);
             }
         }
         #endregion
