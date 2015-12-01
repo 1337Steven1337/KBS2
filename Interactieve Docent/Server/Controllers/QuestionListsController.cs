@@ -12,13 +12,14 @@ using System.Web.Http.Description;
 using Server.Models;
 using Server.Models.Context;
 using Server.Models.DTO;
+using Server.Hubs;
 
 namespace Server.Controllers
 {
-    public class QuestionListsController : ApiController
+    public class QuestionListsController : ApiControllerWithHub<EventHub>
     {
         private IDocentAppContext db = new ServerContext();
-
+         
         public QuestionListsController() { }
         public QuestionListsController(IDocentAppContext context)
         {
@@ -74,6 +75,8 @@ namespace Server.Controllers
             try
             {
                 await db.SaveChangesAsync();
+
+                this.getSubscribed("lists").QuestionListUpdated(new ListDTO(questionList));
             }
             catch (DbUpdateConcurrencyException)
             {
@@ -102,6 +105,8 @@ namespace Server.Controllers
             db.QuestionLists.Add(questionList);
             await db.SaveChangesAsync();
 
+            this.getSubscribed("lists").QuestionListAdded(new ListDTO(questionList));
+
             return CreatedAtRoute("DefaultApi", new { id = questionList.Id }, questionList);
         }
 
@@ -117,6 +122,8 @@ namespace Server.Controllers
 
             db.QuestionLists.Remove(questionList);
             await db.SaveChangesAsync();
+
+            this.getSubscribed("lists").QuestionListRemoved(new ListDTO(questionList));
 
             return Ok(questionList);
         }

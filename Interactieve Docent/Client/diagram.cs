@@ -16,17 +16,13 @@ namespace Client
 {
     public partial class diagram : Form
     {
-        public int Question_Id;
+        #region Variables & Instances
+        private int Question_Id;
 
-        public List<string> questions;
-        public List<int> votes;
+        private SignalR UserAnswerFactory;
+        #endregion
 
-        public Question question;
-        
-        private Dictionary<string, int> questionVotes = new Dictionary<string, int>();
-
-        private SignalR signalR;
-
+        #region Constructor & Onload
         public diagram(int Question_Id)
         {
             this.Question_Id = Question_Id;
@@ -39,13 +35,15 @@ namespace Client
             //select a question
             question = Question.getById(Question_Id);
             Controller();
-            this.signalR = new SignalR();
-            this.signalR.connectionStatusChanged += SignalR_connectionStatusChanged;
-            this.signalR.subscriptionStatusChanged += SignalR_subscriptionStatusChanged;
-            this.signalR.newUserAnswerAdded += SignalR_newUserAnswerAdded;
-            this.signalR.connect();
+            this.UserAnswerFactory = new SignalR();
+            this.UserAnswerFactory.connectionStatusChanged += SignalR_connectionStatusChanged;
+            this.UserAnswerFactory.subscriptionStatusChanged += SignalR_subscriptionStatusChanged;
+            this.UserAnswerFactory.newUserAnswerAdded += SignalR_newUserAnswerAdded;
+            this.UserAnswerFactory.connect();
         }
+        #endregion
 
+        #region Events
         private void SignalR_newUserAnswerAdded(UserAnswer userAnswer)
         {
             this.question.UserAnswers.Add(userAnswer);
@@ -61,7 +59,7 @@ namespace Client
         {
             if(message.NewState == Microsoft.AspNet.SignalR.Client.ConnectionState.Connected)
             {
-                signalR.subscribe(question.List_Id);
+                UserAnswerFactory.subscribe(question.List_Id);
             }
             else if(message.NewState == Microsoft.AspNet.SignalR.Client.ConnectionState.Connecting){
 
@@ -71,10 +69,11 @@ namespace Client
                 MessageBox.Show("Helaas! Faggot..");
             }
         }
+        #endregion
 
+        #region Methodes
         public void Controller()
         {
-            GetData();
             this.Invoke((Action)delegate () { MakeDiagram(votes, questions, question.Text); });
         }
 
@@ -106,39 +105,7 @@ namespace Client
             series.Points.Add(Column);
             return series;
         }
-
-        public void GetData()
-        {
-            //if the predefinedanswer is empty zet votes to zero
-            foreach (PredefinedAnswer preAnswer in question.PredefinedAnswers)
-            {
-                questionVotes[preAnswer.Text] = 0;
-            }
-
-            //for every given answer were the userAnswer_Id is equal to a PredefinedAnswer_Id add one to votes
-            foreach (UserAnswer answer in question.UserAnswers)
-            {
-                string text = question.PredefinedAnswers.Find(x => x.Id == answer.PredefinedAnswer_Id).Text;
-                questionVotes[text] += 1;
-            }
-
-            votes = questionVotes.Values.ToList<int>();
-            questions = questionVotes.Keys.ToList<string>();
-            
-        }
-
-        private void OnChange(object sender, SqlNotificationEventArgs e)
-        {
-            SqlDependency dependency = sender as SqlDependency;
-
-            // Notices are only a one shot deal so remove the existing one so a new one can be added
-
-            dependency.OnChange -= OnChange;
-
-            // Fire the event
-            Controller();
-
-        }
+        #endregion
 
         private void chart1_Click(object sender, EventArgs e)
         {

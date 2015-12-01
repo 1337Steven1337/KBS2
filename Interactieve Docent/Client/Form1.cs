@@ -1,8 +1,10 @@
 ﻿using Client.API.Models;
+using Client.Controller;
 using Client.Factory;
 using Client.Model;
 using Client.Service.SignalR;
 using Client.Student;
+using Client.View.Diagram;
 using Microsoft.AspNet.SignalR;
 using System;
 using System.Collections.Generic;
@@ -18,7 +20,7 @@ namespace Client
 {
     public partial class Form1 : Form
     {
-        private int Question_Id;
+        private QuestionListFactory qlf = new QuestionListFactory();
 
         public Form1()
         {
@@ -32,7 +34,24 @@ namespace Client
 
         private void Form1_Load(object sender, EventArgs e)
         {
+            SignalRClient client = SignalRClient.getInstance();
+            client.subscriptionStatusChanged += Client_subscriptionStatusChanged;
+            qlf = new QuestionListFactory();
+            qlf.questionListAdded += Qlf_questionListAdded;
+        }
 
+        private void Qlf_questionListAdded(QuestionList list)
+        {
+            throw new NotImplementedException();
+        }
+
+        private void Client_subscriptionStatusChanged(Service.SignalR.EventArgs.SubscriptionStatus message)
+        {
+            QuestionList ql = new QuestionList();
+            ql.Name = "Test list 99999";
+            ql.Ended = false;
+
+            //qlf.save(ql, null);
         }
 
         private void test(QuestionList list)
@@ -56,7 +75,7 @@ namespace Client
 
             QuestionListFactory factory = new QuestionListFactory();
             Console.WriteLine("Before fetch");
-            factory.findById(2, test);
+            factory.findByIdAsync(2, test);
             Console.WriteLine("After fetch");
         }
 

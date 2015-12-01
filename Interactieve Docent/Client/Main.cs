@@ -4,13 +4,13 @@ using Client.View.Tabs;
 using Client.View.QuestionList;
 using Client.View.Question;
 using Client.View.Diagram;
-using Client.View.Question;
 
 namespace Client
 {
     public partial class Main : Form
     {
         private TabsController controller;
+        private QuestionController controllerQuestion;
 
         public Main()
         {
@@ -32,7 +32,7 @@ namespace Client
         {
             panel.Controls.Clear();
             ViewDiagram view = new ViewDiagram();
-            DiagramController controller = new DiagramController(view, panel);
+            DiagramController controller = new DiagramController(view, controllerQuestion);
         }
 
         private void button3_Click(object sender, System.EventArgs e)
@@ -40,6 +40,11 @@ namespace Client
             panel.Controls.Clear();
             ViewQuestion view = new ViewQuestion();
             //QuestionController controller = new QuestionController(view, panel);
+        }
+
+        private void tableLayoutPanelTabs_Paint(object sender, PaintEventArgs e)
+        {
+
         }
     }
 }

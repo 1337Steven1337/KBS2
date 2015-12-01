@@ -8,9 +8,9 @@ namespace Client.Service.SignalR.EventArgs
 {
     public class SubscriptionStatus
     {
-        public int id;
+        public object id; 
 
-        public SubscriptionStatus(int id)
+        public SubscriptionStatus(object id)
         {
             this.id = id;
         }

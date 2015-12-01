@@ -1,17 +1,28 @@
 ﻿using Client.View.Question;
 using System.Windows.Forms;
 using Client.Factory;
-using Client.Model;
 using System;
+using Client.Model;
+using System.ComponentModel;
 
 namespace Client.Controller
 {
     public class QuestionController
     {
-        private IQuestionView questionView;
-        private IAddQuestionView addQuestionView;
-        private TableLayoutPanel threeColTable;
+        #region Delegates
+        public delegate void SelectedIndexChanged(QuestionControllerSelectedIndexChanged message);
+        #endregion
+
+        #region Events
+        public event SelectedIndexChanged selectedIndexChanged;
+        #endregion
+
+        private IQuestionView view;
+        private TableLayoutPanel mainTable, threeColTable;
+        private ListBox listBoxQuestion;
+        private CustomPanel customPanel;
         private QuestionFactory factory = new QuestionFactory();
+        public BindingList<Question> Questions = new BindingList<Question>();
 
         public QuestionController(IQuestionView questionView, TableLayoutPanel threeColTable)
         {
@@ -42,8 +53,51 @@ namespace Client.Controller
             addQuestionView.getCustomPanel().leftBottomButton.Click += saveQuestionHandler;
             addQuestionView.getAddAnswerBtn().Click += addAnswerToListBox;
             addQuestionView.getRemoveAnswerBtn().Click += removeAnswerFromListBox;
+            this.listBoxQuestion.SelectedIndexChanged += ListBoxQuestion_SelectedIndexChanged;
+
+            customPanel.middleRow.Controls.Add(listBoxQuestion);
+            customPanel.rightBottomButton.Text = "Delete";
+            customPanel.rightBottomButton.Click += new System.EventHandler(deleteQuestion);
 
             threeColTable.Controls.Add(addQuestionView.getCustomPanel().getPanel(), 2, 0);
+        }
+
+        public void deleteQuestion(object sender, EventArgs e)
+        {
+            ViewDeleteQuestion dlg = new ViewDeleteQuestion();
+            dlg.StartPosition = FormStartPosition.CenterParent;
+            dlg.setText(listBoxQuestion.SelectedItem.ToString());
+            dlg.ShowDialog();
+
+            if (dlg.valid)
+            {
+                int id = (int)listBoxQuestion.SelectedValue;
+                Question q = new Question();
+                q.Id = id;
+                factory.delete(q, this.view.getListBox(), processDelete);
+            }
+        }
+
+        public void fillList(QuestionList list)
+        {
+            foreach (Question q in list)
+            {
+                this.Questions.Add(q);
+            }
+        }
+
+        public void processDelete(Question q)
+        {
+            int i;
+            for (i = 0; i < this.Questions.Count; i++)
+            {
+                if (this.Questions[i].Id == q.Id)
+                {
+                    break;
+                }
+            }
+
+            this.Questions.RemoveAt(i);
         }
 
         public void loadQuestions(int listId)

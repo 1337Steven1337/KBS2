@@ -17,12 +17,17 @@ namespace Client.View.Question
         public ViewQuestion()
         {
             InitializeComponent();
+            customPanel = new CustomPanel();
+
+            listBoxQuestion.DisplayMember = "Text";
+            listBoxQuestion.ValueMember = "Id";
             customPanelQuestion = new CustomPanel();            
         }
 
         public void setController(QuestionController controller)
         {
             this.controller = controller;
+            listBoxQuestion.DataSource = this.controller.Questions;
         }
 
         public ListBox getListBox()
@@ -30,14 +35,15 @@ namespace Client.View.Question
             return listBoxQuestion;
         }
 
-        public void fillList(List<Model.Question> list)
+        public CustomPanel getCustomPanel()
         {
+            return customPanel;
             listBoxQuestion.DisplayMember = "Text";
             listBoxQuestion.ValueMember = "Id";
             listBoxQuestion.DataSource = list.FindAll(x => x.List_Id == listId);
-        }
+                }
 
-        public CustomPanel getCustomPanel()
+        public void fillList(List<Model.Question> list)
         {
             return customPanelQuestion;
         }

@@ -21,17 +21,13 @@ namespace Client.Factory
             this.signalRClient = SignalRClient.getInstance();
         }
 
-        protected void save<T>(Dictionary<String, object> data, string resource, Action<T> callback) where T : new()
+        protected void deleteAsync<T>(int id, string resource, Action<T> callback) where T : new()
         {
             RestRequest request = new RestRequest();
+            request.AddParameter("Id", id);
             request.Resource = resource;
-            request.Method = Method.POST;
+            request.Method = Method.DELETE;
 
-            foreach(KeyValuePair<string, object> entry in data)
-            {
-                request.AddParameter(entry.Key, entry.Value);
-            }
-                        
             this.restClient.ExecuteAsync<T>(request, response => {
                 if (callback != null)
                 {
@@ -40,7 +36,50 @@ namespace Client.Factory
             });
         }
 
-        protected void findById<T>(int id, string resource, Action<T> callback) where T : new()
+        protected void delete<T>(int id, string resource, Control control, Action<T> callback) where T : new()
+        {
+            this.deleteAsync<T>(id, resource, o =>
+            {
+                control.Invoke(callback, o);
+            });
+        }
+
+        protected void saveAsync<T>(Dictionary<String, object> data, string resource, Action<T> callback) where T : new()
+        {
+            RestRequest request = new RestRequest();
+            request.Resource = resource;
+            request.Method = Method.POST;
+
+            foreach (KeyValuePair<string, object> entry in data)
+            {
+                request.AddParameter(entry.Key, entry.Value);
+            }
+
+            this.restClient.ExecuteAsync<T>(request, response => {
+                if (callback != null)
+                {
+                    callback(response.Data);
+                }
+            });
+        }
+
+        protected void save<T>(Dictionary<String, object> data, string resource, Control control, Action<T> callback) where T : new()
+        {
+            this.saveAsync<T>(data, resource, o =>
+            {
+                control.Invoke(callback, o);
+            });
+        }
+
+        protected void findById<T>(int id, string resource, Control control, Action<T> callback) where T : new()
+        {
+            this.findByIdAsync<T>(id, resource, o =>
+            {
+                control.Invoke(callback, o);
+            });
+        }
+
+        protected void findByIdAsync<T>(int id, string resource, Action<T> callback) where T : new()
         {
             RestRequest request = new RestRequest();
             request.Resource = resource;
