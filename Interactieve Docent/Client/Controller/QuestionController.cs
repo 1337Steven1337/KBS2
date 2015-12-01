@@ -15,10 +15,10 @@ namespace Client.Controller
         public delegate void SelectedIndexChanged(QuestionControllerSelectedIndexChanged message);
         #endregion
 
-        #region Events
+        #region Declare Events
         public event SelectedIndexChanged selectedIndexChanged;
         #endregion
-        
+
         private TableLayoutPanel threeColTable;
         private ListBox listBoxQuestion;
         private CustomPanel customPanel;
@@ -26,7 +26,9 @@ namespace Client.Controller
         public BindingList<Question> Questions = new BindingList<Question>();
         private IQuestionView questionView;
         private IAddQuestionView addQuestionView;
+        #endregion
 
+        #region Constructor
         public QuestionController(IQuestionView questionView, TableLayoutPanel threeColTable)
         {
 
@@ -69,7 +71,9 @@ namespace Client.Controller
 
             threeColTable.Controls.Add(addQuestionView.getCustomPanel().getPanel(), 2, 0);
         }
+        #endregion
 
+        #region Events
         private void ListBoxQuestion_SelectedIndexChanged(object sender, EventArgs e)
         {
             if(this.selectedIndexChanged != null)
@@ -77,7 +81,9 @@ namespace Client.Controller
                 this.selectedIndexChanged(new QuestionControllerSelectedIndexChanged((Question)this.listBoxQuestion.SelectedItem));
             }
         }
+        #endregion
 
+        #region Methodes
         public void deleteQuestion(object sender, EventArgs e)
         {
             ViewDeleteQuestion dlg = new ViewDeleteQuestion();
@@ -179,5 +185,6 @@ namespace Client.Controller
             }
 
         }
+        #endregion
     }
 }

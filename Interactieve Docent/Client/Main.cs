@@ -20,7 +20,7 @@ namespace Client
             controller = new TabsController(view);
 
             ViewQuestion questionView = new ViewQuestion();
-            QuestionController controllerQuestion = new QuestionController(questionView, threeColTable);
+            this.controllerQuestion = new QuestionController(questionView, threeColTable);
 
             ViewQuestionList listView = new ViewQuestionList();
             QuestionListController controllerList = new QuestionListController(listView, threeColTable, controllerQuestion);
