@@ -17,8 +17,6 @@ namespace Client.Controller
 
         private IDiagramView View;
 
-        private Panel Panel;
-
         private Question Question;
 
         private QuestionFactory Factory = new QuestionFactory();
