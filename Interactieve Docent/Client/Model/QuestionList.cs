@@ -14,6 +14,7 @@ namespace Client.Model
         public string Name { get; set; }
         public bool Ended { get; set; }
 
+        //Needed for using foreach on object
         public object Current
         {
             get { return Questions[position]; }
@@ -22,19 +23,24 @@ namespace Client.Model
         public List<Question> Questions = new List<Question>();
         public int position = -1;
 
+        //Needed for asking the user for confirmation while deleting the list
         public override string ToString()
         {
             return Name;
         }
 
+        //Needed for using foreach on object
         public bool MoveNext()
         {
             position++;
             return (position < Questions.Count);
         }
 
+        //Needed for using foreach on object
         public void Reset()
         { position = 0; }
+
+        //Needed for using foreach on object
 
         public IEnumerator GetEnumerator()
         {

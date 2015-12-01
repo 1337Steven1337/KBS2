@@ -19,9 +19,7 @@ namespace Client.Controller
         public event SelectedIndexChanged selectedIndexChanged;
         #endregion
 
-        #region Variables & Instances
-        private IQuestionView view;
-        private TableLayoutPanel mainTable, threeColTable;
+        private TableLayoutPanel threeColTable;
         private ListBox listBoxQuestion;
         private CustomPanel customPanel;
         private QuestionFactory factory = new QuestionFactory();
@@ -33,17 +31,18 @@ namespace Client.Controller
         #region Constructor
         public QuestionController(IQuestionView questionView, TableLayoutPanel threeColTable)
         {
+
             this.threeColTable = threeColTable;
 
             this.questionView = questionView;
             this.questionView.setController(this);
-            this.listBoxQuestion = questionView.getListBox();
+            this.listBoxQuestion = this.questionView.getListBox();
+            this.customPanel = this.questionView.getCustomPanel();
 
+            this.questionView.getCustomPanel().middleRow.Controls.Add(questionView.getListBox());
+            this.questionView.getCustomPanel().leftBottomButton.Click += add_questionHandler;
 
-            questionView.getCustomPanel().middleRow.Controls.Add(questionView.getListBox());
-            questionView.getCustomPanel().leftBottomButton.Click += add_questionHandler;
-
-            threeColTable.Controls.Add(questionView.getCustomPanel().getPanel(), 1, 0);
+            threeColTable.Controls.Add(this.questionView.getCustomPanel().getPanel(), 1, 0);
 
             this.listBoxQuestion.SelectedIndexChanged += new System.EventHandler(ListBoxQuestion_SelectedIndexChanged);
 
@@ -97,7 +96,7 @@ namespace Client.Controller
                 int id = (int)listBoxQuestion.SelectedValue;
                 Question q = new Question();
                 q.Id = id;
-                factory.delete(q, this.view.getListBox(), processDelete);
+                factory.delete(q, this.questionView.getListBox(), processDelete);
             }
         }
 
