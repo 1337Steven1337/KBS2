@@ -20,10 +20,12 @@ namespace Client
             controller = new TabsController(view);
 
             ViewQuestion questionView = new ViewQuestion();
-            QuestionController controllerQuestion = new QuestionController(questionView, mainTable, threeColTable);
+            QuestionController controllerQuestion = new QuestionController(questionView, threeColTable);
 
             ViewQuestionList listView = new ViewQuestionList();
-            QuestionListController controllerList = new QuestionListController(listView, mainTable, threeColTable, controllerQuestion);
+            QuestionListController controllerList = new QuestionListController(listView, threeColTable, controllerQuestion);
+
+            mainTable.Controls.Add(threeColTable, 1, 0);
         }
 
         private void button2_Click(object sender, System.EventArgs e)

@@ -10,35 +10,33 @@ namespace Client.Controller
     public class QuestionListController
     {
         private IQuestionListView view;
-        private TableLayoutPanel mainTable, threeColTable;
+        private TableLayoutPanel threeColTable;
         private ListBox listBoxQuestionLists;
-        private CustomPanel customPanel;
+        private CustomPanel customPanelQuestionList;
         private QuestionListFactory factory = new QuestionListFactory();
         private QuestionController questionController;
 
-        public QuestionListController(IQuestionListView view, TableLayoutPanel mainTable, TableLayoutPanel threeColTable, QuestionController questionController)
+        public QuestionListController(IQuestionListView view, TableLayoutPanel threeColTable, QuestionController questionController)
         {
-            this.mainTable = mainTable;
             this.threeColTable = threeColTable;
             this.listBoxQuestionLists = view.getListBox();
-            this.customPanel = view.getCustomPanel();
+            this.customPanelQuestionList = view.getCustomPanel();
             this.view = view;
             this.view.setController(this);
             this.questionController = questionController;
 
-            customPanel.middleRow.Controls.Add(listBoxQuestionLists);
-            customPanel.title.Text = "VragenLijsten";
+            customPanelQuestionList.middleRow.Controls.Add(listBoxQuestionLists);
+            customPanelQuestionList.title.Text = "VragenLijsten";
 
-            threeColTable.Controls.Add(customPanel.getPanel(), 0, 0);
-            mainTable.Controls.Add(threeColTable, 1, 0);
-
-            loadLists();
+            threeColTable.Controls.Add(customPanelQuestionList.getPanel(), 0, 0);
+            
+            loadLists();            
             listBoxQuestionLists.SelectedIndexChanged += listBox_SelectedIndexChanged;
         }
 
         private void loadLists()
         {
-            factory.findAll(mainTable, this.view.fillList);
+            factory.findAll(threeColTable, this.view.fillList);
         }
 
         private void listBox_SelectedIndexChanged(object sender, System.EventArgs e)
