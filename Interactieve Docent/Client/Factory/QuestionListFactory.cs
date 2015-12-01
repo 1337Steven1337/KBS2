@@ -31,8 +31,12 @@ namespace Client.Factory
         #endregion
 
         #region Constructors
+        /// <summary>
+        /// 
+        /// </summary>
         public QuestionListFactory()
         {
+            //Adding eventhandlers for dynamic feedback
             this.signalRClient.proxy.On<QuestionList>("QuestionListAdded", this.onQuestionListAdded);
             this.signalRClient.proxy.On<QuestionList>("QuestionListRemoved", this.onQuestionListRemoved);
             this.signalRClient.proxy.On<QuestionList>("QuestionListUpdated", this.onQuestionListUpdated);
