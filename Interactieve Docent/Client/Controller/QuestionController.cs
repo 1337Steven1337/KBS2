@@ -5,7 +5,6 @@ using System;
 using Client.Model;
 using System.ComponentModel;
 using Client.View.PanelLayout;
-using Client.Event;
 using System.Collections.Generic;
 
 namespace Client.Controller
