@@ -34,11 +34,16 @@ namespace Client.Controller
 
             this.questionView = questionView;
             this.questionView.setController(this);
+            this.listBoxQuestion = questionView.getListBox();
+
 
             questionView.getCustomPanel().middleRow.Controls.Add(questionView.getListBox());
             questionView.getCustomPanel().leftBottomButton.Click += add_questionHandler;
 
-            threeColTable.Controls.Add(questionView.getCustomPanel().getPanel(), 1, 0);           
+            threeColTable.Controls.Add(questionView.getCustomPanel().getPanel(), 1, 0);
+
+            this.listBoxQuestion.SelectedIndexChanged += new System.EventHandler(ListBoxQuestion_SelectedIndexChanged);
+
         }
 
         public QuestionController(IAddQuestionView addQuestionView, TableLayoutPanel threeColTable)
@@ -57,7 +62,6 @@ namespace Client.Controller
             addQuestionView.getCustomPanel().leftBottomButton.Click += saveQuestionHandler;
             addQuestionView.getAddAnswerBtn().Click += addAnswerToListBox;
             addQuestionView.getRemoveAnswerBtn().Click += removeAnswerFromListBox;
-            this.listBoxQuestion.SelectedIndexChanged += ListBoxQuestion_SelectedIndexChanged;
 
             customPanel.middleRow.Controls.Add(listBoxQuestion);
             customPanel.rightBottomButton.Text = "Delete";
