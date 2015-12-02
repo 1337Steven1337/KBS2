@@ -5,51 +5,96 @@ using System.Collections.Generic;
 using System.Linq;
 using Client.Factory;
 using System;
+using Client.Service.SignalR;
 
 namespace Client.Controller
 {
     public class DiagramController
     {
         #region Variables & Instances
-        public List<string> questions;
-        public List<int> votes;
+        public List<string> Questions;
+        public List<int> Votes;
 
-        private IDiagramView view;
-
-        private Panel panel;
+        private IDiagramView View;
 
         private Question Question;
 
-        private QuestionFactory factory = new QuestionFactory();
+        private QuestionFactory Factory = new QuestionFactory();
+        private UserAnswerFactory UserAnswerFactory = new UserAnswerFactory();
+
+        private SignalRClient SignalRClient;
         #endregion
 
         #region Constructor
         public DiagramController(IDiagramView view, QuestionController questionController)
         {
-            this.view = view;
-            this.view.setController(this);
+            this.View = view;
+            this.View.setController(this);
+            this.SignalRClient = SignalRClient.getInstance();
 
             questionController.selectedIndexChanged += QuestionController_selectedIndexChanged;
+
+            this.UserAnswerFactory.userAnswerAdded += UserAnswerFactory_userAnswerAdded;
 
             view.Show();
         }
 
-        private void QuestionController_selectedIndexChanged(Event.QuestionControllerSelectedIndexChanged message)
+        private void UserAnswerFactory_userAnswerAdded(UserAnswer answer)
         {
-            factory.findById(message.question.Id, this.view.getPanel(), this.SetQuestion);
+            if (this.Question.UserAnswers == null)
+            {
+                this.Question.UserAnswers = new List<UserAnswer>();
+            }
+
+            this.Question.UserAnswers.Add(answer);
+
+            this.View.getPanel().Invoke((Action)delegate () { Redraw(); });
         }
         #endregion
 
-        #region Methodes
+        #region Events
+        private void QuestionController_selectedIndexChanged(Question question)
+        {
+             Factory.findById(question.Id, this.View.getPanel(), this.SetQuestion);
+        }
+        
+        private void SignalRClient_connectionStatusChanged(Microsoft.AspNet.SignalR.Client.StateChange message)
+        {
+            if (message.NewState == Microsoft.AspNet.SignalR.Client.ConnectionState.Connected)
+            {
+                SignalRClient.subscribe(Question.List_Id);
+            }
+            else if (message.NewState == Microsoft.AspNet.SignalR.Client.ConnectionState.Connecting)
+            {
 
+            }
+            else
+            {
+                MessageBox.Show("Helaas! Er is iets fout gegaan..");
+            }
+        }
+
+        private void SignalR_subscriptionStatusChanged(API.EventArgs.SubscriptionStatus message)
+        {
+
+        }
+        #endregion
+
+
+        #region Methodes
         public void SetQuestion(Question q)
         {
             this.Question = q;
+            this.SignalRClient.subscribe(q.List_Id);
+            this.View.getPanel().Invoke((Action)delegate () { Redraw(); });
+        }
 
+        private void Redraw()
+        {
             if (this.Question.PredefinedAnswers != null && this.Question.UserAnswers != null)
             {
                 this.GetData();
-                this.view.Make(this.votes, this.questions, this.Question.Text);
+                this.View.Make(this.Votes, this.Questions, this.Question.Text);
             }
         }
 
@@ -70,8 +115,8 @@ namespace Client.Controller
                 questionVotes[text] += 1;
             }
             
-            votes = questionVotes.Values.ToList<int>();
-            questions = questionVotes.Keys.ToList<string>();
+            Votes = questionVotes.Values.ToList<int>();
+            Questions = questionVotes.Keys.ToList<string>();
         }
         #endregion
     }

@@ -22,8 +22,7 @@ namespace Client.View.QuestionList
         public ViewQuestionList()
         {
             InitializeComponent();
-            customPanel = new CustomPanel();
-
+            //Set which data from the items are to access in the listbox
             listBoxQuestionLists.DisplayMember = "Name";
             listBoxQuestionLists.ValueMember = "Id";
 
@@ -32,6 +31,7 @@ namespace Client.View.QuestionList
 
         public void setController(QuestionListController controller)
         {
+            //Attach to controller
             this.controller = controller;
             listBoxQuestionLists.DataSource = this.controller.QuestionLists;
         }
@@ -49,7 +49,7 @@ namespace Client.View.QuestionList
 
         public void fillList(List<Model.QuestionList> lists)
         {
-           //throw new NotImplementedException();
+           //Is needed due to implemented interface, does nothing
         }
     }
 }

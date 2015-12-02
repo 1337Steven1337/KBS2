@@ -41,7 +41,7 @@ namespace Client.View.Diagram
         public Series CreateColumn(string answerName, int value)
         {
             DataPoint Column = new DataPoint();
-            Column.XValue = 5;             //x value
+            Column.XValue = 0;             //x value
             double[] values = { value };  //y value
             Column.YValues = values;
 

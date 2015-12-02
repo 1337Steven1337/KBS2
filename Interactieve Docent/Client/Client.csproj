@@ -152,7 +152,6 @@
     <Compile Include="Docent\PanelRight.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Event\QuestionControllerSelectedIndexChanged.cs" />
     <Compile Include="Factory\AbstractFactory.cs" />
     <Compile Include="Factory\PredefinedAnswerFactory.cs" />
     <Compile Include="Factory\QuestionFactory.cs" />
@@ -226,7 +225,14 @@
     <Compile Include="View\QuestionList\ViewQuestionList.Designer.cs">
       <DependentUpon>ViewQuestionList.cs</DependentUpon>
     </Compile>
+    <Compile Include="View\Question\IAddQuestionView.cs" />
     <Compile Include="View\Question\IQuestionView.cs" />
+    <Compile Include="View\Question\ViewAddQuestion.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\Question\ViewAddQuestion.Designer.cs">
+      <DependentUpon>ViewAddQuestion.cs</DependentUpon>
+    </Compile>
     <Compile Include="View\Question\ViewDeleteQuestion.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -297,6 +303,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="View\QuestionList\ViewQuestionList.resx">
       <DependentUpon>ViewQuestionList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\Question\ViewAddQuestion.resx">
+      <DependentUpon>ViewAddQuestion.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="View\Question\ViewDeleteQuestion.resx">
       <DependentUpon>ViewDeleteQuestion.cs</DependentUpon>

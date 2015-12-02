@@ -8,8 +8,8 @@ namespace Client.Model
 {
     public class UserAnswer
     {
-        public int Id { get; private set; }
-        public int Question_Id { get; private set; }
-        public int PredefinedAnswer_Id { get; private set; }
+        public int Id { get; set; }
+        public int Question_Id { get; set; }
+        public int PredefinedAnswer_Id { get; set; }
     }
 }
