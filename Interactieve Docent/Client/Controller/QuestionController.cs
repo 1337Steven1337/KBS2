@@ -25,6 +25,7 @@ namespace Client.Controller
         private ListBox listBoxQuestion;
         private CustomPanel customPanel;
         private QuestionFactory factory = new QuestionFactory();
+        private PredefinedAnswerFactory factoryPA = new PredefinedAnswerFactory();
         public BindingList<Question> Questions = new BindingList<Question>();
         private IQuestionView questionView;
         private IAddQuestionView addQuestionView;
@@ -150,29 +151,67 @@ namespace Client.Controller
         private void processAdd(Question q)
         {
             this.Questions.Add(q);
+
+            string rightAnswer = (string)addQuestionView.getRightAnswerComboBox().SelectedItem;
+            PredefinedAnswer pa;
+            foreach (String answer in addQuestionView.getAnswersListBox().Items)
+            {
+                pa = new PredefinedAnswer() { Question_Id = q.Id, Text = answer };
+                if (pa.Text == rightAnswer)
+                {
+                    pa.RightAnswer = true;
+                }
+                else
+                {
+                    pa.RightAnswer = false;
+                }
+
+                factoryPA.saveAsync(pa, null);
+                //PAList.Add(pa);
+                //factoryPA.save(pa, addQuestionView.getAnswersListBox(), processAddPA);
+            }
+        }
+
+        private void processAddPA(PredefinedAnswer pa)
+        {
+
         }
 
         private void saveQuestionHandler(object sender, EventArgs e)
         {
-            Question q = new Question();
-            q.Text = addQuestionView.getQuestionField().Text;
-            q.Time = (int)addQuestionView.getTimeField().Value;
-            q.Points = (int)addQuestionView.getPointsField().Value;
-            q.List_Id = this.listId;
-            
-            factory.saveAsync(q, null);
-
-            processAdd(q);
-
-            //PredefinedAnswer pa;
-            //foreach (String answer in panelRight.predefinedAnswersList.Items)
-            //{
-            //    pa = new PredefinedAnswer() { Text = answer };
-            //    pa.save(q.Id);
-            //}
-
-            ////reload question list
-            //panelMiddle.loadQuestionList(listId);
+            if (addQuestionView.getQuestionField().Text != "" && (int)addQuestionView.getTimeField().Value != 0 && addQuestionView.getPointsField().Value != 0 && addQuestionView.getRightAnswerComboBox().SelectedItem != null)
+            {
+                Question q = new Question();
+                q.Text = addQuestionView.getQuestionField().Text;
+                q.Time = (int)addQuestionView.getTimeField().Value;
+                q.Points = (int)addQuestionView.getPointsField().Value;
+                q.List_Id = this.listId;
+                factory.save(q, addQuestionView.getAnswersListBox(), processAdd);
+            }
+            else
+            {
+                MessageBox.Show("Gelieve alle velden in te vullen!");
+            }
+            //List<PredefinedAnswer> PAList = new List<PredefinedAnswer>();
+            /*
+            string rightAnswer = (string)addQuestionView.getRightAnswerComboBox().SelectedItem;
+            PredefinedAnswer pa;
+            foreach (String answer in addQuestionView.getAnswersListBox().Items)
+            {
+                pa = new PredefinedAnswer() { Text = answer};
+                if(pa.Text == rightAnswer)
+                {
+                    pa.RightAnswer = 1;
+                }
+                else
+                {
+                    pa.RightAnswer = 0;
+                }
+                //PAList.Add(pa);
+                //factoryPA.save(pa, addQuestionView.getAnswersListBox(), processAddPA);
+            }*/
+            //q.PredefinedAnswers = PAList;
+            //factory.save(q, addQuestionView.getAnswersListBox(), processAdd);
         }
 
         private void addAnswerToListBox(object sender, EventArgs e)
@@ -193,6 +232,7 @@ namespace Client.Controller
                 if (!listExists)
                 {
                     addQuestionView.getAnswersListBox().Items.Add(addQuestionView.getAnswerField().Text);
+                    addQuestionView.getRightAnswerComboBox().Items.Add(addQuestionView.getAnswerField().Text);
                 }
             }
         }
