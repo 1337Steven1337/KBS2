@@ -23,6 +23,9 @@ namespace Server.Models
         public int Question_Id { get; set; }
 
         [DataMember]
+        public bool Right_Answer { get; set; }
+
+        [DataMember]
         [ForeignKey("Question_Id")]
         public virtual Question Question { get; set; }
     }
