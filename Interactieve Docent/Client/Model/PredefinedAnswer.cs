@@ -8,9 +8,9 @@ namespace Client.Model
 {
     public class PredefinedAnswer
     {
-        public int Id { get; private set; }
-        public int Question_Id { get; private set; }
-
+        public int Id { get; set; }
+        public int Question_Id { get; set; }
+        public bool RightAnswer { get; set; }
         public string Text { get; set; }
 
         public Question Question;
