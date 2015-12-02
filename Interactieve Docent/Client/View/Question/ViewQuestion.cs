@@ -38,10 +38,5 @@ namespace Client.View.Question
         {
             return customPanel;
         }
-
-        public void fillList(List<Model.Question> list)
-        {
-            //nothing
-        }
     }
 }
