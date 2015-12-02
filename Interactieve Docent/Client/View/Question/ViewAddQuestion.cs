@@ -162,6 +162,6 @@ namespace Client.View.Question
         public ComboBox getRightAnswerComboBox()
         {
             return rightAnswerComboBox;
-        }         
+        }        
     }
 }
