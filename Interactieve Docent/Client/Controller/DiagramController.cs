@@ -32,6 +32,7 @@ namespace Client.Controller
             this.View.setController(this);
             this.SignalRClient = SignalRClient.getInstance();
 
+            //add events
             questionController.selectedIndexChanged += QuestionController_selectedIndexChanged;
 
             this.UserAnswerFactory.userAnswerAdded += UserAnswerFactory_userAnswerAdded;
@@ -39,6 +40,7 @@ namespace Client.Controller
             view.Show();
         }
 
+        //do this is a student has answered a question
         private void UserAnswerFactory_userAnswerAdded(UserAnswer answer)
         {
             if (this.Question.UserAnswers == null)
@@ -48,6 +50,7 @@ namespace Client.Controller
 
             this.Question.UserAnswers.Add(answer);
 
+            //update the diagram 
             this.View.getPanel().Invoke((Action)delegate () { Redraw(); });
         }
         #endregion
@@ -60,28 +63,27 @@ namespace Client.Controller
         
         private void SignalRClient_connectionStatusChanged(Microsoft.AspNet.SignalR.Client.StateChange message)
         {
+            //check what the connection status is
             if (message.NewState == Microsoft.AspNet.SignalR.Client.ConnectionState.Connected)
             {
+                //if the status is connected subscribe to the list
                 SignalRClient.subscribe(Question.List_Id);
             }
             else if (message.NewState == Microsoft.AspNet.SignalR.Client.ConnectionState.Connecting)
             {
-
+                //if the status is connecting, wait for the connection to change to connected
             }
             else
             {
+                //if it is none of the above, allert the user
                 MessageBox.Show("Helaas! Er is iets fout gegaan..");
             }
-        }
-
-        private void SignalR_subscriptionStatusChanged(API.EventArgs.SubscriptionStatus message)
-        {
-
         }
         #endregion
 
 
         #region Methodes
+        //if another question is selected
         public void SetQuestion(Question q)
         {
             this.Question = q;
@@ -91,6 +93,7 @@ namespace Client.Controller
 
         private void Redraw()
         {
+            //redraw the diagram
             if (this.Question.PredefinedAnswers != null && this.Question.UserAnswers != null)
             {
                 this.GetData();
