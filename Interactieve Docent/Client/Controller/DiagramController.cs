@@ -116,7 +116,7 @@ namespace Client.Controller
             }
             
             Votes = questionVotes.Values.ToList<int>();
-            Questions = questionVotes.Keys.ToList<string>();
+            Questions = questionVotes.Keys.ToList<string>(); 
         }
         #endregion
     }
