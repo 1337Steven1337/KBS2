@@ -53,9 +53,9 @@ namespace Client.Controller
         #endregion
 
         #region Events
-        private void QuestionController_selectedIndexChanged(Event.QuestionControllerSelectedIndexChanged message)
+        private void QuestionController_selectedIndexChanged(Question question)
         {
-             Factory.findById(message.question.Id, this.View.getPanel(), this.SetQuestion);
+             Factory.findById(question.Id, this.View.getPanel(), this.SetQuestion);
         }
         
         private void SignalRClient_connectionStatusChanged(Microsoft.AspNet.SignalR.Client.StateChange message)

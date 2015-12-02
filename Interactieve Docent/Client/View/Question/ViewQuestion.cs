@@ -41,9 +41,7 @@ namespace Client.View.Question
 
         public void fillList(List<Model.Question> list)
         {
-            listBoxQuestion.DisplayMember = "Text";
-            listBoxQuestion.ValueMember = "Id";
-            listBoxQuestion.DataSource = list.FindAll(x => x.List_Id == listId);
+            //nothing
         }
     }
 }
