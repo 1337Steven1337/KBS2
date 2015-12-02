@@ -4,7 +4,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace Client.Tests.Controllers
 {
     [TestClass]
-    public class QuestionTest
+    public class QuestionsTest
     {
         [TestMethod]
         public void TestMethod1()
