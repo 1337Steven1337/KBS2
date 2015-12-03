@@ -12,7 +12,6 @@ namespace Client.Controller
     public class QuestionListController
     {
         private IQuestionListView questionListView;
-        private ListBox listBoxQuestionLists;
         private QuestionListFactory factory = new QuestionListFactory();
         private QuestionController questionController;
         public BindingList<QuestionList> QuestionLists = new BindingList<QuestionList>();
@@ -20,29 +19,18 @@ namespace Client.Controller
         public QuestionListController(IQuestionListView questionListView, QuestionController questionController)
         {
             //Defining the left panel it's appearance
-            this.listBoxQuestionLists = questionListView.getListBox();
             this.questionListView = questionListView;
             this.questionListView.setController(this);
 
             this.questionController = questionController;
 
-            questionListView.getCustomPanel().middleRow.Controls.Add(listBoxQuestionLists);
-            questionListView.getCustomPanel().title.Text = "VragenLijsten";
-
             //Eventhandlers for buttons/listboxes
-            questionListView.getCustomPanel().leftBottomButton.Text = "Nieuwe lijst";
-            questionListView.getCustomPanel().leftBottomButton.Click += new System.EventHandler(newList);
-            questionListView.getCustomPanel().rightBottomButton.Text = "Verwijder lijst";
-            questionListView.getCustomPanel().rightBottomButton.Click += new System.EventHandler(deleteList);
+            questionListView.getBtnAddQuestionList().Click += new System.EventHandler(newList);
+            questionListView.getBtnDeleteQuestionList().Click += new System.EventHandler(deleteList);
 
             loadLists();
-            listBoxQuestionLists.SelectedIndexChanged += listBox_SelectedIndexChanged;
-            listBoxQuestionLists.PreviewKeyDown += new PreviewKeyDownEventHandler(Delete_keyDown);
-        }
-
-        public TableLayoutPanel loadQuestionListView()
-        {
-            return questionListView.getCustomPanel().load();
+            questionListView.getListBoxQuestionLists().SelectedIndexChanged += listBox_SelectedIndexChanged;
+            questionListView.getListBoxQuestionLists().PreviewKeyDown += new PreviewKeyDownEventHandler(Delete_keyDown);
         }
 
         public void newList(object sender, EventArgs e)
@@ -60,7 +48,7 @@ namespace Client.Controller
                 QuestionList ql = new QuestionList();
                 ql.Name = name;
                 //Send instance ql to server for adding
-                factory.save(ql, this.questionListView.getListBox(), processAdd);
+                factory.save(ql, this.questionListView.getListBoxQuestionLists(), processAdd);
             }
         }
 
@@ -70,18 +58,18 @@ namespace Client.Controller
             //Show dialog for user to confirm delete action
             ViewDeleteQuestionList dlg = new ViewDeleteQuestionList();
             dlg.StartPosition = FormStartPosition.CenterParent;
-            dlg.setText(listBoxQuestionLists.SelectedItem.ToString());
+            dlg.setText(this.questionListView.getListBoxQuestionLists().SelectedItem.ToString());
             dlg.ShowDialog();
 
             //If user clicked Ok-button
             if (dlg.valid)
             {
                 //Create instance ql of QuestionList with entered id as property
-                int id = (int)listBoxQuestionLists.SelectedValue;
+                int id = (int)this.questionListView.getListBoxQuestionLists().SelectedValue;
                 QuestionList ql = new QuestionList();
                 ql.Id = id;
                 //Send ql to server for deleting
-                factory.delete(ql, this.questionListView.getListBox(), processDelete);
+                factory.delete(ql, this.questionListView.getListBoxQuestionLists(), processDelete);
             }
         }
 
@@ -109,7 +97,7 @@ namespace Client.Controller
         //Requests all lists via from database
         private void loadLists()
         {
-            factory.findAll(listBoxQuestionLists, this.fillList);
+            factory.findAll(this.questionListView.getListBoxQuestionLists(), this.fillList);
         }
 
         //Adding requested lists to listbox
@@ -133,7 +121,7 @@ namespace Client.Controller
         //If selected list changes, load it's questions
         private void listBox_SelectedIndexChanged(object sender, System.EventArgs e)
         {
-            questionController.loadQuestions((int)listBoxQuestionLists.SelectedValue);
+            questionController.loadQuestions((int)this.questionListView.getListBoxQuestionLists().SelectedValue);
         }
     }
 }

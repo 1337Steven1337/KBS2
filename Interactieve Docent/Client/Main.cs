@@ -28,27 +28,41 @@ namespace Client
             ViewQuestionList viewQuestionList = new ViewQuestionList();
             this.questionListController = new QuestionListController(viewQuestionList, questionController);
 
-            threeColTable.Controls.Add(questionListController.loadQuestionListView(), 0, 0);
-            threeColTable.Controls.Add(questionController.loadQuestionView(), 1, 0);
+            tableThreeColls.Controls.Add(viewQuestionList.getPanel(), 0, 0);
+            tableThreeColls.Controls.Add(viewQuestion.getPanel(), 1, 0);
         }
 
         private void QuestionController_LoadAddQuestion(object sender, System.EventArgs e)
-        {                             
-            if (threeColTable.ColumnStyles[2].Width <= 0)
+        {
+            tableThreeColls.SuspendLayout();
+            if (tableThreeColls.ColumnStyles[2].Width <= 0)
             {
-                for (int i = 0; i < threeColTable.ColumnCount; i++)
+                float width = 0;
+                for (int i = 0; i < tableThreeColls.ColumnCount; i++)
                 {
-                    threeColTable.ColumnStyles[i].Width = 33.33F;
+                    if(i != 2)
+                    {
+                        width = 25F;
+                    }
+                    else
+                    {
+                        width = 50F;
+                    }
+                    tableThreeColls.ColumnStyles[i].Width = width;
+                    
                 }
-                threeColTable.Controls.Add(questionController.loadAddQuestionView(), 2, 0);
+                tableThreeColls.Controls.Add(questionController.getAddQuestionPanel(), 2, 0);
             }
+            tableThreeColls.ResumeLayout(true);
+            tableThreeColls.PerformLayout();
         }
 
         private void QuestionController_QuitAddQuestion(object sender, System.EventArgs e)
         {
-            threeColTable.Controls.RemoveAt(2);
+            tableThreeColls.SuspendLayout();
+            tableThreeColls.Controls.RemoveAt(2);
             float width = 0;
-            for (int i = 0; i < threeColTable.ColumnCount; i++)
+            for (int i = 0; i < tableThreeColls.ColumnCount; i++)
             {            
                 if (i < 2)
                 {
@@ -58,24 +72,10 @@ namespace Client
                 {
                     width = 0;
                 }            
-                threeColTable.ColumnStyles[i].Width = width;
+                tableThreeColls.ColumnStyles[i].Width = width;
             }
+            tableThreeColls.ResumeLayout(true);
+            tableThreeColls.PerformLayout();
         }
-
-        private void button2_Click(object sender, System.EventArgs e)
-        {
-            panel.Controls.Clear();
-            ViewDiagram view = new ViewDiagram();
-            DiagramController controller = new DiagramController(view, questionController);
-        }
-
-        private void button3_Click(object sender, System.EventArgs e)
-        {
-            panel.Controls.Clear();
-            ViewQuestion view = new ViewQuestion();
-            //QuestionController controller = new QuestionController(view, panel);
-        }
-
-
     }
 }

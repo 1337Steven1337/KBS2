@@ -13,15 +13,16 @@ namespace Client.View.Question
     public interface IAddQuestionView
     {
         void setController(QuestionController controller);
-        TableLayoutPanel getTable();
-        CustomPanel getCustomPanel();
-        Button getAddAnswerBtn();
-        Button getRemoveAnswerBtn();
+        TableLayoutPanel getPanel();
+        Button getBtnSaveQuestion();
+        Button getBtnQuit();
+        Button getBtnAddAnswer();
+        Button getBtnDeleteAnswer();
         RichTextBox getQuestionField();
         NumericUpDown getPointsField();
         NumericUpDown getTimeField();
         ListBox getAnswersListBox();
         TextBox getAnswerField();
-        ComboBox getRightAnswerComboBox();       
+        ComboBox getRightAnswerComboBox();
     }
 }

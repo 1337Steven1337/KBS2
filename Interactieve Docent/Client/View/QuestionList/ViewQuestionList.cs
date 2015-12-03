@@ -17,8 +17,6 @@ namespace Client.View.QuestionList
     public partial class  ViewQuestionList : Form, IQuestionListView
     {
         private QuestionListController controller;
-        private CustomPanel customPanelQuestionList;
-
         public ViewQuestionList()
         {
             InitializeComponent();
@@ -26,7 +24,7 @@ namespace Client.View.QuestionList
             listBoxQuestionLists.DisplayMember = "Name";
             listBoxQuestionLists.ValueMember = "Id";
 
-            customPanelQuestionList = new CustomPanel();
+            //customPanelQuestionList = new CustomPanel();
         }
 
         public void setController(QuestionListController controller)
@@ -37,19 +35,24 @@ namespace Client.View.QuestionList
         }
 
 
-        public ListBox getListBox()
+        public ListBox getListBoxQuestionLists()
         {
             return listBoxQuestionLists;
+        }       
+
+        public Button getBtnAddQuestionList()
+        {
+            return btnAddQuestionList;
         }
         
-        public CustomPanel getCustomPanel()
+        public Button getBtnDeleteQuestionList()
         {
-            return customPanelQuestionList;
-        }   
+            return btnDeleteQuestionList;
+        }
 
-        public void fillList(List<Model.QuestionList> lists)
+        public TableLayoutPanel getPanel()
         {
-           //Is needed due to implemented interface, does nothing
+            return mainTablePanel;
         }
     }
 }

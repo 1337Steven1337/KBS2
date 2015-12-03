@@ -16,7 +16,7 @@ namespace Client
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Student.QuestionForm(63));
+            Application.Run(new Main());
         }
     }
 }

@@ -9,8 +9,9 @@ namespace Client.View.QuestionList
     public interface IQuestionListView
     {
         void setController(QuestionListController controller);
-        ListBox getListBox();
-        CustomPanel getCustomPanel();
-        void fillList(List<Model.QuestionList> lists);
+        ListBox getListBoxQuestionLists();
+        Button getBtnAddQuestionList();
+        Button getBtnDeleteQuestionList();
+        TableLayoutPanel getPanel();
     }
 }
