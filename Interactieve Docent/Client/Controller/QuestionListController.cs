@@ -11,40 +11,38 @@ namespace Client.Controller
 {
     public class QuestionListController
     {
-        private IQuestionListView view;
-        private TableLayoutPanel threeColTable;
+        private IQuestionListView questionListView;
         private ListBox listBoxQuestionLists;
-        private CustomPanel customPanelQuestionList;
         private QuestionListFactory factory = new QuestionListFactory();
         private QuestionController questionController;
-        private CustomPanel customPanel;
         public BindingList<QuestionList> QuestionLists = new BindingList<QuestionList>();
 
-        public QuestionListController(IQuestionListView view, TableLayoutPanel threeColTable, QuestionController questionController)
+        public QuestionListController(IQuestionListView questionListView, QuestionController questionController)
         {
             //Defining the left panel it's appearance
-            this.threeColTable = threeColTable;
-            this.listBoxQuestionLists = view.getListBox();
-            this.customPanelQuestionList =  customPanel = view.getCustomPanel();
-            this.view = view;
-            this.view.setController(this);
+            this.listBoxQuestionLists = questionListView.getListBox();
+            this.questionListView = questionListView;
+            this.questionListView.setController(this);
+
             this.questionController = questionController;
 
-            customPanelQuestionList.middleRow.Controls.Add(listBoxQuestionLists);
-            customPanelQuestionList.title.Text = "VragenLijsten";
+            questionListView.getCustomPanel().middleRow.Controls.Add(listBoxQuestionLists);
+            questionListView.getCustomPanel().title.Text = "VragenLijsten";
 
             //Eventhandlers for buttons/listboxes
-            customPanel.leftBottomButton.Text = "Nieuwe lijst";
-            customPanel.leftBottomButton.Click += new System.EventHandler(newList);
-            customPanel.rightBottomButton.Text = "Verwijder lijst";
-            customPanel.rightBottomButton.Click += new System.EventHandler(deleteList);
-
-            threeColTable.Controls.Add(customPanel.getPanel(), 0, 0);
-            threeColTable.Controls.Add(customPanelQuestionList.getPanel(), 0, 0);
+            questionListView.getCustomPanel().leftBottomButton.Text = "Nieuwe lijst";
+            questionListView.getCustomPanel().leftBottomButton.Click += new System.EventHandler(newList);
+            questionListView.getCustomPanel().rightBottomButton.Text = "Verwijder lijst";
+            questionListView.getCustomPanel().rightBottomButton.Click += new System.EventHandler(deleteList);
 
             loadLists();
             listBoxQuestionLists.SelectedIndexChanged += listBox_SelectedIndexChanged;
             listBoxQuestionLists.PreviewKeyDown += new PreviewKeyDownEventHandler(Delete_keyDown);
+        }
+
+        public TableLayoutPanel loadQuestionListView()
+        {
+            return questionListView.getCustomPanel().load();
         }
 
         public void newList(object sender, EventArgs e)
@@ -62,10 +60,9 @@ namespace Client.Controller
                 QuestionList ql = new QuestionList();
                 ql.Name = name;
                 //Send instance ql to server for adding
-                factory.save(ql, this.view.getListBox(), processAdd);
+                factory.save(ql, this.questionListView.getListBox(), processAdd);
             }
         }
-
 
 
         public void deleteList(object sender, EventArgs e)
@@ -84,7 +81,7 @@ namespace Client.Controller
                 QuestionList ql = new QuestionList();
                 ql.Id = id;
                 //Send ql to server for deleting
-                factory.delete(ql, this.view.getListBox(), processDelete);
+                factory.delete(ql, this.questionListView.getListBox(), processDelete);
             }
         }
 
@@ -112,7 +109,7 @@ namespace Client.Controller
         //Requests all lists via from database
         private void loadLists()
         {
-            factory.findAll(threeColTable, this.fillList);
+            factory.findAll(listBoxQuestionLists, this.fillList);
         }
 
         //Adding requested lists to listbox

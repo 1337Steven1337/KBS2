@@ -55,6 +55,8 @@
   <ItemGroup>
     <Compile Include="Controllers\Questionstest.cs" />
     <Compile Include="Controllers\Models\TestDiagramDbRead.cs" />
+    <Compile Include="Controllers\TestQuestionController.cs" />
+    <Compile Include="Models\TestDiagramDbRead.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="View\QuestionList\TestViewDeleteQuestionList.cs" />
     <Compile Include="View\QuestionList\ViewDeleteQuestionList.cs" />

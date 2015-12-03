@@ -71,7 +71,7 @@ namespace Client
             mainTable.Controls.Add(bottomRow, 0, 2);
         }
 
-        public TableLayoutPanel getPanel()
+        public TableLayoutPanel load()
         {
             return mainTable;
         }

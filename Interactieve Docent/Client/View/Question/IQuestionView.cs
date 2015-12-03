@@ -11,7 +11,6 @@ namespace Client.View.Question
     {
         void setController(QuestionController controller);
         ListBox getListBox();
-        CustomPanel getCustomPanel();
-        int listId { get; set; }
+        CustomPanel getCustomPanel();        
     }
 }
