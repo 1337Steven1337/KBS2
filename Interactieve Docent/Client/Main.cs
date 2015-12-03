@@ -33,7 +33,7 @@ namespace Client
         }
 
         private void QuestionController_LoadAddQuestion(object sender, System.EventArgs e)
-        {
+        {                             
             if (threeColTable.ColumnStyles[2].Width <= 0)
             {
                 for (int i = 0; i < threeColTable.ColumnCount; i++)

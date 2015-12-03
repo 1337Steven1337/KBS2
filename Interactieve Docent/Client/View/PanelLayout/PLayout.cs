@@ -10,14 +10,13 @@ namespace Client
 {
     public class PLayout
     {
-        public Form mainForm;
         public Panel middleRow, topRow;
         public Button leftBottomButton, rightBottomButton;
         public Label title;
         public TableLayoutPanel mainTable, bottomRow;
 
         public PLayout()
-        {
+        {           
             mainTable = new TableLayoutPanel();
             mainTable.ColumnCount = 1;
             mainTable.RowCount = 3;
@@ -72,7 +71,7 @@ namespace Client
         }
 
         public TableLayoutPanel load()
-        {
+        {           
             return mainTable;
         }
     }

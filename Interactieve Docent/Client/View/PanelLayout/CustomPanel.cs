@@ -11,6 +11,6 @@ namespace Client.View.PanelLayout
     {
         public CustomPanel()
         {
-        }   
+        }
     }
 }
