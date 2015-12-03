@@ -12,6 +12,5 @@ namespace Client.View.Question
         void setController(QuestionController controller);
         ListBox getListBox();
         CustomPanel getCustomPanel();        
-        void fillList(List<Model.Question> list);
     }
 }

@@ -103,7 +103,7 @@ namespace Client.Service.SignalR
 
         private void SignalRClient_connectionStatusChanged(StateChange message)
         {
-            if (this.subscribeQueue.Count > 0)
+            if (this.subscribeQueue.Count > 0 && message.NewState == ConnectionState.Connected)
             {
                 foreach (object o in this.subscribeQueue)
                 {

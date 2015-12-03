@@ -1,6 +1,6 @@
 ﻿namespace Client.Student
 {
-    partial class Questions
+    partial class QuestionForm
     {
         /// <summary>
         /// Required designer variable.
@@ -34,6 +34,7 @@
             this.chatBoxMessage = new System.Windows.Forms.RichTextBox();
             this.sendMessageButton = new System.Windows.Forms.Button();
             this.timeLabel = new System.Windows.Forms.Label();
+            this.statusLabel = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // questionLabel
@@ -67,7 +68,6 @@
             this.chatBox.Size = new System.Drawing.Size(394, 476);
             this.chatBox.TabIndex = 3;
             this.chatBox.Text = "Je bent nu aangemeld bij de chat\n";
-            this.chatBox.TextChanged += new System.EventHandler(this.richTextBox1_TextChanged);
             // 
             // chatBoxMessage
             // 
@@ -99,11 +99,21 @@
             this.timeLabel.TabIndex = 6;
             this.timeLabel.Text = "Tijd";
             // 
+            // statusLabel
+            // 
+            this.statusLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.statusLabel.Location = new System.Drawing.Point(139, 154);
+            this.statusLabel.Name = "statusLabel";
+            this.statusLabel.Size = new System.Drawing.Size(647, 58);
+            this.statusLabel.TabIndex = 7;
+            this.statusLabel.Text = "Wachten op vraag van de docent..";
+            // 
             // Questions
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1335, 865);
+            this.Controls.Add(this.statusLabel);
             this.Controls.Add(this.timeLabel);
             this.Controls.Add(this.sendMessageButton);
             this.Controls.Add(this.chatBoxMessage);
@@ -116,7 +126,6 @@
             this.Name = "Questions";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Questions";
-            this.Load += new System.EventHandler(this.Questions_Load);
             this.ResumeLayout(false);
 
         }
@@ -129,5 +138,6 @@
         private System.Windows.Forms.RichTextBox chatBoxMessage;
         private System.Windows.Forms.Button sendMessageButton;
         private System.Windows.Forms.Label timeLabel;
+        private System.Windows.Forms.Label statusLabel;
     }
 }

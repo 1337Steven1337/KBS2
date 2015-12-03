@@ -68,7 +68,7 @@ namespace Client.Controller
         public void deleteList(object sender, EventArgs e)
         {
             //Show dialog for user to confirm delete action
-            ViewDeleteList dlg = new ViewDeleteList();
+            ViewDeleteQuestionList dlg = new ViewDeleteQuestionList();
             dlg.StartPosition = FormStartPosition.CenterParent;
             dlg.setText(listBoxQuestionLists.SelectedItem.ToString());
             dlg.ShowDialog();
