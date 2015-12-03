@@ -12,6 +12,7 @@ namespace Server.Models.DTO
         public int Time { get; set; }
         public int Points { get; set; }
         public int List_Id { get; set; }
+        public int PredefinedAnswerCount { get; set; }
         public List<PredefinedAnswerDTO> PredefinedAnswers { get; set; }
         public List<UserAnswerDTO> UserAnswers { get; set; }
         
@@ -26,6 +27,7 @@ namespace Server.Models.DTO
             this.Time = q.Time;
             this.Points = q.Points;
             this.List_Id = q.List_Id;
+            this.PredefinedAnswerCount = q.PredefinedAnswerCount;
         }
     }
 }

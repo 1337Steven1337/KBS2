@@ -12,6 +12,7 @@ namespace Client.Model
         public int Points { get; set; }
         public int Time { get; set; }
         public int List_Id { get; set; }
+        public int PredefinedAnswerCount { get; set; }
 
         public string Text { get; set; }
 

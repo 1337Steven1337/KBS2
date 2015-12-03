@@ -66,6 +66,7 @@ namespace Client.Factory
             values.Add("Text", question.Text);
             values.Add("Time", question.Time);
             values.Add("Points", question.Points);
+            values.Add("PredefinedAnswerCount", question.PredefinedAnswerCount);
             values.Add("List_Id", question.List_Id);
 
             return values;

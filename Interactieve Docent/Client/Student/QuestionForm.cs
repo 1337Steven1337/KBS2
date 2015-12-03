@@ -29,7 +29,7 @@ namespace Client.Student
         private Model.QuestionList list = new Model.QuestionList();
         private List<Button> answerButtons = new List<Button>();
 
-        private Question currentQuestion = null;
+        private Model.Question currentQuestion = null;
         private Timer questionTimer = new Timer();
 
         float ButtonListCounter = 2;
@@ -43,14 +43,19 @@ namespace Client.Student
             initControlLocations();
             initWaitScreen();
 
+            Main main = new Main();
+            main.Show();
+
             client = SignalRClient.getInstance();
             client.connectionStatusChanged += Client_connectionStatusChanged;
             client.connect();
 
-            QuestionFactory factory = new QuestionFactory();
-            factory.questionAdded += Factory_questionAdded;
-        }
+            QuestionFactory questionFactory = new QuestionFactory();
+            questionFactory.questionAdded += Factory_questionAdded;
 
+            PredefinedAnswerFactory PAFactory = new PredefinedAnswerFactory();
+            PAFactory.predefinedAnswerAdded += PAFactory_predefinedAnswerAdded;
+        }
 
         public void initControlLocations()
         {
@@ -98,7 +103,22 @@ namespace Client.Student
         public void Factory_questionAdded(Model.Question question)
         {
             this.list.Questions.Add(question);
-            if (!busy)
+        }
+
+        private void PAFactory_predefinedAnswerAdded(Model.PredefinedAnswer answer)
+        {
+            Console.WriteLine("PAFactory_predefinedAnswerAdded");
+            Model.Question question = this.list.Questions.Find(x => x.Id == answer.Question_Id);
+
+            if(question.PredefinedAnswers == null)
+            {
+                question.PredefinedAnswers = new List<Model.PredefinedAnswer>();
+            }
+
+            question.PredefinedAnswers.Add(answer);
+
+            //this.Invoke((Action)delegate () { this.adjustSizeOfButtons(question); });
+            if (!busy && question.PredefinedAnswers.Count == question.PredefinedAnswerCount)
             {
                 this.Invoke((Action)delegate () { this.goToNextQuestion(); });
             }
@@ -133,7 +153,7 @@ namespace Client.Student
             }
         }
 
-        private Button createAnswerButton(PredefinedAnswer answer)
+        private Button createAnswerButton(Model.PredefinedAnswer answer)
         {
             option = new Button();
             answerButtons.Add(option);
@@ -142,9 +162,10 @@ namespace Client.Student
         }
 
 
-        private void adjustSizeOfButtons(Question Q)
+        private void adjustSizeOfButtons(Model.Question Q)
         {
-            foreach (PredefinedAnswer PA in Q.PredefinedAnswers)
+            Console.WriteLine("adjustSizeOfButtons");
+            foreach (Model.PredefinedAnswer PA in Q.PredefinedAnswers)
             {
                 if (currentQuestion.PredefinedAnswers.Count > answerButtons.Count)
                 {
@@ -204,6 +225,8 @@ namespace Client.Student
             }
         }
 
+
+
         private void cleanUpPreviousQuestion()
         {
             foreach (Button button in answerButtons)
@@ -221,19 +244,20 @@ namespace Client.Student
             answerButtons.Clear();
 
             currentQuestionIndex++;
-            Console.WriteLine(currentQuestionIndex);
 
             if (list.Questions.Count - 1 >= currentQuestionIndex)
             {
                 busy = true;
-                currentQuestion = Question.getById(list.Questions[currentQuestionIndex].Id);
+                //currentQuestion = Question.getById(list.Questions[currentQuestionIndex].Id);
+                currentQuestion = this.list.Questions[currentQuestionIndex];
+
                 questionTimeProgressBar.Maximum = currentQuestion.Time * 1000;
                 questionTimeProgressBar.Value = currentQuestion.Time * 1000;
                 questionTimer.Interval = 100;
                 questionTimer.Tick += Question_Timer;
                 questionTimer.Start();
                 questionLabel.Text = currentQuestion.Text;
-                adjustSizeOfButtons(currentQuestion);
+                this.adjustSizeOfButtons(currentQuestion);
             }
             else if (list.Ended)
             {
