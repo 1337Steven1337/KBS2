@@ -1,4 +1,5 @@
 ﻿using Client.Model;
+using Microsoft.AspNet.SignalR.Client;
 using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
@@ -7,8 +8,55 @@ namespace Client.Factory
 {
     public class PredefinedAnswerFactory : AbstractFactory
     {
-        #region Properties
+        #region Delegates
+        public delegate void PredefinedAnswerAdded(PredefinedAnswer answer);
+        public delegate void PredefinedAnswerRemoved(PredefinedAnswer answer);
+        public delegate void PredefinedAnswerUpdated(PredefinedAnswer answer);
+        #endregion
+
+        #region Events
+        public event PredefinedAnswerAdded predefinedAnswerAdded;
+        public event PredefinedAnswerRemoved predefinedAnswerRemoved;
+        public event PredefinedAnswerUpdated predefinedAnswerUpdated;
+        #endregion
+
+        #region Constants
         private const string resource = "PredefinedAnswers";
+        #endregion
+
+        #region Constructors
+        public PredefinedAnswerFactory()
+        {
+            this.signalRClient.proxy.On<PredefinedAnswer>("PredefinedAnswerAdded", this.onPredefinedAnswerAdded);
+            this.signalRClient.proxy.On<PredefinedAnswer>("PredefinedAnswerRemoved", this.onPredefinedAnswerRemoved);
+            this.signalRClient.proxy.On<PredefinedAnswer>("PredefinedAnswerUpdated", this.onPredefinedAnswerUpdated);
+        }
+        #endregion
+
+        #region Actions
+        private void onPredefinedAnswerAdded(PredefinedAnswer a)
+        {
+            if (this.predefinedAnswerAdded != null)
+            {
+                this.predefinedAnswerAdded(a);
+            }
+        }
+
+        private void onPredefinedAnswerRemoved(PredefinedAnswer a)
+        {
+            if (this.predefinedAnswerRemoved != null)
+            {
+                this.predefinedAnswerRemoved(a);
+            }
+        }
+
+        private void onPredefinedAnswerUpdated(PredefinedAnswer a)
+        {
+            if (this.predefinedAnswerUpdated != null)
+            {
+                this.predefinedAnswerUpdated(a);
+            }
+        }
         #endregion
 
         #region Thread unaware methods

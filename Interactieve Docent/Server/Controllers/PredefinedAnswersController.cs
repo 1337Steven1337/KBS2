@@ -11,10 +11,12 @@ using System.Web.Http;
 using System.Web.Http.Description;
 using Server.Models;
 using Server.Models.Context;
+using Server.Hubs;
+using Server.Models.DTO;
 
 namespace Server.Controllers
 {
-    public class PredefinedAnswersController : ApiController
+    public class PredefinedAnswersController : ApiControllerWithHub<EventHub>
     {
         private ServerContext db = new ServerContext();
 
@@ -56,6 +58,9 @@ namespace Server.Controllers
             try
             {
                 await db.SaveChangesAsync();
+
+                Question question = db.Questions.Find(predefinedAnswer.Question_Id);
+                this.getSubscribed(question.List_Id).PredefinedAnswerUpdated(new PredefinedAnswerDTO(predefinedAnswer));
             }
             catch (DbUpdateConcurrencyException)
             {
@@ -84,6 +89,9 @@ namespace Server.Controllers
             db.PredefinedAnswers.Add(predefinedAnswer);
             await db.SaveChangesAsync();
 
+            Question question = db.Questions.Find(predefinedAnswer.Question_Id);
+            this.getSubscribed(question.List_Id).PredefinedAnswerAdded(new PredefinedAnswerDTO(predefinedAnswer));
+
             return CreatedAtRoute("DefaultApi", new { id = predefinedAnswer.Id }, predefinedAnswer);
         }
 
@@ -99,6 +107,9 @@ namespace Server.Controllers
 
             db.PredefinedAnswers.Remove(predefinedAnswer);
             await db.SaveChangesAsync();
+
+            Question question = db.Questions.Find(predefinedAnswer.Question_Id);
+            this.getSubscribed(question.List_Id).PredefinedAnswerDeleted (new PredefinedAnswerDTO(predefinedAnswer));
 
             return Ok(predefinedAnswer);
         }
