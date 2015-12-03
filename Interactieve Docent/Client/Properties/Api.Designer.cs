@@ -25,7 +25,7 @@ namespace Client.Properties {
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("http://80.56.81.207:57017/")]
+        [global::System.Configuration.DefaultSettingValueAttribute("http://localhost:57017/")]
         public string Host {
             get {
                 return ((string)(this["Host"]));
