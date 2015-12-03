@@ -175,8 +175,6 @@ namespace Client.Controller
                 }
 
                 factoryPA.saveAsync(pa, null);
-                //PAList.Add(pa);
-                //factoryPA.save(pa, addQuestionView.getAnswersListBox(), processAddPA);
             }
         }
 
@@ -194,6 +192,8 @@ namespace Client.Controller
                 q.Time = (int)addQuestionView.getTimeField().Value;
                 q.Points = (int)addQuestionView.getPointsField().Value;
                 q.List_Id = this.listId;
+                q.PredefinedAnswerCount = addQuestionView.getAnswersListBox().Items.Count;
+
                 factory.save(q, addQuestionView.getAnswersListBox(), processAdd);
             }
             else

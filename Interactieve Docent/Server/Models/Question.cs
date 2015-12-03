@@ -31,6 +31,9 @@ namespace Server.Models
         public int List_Id { get; set; }
 
         [DataMember]
+        public int PredefinedAnswerCount { get; set; }
+
+        [DataMember]
         [ForeignKey("List_Id")]
         public virtual QuestionList List { get; set; }
 
