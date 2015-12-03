@@ -13,75 +13,64 @@ namespace Client.Controller
     {
         #region Delegates
         public delegate void SelectedIndexChanged(Question message);
+        public delegate void LoadAddQuestion(object sender, EventArgs e);
+        public delegate void QuitAddQuestion(object sender, EventArgs e);
         #endregion
 
         #region Declare Events
         public event SelectedIndexChanged selectedIndexChanged;
+        public event LoadAddQuestion loadAddQuestion;
+        public event QuitAddQuestion quitAddQuestion;
         #endregion
 
         #region Properties
-        private int listId;
-        private TableLayoutPanel threeColTable;
         private ListBox listBoxQuestion;
-        private CustomPanel customPanel;
         private QuestionFactory factory = new QuestionFactory();
         private PredefinedAnswerFactory factoryPA = new PredefinedAnswerFactory();
         public BindingList<Question> Questions = new BindingList<Question>();
         private IQuestionView questionView;
         private IAddQuestionView addQuestionView;
+        private int listId { get; set; }
         #endregion
 
         #region Constructor
-        public QuestionController(IQuestionView questionView, TableLayoutPanel threeColTable)
+        public QuestionController(IQuestionView questionView)
         {
-
-            this.threeColTable = threeColTable;
-
             this.questionView = questionView;
             this.questionView.setController(this);
-            this.listBoxQuestion = this.questionView.getListBox();
-            this.customPanel = this.questionView.getCustomPanel();
 
+            this.listBoxQuestion = this.questionView.getListBox();
+
+            this.questionView.getCustomPanel().title.Text = "Vragen uit lijst: ";             
             this.questionView.getCustomPanel().middleRow.Controls.Add(questionView.getListBox());
-            this.questionView.getCustomPanel().leftBottomButton.Click += add_questionHandler;
+            this.questionView.getCustomPanel().leftBottomButton.Click += LoadAddQuestionHandler;
             this.questionView.getCustomPanel().rightBottomButton.Click += new System.EventHandler(deleteQuestion);
 
             this.questionView.getCustomPanel().leftBottomButton.Text = "Nieuwe vraag";
             this.questionView.getCustomPanel().rightBottomButton.Text = "Verwijder vraag";
 
-            threeColTable.Controls.Add(this.questionView.getCustomPanel().getPanel(), 1, 0);
-
             this.listBoxQuestion.SelectedIndexChanged += new System.EventHandler(ListBoxQuestion_SelectedIndexChanged);
-
+        }
+        
+        public TableLayoutPanel loadQuestionView()
+        { 
+            return questionView.getCustomPanel().load();
         }
 
-        public QuestionController(IAddQuestionView addQuestionView, TableLayoutPanel threeColTable, int listId)
+        public TableLayoutPanel loadAddQuestionView()
         {
-            this.listId = listId;
-            this.threeColTable = threeColTable;
-
-            this.addQuestionView = addQuestionView;
-            this.addQuestionView.setController(this);
-
-            addQuestionView.getCustomPanel().middleRow.Controls.Add(addQuestionView.getTable());
-            addQuestionView.getCustomPanel().title.Text = "Nieuwe vraag";
-
-            addQuestionView.getCustomPanel().bottomRow.Controls.Clear();
-            addQuestionView.getCustomPanel().bottomRow.Controls.Add(addQuestionView.getCustomPanel().leftBottomButton);
-
-            addQuestionView.getCustomPanel().leftBottomButton.Click += saveQuestionHandler;
-            addQuestionView.getAddAnswerBtn().Click += addAnswerToListBox;
-            addQuestionView.getRemoveAnswerBtn().Click += removeAnswerFromListBox;
-
-
-            
-
-            //customPanel.middleRow.Controls.Add(listBoxQuestion);
-            //customPanel.rightBottomButton.Text = "Delete";
-            //customPanel.rightBottomButton.Click += new System.EventHandler(deleteQuestion);
-
-            threeColTable.Controls.Add(addQuestionView.getCustomPanel().getPanel(), 2, 0);
+            return addQuestionView.getCustomPanel().load();
         }
+
+        public void clearAddQuestion()
+        {
+            addQuestionView.getQuestionField().ResetText();
+            addQuestionView.getPointsField().ResetText();
+            addQuestionView.getTimeField().ResetText();
+            addQuestionView.getAnswersListBox().Items.Clear();
+            addQuestionView.getRightAnswerComboBox().Items.Clear();
+        }
+
         #endregion
 
         #region Events
@@ -114,7 +103,7 @@ namespace Client.Controller
         public void fillList(List<Question> list)
         {
             this.Questions.Clear();
-            List<Question> filtered = list.FindAll(x => x.List_Id == this.questionView.listId);
+            List<Question> filtered = list.FindAll(x => x.List_Id == this.listId);
 
             foreach (Question q in filtered)
             {
@@ -132,20 +121,39 @@ namespace Client.Controller
                     break;
                 }
             }
-
             this.Questions.RemoveAt(i);
         }
 
         public void loadQuestions(int listId)
         {
-            questionView.listId = listId;
-            factory.findAll(threeColTable, this.fillList);
+            this.listId = listId;
+            //questionView.getCustomPanel().title.Text = "Vragen uit lijst: " + listName;
+            factory.findAll(listBoxQuestion, this.fillList);
         }
 
-        private void add_questionHandler(object sender, System.EventArgs e)
+        private void LoadAddQuestionHandler(object sender, System.EventArgs e)
         {
-            ViewAddQuestion addQuestionView = new ViewAddQuestion();
-            QuestionController controller = new QuestionController(addQuestionView, threeColTable, questionView.listId); 
+            addQuestionView = new ViewAddQuestion();
+            addQuestionView.setController(this);
+
+            addQuestionView.getCustomPanel().middleRow.Controls.Add(addQuestionView.getTable());
+            addQuestionView.getCustomPanel().title.Text = "Nieuwe vraag";
+
+            addQuestionView.getCustomPanel().leftBottomButton.Text = "Opslaan";
+            addQuestionView.getCustomPanel().rightBottomButton.Text = "Sluiten";
+
+            addQuestionView.getCustomPanel().leftBottomButton.Click += saveQuestion;
+            addQuestionView.getCustomPanel().rightBottomButton.Click += QuitAddQuestionHandler;
+            addQuestionView.getAddAnswerBtn().Click += addAnswerToListBox;
+            addQuestionView.getRemoveAnswerBtn().Click += removeAnswerFromListBox;
+
+            loadAddQuestion.Invoke(sender, e);
+        }
+
+        private void QuitAddQuestionHandler(object sender, System.EventArgs e)
+        {
+            clearAddQuestion();
+            quitAddQuestion.Invoke(sender, e);
         }
 
         private void processAdd(Question q)
@@ -177,7 +185,7 @@ namespace Client.Controller
 
         }
 
-        private void saveQuestionHandler(object sender, EventArgs e)
+        private void saveQuestion(object sender, EventArgs e)
         {
             if (addQuestionView.getQuestionField().Text != "" && (int)addQuestionView.getTimeField().Value != 0 && addQuestionView.getPointsField().Value != 0 && addQuestionView.getRightAnswerComboBox().SelectedItem != null)
             {

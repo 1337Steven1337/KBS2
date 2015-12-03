@@ -12,7 +12,7 @@ namespace Client.View.Question
         private QuestionController controller;
         private CustomPanel customPanel;
 
-        public int listId { get; set;}
+        //public int listId { get; set;}
 
         public ViewQuestion()
         {
