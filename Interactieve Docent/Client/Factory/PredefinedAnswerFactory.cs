@@ -7,19 +7,19 @@ namespace Client.Factory
     public class PredefinedAnswerFactory : AbstractFactory<PredefinedAnswer>
     {
         #region Delegates
-        public delegate void PredefinedAnswerAdded(PredefinedAnswer answer);
-        public delegate void PredefinedAnswerRemoved(PredefinedAnswer answer);
-        public delegate void PredefinedAnswerUpdated(PredefinedAnswer answer);
+        public delegate void PredefinedAnswerAddedDelegate(PredefinedAnswer answer);
+        public delegate void PredefinedAnswerRemovedDelegate(PredefinedAnswer answer);
+        public delegate void PredefinedAnswerUpdatedDelegate(PredefinedAnswer answer);
         #endregion
 
         #region Events
-        public event PredefinedAnswerAdded predefinedAnswerAdded;
-        public event PredefinedAnswerRemoved predefinedAnswerRemoved;
-        public event PredefinedAnswerUpdated predefinedAnswerUpdated;
+        public event PredefinedAnswerAddedDelegate PredefinedAnswerAdded;
+        public event PredefinedAnswerRemovedDelegate PredefinedAnswerRemoved;
+        public event PredefinedAnswerUpdatedDelegate PredefinedAnswerUpdated;
         #endregion
 
         #region Properties
-        protected override string resource
+        protected override string Resource
         {
             get
             {
@@ -31,40 +31,38 @@ namespace Client.Factory
         #region Constructors
         public PredefinedAnswerFactory()
         {
-            this.signalRClient.proxy.On<PredefinedAnswer>("PredefinedAnswerAdded", this.onPredefinedAnswerAdded);
-            this.signalRClient.proxy.On<PredefinedAnswer>("PredefinedAnswerRemoved", this.onPredefinedAnswerRemoved);
-            this.signalRClient.proxy.On<PredefinedAnswer>("PredefinedAnswerUpdated", this.onPredefinedAnswerUpdated);
+            this.SignalRClient.proxy.On<PredefinedAnswer>("PredefinedAnswerAdded", this.OnPredefinedAnswerAdded);
+            this.SignalRClient.proxy.On<PredefinedAnswer>("PredefinedAnswerRemoved", this.OnPredefinedAnswerRemoved);
+            this.SignalRClient.proxy.On<PredefinedAnswer>("PredefinedAnswerUpdated", this.OnpredefinedAnswerUpdated);
         }
         #endregion
 
         #region Actions
-        private void onPredefinedAnswerAdded(PredefinedAnswer a)
+        private void OnPredefinedAnswerAdded(PredefinedAnswer a)
         {
-            if (this.predefinedAnswerAdded != null)
+            if (this.PredefinedAnswerAdded != null)
             {
-                this.predefinedAnswerAdded(a);
+                this.PredefinedAnswerAdded(a);
             }
         }
-
-        private void onPredefinedAnswerRemoved(PredefinedAnswer a)
+        private void OnPredefinedAnswerRemoved(PredefinedAnswer a)
         {
-            if (this.predefinedAnswerRemoved != null)
+            if (this.PredefinedAnswerRemoved != null)
             {
-                this.predefinedAnswerRemoved(a);
+                this.PredefinedAnswerRemoved(a);
             }
         }
-
-        private void onPredefinedAnswerUpdated(PredefinedAnswer a)
+        private void OnpredefinedAnswerUpdated(PredefinedAnswer a)
         {
-            if (this.predefinedAnswerUpdated != null)
+            if (this.PredefinedAnswerUpdated != null)
             {
-                this.predefinedAnswerUpdated(a);
+                this.PredefinedAnswerUpdated(a);
             }
         }
         #endregion
 
         #region Overrides
-        protected override Dictionary<string, object> getFields(PredefinedAnswer answer)
+        protected override Dictionary<string, object> GetFields(PredefinedAnswer answer)
         {
             Dictionary<string, object> values = new Dictionary<string, object>();
             values.Add("Text", answer.Text);

@@ -7,19 +7,19 @@ namespace Client.Factory
     public class QuestionListFactory : AbstractFactory<QuestionList>
     {
         #region Delegates
-        public delegate void QuestionListAdded(QuestionList list);
-        public delegate void QuestionListRemoved(QuestionList list);
-        public delegate void QuestionListUpdated(QuestionList list);
+        public delegate void QuestionListAddedDelegate(QuestionList list);
+        public delegate void QuestionListRemovedDelegate(QuestionList list);
+        public delegate void QuestionListUpdatedDelegate(QuestionList list);
         #endregion
 
         #region Events
-        public event QuestionListAdded questionListAdded;
-        public event QuestionListRemoved questionListRemoved;
-        public event QuestionListUpdated questionListUpdated;
+        public event QuestionListAddedDelegate QuestionListAdded;
+        public event QuestionListRemovedDelegate QuestionListRemoved;
+        public event QuestionListUpdatedDelegate QuestionListUpdated;
         #endregion
 
         #region Properties
-        protected override string resource
+        protected override string Resource
         {
             get
             {
@@ -31,18 +31,18 @@ namespace Client.Factory
         #region Constructors
         public QuestionListFactory()
         {
-            this.signalRClient.proxy.On<QuestionList>("QuestionListAdded", this.onQuestionListAdded);
-            this.signalRClient.proxy.On<QuestionList>("QuestionListRemoved", this.onQuestionListRemoved);
-            this.signalRClient.proxy.On<QuestionList>("QuestionListUpdated", this.onQuestionListUpdated);
+            this.SignalRClient.proxy.On<QuestionList>("QuestionListAdded", this.OnQuestionListAdded);
+            this.SignalRClient.proxy.On<QuestionList>("QuestionListRemoved", this.OnQuestionListRemoved);
+            this.SignalRClient.proxy.On<QuestionList>("QuestionListUpdated", this.OnQuestionListUpdated);
 
-            if (this.signalRClient.state == ConnectionState.Connected)
+            if (this.SignalRClient.state == ConnectionState.Connected)
             {
-                this.signalRClient.subscribe("lists");
+                this.SignalRClient.Subscribe("lists");
             }
             else
             {
-                this.signalRClient.connectionStatusChanged += SignalRClient_connectionStatusChanged;
-                this.signalRClient.connect();
+                this.SignalRClient.connectionStatusChanged += SignalRClient_connectionStatusChanged;
+                this.SignalRClient.Connect();
             }
         }
         #endregion
@@ -52,39 +52,37 @@ namespace Client.Factory
         {
             if (message.NewState == ConnectionState.Connected)
             {
-                this.signalRClient.subscribe("lists");
+                this.SignalRClient.Subscribe("lists");
             }
         }
         #endregion 
 
         #region Actions
-        private void onQuestionListAdded(QuestionList q)
+        private void OnQuestionListAdded(QuestionList q)
         {
-            if (this.questionListAdded != null)
+            if (this.QuestionListAdded != null)
             {
-                this.questionListAdded(q);
+                this.QuestionListAdded(q);
             }
         }
-
-        private void onQuestionListRemoved(QuestionList q)
+        private void OnQuestionListRemoved(QuestionList q)
         {
-            if (this.questionListRemoved != null)
+            if (this.QuestionListRemoved != null)
             {
-                this.questionListRemoved(q);
+                this.QuestionListRemoved(q);
             }
         }
-
-        private void onQuestionListUpdated(QuestionList q)
+        private void OnQuestionListUpdated(QuestionList q)
         {
-            if (this.questionListUpdated != null)
+            if (this.QuestionListUpdated != null)
             {
-                this.questionListUpdated(q);
+                this.QuestionListUpdated(q);
             }
         }
         #endregion
 
         #region Overrides
-        protected override Dictionary<string, object> getFields(QuestionList list)
+        protected override Dictionary<string, object> GetFields(QuestionList list)
         {
             Dictionary<string, object> values = new Dictionary<string, object>();
             values.Add("Name", list.Name);

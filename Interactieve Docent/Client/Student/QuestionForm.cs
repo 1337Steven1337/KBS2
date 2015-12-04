@@ -46,15 +46,15 @@ namespace Client.Student
             Main main = new Main();
             main.Show();
 
-            client = SignalRClient.getInstance();
+            client = SignalRClient.GetInstance();
             client.connectionStatusChanged += Client_connectionStatusChanged;
-            client.connect();
+            client.Connect();
 
             QuestionFactory questionFactory = new QuestionFactory();
-            questionFactory.questionAdded += Factory_questionAdded;
+            questionFactory.QuestionAdded += Factory_questionAdded;
 
             PredefinedAnswerFactory PAFactory = new PredefinedAnswerFactory();
-            PAFactory.predefinedAnswerAdded += PAFactory_predefinedAnswerAdded;
+            PAFactory.PredefinedAnswerAdded += PAFactory_predefinedAnswerAdded;
         }
 
         public void initControlLocations()
@@ -126,7 +126,7 @@ namespace Client.Student
 
         private void Client_connectionStatusChanged(StateChange message)
         {
-            client.subscribe(this.List_Id);
+            client.Subscribe(this.List_Id);
         }
 
         private void Question_Timer(object sender, EventArgs e)
@@ -213,7 +213,7 @@ namespace Client.Student
             ua.Question_ID = currentQuestion.Id;
             ua.saveAnswer();
             //UserAnswerFactory uaf = new UserAnswerFactory();
-            //uaf.save(ua,null, null);
+            //uaf.Save(ua,null, null);
             if (this.list.Questions.Count - 1 > currentQuestionIndex)
             {
                 goToNextQuestion();

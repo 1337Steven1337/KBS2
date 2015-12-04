@@ -147,7 +147,7 @@ namespace Client.API.Models
             }
         }
 
-        public void save()
+        public void Save()
         {
             RestRequest request = new RestRequest(Method.POST);
             request.RequestFormat = DataFormat.Json;
@@ -162,7 +162,7 @@ namespace Client.API.Models
             this.Id = q.Id;
         }
 
-        public void delete()
+        public void Delete()
         {
             RestRequest request = new RestRequest(Method.DELETE);
             request.RequestFormat = DataFormat.Json;

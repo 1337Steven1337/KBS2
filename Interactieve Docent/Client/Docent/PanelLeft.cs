@@ -58,7 +58,7 @@ namespace Client
             {
                 List list = new List();
                 list.Name = add.name;
-                list.save();
+                list.Save();
 
                 LoadList(listBox.Items.Count);
             }
@@ -67,17 +67,17 @@ namespace Client
         public void DeleteList()
         {
 
-            Docent.DeletePopup delete = new Docent.DeletePopup();
-            delete.ShowDialog();
+            Docent.DeletePopup Delete = new Docent.DeletePopup();
+            Delete.ShowDialog();
 
-            if (delete.valid)
+            if (Delete.valid)
             {
                 int selectedIndex = listBox.SelectedIndex;
 
                 List list = new List();
                 int id = Convert.ToInt32(listBox.SelectedValue);
                 list.Id = id;
-                list.delete();
+                list.Delete();
 
                 LoadList(selectedIndex-1);
             }

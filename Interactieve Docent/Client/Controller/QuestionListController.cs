@@ -48,14 +48,14 @@ namespace Client.Controller
                 QuestionList ql = new QuestionList();
                 ql.Name = name;
                 //Send instance ql to server for adding
-                factory.save(ql, this.questionListView.getListBoxQuestionLists(), processAdd);
+                factory.Save(ql, this.questionListView.getListBoxQuestionLists(), processAdd);
             }
         }
 
 
         public void deleteList(object sender, EventArgs e)
         {
-            //Show dialog for user to confirm delete action
+            //Show dialog for user to confirm Delete action
             ViewDeleteQuestionList dlg = new ViewDeleteQuestionList();
             dlg.StartPosition = FormStartPosition.CenterParent;
             dlg.setText(this.questionListView.getListBoxQuestionLists().SelectedItem.ToString());
@@ -69,7 +69,7 @@ namespace Client.Controller
                 QuestionList ql = new QuestionList();
                 ql.Id = id;
                 //Send ql to server for deleting
-                factory.delete(ql, this.questionListView.getListBoxQuestionLists(), processDelete);
+                factory.Delete(ql, this.questionListView.getListBoxQuestionLists(), processDelete);
             }
         }
 
@@ -97,7 +97,7 @@ namespace Client.Controller
         //Requests all lists via from database
         private void loadLists()
         {
-            factory.findAll(this.questionListView.getListBoxQuestionLists(), this.fillList);
+            factory.FindAll(this.questionListView.getListBoxQuestionLists(), this.fillList);
         }
 
         //Adding requested lists to listbox
@@ -109,7 +109,7 @@ namespace Client.Controller
             }
         }
 
-        //Delete list by selecting and pressing the delete-key
+        //Delete list by selecting and pressing the Delete-key
         private void Delete_keyDown(object sender, PreviewKeyDownEventArgs e)
         {
             if (e.KeyCode == Keys.Delete)

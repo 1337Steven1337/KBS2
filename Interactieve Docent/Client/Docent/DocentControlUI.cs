@@ -81,13 +81,13 @@ namespace Client
             q.Time = time;
             q.Points = points;
             q.List = list;
-            q.save();
+            q.Save();
 
             PredefinedAnswer pa;
             foreach (String answer in panelRight.predefinedAnswersList.Items)
             {
                 pa = new PredefinedAnswer() { Text = answer };
-                pa.save(q.Id);                
+                pa.Save(q.Id);                
             }
 
             //reload question list

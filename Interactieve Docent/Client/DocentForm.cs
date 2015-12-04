@@ -64,12 +64,12 @@ namespace Client
 
                 List list = new List();
                 list.Name = "Toetsvragen Test lijst";
-                list.save();
+                list.Save();
 
                 Question q = new Question();
                 q.Text = question;
                 q.List = list;
-                q.save();
+                q.Save();
 
             }
         }

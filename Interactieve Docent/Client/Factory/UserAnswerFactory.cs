@@ -7,19 +7,19 @@ namespace Client.Factory
     public class UserAnswerFactory : AbstractFactory<UserAnswer>
     {
         #region Delegates
-        public delegate void UserAnswerAdded(UserAnswer answer);
-        public delegate void UserAnswerRemoved(UserAnswer answer);
-        public delegate void UserAnswerUpdated(UserAnswer answer);
+        public delegate void UserAnswerAddedDelegate(UserAnswer answer);
+        public delegate void UserAnswerRemovedDelegate(UserAnswer answer);
+        public delegate void UserAnswerUpdatedDelegate(UserAnswer answer);
         #endregion
 
         #region Events
-        public event UserAnswerAdded userAnswerAdded;
-        public event UserAnswerRemoved userAnswerRemoved;
-        public event UserAnswerUpdated userAnswerUpdated;
+        public event UserAnswerAddedDelegate UserAnswerAdded;
+        public event UserAnswerRemovedDelegate UserAnswerRemoved;
+        public event UserAnswerUpdatedDelegate UserAnswerUpdated;
         #endregion
 
         #region Properties
-        protected override string resource
+        protected override string Resource
         {
             get
             {
@@ -31,40 +31,38 @@ namespace Client.Factory
         #region Constructors
         public UserAnswerFactory()
         {
-            this.signalRClient.proxy.On<UserAnswer>("UserAnswerAdded", this.onUserAnswerAdded);
-            this.signalRClient.proxy.On<UserAnswer>("UserAnswerRemoved", this.onUserAnswerRemoved);
-            this.signalRClient.proxy.On<UserAnswer>("UserAnswerUpdated", this.onUserAnswerUpdated);
+            this.SignalRClient.proxy.On<UserAnswer>("UserAnswerAdded", this.OnUserAnswerAdded);
+            this.SignalRClient.proxy.On<UserAnswer>("UserAnswerRemoved", this.OnUserAnswerRemoved);
+            this.SignalRClient.proxy.On<UserAnswer>("UserAnswerUpdated", this.OnUserAnswerUpdated);
         }
         #endregion
 
         #region Actions
-        private void onUserAnswerAdded(UserAnswer a)
+        private void OnUserAnswerAdded(UserAnswer a)
         {
-            if (this.userAnswerAdded != null)
+            if (this.UserAnswerAdded != null)
             {
-                this.userAnswerAdded(a);
+                this.UserAnswerAdded(a);
             }
         }
-
-        private void onUserAnswerRemoved(UserAnswer a)
+        private void OnUserAnswerRemoved(UserAnswer a)
         {
-            if (this.userAnswerRemoved != null)
+            if (this.UserAnswerRemoved != null)
             {
-                this.userAnswerRemoved(a);
+                this.UserAnswerRemoved(a);
             }
         }
-
-        private void onUserAnswerUpdated(UserAnswer a)
+        private void OnUserAnswerUpdated(UserAnswer a)
         {
-            if (this.userAnswerUpdated != null)
+            if (this.UserAnswerUpdated != null)
             {
-                this.userAnswerUpdated(a);
+                this.UserAnswerUpdated(a);
             }
         }
         #endregion
 
         #region Overrides
-        protected override Dictionary<string, object> getFields(UserAnswer answer)
+        protected override Dictionary<string, object> GetFields(UserAnswer answer)
         {
             Dictionary<string, object> values = new Dictionary<string, object>();
             values.Add("Question_Id", answer.Question_Id);

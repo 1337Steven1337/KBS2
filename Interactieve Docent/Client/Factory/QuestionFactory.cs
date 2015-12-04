@@ -7,19 +7,19 @@ namespace Client.Factory
     public class QuestionFactory : AbstractFactory<Question>
     {
         #region Delegates
-        public delegate void QuestionAdded(Question question);
-        public delegate void QuestionRemoved(Question question);
-        public delegate void QuestionUpdated(Question question);
+        public delegate void QuestionAddedDelegate(Question question);
+        public delegate void QuestionRemovedDelegate(Question question);
+        public delegate void QuestionUpdatedDelegate(Question question);
         #endregion
 
         #region Events
-        public event QuestionAdded questionAdded;
-        public event QuestionRemoved questionRemoved;
-        public event QuestionUpdated questionUpdated;
+        public event QuestionAddedDelegate QuestionAdded;
+        public event QuestionRemovedDelegate QuestionRemoved;
+        public event QuestionUpdatedDelegate QuestionUpdated;
         #endregion
 
         #region Properties
-        protected override string resource
+        protected override string Resource
         {
             get
             {
@@ -31,40 +31,38 @@ namespace Client.Factory
         #region Constructors
         public QuestionFactory()
         {
-            this.signalRClient.proxy.On<Question>("QuestionAdded", this.onQuestionAdded);
-            this.signalRClient.proxy.On<Question>("QuestionRemoved", this.onQuestionRemoved);
-            this.signalRClient.proxy.On<Question>("QuestionUpdated", this.onQuestionUpdated);
+            this.SignalRClient.proxy.On<Question>("QuestionAdded", this.OnQuestionAdded);
+            this.SignalRClient.proxy.On<Question>("QuestionRemoved", this.OnQuestionRemoved);
+            this.SignalRClient.proxy.On<Question>("QuestionUpdated", this.OnQuestionUpdated);
         }
         #endregion
 
         #region Actions
-        private void onQuestionAdded(Question q)
+        private void OnQuestionAdded(Question q)
         {
-            if (this.questionAdded != null)
+            if (this.QuestionAdded != null)
             {
-                this.questionAdded(q);
+                this.QuestionAdded(q);
             }
         }
-
-        private void onQuestionRemoved(Question q)
+        private void OnQuestionRemoved(Question q)
         {
-            if (this.questionRemoved != null)
+            if (this.QuestionRemoved != null)
             {
-                this.questionRemoved(q);
+                this.QuestionRemoved(q);
             }
         }
-
-        private void onQuestionUpdated(Question q)
+        private void OnQuestionUpdated(Question q)
         {
-            if (this.questionUpdated != null)
+            if (this.QuestionUpdated != null)
             {
-                this.questionUpdated(q);
+                this.QuestionUpdated(q);
             }
         }
         #endregion
 
         #region Overrides
-        protected override Dictionary<string, object> getFields(Question question)
+        protected override Dictionary<string, object> GetFields(Question question)
         {
             Dictionary<string, object> values = new Dictionary<string, object>();
             values.Add("Text", question.Text);

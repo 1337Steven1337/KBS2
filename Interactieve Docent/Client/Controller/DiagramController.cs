@@ -30,12 +30,12 @@ namespace Client.Controller
         {
             this.View = view;
             this.View.setController(this);
-            this.SignalRClient = SignalRClient.getInstance();
+            this.SignalRClient = SignalRClient.GetInstance();
 
             //add events
             questionController.selectedIndexChanged += QuestionController_selectedIndexChanged;
 
-            this.UserAnswerFactory.userAnswerAdded += UserAnswerFactory_userAnswerAdded;
+            this.UserAnswerFactory.UserAnswerAdded += UserAnswerFactory_userAnswerAdded;
 
             view.Show();
         }
@@ -58,7 +58,7 @@ namespace Client.Controller
         #region Events
         private void QuestionController_selectedIndexChanged(Question question)
         {
-             Factory.findById(question.Id, this.View.getPanel(), this.SetQuestion);
+             Factory.FindById(question.Id, this.View.getPanel(), this.SetQuestion);
         }
         
         private void SignalRClient_connectionStatusChanged(Microsoft.AspNet.SignalR.Client.StateChange message)
@@ -67,7 +67,7 @@ namespace Client.Controller
             if (message.NewState == Microsoft.AspNet.SignalR.Client.ConnectionState.Connected)
             {
                 //if the status is connected subscribe to the list
-                SignalRClient.subscribe(Question.List_Id);
+                SignalRClient.Subscribe(Question.List_Id);
             }
             else if (message.NewState == Microsoft.AspNet.SignalR.Client.ConnectionState.Connecting)
             {
@@ -87,7 +87,7 @@ namespace Client.Controller
         public void SetQuestion(Question q)
         {
             this.Question = q;
-            this.SignalRClient.subscribe(q.List_Id);
+            this.SignalRClient.Subscribe(q.List_Id);
             this.View.getPanel().Invoke((Action)delegate () { Redraw(); });
         }
 

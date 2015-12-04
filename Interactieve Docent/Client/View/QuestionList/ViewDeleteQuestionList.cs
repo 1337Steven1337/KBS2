@@ -10,7 +10,7 @@ using System.Windows.Forms;
 
 namespace Client.View.QuestionList
 {
-    //Popup which shows when trying to delete a list
+    //Popup which shows when trying to Delete a list
     public partial class ViewDeleteQuestionList : Form
     { 
         public Boolean valid { get; set; }
@@ -24,7 +24,7 @@ namespace Client.View.QuestionList
 
         private void buttonOk_Click(object sender, EventArgs e)
         {
-            //Confirming the user wants to delete the list
+            //Confirming the user wants to Delete the list
             valid = true;
             this.Close();
         }

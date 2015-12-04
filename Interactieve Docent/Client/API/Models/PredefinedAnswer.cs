@@ -29,7 +29,7 @@ namespace Client.API.Models
             }
         }
 
-        public void save(int questionId)
+        public void Save(int questionId)
         {
             RestRequest request = new RestRequest(Method.POST);
             request.RequestFormat = DataFormat.Json;

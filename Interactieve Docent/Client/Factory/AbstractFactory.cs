@@ -11,21 +11,21 @@ namespace Client.Factory
     public abstract class AbstractFactory<T> where T : AbstractModel, new()
     {
         #region Properties
-        protected abstract string resource { get; }
+        protected abstract string Resource { get; }
         #endregion
 
         #region Instances
-        private RestClient restClient = new RestClient();
-        protected SignalRClient signalRClient = null;
+        private RestClient RestClient = new RestClient();
+        protected SignalRClient SignalRClient = null;
         #endregion
 
         #region Constructors
         public AbstractFactory()
         {
-            this.restClient.BaseUrl = new Uri(Properties.Api.Default.Host + Properties.Api.Default.Rest);
-            this.restClient.AddDefaultHeader("Content-Type", "application/json");
+            this.RestClient.BaseUrl = new Uri(Properties.Api.Default.Host + Properties.Api.Default.Rest);
+            this.RestClient.AddDefaultHeader("Content-Type", "application/json");
 
-            this.signalRClient = SignalRClient.getInstance();
+            this.SignalRClient = SignalRClient.GetInstance();
         }
         #endregion
 
@@ -33,16 +33,16 @@ namespace Client.Factory
         /// <summary>
         /// Deletes an instance from the database
         /// </summary>
-        /// <param name="instance">The instance to delete</param>
+        /// <param name="instance">The instance to Delete</param>
         /// <param name="callback">Callback which is called when the request is completed</param>
-        public void deleteAsync(T instance, Action<T, HttpStatusCode, IRestResponse> callback)
+        public void DeleteAsync(T instance, Action<T, HttpStatusCode, IRestResponse> callback)
         {
             RestRequest request = new RestRequest();
             request.AddParameter("Id", instance.Id);
-            request.Resource = this.resource;
+            request.Resource = this.Resource;
             request.Method = Method.DELETE;
 
-            this.restClient.ExecuteAsync<T>(request, response => {
+            this.RestClient.ExecuteAsync<T>(request, response => {
                 if (callback != null)
                 {
                     callback(response.Data, response.StatusCode, response);
@@ -53,11 +53,11 @@ namespace Client.Factory
         /// <summary>
         /// Deletes an instance from the database
         /// </summary>
-        /// <param name="instance">The instance to delete</param>
+        /// <param name="instance">The instance to Delete</param>
         /// <param name="callback">Callback which is called when the request is completed</param>
-        public void deleteAsync(T instance, Action<T, HttpStatusCode> callback)
+        public void DeleteAsync(T instance, Action<T, HttpStatusCode> callback)
         {
-            this.deleteAsync(instance, (o, s, r) =>
+            this.DeleteAsync(instance, (o, s, r) =>
             {
                 if (callback != null)
                 {
@@ -69,11 +69,11 @@ namespace Client.Factory
         /// <summary>
         /// Deletes an instance from the database
         /// </summary>
-        /// <param name="instance">The instance to delete</param>
+        /// <param name="instance">The instance to Delete</param>
         /// <param name="callback">Callback which is called when the request is completed</param>
-        public void deleteAsync(T instance, Action<T> callback)
+        public void DeleteAsync(T instance, Action<T> callback)
         {
-            this.deleteAsync(instance, (o, s, r) =>
+            this.DeleteAsync(instance, (o, s, r) =>
             {
                 if (callback != null)
                 {
@@ -85,29 +85,29 @@ namespace Client.Factory
         /// <summary>
         /// Deletes an instance from the database
         /// </summary>
-        /// <param name="instance">The instance to delete</param>
-        public void deleteAsync(T instance)
+        /// <param name="instance">The instance to Delete</param>
+        public void DeleteAsync(T instance)
         {
-            this.deleteAsync(instance, (o, s, r) => { });
+            this.DeleteAsync(instance, (o, s, r) => { });
         }
 
         /// <summary>
         /// Saves an instance to the database
         /// </summary>
-        /// <param name="instance">The instance to save</param>
+        /// <param name="instance">The instance to Save</param>
         /// <param name="callback">Callback which is called when the request is completed</param>
-        public void saveAsync(T instance, Action<T, HttpStatusCode, IRestResponse> callback)
+        public void SaveAsync(T instance, Action<T, HttpStatusCode, IRestResponse> callback)
         {
             RestRequest request = new RestRequest();
-            request.Resource = resource;
+            request.Resource = Resource;
             request.Method = Method.POST;
 
-            foreach (KeyValuePair<string, object> entry in this.getFields(instance))
+            foreach (KeyValuePair<string, object> entry in this.GetFields(instance))
             {
                 request.AddParameter(entry.Key, entry.Value);
             }
 
-            this.restClient.ExecuteAsync<T>(request, response => {
+            this.RestClient.ExecuteAsync<T>(request, response => {
                 if (callback != null)
                 {
                     callback(response.Data, response.StatusCode, response);
@@ -118,11 +118,11 @@ namespace Client.Factory
         /// <summary>
         /// Saves an instance to the database
         /// </summary>
-        /// <param name="instance">The instance to save</param>
+        /// <param name="instance">The instance to Save</param>
         /// <param name="callback">Callback which is called when the request is completed</param>
-        public void saveAsync(T instance, Action<T, HttpStatusCode> callback)
+        public void SaveAsync(T instance, Action<T, HttpStatusCode> callback)
         {
-            this.saveAsync(instance, (o, s, r) =>
+            this.SaveAsync(instance, (o, s, r) =>
             {
                 if (callback != null)
                 {
@@ -134,11 +134,11 @@ namespace Client.Factory
         /// <summary>
         /// Saves an instance to the database
         /// </summary>
-        /// <param name="instance">The instance to save</param>
+        /// <param name="instance">The instance to Save</param>
         /// <param name="callback">Callback which is called when the request is completed</param>
-        public void saveAsync(T instance, Action<T> callback)
+        public void SaveAsync(T instance, Action<T> callback)
         {
-            this.saveAsync(instance, (o, s, r) =>
+            this.SaveAsync(instance, (o, s, r) =>
             {
                 if (callback != null)
                 {
@@ -150,10 +150,10 @@ namespace Client.Factory
         /// <summary>
         /// Saves an instance to the database
         /// </summary>
-        /// <param name="instance">The instance to save</param>
-        public void saveAsync(T instance)
+        /// <param name="instance">The instance to Save</param>
+        public void SaveAsync(T instance)
         {
-            this.saveAsync(instance, (o, s, r) => {});
+            this.SaveAsync(instance, (o, s, r) => {});
         }
 
         /// <summary>
@@ -161,13 +161,13 @@ namespace Client.Factory
         /// </summary>
         /// <param name="id">The ID of the instance you want to find</param>
         /// <param name="callback">Callback which is called when the request is completed</param>
-        public void findByIdAsync(int id, Action<T, HttpStatusCode, IRestResponse> callback)
+        public void FindByIdAsync(int id, Action<T, HttpStatusCode, IRestResponse> callback)
         {
             RestRequest request = new RestRequest();
-            request.Resource = this.resource;
+            request.Resource = this.Resource;
             request.AddParameter("Id", id);
 
-            this.restClient.ExecuteAsync<T>(request, response => {
+            this.RestClient.ExecuteAsync<T>(request, response => {
                 callback(response.Data, response.StatusCode, response);
             });
         }
@@ -177,9 +177,9 @@ namespace Client.Factory
         /// </summary>
         /// <param name="id">The ID of the instance you want to find</param>
         /// <param name="callback">Callback which is called when the request is completed</param>
-        public void findByIdAsync(int id, Action<T, HttpStatusCode> callback)
+        public void FindByIdAsync(int id, Action<T, HttpStatusCode> callback)
         {
-            this.findByIdAsync(id, (o, s, r) =>
+            this.FindByIdAsync(id, (o, s, r) =>
             {
                 if (callback != null)
                 {
@@ -193,9 +193,9 @@ namespace Client.Factory
         /// </summary>
         /// <param name="id">The ID of the instance you want to find</param>
         /// <param name="callback">Callback which is called when the request is completed</param>
-        public void findByIdAsync(int id, Action<T> callback)
+        public void FindByIdAsync(int id, Action<T> callback)
         {
-            this.findByIdAsync(id, (o, s, r) =>
+            this.FindByIdAsync(id, (o, s, r) =>
             {
                 if (callback != null)
                 {
@@ -208,12 +208,12 @@ namespace Client.Factory
         /// Finds all the instances of a model
         /// </summary>
         /// <param name="callback">Callback which is called when the request is completed</param>
-        public void findAllAsync(Action<List<T>, HttpStatusCode, IRestResponse> callback)
+        public void FindAllAsync(Action<List<T>, HttpStatusCode, IRestResponse> callback)
         {
             RestRequest request = new RestRequest();
-            request.Resource = resource;
+            request.Resource = Resource;
 
-            this.restClient.ExecuteAsync<List<T>>(request, response => {
+            this.RestClient.ExecuteAsync<List<T>>(request, response => {
                 callback(response.Data, response.StatusCode, response);
             });
         }
@@ -222,9 +222,9 @@ namespace Client.Factory
         /// Finds all the instances of a model
         /// </summary>
         /// <param name="callback">Callback which is called when the request is completed</param>
-        public void findAllAsync(Action<List<T>, HttpStatusCode> callback)
+        public void FindAllAsync(Action<List<T>, HttpStatusCode> callback)
         {
-            this.findAllAsync((o, s, r) =>
+            this.FindAllAsync((o, s, r) =>
             {
                 if (callback != null)
                 {
@@ -237,9 +237,9 @@ namespace Client.Factory
         /// Finds all the instances of a model
         /// </summary>
         /// <param name="callback">Callback which is called when the request is completed</param>
-        public void findAllAsync(Action<List<T>> callback)
+        public void FindAllAsync(Action<List<T>> callback)
         {
-            this.findAllAsync((o, s, r) =>
+            this.FindAllAsync((o, s, r) =>
             {
                 if (callback != null)
                 {
@@ -253,12 +253,12 @@ namespace Client.Factory
         /// <summary>
         /// Deletes an instance from the database
         /// </summary>
-        /// <param name="instance">The instance to delete</param>
+        /// <param name="instance">The instance to Delete</param>
         /// <param name="control">The control of the thread which the callback will be called on</param>
         /// <param name="callback">Callback which is called when the request is completed</param>
-        public void delete(T instance, Control control, Action<T, HttpStatusCode, IRestResponse> callback)
+        public void Delete(T instance, Control control, Action<T, HttpStatusCode, IRestResponse> callback)
         {
-            this.deleteAsync(instance, (o, s, r) =>
+            this.DeleteAsync(instance, (o, s, r) =>
             {
                 control.Invoke(callback, o, s, r);
             });
@@ -267,12 +267,12 @@ namespace Client.Factory
         /// <summary>
         /// Deletes an instance from the database
         /// </summary>
-        /// <param name="instance">The instance to delete</param>
+        /// <param name="instance">The instance to Delete</param>
         /// <param name="control">The control of the thread which the callback will be called on</param>
         /// <param name="callback">Callback which is called when the request is completed</param>
-        public void delete(T instance, Control control, Action<T, HttpStatusCode> callback)
+        public void Delete(T instance, Control control, Action<T, HttpStatusCode> callback)
         {
-            this.deleteAsync(instance, (o, s, r) =>
+            this.DeleteAsync(instance, (o, s, r) =>
             {
                 control.Invoke(callback, o, s);
             });
@@ -281,12 +281,12 @@ namespace Client.Factory
         /// <summary>
         /// Deletes an instance from the database
         /// </summary>
-        /// <param name="instance">The instance to delete</param>
+        /// <param name="instance">The instance to Delete</param>
         /// <param name="control">The control of the thread which the callback will be called on</param>
         /// <param name="callback">Callback which is called when the request is completed</param>
-        public void delete(T instance, Control control, Action<T> callback)
+        public void Delete(T instance, Control control, Action<T> callback)
         {
-            this.deleteAsync(instance, (o, s, r) =>
+            this.DeleteAsync(instance, (o, s, r) =>
             {
                 control.Invoke(callback, o);
             });
@@ -295,23 +295,23 @@ namespace Client.Factory
         /// <summary>
         /// Deletes an instance from the database
         /// </summary>
-        /// <param name="instance">The instance to delete</param>
+        /// <param name="instance">The instance to Delete</param>
         /// <param name="control">The control of the thread which the callback will be called on</param>
         /// <param name="callback">Callback which is called when the request is completed</param>
-        public void delete(T instance)
+        public void Delete(T instance)
         {
-            this.deleteAsync(instance);
+            this.DeleteAsync(instance);
         }
 
         /// <summary>
         /// Saves an instance of the model
         /// </summary>
-        /// <param name="instance">The instance to save</param>
+        /// <param name="instance">The instance to Save</param>
         /// <param name="control">The control of the thread which the callback will be called on</param>
         /// <param name="callback">Callback which is called when the request is completed</param>
-        public void save(T instance, Control control, Action<T, HttpStatusCode, IRestResponse> callback)
+        public void Save(T instance, Control control, Action<T, HttpStatusCode, IRestResponse> callback)
         {
-            this.saveAsync(instance, (o, s, r) =>
+            this.SaveAsync(instance, (o, s, r) =>
             {
                 control.Invoke(callback, o,s ,r);
             });
@@ -320,12 +320,12 @@ namespace Client.Factory
         /// <summary>
         /// Saves an instance of the model
         /// </summary>
-        /// <param name="instance">The instance to save</param>
+        /// <param name="instance">The instance to Save</param>
         /// <param name="control">The control of the thread which the callback will be called on</param>
         /// <param name="callback">Callback which is called when the request is completed</param>
-        public void save(T instance, Control control, Action<T, HttpStatusCode> callback)
+        public void Save(T instance, Control control, Action<T, HttpStatusCode> callback)
         {
-            this.saveAsync(instance, (o, s, r) =>
+            this.SaveAsync(instance, (o, s, r) =>
             {
                 control.Invoke(callback, o, s);
             });
@@ -334,12 +334,12 @@ namespace Client.Factory
         /// <summary>
         /// Saves an instance of the model
         /// </summary>
-        /// <param name="instance">The instance to save</param>
+        /// <param name="instance">The instance to Save</param>
         /// <param name="control">The control of the thread which the callback will be called on</param>
         /// <param name="callback">Callback which is called when the request is completed</param>
-        public void save(T instance, Control control, Action<T> callback)
+        public void Save(T instance, Control control, Action<T> callback)
         {
-            this.saveAsync(instance, (o, s, r) =>
+            this.SaveAsync(instance, (o, s, r) =>
             {
                 control.Invoke(callback, o);
             });
@@ -348,12 +348,12 @@ namespace Client.Factory
         /// <summary>
         /// Saves an instance of the model
         /// </summary>
-        /// <param name="instance">The instance to save</param>
+        /// <param name="instance">The instance to Save</param>
         /// <param name="control">The control of the thread which the callback will be called on</param>
         /// <param name="callback">Callback which is called when the request is completed</param>
-        public void save(T instance)
+        public void Save(T instance)
         {
-            this.saveAsync(instance);
+            this.SaveAsync(instance);
         }
 
         /// <summary>
@@ -362,9 +362,9 @@ namespace Client.Factory
         /// <param name="id">The ID of the instance to find</param>
         /// <param name="control">The control of the thread which the callback will be called on</param>
         /// <param name="callback">Callback which is called when the request is completed</param>
-        public void findById(int id, Control control, Action<T, HttpStatusCode, IRestResponse> callback)
+        public void FindById(int id, Control control, Action<T, HttpStatusCode, IRestResponse> callback)
         {
-            this.findByIdAsync(id, (o, s, r) =>
+            this.FindByIdAsync(id, (o, s, r) =>
             {
                 control.Invoke(callback, o, s, r);
             });
@@ -376,9 +376,9 @@ namespace Client.Factory
         /// <param name="id">The ID of the instance to find</param>
         /// <param name="control">The control of the thread which the callback will be called on</param>
         /// <param name="callback">Callback which is called when the request is completed</param>
-        public void findById(int id, Control control, Action<T, HttpStatusCode> callback)
+        public void FindById(int id, Control control, Action<T, HttpStatusCode> callback)
         {
-            this.findByIdAsync(id, (o, s, r) =>
+            this.FindByIdAsync(id, (o, s, r) =>
             {
                 control.Invoke(callback, o, s);
             });
@@ -390,9 +390,9 @@ namespace Client.Factory
         /// <param name="id">The ID of the instance to find</param>
         /// <param name="control">The control of the thread which the callback will be called on</param>
         /// <param name="callback">Callback which is called when the request is completed</param>
-        public void findById(int id, Control control, Action<T> callback)
+        public void FindById(int id, Control control, Action<T> callback)
         {
-            this.findByIdAsync(id, (o, s, r) =>
+            this.FindByIdAsync(id, (o, s, r) =>
             {
                 control.Invoke(callback, o);
             });
@@ -403,9 +403,9 @@ namespace Client.Factory
         /// </summary>
         /// <param name="control">The control of the thread which the callback will be called on</param>
         /// <param name="callback">Callback which is called when the request is completed</param>
-        public void findAll(Control control, Action<List<T>, HttpStatusCode, IRestResponse> callback)
+        public void FindAll(Control control, Action<List<T>, HttpStatusCode, IRestResponse> callback)
         {
-            this.findAllAsync((o, r, s) =>
+            this.FindAllAsync((o, r, s) =>
             {
                 control.Invoke(callback, o, r, s);
             });
@@ -416,9 +416,9 @@ namespace Client.Factory
         /// </summary>
         /// <param name="control">The control of the thread which the callback will be called on</param>
         /// <param name="callback">Callback which is called when the request is completed</param>
-        public void findAll(Control control, Action<List<T>, HttpStatusCode> callback)
+        public void FindAll(Control control, Action<List<T>, HttpStatusCode> callback)
         {
-            this.findAllAsync((o, r, s) =>
+            this.FindAllAsync((o, r, s) =>
             {
                 control.Invoke(callback, o, r);
             });
@@ -429,9 +429,9 @@ namespace Client.Factory
         /// </summary>
         /// <param name="control">The control of the thread which the callback will be called on</param>
         /// <param name="callback">Callback which is called when the request is completed</param>
-        public void findAll(Control control, Action<List<T>> callback)
+        public void FindAll(Control control, Action<List<T>> callback)
         {
-            this.findAllAsync((o, r, s) =>
+            this.FindAllAsync((o, r, s) =>
             {
                 control.Invoke(callback, o);
             });
@@ -440,11 +440,11 @@ namespace Client.Factory
 
         #region Methods
         /// <summary>
-        /// Prepares the instance to save it
+        /// Prepares the instance to Save it
         /// </summary>
-        /// <param name="instance">The instance to save</param>
-        /// <returns>Dictonary containing the values used to save the instance</returns>
-        protected abstract Dictionary<string, object> getFields(T instance);
+        /// <param name="instance">The instance to Save</param>
+        /// <returns>Dictonary containing the values used to Save the instance</returns>
+        protected abstract Dictionary<string, object> GetFields(T instance);
         #endregion
     }
 }

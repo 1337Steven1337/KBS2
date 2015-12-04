@@ -1,18 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Client.Service.SignalR.EventArgs
+﻿namespace Client.Service.SignalR.EventArgs
 {
     public class SubscriptionStatus
     {
-        public object id; 
+        public object Id { get; private set;  } 
 
         public SubscriptionStatus(object id)
         {
-            this.id = id;
+            this.Id = id;
         }
     }
 }

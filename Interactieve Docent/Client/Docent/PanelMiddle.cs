@@ -40,17 +40,17 @@ namespace Client
 
         public void deleteQuestion()
         {
-            Docent.DeletePopup delete = new Docent.DeletePopup();
-            delete.ShowDialog();
+            Docent.DeletePopup Delete = new Docent.DeletePopup();
+            Delete.ShowDialog();
 
-            if (delete.valid)
+            if (Delete.valid)
             {
                 int selected = listBox.SelectedIndex;
 
                 Question question = new Question();
                 int id = Convert.ToInt32(listBox.SelectedValue);
                 question.Id = id;
-                question.delete();
+                question.Delete();
 
                 loadQuestionList(questionId);
 

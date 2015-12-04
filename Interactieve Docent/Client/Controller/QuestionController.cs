@@ -117,7 +117,7 @@ namespace Client.Controller
                 q.List_Id = this.listId;
                 q.PredefinedAnswerCount = addQuestionView.getAnswersListBox().Items.Count;
 
-                factory.save(q, addQuestionView.getAnswersListBox(), processAdd);
+                factory.Save(q, addQuestionView.getAnswersListBox(), processAdd);
             }
             else
             {
@@ -190,7 +190,7 @@ namespace Client.Controller
                 int id = (int)questionView.getListBoxQuestions().SelectedValue;
                 Question q = new Question();
                 q.Id = id;
-                factory.delete(q, this.questionView.getListBoxQuestions(), processDelete);
+                factory.Delete(q, this.questionView.getListBoxQuestions(), processDelete);
             }
         }
 
@@ -228,7 +228,7 @@ namespace Client.Controller
         {
             this.listId = listId;
             //questionView.getCustomPanel().title.Text = "Vragen uit lijst: " + listName;
-            factory.findAll(questionView.getListBoxQuestions(), this.fillList);
+            factory.FindAll(questionView.getListBoxQuestions(), this.fillList);
         }
 
         private void processAdd(Question q)
@@ -249,7 +249,7 @@ namespace Client.Controller
                     pa.RightAnswer = false;
                 }
 
-                factoryPA.saveAsync(pa);
+                factoryPA.SaveAsync(pa);
             }
         }
         #endregion
