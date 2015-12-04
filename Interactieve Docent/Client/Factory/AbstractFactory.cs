@@ -439,7 +439,12 @@ namespace Client.Factory
         #endregion
 
         #region Methods
-        protected abstract Dictionary<string, object> getFields(T answer);
+        /// <summary>
+        /// Prepares the instance to save it
+        /// </summary>
+        /// <param name="instance">The instance to save</param>
+        /// <returns>Dictonary containing the values used to save the instance</returns>
+        protected abstract Dictionary<string, object> getFields(T instance);
         #endregion
     }
 }

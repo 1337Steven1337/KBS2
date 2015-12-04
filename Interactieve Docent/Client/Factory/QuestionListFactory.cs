@@ -1,14 +1,6 @@
 ﻿using Client.Model;
 using Microsoft.AspNet.SignalR.Client;
-using RestSharp;
-using System;
 using System.Collections.Generic;
-using System.Collections.Specialized;
-using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 
 namespace Client.Factory
 {
@@ -37,12 +29,8 @@ namespace Client.Factory
         #endregion
 
         #region Constructors
-        /// <summary>
-        /// 
-        /// </summary>
         public QuestionListFactory()
         {
-            //Adding eventhandlers for dynamic feedback
             this.signalRClient.proxy.On<QuestionList>("QuestionListAdded", this.onQuestionListAdded);
             this.signalRClient.proxy.On<QuestionList>("QuestionListRemoved", this.onQuestionListRemoved);
             this.signalRClient.proxy.On<QuestionList>("QuestionListUpdated", this.onQuestionListUpdated);
@@ -57,15 +45,17 @@ namespace Client.Factory
                 this.signalRClient.connect();
             }
         }
+        #endregion
 
+        #region Eventhandlers
         private void SignalRClient_connectionStatusChanged(StateChange message)
         {
-            if(message.NewState == ConnectionState.Connected)
+            if (message.NewState == ConnectionState.Connected)
             {
                 this.signalRClient.subscribe("lists");
             }
         }
-        #endregion
+        #endregion 
 
         #region Actions
         private void onQuestionListAdded(QuestionList q)
@@ -93,6 +83,7 @@ namespace Client.Factory
         }
         #endregion
 
+        #region Overrides
         protected override Dictionary<string, object> getFields(QuestionList list)
         {
             Dictionary<string, object> values = new Dictionary<string, object>();
@@ -101,5 +92,6 @@ namespace Client.Factory
 
             return values;
         }
+        #endregion
     }
 }

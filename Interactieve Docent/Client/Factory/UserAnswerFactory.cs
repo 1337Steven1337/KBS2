@@ -1,8 +1,6 @@
 ﻿using Client.Model;
 using Microsoft.AspNet.SignalR.Client;
-using System;
 using System.Collections.Generic;
-using System.Windows.Forms;
 
 namespace Client.Factory
 {
@@ -65,7 +63,7 @@ namespace Client.Factory
         }
         #endregion
 
-        #region Methods
+        #region Overrides
         protected override Dictionary<string, object> getFields(UserAnswer answer)
         {
             Dictionary<string, object> values = new Dictionary<string, object>();

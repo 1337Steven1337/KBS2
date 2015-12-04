@@ -1,8 +1,6 @@
 ﻿using Client.Model;
 using Microsoft.AspNet.SignalR.Client;
-using System;
 using System.Collections.Generic;
-using System.Windows.Forms;
 
 namespace Client.Factory
 {
@@ -65,12 +63,7 @@ namespace Client.Factory
         }
         #endregion
 
-        #region Methods
-        /// <summary>
-        /// Prepares the entity to save it
-        /// </summary>
-        /// <param name="answer">The answer to save</param>
-        /// <returns>Dictonary containing the values used to save the entity</returns>
+        #region Overrides
         protected override Dictionary<string, object> getFields(PredefinedAnswer answer)
         {
             Dictionary<string, object> values = new Dictionary<string, object>();
