@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace Client.Model
 {
-    public class PredefinedAnswer
+    public class PredefinedAnswer : AbstractModel
     {
-        public int Id { get; set; }
+        public override int Id { get; set; }
         public int Question_Id { get; set; }
         public bool RightAnswer { get; set; }
         public string Text { get; set; }

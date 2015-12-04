@@ -249,7 +249,7 @@ namespace Client.Controller
                     pa.RightAnswer = false;
                 }
 
-                factoryPA.saveAsync(pa, null);
+                factoryPA.saveAsync(pa);
             }
         }
         #endregion

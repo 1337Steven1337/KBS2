@@ -6,7 +6,7 @@ using System.Windows.Forms;
 
 namespace Client.Factory
 {
-    public class QuestionFactory : AbstractFactory
+    public class QuestionFactory : AbstractFactory<Question>
     {
         #region Delegates
         public delegate void QuestionAdded(Question question);
@@ -20,8 +20,14 @@ namespace Client.Factory
         public event QuestionUpdated questionUpdated;
         #endregion
 
-        #region Constants
-        private const string resource = "Questions";
+        #region Properties
+        protected override string resource
+        {
+            get
+            {
+                return "Questions";
+            }
+        }
         #endregion
 
         #region Constructors
@@ -60,7 +66,7 @@ namespace Client.Factory
         #endregion
 
         #region Methods
-        private Dictionary<string, object> getFields(Question question)
+        protected override Dictionary<string, object> getFields(Question question)
         {
             Dictionary<string, object> values = new Dictionary<string, object>();
             values.Add("Text", question.Text);
@@ -70,46 +76,6 @@ namespace Client.Factory
             values.Add("List_Id", question.List_Id);
 
             return values;
-        }
-
-        public void delete(Question question, Control control, Action<Question> callback)
-        {
-            this.delete<Question>(question.Id, resource, control, callback);
-        }
-
-        public void deleteAsync(Question question, Action<Question> callback)
-        {
-            this.deleteAsync<Question>(question.Id, resource, callback);
-        }
-
-        public void saveAsync(Question question, Action<Question> callback)
-        {
-            this.saveAsync<Question>(this.getFields(question), resource, callback);
-        }
-
-        public void save(Question question, Control control, Action<Question> callback)
-        {
-            this.save<Question>(this.getFields(question), resource, control, callback);
-        }
-
-        public void findByIdAsync(int id, Control control, Action<Question> callback)
-        {
-            this.findByIdAsync<Question>(id, resource, callback);
-        }
-
-        public void findById(int id, Control control, Action<Question> callback)
-        {
-            this.findById<Question>(id, resource, control, callback);
-        }
-
-        public void findAll(Control control, Action<List<Question>> callback)
-        {
-            this.findAll<Question>(resource, control, callback);
-        }
-
-        public void findAllAsync(Action<List<Question>> callback)
-        {
-            this.findAllAsync<Question>(resource, callback);
         }
         #endregion
     }

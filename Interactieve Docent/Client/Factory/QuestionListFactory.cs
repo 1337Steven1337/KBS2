@@ -12,7 +12,7 @@ using System.Windows.Forms;
 
 namespace Client.Factory
 {
-    public class QuestionListFactory : AbstractFactory
+    public class QuestionListFactory : AbstractFactory<QuestionList>
     {
         #region Delegates
         public delegate void QuestionListAdded(QuestionList list);
@@ -26,8 +26,14 @@ namespace Client.Factory
         public event QuestionListUpdated questionListUpdated;
         #endregion
 
-        #region Constants
-        private const string resource = "QuestionLists";
+        #region Properties
+        protected override string resource
+        {
+            get
+            {
+                return "QuestionLists";
+            }
+        }
         #endregion
 
         #region Constructors
@@ -87,53 +93,13 @@ namespace Client.Factory
         }
         #endregion
 
-        public void delete(QuestionList list, Control control, Action<QuestionList> callback)
-        {
-            this.delete<QuestionList>(list.Id, resource, control, callback);
-        }
-
-        public void deleteAsync(QuestionList list, Action<QuestionList> callback)
-        {
-            this.deleteAsync<QuestionList>(list.Id, resource, callback);
-        }
-
-        private Dictionary<string, object> getFields(QuestionList list)
+        protected override Dictionary<string, object> getFields(QuestionList list)
         {
             Dictionary<string, object> values = new Dictionary<string, object>();
             values.Add("Name", list.Name);
             values.Add("Ended", list.Ended);
 
             return values;
-        }
-
-        public void saveAsync(QuestionList list, Action<QuestionList> callback)
-        {
-            this.saveAsync<QuestionList>(this.getFields(list), resource, callback);
-        }
-
-        public void save(QuestionList list, Control control, Action<QuestionList> callback)
-        {
-            this.save<QuestionList>(this.getFields(list), resource, control, callback);
-        }
-
-        public void findByIdAsync(int id, Action<QuestionList> callback)
-        {
-            this.findByIdAsync<QuestionList>(id, resource, callback);
-        }
-
-        public void findById(int id, Control control, Action<QuestionList> callback)
-        {
-            this.findById<QuestionList>(id, resource, control, callback);
-        }
-
-        public void findAll(Control control, Action<List<QuestionList>> callback)
-        {
-            this.findAll<QuestionList>(resource, control, callback);
-        }
-
-        public void findAllAsync(Action<List<QuestionList>> callback)
-        {
-            this.findAllAsync<QuestionList>(resource, callback);
         }
     }
 }
