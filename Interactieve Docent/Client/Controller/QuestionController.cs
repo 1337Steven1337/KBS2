@@ -14,14 +14,10 @@ namespace Client.Controller
     {
         #region Delegates
         public delegate void SelectedIndexChanged(Question message);
-        public delegate void LoadAddQuestion(object sender, EventArgs e);
-        public delegate void QuitAddQuestion(object sender, EventArgs e);
         #endregion
 
         #region Declare Events
         public event SelectedIndexChanged selectedIndexChanged;
-        public event LoadAddQuestion loadAddQuestion;
-        public event QuitAddQuestion quitAddQuestion;
         #endregion
 
         #region Properties
@@ -30,6 +26,7 @@ namespace Client.Controller
         public BindingList<Question> Questions = new BindingList<Question>();
         private IQuestionView questionView;
         private IAddQuestionView addQuestionView;
+        private TableLayoutPanel tableThreeColls;
         private int listId { get; set; }
         #endregion
 
@@ -43,13 +40,13 @@ namespace Client.Controller
             this.questionView.getBtnShowResults().Click += ShowResultsHandler;
             this.questionView.getBtnDeleteQuestion().Click += new System.EventHandler(deleteQuestion);
             this.questionView.getListBoxQuestions().SelectedIndexChanged += new System.EventHandler(ListBoxQuestion_SelectedIndexChanged);
-        }       
+        }
         #endregion
 
         #region Events
         private void ListBoxQuestion_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if(this.selectedIndexChanged != null)
+            if (this.selectedIndexChanged != null)
             {
                 this.selectedIndexChanged((Question)this.questionView.getListBoxQuestions().SelectedItem);
             }
@@ -57,6 +54,16 @@ namespace Client.Controller
         #endregion
 
         #region Methodes
+        public TableLayoutPanel getAddQuestionPanel()
+        {
+            return addQuestionView.getPanel();
+        }
+
+        public void setTable(TableLayoutPanel tableThreeColls)
+        {
+            this.tableThreeColls = tableThreeColls;
+        }
+    
         public void clearAddQuestion()
         {
             addQuestionView.getQuestionField().ResetText();
@@ -64,11 +71,6 @@ namespace Client.Controller
             addQuestionView.getTimeField().ResetText();
             addQuestionView.getAnswersListBox().Items.Clear();
             addQuestionView.getRightAnswerComboBox().Items.Clear();
-        }
-
-        public TableLayoutPanel getAddQuestionPanel()
-        {
-            return addQuestionView.getPanel();
         }
 
         private void LoadAddQuestionHandler(object sender, System.EventArgs e)
@@ -81,7 +83,27 @@ namespace Client.Controller
             addQuestionView.getBtnAddAnswer().Click += addAnswerToListBox;
             addQuestionView.getBtnDeleteAnswer().Click += removeAnswerFromListBox;
 
-            loadAddQuestion.Invoke(sender, e);
+            tableThreeColls.SuspendLayout();
+            if (tableThreeColls.ColumnStyles[2].Width <= 0)
+            {
+                float width = 0;
+                for (int i = 0; i < tableThreeColls.ColumnCount; i++)
+                {
+                    if (i != 2)
+                    {
+                        width = 25F;
+                    }
+                    else
+                    {
+                        width = 50F;
+                    }
+                    tableThreeColls.ColumnStyles[i].Width = width;
+
+                }
+                tableThreeColls.Controls.Add(addQuestionView.getPanel(), 2, 0);
+            }
+            tableThreeColls.ResumeLayout(true);
+            tableThreeColls.PerformLayout();
         }
 
         private void saveQuestion(object sender, EventArgs e)
@@ -105,8 +127,23 @@ namespace Client.Controller
 
         private void QuitAddQuestionHandler(object sender, System.EventArgs e)
         {
-            clearAddQuestion();
-            quitAddQuestion.Invoke(sender, e);
+            tableThreeColls.SuspendLayout();
+            tableThreeColls.Controls.RemoveAt(2);
+            float width = 0;
+            for (int i = 0; i < tableThreeColls.ColumnCount; i++)
+            {
+                if (i < 2)
+                {
+                    width = 50F;
+                }
+                else
+                {
+                    width = 0;
+                }
+                tableThreeColls.ColumnStyles[i].Width = width;
+            }
+            tableThreeColls.ResumeLayout(true);
+            tableThreeColls.PerformLayout();
         }
 
         private void addAnswerToListBox(object sender, EventArgs e)

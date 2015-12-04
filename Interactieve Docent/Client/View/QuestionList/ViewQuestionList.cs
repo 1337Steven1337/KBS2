@@ -23,8 +23,6 @@ namespace Client.View.QuestionList
             //Set which data from the items are to access in the listbox
             listBoxQuestionLists.DisplayMember = "Name";
             listBoxQuestionLists.ValueMember = "Id";
-
-            //customPanelQuestionList = new CustomPanel();
         }
 
         public void setController(QuestionListController controller)
