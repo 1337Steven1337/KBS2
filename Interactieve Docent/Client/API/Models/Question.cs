@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 
 namespace Client.API.Models
 {
+    [System.Obsolete("Use the new API")]
     public class Question : Entity
     {
         private string _text = null;

@@ -7,6 +7,7 @@ using RestSharp;
 
 namespace Client.API.Models
 {
+    [System.Obsolete("Use the new API")]
     public class PredefinedAnswer : Entity
     {
         private string _text = null;

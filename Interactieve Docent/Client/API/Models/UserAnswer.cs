@@ -8,6 +8,7 @@ using RestSharp;
 
 namespace Client.API.Models
 {
+    [System.Obsolete("Use the new API")]
     public class UserAnswer : Entity
     {
         public int Id { get; private set; }

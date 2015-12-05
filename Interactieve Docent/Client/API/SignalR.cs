@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 
 namespace Client.API
 {
+    [System.Obsolete("Use the new API")]
     public class SignalR
     {
         #region Delegates
