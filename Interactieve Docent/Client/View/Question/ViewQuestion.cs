@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Windows.Forms;
 using Client.Controller;
-using Client.View.PanelLayout;
 using Client.Model;
 
 namespace Client.View.Question

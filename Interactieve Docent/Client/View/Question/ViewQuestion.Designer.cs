@@ -58,7 +58,7 @@ namespace Client.View.Question
             this.mainTablePanel.RowCount = 3;
             this.mainTablePanel.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.mainTablePanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.mainTablePanel.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.mainTablePanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 50F));
             this.mainTablePanel.Size = new System.Drawing.Size(486, 552);
             this.mainTablePanel.TabIndex = 1;
             // 
@@ -76,14 +76,14 @@ namespace Client.View.Question
             // 
             this.labelTitle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(65)))), ((int)(((byte)(129)))), ((int)(((byte)(127)))));
             this.labelTitle.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.labelTitle.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelTitle.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelTitle.ForeColor = System.Drawing.Color.White;
             this.labelTitle.Location = new System.Drawing.Point(0, 0);
             this.labelTitle.Margin = new System.Windows.Forms.Padding(0);
             this.labelTitle.Name = "labelTitle";
             this.labelTitle.Size = new System.Drawing.Size(486, 82);
             this.labelTitle.TabIndex = 0;
-            this.labelTitle.Text = "Vragenlijsten";
+            this.labelTitle.Text = "Vragen";
             this.labelTitle.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // buttonsTablePanel
@@ -96,12 +96,12 @@ namespace Client.View.Question
             this.buttonsTablePanel.Controls.Add(this.btnAddQuestion, 0, 0);
             this.buttonsTablePanel.Controls.Add(this.btnShowResults, 1, 0);
             this.buttonsTablePanel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.buttonsTablePanel.Location = new System.Drawing.Point(0, 440);
+            this.buttonsTablePanel.Location = new System.Drawing.Point(0, 502);
             this.buttonsTablePanel.Margin = new System.Windows.Forms.Padding(0);
             this.buttonsTablePanel.Name = "buttonsTablePanel";
             this.buttonsTablePanel.RowCount = 1;
             this.buttonsTablePanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.buttonsTablePanel.Size = new System.Drawing.Size(486, 112);
+            this.buttonsTablePanel.Size = new System.Drawing.Size(486, 50);
             this.buttonsTablePanel.TabIndex = 0;
             // 
             // btnDeleteQuestion
@@ -110,11 +110,12 @@ namespace Client.View.Question
             this.btnDeleteQuestion.Dock = System.Windows.Forms.DockStyle.Fill;
             this.btnDeleteQuestion.FlatAppearance.BorderSize = 0;
             this.btnDeleteQuestion.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnDeleteQuestion.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnDeleteQuestion.ForeColor = System.Drawing.Color.White;
             this.btnDeleteQuestion.Location = new System.Drawing.Point(162, 0);
             this.btnDeleteQuestion.Margin = new System.Windows.Forms.Padding(0);
             this.btnDeleteQuestion.Name = "btnDeleteQuestion";
-            this.btnDeleteQuestion.Size = new System.Drawing.Size(162, 112);
+            this.btnDeleteQuestion.Size = new System.Drawing.Size(162, 50);
             this.btnDeleteQuestion.TabIndex = 2;
             this.btnDeleteQuestion.Text = "Vraag verwijderen";
             this.btnDeleteQuestion.UseVisualStyleBackColor = false;
@@ -123,13 +124,15 @@ namespace Client.View.Question
             // 
             this.btnAddQuestion.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(65)))), ((int)(((byte)(129)))), ((int)(((byte)(127)))));
             this.btnAddQuestion.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnAddQuestion.Enabled = false;
             this.btnAddQuestion.FlatAppearance.BorderSize = 0;
             this.btnAddQuestion.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnAddQuestion.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnAddQuestion.ForeColor = System.Drawing.Color.White;
             this.btnAddQuestion.Location = new System.Drawing.Point(0, 0);
             this.btnAddQuestion.Margin = new System.Windows.Forms.Padding(0);
             this.btnAddQuestion.Name = "btnAddQuestion";
-            this.btnAddQuestion.Size = new System.Drawing.Size(162, 112);
+            this.btnAddQuestion.Size = new System.Drawing.Size(162, 50);
             this.btnAddQuestion.TabIndex = 0;
             this.btnAddQuestion.Text = "Vraag toevoegen";
             this.btnAddQuestion.UseVisualStyleBackColor = false;
@@ -140,11 +143,12 @@ namespace Client.View.Question
             this.btnShowResults.Dock = System.Windows.Forms.DockStyle.Fill;
             this.btnShowResults.FlatAppearance.BorderSize = 0;
             this.btnShowResults.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnShowResults.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnShowResults.ForeColor = System.Drawing.Color.White;
             this.btnShowResults.Location = new System.Drawing.Point(324, 0);
             this.btnShowResults.Margin = new System.Windows.Forms.Padding(0);
             this.btnShowResults.Name = "btnShowResults";
-            this.btnShowResults.Size = new System.Drawing.Size(162, 112);
+            this.btnShowResults.Size = new System.Drawing.Size(162, 50);
             this.btnShowResults.TabIndex = 1;
             this.btnShowResults.Text = "Resultaat opvragen";
             this.btnShowResults.UseVisualStyleBackColor = false;
@@ -156,18 +160,19 @@ namespace Client.View.Question
             this.listBoxPanel.Location = new System.Drawing.Point(0, 82);
             this.listBoxPanel.Margin = new System.Windows.Forms.Padding(0);
             this.listBoxPanel.Name = "listBoxPanel";
-            this.listBoxPanel.Size = new System.Drawing.Size(486, 358);
+            this.listBoxPanel.Size = new System.Drawing.Size(486, 420);
             this.listBoxPanel.TabIndex = 2;
             // 
             // listBoxQuestions
             // 
             this.listBoxQuestions.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.listBoxQuestions.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.listBoxQuestions.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.listBoxQuestions.FormattingEnabled = true;
             this.listBoxQuestions.ItemHeight = 16;
             this.listBoxQuestions.Location = new System.Drawing.Point(0, 0);
             this.listBoxQuestions.Name = "listBoxQuestions";
-            this.listBoxQuestions.Size = new System.Drawing.Size(486, 358);
+            this.listBoxQuestions.Size = new System.Drawing.Size(486, 420);
             this.listBoxQuestions.TabIndex = 0;
             // 
             // ViewQuestion

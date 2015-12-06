@@ -1,16 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
+﻿using System.Windows.Forms;
 using Client.Controller;
-using Client.View.PanelLayout;
-using Client.Factory;
-using Client.Model;
+
 
 namespace Client.View.QuestionList
 {
@@ -31,7 +21,6 @@ namespace Client.View.QuestionList
             this.controller = controller;
             listBoxQuestionLists.DataSource = this.controller.QuestionLists;
         }
-
 
         public ListBox getListBoxQuestionLists()
         {

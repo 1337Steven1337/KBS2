@@ -2,7 +2,6 @@
 using Client.View.QuestionList;
 using System.Windows.Forms;
 using Client.Model;
-using Client.View.PanelLayout;
 using System;
 using System.ComponentModel;
 using System.Collections.Generic;
@@ -121,6 +120,8 @@ namespace Client.Controller
         //If selected list changes, load it's questions
         private void listBox_SelectedIndexChanged(object sender, System.EventArgs e)
         {
+            //Enable button to add a question, only when item in listbox is selected
+            questionController.enableBtnGetAddQuestionPanel();            
             questionController.loadQuestions((int)this.questionListView.getListBoxQuestionLists().SelectedValue);
         }
     }

@@ -8,7 +8,6 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Client.Controller;
-using Client.View.PanelLayout;
 using Client.Factory;
 
 namespace Client.View.Question

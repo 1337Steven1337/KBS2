@@ -1,12 +1,14 @@
 ﻿using Client.View.Question;
 using Client.View.Diagram;
+using Client.View.Dialogs;
 using System.Windows.Forms;
 using Client.Factory;
 using System;
 using Client.Model;
 using System.ComponentModel;
-using Client.View.PanelLayout;
 using System.Collections.Generic;
+using System.Net;
+using RestSharp;
 
 namespace Client.Controller
 {
@@ -21,13 +23,15 @@ namespace Client.Controller
         #endregion
 
         #region Properties
-        private QuestionFactory factory = new QuestionFactory();
-        private PredefinedAnswerFactory factoryPA = new PredefinedAnswerFactory();
+        private QuestionFactory qFactory = new QuestionFactory();
+        private PredefinedAnswerFactory paFactory = new PredefinedAnswerFactory();
         public BindingList<Question> Questions = new BindingList<Question>();
         private IQuestionView questionView;
         private IAddQuestionView addQuestionView;
         private TableLayoutPanel tableThreeColls;
         private int listId { get; set; }
+
+        private Boolean loopPredefinedAnswersComplete = false;
         #endregion
 
         #region Constructor
@@ -54,6 +58,11 @@ namespace Client.Controller
         #endregion
 
         #region Methodes
+        public void enableBtnGetAddQuestionPanel()
+        {
+            questionView.getBtnAddQuestion().Enabled = true;
+        }
+
         public TableLayoutPanel getAddQuestionPanel()
         {
             return addQuestionView.getPanel();
@@ -91,11 +100,11 @@ namespace Client.Controller
                 {
                     if (i != 2)
                     {
-                        width = 25F;
+                        width = 30F;
                     }
                     else
                     {
-                        width = 50F;
+                        width = 40F;
                     }
                     tableThreeColls.ColumnStyles[i].Width = width;
 
@@ -110,18 +119,99 @@ namespace Client.Controller
         {
             if (addQuestionView.getQuestionField().Text != "" && (int)addQuestionView.getTimeField().Value != 0 && addQuestionView.getPointsField().Value != 0 && addQuestionView.getRightAnswerComboBox().SelectedItem != null)
             {
-                Question q = new Question();
-                q.Text = addQuestionView.getQuestionField().Text;
-                q.Time = (int)addQuestionView.getTimeField().Value;
-                q.Points = (int)addQuestionView.getPointsField().Value;
-                q.List_Id = this.listId;
-                q.PredefinedAnswerCount = addQuestionView.getAnswersListBox().Items.Count;
+                //Show dialog for user to confirm Delete action
+                DialogResult dr = new DialogResult();
+                ViewConfirmDialog confirm = new ViewConfirmDialog();
+                confirm.getLabelConfirm().Text = "Weet u zeker dat u de vraag wilt opslaan?";
+                dr = confirm.ShowDialog();
 
-                factory.Save(q, addQuestionView.getAnswersListBox(), processAdd);
+                if(dr == DialogResult.Yes)
+                {
+                    Question q = new Question();
+                    q.Text = addQuestionView.getQuestionField().Text;
+                    q.Time = (int)addQuestionView.getTimeField().Value;
+                    q.Points = (int)addQuestionView.getPointsField().Value;
+                    q.List_Id = this.listId;
+                    q.PredefinedAnswerCount = addQuestionView.getAnswersListBox().Items.Count;
+
+                    qFactory.Save(q, addQuestionView.getAnswersListBox(), CB_SaveQuestion);                    
+                }
             }
             else
             {
-                MessageBox.Show("Gelieve alle velden in te vullen!");
+                ViewFailedDialog failed = new ViewFailedDialog();
+                failed.getLabelFailed().Text = "Gelieve alle velden in te vullen!";
+                failed.ShowDialog();
+            }
+        }
+
+        //Callback function SaveQuestion
+        private void CB_SaveQuestion(Question question, HttpStatusCode status, IRestResponse res)
+        {
+            if (status == HttpStatusCode.Created)
+            {
+                //Save Question succeed
+                saveAnswers(question);
+            }
+            else
+            {
+                //Save question failed
+                ViewFailedDialog failed = new ViewFailedDialog();
+                failed.getLabelFailed().Text = "Het opslaan is mislukt! Probeer het opnieuw.";
+                failed.ShowDialog();
+            }
+        }
+
+        private void saveAnswers(Question q)
+        {           
+            this.Questions.Add(q);
+
+            string rightAnswer = (string)addQuestionView.getRightAnswerComboBox().SelectedItem;
+            int countPA = addQuestionView.getAnswersListBox().Items.Count;
+            int loopCounter = 0;
+            PredefinedAnswer pa;
+
+            foreach (String answer in addQuestionView.getAnswersListBox().Items)
+            {
+                if (countPA == loopCounter+1)
+                {
+                    loopPredefinedAnswersComplete = true;
+                }
+
+                pa = new PredefinedAnswer() { Question_Id = q.Id, Text = answer };
+                if (pa.Text == rightAnswer)
+                {
+                    pa.RightAnswer = true;
+                }
+                else
+                {
+                    pa.RightAnswer = false;
+                }
+
+                paFactory.SaveAsync(pa, CB_SaveAnswers);
+            }
+        }
+
+        private void CB_SaveAnswers(PredefinedAnswer pa, HttpStatusCode status, IRestResponse res)
+        {
+            if (status == HttpStatusCode.Created)
+            {
+                if (loopPredefinedAnswersComplete)
+                {
+                    //Save Answers succeed
+                    ViewSuccesDialog succes = new ViewSuccesDialog();    
+                    succes.getLabelSucces().Text = "De vraag is succesvol opgeslagen!";                           
+                    succes.ShowDialog();
+                    
+                }
+            }
+            else
+            {
+                //Save Answer failed, Delete question
+                qFactory.DeleteAsync(pa.Question);
+                ViewFailedDialog failed = new ViewFailedDialog();
+                failed.getLabelFailed().Text = "Het opslaan is mislukt! Probeer het opnieuw.";
+                failed.ShowDialog();
             }
         }
 
@@ -158,6 +248,10 @@ namespace Client.Controller
                     if (answer.Equals(addQuestionView.getAnswerField().Text))
                     {
                         listExists = true;
+
+                        ViewFailedDialog failed = new ViewFailedDialog();
+                        failed.getLabelFailed().Text = "Dit antwoord bestaat al.";
+                        failed.ShowDialog();
                     }
                 }
 
@@ -167,15 +261,37 @@ namespace Client.Controller
                     addQuestionView.getRightAnswerComboBox().Items.Add(addQuestionView.getAnswerField().Text);
                 }
             }
+            else
+            {
+                ViewFailedDialog failed = new ViewFailedDialog();
+                failed.getLabelFailed().Text = "Voer een antwoord in.";
+                failed.ShowDialog();
+            }
         }
 
         private void removeAnswerFromListBox(object sender, EventArgs e)
         {
-            if (addQuestionView.getAnswersListBox().SelectedIndex >= 0)
+            if (addQuestionView.getAnswersListBox().Items.Count > 0)
             {
-                addQuestionView.getAnswersListBox().Items.Remove(addQuestionView.getAnswersListBox().SelectedItem);
+                if (addQuestionView.getAnswersListBox().SelectedIndex >= 0)
+                {
+                    String deleteItem = addQuestionView.getAnswersListBox().SelectedItem.ToString();
+                    addQuestionView.getRightAnswerComboBox().Items.Remove(deleteItem);
+                    addQuestionView.getAnswersListBox().Items.Remove(deleteItem);
+                }
+                else
+                {
+                    ViewFailedDialog failed = new ViewFailedDialog();
+                    failed.getLabelFailed().Text = "Selecteer het antwoord dat u wilt verwijderen.";
+                    failed.ShowDialog();
+                }
             }
-
+            else
+            {
+                ViewFailedDialog failed = new ViewFailedDialog();
+                failed.getLabelFailed().Text = "Er bestaan nog geen antwoorden.";
+                failed.ShowDialog();
+            }
         }
 
         public void deleteQuestion(object sender, EventArgs e)
@@ -190,7 +306,7 @@ namespace Client.Controller
                 int id = (int)questionView.getListBoxQuestions().SelectedValue;
                 Question q = new Question();
                 q.Id = id;
-                factory.Delete(q, this.questionView.getListBoxQuestions(), processDelete);
+                qFactory.Delete(q, this.questionView.getListBoxQuestions(), processDelete);
             }
         }
 
@@ -228,30 +344,9 @@ namespace Client.Controller
         {
             this.listId = listId;
             //questionView.getCustomPanel().title.Text = "Vragen uit lijst: " + listName;
-            factory.FindAll(questionView.getListBoxQuestions(), this.fillList);
+            qFactory.FindAll(questionView.getListBoxQuestions(), this.fillList);
         }
 
-        private void processAdd(Question q)
-        {
-            this.Questions.Add(q);
-
-            string rightAnswer = (string)addQuestionView.getRightAnswerComboBox().SelectedItem;
-            PredefinedAnswer pa;
-            foreach (String answer in addQuestionView.getAnswersListBox().Items)
-            {
-                pa = new PredefinedAnswer() { Question_Id = q.Id, Text = answer };
-                if (pa.Text == rightAnswer)
-                {
-                    pa.RightAnswer = true;
-                }
-                else
-                {
-                    pa.RightAnswer = false;
-                }
-
-                factoryPA.SaveAsync(pa);
-            }
-        }
         #endregion
     }
 }
