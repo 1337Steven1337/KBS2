@@ -27,31 +27,29 @@ namespace Client.Controller
 
         public void saveList(string name)
         {
-                QuestionList ql = new QuestionList();
-                ql.Name = name;
+            Model.QuestionList ql = new Model.QuestionList();
+            ql.Name = name;
             factory.Save(ql, questionListView.getHandler(), processAdd);
-            }
+        }
 
 
         public void deleteList(int id)
-        {
-
-            
-                QuestionList ql = new QuestionList();
-                ql.Id = id;
-                //Send ql to server for deleting
+        {            
+            Model.QuestionList ql = new Model.QuestionList();
+            ql.Id = id;
+            //Send ql to server for deleting
             //factory.Delete(ql, this.questionListView.getListBoxQuestionLists(), processDelete);
             factory.Delete(ql, questionListView.getHandler(), processDelete);
         }
 
         //Without sending request to server, 'refresh' list (add added item)
-        private void processAdd(QuestionList ql)
+        private void processAdd(Model.QuestionList ql)
         {
             this.questionListView.Add(ql);
         }
 
         //Without sending request to server, 'refresh' list (remove removed item)
-        private void processDelete(QuestionList ql)
+        private void processDelete(Model.QuestionList ql)
         {
             int i;
             for (i = 0;  i < this.questionListView.getCount(); i++)
@@ -72,9 +70,9 @@ namespace Client.Controller
         }
 
         //Adding requested lists to listbox
-        private void fillList(List<QuestionList> lists)
+        private void fillList(List<Model.QuestionList> lists)
         {
-            foreach(QuestionList q in lists)
+            foreach(Model.QuestionList q in lists)
             {
                 this.questionListView.Add(q);
             }

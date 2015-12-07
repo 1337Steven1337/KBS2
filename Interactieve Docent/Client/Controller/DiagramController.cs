@@ -18,7 +18,7 @@ namespace Client.Controller
 
         private IDiagramView View;
 
-        private Question Question;
+        private Model.Question Question;
 
         private QuestionFactory Factory = new QuestionFactory();
         private UserAnswerFactory UserAnswerFactory = new UserAnswerFactory();
@@ -57,7 +57,7 @@ namespace Client.Controller
         #endregion
 
         #region Events
-        private void QuestionController_selectedIndexChanged(Question question)
+        private void QuestionController_selectedIndexChanged(Model.Question question)
         {
             if (question != null)
             {
@@ -88,7 +88,7 @@ namespace Client.Controller
 
         #region Methodes
         //if another question is selected
-        public void SetQuestion(Question q)
+        public void SetQuestion(Model.Question q)
         {
             this.Question = q;
             this.SignalRClient.Subscribe(q.List_Id);

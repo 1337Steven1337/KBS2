@@ -17,7 +17,7 @@ namespace Client.Controller
     public class QuestionController : IController
     {
         #region Delegates
-        public delegate void SelectedIndexChanged(Question message);
+        public delegate void SelectedIndexChanged(Model.Question message);
         #endregion
 
         #region Declare Events
@@ -27,7 +27,7 @@ namespace Client.Controller
         #region Properties
         private QuestionFactory qFactory = new QuestionFactory();
         private PredefinedAnswerFactory paFactory = new PredefinedAnswerFactory();
-        public BindingList<Question> Questions = new BindingList<Question>();
+        public BindingList<Model.Question> Questions = new BindingList<Model.Question>();
         private Dictionary<String, int> preFilledList = new Dictionary<string, int>();
         public IQuestionView questionView { get; private set; }
         private IAddQuestionView addQuestionView;
@@ -58,7 +58,7 @@ namespace Client.Controller
         {
             if (this.selectedIndexChanged != null)
             {
-                this.selectedIndexChanged((Question)question);
+                this.selectedIndexChanged((Model.Question)question);
             }
         }
 
@@ -126,7 +126,7 @@ namespace Client.Controller
 
                 if(dr == DialogResult.Yes)
                 {
-                    Question q = new Question();
+                    Model.Question q = new Model.Question();
                     q.Text = addQuestionView.getQuestionField().Text;
                     q.Time = (int)addQuestionView.getTimeField().Value;
                     q.Points = (int)addQuestionView.getPointsField().Value;
@@ -145,7 +145,7 @@ namespace Client.Controller
         }
 
         //Callback function SaveQuestion
-        private void CB_SaveQuestion(Question question, HttpStatusCode status, IRestResponse res)
+        private void CB_SaveQuestion(Model.Question question, HttpStatusCode status, IRestResponse res)
         {
             if (status == HttpStatusCode.Created)
             {
@@ -163,7 +163,7 @@ namespace Client.Controller
             }
         }
 
-        private void saveAnswers(Question q)
+        private void saveAnswers(Model.Question q)
         {           
             string rightAnswer = (string)addQuestionView.getRightAnswerComboBox().SelectedItem;
             int countPA = addQuestionView.getAnswersListBox().Items.Count;
@@ -323,18 +323,18 @@ namespace Client.Controller
             DiagramController controller = new DiagramController(view, this);
         }
 
-        public void fillList(List<Question> list)
+        public void fillList(List<Model.Question> list)
         {
             this.Questions.Clear();
-            List<Question> filtered = list.FindAll(x => x.List_Id == this.listId);
+            List<Model.Question> filtered = list.FindAll(x => x.List_Id == this.listId);
 
-            foreach (Question q in filtered)
+            foreach (Model.Question q in filtered)
             {
                 this.Questions.Add(q);
             }
         }
 
-        public void processDelete(Question q)
+        public void processDelete(Model.Question q)
         {
             int i;
             for (i = 0; i < this.Questions.Count; i++)
@@ -357,6 +357,11 @@ namespace Client.Controller
         public IView GetView()
         {
             return this.questionView;
+        }
+
+        public void SetView(IView view)
+        {
+            throw new NotImplementedException();
         }
 
         #endregion
