@@ -1,5 +1,6 @@
 ﻿using Client.Model;
 using Client.Service.SignalR;
+using Client.Service.Thread;
 using RestSharp;
 using System;
 using System.Collections.Generic;
@@ -227,7 +228,7 @@ namespace Client.Factory
         /// <param name="instance">The instance to Delete</param>
         /// <param name="control">The control of the thread which the callback will be called on</param>
         /// <param name="callback">Callback which is called when the request is completed</param>
-        public void Delete(T instance, Control control, Action<T, HttpStatusCode, IRestResponse> callback)
+        public void Delete(T instance, IControlHandler control, Action<T, HttpStatusCode, IRestResponse> callback)
         {
             this.DeleteAsync(instance, (o, s, r) =>
             {
@@ -241,7 +242,7 @@ namespace Client.Factory
         /// <param name="instance">The instance to Delete</param>
         /// <param name="control">The control of the thread which the callback will be called on</param>
         /// <param name="callback">Callback which is called when the request is completed</param>
-        public void Delete(T instance, Control control, Action<T, HttpStatusCode> callback)
+        public void Delete(T instance, IControlHandler control, Action<T, HttpStatusCode> callback)
         {
             this.DeleteAsync(instance, (o, s, r) =>
             {
@@ -255,7 +256,7 @@ namespace Client.Factory
         /// <param name="instance">The instance to Delete</param>
         /// <param name="control">The control of the thread which the callback will be called on</param>
         /// <param name="callback">Callback which is called when the request is completed</param>
-        public void Delete(T instance, Control control, Action<T> callback)
+        public void Delete(T instance, IControlHandler control, Action<T> callback)
         {
             this.DeleteAsync(instance, (o, s, r) =>
             {
@@ -280,7 +281,7 @@ namespace Client.Factory
         /// <param name="instance">The instance to Save</param>
         /// <param name="control">The control of the thread which the callback will be called on</param>
         /// <param name="callback">Callback which is called when the request is completed</param>
-        public void Save(T instance, Control control, Action<T, HttpStatusCode, IRestResponse> callback)
+        public void Save(T instance, IControlHandler control, Action<T, HttpStatusCode, IRestResponse> callback)
         {
             this.SaveAsync(instance, (o, s, r) =>
             {
@@ -294,7 +295,7 @@ namespace Client.Factory
         /// <param name="instance">The instance to Save</param>
         /// <param name="control">The control of the thread which the callback will be called on</param>
         /// <param name="callback">Callback which is called when the request is completed</param>
-        public void Save(T instance, Control control, Action<T, HttpStatusCode> callback)
+        public void Save(T instance, IControlHandler control, Action<T, HttpStatusCode> callback)
         {
             this.SaveAsync(instance, (o, s, r) =>
             {
@@ -308,7 +309,7 @@ namespace Client.Factory
         /// <param name="instance">The instance to Save</param>
         /// <param name="control">The control of the thread which the callback will be called on</param>
         /// <param name="callback">Callback which is called when the request is completed</param>
-        public void Save(T instance, Control control, Action<T> callback)
+        public void Save(T instance, IControlHandler control, Action<T> callback)
         {
             this.SaveAsync(instance, (o, s, r) =>
             {
@@ -333,7 +334,7 @@ namespace Client.Factory
         /// <param name="id">The ID of the instance to find</param>
         /// <param name="control">The control of the thread which the callback will be called on</param>
         /// <param name="callback">Callback which is called when the request is completed</param>
-        public void FindById(int id, Control control, Action<T, HttpStatusCode, IRestResponse> callback)
+        public void FindById(int id, IControlHandler control, Action<T, HttpStatusCode, IRestResponse> callback)
         {
             this.FindByIdAsync(id, (o, s, r) =>
             {
@@ -347,7 +348,7 @@ namespace Client.Factory
         /// <param name="id">The ID of the instance to find</param>
         /// <param name="control">The control of the thread which the callback will be called on</param>
         /// <param name="callback">Callback which is called when the request is completed</param>
-        public void FindById(int id, Control control, Action<T, HttpStatusCode> callback)
+        public void FindById(int id, IControlHandler control, Action<T, HttpStatusCode> callback)
         {
             this.FindByIdAsync(id, (o, s, r) =>
             {
@@ -361,7 +362,7 @@ namespace Client.Factory
         /// <param name="id">The ID of the instance to find</param>
         /// <param name="control">The control of the thread which the callback will be called on</param>
         /// <param name="callback">Callback which is called when the request is completed</param>
-        public void FindById(int id, Control control, Action<T> callback)
+        public void FindById(int id, IControlHandler control, Action<T> callback)
         {
             this.FindByIdAsync(id, (o, s, r) =>
             {
@@ -374,7 +375,7 @@ namespace Client.Factory
         /// </summary>
         /// <param name="control">The control of the thread which the callback will be called on</param>
         /// <param name="callback">Callback which is called when the request is completed</param>
-        public void FindAll(Control control, Action<List<T>, HttpStatusCode, IRestResponse> callback)
+        public void FindAll(IControlHandler control, Action<List<T>, HttpStatusCode, IRestResponse> callback)
         {
             this.FindAllAsync((o, r, s) =>
             {
@@ -387,7 +388,7 @@ namespace Client.Factory
         /// </summary>
         /// <param name="control">The control of the thread which the callback will be called on</param>
         /// <param name="callback">Callback which is called when the request is completed</param>
-        public void FindAll(Control control, Action<List<T>, HttpStatusCode> callback)
+        public void FindAll(IControlHandler control, Action<List<T>, HttpStatusCode> callback)
         {
             this.FindAllAsync((o, r, s) =>
             {
@@ -400,7 +401,7 @@ namespace Client.Factory
         /// </summary>
         /// <param name="control">The control of the thread which the callback will be called on</param>
         /// <param name="callback">Callback which is called when the request is completed</param>
-        public void FindAll(Control control, Action<List<T>> callback)
+        public void FindAll(IControlHandler control, Action<List<T>> callback)
         {
             this.FindAllAsync((o, r, s) =>
             {

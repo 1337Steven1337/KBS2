@@ -149,6 +149,8 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Service\SignalR\SignalRClient.cs" />
     <Compile Include="Service\SignalR\EventArgs\SubscriptionStatus.cs" />
+    <Compile Include="Service\Thread\ControlHandler.cs" />
+    <Compile Include="Service\Thread\IControlHandler.cs" />
     <Compile Include="Student\QuestionForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -174,6 +176,7 @@
     <Compile Include="View\Dialogs\ViewSuccesDialog.Designer.cs">
       <DependentUpon>ViewSuccesDialog.cs</DependentUpon>
     </Compile>
+    <Compile Include="View\IView.cs" />
     <Compile Include="View\PredefinedAnswer\IPredefinedAnswerView.cs" />
     <Compile Include="View\PredefinedAnswer\ViewPredefinedAnswer.cs">
       <SubType>Form</SubType>

@@ -78,7 +78,7 @@ namespace Client.View.Student
             ua.Question_Id = mainForm.getCurrentQuestion().Id;
       
             Factory.UserAnswerFactory uaf = new Factory.UserAnswerFactory();
-            uaf.Save(ua,btn,this.whatever);
+            uaf.Save(ua, null, this.whatever);
             if (mainForm.getQuestionList().Questions.Count - 1 > 5)
             {
                 mainForm.goToNextQuestion();

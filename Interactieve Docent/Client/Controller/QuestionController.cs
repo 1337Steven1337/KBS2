@@ -12,19 +12,7 @@ using RestSharp;
 
 namespace Client.Controller
 {
-    public class PrefilledList
-    {
-        private String key { get; set; }
-        private int value { get; set; }
-
-        public PrefilledList(String key, int value)
-        {
-            this.key = key;
-            this.value = value;
-        }
-    }
-
-    public class QuestionController
+    public class QuestionController : IController
     {
         #region Delegates
         public delegate void SelectedIndexChanged(Question message);
@@ -39,8 +27,9 @@ namespace Client.Controller
         private PredefinedAnswerFactory paFactory = new PredefinedAnswerFactory();
         public BindingList<Question> Questions = new BindingList<Question>();
         private Dictionary<String, int> preFilledList = new Dictionary<string, int>();
-        private IQuestionView questionView;
+        public IQuestionView questionView { get; private set; }
         private IAddQuestionView addQuestionView;
+        private MainController mainController;
         private TableLayoutPanel tableThreeColls;
         private int listId { get; set; }
 
@@ -51,38 +40,34 @@ namespace Client.Controller
         {
             this.questionView = questionView;
             this.questionView.setController(this);
-
-            this.questionView.getBtnAddQuestion().Click += LoadAddQuestionHandler;
-            this.questionView.getBtnShowResults().Click += ShowResultsHandler;
-            this.questionView.getBtnDeleteQuestion().Click += new System.EventHandler(deleteQuestion);
-            this.questionView.getListBoxQuestions().SelectedIndexChanged += new System.EventHandler(ListBoxQuestion_SelectedIndexChanged);
         }
         #endregion
 
         #region Events
-        private void ListBoxQuestion_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if (this.selectedIndexChanged != null)
-            {
-                this.selectedIndexChanged((Question)this.questionView.getListBoxQuestions().SelectedItem);
-            }
-        }
         #endregion
 
         #region Methodes
+        public void setMainController(MainController main)
+        {
+            this.mainController = main;
+        }
+
+        public void ListBoxQuestion_SelectedIndexChanged(object question)
+        {
+            if (this.selectedIndexChanged != null)
+            {
+                this.selectedIndexChanged((Question)question);
+            }
+        }
+
         public void enableBtnGetAddQuestionPanel()
         {
-            questionView.getBtnAddQuestion().Enabled = true;
+            //questionView.getBtnAddQuestion().Enabled = true;
         }
 
         public TableLayoutPanel getAddQuestionPanel()
         {
             return addQuestionView.getPanel();
-        }
-
-        public void setTable(TableLayoutPanel tableThreeColls)
-        {
-            this.tableThreeColls = tableThreeColls;
         }
     
         public void clearAddQuestion()
@@ -94,7 +79,7 @@ namespace Client.Controller
             addQuestionView.getRightAnswerComboBox().Items.Clear();
         }
 
-        private void LoadAddQuestionHandler(object sender, System.EventArgs e)
+        public void loadAddQuestion()
         {
             addQuestionView = new ViewAddQuestion();
             addQuestionView.setController(this);
@@ -177,10 +162,11 @@ namespace Client.Controller
         }
 
         private void saveAnswers(Question q)
-        {           
+        {
             string rightAnswer = (string)addQuestionView.getRightAnswerComboBox().SelectedItem;
             int countPA = addQuestionView.getAnswersListBox().Items.Count;
             PredefinedAnswer pa;
+            preFilledList.Clear();
 
             foreach (String answer in addQuestionView.getAnswersListBox().Items)
             {
@@ -313,23 +299,23 @@ namespace Client.Controller
             }
         }
 
-        public void deleteQuestion(object sender, EventArgs e)
+        public void deleteQuestion()
         {
             ViewDeleteQuestion dlg = new ViewDeleteQuestion();
             dlg.StartPosition = FormStartPosition.CenterParent;
-            dlg.setText(questionView.getListBoxQuestions().SelectedItem.ToString());
+            //dlg.setText(questionView.getListBoxQuestions().SelectedItem.ToString());
             dlg.ShowDialog();
 
             if (dlg.valid)
             {
-                int id = (int)questionView.getListBoxQuestions().SelectedValue;
-                Question q = new Question();
-                q.Id = id;
-                qFactory.Delete(q, this.questionView.getListBoxQuestions(), processDelete);
+                //int id = (int)questionView.getListBoxQuestions().SelectedValue;
+                //Question q = new Question();
+                //q.Id = id;
+                //qFactory.Delete(q, this.questionView.getListBoxQuestions(), processDelete);
             }
         }
 
-        private void ShowResultsHandler(object sender, EventArgs e)
+        public void showResults()
         {
             ViewDiagram view = new ViewDiagram();
             DiagramController controller = new DiagramController(view, this);
@@ -363,7 +349,12 @@ namespace Client.Controller
         {
             this.listId = listId;
             //questionView.getCustomPanel().title.Text = "Vragen uit lijst: " + listName;
-            qFactory.FindAll(questionView.getListBoxQuestions(), this.fillList);
+            //qFactory.FindAll(questionView.getListBoxQuestions(), this.fillList);
+        }
+
+        public IView GetView()
+        {
+            throw new NotImplementedException();
         }
 
         #endregion

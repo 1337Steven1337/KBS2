@@ -9,7 +9,7 @@ using Client.Controller;
 
 namespace Client.View.Question
 {
-    public interface IAddQuestionView
+    public interface IAddQuestionView : IView
     {
         void setController(QuestionController controller);
         TableLayoutPanel getPanel();

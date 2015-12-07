@@ -3,6 +3,7 @@ using Client.Controller;
 using Client.View.Tabs;
 using Client.View.QuestionList;
 using Client.View.Question;
+using Client.View.Main;
 using Client.View.Diagram;
 
 namespace Client
@@ -12,23 +13,27 @@ namespace Client
         private TabsController controller;
         private QuestionController questionController;
         private QuestionListController questionListController;
+        private ViewQuestion viewQuestion;
+        private ViewMain viewMain;
 
         public Main()
         {
             InitializeComponent();
 
-            ViewTabs view = new ViewTabs();
-            controller = new TabsController(view);
+            viewMain = new ViewMain();
 
-            ViewQuestion viewQuestion = new ViewQuestion();
-            this.questionController = new QuestionController(viewQuestion);
-            this.questionController.setTable(tableThreeColls);
+            //ViewTabs view = new ViewTabs();
+            //controller = new TabsController(view);
 
-            ViewQuestionList viewQuestionList = new ViewQuestionList();
-            this.questionListController = new QuestionListController(viewQuestionList, questionController);
+            //this.viewQuestion = new ViewQuestion();
+            //this.questionController = new QuestionController(viewQuestion);
+            //this.viewQuestion.SetTable(tableThreeColls);
 
-            tableThreeColls.Controls.Add(viewQuestionList.getPanel(), 0, 0);
-            tableThreeColls.Controls.Add(viewQuestion.getPanel(), 1, 0);
+            //ViewQuestionList viewQuestionList = new ViewQuestionList();
+            //this.questionListController = new QuestionListController(viewQuestionList, questionController);
+
+            //tableThreeColls.Controls.Add(viewQuestionList.getPanel(), 0, 0);
+            //tableThreeColls.Controls.Add(viewQuestion.getPanel(), 1, 0);
         }       
     }
 }

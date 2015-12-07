@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Client.Controller;
+using Client.View.Main;
+using Client.View.Question;
 
 namespace Client
 {
@@ -16,7 +19,17 @@ namespace Client
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Student.QuestionForm(1));
+            //Application.Run(new Main());
+
+            ViewMain view = new ViewMain();
+            MainController maincontroller = new MainController(view);
+
+            ViewQuestion viewQuestion = new ViewQuestion();
+            QuestionController questionController = new QuestionController(viewQuestion);
+
+            maincontroller.AddController(questionController);
+
+            Application.Run(view);
         }
     }
 }
