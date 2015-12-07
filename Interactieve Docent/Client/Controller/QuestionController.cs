@@ -200,7 +200,7 @@ namespace Client.Controller
                     pa.RightAnswer = false;
                 }
                 pa.Question = q;
-                paFactory.Save(pa, addQuestionView.getAnswersListBox(), CB_SaveAnswers);
+                paFactory.Save(pa, addQuestionView.getHandler(), CB_SaveAnswers);
             }
         }
 
