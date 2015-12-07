@@ -65,7 +65,6 @@ namespace Client.View.Student
         }
         private void whatever(Client.Model.UserAnswer ua, HttpStatusCode code)
         {
-            MessageBox.Show("Hoi");
             if(code == HttpStatusCode.Forbidden)
             {
                  
@@ -116,7 +115,6 @@ namespace Client.View.Student
 
         public void adjustSizeOfButtons(Model.Question Q)
         {
-            Console.WriteLine("adjustSizeOfButtons");
             foreach (Model.PredefinedAnswer PA in Q.PredefinedAnswers)
             {
                 if (mainForm.getCurrentQuestion().PredefinedAnswers.Count > answerButtons.Count)
