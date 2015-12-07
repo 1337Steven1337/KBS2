@@ -25,5 +25,14 @@ namespace Server.Hubs
         {
             Groups.Remove(Context.ConnectionId, listId);
         }
+
+        /// <summary>
+        /// Send the clients the event to continue to the next question
+        /// </summary>
+        /// <param name="listId">The list ID to proceed with</param>
+        public void Next(string listId)
+        {
+            Clients.Group(listId).QuestionListContinue();
+        }
     }
 }

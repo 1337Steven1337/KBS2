@@ -29,7 +29,7 @@ namespace Client.Factory
         #endregion
 
         #region Constructors
-        public PredefinedAnswerFactory()
+        public PredefinedAnswerFactory() : base(new BaseFactory<PredefinedAnswer>())
         {
             this.SignalRClient.proxy.On<PredefinedAnswer>("PredefinedAnswerAdded", this.OnPredefinedAnswerAdded);
             this.SignalRClient.proxy.On<PredefinedAnswer>("PredefinedAnswerRemoved", this.OnPredefinedAnswerRemoved);

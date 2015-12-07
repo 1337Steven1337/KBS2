@@ -16,7 +16,6 @@ namespace Client.Tests.View.Question
 
             Assert.AreEqual(expected, result);
         }
-
         [TestMethod]
         public void DeleteQuestionUserConfirmsPositive_ShouldReturnValidTrue()
         {

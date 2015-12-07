@@ -46,10 +46,10 @@ namespace Client.Tests.View.QuestionList
         public void DeleteQuestionListCreateView_ShouldReturnQuestionListName()
         {
             ViewDeleteQuestionList view = new ViewDeleteQuestionList();
-            Boolean expected = false;
-            Boolean result = view.valid;
+            string expected = "TestName";
 
-            view.buttonCancel_Click();
+            view.setText("TestName");
+            string result = view.Text;
 
             Assert.AreEqual(expected, result);
         }

@@ -10,12 +10,14 @@ namespace Client.Factory
         public delegate void QuestionListAddedDelegate(QuestionList list);
         public delegate void QuestionListRemovedDelegate(QuestionList list);
         public delegate void QuestionListUpdatedDelegate(QuestionList list);
+        public delegate void QuestionListContinueDelegate();
         #endregion
 
         #region Events
         public event QuestionListAddedDelegate QuestionListAdded;
         public event QuestionListRemovedDelegate QuestionListRemoved;
         public event QuestionListUpdatedDelegate QuestionListUpdated;
+        public event QuestionListContinueDelegate QuestionListContinue;
         #endregion
 
         #region Properties
@@ -29,11 +31,12 @@ namespace Client.Factory
         #endregion
 
         #region Constructors
-        public QuestionListFactory()
+        public QuestionListFactory() : base(new BaseFactory<QuestionList>())
         {
             this.SignalRClient.proxy.On<QuestionList>("QuestionListAdded", this.OnQuestionListAdded);
             this.SignalRClient.proxy.On<QuestionList>("QuestionListRemoved", this.OnQuestionListRemoved);
             this.SignalRClient.proxy.On<QuestionList>("QuestionListUpdated", this.OnQuestionListUpdated);
+            this.SignalRClient.proxy.On("QuestionListContinue", this.OnQuestionListContinue);
 
             if (this.SignalRClient.state == ConnectionState.Connected)
             {
@@ -77,6 +80,13 @@ namespace Client.Factory
             if (this.QuestionListUpdated != null)
             {
                 this.QuestionListUpdated(q);
+            }
+        }
+        private void OnQuestionListContinue()
+        {
+            if (this.QuestionListContinue != null)
+            {
+                this.QuestionListContinue();
             }
         }
         #endregion
