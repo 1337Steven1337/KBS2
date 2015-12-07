@@ -119,39 +119,6 @@
     <Compile Include="Controller\QuestionListController.cs" />
     <Compile Include="Controller\UserAnswerController.cs" />
     <Compile Include="Controller\TabsController.cs" />
-    <Compile Include="DocentForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="DocentForm.Designer.cs">
-      <DependentUpon>DocentForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Docent\AddListPopup.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Docent\DeletePopup.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Docent\DeletePopup.Designer.cs">
-      <DependentUpon>DeletePopup.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Docent\DocentControlUI.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Docent\DocentControlUI.designer.cs">
-      <DependentUpon>DocentControlUI.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Docent\PanelLayout.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="Docent\PanelLeft.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="Docent\PanelMiddle.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="Docent\PanelRight.cs">
-      <SubType>Component</SubType>
-    </Compile>
     <Compile Include="Factory\AbstractFactory.cs" />
     <Compile Include="Factory\PredefinedAnswerFactory.cs" />
     <Compile Include="Factory\QuestionFactory.cs" />
@@ -278,15 +245,6 @@
     </Compile>
     <EmbeddedResource Include="Answers.resx">
       <DependentUpon>Answers.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="DocentForm.resx">
-      <DependentUpon>DocentForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Docent\DocentControlUI.resx">
-      <DependentUpon>DocentControlUI.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Docent\PanelLayout.resx">
-      <DependentUpon>PanelLayout.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>

@@ -81,8 +81,8 @@ namespace Client
 
         private void button2_Click(object sender, EventArgs e)
         {
-            DocentControlUI docentControlUI = new DocentControlUI();
-            docentControlUI.Show();
+            //DocentControlUI docentControlUI = new DocentControlUI();
+            //docentControlUI.Show();
         }
 
     }

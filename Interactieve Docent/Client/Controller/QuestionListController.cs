@@ -106,6 +106,9 @@ namespace Client.Controller
             {
                 this.QuestionLists.Add(q);
             }
+            //Enable button to add a question, only when item in listbox is selected
+            questionController.enableBtnGetAddQuestionPanel();
+            questionController.loadQuestions((int)this.questionListView.getListBoxQuestionLists().SelectedValue);
         }
 
         //Delete list by selecting and pressing the Delete-key
@@ -119,9 +122,7 @@ namespace Client.Controller
 
         //If selected list changes, load it's questions
         private void listBox_SelectedIndexChanged(object sender, System.EventArgs e)
-        {
-            //Enable button to add a question, only when item in listbox is selected
-            questionController.enableBtnGetAddQuestionPanel();            
+        {   
             questionController.loadQuestions((int)this.questionListView.getListBoxQuestionLists().SelectedValue);
         }
     }
