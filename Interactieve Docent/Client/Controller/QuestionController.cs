@@ -12,6 +12,18 @@ using RestSharp;
 
 namespace Client.Controller
 {
+    public class PrefilledList
+    {
+        private String key { get; set; }
+        private int value { get; set; }
+
+        public PrefilledList(String key, int value)
+        {
+            this.key = key;
+            this.value = value;
+        }
+    }
+
     public class QuestionController
     {
         #region Delegates
@@ -26,12 +38,12 @@ namespace Client.Controller
         private QuestionFactory qFactory = new QuestionFactory();
         private PredefinedAnswerFactory paFactory = new PredefinedAnswerFactory();
         public BindingList<Question> Questions = new BindingList<Question>();
+        private Dictionary<String, int> preFilledList = new Dictionary<string, int>();
         private IQuestionView questionView;
         private IAddQuestionView addQuestionView;
         private TableLayoutPanel tableThreeColls;
         private int listId { get; set; }
 
-        private Boolean loopPredefinedAnswersComplete = false;
         #endregion
 
         #region Constructor
@@ -151,6 +163,8 @@ namespace Client.Controller
             if (status == HttpStatusCode.Created)
             {
                 //Save Question succeed
+                //add Question to Bindinglist
+                this.Questions.Add(question);
                 saveAnswers(question);
             }
             else
@@ -164,20 +178,17 @@ namespace Client.Controller
 
         private void saveAnswers(Question q)
         {           
-            this.Questions.Add(q);
-
             string rightAnswer = (string)addQuestionView.getRightAnswerComboBox().SelectedItem;
             int countPA = addQuestionView.getAnswersListBox().Items.Count;
-            int loopCounter = 0;
             PredefinedAnswer pa;
 
             foreach (String answer in addQuestionView.getAnswersListBox().Items)
             {
-                if (countPA == loopCounter+1)
-                {
-                    loopPredefinedAnswersComplete = true;
-                }
+                preFilledList.Add(answer, 0);
+            }
 
+            foreach (String answer in addQuestionView.getAnswersListBox().Items)
+            {
                 pa = new PredefinedAnswer() { Question_Id = q.Id, Text = answer };
                 if (pa.Text == rightAnswer)
                 {
@@ -187,31 +198,39 @@ namespace Client.Controller
                 {
                     pa.RightAnswer = false;
                 }
-
-                paFactory.SaveAsync(pa, CB_SaveAnswers);
+                pa.Question = q;
+                paFactory.Save(pa, addQuestionView.getAnswersListBox(), CB_SaveAnswers);
             }
         }
 
         private void CB_SaveAnswers(PredefinedAnswer pa, HttpStatusCode status, IRestResponse res)
         {
-            if (status == HttpStatusCode.Created)
+            if (status == HttpStatusCode.Created && pa != null)
             {
-                if (loopPredefinedAnswersComplete)
-                {
-                    //Save Answers succeed
-                    ViewSuccesDialog succes = new ViewSuccesDialog();    
-                    succes.getLabelSucces().Text = "De vraag is succesvol opgeslagen!";                           
-                    succes.ShowDialog();
-                    
-                }
+                preFilledList[pa.Text] = 1;
             }
             else
             {
-                //Save Answer failed, Delete question
-                qFactory.DeleteAsync(pa.Question);
-                ViewFailedDialog failed = new ViewFailedDialog();
-                failed.getLabelFailed().Text = "Het opslaan is mislukt! Probeer het opnieuw.";
-                failed.ShowDialog();
+                preFilledList[pa.Text] = 2;
+            }
+
+            if(!preFilledList.ContainsValue(0))
+            {
+                if(preFilledList.ContainsValue(2))
+                {
+                    qFactory.DeleteAsync(pa.Question);
+                    
+                    ViewFailedDialog failed = new ViewFailedDialog();
+                    failed.getLabelFailed().Text = "Het opslaan is mislukt! Probeer het opnieuw.";
+                    failed.ShowDialog();
+                }
+                else
+                {
+                    //Save Answers succeed
+                    ViewSuccesDialog succes = new ViewSuccesDialog();
+                    succes.getLabelSucces().Text = "De vraag is succesvol opgeslagen!";
+                    succes.ShowDialog();
+                }
             }
         }
 

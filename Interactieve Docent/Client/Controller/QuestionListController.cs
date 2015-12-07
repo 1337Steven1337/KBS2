@@ -96,6 +96,8 @@ namespace Client.Controller
         //Requests all lists via from database
         private void loadLists()
         {
+            //Enable button to add a question when list is loaded
+            questionController.enableBtnGetAddQuestionPanel();
             factory.FindAll(this.questionListView.getListBoxQuestionLists(), this.fillList);
         }
 
@@ -120,8 +122,6 @@ namespace Client.Controller
         //If selected list changes, load it's questions
         private void listBox_SelectedIndexChanged(object sender, System.EventArgs e)
         {
-            //Enable button to add a question, only when item in listbox is selected
-            questionController.enableBtnGetAddQuestionPanel();            
             questionController.loadQuestions((int)this.questionListView.getListBoxQuestionLists().SelectedValue);
         }
     }
