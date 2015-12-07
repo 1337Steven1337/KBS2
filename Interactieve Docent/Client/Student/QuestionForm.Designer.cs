@@ -132,12 +132,12 @@
 
         #endregion
 
-        private System.Windows.Forms.Label questionLabel;
+        public System.Windows.Forms.Label questionLabel;
         private System.Windows.Forms.ProgressBar questionTimeProgressBar;
-        private System.Windows.Forms.RichTextBox chatBox;
-        private System.Windows.Forms.RichTextBox chatBoxMessage;
-        private System.Windows.Forms.Button sendMessageButton;
-        private System.Windows.Forms.Label timeLabel;
-        private System.Windows.Forms.Label statusLabel;
+        public System.Windows.Forms.RichTextBox chatBox;
+        public System.Windows.Forms.RichTextBox chatBoxMessage;
+        public System.Windows.Forms.Button sendMessageButton;
+        public System.Windows.Forms.Label timeLabel;
+        public System.Windows.Forms.Label statusLabel;
     }
 }
