@@ -6,7 +6,7 @@ using System;
 
 namespace Client.View.Question
 {
-    public interface IQuestionView
+    public interface IQuestionView : IView
     {
         void setController(QuestionController controller);
         ListBox getListBoxQuestions();

@@ -6,6 +6,7 @@ using System.Linq;
 using Client.Factory;
 using System;
 using Client.Service.SignalR;
+using Client.Service.Thread;
 
 namespace Client.Controller
 {
@@ -60,7 +61,7 @@ namespace Client.Controller
         {
             if (question != null)
             {
-                Factory.FindById(question.Id, this.View.getPanel(), this.SetQuestion);
+                Factory.FindById(question.Id, new ControlHandler(this.View.getPanel()), this.SetQuestion);
             }
         }
         

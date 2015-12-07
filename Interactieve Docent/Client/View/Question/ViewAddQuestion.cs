@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using Client.Controller;
 using Client.Factory;
+using Client.Service.Thread;
 
 namespace Client.View.Question
 {
@@ -79,6 +80,11 @@ namespace Client.View.Question
         public ComboBox getRightAnswerComboBox()
         {
             return rightAnswerComboBox;
-        }        
+        }
+
+        public IControlHandler getHandler()
+        {
+            return new ControlHandler(this.answersListBox);
+        }
     }
 }

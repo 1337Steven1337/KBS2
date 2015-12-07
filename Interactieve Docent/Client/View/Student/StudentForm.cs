@@ -65,7 +65,6 @@ namespace Client.View.Student
         }
         private void whatever(Client.Model.UserAnswer ua, HttpStatusCode code)
         {
-            MessageBox.Show("Hoi");
             if(code == HttpStatusCode.Forbidden)
             {
                  
@@ -79,7 +78,7 @@ namespace Client.View.Student
             ua.Question_Id = mainForm.getCurrentQuestion().Id;
       
             Factory.UserAnswerFactory uaf = new Factory.UserAnswerFactory();
-            uaf.Save(ua,btn,this.whatever);
+            uaf.Save(ua, null, this.whatever);
             if (mainForm.getQuestionList().Questions.Count - 1 > 5)
             {
                 mainForm.goToNextQuestion();
@@ -116,7 +115,6 @@ namespace Client.View.Student
 
         public void adjustSizeOfButtons(Model.Question Q)
         {
-            Console.WriteLine("adjustSizeOfButtons");
             foreach (Model.PredefinedAnswer PA in Q.PredefinedAnswers)
             {
                 if (mainForm.getCurrentQuestion().PredefinedAnswers.Count > answerButtons.Count)

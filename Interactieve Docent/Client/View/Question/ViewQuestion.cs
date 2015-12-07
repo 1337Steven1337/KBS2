@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Windows.Forms;
 using Client.Controller;
 using Client.Model;
+using Client.Service.Thread;
 
 namespace Client.View.Question
 {
@@ -47,6 +48,11 @@ namespace Client.View.Question
         public TableLayoutPanel getPanel()
         {
             return mainTablePanel;
+        }
+
+        public IControlHandler getHandler()
+        {
+            return new ControlHandler(this.listBoxQuestions);
         }
     }
 }
