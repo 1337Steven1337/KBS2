@@ -20,7 +20,7 @@ namespace Client
         {
             InitializeComponent();
 
-            /viewMain = new ViewMain();
+            viewMain = new ViewMain();
 
             //ViewTabs view = new ViewTabs();
             //controller = new TabsController(view);
