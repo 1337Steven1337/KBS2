@@ -41,11 +41,24 @@ namespace Client.Service.SignalR
         }
         #endregion
 
+        #region Eventhandlers
+        private void SignalRClient_connectionStatusChanged(StateChange message)
+        {
+            if (this.subscribeQueue.Count > 0 && message.NewState == ConnectionState.Connected)
+            {
+                foreach (object o in this.subscribeQueue)
+                {
+                    this.Subscribe(o);
+                }
+            }
+        }
+        #endregion
+
         #region Methods
         /// <summary>
         /// Connects to the SignalR endpoint on the server
         /// </summary>
-        public async void connect()
+        public async void Connect()
         {
             if (this.state != ConnectionState.Connected && this.state != ConnectionState.Connecting)
             {
@@ -66,17 +79,34 @@ namespace Client.Service.SignalR
         /// Subscribes to a list on the server
         /// </summary>
         /// <param name="id">The id of the list to subscribe to</param>
-        public void subscribe(int id)
+        public void Subscribe(int id)
         {
-            this.subscribe((object)id);
+            this.Subscribe((object)id);
         }
 
-        public void subscribe(string id)
+        /// <summary>
+        /// Subscribes to a list on the server
+        /// </summary>
+        /// <param name="name">The name of the list to subscribe to</param>
+        public void Subscribe(string name)
         {
-            this.subscribe((object)id);
+            this.Subscribe((object)name);
         }
 
-        public async void subscribe(object id)
+        /// <summary>
+        /// Unsubscribe from a list on the server
+        /// </summary>
+        /// <param name="id">The id of the list to unsubscribe from</param>
+        public async void Unsubscribe(int id)
+        {
+            await this.proxy.Invoke("Unsubscribe", id);
+        }
+
+        /// <summary>
+        /// Subscribes to a list on the server
+        /// </summary>
+        /// <param name="id">The object (either a string or int) to subscribe to</param>
+        private async void Subscribe(object id)
         {
             this.connectionStatusChanged -= SignalRClient_connectionStatusChanged;
 
@@ -101,26 +131,6 @@ namespace Client.Service.SignalR
 
         }
 
-        private void SignalRClient_connectionStatusChanged(StateChange message)
-        {
-            if (this.subscribeQueue.Count > 0 && message.NewState == ConnectionState.Connected)
-            {
-                foreach (object o in this.subscribeQueue)
-                {
-                    this.subscribe(o);
-                }
-            }
-        }
-
-        /// <summary>
-        /// Unsubscribe from a list on the server
-        /// </summary>
-        /// <param name="id">The id of the list to unsubscribe from</param>
-        public async void unsubscribe(int id)
-        {
-            await this.proxy.Invoke("Unsubscribe", id);
-        }
-
         /// <summary>
         /// Calls the connectionStateChanged event
         /// </summary>
@@ -133,7 +143,11 @@ namespace Client.Service.SignalR
             }
         }
 
-        public static SignalRClient getInstance()
+        /// <summary>
+        /// Used to retrieve an instance of the SignalRClient
+        /// </summary>
+        /// <returns>The instance of the SignalRClient</returns>
+        public static SignalRClient GetInstance()
         {
             if(SignalRClient.client == null)
             {

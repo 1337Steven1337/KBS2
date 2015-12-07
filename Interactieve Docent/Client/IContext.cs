@@ -1,6 +1,6 @@
-﻿using System;
+﻿using Client.Model;
+using System;
 using System.Data.Entity;
-using Client.API.Models;
 
 namespace Client
 {

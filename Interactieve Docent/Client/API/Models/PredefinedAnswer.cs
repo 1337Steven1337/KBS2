@@ -7,6 +7,7 @@ using RestSharp;
 
 namespace Client.API.Models
 {
+    [System.Obsolete("Use the new API")]
     public class PredefinedAnswer : Entity
     {
         private string _text = null;
@@ -29,7 +30,7 @@ namespace Client.API.Models
             }
         }
 
-        public void save(int questionId)
+        public void Save(int questionId)
         {
             RestRequest request = new RestRequest(Method.POST);
             request.RequestFormat = DataFormat.Json;

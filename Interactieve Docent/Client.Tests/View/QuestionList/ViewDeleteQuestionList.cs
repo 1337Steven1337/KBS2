@@ -6,7 +6,7 @@ namespace Client.Tests.View.Question
     public partial class ViewDeleteQuestionList
     {
         public Boolean valid { get; set; }
-        private string Text;
+        public string Text { private set; get; }
 
         public ViewDeleteQuestionList()
         {

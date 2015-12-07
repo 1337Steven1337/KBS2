@@ -1,103 +1,98 @@
 ﻿using Client.Model;
 using Microsoft.AspNet.SignalR.Client;
-using RestSharp;
-using System;
 using System.Collections.Generic;
-using System.Collections.Specialized;
-using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 
 namespace Client.Factory
 {
-    public class QuestionListFactory : AbstractFactory
+    public class QuestionListFactory : AbstractFactory<QuestionList>
     {
         #region Delegates
-        public delegate void QuestionListAdded(QuestionList list);
-        public delegate void QuestionListRemoved(QuestionList list);
-        public delegate void QuestionListUpdated(QuestionList list);
+        public delegate void QuestionListAddedDelegate(QuestionList list);
+        public delegate void QuestionListRemovedDelegate(QuestionList list);
+        public delegate void QuestionListUpdatedDelegate(QuestionList list);
+        public delegate void QuestionListContinueDelegate();
         #endregion
 
         #region Events
-        public event QuestionListAdded questionListAdded;
-        public event QuestionListRemoved questionListRemoved;
-        public event QuestionListUpdated questionListUpdated;
+        public event QuestionListAddedDelegate QuestionListAdded;
+        public event QuestionListRemovedDelegate QuestionListRemoved;
+        public event QuestionListUpdatedDelegate QuestionListUpdated;
+        public event QuestionListContinueDelegate QuestionListContinue;
         #endregion
 
-        #region Constants
-        private const string resource = "QuestionLists";
+        #region Properties
+        protected override string Resource
+        {
+            get
+            {
+                return "QuestionLists";
+            }
+        }
         #endregion
 
         #region Constructors
-        /// <summary>
-        /// 
-        /// </summary>
-        public QuestionListFactory()
+        public QuestionListFactory() : base(new BaseFactory<QuestionList>())
         {
-            //Adding eventhandlers for dynamic feedback
-            this.signalRClient.proxy.On<QuestionList>("QuestionListAdded", this.onQuestionListAdded);
-            this.signalRClient.proxy.On<QuestionList>("QuestionListRemoved", this.onQuestionListRemoved);
-            this.signalRClient.proxy.On<QuestionList>("QuestionListUpdated", this.onQuestionListUpdated);
+            this.SignalRClient.proxy.On<QuestionList>("QuestionListAdded", this.OnQuestionListAdded);
+            this.SignalRClient.proxy.On<QuestionList>("QuestionListRemoved", this.OnQuestionListRemoved);
+            this.SignalRClient.proxy.On<QuestionList>("QuestionListUpdated", this.OnQuestionListUpdated);
+            this.SignalRClient.proxy.On("QuestionListContinue", this.OnQuestionListContinue);
 
-            if (this.signalRClient.state == ConnectionState.Connected)
+            if (this.SignalRClient.state == ConnectionState.Connected)
             {
-                this.signalRClient.subscribe("lists");
+                this.SignalRClient.Subscribe("lists");
             }
             else
             {
-                this.signalRClient.connectionStatusChanged += SignalRClient_connectionStatusChanged;
-                this.signalRClient.connect();
+                this.SignalRClient.connectionStatusChanged += SignalRClient_connectionStatusChanged;
+                this.SignalRClient.Connect();
             }
         }
+        #endregion
 
+        #region Eventhandlers
         private void SignalRClient_connectionStatusChanged(StateChange message)
         {
-            if(message.NewState == ConnectionState.Connected)
+            if (message.NewState == ConnectionState.Connected)
             {
-                this.signalRClient.subscribe("lists");
+                this.SignalRClient.Subscribe("lists");
             }
         }
-        #endregion
+        #endregion 
 
         #region Actions
-        private void onQuestionListAdded(QuestionList q)
+        private void OnQuestionListAdded(QuestionList q)
         {
-            if (this.questionListAdded != null)
+            if (this.QuestionListAdded != null)
             {
-                this.questionListAdded(q);
+                this.QuestionListAdded(q);
             }
         }
-
-        private void onQuestionListRemoved(QuestionList q)
+        private void OnQuestionListRemoved(QuestionList q)
         {
-            if (this.questionListRemoved != null)
+            if (this.QuestionListRemoved != null)
             {
-                this.questionListRemoved(q);
+                this.QuestionListRemoved(q);
             }
         }
-
-        private void onQuestionListUpdated(QuestionList q)
+        private void OnQuestionListUpdated(QuestionList q)
         {
-            if (this.questionListUpdated != null)
+            if (this.QuestionListUpdated != null)
             {
-                this.questionListUpdated(q);
+                this.QuestionListUpdated(q);
+            }
+        }
+        private void OnQuestionListContinue()
+        {
+            if (this.QuestionListContinue != null)
+            {
+                this.QuestionListContinue();
             }
         }
         #endregion
 
-        public void delete(QuestionList list, Control control, Action<QuestionList> callback)
-        {
-            this.delete<QuestionList>(list.Id, resource, control, callback);
-        }
-
-        public void deleteAsync(QuestionList list, Action<QuestionList> callback)
-        {
-            this.deleteAsync<QuestionList>(list.Id, resource, callback);
-        }
-
-        private Dictionary<string, object> getFields(QuestionList list)
+        #region Overrides
+        protected override Dictionary<string, object> GetFields(QuestionList list)
         {
             Dictionary<string, object> values = new Dictionary<string, object>();
             values.Add("Name", list.Name);
@@ -105,35 +100,6 @@ namespace Client.Factory
 
             return values;
         }
-
-        public void saveAsync(QuestionList list, Action<QuestionList> callback)
-        {
-            this.saveAsync<QuestionList>(this.getFields(list), resource, callback);
-        }
-
-        public void save(QuestionList list, Control control, Action<QuestionList> callback)
-        {
-            this.save<QuestionList>(this.getFields(list), resource, control, callback);
-        }
-
-        public void findByIdAsync(int id, Action<QuestionList> callback)
-        {
-            this.findByIdAsync<QuestionList>(id, resource, callback);
-        }
-
-        public void findById(int id, Control control, Action<QuestionList> callback)
-        {
-            this.findById<QuestionList>(id, resource, control, callback);
-        }
-
-        public void findAll(Control control, Action<List<QuestionList>> callback)
-        {
-            this.findAll<QuestionList>(resource, control, callback);
-        }
-
-        public void findAllAsync(Action<List<QuestionList>> callback)
-        {
-            this.findAllAsync<QuestionList>(resource, callback);
-        }
+        #endregion
     }
 }

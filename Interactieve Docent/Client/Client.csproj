@@ -120,40 +120,9 @@
     <Compile Include="Controller\StudentFormController.cs" />
     <Compile Include="Controller\UserAnswerController.cs" />
     <Compile Include="Controller\TabsController.cs" />
-    <Compile Include="DocentForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="DocentForm.Designer.cs">
-      <DependentUpon>DocentForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Docent\AddListPopup.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Docent\DeletePopup.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Docent\DeletePopup.Designer.cs">
-      <DependentUpon>DeletePopup.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Docent\DocentControlUI.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Docent\DocentControlUI.designer.cs">
-      <DependentUpon>DocentControlUI.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Docent\PanelLayout.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="Docent\PanelLeft.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="Docent\PanelMiddle.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="Docent\PanelRight.cs">
-      <SubType>Component</SubType>
-    </Compile>
     <Compile Include="Factory\AbstractFactory.cs" />
+    <Compile Include="Factory\BaseFactory.cs" />
+    <Compile Include="Factory\IFactory.cs" />
     <Compile Include="Factory\PredefinedAnswerFactory.cs" />
     <Compile Include="Factory\QuestionFactory.cs" />
     <Compile Include="Factory\QuestionListFactory.cs" />
@@ -165,6 +134,7 @@
     <Compile Include="Main.Designer.cs">
       <DependentUpon>Main.cs</DependentUpon>
     </Compile>
+    <Compile Include="Model\AbstractModel.cs" />
     <Compile Include="Model\PredefinedAnswer.cs" />
     <Compile Include="Model\Question.cs" />
     <Compile Include="Model\QuestionList.cs" />
@@ -198,8 +168,18 @@
     <Compile Include="View\Diagram\ViewDiagram.Designer.cs">
       <DependentUpon>ViewDiagram.cs</DependentUpon>
     </Compile>
-    <Compile Include="View\PanelLayout\CustomPanel.cs" />
-    <Compile Include="View\PanelLayout\PLayout.cs" />
+    <Compile Include="View\Dialogs\ViewFailedDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\Dialogs\ViewFailedDialog.Designer.cs">
+      <DependentUpon>ViewFailedDialog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\Dialogs\ViewSuccesDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\Dialogs\ViewSuccesDialog.Designer.cs">
+      <DependentUpon>ViewSuccesDialog.cs</DependentUpon>
+    </Compile>
     <Compile Include="View\PredefinedAnswer\IPredefinedAnswerView.cs" />
     <Compile Include="View\PredefinedAnswer\ViewPredefinedAnswer.cs">
       <SubType>Form</SubType>
@@ -225,6 +205,12 @@
     </Compile>
     <Compile Include="View\QuestionList\ViewQuestionList.Designer.cs">
       <DependentUpon>ViewQuestionList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\Dialogs\ViewConfirmDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\Dialogs\ViewConfirmDialog.Designer.cs">
+      <DependentUpon>ViewConfirmDialog.cs</DependentUpon>
     </Compile>
     <Compile Include="View\Question\IAddQuestionView.cs" />
     <Compile Include="View\Question\IQuestionView.cs" />
@@ -264,15 +250,6 @@
     <EmbeddedResource Include="Answers.resx">
       <DependentUpon>Answers.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="DocentForm.resx">
-      <DependentUpon>DocentForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Docent\DocentControlUI.resx">
-      <DependentUpon>DocentControlUI.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Docent\PanelLayout.resx">
-      <DependentUpon>PanelLayout.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
@@ -294,8 +271,11 @@
     <EmbeddedResource Include="View\Diagram\ViewDiagram.resx">
       <DependentUpon>ViewDiagram.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="View\PanelLayout\PLayout.resx">
-      <DependentUpon>PLayout.cs</DependentUpon>
+    <EmbeddedResource Include="View\Dialogs\ViewFailedDialog.resx">
+      <DependentUpon>ViewFailedDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\Dialogs\ViewSuccesDialog.resx">
+      <DependentUpon>ViewSuccesDialog.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="View\QuestionList\ViewDeleteQuestionList.resx">
       <DependentUpon>ViewDeleteQuestionList.cs</DependentUpon>
@@ -308,6 +288,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="View\Question\ViewAddQuestion.resx">
       <DependentUpon>ViewAddQuestion.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\Dialogs\ViewConfirmDialog.resx">
+      <DependentUpon>ViewConfirmDialog.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="View\Question\ViewDeleteQuestion.resx">
       <DependentUpon>ViewDeleteQuestion.cs</DependentUpon>

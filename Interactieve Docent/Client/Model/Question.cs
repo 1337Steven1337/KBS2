@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace Client.Model
 {
-    public class Question
+    public class Question : AbstractModel
     {
-        public int Id { get; set; }
+        public override int Id { get; set; }
         public int Points { get; set; }
         public int Time { get; set; }
         public int List_Id { get; set; }

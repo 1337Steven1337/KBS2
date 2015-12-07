@@ -34,10 +34,10 @@ namespace Client
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            SignalRClient client = SignalRClient.getInstance();
+            SignalRClient client = SignalRClient.GetInstance();
             client.subscriptionStatusChanged += Client_subscriptionStatusChanged;
             qlf = new QuestionListFactory();
-            qlf.questionListAdded += Qlf_questionListAdded;
+            qlf.QuestionListAdded += Qlf_questionListAdded;
         }
 
         private void Qlf_questionListAdded(QuestionList list)
@@ -51,7 +51,7 @@ namespace Client
             ql.Name = "Test list 99999";
             ql.Ended = false;
 
-            //qlf.save(ql, null);
+            //qlf.Save(ql, null);
         }
 
         private void test(QuestionList list)
@@ -75,14 +75,14 @@ namespace Client
 
             QuestionListFactory factory = new QuestionListFactory();
             Console.WriteLine("Before fetch");
-            factory.findByIdAsync(2, test);
+            factory.FindByIdAsync(2, test);
             Console.WriteLine("After fetch");
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
-            DocentControlUI docentControlUI = new DocentControlUI();
-            docentControlUI.Show();
+            //DocentControlUI docentControlUI = new DocentControlUI();
+            //docentControlUI.Show();
         }
 
     }

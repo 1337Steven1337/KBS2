@@ -1,32 +1,18 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
+﻿using System.Windows.Forms;
 using Client.Controller;
-using Client.View.PanelLayout;
-using Client.Factory;
-using Client.Model;
+
 
 namespace Client.View.QuestionList
 {
     public partial class  ViewQuestionList : Form, IQuestionListView
     {
         private QuestionListController controller;
-        private CustomPanel customPanelQuestionList;
-
         public ViewQuestionList()
         {
             InitializeComponent();
             //Set which data from the items are to access in the listbox
             listBoxQuestionLists.DisplayMember = "Name";
             listBoxQuestionLists.ValueMember = "Id";
-
-            customPanelQuestionList = new CustomPanel();
         }
 
         public void setController(QuestionListController controller)
@@ -36,20 +22,24 @@ namespace Client.View.QuestionList
             listBoxQuestionLists.DataSource = this.controller.QuestionLists;
         }
 
-
-        public ListBox getListBox()
+        public ListBox getListBoxQuestionLists()
         {
             return listBoxQuestionLists;
+        }       
+
+        public Button getBtnAddQuestionList()
+        {
+            return btnAddQuestionList;
         }
         
-        public CustomPanel getCustomPanel()
+        public Button getBtnDeleteQuestionList()
         {
-            return customPanelQuestionList;
-        }   
+            return btnDeleteQuestionList;
+        }
 
-        public void fillList(List<Model.QuestionList> lists)
+        public TableLayoutPanel getPanel()
         {
-           //Is needed due to implemented interface, does nothing
+            return mainTablePanel;
         }
     }
 }

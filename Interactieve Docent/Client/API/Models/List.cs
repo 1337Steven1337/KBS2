@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 
 namespace Client.API.Models
 {
+    [System.Obsolete("Use the new API")]
     public class List : Entity
     {
         public int Id { get; set; }
@@ -26,7 +27,7 @@ namespace Client.API.Models
             //this.Questions = new List<int>();
         }
 
-        public void save()
+        public void Save()
         {
             RestRequest request = new RestRequest(Method.POST);
             request.RequestFormat = DataFormat.Json;
@@ -51,7 +52,7 @@ namespace Client.API.Models
             List q = Api.Execute<List>(request);
         }
 
-        public void delete()
+        public void Delete()
         {
             RestRequest request = new RestRequest(Method.DELETE);
             request.RequestFormat = DataFormat.Json;
