@@ -58,7 +58,10 @@ namespace Client.Controller
         #region Events
         private void QuestionController_selectedIndexChanged(Question question)
         {
-             Factory.FindById(question.Id, this.View.getPanel(), this.SetQuestion);
+            if (question != null)
+            {
+                Factory.FindById(question.Id, this.View.getPanel(), this.SetQuestion);
+            }
         }
         
         private void SignalRClient_connectionStatusChanged(Microsoft.AspNet.SignalR.Client.StateChange message)
