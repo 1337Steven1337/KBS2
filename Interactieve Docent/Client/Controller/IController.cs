@@ -10,5 +10,6 @@ namespace Client.Controller
     public interface IController
     {
         IView GetView();
+        void SetView(IView view);
     }
 }

@@ -7,7 +7,7 @@ using Client.Controller;
 
 namespace Client.View.Main
 {
-    public interface IViewMain
+    public interface IViewMain : IView
     {
         void setController(MainController controller);
 

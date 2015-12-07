@@ -5,6 +5,7 @@ using Client.Controller;
 using System.Linq;
 using Client.Model;
 using Client.Service.Thread;
+using Client.View.Main;
 
 namespace Client.View.Question
 {
@@ -92,6 +93,12 @@ namespace Client.View.Question
         public IControlHandler getHandler()
         {
             return new ControlHandler(this.listBoxQuestions);
+        }
+
+        public void AddToParent(IView parent)
+        {
+            ViewMain main = (ViewMain)parent;
+            main.AddTablePanel(this.mainTablePanel,1);
         }
     }
 }

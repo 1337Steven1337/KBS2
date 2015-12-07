@@ -6,6 +6,9 @@ using System.Windows.Forms;
 using Client.Controller;
 using Client.View.Main;
 using Client.View.Question;
+using Client.Controller.Question;
+using Client.View.QuestionList;
+using Client.Controller.QuestionList;
 
 namespace Client
 {
@@ -25,9 +28,12 @@ namespace Client
             MainController maincontroller = new MainController(view);
 
             ViewQuestion viewQuestion = new ViewQuestion();
-            QuestionController questionController = new QuestionController(viewQuestion);
-
+            ListQuestionController questionController = new ListQuestionController(viewQuestion);
             maincontroller.AddController(questionController);
+
+            ViewQuestionList viewQuestionList = new ViewQuestionList();
+            ListQuestionListController listQuestionListController = new ListQuestionListController(viewQuestionList);
+            maincontroller.AddController(listQuestionListController);
 
             Application.Run(view);
         }

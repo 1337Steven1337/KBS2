@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 using Client.View.Main;
 using Client.View.Question;
 using Client.View.QuestionList;
+using Client.Controller.Question;
+using Client.View;
+using Client.Controller.QuestionList;
 
 namespace Client.Controller
 {
@@ -21,17 +24,26 @@ namespace Client.Controller
 
         public void AddController(IController controller)
         {
-            if(controller is QuestionController)
+            if(controller is ListQuestionController)
             {
                 ViewQuestion view = (ViewQuestion)controller.GetView();
                 view.AddQuestionClicked += View_AddQuestionClicked;
+                view.AddToParent((IView)this.mainView);
+            }
+            else if(controller is ListQuestionListController)
+            {
+                ViewQuestionList view = (ViewQuestionList)controller.GetView();
+                view.AddToParent((IView)this.mainView);
             }
         }
 
         private void View_AddQuestionClicked()
         {
             ViewAddQuestion addQuestionView = new ViewAddQuestion();
-            //mainView.ShowThirdColumn();
+            AddQuestionController controller = new AddQuestionController();
+            controller.SetView(addQuestionView);
+
+            addQuestionView.AddToParent((IView)this.mainView);
         }  
     }
 }

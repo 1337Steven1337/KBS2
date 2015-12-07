@@ -14,13 +14,10 @@ namespace Client
         private QuestionController questionController;
         private QuestionListController questionListController;
         private ViewQuestion viewQuestion;
-        private ViewMain viewMain;
 
         public Main()
         {
             InitializeComponent();
-
-            viewMain = new ViewMain();
 
             //ViewTabs view = new ViewTabs();
             //controller = new TabsController(view);
