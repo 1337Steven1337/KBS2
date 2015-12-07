@@ -21,15 +21,15 @@ namespace Client.Controller
             this.mainForm = mainform;
 
 
-            client = SignalRClient.getInstance();
+            client = SignalRClient.GetInstance();
             client.connectionStatusChanged += Client_connectionStatusChanged;
-            client.connect();
+            client.Connect();
 
             QuestionFactory questionFactory = new QuestionFactory();
-            questionFactory.questionAdded += Factory_questionAdded;
+            questionFactory.QuestionAdded += Factory_questionAdded;
 
             PredefinedAnswerFactory PAFactory = new PredefinedAnswerFactory();
-            PAFactory.predefinedAnswerAdded += PAFactory_predefinedAnswerAdded;
+            PAFactory.PredefinedAnswerAdded += PAFactory_predefinedAnswerAdded;
         }
 
         public void Factory_questionAdded(Model.Question question)
@@ -56,7 +56,7 @@ namespace Client.Controller
 
         private void Client_connectionStatusChanged(StateChange message)
         {
-            client.subscribe(mainForm.List_Id);
+            client.Subscribe(mainForm.List_Id);
         }
 
 

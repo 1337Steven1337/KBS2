@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Drawing;
+using System.Net;
 
 namespace Client.View.Student
 {
@@ -62,7 +63,14 @@ namespace Client.View.Student
             mainForm.questionLabel.Visible = true;
             mainForm.timeLabel.Visible = true;
         }
-
+        private void whatever(Client.Model.UserAnswer ua, HttpStatusCode code)
+        {
+            MessageBox.Show("Hoi");
+            if(code == HttpStatusCode.Forbidden)
+            {
+                 
+            }
+        }
         public void AnswerSaveHandler(object sender, System.EventArgs e)
         {
             Button btn = (Button)sender;
@@ -71,7 +79,7 @@ namespace Client.View.Student
             ua.Question_Id = mainForm.getCurrentQuestion().Id;
       
             Factory.UserAnswerFactory uaf = new Factory.UserAnswerFactory();
-            uaf.save(ua,null, null);
+            uaf.Save(ua,btn,this.whatever);
             if (mainForm.getQuestionList().Questions.Count - 1 > 5)
             {
                 mainForm.goToNextQuestion();
