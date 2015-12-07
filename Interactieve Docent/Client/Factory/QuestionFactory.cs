@@ -29,7 +29,7 @@ namespace Client.Factory
         #endregion
 
         #region Constructors
-        public QuestionFactory()
+        public QuestionFactory() : base(new BaseFactory<Question>())
         {
             this.SignalRClient.proxy.On<Question>("QuestionAdded", this.OnQuestionAdded);
             this.SignalRClient.proxy.On<Question>("QuestionRemoved", this.OnQuestionRemoved);

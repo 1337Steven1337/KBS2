@@ -120,6 +120,8 @@
     <Compile Include="Controller\UserAnswerController.cs" />
     <Compile Include="Controller\TabsController.cs" />
     <Compile Include="Factory\AbstractFactory.cs" />
+    <Compile Include="Factory\BaseFactory.cs" />
+    <Compile Include="Factory\IFactory.cs" />
     <Compile Include="Factory\PredefinedAnswerFactory.cs" />
     <Compile Include="Factory\QuestionFactory.cs" />
     <Compile Include="Factory\QuestionListFactory.cs" />

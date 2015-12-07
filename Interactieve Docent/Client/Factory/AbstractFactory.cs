@@ -12,19 +12,18 @@ namespace Client.Factory
     {
         #region Properties
         protected abstract string Resource { get; }
+        private IFactory<T> baseFactory { get; set; }
         #endregion
 
         #region Instances
-        private RestClient RestClient = new RestClient();
         protected SignalRClient SignalRClient = null;
         #endregion
 
         #region Constructors
-        public AbstractFactory()
+        public AbstractFactory(IFactory<T> baseFactory)
         {
-            this.RestClient.BaseUrl = new Uri(Properties.Api.Default.Host + Properties.Api.Default.Rest);
-            this.RestClient.AddDefaultHeader("Content-Type", "application/json");
-
+            this.baseFactory = baseFactory;
+            this.baseFactory.SetResource(this.Resource);
             this.SignalRClient = SignalRClient.GetInstance();
         }
         #endregion
@@ -37,17 +36,7 @@ namespace Client.Factory
         /// <param name="callback">Callback which is called when the request is completed</param>
         public void DeleteAsync(T instance, Action<T, HttpStatusCode, IRestResponse> callback)
         {
-            RestRequest request = new RestRequest();
-            request.AddParameter("Id", instance.Id);
-            request.Resource = this.Resource;
-            request.Method = Method.DELETE;
-
-            this.RestClient.ExecuteAsync<T>(request, response => {
-                if (callback != null)
-                {
-                    callback(response.Data, response.StatusCode, response);
-                }
-            });
+            this.baseFactory.DeleteAsync(instance, callback);
         }
 
         /// <summary>
@@ -98,21 +87,14 @@ namespace Client.Factory
         /// <param name="callback">Callback which is called when the request is completed</param>
         public void SaveAsync(T instance, Action<T, HttpStatusCode, IRestResponse> callback)
         {
-            RestRequest request = new RestRequest();
-            request.Resource = Resource;
-            request.Method = Method.POST;
+            List<KeyValuePair<string, object>> list = new List<KeyValuePair<string, object>>();
 
             foreach (KeyValuePair<string, object> entry in this.GetFields(instance))
             {
-                request.AddParameter(entry.Key, entry.Value);
+                list.Add(entry);
             }
 
-            this.RestClient.ExecuteAsync<T>(request, response => {
-                if (callback != null)
-                {
-                    callback(response.Data, response.StatusCode, response);
-                }
-            });
+            this.baseFactory.SaveAsync(list, callback);
         }
 
         /// <summary>
@@ -163,13 +145,7 @@ namespace Client.Factory
         /// <param name="callback">Callback which is called when the request is completed</param>
         public void FindByIdAsync(int id, Action<T, HttpStatusCode, IRestResponse> callback)
         {
-            RestRequest request = new RestRequest();
-            request.Resource = this.Resource;
-            request.AddParameter("Id", id);
-
-            this.RestClient.ExecuteAsync<T>(request, response => {
-                callback(response.Data, response.StatusCode, response);
-            });
+            this.baseFactory.FindByIdAsync(id, callback);
         }
 
         /// <summary>
@@ -210,12 +186,7 @@ namespace Client.Factory
         /// <param name="callback">Callback which is called when the request is completed</param>
         public void FindAllAsync(Action<List<T>, HttpStatusCode, IRestResponse> callback)
         {
-            RestRequest request = new RestRequest();
-            request.Resource = Resource;
-
-            this.RestClient.ExecuteAsync<List<T>>(request, response => {
-                callback(response.Data, response.StatusCode, response);
-            });
+            this.baseFactory.FindAllAsync(callback);
         }
 
         /// <summary>
@@ -445,6 +416,11 @@ namespace Client.Factory
         /// <param name="instance">The instance to Save</param>
         /// <returns>Dictonary containing the values used to Save the instance</returns>
         protected abstract Dictionary<string, object> GetFields(T instance);
+
+        public void SetBaseFactory(IFactory<T> factory)
+        {
+            this.baseFactory = factory;
+        }
         #endregion
     }
 }
