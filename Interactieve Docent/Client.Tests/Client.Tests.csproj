@@ -79,6 +79,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Models\" />
+    <Folder Include="View\Diagram\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
