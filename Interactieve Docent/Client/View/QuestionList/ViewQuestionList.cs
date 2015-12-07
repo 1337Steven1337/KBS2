@@ -129,5 +129,17 @@ namespace Client.View.QuestionList
         {
             return new ControlHandler(this.listBoxQuestionLists);
         }
+
+        public Model.QuestionList getById(int i)
+        {
+            foreach(Model.QuestionList q in QuestionLists)
+            {
+                if(q.Id == i)
+                {
+                    return q;
+                }
+            }
+            return null;
+        }
     }
 }

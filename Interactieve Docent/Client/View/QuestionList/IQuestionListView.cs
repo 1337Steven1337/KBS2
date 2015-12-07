@@ -11,6 +11,7 @@ namespace Client.View.QuestionList
         List<Model.QuestionList> getQuestionlists();
         Model.QuestionList getSelectedItem();
         int getCount();
+        Model.QuestionList getById(int i);
         Model.QuestionList getItem(int i);
         void RemoveAt(int i);
     }

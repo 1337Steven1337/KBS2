@@ -9,11 +9,11 @@ using Client.Model;
 
 namespace Client.Tests.Factory
 {
-    class QuestionFactory : Client.Factory.IFactory<Question>
+    class TestQuestionFactory : Client.Factory.IFactory<Question>
     {
         private List<Question> questions;
 
-        public QuestionFactory()
+        public TestQuestionFactory()
         {
             questions = new List<Question>();
             Question q1 = new Question();
@@ -38,7 +38,7 @@ namespace Client.Tests.Factory
 
         public void FindByIdAsync(int id, Action<Question, HttpStatusCode, global::RestSharp.IRestResponse> callback)
         {
-            throw new NotImplementedException();
+            callback(questions[id], HttpStatusCode.OK, null);
         }
 
         public void SaveAsync(List<KeyValuePair<string, object>> data, Action<Question, HttpStatusCode, global::RestSharp.IRestResponse> callback)

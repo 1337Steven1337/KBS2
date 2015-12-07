@@ -10,19 +10,24 @@ namespace Client.Controller
     public class QuestionListController
     {
         private IQuestionListView questionListView;
-        private QuestionListFactory factory = new QuestionListFactory();
+        public QuestionListFactory factory { get; private set; } 
         private QuestionController questionController;
         
 
-        public QuestionListController(IQuestionListView questionListView, QuestionController questionController)
+        public QuestionListController(IQuestionListView questionListView, QuestionController questionController) :this(questionListView)
         {
-            //Defining the left panel it's appearance
-            this.questionListView = questionListView;
-            this.questionListView.setController(this);
+            //Defining the left panel its appearance
 
             this.questionController = questionController;
-
             loadLists();
+        }
+
+        public QuestionListController(IQuestionListView view)
+        {
+            this.questionListView = view;
+            this.questionListView.setController(this);
+
+            this.factory = new QuestionListFactory();
         }
 
         public void saveList(string name)
@@ -66,7 +71,7 @@ namespace Client.Controller
         }
 
         //Requests all lists via from database
-        private void loadLists()
+        public void loadLists()
         {
             factory.FindAll(this.questionListView.getHandler(), this.fillList);
         }
@@ -79,14 +84,14 @@ namespace Client.Controller
                 this.questionListView.Add(q);
             }
             //Enable button to add a question, only when item in listbox is selected
-            questionController.enableBtnGetAddQuestionPanel();
-            questionController.loadQuestions(this.questionListView.getSelectedItem().Id);
+            //questionController.enableBtnGetAddQuestionPanel();
+            //questionController.loadQuestions(this.questionListView.getSelectedItem().Id);
         }
 
         //If selected list changes, load it's questions
         public void IndexChanged()
         {   
-            questionController.loadQuestions(this.questionListView.getSelectedItem().Id);
+            //questionController.loadQuestions(this.questionListView.getSelectedItem().Id);
         }
     }
 }
