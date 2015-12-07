@@ -11,6 +11,7 @@ namespace Client.View.Diagram
     public partial class ViewDiagram : Form, IDiagramView
     {
         private DiagramController controller;
+        private Panel panel;
 
         public ViewDiagram()
         {
@@ -22,9 +23,14 @@ namespace Client.View.Diagram
             this.controller = controller;
         }
 
+        public void setPanel<T>(Panel panel)
+        {
+            this.panel = panel;
+        }
+
         public Panel getPanel()
         {
-            return panel1;
+            return this.panel;
         }
 
         public void Make(List<int> values, List<string> answerNames, string question)

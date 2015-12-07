@@ -17,6 +17,7 @@ namespace Client.Controller
         public List<int> Votes;
 
         private IDiagramView View;
+        private ViewDiagram viewDiagram;
 
         private Model.Question Question;
 
@@ -52,7 +53,7 @@ namespace Client.Controller
             this.Question.UserAnswers.Add(answer);
 
             //update the diagram 
-            this.View.getPanel().Invoke((Action)delegate () { Redraw(); });
+            this.viewDiagram.getPanel().Invoke((Action)delegate () { Redraw(); });
         }
         #endregion
 
@@ -61,7 +62,7 @@ namespace Client.Controller
         {
             if (question != null)
             {
-                Factory.FindById(question.Id, new ControlHandler(this.View.getPanel()), this.SetQuestion);
+                Factory.FindById(question.Id, new ControlHandler(this.viewDiagram.getPanel()), this.SetQuestion);
             }
         }
         
@@ -92,7 +93,7 @@ namespace Client.Controller
         {
             this.Question = q;
             this.SignalRClient.Subscribe(q.List_Id);
-            this.View.getPanel().Invoke((Action)delegate () { Redraw(); });
+            this.viewDiagram.getPanel().Invoke((Action)delegate () { Redraw(); });
         }
 
         private void Redraw()
