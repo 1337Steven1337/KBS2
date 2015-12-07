@@ -111,6 +111,7 @@
     <Compile Include="Controller\PredefinedAnswerController.cs" />
     <Compile Include="Controller\QuestionController.cs" />
     <Compile Include="Controller\QuestionListController.cs" />
+    <Compile Include="Controller\StudentFormController.cs" />
     <Compile Include="Controller\UserAnswerController.cs" />
     <Compile Include="Controller\TabsController.cs" />
     <Compile Include="Factory\AbstractFactory.cs" />
@@ -225,6 +226,7 @@
     <Compile Include="View\Question\ViewQuestion.Designer.cs">
       <DependentUpon>ViewQuestion.cs</DependentUpon>
     </Compile>
+    <Compile Include="View\Student\StudentForm.cs" />
     <Compile Include="View\UserAnswer\IUserAnswerView.cs" />
     <Compile Include="View\UserAnswer\ViewUserAnswer.cs">
       <SubType>Form</SubType>
