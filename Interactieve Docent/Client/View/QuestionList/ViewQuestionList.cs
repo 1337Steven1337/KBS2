@@ -6,6 +6,7 @@ using Client.Model;
 using System;
 using System.Linq;
 using Client.Service.Thread;
+using Client.View.Main;
 
 namespace Client.View.QuestionList
 {
@@ -140,6 +141,12 @@ namespace Client.View.QuestionList
                 }
             }
             return null;
+        }
+
+        public void AddToParent(IView parent)
+        {
+            ViewMain main = (ViewMain)parent;
+            main.AddTablePanel(this.mainTablePanel, 0);
         }
     }
 }

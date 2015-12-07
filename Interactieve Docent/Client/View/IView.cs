@@ -10,5 +10,6 @@ namespace Client.View
     public interface IView
     {
         IControlHandler getHandler();
+        void AddToParent(IView parent);
     }
 }

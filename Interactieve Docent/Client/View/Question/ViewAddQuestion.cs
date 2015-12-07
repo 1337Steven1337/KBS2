@@ -1,6 +1,7 @@
 ﻿using System.Windows.Forms;
 using Client.Controller;
 using Client.Service.Thread;
+using Client.View.Main;
 
 namespace Client.View.Question
 {
@@ -16,6 +17,13 @@ namespace Client.View.Question
         public void setController(QuestionController controller)
         {
             this.controller = controller;
+        }
+
+        public void AddToParent(IView parent)
+        {
+            ViewMain main = (ViewMain)parent;
+
+            main.AddTablePanel(this.mainTablePanel,2);
         }
 
         public TableLayoutPanel getPanel()

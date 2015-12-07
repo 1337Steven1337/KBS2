@@ -12,7 +12,7 @@ namespace Client.Controller
         private IQuestionListView questionListView;
         public QuestionListFactory factory { get; private set; } 
         private QuestionController questionController;
-        
+
 
         public QuestionListController(IQuestionListView questionListView, QuestionController questionController) :this(questionListView)
         {
@@ -32,17 +32,15 @@ namespace Client.Controller
 
         public void saveList(string name)
         {
-            QuestionList ql = new QuestionList();
+            Model.QuestionList ql = new Model.QuestionList();
             ql.Name = name;
             factory.Save(ql, questionListView.getHandler(), processAdd);
         }
 
 
         public void deleteList(int id)
-        {
-            
-            
-            QuestionList ql = new QuestionList();
+        {            
+            Model.QuestionList ql = new Model.QuestionList();
             ql.Id = id;
             //Send ql to server for deleting
             //factory.Delete(ql, this.questionListView.getListBoxQuestionLists(), processDelete);
@@ -50,13 +48,13 @@ namespace Client.Controller
         }
 
         //Without sending request to server, 'refresh' list (add added item)
-        private void processAdd(QuestionList ql)
+        private void processAdd(Model.QuestionList ql)
         {
             this.questionListView.Add(ql);
         }
 
         //Without sending request to server, 'refresh' list (remove removed item)
-        private void processDelete(QuestionList ql)
+        private void processDelete(Model.QuestionList ql)
         {
             int i;
             for (i = 0;  i < this.questionListView.getCount(); i++)
@@ -73,13 +71,13 @@ namespace Client.Controller
         //Requests all lists via from database
         public void loadLists()
         {
-            factory.FindAll(this.questionListView.getHandler(), this.fillList);
+            //factory.FindAll(this.questionListView.getListBoxQuestionLists(), this.fillList);
         }
 
         //Adding requested lists to listbox
-        private void fillList(List<QuestionList> lists)
+        private void fillList(List<Model.QuestionList> lists)
         {
-            foreach(QuestionList q in lists)
+            foreach(Model.QuestionList q in lists)
             {
                 this.questionListView.Add(q);
             }

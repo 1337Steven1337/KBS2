@@ -7,6 +7,7 @@ using Client;
 using Client.Controller;
 using Client.Model;
 using Client.Service.Thread;
+using Client.View;
 using Client.View.QuestionList;
 
 namespace Client.Tests.View.QuestionList
@@ -72,6 +73,11 @@ namespace Client.Tests.View.QuestionList
                 }
             }
             return null;
+        }
+
+        public void AddToParent(IView parent)
+        {
+            throw new NotImplementedException();
         }
     }
 }
