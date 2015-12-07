@@ -108,6 +108,8 @@
     <Compile Include="API\Models\UserAnswer.cs" />
     <Compile Include="API\SignalR.cs" />
     <Compile Include="Controller\DiagramController.cs" />
+    <Compile Include="Controller\IController.cs" />
+    <Compile Include="Controller\MainController.cs" />
     <Compile Include="Controller\PredefinedAnswerController.cs" />
     <Compile Include="Controller\QuestionController.cs" />
     <Compile Include="Controller\QuestionListController.cs" />
@@ -176,7 +178,8 @@
     <Compile Include="View\Dialogs\ViewSuccesDialog.Designer.cs">
       <DependentUpon>ViewSuccesDialog.cs</DependentUpon>
     </Compile>
-    <Compile Include="View\IView.cs" />
+    <Compile Include="View\Main\IView.cs" />
+    <Compile Include="View\Main\IViewMain.cs" />
     <Compile Include="View\PredefinedAnswer\IPredefinedAnswerView.cs" />
     <Compile Include="View\PredefinedAnswer\ViewPredefinedAnswer.cs">
       <SubType>Form</SubType>
@@ -244,6 +247,10 @@
     <Compile Include="View\Tabs\ViewTabs.Designer.cs">
       <DependentUpon>ViewTabs.cs</DependentUpon>
     </Compile>
+    <Compile Include="View\Main\ViewMain.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\Main\ViewMain.Designer.cs" />
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
@@ -292,6 +299,7 @@
     <EmbeddedResource Include="View\Question\ViewQuestion.resx">
       <DependentUpon>ViewQuestion.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="View\Main\ViewMain.resx" />
     <None Include="ClassDiagram1.cd" />
     <None Include="Properties\Api.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

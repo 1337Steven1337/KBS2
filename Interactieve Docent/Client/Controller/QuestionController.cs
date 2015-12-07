@@ -9,6 +9,8 @@ using System.ComponentModel;
 using System.Collections.Generic;
 using System.Net;
 using RestSharp;
+using Client.Service.Thread;
+using Client.View;
 
 namespace Client.Controller
 {
@@ -69,7 +71,7 @@ namespace Client.Controller
         {
             return addQuestionView.getPanel();
         }
-    
+
         public void clearAddQuestion()
         {
             addQuestionView.getQuestionField().ResetText();
@@ -131,7 +133,7 @@ namespace Client.Controller
                     q.List_Id = this.listId;
                     q.PredefinedAnswerCount = addQuestionView.getAnswersListBox().Items.Count;
 
-                    qFactory.Save(q, addQuestionView.getAnswersListBox(), CB_SaveQuestion);                    
+                    qFactory.Save(q, new ControlHandler(addQuestionView.getAnswersListBox()), CB_SaveQuestion);                    
                 }
             }
             else
@@ -162,7 +164,7 @@ namespace Client.Controller
         }
 
         private void saveAnswers(Question q)
-        {
+        {           
             string rightAnswer = (string)addQuestionView.getRightAnswerComboBox().SelectedItem;
             int countPA = addQuestionView.getAnswersListBox().Items.Count;
             PredefinedAnswer pa;
@@ -185,7 +187,7 @@ namespace Client.Controller
                     pa.RightAnswer = false;
                 }
                 pa.Question = q;
-                paFactory.Save(pa, addQuestionView.getAnswersListBox(), CB_SaveAnswers);
+                paFactory.Save(pa, addQuestionView.getHandler(), CB_SaveAnswers);
             }
         }
 
@@ -354,7 +356,7 @@ namespace Client.Controller
 
         public IView GetView()
         {
-            throw new NotImplementedException();
+            return this.questionView;
         }
 
         #endregion

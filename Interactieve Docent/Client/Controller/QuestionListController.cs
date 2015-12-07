@@ -12,7 +12,7 @@ namespace Client.Controller
         private IQuestionListView questionListView;
         private QuestionListFactory factory = new QuestionListFactory();
         private QuestionController questionController;
-        
+
 
         public QuestionListController(IQuestionListView questionListView, QuestionController questionController)
         {
@@ -27,19 +27,19 @@ namespace Client.Controller
 
         public void saveList(string name)
         {
-            QuestionList ql = new QuestionList();
-            ql.Name = name;
+                QuestionList ql = new QuestionList();
+                ql.Name = name;
             factory.Save(ql, questionListView.getHandler(), processAdd);
-        }
+            }
 
 
         public void deleteList(int id)
         {
+
             
-            
-            QuestionList ql = new QuestionList();
-            ql.Id = id;
-            //Send ql to server for deleting
+                QuestionList ql = new QuestionList();
+                ql.Id = id;
+                //Send ql to server for deleting
             //factory.Delete(ql, this.questionListView.getListBoxQuestionLists(), processDelete);
             factory.Delete(ql, questionListView.getHandler(), processDelete);
         }
@@ -68,7 +68,7 @@ namespace Client.Controller
         //Requests all lists via from database
         private void loadLists()
         {
-            factory.FindAll(this.questionListView.getHandler(), this.fillList);
+            //factory.FindAll(this.questionListView.getListBoxQuestionLists(), this.fillList);
         }
 
         //Adding requested lists to listbox

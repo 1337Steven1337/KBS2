@@ -23,14 +23,15 @@ namespace Client.Controller
         {
             if(controller is QuestionController)
             {
-                //controller.getView().
+                ViewQuestion view = (ViewQuestion)controller.GetView();
+                view.AddQuestionClicked += View_AddQuestionClicked;
             }
         }
 
-        public void loadPanel()
+        private void View_AddQuestionClicked()
         {
-
-        }
-
+            ViewAddQuestion addQuestionView = new ViewAddQuestion();
+            //mainView.ShowThirdColumn();
+        }  
     }
 }
