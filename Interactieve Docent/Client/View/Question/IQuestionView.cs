@@ -6,10 +6,10 @@ using System;
 
 namespace Client.View.Question
 {
-    public interface IQuestionView : IView
+    public interface IQuestionView<T> : IListView<T> where T : AbstractModel, new()
     {
         void setController(QuestionController controller);
-        void SetTable<T>(T threeColTable);
+        void SetTable<C>(C threeColTable);
 
         //ListBox getListBoxQuestions();
         List<Model.Question> getQuestionList();

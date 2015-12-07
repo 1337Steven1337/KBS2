@@ -35,6 +35,9 @@ namespace Client
             ListQuestionListController listQuestionListController = new ListQuestionListController(viewQuestionList);
             maincontroller.AddController(listQuestionListController);
 
+            listQuestionListController.SelectedListChanged += questionController.LoadList;
+            listQuestionListController.Load();
+
             Application.Run(view);
         }
     }

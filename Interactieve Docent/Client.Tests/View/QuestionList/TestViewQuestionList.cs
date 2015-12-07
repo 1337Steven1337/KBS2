@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Client;
 using Client.Controller;
+using Client.Controller.QuestionList;
 using Client.Model;
 using Client.Service.Thread;
 using Client.View;
@@ -12,7 +13,7 @@ using Client.View.QuestionList;
 
 namespace Client.Tests.View.QuestionList
 {
-    public class TestViewQuestionList : IQuestionListView
+    public class TestViewQuestionList : IQuestionListView<Model.QuestionList>
     {
         private QuestionListController controller;
         public List<Model.QuestionList> questionlists = new List<Model.QuestionList>();
@@ -33,7 +34,7 @@ namespace Client.Tests.View.QuestionList
             return questionlists.Count;
         }
 
-        public IControlHandler getHandler()
+        public IControlHandler GetHandler()
         {
             return new TestControlHandler();
         }
@@ -76,6 +77,21 @@ namespace Client.Tests.View.QuestionList
         }
 
         public void AddToParent(IView parent)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void FillList(List<Model.QuestionList> list)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void setController(ListQuestionListController controller)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void SetController(IController controller)
         {
             throw new NotImplementedException();
         }

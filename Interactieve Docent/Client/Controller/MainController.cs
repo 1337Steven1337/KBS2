@@ -9,6 +9,8 @@ using Client.View.QuestionList;
 using Client.Controller.Question;
 using Client.View;
 using Client.Controller.QuestionList;
+using Client.Controller;
+using Client.Model;
 
 namespace Client.Controller
 {

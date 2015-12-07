@@ -29,8 +29,8 @@ namespace Client.Controller
         private PredefinedAnswerFactory paFactory = new PredefinedAnswerFactory();
         public BindingList<Model.Question> Questions = new BindingList<Model.Question>();
         private Dictionary<String, int> preFilledList = new Dictionary<string, int>();
-        public IQuestionView questionView { get; private set; }
-        private IAddQuestionView addQuestionView;
+        public IQuestionView<Model.Question> questionView { get; private set; }
+        private IAddQuestionView<Model.Question> addQuestionView;
         private MainController mainController;
         private TableLayoutPanel tableThreeColls;
         private int listId { get; set; }
@@ -38,7 +38,7 @@ namespace Client.Controller
         #endregion
 
         #region Constructor
-        public QuestionController(IQuestionView questionView)
+        public QuestionController(IQuestionView<Model.Question> questionView)
         {
             this.questionView = questionView;
             this.questionView.setController(this);
@@ -187,7 +187,7 @@ namespace Client.Controller
                     pa.RightAnswer = false;
                 }
                 pa.Question = q;
-                paFactory.Save(pa, addQuestionView.getHandler(), CB_SaveAnswers);
+                paFactory.Save(pa, addQuestionView.GetHandler(), CB_SaveAnswers);
             }
         }
 
@@ -360,6 +360,11 @@ namespace Client.Controller
         }
 
         public void SetView(IView view)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void SetBaseFactory(IFactory<Model.QuestionList> factory)
         {
             throw new NotImplementedException();
         }

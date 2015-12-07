@@ -1,11 +1,14 @@
-﻿using System.Windows.Forms;
+﻿using System;
+using System.Collections.Generic;
+using System.Windows.Forms;
 using Client.Controller;
+using Client.Model;
 using Client.Service.Thread;
 using Client.View.Main;
 
 namespace Client.View.Question
 {
-    public partial class ViewAddQuestion : Form, IAddQuestionView
+    public partial class ViewAddQuestion : Form, IAddQuestionView<Model.Question>
     {
         private QuestionController controller;
 
@@ -81,9 +84,19 @@ namespace Client.View.Question
             return rightAnswerComboBox;
         }
 
-        public IControlHandler getHandler()
+        public IControlHandler GetHandler()
         {
             return new ControlHandler(this.answersListBox);
+        }
+
+        public void SetController(IController controller)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void FillList(List<Model.Question> list)
+        {
+            throw new NotImplementedException();
         }
     }
 }

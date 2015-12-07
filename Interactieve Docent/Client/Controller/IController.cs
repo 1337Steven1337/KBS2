@@ -1,4 +1,6 @@
-﻿using Client.View;
+﻿using Client.Factory;
+using Client.Model;
+using Client.View;
 using System;
 using System.Collections.Generic;
 using System.Linq;

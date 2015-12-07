@@ -1,32 +1,72 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Client.View;
+﻿using Client.View;
 using Client.View.QuestionList;
+using Client.Factory;
+using System.Collections.Generic;
+using System.Net;
 
 namespace Client.Controller.QuestionList
 {
-    public class ListQuestionListController : IController
+    public class ListQuestionListController : AbstractController<Model.QuestionList>
     {
+        #region Delegates
+        public delegate void SelectedListChangedDelegate(Model.QuestionList question);
+        #endregion
 
-        private IQuestionListView view;
-        //private
+        #region Events
+        public event SelectedListChangedDelegate SelectedListChanged;
+        #endregion
 
+        #region Instances
+        private IQuestionListView<Model.QuestionList> View { get; set; }
+        private QuestionListFactory Factory = new QuestionListFactory();
+        #endregion
+
+        #region Constructors
         public ListQuestionListController(IView view) 
         {
             this.SetView(view);
+            view.SetController(this);
         }
-            
-        public IView GetView()
+        #endregion
+
+        #region Methods
+        public void Load()
         {
-            return this.view;
+            this.Factory.FindAll(this.View.GetHandler(), this.FillList);
         }
 
-        public void SetView(IView view)
+        public void SelectedIndexChanged(Model.QuestionList list)
         {
-            this.view = (IQuestionListView)view;
+            if (this.SelectedListChanged != null)
+            {
+                this.SelectedListChanged(list);
+            }
         }
+
+        private void FillList(List<Model.QuestionList> list, HttpStatusCode code)
+        {
+            if (code == HttpStatusCode.OK && list != null)
+            {
+                this.View.FillList(list);
+            }
+        }
+        #endregion
+
+        #region Overrides
+        public override IView GetView()
+        {
+            return this.View;
+        }
+
+        public override void SetView(IView view)
+        {
+            this.View = (IQuestionListView<Model.QuestionList>)view;
+        }
+
+        public override void SetBaseFactory(IFactory<Model.QuestionList> factory)
+        {
+            this.Factory.SetBaseFactory(factory);
+        }
+        #endregion
     }
 }

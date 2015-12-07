@@ -58,12 +58,17 @@ namespace Client.View.Main
             this.tableThreeColumn.PerformLayout();
         }
 
-        public IControlHandler getHandler()
+        public IControlHandler GetHandler()
         {
             throw new NotImplementedException();
         }
 
         public void AddToParent(IView parent)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void SetController(IController controller)
         {
             throw new NotImplementedException();
         }

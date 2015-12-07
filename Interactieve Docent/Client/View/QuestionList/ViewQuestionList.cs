@@ -2,30 +2,82 @@
 using Client.Controller;
 using System.Collections.Generic;
 using System.ComponentModel;
-using Client.Model;
 using System;
 using System.Linq;
 using Client.Service.Thread;
 using Client.View.Main;
+using Client.Controller.QuestionList;
 
 namespace Client.View.QuestionList
 {
-    public partial class  ViewQuestionList : Form, IQuestionListView
+    public partial class ViewQuestionList : Form, IQuestionListView<Model.QuestionList>
     {
+        #region Properties
         public BindingList<Model.QuestionList> QuestionLists = new BindingList<Model.QuestionList>();
-        private QuestionListController controller;
+        #endregion
+
+        #region Instances
+        private ListQuestionListController Controller { get; set; }
+        #endregion
+
+        #region Constructors
         public ViewQuestionList()
         {
             InitializeComponent();
-            //Set which data from the items are to access in the listbox
+
             listBoxQuestionLists.DisplayMember = "Name";
             listBoxQuestionLists.ValueMember = "Id";
+            listBoxQuestionLists.DataSource = this.QuestionLists;
 
-            btnAddQuestionList.Click += new System.EventHandler(newList);
+            //btnAddQuestionList.Click += BtnAddQuestionList_Click;
             btnDeleteQuestionList.Click += new System.EventHandler(deleteList);
+
             listBoxQuestionLists.SelectedIndexChanged += listBox_SelectedIndexChanged;
             listBoxQuestionLists.PreviewKeyDown += new PreviewKeyDownEventHandler(Delete_keyDown);
         }
+        #endregion
+
+        #region Event handlers
+        private void listBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            this.Controller.SelectedIndexChanged(this.getSelectedItem());
+        }
+        #endregion
+
+        #region Methods
+        public void AddToParent(IView parent)
+        {
+            ViewMain main = (ViewMain)parent;
+            main.AddTablePanel(this.mainTablePanel, 0);
+        }
+
+        public void FillList(List<Model.QuestionList> list)
+        {
+            this.QuestionLists.Clear();
+
+            foreach (Model.QuestionList questionList in list)
+            {
+                this.QuestionLists.Add(questionList);
+            }
+
+            this.Controller.SelectedIndexChanged(this.getSelectedItem());
+        }
+
+        public void SetController(IController controller)
+        {
+            this.Controller = (ListQuestionListController)controller;
+        }
+
+        public IControlHandler GetHandler()
+        {
+            return new ControlHandler(this.listBoxQuestionLists);
+        }
+
+        public Model.QuestionList getSelectedItem()
+        {
+            return (Model.QuestionList)this.listBoxQuestionLists.SelectedItem;
+        }
+        #endregion
 
         private void Delete_keyDown(object sender, PreviewKeyDownEventArgs e)
         {
@@ -33,11 +85,6 @@ namespace Client.View.QuestionList
             {
                 deleteList(sender, e);
             }
-        }
-
-        private void listBox_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            this.controller.IndexChanged();
         }
 
         private void deleteList(object sender, EventArgs e)
@@ -52,7 +99,7 @@ namespace Client.View.QuestionList
             if (dlg.valid)
             {
                 //Create instance ql of QuestionList with entered id as property
-                this.controller.deleteList((int)listBoxQuestionLists.SelectedValue);
+                //this.controller.deleteList((int)listBoxQuestionLists.SelectedValue);
             }
         }
 
@@ -68,15 +115,14 @@ namespace Client.View.QuestionList
             {
                 //Create instance ql of QuestionList with entered name as property
                 string name = dlg.text;
-                this.controller.saveList(name);
+                //this.controller.saveList(name);
             }
         }
 
-        public void setController(QuestionListController controller)
+        public void setController(ListQuestionListController controller)
         {
-            //Attach to controller
-            this.controller = controller;
-            listBoxQuestionLists.DataSource = this.QuestionLists;
+            throw new NotImplementedException();
+            //this.controller = controller;
         }
 
            
@@ -101,11 +147,6 @@ namespace Client.View.QuestionList
             return this.QuestionLists.ToList();
         }
 
-        public Model.QuestionList getSelectedItem()
-        {
-            return (Model.QuestionList)this.listBoxQuestionLists.SelectedItem;
-        }
-
         public void Add(Model.QuestionList ql)
         {
             this.QuestionLists.Add(ql);
@@ -126,11 +167,6 @@ namespace Client.View.QuestionList
             this.QuestionLists.RemoveAt(i);
         }
 
-        public IControlHandler getHandler()
-        {
-            return new ControlHandler(this.listBoxQuestionLists);
-        }
-
         public Model.QuestionList getById(int i)
         {
             foreach(Model.QuestionList q in QuestionLists)
@@ -141,12 +177,6 @@ namespace Client.View.QuestionList
                 }
             }
             return null;
-        }
-
-        public void AddToParent(IView parent)
-        {
-            ViewMain main = (ViewMain)parent;
-            main.AddTablePanel(this.mainTablePanel, 0);
         }
     }
 }

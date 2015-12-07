@@ -107,6 +107,7 @@
     <Compile Include="API\Models\Question.cs" />
     <Compile Include="API\Models\UserAnswer.cs" />
     <Compile Include="API\SignalR.cs" />
+    <Compile Include="Controller\AbstractController.cs" />
     <Compile Include="Controller\DiagramController.cs" />
     <Compile Include="Controller\IController.cs" />
     <Compile Include="Controller\MainController.cs" />
@@ -181,6 +182,7 @@
     <Compile Include="View\Dialogs\ViewSuccesDialog.Designer.cs">
       <DependentUpon>ViewSuccesDialog.cs</DependentUpon>
     </Compile>
+    <Compile Include="View\IListView.cs" />
     <Compile Include="View\IView.cs" />
     <Compile Include="View\Main\IViewMain.cs" />
     <Compile Include="View\Main\ViewMain.cs">

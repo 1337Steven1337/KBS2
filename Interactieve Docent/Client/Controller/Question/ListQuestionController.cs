@@ -1,30 +1,58 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Client.Factory;
 using Client.View;
 using Client.View.Question;
+using System.Collections.Generic;
+using System.Net;
 
 namespace Client.Controller.Question
 {
-    public class ListQuestionController : IController
+    public class ListQuestionController : AbstractController<Model.Question>
     {
-        private IQuestionView view;
+        #region Instances
+        private IQuestionView<Model.Question> View { get; set; }
+        private QuestionFactory Factory = new QuestionFactory();
+        public Model.QuestionList CurrentList { get; private set; }
+        #endregion
 
+        #region Constructors
         public ListQuestionController(IView view)
         {
             this.SetView(view);
+            this.View.SetController(this);
+        }
+        #endregion
+
+        #region Methods
+        private void FillList(List<Model.Question> questions, HttpStatusCode status)
+        {
+            if(status == HttpStatusCode.OK && questions != null)
+            {
+                this.View.FillList(questions.FindAll(x => x.List_Id == this.CurrentList.Id));
+            }
         }
 
-        public IView GetView()
+        public void LoadList(Model.QuestionList list)
         {
-            return this.view;
+            this.CurrentList = list;
+            this.Factory.FindAll(this.View.GetHandler(), this.FillList);
+        }
+        #endregion
+
+        #region Overrides
+        public override IView GetView()
+        {
+            return this.View;
         }
 
-        public void SetView(IView view)
+        public override void SetView(IView view)
         {
-            this.view = (IQuestionView)view;
+            this.View = (IQuestionView<Model.Question>)view;
         }
+
+        public override void SetBaseFactory(IFactory<Model.Question> baseFactory)
+        {
+            this.Factory.SetBaseFactory(baseFactory);
+        }
+        #endregion
     }
 }
