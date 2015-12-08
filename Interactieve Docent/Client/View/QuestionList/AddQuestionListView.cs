@@ -11,12 +11,12 @@ using System.Windows.Forms;
 namespace Client.View.QuestionList
 {
     //Popup which shows when trying to add a new list
-    public partial class ViewNewQuestionList : Form
+    public partial class AddQuestionListView : Form
     {
         public string text { private set; get; }
         public Boolean valid { set; get; }
 
-        public ViewNewQuestionList()
+        public AddQuestionListView()
         {
             //Always assume the user pressed 'New list' on accident
             valid = false;

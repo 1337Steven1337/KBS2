@@ -1,6 +1,6 @@
 ﻿namespace Client.View.QuestionList
 {
-    partial class ViewQuestionList
+    partial class ListQuestionListView
     {
         /// <summary>
         /// Required designer variable.

@@ -12,7 +12,7 @@ using System.Net;
 
 namespace Client.View.QuestionList
 {
-    public partial class ViewQuestionList : Form, IListView<Model.QuestionList>
+    public partial class ListQuestionListView : Form, IListView<Model.QuestionList>
     {
         #region Properties
         public BindingList<Model.QuestionList> QuestionLists = new BindingList<Model.QuestionList>();
@@ -23,7 +23,7 @@ namespace Client.View.QuestionList
         #endregion
 
         #region Constructors
-        public ViewQuestionList()
+        public ListQuestionListView()
         {
             InitializeComponent();
 
@@ -51,7 +51,7 @@ namespace Client.View.QuestionList
         #region Methods
         public void AddToParent(IView parent)
         {
-            ViewMain main = (ViewMain)parent;
+            MainView main = (MainView)parent;
             main.AddTablePanel(this.mainTablePanel, 0);
         }
 
@@ -93,7 +93,7 @@ namespace Client.View.QuestionList
         private void AddList(object sender, EventArgs e)
         {
             //Open dialog where user enters name for new list
-            ViewNewQuestionList dlg = new ViewNewQuestionList();
+            AddQuestionListView dlg = new AddQuestionListView();
             dlg.StartPosition = FormStartPosition.CenterParent;
             dlg.ShowDialog();
 
@@ -117,7 +117,7 @@ namespace Client.View.QuestionList
             else
             {
                 //Give user feedback of failure
-                Dialogs.ViewFailedDialog dlg = new Dialogs.ViewFailedDialog();
+                Dialogs.FailedDialogView dlg = new Dialogs.FailedDialogView();
                 dlg.getLabelFailed().Text = "Oeps! Er is iets misgegaan! Probeer het opnieuw!";
                 dlg.ShowDialog();
             }
@@ -128,7 +128,7 @@ namespace Client.View.QuestionList
         private void deleteList(object sender, EventArgs e)
         {
             //Show dialog for user to confirm Delete action
-            ViewDeleteQuestionList dlg = new ViewDeleteQuestionList();
+            DeleteQuestionListView dlg = new DeleteQuestionListView();
             dlg.StartPosition = FormStartPosition.CenterParent;
             dlg.setText(listBoxQuestionLists.SelectedItem.ToString());
             dlg.ShowDialog();
@@ -144,7 +144,7 @@ namespace Client.View.QuestionList
         private void newList(object sender, EventArgs e)
         {
             //Dialog with field to enter name for new list 
-            ViewNewQuestionList dlg = new ViewNewQuestionList();
+            AddQuestionListView dlg = new AddQuestionListView();
             dlg.StartPosition = FormStartPosition.CenterParent;
             dlg.ShowDialog();
 

@@ -30,7 +30,7 @@ namespace Client.Controller
         {
             if(controller is ListQuestionController)
             {
-                ViewQuestion view = (ViewQuestion)controller.GetView();
+                ListQuestionView view = (ListQuestionView)controller.GetView();
                 view.AddQuestionClicked += View_AddQuestionClicked;
                 view.AddToParent((IView)this.MainView);
 
@@ -38,14 +38,14 @@ namespace Client.Controller
             }
             else if(controller is ListQuestionListController)
             {
-                ViewQuestionList view = (ViewQuestionList)controller.GetView();
+                ListQuestionListView view = (ListQuestionListView)controller.GetView();
                 view.AddToParent((IView)this.MainView);
             }
         }
 
         private void View_AddQuestionClicked(Model.QuestionList list)
         {
-            ViewAddQuestion addQuestionView = new ViewAddQuestion();
+            AddQuestionView addQuestionView = new AddQuestionView();
             AddQuestionController controller = new AddQuestionController();
             controller.SetView(addQuestionView);
             controller.SetQuestionList(list);
@@ -58,7 +58,7 @@ namespace Client.Controller
 
         private void Controller_RemoveAddQuestionPanel()
         {
-            ViewMain view = (ViewMain)this.MainView;
+            MainView view = (MainView)this.MainView;
             view.RemoveAddQuestionPanel();
         }
 

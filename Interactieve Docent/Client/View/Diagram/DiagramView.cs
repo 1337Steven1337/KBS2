@@ -8,12 +8,12 @@ using System;
 
 namespace Client.View.Diagram
 {
-    public partial class ViewDiagram : Form, IDiagramView
+    public partial class DiagramView : Form, IDiagramView
     {
         private DiagramController controller;
         private Panel panel;
 
-        public ViewDiagram()
+        public DiagramView()
         {
             InitializeComponent();
         }

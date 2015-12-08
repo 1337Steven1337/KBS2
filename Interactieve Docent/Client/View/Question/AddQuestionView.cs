@@ -13,12 +13,12 @@ using System.Linq;
 
 namespace Client.View.Question
 {
-    public partial class ViewAddQuestion : Form, IAddView<Model.Question>
+    public partial class AddQuestionView : Form, IAddView<Model.Question>
     {
         private AddQuestionController Controller;
         private BindingList<Model.PredefinedAnswer> AnswersList = new BindingList<Model.PredefinedAnswer>();
 
-        public ViewAddQuestion()
+        public AddQuestionView()
         {
             InitializeComponent();
 
@@ -53,7 +53,7 @@ namespace Client.View.Question
             }                 
             else
             {
-                ViewFailedDialog failed = new ViewFailedDialog();
+                FailedDialogView failed = new FailedDialogView();
                 failed.getLabelFailed().Text = "Antwoordveld niet ingevuld of het antwoord bestaat al!";
                 failed.ShowDialog();
             }
@@ -80,7 +80,7 @@ namespace Client.View.Question
             }
             else
             {
-                ViewFailedDialog failed = new ViewFailedDialog();
+                FailedDialogView failed = new FailedDialogView();
                 failed.getLabelFailed().Text = "U heeft nog niet alle velden ingevuld!";
                 failed.ShowDialog();
             }
@@ -107,7 +107,7 @@ namespace Client.View.Question
 
         public void AddToParent(IView parent)
         {
-            ViewMain main = (ViewMain)parent;
+            MainView main = (MainView)parent;
 
             main.AddTablePanel(this.mainTablePanel,2);
         }
@@ -129,14 +129,14 @@ namespace Client.View.Question
 
         public void ShowSaveFailed()
         {
-            ViewFailedDialog failed = new ViewFailedDialog();
+            FailedDialogView failed = new FailedDialogView();
             failed.getLabelFailed().Text = "Het opslaan is mislukt! Probeer het opnieuw.";
             failed.ShowDialog();
         }
 
         public void ShowSaveSucceed()
         {
-            ViewSuccesDialog succes = new ViewSuccesDialog();
+            SuccesDialogView succes = new SuccesDialogView();
             succes.getLabelSucces().Text = "De vraag is succesvol opgeslagen!";
             succes.ShowDialog();
         }

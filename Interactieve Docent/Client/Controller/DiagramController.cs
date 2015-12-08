@@ -17,7 +17,7 @@ namespace Client.Controller
         public List<int> Votes;
 
         private IDiagramView View;
-        private ViewDiagram viewDiagram;
+        private DiagramView viewDiagram;
 
         private Model.Question Question;
 

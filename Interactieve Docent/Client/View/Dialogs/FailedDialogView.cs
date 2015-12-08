@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace Client.View.Dialogs
 {
-    public partial class ViewFailedDialog : Form
+    public partial class FailedDialogView : Form
     {
-        public ViewFailedDialog()
+        public FailedDialogView()
         {
             InitializeComponent();
         }

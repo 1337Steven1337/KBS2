@@ -16,7 +16,7 @@ namespace Client.Tests.View.QuestionList
 {
     public class TestViewQuestionList : IListView<Model.QuestionList>
     {
-        private QuestionListController controller;
+        private ListQuestionListController controller;
         public List<Model.QuestionList> questionlists = new List<Model.QuestionList>();
 
         public TestViewQuestionList()
@@ -60,7 +60,7 @@ namespace Client.Tests.View.QuestionList
             questionlists.RemoveAt(i);
         }
 
-        public void setController(QuestionListController controller)
+        public void setController(ListQuestionListController controller)
         {
             this.controller = controller;
         }
