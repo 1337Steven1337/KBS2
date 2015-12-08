@@ -13,7 +13,7 @@ using Client.View.QuestionList;
 
 namespace Client.Tests.View.QuestionList
 {
-    public class TestViewQuestionList : IQuestionListView<Model.QuestionList>
+    public class TestViewQuestionList : IListView<Model.QuestionList>
     {
         private QuestionListController controller;
         public List<Model.QuestionList> questionlists = new List<Model.QuestionList>();
@@ -92,6 +92,11 @@ namespace Client.Tests.View.QuestionList
         }
 
         public void SetController(IController controller)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void AddItem(Model.QuestionList item)
         {
             throw new NotImplementedException();
         }
