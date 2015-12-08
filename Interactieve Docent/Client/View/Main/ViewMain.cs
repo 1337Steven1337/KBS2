@@ -12,18 +12,13 @@ using Client.Service.Thread;
 
 namespace Client.View.Main
 {
-    public partial class ViewMain : Form, IViewMain
+    public partial class ViewMain : Form, IView
     {
         private MainController controller;
 
         public ViewMain()
         {
             InitializeComponent();
-        }
-
-        public void setController(MainController controller)
-        {
-            this.controller = controller;
         }
 
         public void AddTablePanel(TableLayoutPanel panel, int column)
@@ -70,7 +65,7 @@ namespace Client.View.Main
 
         public void SetController(IController controller)
         {
-            throw new NotImplementedException();
+            this.controller = (MainController)controller;
         }
     }
 }

@@ -23,8 +23,7 @@ namespace Client.Factory
         #region Constructors
         public AbstractFactory(IFactory<T> baseFactory)
         {
-            this.baseFactory = baseFactory;
-            this.baseFactory.SetResource(this.Resource);
+            this.SetBaseFactory(baseFactory);
             this.SignalRClient = SignalRClient.GetInstance();
         }
         #endregion
@@ -311,6 +310,7 @@ namespace Client.Factory
         /// <param name="callback">Callback which is called when the request is completed</param>
         public void Save(T instance, IControlHandler control, Action<T> callback)
         {
+            
             this.SaveAsync(instance, (o, s, r) =>
             {
                 control.Invoke(callback, o);
@@ -421,6 +421,12 @@ namespace Client.Factory
         public void SetBaseFactory(IFactory<T> factory)
         {
             this.baseFactory = factory;
+            this.baseFactory.SetResource(this.Resource);
+        }
+
+        public IFactory<T> GetBaseFactory()
+        {
+            return this.baseFactory;
         }
         #endregion
     }

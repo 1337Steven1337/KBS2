@@ -8,6 +8,8 @@ using Client.Model;
 using Client.View;
 using Client.View.Question;
 using System.Net;
+using RestSharp;
+using Client.View.Dialogs;
 
 namespace Client.Controller.Question
 {
@@ -20,6 +22,8 @@ namespace Client.Controller.Question
         private IAddView<Model.Question> View;
         private QuestionFactory Factory = new QuestionFactory();
         private Model.QuestionList Parent { get; set; }
+        private Dictionary<string, int> AnswersSaved = new Dictionary<string, int>();
+        private Model.Question CurrentQuestion;
 
         public override IView GetView()
         {
@@ -35,7 +39,6 @@ namespace Client.Controller.Question
                     QuestionAdded(question);
                 }
             }
-
             this.View.ShowSaveResult(question, status);
         }
         
@@ -56,6 +59,68 @@ namespace Client.Controller.Question
 
             Model.Question question = new Model.Question(data);
             Factory.Save(question, this.View.GetHandler(), this.CallbackSaveQuestion);
+        }
+
+        public void SavePredefinedAnswers(List<Model.PredefinedAnswer> answers, Model.Question question)
+        {
+            this.SavePredefinedAnswers(answers, question, new BaseFactory<PredefinedAnswer>());
+        }
+
+        public void SavePredefinedAnswers(List<Model.PredefinedAnswer> answers, Model.Question question, IFactory<Model.PredefinedAnswer> baseFactory)
+        {
+            this.AnswersSaved.Clear();
+            this.CurrentQuestion = question;
+
+            
+            foreach (Model.PredefinedAnswer answer in answers)
+            {
+                this.AnswersSaved.Add(answer.Text, 0);
+            }
+
+            PredefinedAnswerFactory factory = new PredefinedAnswerFactory();
+            factory.SetBaseFactory(baseFactory);
+
+            foreach (Model.PredefinedAnswer answer in answers)
+            {
+                answer.Question_Id = question.Id;
+
+                if (answer.Text == this.View.GetSelectedAnswer().Text)
+                {
+                    answer.RightAnswer = true;
+                }
+                else
+                {
+                    answer.RightAnswer = false;
+                }
+
+                factory.Save(answer, this.View.GetHandler(), CallbackSavePredefinedAnswers);
+            }
+        }
+
+        private void CallbackSavePredefinedAnswers(PredefinedAnswer predefinedAnswer, HttpStatusCode status)
+        {
+            if (status == HttpStatusCode.Created && predefinedAnswer != null)
+            {
+                AnswersSaved[predefinedAnswer.Text] = 1;
+            }
+            else
+            {
+                AnswersSaved[predefinedAnswer.Text] = 2;
+            }
+
+            if (!AnswersSaved.ContainsValue(0))
+            {
+                if (AnswersSaved.ContainsValue(2))
+                {
+                    this.Factory.DeleteAsync(this.CurrentQuestion);
+                    this.View.ShowSaveFailed();
+                }
+                else
+                {
+                    //Save Answers succeed
+                    this.View.ShowSaveSucceed();
+                }
+            }
         }
 
         public void SetQuestionList(Model.QuestionList list)

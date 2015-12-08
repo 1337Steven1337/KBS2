@@ -8,18 +8,55 @@ using Client.View.Main;
 using Client.Controller.Question;
 using System.Net;
 using Client.View.Dialogs;
+using System.ComponentModel;
+using System.Linq;
 
 namespace Client.View.Question
 {
     public partial class ViewAddQuestion : Form, IAddView<Model.Question>
     {
         private AddQuestionController Controller;
+        private BindingList<Model.PredefinedAnswer> AnswersList = new BindingList<Model.PredefinedAnswer>();
 
         public ViewAddQuestion()
         {
             InitializeComponent();
 
             btnSaveQuestion.Click += BtnSaveQuestion_Click;
+            btnAddAnswer.Click += BtnAddAnswer_Click;
+            btnDeleteAnswer.Click += BtnDeleteAnswer_Click;
+            btnQuit.Click += BtnQuit_Click;
+
+            answersListBox.DisplayMember = "Text";
+            rightAnswerComboBox.DisplayMember = "Text";
+
+            answersListBox.DataSource = AnswersList;            
+            rightAnswerComboBox.DataSource = AnswersList;
+        }
+
+        private void BtnQuit_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void BtnDeleteAnswer_Click(object sender, EventArgs e)
+        {
+            AnswersList.Remove(GetSelectedAnswer());
+        }
+
+        private void BtnAddAnswer_Click(object sender, EventArgs e)
+        {
+            if (answerField.Text != "" && AnswersList.ToList().Find(x => x.Text == answerField.Text) == null)
+            {
+                Model.PredefinedAnswer pa = new Model.PredefinedAnswer() { Text = answerField.Text };
+                AnswersList.Add(pa);
+            }                 
+            else
+            {
+                ViewFailedDialog failed = new ViewFailedDialog();
+                failed.getLabelFailed().Text = "Antwoordveld niet ingevuld of het antwoord bestaat al!";
+                failed.ShowDialog();
+            }
         }
 
         private void BtnSaveQuestion_Click(object sender, EventArgs e)
@@ -85,15 +122,34 @@ namespace Client.View.Question
             this.Controller = (AddQuestionController)controller;
         }
 
+        public Model.PredefinedAnswer GetSelectedAnswer()
+        {
+            return (Model.PredefinedAnswer)this.answersListBox.SelectedItem;
+        }
+
+        public void ShowSaveFailed()
+        {
+            ViewFailedDialog failed = new ViewFailedDialog();
+            failed.getLabelFailed().Text = "Het opslaan is mislukt! Probeer het opnieuw.";
+            failed.ShowDialog();
+        }
+
+        public void ShowSaveSucceed()
+        {
+            ViewSuccesDialog succes = new ViewSuccesDialog();
+            succes.getLabelSucces().Text = "De vraag is succesvol opgeslagen!";
+            succes.ShowDialog();
+        }
+
         public void ShowSaveResult(Model.Question instance, HttpStatusCode status)
         {
             if(status == HttpStatusCode.Created && instance != null)
             {
-                MessageBox.Show("Created");
+                this.Controller.SavePredefinedAnswers(AnswersList.ToList(), instance);
             }
             else
             {
-                MessageBox.Show("Failed");
+                this.ShowSaveFailed();
             }
         }
 

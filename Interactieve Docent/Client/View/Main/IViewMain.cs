@@ -9,7 +9,6 @@ namespace Client.View.Main
 {
     public interface IViewMain : IView
     {
-        void setController(MainController controller);
 
     }
 }

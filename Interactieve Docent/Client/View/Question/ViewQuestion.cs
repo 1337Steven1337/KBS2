@@ -10,7 +10,7 @@ using Client.Model;
 
 namespace Client.View.Question
 {
-    public partial class ViewQuestion : Form, IQuestionView<Model.Question>
+    public partial class ViewQuestion : Form, IListView<Model.Question>
     {
         #region Delegates
         public delegate void AddQuestionClickedDelegate(Model.QuestionList list);
