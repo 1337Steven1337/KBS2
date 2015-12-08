@@ -69,6 +69,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TestControlHandler.cs" />
     <Compile Include="View\QuestionList\TestLoadQuestionLists.cs" />
+    <Compile Include="View\QuestionList\TestMakeQuestionList.cs" />
     <Compile Include="View\QuestionList\TestViewDeleteQuestionList.cs" />
     <Compile Include="View\QuestionList\TestViewQuestionList.cs" />
     <Compile Include="View\QuestionList\ViewDeleteQuestionList.cs" />
