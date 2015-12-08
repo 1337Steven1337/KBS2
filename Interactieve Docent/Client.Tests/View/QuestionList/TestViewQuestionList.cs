@@ -10,6 +10,7 @@ using Client.Model;
 using Client.Service.Thread;
 using Client.View;
 using Client.View.QuestionList;
+using System.Net;
 
 namespace Client.Tests.View.QuestionList
 {
@@ -103,6 +104,11 @@ namespace Client.Tests.View.QuestionList
         }
 
         public void SetController(IController controller)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void ProcessAdd(Model.QuestionList ql, HttpStatusCode status)
         {
             throw new NotImplementedException();
         }
