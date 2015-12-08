@@ -17,8 +17,9 @@ namespace Client.Controller
         public List<int> Votes;
 
         private IDiagramView View;
+        private ViewDiagram viewDiagram;
 
-        private Question Question;
+        private Model.Question Question;
 
         private QuestionFactory Factory = new QuestionFactory();
         private UserAnswerFactory UserAnswerFactory = new UserAnswerFactory();
@@ -52,16 +53,16 @@ namespace Client.Controller
             this.Question.UserAnswers.Add(answer);
 
             //update the diagram 
-            this.View.getPanel().Invoke((Action)delegate () { Redraw(); });
+            this.viewDiagram.getPanel().Invoke((Action)delegate () { Redraw(); });
         }
         #endregion
 
         #region Events
-        private void QuestionController_selectedIndexChanged(Question question)
+        private void QuestionController_selectedIndexChanged(Model.Question question)
         {
             if (question != null)
             {
-                Factory.FindById(question.Id, new ControlHandler(this.View.getPanel()), this.SetQuestion);
+                Factory.FindById(question.Id, new ControlHandler(this.viewDiagram.getPanel()), this.SetQuestion);
             }
         }
         
@@ -88,11 +89,11 @@ namespace Client.Controller
 
         #region Methodes
         //if another question is selected
-        public void SetQuestion(Question q)
+        public void SetQuestion(Model.Question q)
         {
             this.Question = q;
             this.SignalRClient.Subscribe(q.List_Id);
-            this.View.getPanel().Invoke((Action)delegate () { Redraw(); });
+            this.viewDiagram.getPanel().Invoke((Action)delegate () { Redraw(); });
         }
 
         private void Redraw()

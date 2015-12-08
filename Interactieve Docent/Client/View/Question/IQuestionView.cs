@@ -6,13 +6,13 @@ using System;
 
 namespace Client.View.Question
 {
-    public interface IQuestionView : IView
+    public interface IQuestionView<T> : IListView<T> where T : AbstractModel, new()
     {
         void setController(QuestionController controller);
-        ListBox getListBoxQuestions();
-        Button getBtnAddQuestion();
-        Button getBtnDeleteQuestion();
-        Button getBtnShowResults();
+        void SetTable<C>(C threeColTable);
+
+        //ListBox getListBoxQuestions();
+        List<Model.Question> getQuestionList();
         TableLayoutPanel getPanel();
 
     }

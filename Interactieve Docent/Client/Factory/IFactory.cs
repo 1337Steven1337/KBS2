@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Client.Factory
 {
-    public interface IFactory<T> where T : AbstractModel, new()
+    public interface IFactory<T> where T : AbstractModel
     {
         void SetResource(string resource);
         void DeleteAsync(T instance, Action<T, HttpStatusCode, IRestResponse> callback);

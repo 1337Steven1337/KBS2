@@ -1,4 +1,5 @@
-﻿using Client.Service.Thread;
+﻿using Client.Controller;
+using Client.Service.Thread;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,6 +10,8 @@ namespace Client.View
 {
     public interface IView
     {
-        IControlHandler getHandler();
+        IControlHandler GetHandler();
+        void AddToParent(IView parent);
+        void SetController(IController controller);
     }
 }

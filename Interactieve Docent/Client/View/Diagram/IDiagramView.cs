@@ -9,6 +9,7 @@ namespace Client.View.Diagram
         void setController(DiagramController controller);
         void Make(List<int> values, List<string> answerNames, string question);
         void Show();
-        Panel getPanel();
+        void setPanel<T>(Panel panel);
+        //Panel getPanel();
     }
 }

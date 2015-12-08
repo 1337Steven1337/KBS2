@@ -10,25 +10,14 @@ using System.Collections.Generic;
 using System.Net;
 using RestSharp;
 using Client.Service.Thread;
+using Client.View;
 
 namespace Client.Controller
 {
-    public class PrefilledList
-    {
-        private String key { get; set; }
-        private int value { get; set; }
-
-        public PrefilledList(String key, int value)
-        {
-            this.key = key;
-            this.value = value;
-        }
-    }
-
-    public class QuestionController
+    public class QuestionController : IController
     {
         #region Delegates
-        public delegate void SelectedIndexChanged(Question message);
+        public delegate void SelectedIndexChanged(Model.Question message);
         #endregion
 
         #region Declare Events
@@ -38,42 +27,44 @@ namespace Client.Controller
         #region Properties
         private QuestionFactory qFactory = new QuestionFactory();
         private PredefinedAnswerFactory paFactory = new PredefinedAnswerFactory();
-        public BindingList<Question> Questions = new BindingList<Question>();
+        public BindingList<Model.Question> Questions = new BindingList<Model.Question>();
         private Dictionary<String, int> preFilledList = new Dictionary<string, int>();
-        private IQuestionView questionView;
-        private IAddQuestionView addQuestionView;
+        public IQuestionView<Model.Question> questionView { get; private set; }
+        private IAddQuestionView<Model.Question> addQuestionView;
+        private MainController mainController;
         private TableLayoutPanel tableThreeColls;
         private int listId { get; set; }
 
         #endregion
 
         #region Constructor
-        public QuestionController(IQuestionView questionView)
+        public QuestionController(IQuestionView<Model.Question> questionView)
         {
             this.questionView = questionView;
             this.questionView.setController(this);
-
-            this.questionView.getBtnAddQuestion().Click += LoadAddQuestionHandler;
-            this.questionView.getBtnShowResults().Click += ShowResultsHandler;
-            this.questionView.getBtnDeleteQuestion().Click += new System.EventHandler(deleteQuestion);
-            this.questionView.getListBoxQuestions().SelectedIndexChanged += new System.EventHandler(ListBoxQuestion_SelectedIndexChanged);
         }
         #endregion
 
         #region Events
-        private void ListBoxQuestion_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if (this.selectedIndexChanged != null)
-            {
-                this.selectedIndexChanged((Question)this.questionView.getListBoxQuestions().SelectedItem);
-            }
-        }
         #endregion
 
         #region Methodes
+        public void setMainController(MainController main)
+        {
+            this.mainController = main;
+        }
+
+        public void ListBoxQuestion_SelectedIndexChanged(object question)
+        {
+            if (this.selectedIndexChanged != null)
+            {
+                this.selectedIndexChanged((Model.Question)question);
+            }
+        }
+
         public void enableBtnGetAddQuestionPanel()
         {
-            questionView.getBtnAddQuestion().Enabled = true;
+            //questionView.getBtnAddQuestion().Enabled = true;
         }
 
         public TableLayoutPanel getAddQuestionPanel()
@@ -81,11 +72,6 @@ namespace Client.Controller
             return addQuestionView.getPanel();
         }
 
-        public void setTable(TableLayoutPanel tableThreeColls)
-        {
-            this.tableThreeColls = tableThreeColls;
-        }
-    
         public void clearAddQuestion()
         {
             addQuestionView.getQuestionField().ResetText();
@@ -95,9 +81,9 @@ namespace Client.Controller
             addQuestionView.getRightAnswerComboBox().Items.Clear();
         }
 
-        private void LoadAddQuestionHandler(object sender, System.EventArgs e)
+        public void loadAddQuestion()
         {
-            addQuestionView = new ViewAddQuestion();
+            //addQuestionView = new ViewAddQuestion();
             addQuestionView.setController(this);
 
             addQuestionView.getBtnSaveQuestion().Click += saveQuestion;
@@ -132,7 +118,7 @@ namespace Client.Controller
         {
             if (addQuestionView.getQuestionField().Text != "" && (int)addQuestionView.getTimeField().Value != 0 && addQuestionView.getPointsField().Value != 0 && addQuestionView.getRightAnswerComboBox().SelectedItem != null)
             {
-                //Show dialog for user to confirm Delete action
+                //Show dialog for user to confirm action
                 DialogResult dr = new DialogResult();
                 ViewConfirmDialog confirm = new ViewConfirmDialog();
                 confirm.getLabelConfirm().Text = "Weet u zeker dat u de vraag wilt opslaan?";
@@ -140,7 +126,7 @@ namespace Client.Controller
 
                 if(dr == DialogResult.Yes)
                 {
-                    Question q = new Question();
+                    Model.Question q = new Model.Question();
                     q.Text = addQuestionView.getQuestionField().Text;
                     q.Time = (int)addQuestionView.getTimeField().Value;
                     q.Points = (int)addQuestionView.getPointsField().Value;
@@ -159,7 +145,7 @@ namespace Client.Controller
         }
 
         //Callback function SaveQuestion
-        private void CB_SaveQuestion(Question question, HttpStatusCode status, IRestResponse res)
+        private void CB_SaveQuestion(Model.Question question, HttpStatusCode status, IRestResponse res)
         {
             if (status == HttpStatusCode.Created)
             {
@@ -177,11 +163,12 @@ namespace Client.Controller
             }
         }
 
-        private void saveAnswers(Question q)
+        private void saveAnswers(Model.Question q)
         {           
             string rightAnswer = (string)addQuestionView.getRightAnswerComboBox().SelectedItem;
             int countPA = addQuestionView.getAnswersListBox().Items.Count;
             PredefinedAnswer pa;
+            preFilledList.Clear();
 
             foreach (String answer in addQuestionView.getAnswersListBox().Items)
             {
@@ -200,7 +187,7 @@ namespace Client.Controller
                     pa.RightAnswer = false;
                 }
                 pa.Question = q;
-                paFactory.Save(pa, addQuestionView.getHandler(), CB_SaveAnswers);
+                paFactory.Save(pa, addQuestionView.GetHandler(), CB_SaveAnswers);
             }
         }
 
@@ -314,40 +301,40 @@ namespace Client.Controller
             }
         }
 
-        public void deleteQuestion(object sender, EventArgs e)
+        public void deleteQuestion()
         {
             ViewDeleteQuestion dlg = new ViewDeleteQuestion();
             dlg.StartPosition = FormStartPosition.CenterParent;
-            dlg.setText(questionView.getListBoxQuestions().SelectedItem.ToString());
+            //dlg.setText(questionView.getListBoxQuestions().SelectedItem.ToString());
             dlg.ShowDialog();
 
             if (dlg.valid)
             {
-                int id = (int)questionView.getListBoxQuestions().SelectedValue;
-                Question q = new Question();
-                q.Id = id;
-                qFactory.Delete(q, new ControlHandler(this.questionView.getListBoxQuestions()), processDelete);
+                //int id = (int)questionView.getListBoxQuestions().SelectedValue;
+                //Question q = new Question();
+                //q.Id = id;
+                //qFactory.Delete(q, this.questionView.getListBoxQuestions(), processDelete);
             }
         }
 
-        private void ShowResultsHandler(object sender, EventArgs e)
+        public void showResults()
         {
             ViewDiagram view = new ViewDiagram();
             DiagramController controller = new DiagramController(view, this);
         }
 
-        public void fillList(List<Question> list)
+        public void fillList(List<Model.Question> list)
         {
             this.Questions.Clear();
-            List<Question> filtered = list.FindAll(x => x.List_Id == this.listId);
+            List<Model.Question> filtered = list.FindAll(x => x.List_Id == this.listId);
 
-            foreach (Question q in filtered)
+            foreach (Model.Question q in filtered)
             {
                 this.Questions.Add(q);
             }
         }
 
-        public void processDelete(Question q)
+        public void processDelete(Model.Question q)
         {
             int i;
             for (i = 0; i < this.Questions.Count; i++)
@@ -364,7 +351,22 @@ namespace Client.Controller
         {
             this.listId = listId;
             //questionView.getCustomPanel().title.Text = "Vragen uit lijst: " + listName;
-            qFactory.FindAll(new ControlHandler(questionView.getListBoxQuestions()), this.fillList);
+            //qFactory.FindAll(questionView.getListBoxQuestions(), this.fillList);
+        }
+
+        public IView GetView()
+        {
+            return this.questionView;
+        }
+
+        public void SetView(IView view)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void SetBaseFactory(IFactory<Model.QuestionList> factory)
+        {
+            throw new NotImplementedException();
         }
 
         #endregion

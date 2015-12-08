@@ -1,19 +1,19 @@
-﻿using Client.API.Models;
+﻿using Client.API;
+using Client.API.Models;
+using Client.Factory;
+using Client.Service.SignalR;
+using Microsoft.AspNet.SignalR.Client;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using Client.API;
-using Microsoft.AspNet.SignalR.Client;
 using ConnectionState = Microsoft.AspNet.SignalR.Client.ConnectionState;
-using System.Diagnostics;
-using Client.Service.SignalR;
-using Client.Factory;
 
 namespace Client.Student
 {
@@ -47,7 +47,7 @@ namespace Client.Student
 
         }
 
-       public ProgressBar getProgressBar()
+        public ProgressBar getProgressBar()
         {
             return this.questionTimeProgressBar;
         }
@@ -80,6 +80,7 @@ namespace Client.Student
                 busy = false;
                 questionTimer.Tick -= Question_Timer;
                 questionTimer.Stop();
+
                 if (this.questionList.Questions.Count - 1 > controller.getCurrentQuestionIndex())
                 {
                     goToNextQuestion();
@@ -107,12 +108,16 @@ namespace Client.Student
             if (this.questionList.Questions.Count - 1 >= controller.getCurrentQuestionIndex())
             {
                 busy = true;
+
                 currentQuestion = this.questionList.Questions[controller.getCurrentQuestionIndex()];
-                questionTimeProgressBar.Maximum = currentQuestion.Time * 1000;
-                questionTimeProgressBar.Value = currentQuestion.Time * 1000;
-                questionTimer.Interval = 100;
-                questionTimer.Tick += Question_Timer;
-                questionTimer.Start();
+                if (currentQuestion.Time != null)
+                {
+                    questionTimeProgressBar.Maximum = currentQuestion.Time * 1000;
+                    questionTimeProgressBar.Value = currentQuestion.Time * 1000;
+                    questionTimer.Interval = 100;
+                    questionTimer.Tick += Question_Timer;
+                    questionTimer.Start();
+                }
                 questionLabel.Text = currentQuestion.Text;
                 this.view.adjustSizeOfButtons(currentQuestion);
             }

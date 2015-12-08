@@ -107,10 +107,16 @@
     <Compile Include="API\Models\Question.cs" />
     <Compile Include="API\Models\UserAnswer.cs" />
     <Compile Include="API\SignalR.cs" />
+    <Compile Include="Controller\AbstractController.cs" />
     <Compile Include="Controller\DiagramController.cs" />
+    <Compile Include="Controller\IController.cs" />
+    <Compile Include="Controller\MainController.cs" />
     <Compile Include="Controller\PredefinedAnswerController.cs" />
     <Compile Include="Controller\QuestionController.cs" />
     <Compile Include="Controller\QuestionListController.cs" />
+    <Compile Include="Controller\QuestionList\ListQuestionListController.cs" />
+    <Compile Include="Controller\Question\AddQuestionController.cs" />
+    <Compile Include="Controller\Question\ListQuestionController.cs" />
     <Compile Include="Controller\StudentFormController.cs" />
     <Compile Include="Controller\UserAnswerController.cs" />
     <Compile Include="Controller\TabsController.cs" />
@@ -176,7 +182,16 @@
     <Compile Include="View\Dialogs\ViewSuccesDialog.Designer.cs">
       <DependentUpon>ViewSuccesDialog.cs</DependentUpon>
     </Compile>
+    <Compile Include="View\IAddView.cs" />
+    <Compile Include="View\IListView.cs" />
     <Compile Include="View\IView.cs" />
+    <Compile Include="View\Main\IViewMain.cs" />
+    <Compile Include="View\Main\ViewMain.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\Main\ViewMain.Designer.cs">
+      <DependentUpon>ViewMain.cs</DependentUpon>
+    </Compile>
     <Compile Include="View\PredefinedAnswer\IPredefinedAnswerView.cs" />
     <Compile Include="View\PredefinedAnswer\ViewPredefinedAnswer.cs">
       <SubType>Form</SubType>
@@ -270,6 +285,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="View\Dialogs\ViewSuccesDialog.resx">
       <DependentUpon>ViewSuccesDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\Main\ViewMain.resx">
+      <DependentUpon>ViewMain.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="View\QuestionList\ViewDeleteQuestionList.resx">
       <DependentUpon>ViewDeleteQuestionList.cs</DependentUpon>
