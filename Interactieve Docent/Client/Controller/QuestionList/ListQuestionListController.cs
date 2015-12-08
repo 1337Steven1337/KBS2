@@ -3,6 +3,9 @@ using Client.View.QuestionList;
 using Client.Factory;
 using System.Collections.Generic;
 using System.Net;
+using Client.Model;
+using RestSharp;
+using System;
 
 namespace Client.Controller.QuestionList
 {
@@ -67,6 +70,14 @@ namespace Client.Controller.QuestionList
         {
             this.Factory.SetBaseFactory(factory);
         }
+
+        public void SaveQuestionList(Dictionary<string, object> data)
+        {
+            Model.QuestionList list = new Model.QuestionList(data);
+            //this.Factory.Save(list, this.View.GetHandler(), View.ProcessAdd);
+        }
+
+        
         #endregion
     }
 }

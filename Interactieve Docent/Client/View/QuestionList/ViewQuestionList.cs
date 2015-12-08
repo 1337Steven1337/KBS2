@@ -8,6 +8,7 @@ using Client.Service.Thread;
 using Client.View.Main;
 using Client.Controller.QuestionList;
 using Client.Model;
+using System.Net;
 
 namespace Client.View.QuestionList
 {
@@ -30,12 +31,14 @@ namespace Client.View.QuestionList
             listBoxQuestionLists.ValueMember = "Id";
             listBoxQuestionLists.DataSource = this.QuestionLists;
 
-            //btnAddQuestionList.Click += BtnAddQuestionList_Click;
+            btnAddQuestionList.Click += new System.EventHandler(AddList);
             btnDeleteQuestionList.Click += new System.EventHandler(deleteList);
 
             listBoxQuestionLists.SelectedIndexChanged += listBox_SelectedIndexChanged;
             listBoxQuestionLists.PreviewKeyDown += new PreviewKeyDownEventHandler(Delete_keyDown);
         }
+
+        
         #endregion
 
         #region Event handlers
@@ -86,6 +89,41 @@ namespace Client.View.QuestionList
             {
                 deleteList(sender, e);
             }
+        }
+
+        private void AddList(object sender, EventArgs e)
+        {
+            //Open dialog where user enters name for new list
+            ViewNewQuestionList dlg = new ViewNewQuestionList();
+            dlg.StartPosition = FormStartPosition.CenterParent;
+            dlg.ShowDialog();
+
+            //Check if name is entered correctly and user pressed Ok-button
+            if (dlg.valid)
+            {
+                Dictionary<string, object> data = new Dictionary<string, object>();
+                data["Name"] = dlg.text;
+                Controller.SaveQuestionList(data);
+            }
+        }
+
+        public void ProcessAdd(Model.QuestionList ql, HttpStatusCode status)
+        {
+            //Check if added to database
+            if (status == HttpStatusCode.Created)
+            {
+                //Visually adding the new list to the listbox
+                QuestionLists.Add(ql);
+            }
+            else
+            {
+                //Give user feedback of failure
+                Dialogs.ViewFailedDialog dlg = new Dialogs.ViewFailedDialog();
+                dlg.getLabelFailed().Text = "Oeps! Er is iets misgegaan! Probeer het opnieuw!";
+                dlg.ShowDialog();
+            }
+
+            
         }
 
         private void deleteList(object sender, EventArgs e)
