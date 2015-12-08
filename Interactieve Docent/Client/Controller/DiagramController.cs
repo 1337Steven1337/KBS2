@@ -28,14 +28,14 @@ namespace Client.Controller
         #endregion
 
         #region Constructor
-        public DiagramController(IDiagramView view, QuestionController questionController)
+        public DiagramController(IDiagramView view)
         {
             this.View = view;
             this.View.setController(this);
             this.SignalRClient = SignalRClient.GetInstance();
 
             //add events
-            questionController.selectedIndexChanged += QuestionController_selectedIndexChanged;
+            //questionController.selectedIndexChanged += QuestionController_selectedIndexChanged;
 
             this.UserAnswerFactory.UserAnswerAdded += UserAnswerFactory_userAnswerAdded;
 

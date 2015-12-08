@@ -111,15 +111,10 @@
     <Compile Include="Controller\DiagramController.cs" />
     <Compile Include="Controller\IController.cs" />
     <Compile Include="Controller\MainController.cs" />
-    <Compile Include="Controller\PredefinedAnswerController.cs" />
-    <Compile Include="Controller\QuestionController.cs" />
-    <Compile Include="Controller\QuestionListController.cs" />
     <Compile Include="Controller\QuestionList\ListQuestionListController.cs" />
     <Compile Include="Controller\Question\AddQuestionController.cs" />
     <Compile Include="Controller\Question\ListQuestionController.cs" />
     <Compile Include="Controller\StudentFormController.cs" />
-    <Compile Include="Controller\UserAnswerController.cs" />
-    <Compile Include="Controller\TabsController.cs" />
     <Compile Include="Factory\AbstractFactory.cs" />
     <Compile Include="Factory\BaseFactory.cs" />
     <Compile Include="Factory\IFactory.cs" />
@@ -128,12 +123,6 @@
     <Compile Include="Factory\QuestionListFactory.cs" />
     <Compile Include="Factory\UserAnswerFactory.cs" />
     <Compile Include="IContext.cs" />
-    <Compile Include="Main.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Main.Designer.cs">
-      <DependentUpon>Main.cs</DependentUpon>
-    </Compile>
     <Compile Include="Model\AbstractModel.cs" />
     <Compile Include="Model\PredefinedAnswer.cs" />
     <Compile Include="Model\Question.cs" />
@@ -198,13 +187,6 @@
     <Compile Include="View\Main\ViewMain.Designer.cs">
       <DependentUpon>ViewMain.cs</DependentUpon>
     </Compile>
-    <Compile Include="View\PredefinedAnswer\IPredefinedAnswerView.cs" />
-    <Compile Include="View\PredefinedAnswer\ViewPredefinedAnswer.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="View\PredefinedAnswer\ViewPredefinedAnswer.Designer.cs">
-      <DependentUpon>ViewPredefinedAnswer.cs</DependentUpon>
-    </Compile>
     <Compile Include="View\QuestionList\IQuestionListView.cs" />
     <Compile Include="View\QuestionList\ViewDeleteQuestionList.cs">
       <SubType>Form</SubType>
@@ -230,8 +212,6 @@
     <Compile Include="View\Dialogs\ViewConfirmDialog.Designer.cs">
       <DependentUpon>ViewConfirmDialog.cs</DependentUpon>
     </Compile>
-    <Compile Include="View\Question\IAddQuestionView.cs" />
-    <Compile Include="View\Question\IQuestionView.cs" />
     <Compile Include="View\Question\ViewAddQuestion.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -251,25 +231,8 @@
       <DependentUpon>ViewQuestion.cs</DependentUpon>
     </Compile>
     <Compile Include="View\Student\StudentForm.cs" />
-    <Compile Include="View\UserAnswer\IUserAnswerView.cs" />
-    <Compile Include="View\UserAnswer\ViewUserAnswer.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="View\UserAnswer\ViewUserAnswer.Designer.cs">
-      <DependentUpon>ViewUserAnswer.cs</DependentUpon>
-    </Compile>
-    <Compile Include="View\Tabs\ITabsView.cs" />
-    <Compile Include="View\Tabs\ViewTabs.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="View\Tabs\ViewTabs.Designer.cs">
-      <DependentUpon>ViewTabs.cs</DependentUpon>
-    </Compile>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Main.resx">
-      <DependentUpon>Main.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

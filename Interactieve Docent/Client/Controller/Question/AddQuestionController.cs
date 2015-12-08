@@ -15,35 +15,44 @@ namespace Client.Controller.Question
 {
     public class AddQuestionController : AbstractController<Model.Question>
     {
+        #region Delegates
         public delegate void QuestionAddedDelegate(Model.Question question);
         public delegate void RemoveAddQuestionPanelDelegate();
+        #endregion
 
+        #region Events
         public event QuestionAddedDelegate QuestionAdded;
         public event RemoveAddQuestionPanelDelegate RemoveAddQuestionPanel;
+        #endregion
 
+        #region Properties
         private IAddView<Model.Question> View;
         private QuestionFactory Factory = new QuestionFactory();
         private Model.QuestionList Parent { get; set; }
         private Dictionary<string, int> AnswersSaved = new Dictionary<string, int>();
         private Model.Question CurrentQuestion;
+        #endregion
 
+        #region Constructors
         public override IView GetView()
         {
             return this.View;
         }
+        #endregion
 
+        #region Methods
         private void CallbackSaveQuestion(Model.Question question, HttpStatusCode status)
         {
-            if(status == HttpStatusCode.Created && question != null)
+            if (status == HttpStatusCode.Created && question != null)
             {
-                if(this.QuestionAdded != null)
+                if (this.QuestionAdded != null)
                 {
                     QuestionAdded(question);
                 }
             }
             this.View.ShowSaveResult(question, status);
         }
-        
+
         public override void SetBaseFactory(IFactory<Model.Question> factory)
         {
             this.Factory.SetBaseFactory(factory);
@@ -73,7 +82,7 @@ namespace Client.Controller.Question
             this.AnswersSaved.Clear();
             this.CurrentQuestion = question;
 
-            
+
             foreach (Model.PredefinedAnswer answer in answers)
             {
                 this.AnswersSaved.Add(answer.Text, 0);
@@ -132,10 +141,11 @@ namespace Client.Controller.Question
 
         public void InvokeRemoveQuestionPanel()
         {
-            if(this.RemoveAddQuestionPanel != null)
+            if (this.RemoveAddQuestionPanel != null)
             {
                 this.RemoveAddQuestionPanel();
             }
         }
+        #endregion
     }
 }

@@ -81,7 +81,6 @@ namespace Client.View.QuestionList
         {
             return (Model.QuestionList)this.listBoxQuestionLists.SelectedItem;
         }
-        #endregion
 
         private void Delete_keyDown(object sender, PreviewKeyDownEventArgs e)
         {
@@ -123,7 +122,7 @@ namespace Client.View.QuestionList
                 dlg.ShowDialog();
             }
 
-            
+
         }
 
         private void deleteList(object sender, EventArgs e)
@@ -158,73 +157,10 @@ namespace Client.View.QuestionList
             }
         }
 
-        public void setController(ListQuestionListController controller)
-        {
-            throw new NotImplementedException();
-            //this.controller = controller;
-        }
-
-           
-
-        public Button getBtnAddQuestionList()
-        {
-            return btnAddQuestionList;
-        }
-        
-        public Button getBtnDeleteQuestionList()
-        {
-            return btnDeleteQuestionList;
-        }
-
-        public TableLayoutPanel getPanel()
-        {
-            return mainTablePanel;
-        }
-
-        public List<Model.QuestionList> getQuestionlists()
-        {
-            return this.QuestionLists.ToList();
-        }
-
-        public void Add(Model.QuestionList ql)
-        {
-            this.QuestionLists.Add(ql);
-        }
-
-        public int getCount()
-        {
-            return this.QuestionLists.Count;
-        }
-
-        public Model.QuestionList getItem(int i)
-        {
-            return QuestionLists[i];
-        }
-
-        public void RemoveAt(int i)
-        {
-            this.QuestionLists.RemoveAt(i);
-        }
-
-        public Model.QuestionList getById(int i)
-        {
-            foreach(Model.QuestionList q in QuestionLists)
-            {
-                if(q.Id == i)
-                {
-                    return q;
-                }
-            }
-            return null;
-        }
         public void AddItem(Model.QuestionList item)
         {
             throw new NotImplementedException();
         }
-
-        public void AddToList(Model.Question q, int list_Id)
-        {
-            //Q
-        }
+        #endregion        
     }
 }

@@ -76,9 +76,7 @@ namespace Client.Controller.QuestionList
             Model.QuestionList list = new Model.QuestionList(data);
             ViewQuestionList view = (ViewQuestionList)this.View;
             this.Factory.Save(list, this.View.GetHandler(), view.ProcessAdd);
-        }
-
-        
+        }        
         #endregion
     }
 }

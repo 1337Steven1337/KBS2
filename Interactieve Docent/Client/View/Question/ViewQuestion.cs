@@ -39,9 +39,7 @@ namespace Client.View.Question
             listBoxQuestions.DataSource = this.Questions;
 
             listBoxQuestions.SelectedIndexChanged += ListBox_SelectedIndexChanged;
-            btnDeleteQuestion.Click += deleteQuestion;
             btnAddQuestion.Click += BtnAddQuestion_Click;
-            btnShowResults.Click += showResults;
         }
         #endregion
 
@@ -98,72 +96,6 @@ namespace Client.View.Question
         {
             Questions.Add(question);
         }
-
-        #endregion
-
-        public void SetTable<TablePanelLayout>(TablePanelLayout tableThreeColls)
-        {
-            //controller.setTable(tableThreeColls);
-        }
-
-        private void showResults(object sender, EventArgs e)
-        {
-            //this.controller.showResults();
-        }
-
-        private void loadAddQuestion(object sender, EventArgs e)
-        {
-            //this.controller.loadAddQuestion();
-
-            if(this.AddQuestionClicked != null)
-            {
-                //this.AddQuestionClicked();
-            }
-        }
-
-        private void deleteQuestion(object sender, EventArgs e)
-        {
-            //this.controller.deleteQuestion();
-        }
-
-        /**private void ListBoxQuestion_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if (this.Controller != null)
-            {
-                this.Controller.ListBoxQuestion_SelectedIndexChanged(listBoxQuestions.SelectedItem);
-            }
-
-        }**/
-        public void setController(QuestionController controller)
-        {
-            //this.controller = controller;
-            //listBoxQuestions.DataSource = this.controller.Questions;
-        }
-
-        public List<Model.Question> getQuestionList()
-        {
-            //return this.controller.Questions.ToList();
-            return null;
-        }
-
-        public Button getBtnAddQuestion()
-        {
-            return btnAddQuestion;
-        }
-
-        public Button getBtnDeleteQuestion()
-        {
-            return btnDeleteQuestion;
-        }
-
-        public Button getBtnShowResults()
-        {
-            return btnShowResults;
-        }
-
-        public TableLayoutPanel getPanel()
-        {
-            return mainTablePanel;
-        }
+        #endregion       
     }
 }
