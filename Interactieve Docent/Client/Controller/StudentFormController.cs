@@ -28,8 +28,19 @@ namespace Client.Controller
             QuestionFactory questionFactory = new QuestionFactory();
             questionFactory.QuestionAdded += Factory_questionAdded;
 
+            QuestionListFactory listFactory = new QuestionListFactory();
+            listFactory.QuestionListContinue += LIFactory_continue;
+
+
             PredefinedAnswerFactory PAFactory = new PredefinedAnswerFactory();
             PAFactory.PredefinedAnswerAdded += PAFactory_predefinedAnswerAdded;
+
+
+        }
+
+        private void LIFactory_continue()
+        {
+            MessageBox.Show("Oi mate");
         }
 
         public void Factory_questionAdded(Model.Question question)

@@ -38,6 +38,10 @@ namespace Client
             listQuestionListController.SelectedListChanged += questionController.LoadList;
             listQuestionListController.Load();
 
+
+            Client.Student.QuestionForm studentForm = new Client.Student.QuestionForm(1);
+            studentForm.Show();
+
             Application.Run(view);
         }
     }

@@ -41,9 +41,9 @@ namespace Client.Student
             view = new View.Student.StudentForm(this);
             view.initControlLocations();
             view.initWaitScreen();
-            Main form = new Main();
-            form.Show();
 
+            nextForm next = new nextForm();
+            next.Show();
 
         }
 
@@ -110,13 +110,20 @@ namespace Client.Student
                 busy = true;
 
                 currentQuestion = this.questionList.Questions[controller.getCurrentQuestionIndex()];
-                if (currentQuestion.Time != null)
+                if (currentQuestion.Time != 0)
                 {
+                    questionTimeProgressBar.Visible = false;
+                    timeLabel.Visible = false;
                     questionTimeProgressBar.Maximum = currentQuestion.Time * 1000;
                     questionTimeProgressBar.Value = currentQuestion.Time * 1000;
                     questionTimer.Interval = 100;
                     questionTimer.Tick += Question_Timer;
                     questionTimer.Start();
+                }
+                else
+                {
+                    questionTimeProgressBar.Visible = false;
+                    timeLabel.Visible = false;
                 }
                 questionLabel.Text = currentQuestion.Text;
                 this.view.adjustSizeOfButtons(currentQuestion);
