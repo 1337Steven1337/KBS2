@@ -102,6 +102,18 @@ namespace Client.Service.SignalR
             await this.proxy.Invoke("Unsubscribe", id);
         }
 
+
+        /// <summary>
+        /// Tells the server to release a new question to the clients.
+        /// </summary>
+        /// <param name="id">The id of the list to send the question to</param>
+        public async void goToNextQuestionOnClick(int id)
+        {
+            await this.proxy.Invoke("Next", id);
+        }
+
+
+
         /// <summary>
         /// Subscribes to a list on the server
         /// </summary>

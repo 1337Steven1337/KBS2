@@ -70,8 +70,8 @@
             this.mainTablePanel.RowCount = 3;
             this.mainTablePanel.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.mainTablePanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.mainTablePanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 50F));
-            this.mainTablePanel.Size = new System.Drawing.Size(792, 573);
+            this.mainTablePanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 62F));
+            this.mainTablePanel.Size = new System.Drawing.Size(891, 716);
             this.mainTablePanel.TabIndex = 1;
             // 
             // titlePanel
@@ -81,7 +81,7 @@
             this.titlePanel.Location = new System.Drawing.Point(0, 0);
             this.titlePanel.Margin = new System.Windows.Forms.Padding(0);
             this.titlePanel.Name = "titlePanel";
-            this.titlePanel.Size = new System.Drawing.Size(792, 82);
+            this.titlePanel.Size = new System.Drawing.Size(891, 102);
             this.titlePanel.TabIndex = 1;
             // 
             // labelTitle
@@ -93,7 +93,7 @@
             this.labelTitle.Location = new System.Drawing.Point(0, 0);
             this.labelTitle.Margin = new System.Windows.Forms.Padding(0);
             this.labelTitle.Name = "labelTitle";
-            this.labelTitle.Size = new System.Drawing.Size(792, 82);
+            this.labelTitle.Size = new System.Drawing.Size(891, 102);
             this.labelTitle.TabIndex = 0;
             this.labelTitle.Text = "Vraag toevoegen";
             this.labelTitle.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -106,13 +106,13 @@
             this.buttonsTablePanel.Controls.Add(this.btnSaveQuestion, 0, 0);
             this.buttonsTablePanel.Controls.Add(this.btnQuit, 1, 0);
             this.buttonsTablePanel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.buttonsTablePanel.Location = new System.Drawing.Point(0, 523);
+            this.buttonsTablePanel.Location = new System.Drawing.Point(0, 654);
             this.buttonsTablePanel.Margin = new System.Windows.Forms.Padding(0);
             this.buttonsTablePanel.Name = "buttonsTablePanel";
             this.buttonsTablePanel.RowCount = 1;
             this.buttonsTablePanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.buttonsTablePanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 50F));
-            this.buttonsTablePanel.Size = new System.Drawing.Size(792, 50);
+            this.buttonsTablePanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 62F));
+            this.buttonsTablePanel.Size = new System.Drawing.Size(891, 62);
             this.buttonsTablePanel.TabIndex = 0;
             // 
             // btnSaveQuestion
@@ -126,7 +126,7 @@
             this.btnSaveQuestion.Location = new System.Drawing.Point(0, 0);
             this.btnSaveQuestion.Margin = new System.Windows.Forms.Padding(0);
             this.btnSaveQuestion.Name = "btnSaveQuestion";
-            this.btnSaveQuestion.Size = new System.Drawing.Size(396, 50);
+            this.btnSaveQuestion.Size = new System.Drawing.Size(445, 62);
             this.btnSaveQuestion.TabIndex = 0;
             this.btnSaveQuestion.Text = "Vraag toevoegen";
             this.btnSaveQuestion.UseVisualStyleBackColor = false;
@@ -139,10 +139,10 @@
             this.btnQuit.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnQuit.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnQuit.ForeColor = System.Drawing.Color.White;
-            this.btnQuit.Location = new System.Drawing.Point(396, 0);
+            this.btnQuit.Location = new System.Drawing.Point(445, 0);
             this.btnQuit.Margin = new System.Windows.Forms.Padding(0);
             this.btnQuit.Name = "btnQuit";
-            this.btnQuit.Size = new System.Drawing.Size(396, 50);
+            this.btnQuit.Size = new System.Drawing.Size(446, 62);
             this.btnQuit.TabIndex = 1;
             this.btnQuit.Text = "Sluiten";
             this.btnQuit.UseVisualStyleBackColor = false;
@@ -168,17 +168,18 @@
             this.tableLayoutPanel1.Controls.Add(this.btnAddAnswer, 2, 3);
             this.tableLayoutPanel1.Controls.Add(this.btnDeleteAnswer, 2, 5);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel1.Location = new System.Drawing.Point(3, 85);
+            this.tableLayoutPanel1.Location = new System.Drawing.Point(3, 106);
+            this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 7;
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 50F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 62F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(786, 435);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(885, 544);
             this.tableLayoutPanel1.TabIndex = 2;
             // 
             // labelQuestionField
@@ -191,7 +192,7 @@
             this.labelQuestionField.ImageAlign = System.Drawing.ContentAlignment.TopRight;
             this.labelQuestionField.Location = new System.Drawing.Point(3, 0);
             this.labelQuestionField.Name = "labelQuestionField";
-            this.labelQuestionField.Size = new System.Drawing.Size(143, 50);
+            this.labelQuestionField.Size = new System.Drawing.Size(158, 62);
             this.labelQuestionField.TabIndex = 0;
             this.labelQuestionField.Text = "Vraag";
             this.labelQuestionField.TextAlign = System.Drawing.ContentAlignment.TopRight;
@@ -200,9 +201,10 @@
             // 
             this.questionField.Dock = System.Windows.Forms.DockStyle.Fill;
             this.questionField.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.questionField.Location = new System.Drawing.Point(152, 3);
+            this.questionField.Location = new System.Drawing.Point(167, 4);
+            this.questionField.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.questionField.Name = "questionField";
-            this.questionField.Size = new System.Drawing.Size(439, 44);
+            this.questionField.Size = new System.Drawing.Size(498, 54);
             this.questionField.TabIndex = 1;
             this.questionField.Text = "";
             // 
@@ -213,9 +215,9 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.labelTimeField.AutoSize = true;
             this.labelTimeField.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelTimeField.Location = new System.Drawing.Point(3, 50);
+            this.labelTimeField.Location = new System.Drawing.Point(3, 62);
             this.labelTimeField.Name = "labelTimeField";
-            this.labelTimeField.Size = new System.Drawing.Size(143, 28);
+            this.labelTimeField.Size = new System.Drawing.Size(158, 33);
             this.labelTimeField.TabIndex = 2;
             this.labelTimeField.Text = "Tijd (sec)";
             this.labelTimeField.TextAlign = System.Drawing.ContentAlignment.TopRight;
@@ -227,9 +229,9 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.labelPointsField.AutoSize = true;
             this.labelPointsField.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelPointsField.Location = new System.Drawing.Point(3, 78);
+            this.labelPointsField.Location = new System.Drawing.Point(3, 95);
             this.labelPointsField.Name = "labelPointsField";
-            this.labelPointsField.Size = new System.Drawing.Size(143, 28);
+            this.labelPointsField.Size = new System.Drawing.Size(158, 33);
             this.labelPointsField.TabIndex = 3;
             this.labelPointsField.Text = "Punten";
             this.labelPointsField.TextAlign = System.Drawing.ContentAlignment.TopRight;
@@ -241,9 +243,9 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.labelAnswerField.AutoSize = true;
             this.labelAnswerField.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelAnswerField.Location = new System.Drawing.Point(3, 106);
+            this.labelAnswerField.Location = new System.Drawing.Point(3, 128);
             this.labelAnswerField.Name = "labelAnswerField";
-            this.labelAnswerField.Size = new System.Drawing.Size(143, 33);
+            this.labelAnswerField.Size = new System.Drawing.Size(158, 46);
             this.labelAnswerField.TabIndex = 9;
             this.labelAnswerField.Text = "Antwoord invoeren";
             this.labelAnswerField.TextAlign = System.Drawing.ContentAlignment.TopRight;
@@ -252,19 +254,21 @@
             // 
             this.answerField.Dock = System.Windows.Forms.DockStyle.Fill;
             this.answerField.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.answerField.Location = new System.Drawing.Point(152, 109);
+            this.answerField.Location = new System.Drawing.Point(167, 132);
+            this.answerField.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.answerField.Multiline = true;
             this.answerField.Name = "answerField";
-            this.answerField.Size = new System.Drawing.Size(439, 27);
+            this.answerField.Size = new System.Drawing.Size(498, 38);
             this.answerField.TabIndex = 8;
             // 
             // timeField
             // 
             this.timeField.Dock = System.Windows.Forms.DockStyle.Fill;
             this.timeField.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.timeField.Location = new System.Drawing.Point(152, 53);
+            this.timeField.Location = new System.Drawing.Point(167, 66);
+            this.timeField.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.timeField.Name = "timeField";
-            this.timeField.Size = new System.Drawing.Size(439, 22);
+            this.timeField.Size = new System.Drawing.Size(498, 25);
             this.timeField.TabIndex = 6;
             this.timeField.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
@@ -272,9 +276,10 @@
             // 
             this.pointsField.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pointsField.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.pointsField.Location = new System.Drawing.Point(152, 81);
+            this.pointsField.Location = new System.Drawing.Point(167, 99);
+            this.pointsField.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.pointsField.Name = "pointsField";
-            this.pointsField.Size = new System.Drawing.Size(439, 22);
+            this.pointsField.Size = new System.Drawing.Size(498, 25);
             this.pointsField.TabIndex = 7;
             this.pointsField.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
@@ -283,10 +288,11 @@
             this.answersListBox.Dock = System.Windows.Forms.DockStyle.Fill;
             this.answersListBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.answersListBox.FormattingEnabled = true;
-            this.answersListBox.ItemHeight = 16;
-            this.answersListBox.Location = new System.Drawing.Point(152, 142);
+            this.answersListBox.ItemHeight = 20;
+            this.answersListBox.Location = new System.Drawing.Point(167, 178);
+            this.answersListBox.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.answersListBox.Name = "answersListBox";
-            this.answersListBox.Size = new System.Drawing.Size(439, 208);
+            this.answersListBox.Size = new System.Drawing.Size(498, 259);
             this.answersListBox.TabIndex = 5;
             // 
             // labelAnswersListBox
@@ -296,9 +302,9 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.labelAnswersListBox.AutoSize = true;
             this.labelAnswersListBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelAnswersListBox.Location = new System.Drawing.Point(3, 139);
+            this.labelAnswersListBox.Location = new System.Drawing.Point(3, 174);
             this.labelAnswersListBox.Name = "labelAnswersListBox";
-            this.labelAnswersListBox.Size = new System.Drawing.Size(143, 214);
+            this.labelAnswersListBox.Size = new System.Drawing.Size(158, 267);
             this.labelAnswersListBox.TabIndex = 4;
             this.labelAnswersListBox.Text = "Antwoorden";
             this.labelAnswersListBox.TextAlign = System.Drawing.ContentAlignment.TopRight;
@@ -308,9 +314,10 @@
             this.rightAnswerComboBox.Dock = System.Windows.Forms.DockStyle.Fill;
             this.rightAnswerComboBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.rightAnswerComboBox.FormattingEnabled = true;
-            this.rightAnswerComboBox.Location = new System.Drawing.Point(152, 356);
+            this.rightAnswerComboBox.Location = new System.Drawing.Point(167, 445);
+            this.rightAnswerComboBox.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.rightAnswerComboBox.Name = "rightAnswerComboBox";
-            this.rightAnswerComboBox.Size = new System.Drawing.Size(439, 24);
+            this.rightAnswerComboBox.Size = new System.Drawing.Size(498, 28);
             this.rightAnswerComboBox.TabIndex = 10;
             this.rightAnswerComboBox.Text = "Kies het juiste antwoord";
             // 
@@ -323,9 +330,10 @@
             this.btnAddAnswer.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnAddAnswer.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnAddAnswer.ForeColor = System.Drawing.Color.White;
-            this.btnAddAnswer.Location = new System.Drawing.Point(597, 109);
+            this.btnAddAnswer.Location = new System.Drawing.Point(671, 132);
+            this.btnAddAnswer.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnAddAnswer.Name = "btnAddAnswer";
-            this.btnAddAnswer.Size = new System.Drawing.Size(186, 27);
+            this.btnAddAnswer.Size = new System.Drawing.Size(211, 38);
             this.btnAddAnswer.TabIndex = 13;
             this.btnAddAnswer.Text = "Toevoegen";
             this.btnAddAnswer.UseVisualStyleBackColor = false;
@@ -340,19 +348,21 @@
             this.btnDeleteAnswer.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnDeleteAnswer.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnDeleteAnswer.ForeColor = System.Drawing.Color.White;
-            this.btnDeleteAnswer.Location = new System.Drawing.Point(597, 142);
+            this.btnDeleteAnswer.Location = new System.Drawing.Point(671, 178);
+            this.btnDeleteAnswer.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnDeleteAnswer.Name = "btnDeleteAnswer";
-            this.btnDeleteAnswer.Size = new System.Drawing.Size(186, 27);
+            this.btnDeleteAnswer.Size = new System.Drawing.Size(211, 38);
             this.btnDeleteAnswer.TabIndex = 12;
             this.btnDeleteAnswer.Text = "Verwijder";
             this.btnDeleteAnswer.UseVisualStyleBackColor = false;
             // 
             // ViewAddQuestion
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(792, 573);
+            this.ClientSize = new System.Drawing.Size(891, 716);
             this.Controls.Add(this.mainTablePanel);
+            this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name = "ViewAddQuestion";
             this.Text = "ViewAddQuestion";
             this.mainTablePanel.ResumeLayout(false);

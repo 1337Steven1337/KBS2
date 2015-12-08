@@ -157,6 +157,12 @@
     <Compile Include="Service\SignalR\EventArgs\SubscriptionStatus.cs" />
     <Compile Include="Service\Thread\ControlHandler.cs" />
     <Compile Include="Service\Thread\IControlHandler.cs" />
+    <Compile Include="Student\nextForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Student\nextForm.Designer.cs">
+      <DependentUpon>nextForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Student\QuestionForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -274,6 +280,9 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="Student\nextForm.resx">
+      <DependentUpon>nextForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Student\QuestionForm.resx">
       <DependentUpon>QuestionForm.cs</DependentUpon>
     </EmbeddedResource>
