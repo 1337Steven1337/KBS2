@@ -36,7 +36,7 @@ namespace Client.View.Question
 
         private void BtnQuit_Click(object sender, EventArgs e)
         {
-
+            Controller.InvokeRemoveQuestionPanel();
         }
 
         private void BtnDeleteAnswer_Click(object sender, EventArgs e)

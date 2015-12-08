@@ -16,8 +16,10 @@ namespace Client.Controller.Question
     public class AddQuestionController : AbstractController<Model.Question>
     {
         public delegate void QuestionAddedDelegate(Model.Question question);
+        public delegate void RemoveAddQuestionPanelDelegate();
 
         public event QuestionAddedDelegate QuestionAdded;
+        public event RemoveAddQuestionPanelDelegate RemoveAddQuestionPanel;
 
         private IAddView<Model.Question> View;
         private QuestionFactory Factory = new QuestionFactory();
@@ -126,6 +128,14 @@ namespace Client.Controller.Question
         public void SetQuestionList(Model.QuestionList list)
         {
             this.Parent = list;
+        }
+
+        public void InvokeRemoveQuestionPanel()
+        {
+            if(this.RemoveAddQuestionPanel != null)
+            {
+                this.RemoveAddQuestionPanel();
+            }
         }
     }
 }

@@ -51,8 +51,15 @@ namespace Client.Controller
             controller.SetQuestionList(list);
 
             controller.QuestionAdded += this.ListQuestionController.QuestionAdded;
+            controller.RemoveAddQuestionPanel += Controller_RemoveAddQuestionPanel;
 
             addQuestionView.AddToParent((IView)this.MainView);
+        }
+
+        private void Controller_RemoveAddQuestionPanel()
+        {
+            ViewMain view = (ViewMain)this.MainView;
+            view.RemoveAddQuestionPanel();
         }
 
         public override IView GetView()

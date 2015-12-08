@@ -19,6 +19,29 @@ namespace Client.View.Main
         public ViewMain()
         {
             InitializeComponent();
+
+            
+        }
+
+        public void RemoveAddQuestionPanel()
+        {
+            tableThreeColumn.SuspendLayout();
+            tableThreeColumn.Controls.RemoveAt(2);
+            float width = 0;
+            for (int i = 0; i < tableThreeColumn.ColumnCount; i++)
+            {
+                if (i < 2)
+                {
+                    width = 50F;
+                }
+                else
+                {
+                    width = 0;
+                }
+                tableThreeColumn.ColumnStyles[i].Width = width;
+            }
+            tableThreeColumn.ResumeLayout(true);
+            tableThreeColumn.PerformLayout();
         }
 
         public void AddTablePanel(TableLayoutPanel panel, int column)
