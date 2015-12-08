@@ -11,18 +11,19 @@ using Client.View;
 using Client.Controller.QuestionList;
 using Client.Controller;
 using Client.Model;
+using Client.Factory;
 
 namespace Client.Controller
 {
-    public class MainController
+    public class MainController : AbstractController<Model.Question>
     {
-        private IViewMain MainView;
+        private IView MainView;
         private ListQuestionController ListQuestionController;
 
-        public MainController(IViewMain mainView)
+        public MainController(IView mainView)
         {
             this.MainView = mainView;
-            this.MainView.setController(this);
+            this.MainView.SetController(this);
         }
 
         public void AddController(IController controller)
@@ -52,6 +53,21 @@ namespace Client.Controller
             controller.QuestionAdded += this.ListQuestionController.QuestionAdded;
 
             addQuestionView.AddToParent((IView)this.MainView);
-        }  
+        }
+
+        public override IView GetView()
+        {
+            throw new NotImplementedException();
+        }
+
+        public override void SetView(IView view)
+        {
+            throw new NotImplementedException();
+        }
+
+        public override void SetBaseFactory(IFactory<Model.Question> baseFactory)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

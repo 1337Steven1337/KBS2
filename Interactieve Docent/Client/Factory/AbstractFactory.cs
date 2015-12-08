@@ -23,8 +23,7 @@ namespace Client.Factory
         #region Constructors
         public AbstractFactory(IFactory<T> baseFactory)
         {
-            this.baseFactory = baseFactory;
-            this.baseFactory.SetResource(this.Resource);
+            this.SetBaseFactory(baseFactory);
             this.SignalRClient = SignalRClient.GetInstance();
         }
         #endregion
@@ -421,6 +420,12 @@ namespace Client.Factory
         public void SetBaseFactory(IFactory<T> factory)
         {
             this.baseFactory = factory;
+            this.baseFactory.SetResource(this.Resource);
+        }
+
+        public IFactory<T> GetBaseFactory()
+        {
+            return this.baseFactory;
         }
         #endregion
     }

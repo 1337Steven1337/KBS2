@@ -48,6 +48,7 @@
             this.rightAnswerComboBox = new System.Windows.Forms.ComboBox();
             this.btnAddAnswer = new System.Windows.Forms.Button();
             this.btnDeleteAnswer = new System.Windows.Forms.Button();
+            this.labelRightAnswer = new System.Windows.Forms.Label();
             this.mainTablePanel.SuspendLayout();
             this.titlePanel.SuspendLayout();
             this.buttonsTablePanel.SuspendLayout();
@@ -167,6 +168,7 @@
             this.tableLayoutPanel1.Controls.Add(this.rightAnswerComboBox, 1, 6);
             this.tableLayoutPanel1.Controls.Add(this.btnAddAnswer, 2, 3);
             this.tableLayoutPanel1.Controls.Add(this.btnDeleteAnswer, 2, 5);
+            this.tableLayoutPanel1.Controls.Add(this.labelRightAnswer, 0, 6);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(3, 85);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
@@ -347,6 +349,20 @@
             this.btnDeleteAnswer.Text = "Verwijder";
             this.btnDeleteAnswer.UseVisualStyleBackColor = false;
             // 
+            // labelRightAnswer
+            // 
+            this.labelRightAnswer.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.labelRightAnswer.AutoSize = true;
+            this.labelRightAnswer.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelRightAnswer.Location = new System.Drawing.Point(3, 353);
+            this.labelRightAnswer.Name = "labelRightAnswer";
+            this.labelRightAnswer.Size = new System.Drawing.Size(143, 82);
+            this.labelRightAnswer.TabIndex = 14;
+            this.labelRightAnswer.Text = "Juiste antwoord";
+            this.labelRightAnswer.TextAlign = System.Drawing.ContentAlignment.TopRight;
+            // 
             // ViewAddQuestion
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -387,5 +403,6 @@
         private System.Windows.Forms.Label labelQuestionField;
         private System.Windows.Forms.RichTextBox questionField;
         private System.Windows.Forms.ComboBox rightAnswerComboBox;
+        private System.Windows.Forms.Label labelRightAnswer;
     }
 }
