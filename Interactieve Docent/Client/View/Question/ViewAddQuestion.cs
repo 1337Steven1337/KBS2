@@ -5,21 +5,67 @@ using Client.Controller;
 using Client.Model;
 using Client.Service.Thread;
 using Client.View.Main;
+using Client.Controller.Question;
+using System.Net;
+using Client.View.Dialogs;
 
 namespace Client.View.Question
 {
-    public partial class ViewAddQuestion : Form, IAddQuestionView<Model.Question>
+    public partial class ViewAddQuestion : Form, IAddView<Model.Question>
     {
-        private QuestionController controller;
+        private AddQuestionController Controller;
 
         public ViewAddQuestion()
         {
             InitializeComponent();
+
+            btnSaveQuestion.Click += BtnSaveQuestion_Click;
         }
 
-        public void setController(QuestionController controller)
+        private void BtnSaveQuestion_Click(object sender, EventArgs e)
         {
-            this.controller = controller;
+            if (ValidateFields())
+            {
+                DialogResult dr = new DialogResult();
+                ViewConfirmDialog confirm = new ViewConfirmDialog();
+                confirm.getLabelConfirm().Text = "Weet u zeker dat u de vraag wilt opslaan?";
+                dr = confirm.ShowDialog();
+
+                if (dr == DialogResult.Yes)
+                {
+                    Dictionary<string, object> iDictionary = new Dictionary<string, object>();
+                    iDictionary.Add("Text", questionField.Text);
+                    iDictionary.Add("Points", pointsField.Value);
+                    iDictionary.Add("Time", timeField.Value);
+
+                    this.Controller.SaveQuestion(iDictionary);
+                }
+            }
+            else
+            {
+                ViewFailedDialog failed = new ViewFailedDialog();
+                failed.getLabelFailed().Text = "U heeft nog niet alle velden ingevuld!";
+                failed.ShowDialog();
+            }
+        }
+
+        private Boolean ValidateFields()
+        {
+            int Time = -1;
+            int Points = -1;
+
+            try
+            {
+                Time = Convert.ToInt32(timeField.Value);
+                Points = Convert.ToInt32(pointsField.Value);
+            }
+            catch(Exception e)
+            {
+
+            }
+
+            //return true or false
+            return (Time > 0 && Points > 0 && questionField.Text != "");
         }
 
         public void AddToParent(IView parent)
@@ -29,61 +75,6 @@ namespace Client.View.Question
             main.AddTablePanel(this.mainTablePanel,2);
         }
 
-        public TableLayoutPanel getPanel()
-        {
-            return mainTablePanel;
-        }
-
-        public Button getBtnSaveQuestion()
-        {
-            return btnSaveQuestion;
-        }
-
-        public Button getBtnQuit()
-        {
-            return btnQuit;
-        }
-
-        public Button getBtnAddAnswer()
-        {
-            return btnAddAnswer;        
-        }
-
-        public Button getBtnDeleteAnswer()
-        {
-            return btnDeleteAnswer;
-        }
-
-        public RichTextBox getQuestionField()
-        {
-            return questionField;
-        }
-
-        public NumericUpDown getPointsField()
-        {
-            return pointsField;
-        }
-
-        public NumericUpDown getTimeField()
-        {
-            return timeField;
-        }
-        
-        public ListBox getAnswersListBox()
-        {
-            return answersListBox;
-        }
-
-        public TextBox getAnswerField()
-        {
-            return answerField;
-        }
-
-        public ComboBox getRightAnswerComboBox()
-        {
-            return rightAnswerComboBox;
-        }
-
         public IControlHandler GetHandler()
         {
             return new ControlHandler(this.answersListBox);
@@ -91,12 +82,21 @@ namespace Client.View.Question
 
         public void SetController(IController controller)
         {
-            throw new NotImplementedException();
+            this.Controller = (AddQuestionController)controller;
         }
 
-        public void FillList(List<Model.Question> list)
+        public void ShowSaveResult(Model.Question instance, HttpStatusCode status)
         {
-            throw new NotImplementedException();
+            if(status == HttpStatusCode.Created && instance != null)
+            {
+                MessageBox.Show("Created");
+            }
+            else
+            {
+                MessageBox.Show("Failed");
+            }
         }
+
+        
     }
 }

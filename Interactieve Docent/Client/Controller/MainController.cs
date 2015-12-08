@@ -16,12 +16,13 @@ namespace Client.Controller
 {
     public class MainController
     {
-        private IViewMain mainView;
+        private IViewMain MainView;
+        private ListQuestionController ListQuestionController;
 
         public MainController(IViewMain mainView)
         {
-            this.mainView = mainView;
-            this.mainView.setController(this);
+            this.MainView = mainView;
+            this.MainView.setController(this);
         }
 
         public void AddController(IController controller)
@@ -30,22 +31,27 @@ namespace Client.Controller
             {
                 ViewQuestion view = (ViewQuestion)controller.GetView();
                 view.AddQuestionClicked += View_AddQuestionClicked;
-                view.AddToParent((IView)this.mainView);
+                view.AddToParent((IView)this.MainView);
+
+                this.ListQuestionController = (ListQuestionController)controller;
             }
             else if(controller is ListQuestionListController)
             {
                 ViewQuestionList view = (ViewQuestionList)controller.GetView();
-                view.AddToParent((IView)this.mainView);
+                view.AddToParent((IView)this.MainView);
             }
         }
 
-        private void View_AddQuestionClicked()
+        private void View_AddQuestionClicked(Model.QuestionList list)
         {
             ViewAddQuestion addQuestionView = new ViewAddQuestion();
             AddQuestionController controller = new AddQuestionController();
             controller.SetView(addQuestionView);
+            controller.SetQuestionList(list);
 
-            addQuestionView.AddToParent((IView)this.mainView);
+            controller.QuestionAdded += this.ListQuestionController.QuestionAdded;
+
+            addQuestionView.AddToParent((IView)this.MainView);
         }  
     }
 }

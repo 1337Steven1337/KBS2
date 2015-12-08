@@ -7,26 +7,60 @@ using Client.Factory;
 using Client.Model;
 using Client.View;
 using Client.View.Question;
+using System.Net;
 
 namespace Client.Controller.Question
 {
-    public class AddQuestionController : IController
+    public class AddQuestionController : AbstractController<Model.Question>
     {
-        private IAddQuestionView<Model.Question> view;
+        public delegate void QuestionAddedDelegate(Model.Question question);
 
-        public IView GetView()
+        public event QuestionAddedDelegate QuestionAdded;
+
+        private IAddView<Model.Question> View;
+        private QuestionFactory Factory = new QuestionFactory();
+        private Model.QuestionList Parent { get; set; }
+
+        public override IView GetView()
         {
-            return this.view;
+            return this.View;
         }
 
-        public void SetBaseFactory(IFactory<Model.Question> factory)
+        private void CallbackSaveQuestion(Model.Question question, HttpStatusCode status)
         {
-            throw new NotImplementedException();
+            if(status == HttpStatusCode.Created && question != null)
+            {
+                if(this.QuestionAdded != null)
+                {
+                    QuestionAdded(question);
+                }
+            }
+
+            this.View.ShowSaveResult(question, status);
+        }
+        
+        public override void SetBaseFactory(IFactory<Model.Question> factory)
+        {
+            this.Factory.SetBaseFactory(factory);
         }
 
-        public void SetView(IView view)
+        public override void SetView(IView view)
         {
-            this.view = (IAddQuestionView<Model.Question>)view;
+            this.View = (IAddView<Model.Question>)view;
+            this.View.SetController(this);
+        }
+
+        public void SaveQuestion(Dictionary<string, object> data)
+        {
+            data.Add("List_Id", this.Parent.Id);
+
+            Model.Question question = new Model.Question(data);
+            Factory.Save(question, this.View.GetHandler(), this.CallbackSaveQuestion);
+        }
+
+        public void SetQuestionList(Model.QuestionList list)
+        {
+            this.Parent = list;
         }
     }
 }

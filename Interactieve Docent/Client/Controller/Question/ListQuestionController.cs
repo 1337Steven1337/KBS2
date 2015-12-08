@@ -22,6 +22,13 @@ namespace Client.Controller.Question
         }
         #endregion
 
+        #region Event
+        public void QuestionAdded(Model.Question question)
+        {
+            this.View.AddItem(question);
+        }
+        #endregion
+
         #region Methods
         private void FillList(List<Model.Question> questions, HttpStatusCode status)
         {

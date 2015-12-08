@@ -83,7 +83,7 @@ namespace Client.Controller
 
         public void loadAddQuestion()
         {
-            addQuestionView = new ViewAddQuestion();
+            //addQuestionView = new ViewAddQuestion();
             addQuestionView.setController(this);
 
             addQuestionView.getBtnSaveQuestion().Click += saveQuestion;
@@ -118,7 +118,7 @@ namespace Client.Controller
         {
             if (addQuestionView.getQuestionField().Text != "" && (int)addQuestionView.getTimeField().Value != 0 && addQuestionView.getPointsField().Value != 0 && addQuestionView.getRightAnswerComboBox().SelectedItem != null)
             {
-                //Show dialog for user to confirm Delete action
+                //Show dialog for user to confirm action
                 DialogResult dr = new DialogResult();
                 ViewConfirmDialog confirm = new ViewConfirmDialog();
                 confirm.getLabelConfirm().Text = "Weet u zeker dat u de vraag wilt opslaan?";

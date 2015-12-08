@@ -17,7 +17,7 @@ namespace Client.Controller.QuestionList
         #endregion
 
         #region Instances
-        private IQuestionListView<Model.QuestionList> View { get; set; }
+        private IListView<Model.QuestionList> View { get; set; }
         private QuestionListFactory Factory = new QuestionListFactory();
         #endregion
 
@@ -60,7 +60,7 @@ namespace Client.Controller.QuestionList
 
         public override void SetView(IView view)
         {
-            this.View = (IQuestionListView<Model.QuestionList>)view;
+            this.View = (IListView<Model.QuestionList>)view;
         }
 
         public override void SetBaseFactory(IFactory<Model.QuestionList> factory)

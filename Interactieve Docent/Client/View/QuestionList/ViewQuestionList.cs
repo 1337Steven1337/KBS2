@@ -7,10 +7,11 @@ using System.Linq;
 using Client.Service.Thread;
 using Client.View.Main;
 using Client.Controller.QuestionList;
+using Client.Model;
 
 namespace Client.View.QuestionList
 {
-    public partial class ViewQuestionList : Form, IQuestionListView<Model.QuestionList>
+    public partial class ViewQuestionList : Form, IListView<Model.QuestionList>
     {
         #region Properties
         public BindingList<Model.QuestionList> QuestionLists = new BindingList<Model.QuestionList>();
@@ -177,6 +178,11 @@ namespace Client.View.QuestionList
                 }
             }
             return null;
+        }
+
+        public void AddItem(Model.QuestionList item)
+        {
+            throw new NotImplementedException();
         }
     }
 }
