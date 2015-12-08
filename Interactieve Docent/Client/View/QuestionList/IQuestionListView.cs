@@ -3,6 +3,8 @@ using Client.Controller.QuestionList;
 using Client.Model;
 using System.Collections.Generic;
 using System.ComponentModel;
+using RestSharp;
+using System.Net;
 
 namespace Client.View.QuestionList
 {
@@ -16,5 +18,7 @@ namespace Client.View.QuestionList
         Model.QuestionList getById(int i);
         Model.QuestionList getItem(int i);
         void RemoveAt(int i);
+        void AddToList(Model.Question q, int list_Id);
+        void ProcessAdd(Model.QuestionList ql, HttpStatusCode status);
     }
 }

@@ -27,6 +27,12 @@ namespace Client.Student
         private Controller.StudentFormController controller;
         private View.Student.StudentForm view;
 
+        public QuestionForm() {
+           
+            view = new View.Student.StudentForm(this);
+           
+        }
+
         public QuestionForm(int List_Id)
         {
             InitializeComponent();

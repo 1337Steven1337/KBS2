@@ -13,7 +13,7 @@ namespace Client.View.QuestionList
     //Popup which shows when trying to add a new list
     public partial class ViewNewQuestionList : Form
     {
-        public string text { set; get; }
+        public string text { private set; get; }
         public Boolean valid { set; get; }
 
         public ViewNewQuestionList()

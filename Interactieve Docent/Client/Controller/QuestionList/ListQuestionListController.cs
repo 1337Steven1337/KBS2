@@ -3,6 +3,9 @@ using Client.View.QuestionList;
 using Client.Factory;
 using System.Collections.Generic;
 using System.Net;
+using Client.Model;
+using RestSharp;
+using System;
 
 namespace Client.Controller.QuestionList
 {
@@ -17,7 +20,7 @@ namespace Client.Controller.QuestionList
         #endregion
 
         #region Instances
-        private IQuestionListView<Model.QuestionList> View { get; set; }
+        private IListView<Model.QuestionList> View { get; set; }
         private QuestionListFactory Factory = new QuestionListFactory();
         #endregion
 
@@ -60,13 +63,22 @@ namespace Client.Controller.QuestionList
 
         public override void SetView(IView view)
         {
-            this.View = (IQuestionListView<Model.QuestionList>)view;
+            this.View = (IListView<Model.QuestionList>)view;
         }
 
         public override void SetBaseFactory(IFactory<Model.QuestionList> factory)
         {
             this.Factory.SetBaseFactory(factory);
         }
+
+        public void SaveQuestionList(Dictionary<string, object> data)
+        {
+            Model.QuestionList list = new Model.QuestionList(data);
+            ViewQuestionList view = (ViewQuestionList)this.View;
+            this.Factory.Save(list, this.View.GetHandler(), view.ProcessAdd);
+        }
+
+        
         #endregion
     }
 }

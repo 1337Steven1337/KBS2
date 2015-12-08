@@ -1,6 +1,7 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Client.Controller;
 using Client.Tests.Factory;
+using Client.Controller.QuestionList;
 
 namespace Client.Tests.View.QuestionList
 {
@@ -11,83 +12,112 @@ namespace Client.Tests.View.QuestionList
         public void CreateTestViewQuestionList_ShouldReturnItemCountOffThree()
         {
             TestViewQuestionList view = new TestViewQuestionList();
-            QuestionListController controller = new QuestionListController(view);
-            controller.factory.SetBaseFactory(new TestQuestionListFactory());
-            controller.loadLists();
+            ListQuestionListController QuestionListController = new ListQuestionListController(view);
+            QuestionListController.SetBaseFactory(new TestQuestionListFactory());
+            QuestionListController.Load();
 
-            int expected = 3;
-            int result = view.getCount();
-
-            Assert.AreEqual(expected, result);
+            Assert.AreEqual(view.getCount(), 3);
         }
 
         [TestMethod]
         public void AddItemToList_ShouldReturnItemCountOffFour()
         {
             TestViewQuestionList view = new TestViewQuestionList();
-            QuestionListController controller = new QuestionListController(view);
-            controller.factory.SetBaseFactory(new TestQuestionListFactory());
-            controller.loadLists();
-            Model.QuestionList ql = new Model.QuestionList();
-            view.Add(ql);
+            ListQuestionListController QuestionListController = new ListQuestionListController(view);
+            QuestionListController.SetBaseFactory(new TestQuestionListFactory());
+            QuestionListController.Load();
 
-            int expected = 4;
-            int result = view.getCount();
+            view.AddItem(new Model.QuestionList());
 
-            Assert.AreEqual(expected, result);
+            Assert.AreEqual(view.getCount(), 4);
         }
 
         [TestMethod]
         public void RemoveItemFromListWithIndex_ShouldReturnItemCountOffTwo()
         {
             TestViewQuestionList view = new TestViewQuestionList();
-            QuestionListController controller = new QuestionListController(view);
-            controller.factory.SetBaseFactory(new TestQuestionListFactory());
-            controller.loadLists();
+            ListQuestionListController QuestionListController = new ListQuestionListController(view);
+            QuestionListController.SetBaseFactory(new TestQuestionListFactory());
+            QuestionListController.Load();
+
             view.RemoveAt(1);
 
-            int expected = 2;
-            int result = view.getCount();
-
-            Assert.AreEqual(expected, result);
+            Assert.AreEqual(view.getCount(), 2);
         }
 
         [TestMethod]
         public void SelectListByListId_ShouldReturnRightIdAndName()
         {
             TestViewQuestionList view = new TestViewQuestionList();
-            QuestionListController controller = new QuestionListController(view);
-            controller.factory.SetBaseFactory(new TestQuestionListFactory());
-            controller.loadLists();
+            ListQuestionListController QuestionListController = new ListQuestionListController(view);
+            QuestionListController.SetBaseFactory(new TestQuestionListFactory());
+            QuestionListController.Load();
+            Model.QuestionList list = view.getById(2);
 
-            int expectedId = 2;
-            string expectedName = "2";
-
-            Model.QuestionList q = view.getById(2);
-            int resultId = q.Id;
-            string resultName = q.Name;
-
-            Assert.AreEqual(expectedId, resultId);
-            Assert.AreEqual(expectedName, resultName);
+            Assert.AreEqual(list.Id, 2);
+            Assert.AreEqual(list.Name, "2");
         }
 
         [TestMethod]
         public void SelectListByIndex_ShouldReturnRightIdAndName()
         {
             TestViewQuestionList view = new TestViewQuestionList();
-            QuestionListController controller = new QuestionListController(view);
-            controller.factory.SetBaseFactory(new TestQuestionListFactory());
-            controller.loadLists();
+            ListQuestionListController QuestionListController = new ListQuestionListController(view);
+            QuestionListController.SetBaseFactory(new TestQuestionListFactory());
+            QuestionListController.Load();
+            Model.QuestionList list = view.getItem(1);
 
-            int expectedId = 2;
-            string expectedName = "2";
+            Assert.AreEqual(list.Id, 2);
+            Assert.AreEqual(list.Name, "2");
+        }
 
-            Model.QuestionList q = view.getItem(1);
-            int resultId = q.Id;
-            string resultName = q.Name;
+        [TestMethod]
+        public void SelectListByIdWithTwoQuestions_ShouldReturnQuestionAmountOfTwo()
+        {
+            TestViewQuestionList view = new TestViewQuestionList();
+            ListQuestionListController QuestionListController = new ListQuestionListController(view);
+            QuestionListController.SetBaseFactory(new TestQuestionListFactory());
+            QuestionListController.Load();
 
-            Assert.AreEqual(expectedId, resultId);
-            Assert.AreEqual(expectedName, resultName);
+            Model.Question q = new Model.Question();
+            view.AddToList(q, 1);
+            view.AddToList(q, 2);
+            view.AddToList(q, 2);
+
+            Model.QuestionList list = view.getById(2);
+
+            Assert.AreEqual(list.Questions.Count, 2);
+        }
+
+        [TestMethod]
+        public void SelectListByIndexWithTwoQuestions_ShouldReturnQuestionAmountOfTwo()
+        {
+            TestViewQuestionList view = new TestViewQuestionList();
+            ListQuestionListController QuestionListController = new ListQuestionListController(view);
+            QuestionListController.SetBaseFactory(new TestQuestionListFactory());
+            QuestionListController.Load();
+
+            Model.Question q = new Model.Question();
+            view.AddToList(q, 1);
+            view.AddToList(q, 2);
+            view.AddToList(q, 2);
+
+            Model.QuestionList list = view.getItem(1);
+
+            Assert.AreEqual(list.Id, 2);
+        }
+
+        [TestMethod]
+        public void SelectListByIdWithNoQuestions_ShouldReturnQuestionAmountOfZero()
+        {
+            TestViewQuestionList view = new TestViewQuestionList();
+            ListQuestionListController QuestionListController = new ListQuestionListController(view);
+            QuestionListController.SetBaseFactory(new TestQuestionListFactory());
+            QuestionListController.Load();
+
+            Model.QuestionList list = view.getQuestionlists()[1];
+
+            Assert.AreEqual(list.Questions.Count, 0);
         }
     }
 }

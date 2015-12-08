@@ -2,14 +2,14 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace Client.View
 {
-    public interface IListView<T> : IView where T : AbstractModel, new()
+    public interface IAddView<T> : IView where T : AbstractModel, new()
     {
-        void FillList(List<T> list);
-        void AddItem(T item);
+        void ShowSaveResult(T instance, HttpStatusCode status);
     }
 }

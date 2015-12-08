@@ -17,6 +17,16 @@ namespace Client.Model
 
         public List<Question> Questions = new List<Question>();
 
+        public QuestionList(Dictionary<string, object> data)
+        {
+            this.Name = Convert.ToString(data["Name"]);
+        }
+
+        public QuestionList()
+        {
+
+        }
+
         //Needed for asking the user for confirmation while deleting the list
         public override string ToString()
         {

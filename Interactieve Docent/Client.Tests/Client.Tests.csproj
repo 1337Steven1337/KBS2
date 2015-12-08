@@ -70,10 +70,13 @@
     <Compile Include="TestControlHandler.cs" />
     <Compile Include="View\Diagram\DiagramTest.cs" />
     <Compile Include="View\QuestionList\TestLoadQuestionLists.cs" />
+    <Compile Include="student\QuestionFormTest.cs" />
     <Compile Include="View\QuestionList\TestViewDeleteQuestionList.cs" />
     <Compile Include="View\QuestionList\TestViewQuestionList.cs" />
     <Compile Include="View\QuestionList\ViewDeleteQuestionList.cs" />
+    <Compile Include="View\Question\TestLoadQuestions.cs" />
     <Compile Include="View\Question\TestViewDeleteQuestion.cs" />
+    <Compile Include="View\Question\TestViewQuestion.cs" />
     <Compile Include="View\Question\ViewDeleteQuestion.cs" />
   </ItemGroup>
   <ItemGroup>

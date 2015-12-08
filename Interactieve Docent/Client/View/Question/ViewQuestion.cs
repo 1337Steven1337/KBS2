@@ -6,13 +6,14 @@ using Client.Service.Thread;
 using Client.View.Main;
 using System.ComponentModel;
 using Client.Controller.Question;
+using Client.Model;
 
 namespace Client.View.Question
 {
     public partial class ViewQuestion : Form, IQuestionView<Model.Question>
     {
         #region Delegates
-        public delegate void AddQuestionClickedDelegate();
+        public delegate void AddQuestionClickedDelegate(Model.QuestionList list);
         #endregion
 
         #region Events
@@ -49,7 +50,7 @@ namespace Client.View.Question
         {
             if (this.AddQuestionClicked != null)
             {
-                this.AddQuestionClicked();
+                this.AddQuestionClicked(this.Controller.CurrentList);
             }
         }
 
@@ -92,6 +93,12 @@ namespace Client.View.Question
         {
             return (Model.Question)this.listBoxQuestions.SelectedItem;
         }
+
+        public void AddItem(Model.Question question)
+        {
+            Questions.Add(question);
+        }
+
         #endregion
 
         public void SetTable<TablePanelLayout>(TablePanelLayout tableThreeColls)
@@ -110,7 +117,7 @@ namespace Client.View.Question
 
             if(this.AddQuestionClicked != null)
             {
-                this.AddQuestionClicked();
+                //this.AddQuestionClicked();
             }
         }
 

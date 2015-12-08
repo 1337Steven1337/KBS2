@@ -182,6 +182,7 @@
     <Compile Include="View\Dialogs\ViewSuccesDialog.Designer.cs">
       <DependentUpon>ViewSuccesDialog.cs</DependentUpon>
     </Compile>
+    <Compile Include="View\IAddView.cs" />
     <Compile Include="View\IListView.cs" />
     <Compile Include="View\IView.cs" />
     <Compile Include="View\Main\IViewMain.cs" />

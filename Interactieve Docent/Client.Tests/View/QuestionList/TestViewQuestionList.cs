@@ -10,10 +10,11 @@ using Client.Model;
 using Client.Service.Thread;
 using Client.View;
 using Client.View.QuestionList;
+using System.Net;
 
 namespace Client.Tests.View.QuestionList
 {
-    public class TestViewQuestionList : IQuestionListView<Model.QuestionList>
+    public class TestViewQuestionList : IListView<Model.QuestionList>
     {
         private QuestionListController controller;
         public List<Model.QuestionList> questionlists = new List<Model.QuestionList>();
@@ -76,6 +77,17 @@ namespace Client.Tests.View.QuestionList
             return null;
         }
 
+        public void AddToList(Model.Question q, int list_Id)
+        {
+            foreach (Model.QuestionList ql in questionlists)
+            {
+                if(ql.Id == list_Id)
+                {
+                    ql.Questions.Add(q);
+                }
+            }
+        }
+
         public void AddToParent(IView parent)
         {
             throw new NotImplementedException();
@@ -83,15 +95,24 @@ namespace Client.Tests.View.QuestionList
 
         public void FillList(List<Model.QuestionList> list)
         {
-            throw new NotImplementedException();
-        }
-
-        public void setController(ListQuestionListController controller)
-        {
-            throw new NotImplementedException();
+            foreach(Model.QuestionList questionList in list)
+            {
+                this.questionlists.Add(questionList);
+            }
         }
 
         public void SetController(IController controller)
+        {
+
+        }
+
+
+        public void AddItem(Model.QuestionList item)
+        {
+            this.questionlists.Add(item);
+        }
+
+        public void ProcessAdd(Model.QuestionList ql, HttpStatusCode status)
         {
             throw new NotImplementedException();
         }
