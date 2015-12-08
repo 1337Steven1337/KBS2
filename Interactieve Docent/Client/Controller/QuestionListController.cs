@@ -71,7 +71,7 @@ namespace Client.Controller
         //Requests all lists via from database
         public void loadLists()
         {
-            //factory.FindAll(this.questionListView.getListBoxQuestionLists(), this.fillList);
+            factory.FindAll(this.questionListView.GetHandler(), this.fillList);
         }
 
         //Adding requested lists to listbox

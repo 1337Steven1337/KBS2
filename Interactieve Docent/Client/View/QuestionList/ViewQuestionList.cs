@@ -7,6 +7,7 @@ using System.Linq;
 using Client.Service.Thread;
 using Client.View.Main;
 using Client.Controller.QuestionList;
+using Client.Model;
 
 namespace Client.View.QuestionList
 {
@@ -177,6 +178,11 @@ namespace Client.View.QuestionList
                 }
             }
             return null;
+        }
+
+        public void AddToList(Model.Question q, int list_Id)
+        {
+            //Q
         }
     }
 }
