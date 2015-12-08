@@ -310,6 +310,7 @@ namespace Client.Factory
         /// <param name="callback">Callback which is called when the request is completed</param>
         public void Save(T instance, IControlHandler control, Action<T> callback)
         {
+            
             this.SaveAsync(instance, (o, s, r) =>
             {
                 control.Invoke(callback, o);

@@ -95,12 +95,10 @@ namespace Client.Tests.View.QuestionList
 
         public void FillList(List<Model.QuestionList> list)
         {
-            throw new NotImplementedException();
-        }
-
-        public void setController(ListQuestionListController controller)
-        {
-            throw new NotImplementedException();
+            foreach(Model.QuestionList questionList in list)
+            {
+                this.questionlists.Add(questionList);
+            }
         }
 
         public void SetController(IController controller)
@@ -111,7 +109,7 @@ namespace Client.Tests.View.QuestionList
 
         public void AddItem(Model.QuestionList item)
         {
-            throw new NotImplementedException();
+            this.questionlists.Add(item);
         }
 
         public void ProcessAdd(Model.QuestionList ql, HttpStatusCode status)
