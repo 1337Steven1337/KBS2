@@ -179,10 +179,14 @@ namespace Client.View.QuestionList
             }
             return null;
         }
-
         public void AddItem(Model.QuestionList item)
         {
             throw new NotImplementedException();
+        }
+
+        public void AddToList(Model.Question q, int list_Id)
+        {
+            //Q
         }
     }
 }

@@ -89,5 +89,60 @@ namespace Client.Tests.View.QuestionList
             Assert.AreEqual(expectedId, resultId);
             Assert.AreEqual(expectedName, resultName);
         }
+
+        [TestMethod]
+        public void SelectListByIdWithTwoQuestions_ShouldReturnQuestionAmountOfTwo()
+        {
+            TestViewQuestionList view = new TestViewQuestionList();
+            QuestionListController controller = new QuestionListController(view);
+            controller.factory.SetBaseFactory(new TestQuestionListFactory());
+            controller.loadLists();
+
+            int expectedQuestionCount = 2;
+
+            Model.Question q = new Model.Question();
+            view.AddToList(q, 1);
+            view.AddToList(q, 2);
+            view.AddToList(q, 2);
+            Model.QuestionList ql = view.getById(2);
+            int resultQuestionCount = ql.Questions.Count;
+
+            Assert.AreEqual(expectedQuestionCount, resultQuestionCount);
+        }
+
+        [TestMethod]
+        public void SelectListByIndexWithTwoQuestions_ShouldReturnQuestionAmountOfTwo()
+        {
+            TestViewQuestionList view = new TestViewQuestionList();
+            QuestionListController controller = new QuestionListController(view);
+            controller.factory.SetBaseFactory(new TestQuestionListFactory());
+            controller.loadLists();
+
+            int expectedQuestionCount = 2;
+
+            Model.Question q = new Model.Question();
+            view.AddToList(q, 1);
+            view.AddToList(q, 2);
+            view.AddToList(q, 2);
+            Model.QuestionList ql = view.getItem(1);
+            int resultQuestionCount = ql.Questions.Count;
+
+            Assert.AreEqual(expectedQuestionCount, resultQuestionCount);
+        }
+
+        [TestMethod]
+        public void SelectListByIdWithNoQuestions_ShouldReturnQuestionAmountOfZero()
+        {
+            TestViewQuestionList view = new TestViewQuestionList();
+            QuestionListController controller = new QuestionListController(view);
+            controller.factory.SetBaseFactory(new TestQuestionListFactory());
+            controller.loadLists();
+
+            int expectedQuestionCount = 0;
+            Model.QuestionList ql = view.getById(2);
+            int resultQuestionCount = ql.Questions.Count;
+
+            Assert.AreEqual(expectedQuestionCount, resultQuestionCount);
+        }
     }
 }

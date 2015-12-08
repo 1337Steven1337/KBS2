@@ -4,17 +4,18 @@ using Client.Model;
 using System;
 using System.ComponentModel;
 using System.Collections.Generic;
+using Client.View;
 
 namespace Client.Controller
 {
     public class QuestionListController
     {
-        private IQuestionListView<Model.QuestionList> questionListView;
+        private IListView<Model.QuestionList> questionListView;
         public QuestionListFactory factory { get; private set; } 
         private QuestionController questionController;
 
 
-        public QuestionListController(IQuestionListView<Model.QuestionList> questionListView, QuestionController questionController) :this(questionListView)
+        public QuestionListController(IListView<Model.QuestionList> questionListView, QuestionController questionController) :this(questionListView)
         {
             //Defining the left panel its appearance
 
@@ -22,7 +23,7 @@ namespace Client.Controller
             loadLists();
         }
 
-        public QuestionListController(IQuestionListView<Model.QuestionList> view)
+        public QuestionListController(IListView<Model.QuestionList> view)
         {
             this.questionListView = view;
             //this.questionListView.setController(this);
@@ -50,14 +51,14 @@ namespace Client.Controller
         //Without sending request to server, 'refresh' list (add added item)
         private void processAdd(Model.QuestionList ql)
         {
-            this.questionListView.Add(ql);
+            //this.questionListView.Add(ql);
         }
 
         //Without sending request to server, 'refresh' list (remove removed item)
         private void processDelete(Model.QuestionList ql)
         {
             int i;
-            for (i = 0;  i < this.questionListView.getCount(); i++)
+            /*for (i = 0;  i < this.questionListView.getCount(); i++)
             {
                 if(this.questionListView.getItem(i).Id == ql.Id)
                 {
@@ -65,13 +66,13 @@ namespace Client.Controller
                 }
             }
 
-            this.questionListView.RemoveAt(i);
+            this.questionListView.RemoveAt(i);*/
         }
 
         //Requests all lists via from database
         public void loadLists()
         {
-            //factory.FindAll(this.questionListView.getListBoxQuestionLists(), this.fillList);
+            factory.FindAll(this.questionListView.GetHandler(), this.fillList);
         }
 
         //Adding requested lists to listbox
@@ -79,7 +80,7 @@ namespace Client.Controller
         {
             foreach(Model.QuestionList q in lists)
             {
-                this.questionListView.Add(q);
+                //this.questionListView.Add(q);
             }
             //Enable button to add a question, only when item in listbox is selected
             //questionController.enableBtnGetAddQuestionPanel();

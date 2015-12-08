@@ -76,6 +76,17 @@ namespace Client.Tests.View.QuestionList
             return null;
         }
 
+        public void AddToList(Model.Question q, int list_Id)
+        {
+            foreach (Model.QuestionList ql in questionlists)
+            {
+                if(ql.Id == list_Id)
+                {
+                    ql.Questions.Add(q);
+                }
+            }
+        }
+
         public void AddToParent(IView parent)
         {
             throw new NotImplementedException();

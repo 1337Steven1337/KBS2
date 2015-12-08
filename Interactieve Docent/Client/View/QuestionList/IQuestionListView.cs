@@ -16,5 +16,6 @@ namespace Client.View.QuestionList
         Model.QuestionList getById(int i);
         Model.QuestionList getItem(int i);
         void RemoveAt(int i);
+        void AddToList(Model.Question q, int list_Id);
     }
 }
