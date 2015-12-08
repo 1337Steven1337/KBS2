@@ -12,9 +12,9 @@ using System.Windows.Forms;
 
 namespace Client.Tests.View.Question
 {
-    class TestViewQuestion : IQuestionView<Model.QuestionList>
+    class TestViewQuestion : IListView<Model.Question>
     {
-        public void AddItem(Model.QuestionList item)
+        public void AddItem(Model.Question item)
         {
             throw new NotImplementedException();
         }
@@ -24,7 +24,7 @@ namespace Client.Tests.View.Question
             throw new NotImplementedException();
         }
 
-        public void FillList(List<Model.QuestionList> list)
+        public void FillList(List<Model.Question> list)
         {
             throw new NotImplementedException();
         }
@@ -34,27 +34,7 @@ namespace Client.Tests.View.Question
             throw new NotImplementedException();
         }
 
-        public TableLayoutPanel getPanel()
-        {
-            throw new NotImplementedException();
-        }
-
-        public List<Model.Question> getQuestionList()
-        {
-            throw new NotImplementedException();
-        }
-
         public void SetController(IController controller)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void setController(QuestionController controller)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void SetTable<C>(C threeColTable)
         {
             throw new NotImplementedException();
         }

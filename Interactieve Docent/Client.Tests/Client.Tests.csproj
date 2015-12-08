@@ -62,7 +62,6 @@
   </Choose>
   <ItemGroup>
     <Compile Include="Controllers\Questionstest.cs" />
-    <Compile Include="Controllers\Models\TestDiagramDbRead.cs" />
     <Compile Include="Controllers\TestQuestionController.cs" />
     <Compile Include="Factory\TestQuestionFactory.cs" />
     <Compile Include="Factory\TestQuestionListFactory.cs" />
@@ -86,6 +85,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Controllers\Models\" />
     <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>

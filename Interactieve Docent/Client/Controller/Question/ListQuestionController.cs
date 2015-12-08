@@ -9,7 +9,7 @@ namespace Client.Controller.Question
     public class ListQuestionController : AbstractController<Model.Question>
     {
         #region Instances
-        private IQuestionView<Model.Question> View { get; set; }
+        private IListView<Model.Question> View { get; set; }
         private QuestionFactory Factory = new QuestionFactory();
         public Model.QuestionList CurrentList { get; private set; }
         #endregion
@@ -53,7 +53,7 @@ namespace Client.Controller.Question
 
         public override void SetView(IView view)
         {
-            this.View = (IQuestionView<Model.Question>)view;
+            this.View = (IListView<Model.Question>)view;
         }
 
         public override void SetBaseFactory(IFactory<Model.Question> baseFactory)
