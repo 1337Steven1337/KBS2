@@ -12,11 +12,11 @@ using Client.Service.Thread;
 
 namespace Client.View.Main
 {
-    public partial class ViewMain : Form, IView
+    public partial class MainView : Form, IView
     {
         private MainController controller;
 
-        public ViewMain()
+        public MainView()
         {
             InitializeComponent();
 

@@ -11,11 +11,11 @@ using System.Windows.Forms;
 namespace Client.View.QuestionList
 {
     //Popup which shows when trying to Delete a list
-    public partial class ViewDeleteQuestionList : Form
+    public partial class DeleteQuestionListView : Form
     { 
         public Boolean valid { get; set; }
 
-        public ViewDeleteQuestionList()
+        public DeleteQuestionListView()
         {
             InitializeComponent();
             //Always assume the user pressed 'Delete list' on accident

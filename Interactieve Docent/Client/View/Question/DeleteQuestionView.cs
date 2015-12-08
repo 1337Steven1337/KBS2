@@ -3,11 +3,11 @@ using System.Windows.Forms;
 
 namespace Client.View.Question
 {
-    public partial class ViewDeleteQuestion : Form
+    public partial class DeleteQuestionView : Form
     {
         public Boolean valid { get; set; }
 
-        public ViewDeleteQuestion()
+        public DeleteQuestionView()
         {
             valid = false;
             InitializeComponent();

@@ -1,6 +1,6 @@
 ﻿namespace Client.View.Diagram
 {
-    partial class ViewDiagram
+    partial class DiagramView
     {
         /// <summary>
         /// Required designer variable.

@@ -10,7 +10,7 @@ using Client.Model;
 
 namespace Client.View.Question
 {
-    public partial class ViewQuestion : Form, IListView<Model.Question>
+    public partial class ListQuestionView : Form, IListView<Model.Question>
     {
         #region Delegates
         public delegate void AddQuestionClickedDelegate(Model.QuestionList list);
@@ -29,7 +29,7 @@ namespace Client.View.Question
         #endregion
 
         #region Constructors
-        public ViewQuestion()
+        public ListQuestionView()
         {
             InitializeComponent();
 
@@ -78,7 +78,7 @@ namespace Client.View.Question
 
         public void AddToParent(IView parent)
         {
-            ViewMain main = (ViewMain)parent;
+            MainView main = (MainView)parent;
             main.AddTablePanel(this.mainTablePanel, 1);
         }
 

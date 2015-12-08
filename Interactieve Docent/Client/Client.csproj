@@ -110,7 +110,7 @@
     <Compile Include="Controller\AbstractController.cs" />
     <Compile Include="Controller\DiagramController.cs" />
     <Compile Include="Controller\IController.cs" />
-    <Compile Include="Controller\MainController.cs" />
+    <Compile Include="Controller\Main\ShowMainController.cs" />
     <Compile Include="Controller\QuestionList\ListQuestionListController.cs" />
     <Compile Include="Controller\Question\AddQuestionController.cs" />
     <Compile Include="Controller\Question\ListQuestionController.cs" />
@@ -122,7 +122,6 @@
     <Compile Include="Factory\QuestionFactory.cs" />
     <Compile Include="Factory\QuestionListFactory.cs" />
     <Compile Include="Factory\UserAnswerFactory.cs" />
-    <Compile Include="IContext.cs" />
     <Compile Include="Model\AbstractModel.cs" />
     <Compile Include="Model\PredefinedAnswer.cs" />
     <Compile Include="Model\Question.cs" />
@@ -134,12 +133,6 @@
       <DependentUpon>Api.settings</DependentUpon>
     </Compile>
     <Compile Include="API\Api.cs" />
-    <Compile Include="Form1.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
-    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Service\SignalR\SignalRClient.cs" />
@@ -159,81 +152,76 @@
       <DependentUpon>QuestionForm.cs</DependentUpon>
     </Compile>
     <Compile Include="View\Diagram\IDiagramView.cs" />
-    <Compile Include="View\Diagram\ViewDiagram.cs">
+    <Compile Include="View\Diagram\DiagramView.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="View\Diagram\ViewDiagram.Designer.cs">
-      <DependentUpon>ViewDiagram.cs</DependentUpon>
+    <Compile Include="View\Diagram\DiagramView.Designer.cs">
+      <DependentUpon>DiagramView.cs</DependentUpon>
     </Compile>
-    <Compile Include="View\Dialogs\ViewFailedDialog.cs">
+    <Compile Include="View\Dialogs\FailedDialogView.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="View\Dialogs\ViewFailedDialog.Designer.cs">
-      <DependentUpon>ViewFailedDialog.cs</DependentUpon>
+    <Compile Include="View\Dialogs\FailedDialogView.Designer.cs">
+      <DependentUpon>FailedDialogView.cs</DependentUpon>
     </Compile>
-    <Compile Include="View\Dialogs\ViewSuccesDialog.cs">
+    <Compile Include="View\Dialogs\SuccesDialogView.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="View\Dialogs\ViewSuccesDialog.Designer.cs">
-      <DependentUpon>ViewSuccesDialog.cs</DependentUpon>
+    <Compile Include="View\Dialogs\SuccesDialogView.Designer.cs">
+      <DependentUpon>SuccesDialogView.cs</DependentUpon>
     </Compile>
     <Compile Include="View\IAddView.cs" />
     <Compile Include="View\IListView.cs" />
     <Compile Include="View\IView.cs" />
-    <Compile Include="View\Main\IViewMain.cs" />
-    <Compile Include="View\Main\ViewMain.cs">
+    <Compile Include="View\Main\MainView.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="View\Main\ViewMain.Designer.cs">
-      <DependentUpon>ViewMain.cs</DependentUpon>
+    <Compile Include="View\Main\MainView.Designer.cs">
+      <DependentUpon>MainView.cs</DependentUpon>
     </Compile>
-    <Compile Include="View\QuestionList\IQuestionListView.cs" />
-    <Compile Include="View\QuestionList\ViewDeleteQuestionList.cs">
+    <Compile Include="View\QuestionList\DeleteQuestionListView.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="View\QuestionList\ViewDeleteQuestionList.Designer.cs">
-      <DependentUpon>ViewDeleteQuestionList.cs</DependentUpon>
+    <Compile Include="View\QuestionList\DeleteQuestionListView.Designer.cs">
+      <DependentUpon>DeleteQuestionListView.cs</DependentUpon>
     </Compile>
-    <Compile Include="View\QuestionList\ViewNewQuestionList.cs">
+    <Compile Include="View\QuestionList\AddQuestionListView.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="View\QuestionList\ViewNewQuestionList.Designer.cs">
-      <DependentUpon>ViewNewQuestionList.cs</DependentUpon>
+    <Compile Include="View\QuestionList\AddQuestionListView.Designer.cs">
+      <DependentUpon>AddQuestionListView.cs</DependentUpon>
     </Compile>
-    <Compile Include="View\QuestionList\ViewQuestionList.cs">
+    <Compile Include="View\QuestionList\ListQuestionListView.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="View\QuestionList\ViewQuestionList.Designer.cs">
-      <DependentUpon>ViewQuestionList.cs</DependentUpon>
+    <Compile Include="View\QuestionList\ListQuestionListView.Designer.cs">
+      <DependentUpon>ListQuestionListView.cs</DependentUpon>
     </Compile>
-    <Compile Include="View\Dialogs\ViewConfirmDialog.cs">
+    <Compile Include="View\Dialogs\ConfirmDialogView.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="View\Dialogs\ViewConfirmDialog.Designer.cs">
-      <DependentUpon>ViewConfirmDialog.cs</DependentUpon>
+    <Compile Include="View\Dialogs\ConfirmDialogView.Designer.cs">
+      <DependentUpon>ConfirmDialogView.cs</DependentUpon>
     </Compile>
-    <Compile Include="View\Question\ViewAddQuestion.cs">
+    <Compile Include="View\Question\AddQuestionView.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="View\Question\ViewAddQuestion.Designer.cs">
-      <DependentUpon>ViewAddQuestion.cs</DependentUpon>
+    <Compile Include="View\Question\AddQuestionView.Designer.cs">
+      <DependentUpon>AddQuestionView.cs</DependentUpon>
     </Compile>
-    <Compile Include="View\Question\ViewDeleteQuestion.cs">
+    <Compile Include="View\Question\DeleteQuestionView.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="View\Question\ViewDeleteQuestion.Designer.cs">
-      <DependentUpon>ViewDeleteQuestion.cs</DependentUpon>
+    <Compile Include="View\Question\DeleteQuestionView.Designer.cs">
+      <DependentUpon>DeleteQuestionView.cs</DependentUpon>
     </Compile>
-    <Compile Include="View\Question\ViewQuestion.cs">
+    <Compile Include="View\Question\ListQuestionView.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="View\Question\ViewQuestion.Designer.cs">
-      <DependentUpon>ViewQuestion.cs</DependentUpon>
+    <Compile Include="View\Question\ListQuestionView.Designer.cs">
+      <DependentUpon>ListQuestionView.cs</DependentUpon>
     </Compile>
     <Compile Include="View\Student\StudentForm.cs" />
-    <EmbeddedResource Include="Form1.resx">
-      <DependentUpon>Form1.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -249,40 +237,39 @@
     <EmbeddedResource Include="Student\QuestionForm.resx">
       <DependentUpon>QuestionForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="View\Diagram\ViewDiagram.resx">
-      <DependentUpon>ViewDiagram.cs</DependentUpon>
+    <EmbeddedResource Include="View\Diagram\DiagramView.resx">
+      <DependentUpon>DiagramView.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="View\Dialogs\ViewFailedDialog.resx">
-      <DependentUpon>ViewFailedDialog.cs</DependentUpon>
+    <EmbeddedResource Include="View\Dialogs\FailedDialogView.resx">
+      <DependentUpon>FailedDialogView.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="View\Dialogs\ViewSuccesDialog.resx">
-      <DependentUpon>ViewSuccesDialog.cs</DependentUpon>
+    <EmbeddedResource Include="View\Dialogs\SuccesDialogView.resx">
+      <DependentUpon>SuccesDialogView.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="View\Main\ViewMain.resx">
-      <DependentUpon>ViewMain.cs</DependentUpon>
+    <EmbeddedResource Include="View\Main\MainView.resx">
+      <DependentUpon>MainView.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="View\QuestionList\ViewDeleteQuestionList.resx">
-      <DependentUpon>ViewDeleteQuestionList.cs</DependentUpon>
+    <EmbeddedResource Include="View\QuestionList\DeleteQuestionListView.resx">
+      <DependentUpon>DeleteQuestionListView.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="View\QuestionList\ViewNewQuestionList.resx">
-      <DependentUpon>ViewNewQuestionList.cs</DependentUpon>
+    <EmbeddedResource Include="View\QuestionList\AddQuestionListView.resx">
+      <DependentUpon>AddQuestionListView.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="View\QuestionList\ViewQuestionList.resx">
-      <DependentUpon>ViewQuestionList.cs</DependentUpon>
+    <EmbeddedResource Include="View\QuestionList\ListQuestionListView.resx">
+      <DependentUpon>ListQuestionListView.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="View\Question\ViewAddQuestion.resx">
-      <DependentUpon>ViewAddQuestion.cs</DependentUpon>
+    <EmbeddedResource Include="View\Question\AddQuestionView.resx">
+      <DependentUpon>AddQuestionView.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="View\Dialogs\ViewConfirmDialog.resx">
-      <DependentUpon>ViewConfirmDialog.cs</DependentUpon>
+    <EmbeddedResource Include="View\Dialogs\ConfirmDialogView.resx">
+      <DependentUpon>ConfirmDialogView.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="View\Question\ViewDeleteQuestion.resx">
-      <DependentUpon>ViewDeleteQuestion.cs</DependentUpon>
+    <EmbeddedResource Include="View\Question\DeleteQuestionView.resx">
+      <DependentUpon>DeleteQuestionView.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="View\Question\ViewQuestion.resx">
-      <DependentUpon>ViewQuestion.cs</DependentUpon>
+    <EmbeddedResource Include="View\Question\ListQuestionView.resx">
+      <DependentUpon>ListQuestionView.cs</DependentUpon>
     </EmbeddedResource>
-    <None Include="ClassDiagram1.cd" />
     <None Include="Properties\Api.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Api.Designer.cs</LastGenOutput>

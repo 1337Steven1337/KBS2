@@ -24,14 +24,14 @@ namespace Client
             Application.SetCompatibleTextRenderingDefault(false);
             //Application.Run(new Main());
 
-            ViewMain view = new ViewMain();
+            MainView view = new MainView();
             MainController maincontroller = new MainController(view);
 
-            ViewQuestion viewQuestion = new ViewQuestion();
+            ListQuestionView viewQuestion = new ListQuestionView();
             ListQuestionController questionController = new ListQuestionController(viewQuestion);
             maincontroller.AddController(questionController);
 
-            ViewQuestionList viewQuestionList = new ViewQuestionList();
+            ListQuestionListView viewQuestionList = new ListQuestionListView();
             ListQuestionListController listQuestionListController = new ListQuestionListController(viewQuestionList);
             maincontroller.AddController(listQuestionListController);
 
