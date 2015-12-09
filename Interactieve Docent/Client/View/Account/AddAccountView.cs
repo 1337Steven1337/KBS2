@@ -7,34 +7,90 @@ using Client.Model;
 using Client.Service.Thread;
 using Client.Controller.Account;
 using Client.View.Dialogs;
+using System.Collections.Generic;
 
 namespace Client.View.Account
 {
     public partial class AddAccountView : Form, IAddAccountView
     {
-        private Button OpenDialogButton;
-        private OpenFileDialog SelectExcelFileDialog;
-
+        #region Instances
         private AddAccountController Controller { get; set; }
+        #endregion
 
+        #region Constructors
         public AddAccountView()
         {
             InitializeComponent();
 
             this.SelectExcelFileDialog.FileOk += SelectExcelFileDialog_FileOk;
         }
+        #endregion
+
+        #region Events
+        private void OpenDialogButton_Click(object sender, EventArgs e)
+        {
+            this.SelectExcelFileDialog.ShowDialog();
+        }
 
         private void SelectExcelFileDialog_FileOk(object sender, CancelEventArgs e)
         {
-            if(!e.Cancel)
+            if (!e.Cancel)
             {
                 this.Controller.ProcessFile(this.SelectExcelFileDialog.FileName);
             }
         }
+        #endregion
 
-        public void AddToParent(IView parent)
+        #region Methods
+        public void EnableButton()
         {
-            throw new NotImplementedException();
+            this.OpenDialogButton.Enabled = true;
+        }
+
+        public void DisableButton()
+        {
+            this.OpenDialogButton.Enabled = false;
+        }
+
+        public void UpdateProgressBar()
+        {
+            this.SaveProgressBar.PerformStep();
+        }
+
+        public void ResetProgressBar(int step, int maxValue)
+        {
+            this.SaveProgressBar.Maximum = maxValue;
+            this.SaveProgressBar.Minimum = 0;
+            this.SaveProgressBar.Step = 1;
+            this.SaveProgressBar.Value = 0;
+        }
+
+        public void ShowSaveSucceed()
+        {
+            SuccesDialogView succes = new SuccesDialogView();
+            succes.getLabelSucces().Text = "De e-mails zijn succesvol verzonden.";
+            succes.ShowDialog();
+        }
+
+        public void ShowLoadFailed()
+        {
+            FailedDialogView failed = new FailedDialogView();
+            failed.getLabelFailed().Text = "Het Excel bestand is ongeldig, er is geen sheet gevonden.";
+            failed.ShowDialog();
+        }
+
+        public void ShowNoAccountsFound()
+        {
+            FailedDialogView failed = new FailedDialogView();
+            failed.getLabelFailed().Text = "Het Excel bestand is ongeldig, er zijn geen accounts gevonden.";
+            failed.ShowDialog();
+        }
+
+        public void ShowSaveFailed(Dictionary<string, int> data)
+        {
+            FailedDialogView failed = new FailedDialogView();
+            failed.getLabelFailed().Text = "Kon een of meerdere e-mails niet versturen.";
+            failed.ShowDialog();
         }
 
         public IControlHandler GetHandler()
@@ -42,14 +98,19 @@ namespace Client.View.Account
             return new ControlHandler(this.OpenDialogButton);
         }
 
+        public void SetController(IController controller)
+        {
+            this.Controller = (AddAccountController)controller;
+        }
+
         public PredefinedAnswer GetSelectedAnswer()
         {
             throw new NotImplementedException();
         }
 
-        public void SetController(IController controller)
+        public void AddToParent(IView parent)
         {
-            this.Controller = (AddAccountController)controller;
+            throw new NotImplementedException();
         }
 
         public void ShowSaveFailed()
@@ -61,51 +122,6 @@ namespace Client.View.Account
         {
             throw new NotImplementedException();
         }
-
-        public void ShowSaveSucceed()
-        {
-            throw new NotImplementedException();
-        }
-
-        private void OpenDialogButton_Click(object sender, EventArgs e)
-        {
-            this.SelectExcelFileDialog.ShowDialog();
-
-        }
-
-        public void ShowLoadFailed()
-        {
-            FailedDialogView failed = new FailedDialogView();
-            failed.getLabelFailed().Text = "Het Excel bestand is ongeldig, er is geen sheet gevonden.";
-            failed.ShowDialog();
-        }
-
-        private void InitializeComponent()
-        {
-            this.SelectExcelFileDialog = new System.Windows.Forms.OpenFileDialog();
-            this.OpenDialogButton = new System.Windows.Forms.Button();
-            this.SuspendLayout();
-            // 
-            // SelectExcelFileDialog
-            // 
-            this.SelectExcelFileDialog.FileName = "openFileDialog1";
-            // 
-            // OpenDialogButton
-            // 
-            this.OpenDialogButton.Location = new System.Drawing.Point(137, 66);
-            this.OpenDialogButton.Name = "OpenDialogButton";
-            this.OpenDialogButton.Size = new System.Drawing.Size(75, 23);
-            this.OpenDialogButton.TabIndex = 0;
-            this.OpenDialogButton.Text = "button1";
-            this.OpenDialogButton.UseVisualStyleBackColor = true;
-            // 
-            // AddAccountView
-            // 
-            this.ClientSize = new System.Drawing.Size(284, 261);
-            this.Controls.Add(this.OpenDialogButton);
-            this.Name = "AddAccountView";
-            this.ResumeLayout(false);
-
-        }
+        #endregion
     }
 }

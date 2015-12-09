@@ -49,9 +49,13 @@ namespace Client.View.Question
         //Add answer to AnswersList
         private void BtnAddAnswer_Click(object sender, EventArgs e)
         {
-            if (answerField.Text != "" && AnswersList.ToList().Find(x => x.Text == answerField.Text) == null)
+            //Remove all whitespaces at beginning and end of the string
+            String answer = answerField.Text;
+            answer = answer.Trim();
+
+            if (answer != "" && AnswersList.ToList().Find(x => x.Text == answer) == null)
             {
-                Model.PredefinedAnswer pa = new Model.PredefinedAnswer() { Text = answerField.Text };
+                Model.PredefinedAnswer pa = new Model.PredefinedAnswer() { Text = answer };
                 AnswersList.Add(pa);
             }                 
             else
@@ -74,7 +78,7 @@ namespace Client.View.Question
                 if (dr == DialogResult.Yes)
                 {
                     Dictionary<string, object> iDictionary = new Dictionary<string, object>();
-                    iDictionary.Add("Text", questionField.Text);
+                    iDictionary.Add("Text", questionField.Text.Trim());
                     iDictionary.Add("Points", pointsField.Value);
                     iDictionary.Add("Time", timeField.Value);
                     iDictionary.Add("PredefinedAnswerCount", this.answersListBox.Items.Count);
@@ -101,13 +105,13 @@ namespace Client.View.Question
                 Time = Convert.ToInt32(timeField.Value);
                 Points = Convert.ToInt32(pointsField.Value);
             }
-            catch(Exception e)
+            catch(Exception)
             {
 
             }
 
             //return true or false
-            return (Time > 0 && Points > 0 && questionField.Text != "");
+            return (Time > 0 && Points > 0 && questionField.Text != "" && answersListBox.Items.Count > 0);
         }
 
         //Add view to mainTable
