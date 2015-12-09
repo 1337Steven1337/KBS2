@@ -1,17 +1,16 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Windows.Forms;
+using System.Diagnostics;
+
 namespace Client.Tests.student
 {
     [TestClass]
     public class QuestionFormTest
     {
         Student.QuestionForm test = new Student.QuestionForm();
+        Student.QuestionForm testfilled;
 
-        [TestMethod]
-        public void getProgressBarTest()
-        {
-        }
         [TestMethod]
         public void getQuestionListTest()
         {
@@ -26,16 +25,7 @@ namespace Client.Tests.student
 
             Assert.AreEqual(expected, result);
         }
-        [TestMethod]
-        public void getCurrentQuestionTest()
-        {
 
-        }
-        [TestMethod]
-        public void goToNextQuestionTest()
-        {
-
-        }
 
 
     }

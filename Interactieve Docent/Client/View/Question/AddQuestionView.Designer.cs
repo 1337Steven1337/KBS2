@@ -195,7 +195,7 @@
             this.labelQuestionField.Name = "labelQuestionField";
             this.labelQuestionField.Size = new System.Drawing.Size(143, 50);
             this.labelQuestionField.TabIndex = 0;
-            this.labelQuestionField.Text = "Vraag";
+            this.labelQuestionField.Text = "Vraag*";
             this.labelQuestionField.TextAlign = System.Drawing.ContentAlignment.TopRight;
             // 
             // questionField
@@ -219,7 +219,7 @@
             this.labelTimeField.Name = "labelTimeField";
             this.labelTimeField.Size = new System.Drawing.Size(143, 28);
             this.labelTimeField.TabIndex = 2;
-            this.labelTimeField.Text = "Tijd (sec)";
+            this.labelTimeField.Text = "Tijd (sec)*";
             this.labelTimeField.TextAlign = System.Drawing.ContentAlignment.TopRight;
             // 
             // labelPointsField
@@ -233,7 +233,7 @@
             this.labelPointsField.Name = "labelPointsField";
             this.labelPointsField.Size = new System.Drawing.Size(143, 28);
             this.labelPointsField.TabIndex = 3;
-            this.labelPointsField.Text = "Punten";
+            this.labelPointsField.Text = "Punten*";
             this.labelPointsField.TextAlign = System.Drawing.ContentAlignment.TopRight;
             // 
             // labelAnswerField
@@ -265,6 +265,11 @@
             this.timeField.Dock = System.Windows.Forms.DockStyle.Fill;
             this.timeField.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.timeField.Location = new System.Drawing.Point(152, 53);
+            this.timeField.Maximum = new decimal(new int[] {
+            7200,
+            0,
+            0,
+            0});
             this.timeField.Name = "timeField";
             this.timeField.Size = new System.Drawing.Size(439, 22);
             this.timeField.TabIndex = 6;
@@ -275,6 +280,11 @@
             this.pointsField.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pointsField.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.pointsField.Location = new System.Drawing.Point(152, 81);
+            this.pointsField.Maximum = new decimal(new int[] {
+            10000,
+            0,
+            0,
+            0});
             this.pointsField.Name = "pointsField";
             this.pointsField.Size = new System.Drawing.Size(439, 22);
             this.pointsField.TabIndex = 7;
@@ -302,7 +312,7 @@
             this.labelAnswersListBox.Name = "labelAnswersListBox";
             this.labelAnswersListBox.Size = new System.Drawing.Size(143, 214);
             this.labelAnswersListBox.TabIndex = 4;
-            this.labelAnswersListBox.Text = "Antwoorden";
+            this.labelAnswersListBox.Text = "Antwoorden*";
             this.labelAnswersListBox.TextAlign = System.Drawing.ContentAlignment.TopRight;
             // 
             // rightAnswerComboBox
@@ -360,7 +370,7 @@
             this.labelRightAnswer.Name = "labelRightAnswer";
             this.labelRightAnswer.Size = new System.Drawing.Size(143, 78);
             this.labelRightAnswer.TabIndex = 14;
-            this.labelRightAnswer.Text = "Juiste antwoord";
+            this.labelRightAnswer.Text = "Juiste antwoord*";
             this.labelRightAnswer.TextAlign = System.Drawing.ContentAlignment.TopRight;
             // 
             // AddQuestionView
