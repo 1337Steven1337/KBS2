@@ -2,7 +2,7 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Client.Tests.View.Question;
 
-namespace Client.Tests.Controllers
+namespace Client.Tests.View.QuestionList
 {
     [TestClass]
     public class TestViewDeleteQuestionList

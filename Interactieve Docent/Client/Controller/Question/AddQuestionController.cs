@@ -77,7 +77,6 @@ namespace Client.Controller.Question
             this.SavePredefinedAnswers(answers, question, new BaseFactory<PredefinedAnswer>());
         }
 
-
         public void SavePredefinedAnswers(List<Model.PredefinedAnswer> answers, Model.Question question, IFactory<Model.PredefinedAnswer> baseFactory)
         {
             this.AnswersSaved.Clear();
@@ -104,6 +103,7 @@ namespace Client.Controller.Question
                 {
                     answer.RightAnswer = false;
                 }
+
                 factory.Save(answer, this.View.GetHandler(), CallbackSavePredefinedAnswers);
             }
         }

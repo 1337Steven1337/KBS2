@@ -14,7 +14,7 @@ using System.Net;
 
 namespace Client.Tests.View.QuestionList
 {
-    public class TestViewQuestionList : IListView<Model.QuestionList>, IAddView<Model.QuestionList>
+    public class TestViewQuestionList : IListView<Model.QuestionList>
     {
         private ListQuestionListController controller;
         public List<Model.QuestionList> questionlists = new List<Model.QuestionList>();
@@ -112,25 +112,7 @@ namespace Client.Tests.View.QuestionList
             this.questionlists.Add(item);
         }
 
-        public void ShowSaveResult(Model.QuestionList instance, HttpStatusCode status)
-        {
-            if(status == HttpStatusCode.OK)
-            {
-                this.AddItem(instance);
-            }
-        }
-
-        public void ShowSaveFailed()
-        {
-            
-        }
-
-        public void ShowSaveSucceed()
-        {
-            
-        }
-
-        public PredefinedAnswer GetSelectedAnswer()
+        public void ProcessAdd(Model.QuestionList ql, HttpStatusCode status)
         {
             throw new NotImplementedException();
         }
