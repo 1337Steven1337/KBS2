@@ -1,7 +1,7 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace Client.Tests.View.Question
+namespace Client.Tests.Controllers
 {
     [TestClass]
     public class TestLoadQuestions

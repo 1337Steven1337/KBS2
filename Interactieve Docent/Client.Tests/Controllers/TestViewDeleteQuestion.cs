@@ -1,7 +1,8 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Client.Tests.View.Question;
 
-namespace Client.Tests.View.Question
+namespace Client.Tests.Controllers
 {
     [TestClass]
     public class TestViewDeleteQuestion

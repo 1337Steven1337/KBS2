@@ -14,7 +14,7 @@ namespace Client.View.QuestionList
     public partial class AddQuestionListView : Form
     {
         public string text { private set; get; }
-        public Boolean valid { set; get; }
+        public Boolean valid { private set; get; }
 
         public AddQuestionListView()
         {
