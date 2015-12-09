@@ -8,7 +8,7 @@ namespace Server.Models.DTO
     public class AccountDTO
     {
         public int Id { get; set; }
-        public string Number { get; set; }
+        public string Student { get; set; }
 
         public AccountDTO() 
         {
@@ -17,7 +17,7 @@ namespace Server.Models.DTO
         public AccountDTO(Account a)
         {
             this.Id = a.Id;
-            this.Number = a.Number;
+            this.Student = a.Student;
         }
     }
 }
