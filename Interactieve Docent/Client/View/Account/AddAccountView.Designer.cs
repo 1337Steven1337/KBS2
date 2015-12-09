@@ -74,7 +74,6 @@
             this.Controls.Add(this.OpenDialogButton);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Name = "AddAccountView";
-            this.Load += new System.EventHandler(this.AddAccountView_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

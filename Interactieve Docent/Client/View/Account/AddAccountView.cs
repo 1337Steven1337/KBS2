@@ -13,13 +13,23 @@ namespace Client.View.Account
 {
     public partial class AddAccountView : Form, IAddAccountView
     {
+        #region Instances
         private AddAccountController Controller { get; set; }
+        #endregion
 
+        #region Constructors
         public AddAccountView()
         {
             InitializeComponent();
 
             this.SelectExcelFileDialog.FileOk += SelectExcelFileDialog_FileOk;
+        }
+        #endregion
+
+        #region Events
+        private void OpenDialogButton_Click(object sender, EventArgs e)
+        {
+            this.SelectExcelFileDialog.ShowDialog();
         }
 
         private void SelectExcelFileDialog_FileOk(object sender, CancelEventArgs e)
@@ -29,7 +39,9 @@ namespace Client.View.Account
                 this.Controller.ProcessFile(this.SelectExcelFileDialog.FileName);
             }
         }
+        #endregion
 
+        #region Methods
         public void EnableButton()
         {
             this.OpenDialogButton.Enabled = true;
@@ -53,36 +65,6 @@ namespace Client.View.Account
             this.SaveProgressBar.Value = 0;
         }
 
-        public void AddToParent(IView parent)
-        {
-            throw new NotImplementedException();
-        }
-
-        public IControlHandler GetHandler()
-        {
-            return new ControlHandler(this.OpenDialogButton);
-        }
-
-        public PredefinedAnswer GetSelectedAnswer()
-        {
-            throw new NotImplementedException();
-        }
-
-        public void SetController(IController controller)
-        {
-            this.Controller = (AddAccountController)controller;
-        }
-
-        public void ShowSaveFailed()
-        {
-            throw new NotImplementedException();
-        }
-
-        public void ShowSaveResult(Model.Account instance, HttpStatusCode status)
-        {
-            throw new NotImplementedException();
-        }
-
         public void ShowSaveSucceed()
         {
             SuccesDialogView succes = new SuccesDialogView();
@@ -104,21 +86,42 @@ namespace Client.View.Account
             failed.ShowDialog();
         }
 
-        private void AddAccountView_Load(object sender, EventArgs e)
-        {
-
-        }
-
-        private void OpenDialogButton_Click(object sender, EventArgs e)
-        {
-            this.SelectExcelFileDialog.ShowDialog();
-        }
-
         public void ShowSaveFailed(Dictionary<string, int> data)
         {
             FailedDialogView failed = new FailedDialogView();
             failed.getLabelFailed().Text = "Kon een of meerdere e-mails niet versturen.";
             failed.ShowDialog();
         }
+
+        public IControlHandler GetHandler()
+        {
+            return new ControlHandler(this.OpenDialogButton);
+        }
+
+        public void SetController(IController controller)
+        {
+            this.Controller = (AddAccountController)controller;
+        }
+
+        public PredefinedAnswer GetSelectedAnswer()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void AddToParent(IView parent)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void ShowSaveFailed()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void ShowSaveResult(Model.Account instance, HttpStatusCode status)
+        {
+            throw new NotImplementedException();
+        }
+        #endregion
     }
 }

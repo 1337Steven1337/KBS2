@@ -1,10 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net;
+﻿using System.Net;
 using System.Net.Mail;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Client.Service.Email
 {
@@ -17,7 +12,7 @@ namespace Client.Service.Email
             this.Client.Port = 26;
             this.Client.DeliveryMethod = SmtpDeliveryMethod.Network;
             this.Client.UseDefaultCredentials = false;
-            this.Client.Credentials = new NetworkCredential("test@remcoschipper.com", "p@&[Tau4z7OF");
+            this.Client.Credentials = new NetworkCredential("test@remcoschipper.com", "<redacted>");
             this.Client.Host = "mail.remcoschipper.com";
         }
 

@@ -2,9 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using Client.Factory;
-using Client.Model;
 using Client.View;
 using Excel;
 using Client.View.Account;
@@ -17,7 +15,7 @@ namespace Client.Controller.Account
 {
     public class AddAccountController : AbstractController<Model.Account>
     {
-        static readonly char[] AvailableCharacters = {
+        private static readonly char[] AvailableCharacters = {
             'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M',
             'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z',
             'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm',
@@ -25,6 +23,7 @@ namespace Client.Controller.Account
             '0', '1', '2', '3', '4', '5', '6', '7', '8', '9'
         };
 
+        #region Instances
         private IAddAccountView View { get; set; }
         private IEmailClient EmailClient { get; set; }
 
@@ -32,7 +31,9 @@ namespace Client.Controller.Account
         private Dictionary<string, string> UsedPasswords = new Dictionary<string, string>();
         private Dictionary<string, int> AccountSaveResults = new Dictionary<string, int>();
         private List<Model.Account> Accounts = new List<Model.Account>();
+        #endregion
 
+        #region Constructors
         public AddAccountController(IAddAccountView view) : this(view, new EmailClient())
         {
 
@@ -43,7 +44,9 @@ namespace Client.Controller.Account
             this.View = view;
             this.View.SetController(this);
         }
+        #endregion
 
+        #region Events
         private void AccountSaved(Model.Account account, HttpStatusCode code, IRestResponse response)
         {
             if(code == HttpStatusCode.Created)
@@ -54,7 +57,7 @@ namespace Client.Controller.Account
                     this.AccountSaveResults[account.Student] = 1;
                     this.View.UpdateProgressBar();
                 }
-                catch (Exception e)
+                catch (Exception)
                 {
                     this.AccountSaveResults[account.Student] = 3;
                 }
@@ -79,7 +82,9 @@ namespace Client.Controller.Account
                 this.View.EnableButton();
             }
         }
+        #endregion
 
+        #region Methods
         private string Sha256(string value)
         {
             using (SHA256 hash = SHA256Managed.Create())
@@ -108,7 +113,7 @@ namespace Client.Controller.Account
 
             string password = new string(identifier);
 
-            if(this.UsedPasswords.ContainsValue(password))
+            if (this.UsedPasswords.ContainsValue(password))
             {
                 password = this.GeneratePassword(length, student);
             }
@@ -139,15 +144,18 @@ namespace Client.Controller.Account
         public void ProcessFile(string path)
         {
             UsedPasswords.Clear();
+            AccountSaveResults.Clear();
+            Accounts.Clear();
+
             IEnumerable<worksheet> sheets = Workbook.Worksheets(path);
 
-            if(sheets.Count() > 0)
+            if (sheets.Count() > 0)
             {
                 foreach (worksheet sheet in sheets)
                 {
                     IEnumerable<Row> rows = sheet.Rows;
 
-                    for(int i = 1; i < rows.Count(); i++)
+                    for (int i = 1; i < rows.Count(); i++)
                     {
                         this.ProcessUser(rows.ElementAt(i));
                     }
@@ -169,7 +177,9 @@ namespace Client.Controller.Account
                 this.View.ShowLoadFailed();
             }
         }
+        #endregion
 
+        #region Overrides
         public override IView GetView()
         {
             return this.View;
@@ -184,5 +194,6 @@ namespace Client.Controller.Account
         {
             this.View = (IAddAccountView)view;
         }
+        #endregion
     }
 }

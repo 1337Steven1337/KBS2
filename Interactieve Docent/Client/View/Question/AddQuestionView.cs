@@ -105,7 +105,7 @@ namespace Client.View.Question
                 Time = Convert.ToInt32(timeField.Value);
                 Points = Convert.ToInt32(pointsField.Value);
             }
-            catch(Exception e)
+            catch(Exception)
             {
 
             }
