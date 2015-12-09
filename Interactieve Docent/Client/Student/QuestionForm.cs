@@ -40,8 +40,8 @@ namespace Client.Student
             view.initControlLocations();
             view.initWaitScreen();
 
-            nextForm next = new nextForm();
-            next.Show();
+            //nextForm next = new nextForm();
+            //next.Show();
 
         }
 
