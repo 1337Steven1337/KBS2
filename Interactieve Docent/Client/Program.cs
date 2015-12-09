@@ -27,7 +27,7 @@ namespace Client
             Application.SetCompatibleTextRenderingDefault(false);
             //Application.Run(new Main());
 
-            /*
+            
             MainView view = new MainView();
             MainController maincontroller = new MainController(view);
 
