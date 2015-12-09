@@ -24,6 +24,7 @@ namespace Server.Models.Context
         public DbSet<Server.Models.QuestionList> QuestionLists { get; set; }
         public DbSet<Server.Models.UserAnswer> UserAnswers { get; set; }
         public DbSet<Server.Models.PredefinedAnswer> PredefinedAnswers { get; set; }
+        public DbSet<Server.Models.Account> Accounts { get; set; }
 
         public void MarkAsModified(Question item)
         {
@@ -41,6 +42,11 @@ namespace Server.Models.Context
         }
 
         public void MarkAsModified(PredefinedAnswer item)
+        {
+            Entry(item).State = EntityState.Modified;
+        }
+
+        public void MarkAsModified(Account item)
         {
             Entry(item).State = EntityState.Modified;
         }

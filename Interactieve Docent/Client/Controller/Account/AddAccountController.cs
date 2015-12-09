@@ -46,7 +46,7 @@ namespace Client.Controller.Account
             if(code == HttpStatusCode.Created)
             {
                 //this.EmailClient.send() 
-            }
+            } 
             else
             {
                 this.View.ShowSaveFailed();

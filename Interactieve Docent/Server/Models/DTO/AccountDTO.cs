@@ -10,7 +10,7 @@ namespace Server.Models.DTO
         public int Id { get; set; }
         public string Number { get; set; }
 
-        public AccountDTO()
+        public AccountDTO() 
         {
 
         }

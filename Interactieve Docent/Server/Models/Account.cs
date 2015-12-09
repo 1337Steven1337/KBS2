@@ -15,7 +15,7 @@ namespace Server.Models
         public int Id { get; set; }
 
         [DataMember]
-        public string Number { get; set; }
+        public string Number { get; set; } 
 
         [DataMember]
         public string Password { get; set; }

@@ -18,17 +18,20 @@ namespace Server.Tests.Models.Context
             this.UserAnswers = new TestUserAnswerDbSet();
             this.QuestionLists = new TestListDbSet();
             this.PredefinedAnswers = new TestPredefinedAnswerDbSet();
+            this.Accounts = new TestAccountDbSet();
         }
 
         public DbSet<Server.Models.Question> Questions { get; set; }
         public DbSet<Server.Models.QuestionList> QuestionLists { get; set; }
         public DbSet<Server.Models.UserAnswer> UserAnswers { get; set; }
         public DbSet<Server.Models.PredefinedAnswer> PredefinedAnswers { get; set; }
+        public DbSet<Server.Models.Account> Accounts { get; set; }
 
         public void MarkAsModified(Question item) { }
         public void MarkAsModified(QuestionList item) { }
         public void MarkAsModified(UserAnswer item) { }
         public void MarkAsModified(PredefinedAnswer item) { }
+        public void MarkAsModified(Account item) { }
 
         public int SaveChanges()
         {

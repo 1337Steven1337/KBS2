@@ -23,7 +23,7 @@ namespace Server.Controllers
         public AccountsController(IDocentAppContext context)
         {
             this.db = context;
-        }
+        } 
 
         // GET: api/Accounts
         public IQueryable<AccountDTO> GetAccounts()
