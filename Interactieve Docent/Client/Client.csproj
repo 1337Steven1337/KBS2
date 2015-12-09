@@ -101,6 +101,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controller\AbstractController.cs" />
+    <Compile Include="Controller\Account\AddAccountController.cs" />
     <Compile Include="Controller\DiagramController.cs" />
     <Compile Include="Controller\IController.cs" />
     <Compile Include="Controller\Main\ShowMainController.cs" />
@@ -109,6 +110,7 @@
     <Compile Include="Controller\Question\ListQuestionController.cs" />
     <Compile Include="Controller\StudentFormController.cs" />
     <Compile Include="Factory\AbstractFactory.cs" />
+    <Compile Include="Factory\AccountFactory.cs" />
     <Compile Include="Factory\BaseFactory.cs" />
     <Compile Include="Factory\IFactory.cs" />
     <Compile Include="Factory\PredefinedAnswerFactory.cs" />
@@ -116,6 +118,7 @@
     <Compile Include="Factory\QuestionListFactory.cs" />
     <Compile Include="Factory\UserAnswerFactory.cs" />
     <Compile Include="Model\AbstractModel.cs" />
+    <Compile Include="Model\Account.cs" />
     <Compile Include="Model\PredefinedAnswer.cs" />
     <Compile Include="Model\Question.cs" />
     <Compile Include="Model\QuestionList.cs" />
@@ -143,6 +146,10 @@
     <Compile Include="Student\QuestionForm.Designer.cs">
       <DependentUpon>QuestionForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="View\Account\AddAccountView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\Account\IAddAccountView.cs" />
     <Compile Include="View\Diagram\IDiagramView.cs" />
     <Compile Include="View\Diagram\DiagramView.cs">
       <SubType>Form</SubType>
@@ -229,6 +236,9 @@
     <EmbeddedResource Include="Student\QuestionForm.resx">
       <DependentUpon>QuestionForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="View\Account\AddAccountView.resx">
+      <DependentUpon>AddAccountView.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="View\Diagram\DiagramView.resx">
       <DependentUpon>DiagramView.cs</DependentUpon>
     </EmbeddedResource>
@@ -280,7 +290,9 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Service\Email\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
