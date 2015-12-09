@@ -27,10 +27,10 @@ namespace Client.Controller.Question
 
         #region Properties
         private IAddView<Model.Question> View;
-        private QuestionFactory Factory = new QuestionFactory();
         private Model.QuestionList Parent { get; set; }
-        private Dictionary<string, int> AnswersSaved = new Dictionary<string, int>();
         private Model.Question CurrentQuestion;
+        private QuestionFactory Factory = new QuestionFactory();
+        private Dictionary<string, int> AnswersSaved = new Dictionary<string, int>();
         #endregion
 
         #region Constructors
@@ -76,7 +76,6 @@ namespace Client.Controller.Question
         {
             this.SavePredefinedAnswers(answers, question, new BaseFactory<PredefinedAnswer>());
         }
-
 
         public void SavePredefinedAnswers(List<Model.PredefinedAnswer> answers, Model.Question question, IFactory<Model.PredefinedAnswer> baseFactory)
         {
@@ -128,7 +127,6 @@ namespace Client.Controller.Question
                 }
                 else
                 {
-                    //Save Answers succeed
                     this.View.ShowSaveSucceed();
                 }
             }
