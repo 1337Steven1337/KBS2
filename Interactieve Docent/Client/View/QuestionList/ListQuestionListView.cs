@@ -174,7 +174,7 @@ namespace Client.View.QuestionList
 
         public void ShowSaveSucceed()
         {
-            throw new NotImplementedException();
+            MessageBox.Show("Nieuwe lijst succesvol aangemaakt!");
         }
 
         public PredefinedAnswer GetSelectedAnswer()
