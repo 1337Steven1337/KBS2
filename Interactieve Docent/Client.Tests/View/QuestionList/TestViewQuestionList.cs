@@ -11,6 +11,7 @@ using Client.Service.Thread;
 using Client.View;
 using Client.View.QuestionList;
 using System.Net;
+using Client.Controller.Question;
 
 namespace Client.Tests.View.QuestionList
 {

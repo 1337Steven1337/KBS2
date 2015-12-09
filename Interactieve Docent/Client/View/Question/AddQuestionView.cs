@@ -34,16 +34,19 @@ namespace Client.View.Question
             rightAnswerComboBox.DataSource = AnswersList;
         }
 
+        //Close the third panel, Which contains the addquestion fields
         private void BtnQuit_Click(object sender, EventArgs e)
         {
             Controller.InvokeRemoveQuestionPanel();
         }
 
+        //Delete selected answer from AnswersList
         private void BtnDeleteAnswer_Click(object sender, EventArgs e)
         {
             AnswersList.Remove(GetSelectedAnswer());
         }
 
+        //Add answer to AnswersList
         private void BtnAddAnswer_Click(object sender, EventArgs e)
         {
             if (answerField.Text != "" && AnswersList.ToList().Find(x => x.Text == answerField.Text) == null)
@@ -74,6 +77,7 @@ namespace Client.View.Question
                     iDictionary.Add("Text", questionField.Text);
                     iDictionary.Add("Points", pointsField.Value);
                     iDictionary.Add("Time", timeField.Value);
+                    iDictionary.Add("PredefinedAnswerCount", this.answersListBox.Items.Count);
 
                     this.Controller.SaveQuestion(iDictionary);
                 }
@@ -86,6 +90,7 @@ namespace Client.View.Question
             }
         }
 
+        //Validate all inputfields
         private Boolean ValidateFields()
         {
             int Time = -1;
@@ -105,6 +110,7 @@ namespace Client.View.Question
             return (Time > 0 && Points > 0 && questionField.Text != "");
         }
 
+        //Add view to mainTable
         public void AddToParent(IView parent)
         {
             MainView main = (MainView)parent;
@@ -122,6 +128,7 @@ namespace Client.View.Question
             this.Controller = (AddQuestionController)controller;
         }
 
+        //Get the Selelecteditem from Listbox
         public Model.PredefinedAnswer GetSelectedAnswer()
         {
             return (Model.PredefinedAnswer)this.answersListBox.SelectedItem;
@@ -151,8 +158,6 @@ namespace Client.View.Question
             {
                 this.ShowSaveFailed();
             }
-        }
-
-        
+        }        
     }
 }

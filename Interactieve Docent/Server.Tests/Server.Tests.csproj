@@ -104,6 +104,7 @@
     <Compile Include="Controllers\TestListController.cs" />
     <Compile Include="Controllers\TestQuestionsController.cs" />
     <Compile Include="Models\Context\TestServerContext.cs" />
+    <Compile Include="Models\TestAccountDbSet.cs" />
     <Compile Include="Models\TestDbSet.cs" />
     <Compile Include="Models\TestPredefinedAnswerDbSet.cs" />
     <Compile Include="Models\TestUserAnswerDbSet.cs" />
