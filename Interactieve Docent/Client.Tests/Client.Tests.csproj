@@ -73,9 +73,11 @@
     <Compile Include="View\QuestionList\TestViewDeleteQuestionList.cs" />
     <Compile Include="View\QuestionList\TestViewQuestionList.cs" />
     <Compile Include="View\QuestionList\ViewDeleteQuestionList.cs" />
+    <Compile Include="View\Question\TestAddQuestionView.cs" />
     <Compile Include="View\Question\TestLoadQuestions.cs" />
     <Compile Include="View\Question\TestViewDeleteQuestion.cs" />
     <Compile Include="View\Question\TestViewQuestion.cs" />
+    <Compile Include="Controllers\Question\TestAddQuestion.cs" />
     <Compile Include="View\Question\ViewDeleteQuestion.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -85,7 +87,6 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Controllers\Models\" />
     <Folder Include="Models\" />
     <Folder Include="View\Diagram\" />
   </ItemGroup>

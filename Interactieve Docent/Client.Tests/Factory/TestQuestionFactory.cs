@@ -43,7 +43,17 @@ namespace Client.Tests.Factory
 
         public void SaveAsync(List<KeyValuePair<string, object>> data, Action<Question, HttpStatusCode, global::RestSharp.IRestResponse> callback)
         {
-            throw new NotImplementedException();
+            Dictionary<string, object> dictionary = new Dictionary<string, object>();
+
+            foreach(KeyValuePair<string, object> pair in data)
+            {
+                dictionary.Add(pair.Key, pair.Value);
+            }
+
+            Model.Question question = new Model.Question(dictionary);
+            question.Id = new Random().Next(1, 99);
+
+            callback(question, HttpStatusCode.Created, null);
         }
 
         public void SetResource(string resource)
