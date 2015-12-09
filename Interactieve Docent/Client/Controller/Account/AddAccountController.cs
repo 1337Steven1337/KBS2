@@ -27,7 +27,7 @@ namespace Client.Controller.Account
 
         private IAddAccountView View { get; set; }
         private AccountFactory Factory = new AccountFactory();
-        private List<String> UsedPasswords = new List<String>();
+        private Dictionary<string, string> UsedPasswords = new Dictionary<string, string>();
         private IEmailClient EmailClient { get; set; }
 
         public AddAccountController(IAddAccountView view) : this(view, new EmailClient())
@@ -45,7 +45,7 @@ namespace Client.Controller.Account
         {
             if(code == HttpStatusCode.Created)
             {
-
+                //this.EmailClient.send()
             }
             else
             {
@@ -63,7 +63,7 @@ namespace Client.Controller.Account
             }
         }
 
-        private string GeneratePassword(int length)
+        private string GeneratePassword(int length, string number)
         {
             char[] identifier = new char[length];
             byte[] randomData = new byte[length];
@@ -81,12 +81,12 @@ namespace Client.Controller.Account
 
             string password = new string(identifier);
 
-            if(this.UsedPasswords.Contains(password))
+            if(this.UsedPasswords.Select(x => x.Value == password).Count() > 0)
             {
-                password = this.GeneratePassword(length);
+                password = this.GeneratePassword(length, number);
             }
 
-            this.UsedPasswords.Add(password);
+            this.UsedPasswords.Add(number, password);
 
             return this.Sha256(password);
         }
@@ -95,7 +95,7 @@ namespace Client.Controller.Account
         {
             Model.Account account = new Model.Account();
             account.Number = row.Cells[1].Text.ToLower();
-            account.Password = this.GeneratePassword(5);
+            account.Password = this.GeneratePassword(5, account.Number);
 
             this.Factory.Save(account, this.View.GetHandler(), this.AccountSaved);
         }
