@@ -75,8 +75,6 @@
     <Compile Include="View\QuestionList\TestViewQuestionList.cs" />
     <Compile Include="View\QuestionList\ViewDeleteQuestionList.cs" />
     <Compile Include="View\Question\TestAddQuestionView.cs" />
-    <Compile Include="View\Question\TestLoadQuestions.cs" />
-    <Compile Include="View\Question\TestViewDeleteQuestion.cs" />
     <Compile Include="Controllers\TestLoadQuestions.cs" />
     <Compile Include="Controllers\TestViewDeleteQuestion.cs" />
     <Compile Include="View\Question\TestViewQuestion.cs" />
