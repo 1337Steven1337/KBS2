@@ -8,6 +8,9 @@ namespace Client.Service.Email
 {
     public class EmailClient : IEmailClient
     {
-
+        public void Send(string student, string password)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

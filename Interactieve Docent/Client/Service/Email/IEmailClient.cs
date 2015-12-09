@@ -8,5 +8,6 @@ namespace Client.Service.Email
 {
     public interface IEmailClient
     {
+        void Send(string student, string password);
     }
 }

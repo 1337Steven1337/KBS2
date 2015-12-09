@@ -63,7 +63,7 @@ namespace Client.Controller.Account
             }
         }
 
-        private string GeneratePassword(int length, string number)
+        private string GeneratePassword(int length, string student)
         {
             char[] identifier = new char[length];
             byte[] randomData = new byte[length];
@@ -83,10 +83,10 @@ namespace Client.Controller.Account
 
             if(this.UsedPasswords.Select(x => x.Value == password).Count() > 0)
             {
-                password = this.GeneratePassword(length, number);
+                password = this.GeneratePassword(length, student);
             }
 
-            this.UsedPasswords.Add(number, password);
+            this.UsedPasswords.Add(student, password);
 
             return this.Sha256(password);
         }
@@ -94,8 +94,8 @@ namespace Client.Controller.Account
         private void ProcessUser(Row row)
         {
             Model.Account account = new Model.Account();
-            account.Number = row.Cells[1].Text.ToLower();
-            account.Password = this.GeneratePassword(5, account.Number);
+            account.Student = row.Cells[1].Text.ToLower();
+            account.Password = this.GeneratePassword(5, account.Student);
 
             this.Factory.Save(account, this.View.GetHandler(), this.AccountSaved);
         }

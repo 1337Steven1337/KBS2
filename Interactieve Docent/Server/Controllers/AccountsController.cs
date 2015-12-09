@@ -30,7 +30,7 @@ namespace Server.Controllers
         {
             var accounts = from a in db.Accounts select new AccountDTO()  {
                 Id = a.Id,
-                Number = a.Number
+                Student = a.Student
             };
 
             return accounts;
@@ -45,7 +45,7 @@ namespace Server.Controllers
                         select new AccountDTO()
                         {
                             Id = a.Id,
-                            Number = a.Number,
+                            Student = a.Student,
                         };
 
             return account.FirstOrDefault(x => x.Id == x.Id);
