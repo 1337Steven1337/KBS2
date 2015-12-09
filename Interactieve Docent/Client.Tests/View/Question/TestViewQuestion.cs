@@ -10,6 +10,7 @@ using Client.Service.Thread;
 using Client.View;
 using System.Windows.Forms;
 using Client.Controller.Question;
+using System.Net;
 
 namespace Client.Tests.View.Question
 {
@@ -23,6 +24,11 @@ namespace Client.Tests.View.Question
         }
 
         public void AddToParent(IView parent)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void DeleteItem(Model.Question item)
         {
             throw new NotImplementedException();
         }
@@ -43,6 +49,21 @@ namespace Client.Tests.View.Question
         public void SetController(IController controller)
         {
             //Should be implemented when the controller is needed
+        }
+
+        public void ShowDeleteQuestionListResult(Model.Question instance, HttpStatusCode status)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void ShowDeleteResult(Model.Question instance, HttpStatusCode status)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void ShowSaveQuestionListResult(Model.Question instance, HttpStatusCode status)
+        {
+            throw new NotImplementedException();
         }
     }
 }

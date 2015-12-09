@@ -107,13 +107,27 @@ namespace Client.Tests.View.QuestionList
 
         }
 
-
         public void AddItem(Model.QuestionList item)
         {
             this.questionlists.Add(item);
         }
 
-        public void ProcessAdd(Model.QuestionList ql, HttpStatusCode status)
+        public void ShowDeleteResult(Model.QuestionList instance, HttpStatusCode status)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void DeleteItem(Model.QuestionList item)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void ShowSaveQuestionListResult(Model.QuestionList instance, HttpStatusCode status)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void ShowDeleteQuestionListResult(Model.QuestionList instance, HttpStatusCode status)
         {
             throw new NotImplementedException();
         }

@@ -10,11 +10,11 @@ using System.Windows.Forms;
 
 namespace Client.View.Question
 {
-    public partial class ViewConfirmDialog : Form
+    public partial class ConfirmDialogView : Form
     {
         public Boolean Confirmed { get; set; }
 
-        public ViewConfirmDialog()
+        public ConfirmDialogView()
         {
             this.Confirmed = false;
             InitializeComponent();
