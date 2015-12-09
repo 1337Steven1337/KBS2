@@ -25,22 +25,7 @@ namespace Client.Tests.student
 
             Assert.AreEqual(expected, result);
         }
-        [TestMethod]
-        public void getCurrentQuestionTest()
-        {
-            //testfilled = new Student.QuestionForm(1);
-            ////testfilled.getCurrentQuestion().Id = 1;
-            //testfilled.goToNextQuestion();
-            //Client.Model.Question testvalue = testfilled.getCurrentQuestion();
 
-
-            //Assert.AreEqual(testvalue.Id++, testfilled.getCurrentQuestion().Id);
-        }
-        [TestMethod]
-        public void goToNextQuestionTest()
-        {
-            
-        }
 
 
     }
