@@ -11,12 +11,13 @@ using Client.Service.Thread;
 using Client.View;
 using Client.View.QuestionList;
 using System.Net;
+using Client.Controller.Question;
 
 namespace Client.Tests.View.QuestionList
 {
     public class TestViewQuestionList : IListView<Model.QuestionList>
     {
-        private QuestionListController controller;
+        private AddQuestionController controller;
         public List<Model.QuestionList> questionlists = new List<Model.QuestionList>();
 
         public TestViewQuestionList()
@@ -60,7 +61,7 @@ namespace Client.Tests.View.QuestionList
             questionlists.RemoveAt(i);
         }
 
-        public void setController(QuestionListController controller)
+        public void setController(AddQuestionController controller)
         {
             this.controller = controller;
         }
