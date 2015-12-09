@@ -25,10 +25,11 @@ namespace Client.Student
         private Controller.StudentFormController controller;
         private View.Student.StudentForm view;
 
-        public QuestionForm() {
-           
+        public QuestionForm()
+        {
+
             view = new View.Student.StudentForm(this);
-           
+
         }
 
         public QuestionForm(int List_Id)
@@ -66,6 +67,7 @@ namespace Client.Student
             return this.currentQuestion;
         }
 
+        //
         private void Question_Timer(object sender, EventArgs e)
         {
             if (questionTimeProgressBar.Value > 0)
@@ -90,8 +92,6 @@ namespace Client.Student
                 }
             }
         }
-
-
 
         public void goToNextQuestion()
         {
@@ -128,6 +128,7 @@ namespace Client.Student
             }
             else if (this.questionList.Ended)
             {
+                //if the list ended, there are no further question than notify the student
                 MessageBox.Show("Realtime vragenlijst af.");
             }
             else
