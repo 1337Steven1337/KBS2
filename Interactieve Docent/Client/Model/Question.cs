@@ -24,6 +24,7 @@ namespace Client.Model
             this.Points = Convert.ToInt32(data["Points"]);
             this.Time = Convert.ToInt32(data["Time"]);
             this.Text = Convert.ToString(data["Text"]);
+            this.PredefinedAnswerCount = Convert.ToInt32(data["PredefinedAnswerCount"]);
             this.List_Id = Convert.ToInt32(data["List_Id"]);
         }
 

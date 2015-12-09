@@ -39,8 +39,9 @@ namespace Client
             listQuestionListController.Load();
 
 
-            //Client.Student.QuestionForm studentForm = new Client.Student.QuestionForm(1);
+            Client.Student.QuestionForm questionForm = new Client.Student.QuestionForm(160);
             //studentForm.Show();
+            Client.View.Student.StudentForm studentForm = new View.Student.StudentForm(questionForm);
 
             Application.Run(view);
         }
