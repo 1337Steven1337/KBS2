@@ -9,7 +9,7 @@ namespace Client.Model
     public class Account : AbstractModel
     {
         public override int Id { get; set; }
-        public string Number { get; set; }
+        public string Student { get; set; }
         public string Password { get; set; }
     }
 }
