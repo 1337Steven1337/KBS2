@@ -2,9 +2,8 @@
 using Client.Controller;
 using Client.Tests.Factory;
 using Client.Controller.QuestionList;
-using Client.Tests.View.QuestionList;
 
-namespace Client.Tests.Controllers
+namespace Client.Tests.View.QuestionList
 {
     [TestClass]
     public class TestLoadQuestionLists

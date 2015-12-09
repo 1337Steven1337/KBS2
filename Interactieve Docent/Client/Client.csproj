@@ -41,6 +41,9 @@
       <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="Excel">
+      <HintPath>\\Mac\Home\Downloads\ExcelDLL\Excel.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.AspNet.SignalR.Client, Version=2.2.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.AspNet.SignalR.Client.2.2.0\lib\net45\Microsoft.AspNet.SignalR.Client.dll</HintPath>
       <Private>True</Private>
@@ -101,6 +104,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controller\AbstractController.cs" />
+    <Compile Include="Controller\Account\AddAccountController.cs" />
     <Compile Include="Controller\DiagramController.cs" />
     <Compile Include="Controller\IController.cs" />
     <Compile Include="Controller\Main\ShowMainController.cs" />
@@ -109,6 +113,7 @@
     <Compile Include="Controller\Question\ListQuestionController.cs" />
     <Compile Include="Controller\StudentFormController.cs" />
     <Compile Include="Factory\AbstractFactory.cs" />
+    <Compile Include="Factory\AccountFactory.cs" />
     <Compile Include="Factory\BaseFactory.cs" />
     <Compile Include="Factory\IFactory.cs" />
     <Compile Include="Factory\PredefinedAnswerFactory.cs" />
@@ -116,6 +121,7 @@
     <Compile Include="Factory\QuestionListFactory.cs" />
     <Compile Include="Factory\UserAnswerFactory.cs" />
     <Compile Include="Model\AbstractModel.cs" />
+    <Compile Include="Model\Account.cs" />
     <Compile Include="Model\PredefinedAnswer.cs" />
     <Compile Include="Model\Question.cs" />
     <Compile Include="Model\QuestionList.cs" />
@@ -127,6 +133,8 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Service\Email\EmailClient.cs" />
+    <Compile Include="Service\Email\IEmailClient.cs" />
     <Compile Include="Service\SignalR\SignalRClient.cs" />
     <Compile Include="Service\SignalR\EventArgs\SubscriptionStatus.cs" />
     <Compile Include="Service\Thread\ControlHandler.cs" />
@@ -143,6 +151,10 @@
     <Compile Include="Student\QuestionForm.Designer.cs">
       <DependentUpon>QuestionForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="View\Account\AddAccountView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\Account\IAddAccountView.cs" />
     <Compile Include="View\Diagram\IDiagramView.cs" />
     <Compile Include="View\Diagram\DiagramView.cs">
       <SubType>Form</SubType>
@@ -228,6 +240,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Student\QuestionForm.resx">
       <DependentUpon>QuestionForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\Account\AddAccountView.resx">
+      <DependentUpon>AddAccountView.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="View\Diagram\DiagramView.resx">
       <DependentUpon>DiagramView.cs</DependentUpon>

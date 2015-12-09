@@ -77,6 +77,7 @@ namespace Client.View.Question
                     iDictionary.Add("Text", questionField.Text);
                     iDictionary.Add("Points", pointsField.Value);
                     iDictionary.Add("Time", timeField.Value);
+                    iDictionary.Add("PredefinedAnswerCount", this.answersListBox.Items.Count);
 
                     this.Controller.SaveQuestion(iDictionary);
                 }

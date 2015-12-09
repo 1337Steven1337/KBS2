@@ -103,6 +103,7 @@ namespace Client.Controller.Question
                 {
                     answer.RightAnswer = false;
                 }
+
                 factory.Save(answer, this.View.GetHandler(), CallbackSavePredefinedAnswers);
             }
         }

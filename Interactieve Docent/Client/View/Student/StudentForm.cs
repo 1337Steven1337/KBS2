@@ -63,6 +63,7 @@ namespace Client.View.Student
             mainForm.questionLabel.Visible = true;
             mainForm.timeLabel.Visible = true;
         }
+
         private void whatever(Client.Model.UserAnswer ua, HttpStatusCode code)
         {
             if(code == HttpStatusCode.Forbidden)
@@ -70,6 +71,7 @@ namespace Client.View.Student
                  
             }
         }
+
         public void AnswerSaveHandler(object sender, System.EventArgs e)
         {
             Button btn = (Button)sender;
@@ -89,8 +91,6 @@ namespace Client.View.Student
                 this.initWaitScreen();
             }
         }
-
-
 
         private Button createAnswerButton(Model.PredefinedAnswer answer)
         {
@@ -154,9 +154,5 @@ namespace Client.View.Student
                 mainForm.Controls.Add(option);
             }
         }
-
-
-
-
     }
 }
