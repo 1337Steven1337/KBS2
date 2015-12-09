@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Drawing;
 using System.Net;
+using Client.Service.Thread;
 
 namespace Client.View.Student
 {
@@ -85,7 +86,7 @@ namespace Client.View.Student
             ua.Question_Id = mainForm.getCurrentQuestion().Id;
 
             Factory.UserAnswerFactory uaf = new Factory.UserAnswerFactory();
-            uaf.Save(ua, null, this.whatever);
+            uaf.Save(ua, new ControlHandler(this.mainForm.statusLabel), this.whatever);
             if (mainForm.getQuestionList().Questions.Count - 1 > 5)
             {
                 mainForm.goToNextQuestion();
