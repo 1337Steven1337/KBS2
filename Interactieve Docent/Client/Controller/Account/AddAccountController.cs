@@ -26,9 +26,12 @@ namespace Client.Controller.Account
         };
 
         private IAddAccountView View { get; set; }
+        private IEmailClient EmailClient { get; set; }
+
         private AccountFactory Factory = new AccountFactory();
         private Dictionary<string, string> UsedPasswords = new Dictionary<string, string>();
-        private IEmailClient EmailClient { get; set; }
+        private Dictionary<string, int> AccountSaveResults = new Dictionary<string, int>();
+        private List<Model.Account> Accounts = new List<Model.Account>();
 
         public AddAccountController(IAddAccountView view) : this(view, new EmailClient())
         {
@@ -45,11 +48,35 @@ namespace Client.Controller.Account
         {
             if(code == HttpStatusCode.Created)
             {
-                //this.EmailClient.send() 
+                try
+                {
+                    this.EmailClient.Send(account.Student, this.UsedPasswords[account.Student]);
+                    this.AccountSaveResults[account.Student] = 1;
+                    this.View.UpdateProgressBar();
+                }
+                catch (Exception e)
+                {
+                    this.AccountSaveResults[account.Student] = 3;
+                }
             } 
             else
             {
-                this.View.ShowSaveFailed();
+                this.AccountSaveResults[account.Student] = 2;
+            }
+
+            if(this.AccountSaveResults.ContainsValue(0))
+            {
+
+            }
+            else if ((this.AccountSaveResults.ContainsValue(2) || this.AccountSaveResults.ContainsValue(3)))
+            {
+                this.View.ShowSaveFailed(this.AccountSaveResults);
+                this.View.EnableButton();
+            }
+            else
+            {
+                this.View.ShowSaveSucceed();
+                this.View.EnableButton();
             }
         }
 
@@ -81,7 +108,7 @@ namespace Client.Controller.Account
 
             string password = new string(identifier);
 
-            if(this.UsedPasswords.Select(x => x.Value == password).Count() > 0)
+            if(this.UsedPasswords.ContainsValue(password))
             {
                 password = this.GeneratePassword(length, student);
             }
@@ -97,7 +124,16 @@ namespace Client.Controller.Account
             account.Student = row.Cells[1].Text.ToLower();
             account.Password = this.GeneratePassword(5, account.Student);
 
-            this.Factory.Save(account, this.View.GetHandler(), this.AccountSaved);
+            this.Accounts.Add(account);
+            this.AccountSaveResults.Add(account.Student, 0);
+        }
+
+        private void SaveAccounts()
+        {
+            foreach (Model.Account account in this.Accounts)
+            {
+                this.Factory.Save(account, this.View.GetHandler(), this.AccountSaved);
+            }
         }
 
         public void ProcessFile(string path)
@@ -115,6 +151,17 @@ namespace Client.Controller.Account
                     {
                         this.ProcessUser(rows.ElementAt(i));
                     }
+                }
+
+                if (this.Accounts.Count > 0)
+                {
+                    this.View.DisableButton();
+                    this.View.ResetProgressBar(1, this.Accounts.Count);
+                    this.SaveAccounts();
+                }
+                else
+                {
+                    this.View.ShowNoAccountsFound();
                 }
             }
             else

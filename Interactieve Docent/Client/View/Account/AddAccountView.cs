@@ -7,14 +7,12 @@ using Client.Model;
 using Client.Service.Thread;
 using Client.Controller.Account;
 using Client.View.Dialogs;
+using System.Collections.Generic;
 
 namespace Client.View.Account
 {
     public partial class AddAccountView : Form, IAddAccountView
     {
-        private Button OpenDialogButton;
-        private OpenFileDialog SelectExcelFileDialog;
-
         private AddAccountController Controller { get; set; }
 
         public AddAccountView()
@@ -26,10 +24,33 @@ namespace Client.View.Account
 
         private void SelectExcelFileDialog_FileOk(object sender, CancelEventArgs e)
         {
-            if(!e.Cancel)
+            if (!e.Cancel)
             {
                 this.Controller.ProcessFile(this.SelectExcelFileDialog.FileName);
             }
+        }
+
+        public void EnableButton()
+        {
+            this.OpenDialogButton.Enabled = true;
+        }
+
+        public void DisableButton()
+        {
+            this.OpenDialogButton.Enabled = false;
+        }
+
+        public void UpdateProgressBar()
+        {
+            this.SaveProgressBar.PerformStep();
+        }
+
+        public void ResetProgressBar(int step, int maxValue)
+        {
+            this.SaveProgressBar.Maximum = maxValue;
+            this.SaveProgressBar.Minimum = 0;
+            this.SaveProgressBar.Step = 1;
+            this.SaveProgressBar.Value = 0;
         }
 
         public void AddToParent(IView parent)
@@ -64,13 +85,9 @@ namespace Client.View.Account
 
         public void ShowSaveSucceed()
         {
-            throw new NotImplementedException();
-        }
-
-        private void OpenDialogButton_Click(object sender, EventArgs e)
-        {
-            this.SelectExcelFileDialog.ShowDialog();
-
+            SuccesDialogView succes = new SuccesDialogView();
+            succes.getLabelSucces().Text = "De e-mails zijn succesvol verzonden.";
+            succes.ShowDialog();
         }
 
         public void ShowLoadFailed()
@@ -80,32 +97,28 @@ namespace Client.View.Account
             failed.ShowDialog();
         }
 
-        private void InitializeComponent()
+        public void ShowNoAccountsFound()
         {
-            this.SelectExcelFileDialog = new System.Windows.Forms.OpenFileDialog();
-            this.OpenDialogButton = new System.Windows.Forms.Button();
-            this.SuspendLayout();
-            // 
-            // SelectExcelFileDialog
-            // 
-            this.SelectExcelFileDialog.FileName = "openFileDialog1";
-            // 
-            // OpenDialogButton
-            // 
-            this.OpenDialogButton.Location = new System.Drawing.Point(137, 66);
-            this.OpenDialogButton.Name = "OpenDialogButton";
-            this.OpenDialogButton.Size = new System.Drawing.Size(75, 23);
-            this.OpenDialogButton.TabIndex = 0;
-            this.OpenDialogButton.Text = "button1";
-            this.OpenDialogButton.UseVisualStyleBackColor = true;
-            // 
-            // AddAccountView
-            // 
-            this.ClientSize = new System.Drawing.Size(284, 261);
-            this.Controls.Add(this.OpenDialogButton);
-            this.Name = "AddAccountView";
-            this.ResumeLayout(false);
+            FailedDialogView failed = new FailedDialogView();
+            failed.getLabelFailed().Text = "Het Excel bestand is ongeldig, er zijn geen accounts gevonden.";
+            failed.ShowDialog();
+        }
 
+        private void AddAccountView_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void OpenDialogButton_Click(object sender, EventArgs e)
+        {
+            this.SelectExcelFileDialog.ShowDialog();
+        }
+
+        public void ShowSaveFailed(Dictionary<string, int> data)
+        {
+            FailedDialogView failed = new FailedDialogView();
+            failed.getLabelFailed().Text = "Kon een of meerdere e-mails niet versturen.";
+            failed.ShowDialog();
         }
     }
 }
