@@ -52,7 +52,7 @@ namespace Client.View.QuestionList
         public void AddToParent(IView parent)
         {
             MainView main = (MainView)parent;
-            main.AddTablePanel(this.mainTablePanel, 0);
+            main.AddTablePanel(this.mainTablePanel, 1);
         }
 
         public void FillList(List<Model.QuestionList> list)

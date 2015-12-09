@@ -79,7 +79,7 @@ namespace Client.View.Question
         public void AddToParent(IView parent)
         {
             MainView main = (MainView)parent;
-            main.AddTablePanel(this.mainTablePanel, 1);
+            main.AddTablePanel(this.mainTablePanel, 2);
         }
 
         public void SetController(IController controller)

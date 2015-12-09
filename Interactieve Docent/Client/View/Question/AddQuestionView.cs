@@ -119,7 +119,7 @@ namespace Client.View.Question
         {
             MainView main = (MainView)parent;
 
-            main.AddTablePanel(this.mainTablePanel,2);
+            main.AddTablePanel(this.mainTablePanel,3);
         }
 
         public IControlHandler GetHandler()
