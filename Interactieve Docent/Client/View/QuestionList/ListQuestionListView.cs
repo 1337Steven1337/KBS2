@@ -12,7 +12,7 @@ using System.Net;
 
 namespace Client.View.QuestionList
 {
-    public partial class ListQuestionListView : Form, IListView<Model.QuestionList>
+    public partial class ListQuestionListView : Form, IListView<Model.QuestionList>, IAddView<Model.QuestionList>
     {
         #region Properties
         public BindingList<Model.QuestionList> QuestionLists = new BindingList<Model.QuestionList>();
@@ -108,19 +108,7 @@ namespace Client.View.QuestionList
 
         public void ProcessAdd(Model.QuestionList ql, HttpStatusCode status)
         {
-            //Check if added to database
-            if (status == HttpStatusCode.Created)
-            {
-                //Visually adding the new list to the listbox
-                QuestionLists.Add(ql);
-            }
-            else
-            {
-                //Give user feedback of failure
-                Dialogs.FailedDialogView dlg = new Dialogs.FailedDialogView();
-                dlg.getLabelFailed().Text = "Oeps! Er is iets misgegaan! Probeer het opnieuw!";
-                dlg.ShowDialog();
-            }
+
 
 
         }
@@ -159,8 +147,40 @@ namespace Client.View.QuestionList
 
         public void AddItem(Model.QuestionList item)
         {
+            this.QuestionLists.Add(item);
+        }
+
+        public void ShowSaveResult(Model.QuestionList instance, HttpStatusCode status)
+        {
+            //Check if added to database
+            if (status == HttpStatusCode.Created)
+            {
+                //Visually adding the new list to the listbox
+                this.AddItem(instance);
+            }
+            else
+            {
+                //Give user feedback of failure
+                this.ShowSaveFailed();
+            }
+        }
+
+        public void ShowSaveFailed()
+        {
+            Dialogs.FailedDialogView dlg = new Dialogs.FailedDialogView();
+            dlg.getLabelFailed().Text = "Oeps! Er is iets misgegaan! Probeer het opnieuw!";
+            dlg.ShowDialog();
+        }
+
+        public void ShowSaveSucceed()
+        {
+            MessageBox.Show("Nieuwe lijst succesvol aangemaakt!");
+        }
+
+        public PredefinedAnswer GetSelectedAnswer()
+        {
             throw new NotImplementedException();
         }
-        #endregion        
+        #endregion
     }
 }

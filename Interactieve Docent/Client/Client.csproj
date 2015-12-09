@@ -100,13 +100,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="API\Entity.cs" />
-    <Compile Include="API\EventArgs\SubscriptionStatus.cs" />
-    <Compile Include="API\Models\List.cs" />
-    <Compile Include="API\Models\PredefinedAnswer.cs" />
-    <Compile Include="API\Models\Question.cs" />
-    <Compile Include="API\Models\UserAnswer.cs" />
-    <Compile Include="API\SignalR.cs" />
     <Compile Include="Controller\AbstractController.cs" />
     <Compile Include="Controller\DiagramController.cs" />
     <Compile Include="Controller\IController.cs" />
@@ -132,7 +125,6 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <DependentUpon>Api.settings</DependentUpon>
     </Compile>
-    <Compile Include="API\Api.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Service\SignalR\SignalRClient.cs" />

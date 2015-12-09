@@ -1,6 +1,4 @@
-﻿using Client.API;
-using Client.API.Models;
-using Client.Factory;
+﻿using Client.Factory;
 using Client.Service.SignalR;
 using Microsoft.AspNet.SignalR.Client;
 using System;
