@@ -19,6 +19,7 @@ namespace Client.Model
         public QuestionList QuestionList { get; set; }
 
         public Question() { }
+
         public Question(Dictionary<string, object> data)
         {
             this.Points = Convert.ToInt32(data["Points"]);

@@ -40,8 +40,7 @@ namespace Client
 
 
             Client.Student.QuestionForm questionForm = new Client.Student.QuestionForm(160);
-            //studentForm.Show();
-            Client.View.Student.StudentForm studentForm = new View.Student.StudentForm(questionForm);
+            questionForm.Show();
 
             Application.Run(view);
         }
