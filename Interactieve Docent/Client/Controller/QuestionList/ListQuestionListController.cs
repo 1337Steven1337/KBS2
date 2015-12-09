@@ -74,8 +74,8 @@ namespace Client.Controller.QuestionList
         public void SaveQuestionList(Dictionary<string, object> data)
         {
             Model.QuestionList list = new Model.QuestionList(data);
-            ListQuestionListView view = (ListQuestionListView)this.View;
-            this.Factory.Save(list, this.View.GetHandler(), view.ProcessAdd);
+            IAddView<Model.QuestionList> view = (IAddView<Model.QuestionList>)this.View;
+            this.Factory.Save(list, this.View.GetHandler(), view.ShowSaveResult);
         }        
         #endregion
     }
