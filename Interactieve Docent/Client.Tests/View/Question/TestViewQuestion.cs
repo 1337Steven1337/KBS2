@@ -9,11 +9,14 @@ using Client.Model;
 using Client.Service.Thread;
 using Client.View;
 using System.Windows.Forms;
+using Client.Controller.Question;
 
 namespace Client.Tests.View.Question
 {
     class TestViewQuestion : IListView<Model.Question>
     {
+        private List<Model.Question> Questions = new List<Model.Question>();
+
         public void AddItem(Model.Question item)
         {
             throw new NotImplementedException();
@@ -26,17 +29,20 @@ namespace Client.Tests.View.Question
 
         public void FillList(List<Model.Question> list)
         {
-            throw new NotImplementedException();
+            foreach (Model.Question item in list)
+            {
+                Questions.Add(item);
+            }
         }
 
         public IControlHandler GetHandler()
         {
-            throw new NotImplementedException();
+            return null;
         }
 
         public void SetController(IController controller)
         {
-            throw new NotImplementedException();
+            //Should be implemented when the controller is needed
         }
     }
 }

@@ -11,6 +11,7 @@ namespace Client.View.Student
 {
     class StudentForm
     {
+        //variables
         Client.Student.QuestionForm mainForm;
         private Button option = null;
         private List<Button> answerButtons = new List<Button>();
@@ -42,6 +43,7 @@ namespace Client.View.Student
 
         }
 
+        //hide some items when waiting for the next question and show the waiting label
         public void initWaitScreen()
         {
             mainForm.statusLabel.Visible = true;
@@ -53,6 +55,7 @@ namespace Client.View.Student
             mainForm.timeLabel.Visible = false;
         }
 
+        //hide the waiting label and show the question content
         public void initQuestionScreen()
         {
             mainForm.statusLabel.Visible = false;
@@ -64,21 +67,23 @@ namespace Client.View.Student
             mainForm.timeLabel.Visible = true;
         }
 
+        //DEZE MOET ER NOG UIT???????????????!!!!!!!!!!!!!!!!!!!!!!!!!!!!&&&^^#^@gsdfdbdf%!%@$%@#$%#$&$%*%^*(*(&$%^@%$!@#$@#$^#$&^%&*!%
         private void whatever(Client.Model.UserAnswer ua, HttpStatusCode code)
         {
-            if(code == HttpStatusCode.Forbidden)
+            if (code == HttpStatusCode.Forbidden)
             {
-                 
+
             }
         }
 
+        //Save the selected answer and initiate waiting screen
         public void AnswerSaveHandler(object sender, System.EventArgs e)
         {
             Button btn = (Button)sender;
             Client.Model.UserAnswer ua = new Client.Model.UserAnswer();
             ua.PredefinedAnswer_Id = btn.ImageIndex;
             ua.Question_Id = mainForm.getCurrentQuestion().Id;
-      
+
             Factory.UserAnswerFactory uaf = new Factory.UserAnswerFactory();
             uaf.Save(ua, null, this.whatever);
             if (mainForm.getQuestionList().Questions.Count - 1 > 5)
@@ -92,6 +97,7 @@ namespace Client.View.Student
             }
         }
 
+        //Create the button for the answers
         private Button createAnswerButton(Model.PredefinedAnswer answer)
         {
             option = new Button();
@@ -113,6 +119,7 @@ namespace Client.View.Student
             return this.answerButtons;
         }
 
+        //make sure that every button has a good position on the screen
         public void adjustSizeOfButtons(Model.Question Q)
         {
             foreach (Model.PredefinedAnswer PA in Q.PredefinedAnswers)
