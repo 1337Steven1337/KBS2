@@ -23,6 +23,7 @@ namespace Client.View.Main
             
         }
 
+        //Remove third column from mainView
         public void RemoveAddQuestionPanel()
         {
             tableThreeColumn.SuspendLayout();
@@ -44,6 +45,7 @@ namespace Client.View.Main
             tableThreeColumn.PerformLayout();
         }
 
+        //Add view to mainTable 
         public void AddTablePanel(TableLayoutPanel panel, int column)
         {
             this.tableThreeColumn.Controls.Add(panel, column, 0);
