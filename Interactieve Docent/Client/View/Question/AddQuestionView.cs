@@ -107,7 +107,7 @@ namespace Client.View.Question
             }
 
             //return true or false
-            return (Time > 0 && Points > 0 && questionField.Text != "" && rightAnswerComboBox.SelectedIndex > 0);
+            return (Time > 0 && Points > 0 && questionField.Text != "");
         }
 
         //Add view to mainTable
