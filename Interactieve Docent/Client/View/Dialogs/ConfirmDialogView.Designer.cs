@@ -1,6 +1,6 @@
 ﻿namespace Client.View.Question
 {
-    partial class ViewConfirmDialog
+    partial class ConfirmDialogView
     {
         /// <summary>
         /// Required designer variable.

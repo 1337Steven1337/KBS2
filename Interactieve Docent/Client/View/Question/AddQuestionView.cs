@@ -71,7 +71,7 @@ namespace Client.View.Question
             if (ValidateFields())
             {
                 DialogResult dr = new DialogResult();
-                ViewConfirmDialog confirm = new ViewConfirmDialog();
+                ConfirmDialogView confirm = new ConfirmDialogView();
                 confirm.getLabelConfirm().Text = "Weet u zeker dat u de vraag wilt opslaan?";
                 dr = confirm.ShowDialog();
 
@@ -119,7 +119,7 @@ namespace Client.View.Question
         {
             MainView main = (MainView)parent;
 
-            main.AddTablePanel(this.mainTablePanel,2);
+            main.AddTablePanel(this.mainTablePanel,3);
         }
 
         public IControlHandler GetHandler()
