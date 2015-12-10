@@ -132,6 +132,7 @@ namespace Client.View.QuestionList
             confirm.getLabelConfirm().Text = "Weet u zeker dat u deze lijst wilt verwijderen?";
             dr = confirm.ShowDialog();
 
+            //Confirm 
             if(dr == DialogResult.Yes)
             {
                 this.Controller.DeleteQuestionList(this.getSelectedItem());
@@ -142,14 +143,17 @@ namespace Client.View.QuestionList
         {
             if (status == HttpStatusCode.OK && list != null)
             {
+                //Delete list from QuestionLists
                 DeleteItem(list);
 
+                //Show dialog action succeed
                 SuccesDialogView succes = new SuccesDialogView();
                 succes.getLabelSucces().Text = "De lijst is succesvol verwijderd!!";
                 succes.ShowDialog();
             }
             else
             {
+                //Show dialog action failed
                 FailedDialogView failed = new FailedDialogView();
                 failed.getLabelFailed().Text = "Oeps! Er is iets misgegaan! Probeer het opnieuw!";
                 failed.ShowDialog();
