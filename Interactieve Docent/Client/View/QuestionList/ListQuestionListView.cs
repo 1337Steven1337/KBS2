@@ -163,7 +163,7 @@ namespace Client.View.QuestionList
 
         public void DeleteItem(Model.QuestionList list)
         {
-            QuestionLists.Remove(list);
+            QuestionLists.Remove(QuestionLists.First(x => x.Id == list.Id));
         }
         #endregion        
     }
