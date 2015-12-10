@@ -9,6 +9,8 @@ using Client.View.Main;
 using Client.Controller.QuestionList;
 using Client.Model;
 using System.Net;
+using Client.View.Dialogs;
+using Client.View.Question;
 
 namespace Client.View.QuestionList
 {
@@ -31,14 +33,13 @@ namespace Client.View.QuestionList
             listBoxQuestionLists.ValueMember = "Id";
             listBoxQuestionLists.DataSource = this.QuestionLists;
 
-            btnAddQuestionList.Click += new System.EventHandler(AddList);
-            btnDeleteQuestionList.Click += new System.EventHandler(deleteList);
+            btnAddQuestionList.Click += BtnAddQuestionList_Click;
+            btnDeleteQuestionList.Click += BtnDeleteQuestionList_Click;
 
             listBoxQuestionLists.SelectedIndexChanged += listBox_SelectedIndexChanged;
-            listBoxQuestionLists.PreviewKeyDown += new PreviewKeyDownEventHandler(Delete_keyDown);
+            listBoxQuestionLists.PreviewKeyDown += ListBoxQuestionLists_PreviewKeyDown;
         }
 
-        
         #endregion
 
         #region Event handlers
@@ -52,7 +53,7 @@ namespace Client.View.QuestionList
         public void AddToParent(IView parent)
         {
             MainView main = (MainView)parent;
-            main.AddTablePanel(this.mainTablePanel, 0);
+            main.AddTablePanel(this.mainTablePanel, 1);
         }
 
         public void FillList(List<Model.QuestionList> list)
@@ -82,15 +83,15 @@ namespace Client.View.QuestionList
             return (Model.QuestionList)this.listBoxQuestionLists.SelectedItem;
         }
 
-        private void Delete_keyDown(object sender, PreviewKeyDownEventArgs e)
+        private void ListBoxQuestionLists_PreviewKeyDown(object sender, PreviewKeyDownEventArgs e)
         {
             if (e.KeyCode == Keys.Delete)
             {
-                deleteList(sender, e);
+                BtnDeleteQuestionList_Click(sender, e);
             }
         }
 
-        private void AddList(object sender, EventArgs e)
+        private void BtnAddQuestionList_Click(object sender, EventArgs e)
         {
             //Open dialog where user enters name for new list
             AddQuestionListView dlg = new AddQuestionListView();
@@ -106,60 +107,63 @@ namespace Client.View.QuestionList
             }
         }
 
-        public void ProcessAdd(Model.QuestionList ql, HttpStatusCode status)
+        public void ShowSaveQuestionListResult(Model.QuestionList list, HttpStatusCode status)
         {
             //Check if added to database
-            if (status == HttpStatusCode.Created)
+            if (status == HttpStatusCode.Created && list != null)
             {
                 //Visually adding the new list to the listbox
-                QuestionLists.Add(ql);
+                AddItem(list);
             }
             else
             {
                 //Give user feedback of failure
-                Dialogs.FailedDialogView dlg = new Dialogs.FailedDialogView();
-                dlg.getLabelFailed().Text = "Oeps! Er is iets misgegaan! Probeer het opnieuw!";
-                dlg.ShowDialog();
+                FailedDialogView failed = new FailedDialogView();
+                failed.getLabelFailed().Text = "Oeps! Er is iets misgegaan! Probeer het opnieuw!";
+                failed.ShowDialog();
             }
-
-
         }
 
-        private void deleteList(object sender, EventArgs e)
+        private void BtnDeleteQuestionList_Click(object sender, EventArgs e)
         {
             //Show dialog for user to confirm Delete action
-            DeleteQuestionListView dlg = new DeleteQuestionListView();
-            dlg.StartPosition = FormStartPosition.CenterParent;
-            dlg.setText(listBoxQuestionLists.SelectedItem.ToString());
-            dlg.ShowDialog();
+            DialogResult dr = new DialogResult();
+            ConfirmDialogView confirm = new ConfirmDialogView();
+            confirm.getLabelConfirm().Text = "Weet u zeker dat u deze lijst wilt verwijderen?";
+            dr = confirm.ShowDialog();
 
-            //If user clicked Ok-button
-            if (dlg.valid)
+            if(dr == DialogResult.Yes)
             {
-                //Create instance ql of QuestionList with entered id as property
-                //this.controller.deleteList((int)listBoxQuestionLists.SelectedValue);
+                this.Controller.DeleteQuestionList(this.getSelectedItem());
             }
         }
 
-        private void newList(object sender, EventArgs e)
+        public void ShowDeleteQuestionListResult(Model.QuestionList list, HttpStatusCode status)
         {
-            //Dialog with field to enter name for new list 
-            AddQuestionListView dlg = new AddQuestionListView();
-            dlg.StartPosition = FormStartPosition.CenterParent;
-            dlg.ShowDialog();
-
-            //If Ok-button clicked and entered text is valid, valid is true 
-            if (dlg.valid)
+            if (status == HttpStatusCode.OK && list != null)
             {
-                //Create instance ql of QuestionList with entered name as property
-                string name = dlg.text;
-                //this.controller.saveList(name);
+                DeleteItem(list);
+
+                SuccesDialogView succes = new SuccesDialogView();
+                succes.getLabelSucces().Text = "De lijst is succesvol verwijderd!!";
+                succes.ShowDialog();
+            }
+            else
+            {
+                FailedDialogView failed = new FailedDialogView();
+                failed.getLabelFailed().Text = "Oeps! Er is iets misgegaan! Probeer het opnieuw!";
+                failed.ShowDialog();
             }
         }
 
-        public void AddItem(Model.QuestionList item)
+        public void AddItem(Model.QuestionList list)
         {
-            throw new NotImplementedException();
+            QuestionLists.Add(list);
+        }
+
+        public void DeleteItem(Model.QuestionList list)
+        {
+            QuestionLists.Remove(list);
         }
         #endregion        
     }
