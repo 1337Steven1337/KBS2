@@ -124,9 +124,16 @@ namespace Client.View.Question
             if(getSelectedItem() != null)
             {
 
-                DeleteQuestionView dlv = new DeleteQuestionView();
-                dlv.setText(getSelectedItem().Text);
-                dlv.Show();
+                //Show dialog for user to confirm Delete action
+                DialogResult dr = new DialogResult();
+                ConfirmDialogView confirm = new ConfirmDialogView();
+                confirm.getLabelConfirm().Text = String.Format("Weet u zeker dat u {0} wilt verwijderen?", getSelectedItem().Text);
+                dr = confirm.ShowDialog();
+
+                if (dr == DialogResult.Yes)
+                {
+
+                }
             }
         }
     }
