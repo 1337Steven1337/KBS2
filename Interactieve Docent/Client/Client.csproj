@@ -138,6 +138,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Service\Email\EmailClient.cs" />
     <Compile Include="Service\Email\IEmailClient.cs" />
+    <Compile Include="Service\Login\LoginClient.cs" />
     <Compile Include="Service\SignalR\SignalRClient.cs" />
     <Compile Include="Service\SignalR\EventArgs\SubscriptionStatus.cs" />
     <Compile Include="Service\Thread\ControlHandler.cs" />
@@ -323,9 +324,7 @@
   <ItemGroup>
     <Content Include="Libraries\Excel.dll" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Service\Login\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
