@@ -10,7 +10,7 @@ using Microsoft.AspNet.SignalR.Client;
 
 namespace Client.Controller
 {
-    class StudentFormController
+    public class StudentFormController
     {
         private Student.QuestionForm mainForm;
         private int currentQuestionIndex = -1;

@@ -26,6 +26,13 @@ namespace Client.Tests.student
             Assert.AreEqual(expected, result);
         }
 
+        [TestMethod]
+        public void testTimer()
+        {
+            
+        }
+        
+
 
 
     }

@@ -22,7 +22,7 @@ namespace Client
         /// </summary>
         [STAThread]
         static void Main()
-        {/*
+        {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             //Application.Run(new Main());
@@ -46,10 +46,9 @@ namespace Client
            Client.Student.QuestionForm studentForm = new Client.Student.QuestionForm(1);
            studentForm.Show();
            
-    */
 
-            AuthorisationView view = new AuthorisationView();
-            AuthorisationController controller = new AuthorisationController(view);
+          //  AuthorisationView view = new AuthorisationView();
+          //  AuthorisationController controller = new AuthorisationController(view);
 
             //AddAccountView view = new AddAccountView();
             //AddAccountController controller = new AddAccountController(view);

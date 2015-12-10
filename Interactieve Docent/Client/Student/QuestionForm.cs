@@ -25,6 +25,12 @@ namespace Client.Student
         private Controller.StudentFormController controller;
         private View.Student.StudentForm view;
 
+        public QuestionForm()
+        {
+            
+        }
+
+
         //Initializing controller & view
         public QuestionForm(int List_Id)
         {
@@ -38,6 +44,11 @@ namespace Client.Student
             nextForm next = new nextForm();
             next.Show();
 
+        }
+
+        public Controller.StudentFormController  getController()
+        {
+            return this.controller;
         }
 
         public ProgressBar getProgressBar()
