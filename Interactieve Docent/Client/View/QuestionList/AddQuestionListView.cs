@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Client.View.Dialogs;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -32,6 +33,12 @@ namespace Client.View.QuestionList
                 valid = true;
                 text = textBox.Text;
                 this.Close();
+            }
+            else
+            {
+                FailedDialogView dlg = new FailedDialogView();
+                dlg.getLabelFailed().Text = "Gelieve alle velden in te vullen!";
+                dlg.ShowDialog();
             }
         }
 

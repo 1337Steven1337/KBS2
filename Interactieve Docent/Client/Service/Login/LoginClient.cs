@@ -4,10 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Client.Service.Email
+namespace Client.Service.Login
 {
-    public interface IEmailClient
+    class LoginClient
     {
-        void Send(string student, string password);
+        //allkindsofshitidonotunderstandandicanstareatforhours
     }
 }

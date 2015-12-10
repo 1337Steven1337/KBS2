@@ -26,40 +26,50 @@ namespace Client.View.Main
         //Remove third column from mainView
         public void RemoveAddQuestionPanel()
         {
-            tableThreeColumn.SuspendLayout();
-            tableThreeColumn.Controls.RemoveAt(2);
+            tableFourColumn.SuspendLayout();
+            tableFourColumn.Controls.RemoveAt(3);
             float width = 0;
-            for (int i = 0; i < tableThreeColumn.ColumnCount; i++)
+            for (int i = 0; i < tableFourColumn.ColumnCount; i++)
             {
-                if (i < 2)
+                if(i == 0){
+                    width = 10F;
+                }
+                else if (i > 0 && i < 3)
                 {
-                    width = 50F;
+                    width = 45F;
                 }
                 else
                 {
-                    width = 0;
+                    width = 0F;
                 }
-                tableThreeColumn.ColumnStyles[i].Width = width;
+                tableFourColumn.ColumnStyles[i].Width = width;
             }
-            tableThreeColumn.ResumeLayout(true);
-            tableThreeColumn.PerformLayout();
+            tableFourColumn.ResumeLayout(true);
+            tableFourColumn.PerformLayout();
         }
 
         //Add view to mainTable 
         public void AddTablePanel(TableLayoutPanel panel, int column)
         {
-            this.tableThreeColumn.Controls.Add(panel, column, 0);
+            Boolean column4IsSet = false;
+            if (column == 3)
+            {
+                column4IsSet = true;
+            }
 
-            this.tableThreeColumn.SuspendLayout();
-            for (int i = 0; i < this.tableThreeColumn.ColumnCount; i++)
+            this.tableFourColumn.Controls.Add(panel, column, 0);
+            this.tableFourColumn.SuspendLayout();
+            for (int i = 0; i < this.tableFourColumn.ColumnCount; i++)
             {
                 float width;
-
-                if(this.tableThreeColumn.ColumnStyles[2].Width > 0)
-                {
-                    if (i != 2)
+                if (column4IsSet) {                 
+                    if(i == 0)
                     {
-                        width = 30F;
+                        width = 10F;
+                    }
+                    else if (i > 0 && i < 3)
+                    {
+                        width = 25F;
                     }
                     else
                     {
@@ -68,14 +78,23 @@ namespace Client.View.Main
                 }
                 else
                 {
-                    width = 50F;
+                    if (i == 0)
+                    {
+                        width = 10F;
+                    }
+                    else if (i > 0 && i < 3) 
+                    {
+                        width = 45F;
+                    }
+                    else
+                    {
+                        width = 0F;
+                    }
                 }
-
-                this.tableThreeColumn.ColumnStyles[i].Width = width;
-
+                this.tableFourColumn.ColumnStyles[i].Width = width;
             }
-            this.tableThreeColumn.ResumeLayout(true);
-            this.tableThreeColumn.PerformLayout();
+            this.tableFourColumn.ResumeLayout(true);
+            this.tableFourColumn.PerformLayout();
         }
 
         public IControlHandler GetHandler()

@@ -25,7 +25,7 @@ namespace Client.Factory
         protected override Dictionary<string, object> GetFields(Account instance)
         {
             Dictionary<string, object> data = new Dictionary<string, object>();
-            data.Add("Number", instance.Number);
+            data.Add("Student", instance.Student);
             data.Add("Password", instance.Password);
 
             return data;

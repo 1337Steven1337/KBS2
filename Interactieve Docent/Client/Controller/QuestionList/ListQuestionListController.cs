@@ -75,8 +75,24 @@ namespace Client.Controller.QuestionList
         {
             Model.QuestionList list = new Model.QuestionList(data);
             ListQuestionListView view = (ListQuestionListView)this.View;
-            this.Factory.Save(list, this.View.GetHandler(), view.ProcessAdd);
-        }        
+            this.Factory.Save(list, this.View.GetHandler(), CallbackSaveQuestionlist);
+        }
+
+        private void CallbackSaveQuestionlist(Model.QuestionList list, HttpStatusCode status)
+        {
+            this.View.ShowSaveQuestionListResult(list, status);
+        }
+
+        public void DeleteQuestionList(Model.QuestionList list)
+        {
+            ListQuestionListView view = (ListQuestionListView)this.View;
+            this.Factory.Delete(list, this.View.GetHandler(), CallbackDeleteQuestionList);
+        }
+
+        private void CallbackDeleteQuestionList(Model.QuestionList list, HttpStatusCode status)
+        {
+            this.View.ShowDeleteQuestionListResult(list, status);                        
+        }
         #endregion
     }
 }

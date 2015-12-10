@@ -9,6 +9,9 @@ using Client.View.Question;
 using Client.Controller.Question;
 using Client.View.QuestionList;
 using Client.Controller.QuestionList;
+using Client.Controller.Account;
+using Client.View.Account;
+using Client.View.Authorisation;
 
 namespace Client
 {
@@ -19,11 +22,12 @@ namespace Client
         /// </summary>
         [STAThread]
         static void Main()
-        {
+        {/*
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             //Application.Run(new Main());
 
+            
             MainView view = new MainView();
             MainController maincontroller = new MainController(view);
 
@@ -41,7 +45,15 @@ namespace Client
 
            Client.Student.QuestionForm studentForm = new Client.Student.QuestionForm(1);
            studentForm.Show();
+           
+    */
 
+            AuthorisationView view = new AuthorisationView();
+            AuthorisationController controller = new AuthorisationController(view);
+
+            //AddAccountView view = new AddAccountView();
+            //AddAccountController controller = new AddAccountController(view);
+             
             Application.Run(view);
         }
     }

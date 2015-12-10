@@ -7,6 +7,7 @@ using Client.View.Main;
 using System.ComponentModel;
 using Client.Controller.Question;
 using Client.Model;
+using System.Net;
 
 namespace Client.View.Question
 {
@@ -79,7 +80,7 @@ namespace Client.View.Question
         public void AddToParent(IView parent)
         {
             MainView main = (MainView)parent;
-            main.AddTablePanel(this.mainTablePanel, 1);
+            main.AddTablePanel(this.mainTablePanel, 2);
         }
 
         public void SetController(IController controller)
@@ -96,6 +97,37 @@ namespace Client.View.Question
         {
             Questions.Add(question);
         }
+
+        public void ShowDeleteResult(Model.Question instance, HttpStatusCode status)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void DeleteItem(Model.Question item)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void ShowSaveQuestionListResult(Model.Question instance, HttpStatusCode status)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void ShowDeleteQuestionListResult(Model.Question instance, HttpStatusCode status)
+        {
+            throw new NotImplementedException();
+        }
         #endregion       
+
+        private void btnDeleteQuestion_Click(object sender, EventArgs e)
+        {
+            if(getSelectedItem() != null)
+            {
+
+                DeleteQuestionView dlv = new DeleteQuestionView();
+                dlv.setText(getSelectedItem().Text);
+                dlv.Show();
+            }
+        }
     }
 }
