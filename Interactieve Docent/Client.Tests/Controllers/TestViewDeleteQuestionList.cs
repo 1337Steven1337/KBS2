@@ -1,6 +1,8 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Client.Tests.View.Question;
+using Client.Controller.QuestionList;
+using Client.Tests.Factory;
 
 namespace Client.Tests.Controllers
 {
@@ -52,6 +54,26 @@ namespace Client.Tests.Controllers
             string result = view.Text;
 
             Assert.AreEqual(expected, result);
+        }
+
+        [TestMethod]
+        public void TestDeleteList_shouldRemoveFromList()
+        {
+            ViewDeleteQuestionList view = new ViewDeleteQuestionList();
+            ListQuestionListController controller = new ListQuestionListController();
+            controller.SetBaseFactory(new TestQuestionListFactory());
+            controller.SetView(view);
+
+            Model.QuestionList testList = new Model.QuestionList();
+            testList.Name = "Test List";
+            
+            //list have 1 items
+            view.AddItem(testList);
+
+            controller.DeleteQuestionList(testList);
+
+            //list is empty
+            Assert.AreEqual(view.QuestionList.Count, 0);
         }
     }
 }

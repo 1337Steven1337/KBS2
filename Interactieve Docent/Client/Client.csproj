@@ -292,6 +292,9 @@
     <EmbeddedResource Include="View\Question\ListQuestionView.resx">
       <DependentUpon>ListQuestionView.cs</DependentUpon>
     </EmbeddedResource>
+    <None Include="bin\Debug\Client.exe.config" />
+    <None Include="bin\Debug\Client.vshost.exe.config" />
+    <None Include="bin\Debug\Client.vshost.exe.manifest" />
     <None Include="Properties\Api.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Api.Designer.cs</LastGenOutput>
@@ -311,6 +314,7 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="bin\Debug\Client.vshost.exe" />
     <Content Include="Libraries\Excel.dll" />
   </ItemGroup>
   <ItemGroup />

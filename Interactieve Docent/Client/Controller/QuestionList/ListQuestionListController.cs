@@ -30,6 +30,10 @@ namespace Client.Controller.QuestionList
             this.SetView(view);
             view.SetController(this);
         }
+
+        public ListQuestionListController()
+        {
+        }
         #endregion
 
         #region Methods
@@ -74,7 +78,6 @@ namespace Client.Controller.QuestionList
         public void SaveQuestionList(Dictionary<string, object> data)
         {
             Model.QuestionList list = new Model.QuestionList(data);
-            ListQuestionListView view = (ListQuestionListView)this.View;
             this.Factory.Save(list, this.View.GetHandler(), CallbackSaveQuestionlist);
         }
 
@@ -85,7 +88,6 @@ namespace Client.Controller.QuestionList
 
         public void DeleteQuestionList(Model.QuestionList list)
         {
-            ListQuestionListView view = (ListQuestionListView)this.View;
             this.Factory.Delete(list, this.View.GetHandler(), CallbackDeleteQuestionList);
         }
 
