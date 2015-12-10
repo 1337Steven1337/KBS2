@@ -40,13 +40,13 @@ namespace Client.View.Authorisation
             this.Controller = (AuthorisationController)controller;
         }
 
-        private void buttonOk_Click(object sender, EventArgs e)
+        private void buttonLogin_Click(object sender, EventArgs e)
         {
             valid = true;
             this.Enabled = false;
             Model.Account ac = new Model.Account();
             ac.Password = textBoxPassword.Text;
-            ac.Student = textBoxStudent.Text;
+            ac.Student = textBoxLogin.Text;
             Controller.login(ac);
         }
     }

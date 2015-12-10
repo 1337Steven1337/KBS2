@@ -124,6 +124,7 @@
     <Compile Include="Factory\UserAnswerFactory.cs" />
     <Compile Include="Model\AbstractModel.cs" />
     <Compile Include="Model\Account.cs" />
+    <Compile Include="Model\DocentAccount.cs" />
     <Compile Include="Model\PredefinedAnswer.cs" />
     <Compile Include="Model\Question.cs" />
     <Compile Include="Model\QuestionList.cs" />
@@ -311,6 +312,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Libraries\Excel.dll" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Service\Login\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
