@@ -119,6 +119,7 @@ namespace Client.View.Question
             this.btnDeleteQuestion.TabIndex = 2;
             this.btnDeleteQuestion.Text = "Vraag verwijderen";
             this.btnDeleteQuestion.UseVisualStyleBackColor = false;
+            this.btnDeleteQuestion.Click += new System.EventHandler(this.btnDeleteQuestion_Click);
             // 
             // btnAddQuestion
             // 
@@ -171,19 +172,19 @@ namespace Client.View.Question
             this.listBoxQuestions.FormattingEnabled = true;
             this.listBoxQuestions.ItemHeight = 20;
             this.listBoxQuestions.Location = new System.Drawing.Point(0, 0);
-            this.listBoxQuestions.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.listBoxQuestions.Margin = new System.Windows.Forms.Padding(2);
             this.listBoxQuestions.Name = "listBoxQuestions";
             this.listBoxQuestions.Size = new System.Drawing.Size(364, 340);
             this.listBoxQuestions.TabIndex = 0;
             // 
-            // ViewQuestion
+            // ListQuestionView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(364, 448);
             this.Controls.Add(this.mainTablePanel);
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.Name = "ViewQuestion";
+            this.Margin = new System.Windows.Forms.Padding(2);
+            this.Name = "ListQuestionView";
             this.Text = "ViewQuestion";
             this.mainTablePanel.ResumeLayout(false);
             this.titlePanel.ResumeLayout(false);

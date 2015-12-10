@@ -7,6 +7,7 @@ using Client.View.Main;
 using System.ComponentModel;
 using Client.Controller.Question;
 using Client.Model;
+using System.Diagnostics;
 
 namespace Client.View.Question
 {
@@ -96,6 +97,17 @@ namespace Client.View.Question
         {
             Questions.Add(question);
         }
-        #endregion       
+        #endregion
+
+        private void btnDeleteQuestion_Click(object sender, EventArgs e)
+        {
+            if(getSelectedItem() != null)
+            {
+
+                DeleteQuestionView dlv = new DeleteQuestionView();
+                dlv.setText(getSelectedItem().Text);
+                dlv.Show();
+            }
+        }
     }
 }
