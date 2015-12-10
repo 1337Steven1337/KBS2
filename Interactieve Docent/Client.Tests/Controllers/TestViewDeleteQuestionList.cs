@@ -57,7 +57,7 @@ namespace Client.Tests.Controllers
         }
 
         [TestMethod]
-        public void TestDeleteList_shouldRemoveFromList()
+        public void TestDeleteList_ShouldRemoveFromList()
         {
             ViewDeleteQuestionList view = new ViewDeleteQuestionList();
             ListQuestionListController controller = new ListQuestionListController();
