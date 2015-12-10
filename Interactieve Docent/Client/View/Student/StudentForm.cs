@@ -6,13 +6,11 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Drawing;
 using System.Net;
-using Client.Service.Thread;
 
 namespace Client.View.Student
 {
     class StudentForm
     {
-        //variables
         Client.Student.QuestionForm mainForm;
         private Button option = null;
         private List<Button> answerButtons = new List<Button>();
@@ -23,6 +21,7 @@ namespace Client.View.Student
             this.mainForm = mainform;
         }
 
+        //This function sets the positions for each control in the QuestionForm
         public void initControlLocations()
         {
             mainForm.Size = new Size((int)(Screen.PrimaryScreen.Bounds.Width * 0.8), (int)(Screen.PrimaryScreen.Bounds.Height * 0.8));
@@ -41,10 +40,10 @@ namespace Client.View.Student
             mainForm.getProgressBar().Location = new Point(0, mainForm.Location.Y + mainForm.ClientSize.Height / 2 + mainForm.ClientSize.Height / 10 - 5);
 
             mainForm.timeLabel.Location = new Point(mainForm.getProgressBar().Location.X + mainForm.getProgressBar().Width / 2 - mainForm.timeLabel.Width / 2, mainForm.getProgressBar().Location.Y + mainForm.getProgressBar().Height / 2 - mainForm.timeLabel.Height / 2);
-
         }
 
-        //hide some items when waiting for the next question and show the waiting label
+
+        //Initializing waitScreen
         public void initWaitScreen()
         {
             mainForm.statusLabel.Visible = true;
@@ -56,7 +55,9 @@ namespace Client.View.Student
             mainForm.timeLabel.Visible = false;
         }
 
-        //hide the waiting label and show the question content
+
+
+        //Initializing questionScreen
         public void initQuestionScreen()
         {
             mainForm.statusLabel.Visible = false;
@@ -68,25 +69,32 @@ namespace Client.View.Student
             mainForm.timeLabel.Visible = true;
         }
 
-        //DEZE MOET ER NOG UIT???????????????!!!!!!!!!!!!!!!!!!!!!!!!!!!!&&&^^#^@gsdfdbdf%!%@$%@#$%#$&$%*%^*(*(&$%^@%$!@#$@#$^#$&^%&*!%
-        private void whatever(Client.Model.UserAnswer ua, HttpStatusCode code)
-        {
-            if (code == HttpStatusCode.Forbidden)
-            {
 
+        //Checks the HTTP response, if it is not OK then stop the questionList because the results are not valid anymore.
+        private void saveAnswerCallBackHandler(Client.Model.UserAnswer ua, HttpStatusCode code)
+        {
+            if (code ==HttpStatusCode.OK)
+            {
+                MessageBox.Show("Antwoord succesvol opgeslagen");
+            }
+            else
+            {
+                MessageBox.Show("Er ging wat mis met het verwerken van je antwoord, de vragenlijst stopt.");
+                //Return to main screen
             }
         }
 
-        //Save the selected answer and initiate waiting screen
+
+        //Saves the answer given by the user and then goes to the next question.
         public void AnswerSaveHandler(object sender, System.EventArgs e)
         {
             Button btn = (Button)sender;
             Client.Model.UserAnswer ua = new Client.Model.UserAnswer();
             ua.PredefinedAnswer_Id = btn.ImageIndex;
             ua.Question_Id = mainForm.getCurrentQuestion().Id;
-
+      
             Factory.UserAnswerFactory uaf = new Factory.UserAnswerFactory();
-            uaf.Save(ua, new ControlHandler(this.mainForm.statusLabel), this.whatever);
+            uaf.Save(ua, null, saveAnswerCallBackHandler);
             if (mainForm.getQuestionList().Questions.Count - 1 > 5)
             {
                 mainForm.goToNextQuestion();
@@ -98,7 +106,8 @@ namespace Client.View.Student
             }
         }
 
-        //Create the button for the answers
+
+        //Creates a new Button to add to the controls
         private Button createAnswerButton(Model.PredefinedAnswer answer)
         {
             option = new Button();
@@ -107,6 +116,7 @@ namespace Client.View.Student
             return option;
         }
 
+        //Removes the previousquestion answerButtons
         public void cleanUpPreviousQuestion()
         {
             foreach (Button button in answerButtons)
@@ -120,7 +130,7 @@ namespace Client.View.Student
             return this.answerButtons;
         }
 
-        //make sure that every button has a good position on the screen
+        //Calculates the sizes of the answerButtons
         public void adjustSizeOfButtons(Model.Question Q)
         {
             foreach (Model.PredefinedAnswer PA in Q.PredefinedAnswers)

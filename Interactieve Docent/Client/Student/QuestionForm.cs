@@ -25,13 +25,7 @@ namespace Client.Student
         private Controller.StudentFormController controller;
         private View.Student.StudentForm view;
 
-        public QuestionForm()
-        {
-
-            view = new View.Student.StudentForm(this);
-
-        }
-
+        //Initializing controller & view
         public QuestionForm(int List_Id)
         {
             InitializeComponent();
@@ -41,8 +35,8 @@ namespace Client.Student
             view.initControlLocations();
             view.initWaitScreen();
 
-            //nextForm next = new nextForm();
-            //next.Show();
+            nextForm next = new nextForm();
+            next.Show();
 
         }
 
@@ -67,7 +61,9 @@ namespace Client.Student
             return this.currentQuestion;
         }
 
-        //
+
+        //If a time is set this is the event that is executed when the timer is over
+        //It resets the timer variables and then goes to the nextquestion event
         private void Question_Timer(object sender, EventArgs e)
         {
             if (questionTimeProgressBar.Value > 0)
@@ -93,6 +89,8 @@ namespace Client.Student
             }
         }
 
+
+        //Literally goes to the next question if there is one, otherwise it'll go back to the waitingscreen.
         public void goToNextQuestion()
         {
             view.cleanUpPreviousQuestion();
@@ -108,10 +106,8 @@ namespace Client.Student
                 busy = true;
 
                 currentQuestion = this.questionList.Questions[controller.getCurrentQuestionIndex()];
-                if (currentQuestion.Time != 0)
+                if (currentQuestion.Time > 1)
                 {
-                    questionTimeProgressBar.Visible = false;
-                    timeLabel.Visible = false;
                     questionTimeProgressBar.Maximum = currentQuestion.Time * 1000;
                     questionTimeProgressBar.Value = currentQuestion.Time * 1000;
                     questionTimer.Interval = 100;
@@ -128,7 +124,6 @@ namespace Client.Student
             }
             else if (this.questionList.Ended)
             {
-                //if the list ended, there are no further question than notify the student
                 MessageBox.Show("Realtime vragenlijst af.");
             }
             else
