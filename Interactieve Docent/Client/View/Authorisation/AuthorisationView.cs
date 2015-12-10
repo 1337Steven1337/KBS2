@@ -23,8 +23,6 @@ namespace Client.View.Authorisation
             InitializeComponent();
         }
 
-
-
         public void AddToParent(IView parent)
         {
             throw new NotImplementedException();

@@ -154,7 +154,7 @@ namespace Client.View.QuestionList
                 failed.getLabelFailed().Text = "Oeps! Er is iets misgegaan! Probeer het opnieuw!";
                 failed.ShowDialog();
             }
-        }
+        }        
 
         public void AddItem(Model.QuestionList list)
         {

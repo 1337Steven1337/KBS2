@@ -7,13 +7,14 @@ using Client.Factory;
 using Client.Model;
 using Client.View;
 using Client.View.Authorisation;
+using Client.Service.Login;
 
 namespace Client.Controller
 {
     class AuthorisationController : AbstractController<Model.Account>
     {
         private IView View;
-        private AccountFactory Factory = new AccountFactory();
+        private LoginClient loginClient = new LoginClient();
 
         public AuthorisationController(AuthorisationView view)
         {
@@ -27,12 +28,12 @@ namespace Client.Controller
 
         public override void SetBaseFactory(IFactory<Model.Account> baseFactory)
         {
-            this.Factory.SetBaseFactory(baseFactory);
+            throw new NotImplementedException();
         }
 
         public void login(Model.Account ac)
         {
-            //Factory.FindAll(null, ac); something, now next thing is sending stuff to server and getting reply
+            //loginClient.sendshittodatabase(ac);
         }
 
         public override void SetView(IView view)
