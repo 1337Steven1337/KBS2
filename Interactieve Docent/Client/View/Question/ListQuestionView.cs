@@ -117,6 +117,17 @@ namespace Client.View.Question
         {
             throw new NotImplementedException();
         }
-        #endregion
+        #endregion       
+
+        private void btnDeleteQuestion_Click(object sender, EventArgs e)
+        {
+            if(getSelectedItem() != null)
+            {
+
+                DeleteQuestionView dlv = new DeleteQuestionView();
+                dlv.setText(getSelectedItem().Text);
+                dlv.Show();
+            }
+        }
     }
 }

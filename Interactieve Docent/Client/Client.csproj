@@ -106,7 +106,6 @@
   <ItemGroup>
     <Compile Include="Controller\AbstractController.cs" />
     <Compile Include="Controller\Account\AddAccountController.cs" />
-    <Compile Include="Controller\AuthorisationController.cs" />
     <Compile Include="Controller\DiagramController.cs" />
     <Compile Include="Controller\IController.cs" />
     <Compile Include="Controller\Main\ShowMainController.cs" />
@@ -124,7 +123,6 @@
     <Compile Include="Factory\UserAnswerFactory.cs" />
     <Compile Include="Model\AbstractModel.cs" />
     <Compile Include="Model\Account.cs" />
-    <Compile Include="Model\DocentAccount.cs" />
     <Compile Include="Model\PredefinedAnswer.cs" />
     <Compile Include="Model\Question.cs" />
     <Compile Include="Model\QuestionList.cs" />
@@ -162,12 +160,6 @@
       <DependentUpon>AddAccountView.cs</DependentUpon>
     </Compile>
     <Compile Include="View\Account\IAddAccountView.cs" />
-    <Compile Include="View\Authorisation\AuthorisationView.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="View\Authorisation\AuthorisationView.Designer.cs">
-      <DependentUpon>AuthorisationView.cs</DependentUpon>
-    </Compile>
     <Compile Include="View\Diagram\IDiagramView.cs" />
     <Compile Include="View\Diagram\DiagramView.cs">
       <SubType>Form</SubType>
@@ -190,13 +182,6 @@
     <Compile Include="View\IAddView.cs" />
     <Compile Include="View\IListView.cs" />
     <Compile Include="View\IView.cs" />
-    <Compile Include="View\Login\ILoginView.cs" />
-    <Compile Include="View\Login\LoginView.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="View\Login\LoginView.Designer.cs">
-      <DependentUpon>LoginView.cs</DependentUpon>
-    </Compile>
     <Compile Include="View\Main\MainView.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -264,9 +249,6 @@
     <EmbeddedResource Include="View\Account\AddAccountView.resx">
       <DependentUpon>AddAccountView.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="View\Authorisation\AuthorisationView.resx">
-      <DependentUpon>AuthorisationView.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="View\Diagram\DiagramView.resx">
       <DependentUpon>DiagramView.cs</DependentUpon>
     </EmbeddedResource>
@@ -275,9 +257,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="View\Dialogs\SuccesDialogView.resx">
       <DependentUpon>SuccesDialogView.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="View\Login\LoginView.resx">
-      <DependentUpon>LoginView.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="View\Main\MainView.resx">
       <DependentUpon>MainView.cs</DependentUpon>

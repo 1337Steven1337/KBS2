@@ -5,6 +5,7 @@ namespace Client.View.Question
 {
     public partial class DeleteQuestionView : Form
     {
+        
         public Boolean valid { get; set; }
 
         public DeleteQuestionView()
