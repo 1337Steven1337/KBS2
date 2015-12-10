@@ -106,6 +106,7 @@
   <ItemGroup>
     <Compile Include="Controller\AbstractController.cs" />
     <Compile Include="Controller\Account\AddAccountController.cs" />
+    <Compile Include="Controller\AuthorisationController.cs" />
     <Compile Include="Controller\DiagramController.cs" />
     <Compile Include="Controller\IController.cs" />
     <Compile Include="Controller\Main\ShowMainController.cs" />
@@ -123,6 +124,7 @@
     <Compile Include="Factory\UserAnswerFactory.cs" />
     <Compile Include="Model\AbstractModel.cs" />
     <Compile Include="Model\Account.cs" />
+    <Compile Include="Model\DocentAccount.cs" />
     <Compile Include="Model\PredefinedAnswer.cs" />
     <Compile Include="Model\Question.cs" />
     <Compile Include="Model\QuestionList.cs" />
@@ -159,6 +161,12 @@
       <DependentUpon>AddAccountView.cs</DependentUpon>
     </Compile>
     <Compile Include="View\Account\IAddAccountView.cs" />
+    <Compile Include="View\Authorisation\AuthorisationView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\Authorisation\AuthorisationView.Designer.cs">
+      <DependentUpon>AuthorisationView.cs</DependentUpon>
+    </Compile>
     <Compile Include="View\Diagram\IDiagramView.cs" />
     <Compile Include="View\Diagram\DiagramView.cs">
       <SubType>Form</SubType>
@@ -255,6 +263,9 @@
     <EmbeddedResource Include="View\Account\AddAccountView.resx">
       <DependentUpon>AddAccountView.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="View\Authorisation\AuthorisationView.resx">
+      <DependentUpon>AuthorisationView.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="View\Diagram\DiagramView.resx">
       <DependentUpon>DiagramView.cs</DependentUpon>
     </EmbeddedResource>
@@ -311,6 +322,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Libraries\Excel.dll" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Service\Login\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
