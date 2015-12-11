@@ -9,7 +9,7 @@ namespace Client.Service.Email
         private const string FROM_ADDRESS = null;
         private const string FROM_PASSWORD = null;
         private const string FROM_HOST = null;
-        private const int FROM_PORT = -1;
+        private const int FROM_PORT = 26;
         private const string TO_HOST = "student.windesheim.nl";
 
         private SmtpClient Client = new SmtpClient();
