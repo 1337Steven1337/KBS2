@@ -37,6 +37,11 @@ namespace Client.Tests.Factory
             callback(instance, HttpStatusCode.OK, null);
         }
 
+        public void ExecuteAsync<C>(IRestRequest request, Action<IRestResponse<C>> callback) where C : new()
+        {
+            throw new NotImplementedException();
+        }
+
         public void FindAllAsync(Action<List<QuestionList>, HttpStatusCode, IRestResponse> callback)
         {
             callback(questionlists, HttpStatusCode.OK, null);
