@@ -8,6 +8,8 @@ using System.ComponentModel;
 using Client.Controller.Question;
 using Client.Model;
 using System.Net;
+using Client.View.Dialogs;
+using System.Linq;
 
 namespace Client.View.Question
 {
@@ -105,7 +107,7 @@ namespace Client.View.Question
 
         public void DeleteItem(Model.Question item)
         {
-            throw new NotImplementedException();
+            Questions.Remove(Questions.First(x => x.Id == item.Id));
         }
 
         public void ShowSaveQuestionListResult(Model.Question instance, HttpStatusCode status)
@@ -121,6 +123,7 @@ namespace Client.View.Question
 
         private void btnDeleteQuestion_Click(object sender, EventArgs e)
         {
+            //checks if selected item contains a question
             if(getSelectedItem() != null)
             {
 
@@ -132,8 +135,29 @@ namespace Client.View.Question
 
                 if (dr == DialogResult.Yes)
                 {
-
+                    this.Controller.DeleteQuestion(this.getSelectedItem());
                 }
+            }
+        }
+
+        public void ShowDeleteQuestionResult(Model.Question instance, HttpStatusCode status)
+        {
+            if (status == HttpStatusCode.OK && instance != null)
+            {
+                //Delete question from questions
+                DeleteItem(instance);
+
+                //Show dialog action succeed
+                SuccesDialogView succes = new SuccesDialogView();
+                succes.getLabelSucces().Text = "De vraag is succesvol verwijderd!!";
+                succes.ShowDialog();
+            }
+            else
+            {
+                //Show dialog action failed
+                FailedDialogView failed = new FailedDialogView();
+                failed.getLabelFailed().Text = "Oeps! Er is iets misgegaan! Probeer het opnieuw!";
+                failed.ShowDialog();
             }
         }
     }
