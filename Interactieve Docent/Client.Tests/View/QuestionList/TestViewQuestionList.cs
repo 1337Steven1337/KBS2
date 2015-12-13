@@ -131,5 +131,10 @@ namespace Client.Tests.View.QuestionList
         {
             throw new NotImplementedException();
         }
+
+        public void ShowDeleteQuestionResult(Model.QuestionList instance, HttpStatusCode status)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

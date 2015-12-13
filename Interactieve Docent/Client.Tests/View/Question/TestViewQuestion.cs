@@ -56,6 +56,11 @@ namespace Client.Tests.View.Question
             throw new NotImplementedException();
         }
 
+        public void ShowDeleteQuestionResult(Model.Question instance, HttpStatusCode status)
+        {
+            throw new NotImplementedException();
+        }
+
         public void ShowDeleteResult(Model.Question instance, HttpStatusCode status)
         {
             throw new NotImplementedException();

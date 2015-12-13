@@ -66,6 +66,10 @@ namespace Client.Student
             return busy;
         }
 
+        public Timer getTimer()
+        {
+            return questionTimer;
+        }
 
         public Model.Question getCurrentQuestion()
         {

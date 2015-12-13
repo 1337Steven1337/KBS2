@@ -1,6 +1,7 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Windows.Forms;
+using System.Collections.Generic;
 using System.Diagnostics;
 
 namespace Client.Tests.student
@@ -27,11 +28,17 @@ namespace Client.Tests.student
         }
 
         [TestMethod]
-        public void testTimer()
+        public void TestIfTimerIsRunning_AfterTimerHasBeenStarted()
         {
-            
+            bool expected = true;
+            Timer timer = test.getTimer();
+            timer.Start();
+            Assert.AreEqual(timer.Enabled, expected);
         }
-        
+
+
+
+
 
 
 
