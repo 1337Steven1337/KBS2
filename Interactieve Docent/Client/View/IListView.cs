@@ -12,6 +12,7 @@ namespace Client.View
     {
         void ShowSaveQuestionListResult(T instance, HttpStatusCode status);        
         void ShowDeleteQuestionListResult(T instance, HttpStatusCode status);
+        void ShowDeleteQuestionResult(T instance, HttpStatusCode status);
         void FillList(List<T> list);
         void AddItem(T item);
         void DeleteItem(T item);

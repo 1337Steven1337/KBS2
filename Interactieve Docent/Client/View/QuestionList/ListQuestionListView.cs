@@ -169,6 +169,11 @@ namespace Client.View.QuestionList
         {
             QuestionLists.Remove(QuestionLists.First(x => x.Id == list.Id));
         }
-        #endregion        
+
+        public void ShowDeleteQuestionResult(Model.QuestionList instance, HttpStatusCode status)
+        {
+            throw new NotImplementedException();
+        }
+        #endregion
     }
 }

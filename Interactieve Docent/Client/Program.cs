@@ -50,8 +50,8 @@ namespace Client
           //  AuthorisationView view = new AuthorisationView();
           //  AuthorisationController controller = new AuthorisationController(view);
 
-            //AddAccountView view = new AddAccountView();
-            //AddAccountController controller = new AddAccountController(view);
+           // AddAccountView view = new AddAccountView();
+           // AddAccountController controller = new AddAccountController(view);
              
             Application.Run(view);
         }

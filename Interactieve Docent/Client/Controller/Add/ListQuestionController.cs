@@ -60,6 +60,17 @@ namespace Client.Controller.Question
         {
             this.Factory.SetBaseFactory(baseFactory);
         }
+        //Give status 
+        public void CallbackDeleteQuestion(Model.Question question, HttpStatusCode status)
+        {
+            this.View.ShowDeleteQuestionResult(question, status);
+        }
+
+        //delete the question
+        public void DeleteQuestion(Model.Question question)
+        {
+            this.Factory.Delete(question, this.View.GetHandler(), CallbackDeleteQuestion);
+        }
         #endregion
     }
 }

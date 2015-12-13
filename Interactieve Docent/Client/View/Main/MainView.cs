@@ -9,6 +9,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Client.Service.Thread;
+using Client.View.Account;
+using Client.Controller.Account;
 
 namespace Client.View.Main
 {
@@ -110,6 +112,14 @@ namespace Client.View.Main
         public void SetController(IController controller)
         {
             this.controller = (MainController)controller;
+        }
+
+        private void ImportAccountButton_Click(object sender, EventArgs e)
+        {
+            AddAccountView view = new AddAccountView();
+            AddAccountController controller = new AddAccountController(view);
+
+            view.ShowDialog();
         }
     }
 }
