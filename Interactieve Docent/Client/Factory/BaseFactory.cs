@@ -77,5 +77,10 @@ namespace Client.Factory
                 callback(response.Data, response.StatusCode, response);
             });
         }
+
+        public void ExecuteAsync<C>(IRestRequest request, Action<IRestResponse<C>> callback) where C : new()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

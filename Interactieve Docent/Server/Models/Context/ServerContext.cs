@@ -25,6 +25,7 @@ namespace Server.Models.Context
         public DbSet<Server.Models.UserAnswer> UserAnswers { get; set; }
         public DbSet<Server.Models.PredefinedAnswer> PredefinedAnswers { get; set; }
         public DbSet<Server.Models.Account> Accounts { get; set; }
+        public DbSet<Server.Models.Token> Tokens { get; set; }
 
         public void MarkAsModified(Question item)
         {
@@ -47,6 +48,10 @@ namespace Server.Models.Context
         }
 
         public void MarkAsModified(Account item)
+        {
+            Entry(item).State = EntityState.Modified;
+        }
+        public void MarkAsModified(Token item)
         {
             Entry(item).State = EntityState.Modified;
         }

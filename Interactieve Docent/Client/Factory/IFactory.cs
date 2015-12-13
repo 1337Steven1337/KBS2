@@ -16,6 +16,6 @@ namespace Client.Factory
         void SaveAsync(List<KeyValuePair<string, object>> data, Action<T, HttpStatusCode, IRestResponse> callback);
         void FindByIdAsync(int id, Action<T, HttpStatusCode, IRestResponse> callback);
         void FindAllAsync(Action<List<T>, HttpStatusCode, IRestResponse> callback);
-
+        void ExecuteAsync<C>(IRestRequest request, Action<IRestResponse<C>> callback) where C : new();
     }
 }

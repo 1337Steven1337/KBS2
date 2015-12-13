@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Client;
 using Client.Model;
+using RestSharp;
 
 namespace Client.Tests.Factory
 {
@@ -29,6 +30,11 @@ namespace Client.Tests.Factory
             questions.Remove(instance);
 
             callback(instance, HttpStatusCode.OK, null);
+        }
+
+        public void ExecuteAsync<C>(IRestRequest request, Action<IRestResponse<C>> callback) where C : new()
+        {
+            throw new NotImplementedException();
         }
 
         public void FindAllAsync(Action<List<Question>, HttpStatusCode, global::RestSharp.IRestResponse> callback)

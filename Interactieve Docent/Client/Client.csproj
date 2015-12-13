@@ -121,12 +121,14 @@
     <Compile Include="Factory\PredefinedAnswerFactory.cs" />
     <Compile Include="Factory\QuestionFactory.cs" />
     <Compile Include="Factory\QuestionListFactory.cs" />
+    <Compile Include="Factory\TokenFactory.cs" />
     <Compile Include="Factory\UserAnswerFactory.cs" />
     <Compile Include="Model\AbstractModel.cs" />
     <Compile Include="Model\Account.cs" />
     <Compile Include="Model\PredefinedAnswer.cs" />
     <Compile Include="Model\Question.cs" />
     <Compile Include="Model\QuestionList.cs" />
+    <Compile Include="Model\Token.cs" />
     <Compile Include="Model\UserAnswer.cs" />
     <Compile Include="Properties\Api.Designer.cs">
       <AutoGen>True</AutoGen>
