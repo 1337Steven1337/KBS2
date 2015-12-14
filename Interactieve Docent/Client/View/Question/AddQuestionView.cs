@@ -30,8 +30,17 @@ namespace Client.View.Question
             answersListBox.DisplayMember = "Text";
             rightAnswerComboBox.DisplayMember = "Text";
 
+            answerField.PreviewKeyDown += AnswerField_PreviewKeyDown;
             answersListBox.DataSource = AnswersList;            
             rightAnswerComboBox.DataSource = AnswersList;
+        }
+
+        private void AnswerField_PreviewKeyDown(object sender, PreviewKeyDownEventArgs e)
+        {
+            if(e.KeyCode == Keys.Enter)
+            {
+                BtnAddAnswer_Click(sender, e);
+            }
         }
 
         //Close the third panel, Which contains the addquestion fields
@@ -57,11 +66,13 @@ namespace Client.View.Question
             {
                 Model.PredefinedAnswer pa = new Model.PredefinedAnswer() { Text = answer };
                 AnswersList.Add(pa);
+                this.answerField.Text = "";
+                this.answerField.Focus();
             }                 
             else
             {
                 FailedDialogView failed = new FailedDialogView();
-                failed.getLabelFailed().Text = "Antwoordveld niet ingevuld of het antwoord bestaat al!";
+                failed.getLabelFailed().Text = "Antwoordveld niet ingevuld of het antwoord bestaat al.";
                 failed.ShowDialog();
             }
         }
@@ -89,7 +100,7 @@ namespace Client.View.Question
             else
             {
                 FailedDialogView failed = new FailedDialogView();
-                failed.getLabelFailed().Text = "U heeft nog niet alle velden ingevuld!";
+                failed.getLabelFailed().Text = "U heeft nog niet alle velden ingevuld.";
                 failed.ShowDialog();
             }
         }
@@ -148,7 +159,7 @@ namespace Client.View.Question
         public void ShowSaveSucceed()
         {
             SuccesDialogView succes = new SuccesDialogView();
-            succes.getLabelSucces().Text = "De vraag is succesvol opgeslagen!";
+            succes.getLabelSucces().Text = "De vraag is succesvol opgeslagen.";
             succes.ShowDialog();
         }
 

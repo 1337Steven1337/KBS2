@@ -45,6 +45,7 @@
             this.tableMainTable.Controls.Add(this.tableButtons, 0, 1);
             this.tableMainTable.Controls.Add(this.labelConfirm, 0, 0);
             this.tableMainTable.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableMainTable.ForeColor = System.Drawing.Color.White;
             this.tableMainTable.Location = new System.Drawing.Point(0, 0);
             this.tableMainTable.Name = "tableMainTable";
             this.tableMainTable.RowCount = 2;
@@ -66,7 +67,7 @@
             this.tableButtons.Name = "tableButtons";
             this.tableButtons.RowCount = 1;
             this.tableButtons.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableButtons.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 51F));
+            this.tableButtons.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 50F));
             this.tableButtons.Size = new System.Drawing.Size(400, 50);
             this.tableButtons.TabIndex = 0;
             // 
@@ -119,14 +120,14 @@
             this.labelConfirm.TabIndex = 1;
             this.labelConfirm.Text = "label1";
             // 
-            // ViewConfirmDialog
+            // ConfirmDialogView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(400, 250);
             this.Controls.Add(this.tableMainTable);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Name = "ViewConfirmDialog";
+            this.Name = "ConfirmDialogView";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.TransparencyKey = System.Drawing.Color.Transparent;
             this.tableMainTable.ResumeLayout(false);

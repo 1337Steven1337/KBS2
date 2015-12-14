@@ -42,6 +42,7 @@ namespace Client.View.Question
             listBoxQuestions.DataSource = this.Questions;
 
             listBoxQuestions.SelectedIndexChanged += ListBox_SelectedIndexChanged;
+            listBoxQuestions.PreviewKeyDown += ListBoxQuestions_PreviewKeyDown;
             btnAddQuestion.Click += BtnAddQuestion_Click;
         }
         #endregion
@@ -70,8 +71,8 @@ namespace Client.View.Question
             {
                 this.Questions.Add(question);
             }
-
-            btnAddQuestion.Enabled = (this.Controller.CurrentList != null);
+            btnAddQuestion.Enabled = true;
+            btnDeleteQuestion.Enabled = true;
         }
 
         public IControlHandler GetHandler()
@@ -88,6 +89,14 @@ namespace Client.View.Question
         public void SetController(IController controller)
         {
             this.Controller = (ListQuestionController)controller;
+        }
+
+        private void ListBoxQuestions_PreviewKeyDown(object sender, PreviewKeyDownEventArgs e)
+        {
+            if (e.KeyCode == Keys.Delete)
+            {
+                btnDeleteQuestion_Click(sender, e);
+            }
         }
 
         public Model.Question getSelectedItem()
@@ -149,14 +158,14 @@ namespace Client.View.Question
 
                 //Show dialog action succeed
                 SuccesDialogView succes = new SuccesDialogView();
-                succes.getLabelSucces().Text = "De vraag is succesvol verwijderd!!";
+                succes.getLabelSucces().Text = "De vraag is succesvol verwijderd.";
                 succes.ShowDialog();
             }
             else
             {
                 //Show dialog action failed
                 FailedDialogView failed = new FailedDialogView();
-                failed.getLabelFailed().Text = "Oeps! Er is iets misgegaan! Probeer het opnieuw!";
+                failed.getLabelFailed().Text = "Oeps! Er is iets misgegaan! Probeer het opnieuw.";
                 failed.ShowDialog();
             }
         }
