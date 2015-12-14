@@ -35,7 +35,6 @@ namespace Client.View.Question
         public ListQuestionView()
         {
             InitializeComponent();
-            btnShowResults.Enabled = false;
 
             listBoxQuestions.DisplayMember = "Text";
             listBoxQuestions.ValueMember = "Id";
@@ -72,8 +71,8 @@ namespace Client.View.Question
             {
                 this.Questions.Add(question);
             }
-
-            btnAddQuestion.Enabled = (this.Controller.CurrentList != null);
+            btnAddQuestion.Enabled = true;
+            btnDeleteQuestion.Enabled = true;
         }
 
         public IControlHandler GetHandler()

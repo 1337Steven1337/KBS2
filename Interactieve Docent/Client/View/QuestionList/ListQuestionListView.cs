@@ -28,7 +28,7 @@ namespace Client.View.QuestionList
         public ListQuestionListView()
         {
             InitializeComponent();
-
+            this.Enabled = false;
             listBoxQuestionLists.DisplayMember = "Name";
             listBoxQuestionLists.ValueMember = "Id";
             listBoxQuestionLists.DataSource = this.QuestionLists;
@@ -64,7 +64,8 @@ namespace Client.View.QuestionList
             {
                 this.QuestionLists.Add(questionList);
             }
-
+            this.btnAddQuestionList.Enabled = true;
+            this.btnDeleteQuestionList.Enabled = true;
             this.Controller.SelectedIndexChanged(this.getSelectedItem());
         }
 

@@ -23,6 +23,6 @@ namespace Client.View.Question
         public Label getLabelConfirm()
         {
             return labelConfirm;
-        }        
+        }
     }
 }
