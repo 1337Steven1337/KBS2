@@ -66,12 +66,13 @@ namespace Client.View.Question
             {
                 Model.PredefinedAnswer pa = new Model.PredefinedAnswer() { Text = answer };
                 AnswersList.Add(pa);
-                answerField.Text = "";
+                this.answerField.Text = "";
+                this.answerField.Focus();
             }                 
             else
             {
                 FailedDialogView failed = new FailedDialogView();
-                failed.getLabelFailed().Text = "Antwoordveld niet ingevuld of het antwoord bestaat al!";
+                failed.getLabelFailed().Text = "Antwoordveld niet ingevuld of het antwoord bestaat al.";
                 failed.ShowDialog();
             }
         }
@@ -99,7 +100,7 @@ namespace Client.View.Question
             else
             {
                 FailedDialogView failed = new FailedDialogView();
-                failed.getLabelFailed().Text = "U heeft nog niet alle velden ingevuld!";
+                failed.getLabelFailed().Text = "U heeft nog niet alle velden ingevuld.";
                 failed.ShowDialog();
             }
         }
@@ -158,7 +159,7 @@ namespace Client.View.Question
         public void ShowSaveSucceed()
         {
             SuccesDialogView succes = new SuccesDialogView();
-            succes.getLabelSucces().Text = "De vraag is succesvol opgeslagen!";
+            succes.getLabelSucces().Text = "De vraag is succesvol opgeslagen.";
             succes.ShowDialog();
         }
 

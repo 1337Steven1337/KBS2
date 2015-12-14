@@ -158,14 +158,14 @@ namespace Client.View.Question
 
                 //Show dialog action succeed
                 SuccesDialogView succes = new SuccesDialogView();
-                succes.getLabelSucces().Text = "De vraag is succesvol verwijderd!!";
+                succes.getLabelSucces().Text = "De vraag is succesvol verwijderd.";
                 succes.ShowDialog();
             }
             else
             {
                 //Show dialog action failed
                 FailedDialogView failed = new FailedDialogView();
-                failed.getLabelFailed().Text = "Oeps! Er is iets misgegaan! Probeer het opnieuw!";
+                failed.getLabelFailed().Text = "Oeps! Er is iets misgegaan! Probeer het opnieuw.";
                 failed.ShowDialog();
             }
         }
