@@ -41,9 +41,6 @@ namespace Client.Student
             view.initControlLocations();
             view.initWaitScreen();
 
-            nextForm next = new nextForm();
-            next.Show();
-
         }
 
         public Controller.StudentFormController  getController()

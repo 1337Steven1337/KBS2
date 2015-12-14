@@ -108,6 +108,7 @@ namespace Client.View.Question
             // 
             this.btnDeleteQuestion.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(65)))), ((int)(((byte)(129)))), ((int)(((byte)(127)))));
             this.btnDeleteQuestion.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnDeleteQuestion.Enabled = false;
             this.btnDeleteQuestion.FlatAppearance.BorderSize = 0;
             this.btnDeleteQuestion.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnDeleteQuestion.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -142,6 +143,7 @@ namespace Client.View.Question
             // 
             this.btnShowResults.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(65)))), ((int)(((byte)(129)))), ((int)(((byte)(127)))));
             this.btnShowResults.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnShowResults.Enabled = false;
             this.btnShowResults.FlatAppearance.BorderSize = 0;
             this.btnShowResults.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnShowResults.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));

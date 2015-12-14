@@ -197,12 +197,6 @@
     <Compile Include="View\Main\MainView.Designer.cs">
       <DependentUpon>MainView.cs</DependentUpon>
     </Compile>
-    <Compile Include="View\QuestionList\DeleteQuestionListView.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="View\QuestionList\DeleteQuestionListView.Designer.cs">
-      <DependentUpon>DeleteQuestionListView.cs</DependentUpon>
-    </Compile>
     <Compile Include="View\QuestionList\AddQuestionListView.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -226,12 +220,6 @@
     </Compile>
     <Compile Include="View\Question\AddQuestionView.Designer.cs">
       <DependentUpon>AddQuestionView.cs</DependentUpon>
-    </Compile>
-    <Compile Include="View\Question\DeleteQuestionView.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="View\Question\DeleteQuestionView.Designer.cs">
-      <DependentUpon>DeleteQuestionView.cs</DependentUpon>
     </Compile>
     <Compile Include="View\Question\ListQuestionView.cs">
       <SubType>Form</SubType>
@@ -273,9 +261,6 @@
     <EmbeddedResource Include="View\Main\MainView.resx">
       <DependentUpon>MainView.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="View\QuestionList\DeleteQuestionListView.resx">
-      <DependentUpon>DeleteQuestionListView.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="View\QuestionList\AddQuestionListView.resx">
       <DependentUpon>AddQuestionListView.cs</DependentUpon>
     </EmbeddedResource>
@@ -287,9 +272,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="View\Dialogs\ConfirmDialogView.resx">
       <DependentUpon>ConfirmDialogView.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="View\Question\DeleteQuestionView.resx">
-      <DependentUpon>DeleteQuestionView.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="View\Question\ListQuestionView.resx">
       <DependentUpon>ListQuestionView.cs</DependentUpon>
