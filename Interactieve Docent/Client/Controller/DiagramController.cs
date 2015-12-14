@@ -157,6 +157,11 @@ namespace Client.Controller
             this.IsClosed = true;
         }
 
+        public void Close()
+        {
+            this.View.Close();
+        }
+
         public void Redraw()
         {
             //redraw the diagram

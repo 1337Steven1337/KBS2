@@ -177,6 +177,10 @@ namespace Client.View.Question
 
         private void btnShowResults_Click(object sender, EventArgs e)
         {
+            if (this.DiagramController != null)
+            {
+                this.DiagramController.Close();
+            }
 
             DiagramView view = new DiagramView();
             this.DiagramController = new DiagramController(view);
