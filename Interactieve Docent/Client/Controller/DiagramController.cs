@@ -129,16 +129,19 @@ namespace Client.Controller
         //if another question is selected
         public void SetQuestion(Model.Question q)
         {
-            this.SignalRClient.Subscribe(q.List_Id);
+            if (q != null)
+            {
+                this.SignalRClient.Subscribe(q.List_Id);
 
-            if (q.PredefinedAnswers == null || q.UserAnswers == null)
-            {
-                this.Factory.FindById(q.Id, this.View.GetHandler(), this.SetCurrentQuestion);
-            }
-            else
-            {
-                this.Question = q;
-                this.View.GetHandler().Invoke((Action)Redraw);
+                if (q.PredefinedAnswers == null || q.UserAnswers == null)
+                {
+                    this.Factory.FindById(q.Id, this.View.GetHandler(), this.SetCurrentQuestion);
+                }
+                else
+                {
+                    this.Question = q;
+                    this.View.GetHandler().Invoke((Action)Redraw);
+                }
             }
         }
 
