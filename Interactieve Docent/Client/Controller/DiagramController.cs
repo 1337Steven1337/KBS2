@@ -96,7 +96,7 @@ namespace Client.Controller
             this.viewDiagram.getPanel().Invoke((Action)delegate () { Redraw(); });
         }
 
-        private void Redraw()
+        public void Redraw()
         {
             //redraw the diagram
             if (this.Question.PredefinedAnswers != null && this.Question.UserAnswers != null)

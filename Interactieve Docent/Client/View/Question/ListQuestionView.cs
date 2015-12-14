@@ -160,5 +160,13 @@ namespace Client.View.Question
                 failed.ShowDialog();
             }
         }
+
+        private void btnShowResults_Click(object sender, EventArgs e)
+        {
+            //Diagram.DiagramView b = new Diagram.DiagramView();
+            //DiagramController a = new DiagramController(b);
+            
+           
+        }
     }
 }
