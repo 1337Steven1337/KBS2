@@ -7,19 +7,21 @@ using Client.Factory;
 using System;
 using Client.Service.SignalR;
 using Client.Service.Thread;
+using Client.View;
 
 namespace Client.Controller
 {
-    public class DiagramController
+    public class DiagramController : AbstractController<Model.Question>
     {
         #region Variables & Instances
         public List<string> Questions;
         public List<int> Votes;
+        public bool IsClosed = false;
 
         private IDiagramView View;
-        private DiagramView viewDiagram;
 
         private Model.Question Question;
+        private List<UserAnswer> Answers;
 
         private QuestionFactory Factory = new QuestionFactory();
         private UserAnswerFactory UserAnswerFactory = new UserAnswerFactory();
@@ -31,7 +33,7 @@ namespace Client.Controller
         public DiagramController(IDiagramView view)
         {
             this.View = view;
-            this.View.setController(this);
+            this.View.SetController(this);
             this.SignalRClient = SignalRClient.GetInstance();
 
             //add events
@@ -45,15 +47,27 @@ namespace Client.Controller
         //do this is a student has answered a question
         private void UserAnswerFactory_userAnswerAdded(UserAnswer answer)
         {
-            if (this.Question.UserAnswers == null)
+            if (this.Question == null)
             {
-                this.Question.UserAnswers = new List<UserAnswer>();
+                if(this.Answers == null)
+                {
+                    this.Answers = new List<UserAnswer>();
+                }
+
+                this.Answers.Add(answer);
             }
+            else
+            {
+                if (this.Question.UserAnswers == null)
+                {
+                    this.Question.UserAnswers = new List<UserAnswer>();
+                }
 
-            this.Question.UserAnswers.Add(answer);
+                this.Question.UserAnswers.Add(answer);
 
-            //update the diagram 
-            this.viewDiagram.getPanel().Invoke((Action)delegate () { Redraw(); });
+                //update the diagram 
+                this.View.GetHandler().Invoke((Action)Redraw);
+            }
         }
         #endregion
 
@@ -62,7 +76,7 @@ namespace Client.Controller
         {
             if (question != null)
             {
-                Factory.FindById(question.Id, new ControlHandler(this.viewDiagram.getPanel()), this.SetQuestion);
+                Factory.FindById(question.Id, this.View.GetHandler(), this.SetQuestion);
             }
         }
         
@@ -88,12 +102,50 @@ namespace Client.Controller
 
 
         #region Methodes
+        private void SetCurrentQuestion(Model.Question q)
+        {
+            this.Question = q;
+            if(this.Answers != null)
+            {
+                if (q.UserAnswers == null)
+                {
+                    q.UserAnswers = this.Answers;
+                }
+                else
+                {
+                    foreach (Model.UserAnswer ua in this.Answers)
+                    {
+                        if(q.UserAnswers.Find(x => x.Id == ua.Id) == null)
+                        {
+                            q.UserAnswers.Add(ua);
+                        }
+                    }
+                }
+            }
+
+            this.Redraw();
+        }
+
         //if another question is selected
         public void SetQuestion(Model.Question q)
         {
-            this.Question = q;
             this.SignalRClient.Subscribe(q.List_Id);
-            this.viewDiagram.getPanel().Invoke((Action)delegate () { Redraw(); });
+
+            if (q.PredefinedAnswers == null || q.UserAnswers == null)
+            {
+                this.Factory.FindById(q.Id, this.View.GetHandler(), this.SetCurrentQuestion);
+            }
+            else
+            {
+                this.Question = q;
+                this.View.GetHandler().Invoke((Action)Redraw);
+            }
+        }
+
+        public void Dispose()
+        {
+            this.UserAnswerFactory.UserAnswerAdded -= UserAnswerFactory_userAnswerAdded;
+            this.IsClosed = true;
         }
 
         public void Redraw()
@@ -125,6 +177,21 @@ namespace Client.Controller
             
             Votes = questionVotes.Values.ToList<int>();
             Questions = questionVotes.Keys.ToList<string>(); 
+        }
+
+        public override IView GetView()
+        {
+            throw new NotImplementedException();
+        }
+
+        public override void SetView(IView view)
+        {
+            throw new NotImplementedException();
+        }
+
+        public override void SetBaseFactory(IFactory<Model.Question> baseFactory)
+        {
+            throw new NotImplementedException();
         }
         #endregion
     }
