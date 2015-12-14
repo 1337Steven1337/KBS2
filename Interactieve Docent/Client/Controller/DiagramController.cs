@@ -58,15 +58,18 @@ namespace Client.Controller
             }
             else
             {
-                if (this.Question.UserAnswers == null)
+                if (answer.Question_Id == this.Question.Id)
                 {
-                    this.Question.UserAnswers = new List<UserAnswer>();
+                    if (this.Question.UserAnswers == null)
+                    {
+                        this.Question.UserAnswers = new List<UserAnswer>();
+                    }
+
+                    this.Question.UserAnswers.Add(answer);
+
+                    //update the diagram 
+                    this.View.GetHandler().Invoke((Action)Redraw);
                 }
-
-                this.Question.UserAnswers.Add(answer);
-
-                //update the diagram 
-                this.View.GetHandler().Invoke((Action)Redraw);
             }
         }
         #endregion
@@ -109,15 +112,18 @@ namespace Client.Controller
             {
                 if (q.UserAnswers == null)
                 {
-                    q.UserAnswers = this.Answers;
+                    q.UserAnswers = this.Answers.FindAll(x => x.Question_Id == q.Id);
                 }
                 else
                 {
                     foreach (Model.UserAnswer ua in this.Answers)
                     {
-                        if(q.UserAnswers.Find(x => x.Id == ua.Id) == null)
+                        if (ua.Question_Id == this.Question.Id)
                         {
-                            q.UserAnswers.Add(ua);
+                            if (q.UserAnswers.Find(x => x.Id == ua.Id) == null)
+                            {
+                                q.UserAnswers.Add(ua);
+                            }
                         }
                     }
                 }
