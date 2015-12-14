@@ -43,14 +43,6 @@ namespace Client
 
             listQuestionListController.SelectedListChanged += questionController.LoadList;
             listQuestionListController.Load();
-            
-            for(int i = 0; i < 100000; i++)
-            {
-                DiagramView view2 = new DiagramView();
-                DiagramController controller = new DiagramController(view2);
-                view2.Show();
-            }
-           
 
           //  AuthorisationView view = new AuthorisationView();
           //  AuthorisationController controller = new AuthorisationController(view);

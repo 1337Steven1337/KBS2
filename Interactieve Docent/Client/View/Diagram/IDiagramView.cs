@@ -8,6 +8,6 @@ namespace Client.View.Diagram
     {
         void Make(List<int> values, List<string> answerNames, string question);
         void Close();
-        void Show(); //Kut github
+        void Show();
     }
 }
