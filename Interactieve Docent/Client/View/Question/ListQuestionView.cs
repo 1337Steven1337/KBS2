@@ -35,6 +35,7 @@ namespace Client.View.Question
         public ListQuestionView()
         {
             InitializeComponent();
+            btnShowResults.Enabled = false;
 
             listBoxQuestions.DisplayMember = "Text";
             listBoxQuestions.ValueMember = "Id";
@@ -42,6 +43,7 @@ namespace Client.View.Question
             listBoxQuestions.DataSource = this.Questions;
 
             listBoxQuestions.SelectedIndexChanged += ListBox_SelectedIndexChanged;
+            listBoxQuestions.PreviewKeyDown += ListBoxQuestions_PreviewKeyDown;
             btnAddQuestion.Click += BtnAddQuestion_Click;
         }
         #endregion
@@ -88,6 +90,14 @@ namespace Client.View.Question
         public void SetController(IController controller)
         {
             this.Controller = (ListQuestionController)controller;
+        }
+
+        private void ListBoxQuestions_PreviewKeyDown(object sender, PreviewKeyDownEventArgs e)
+        {
+            if (e.KeyCode == Keys.Delete)
+            {
+                btnDeleteQuestion_Click(sender, e);
+            }
         }
 
         public Model.Question getSelectedItem()
