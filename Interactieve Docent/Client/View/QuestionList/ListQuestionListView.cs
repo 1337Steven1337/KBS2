@@ -28,7 +28,7 @@ namespace Client.View.QuestionList
         public ListQuestionListView()
         {
             InitializeComponent();
-
+            this.Enabled = false;
             listBoxQuestionLists.DisplayMember = "Name";
             listBoxQuestionLists.ValueMember = "Id";
             listBoxQuestionLists.DataSource = this.QuestionLists;
@@ -64,7 +64,8 @@ namespace Client.View.QuestionList
             {
                 this.QuestionLists.Add(questionList);
             }
-
+            this.btnAddQuestionList.Enabled = true;
+            this.btnDeleteQuestionList.Enabled = true;
             this.Controller.SelectedIndexChanged(this.getSelectedItem());
         }
 
@@ -126,16 +127,19 @@ namespace Client.View.QuestionList
 
         private void BtnDeleteQuestionList_Click(object sender, EventArgs e)
         {
-            //Show dialog for user to confirm Delete action
-            DialogResult dr = new DialogResult();
-            ConfirmDialogView confirm = new ConfirmDialogView();
-            confirm.getLabelConfirm().Text = "Weet u zeker dat u deze lijst wilt verwijderen?";
-            dr = confirm.ShowDialog();
-
-            //Confirm 
-            if(dr == DialogResult.Yes)
+            if (getSelectedItem() != null)
             {
-                this.Controller.DeleteQuestionList(this.getSelectedItem());
+                //Show dialog for user to confirm Delete action
+                DialogResult dr = new DialogResult();
+                ConfirmDialogView confirm = new ConfirmDialogView();
+                confirm.getLabelConfirm().Text = "Weet u zeker dat u deze lijst wilt verwijderen?";
+                dr = confirm.ShowDialog();
+
+                //Confirm 
+                if (dr == DialogResult.Yes)
+                {
+                    this.Controller.DeleteQuestionList(this.getSelectedItem());
+                }
             }
         }
 

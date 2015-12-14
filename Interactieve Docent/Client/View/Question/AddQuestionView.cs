@@ -57,6 +57,7 @@ namespace Client.View.Question
             {
                 Model.PredefinedAnswer pa = new Model.PredefinedAnswer() { Text = answer };
                 AnswersList.Add(pa);
+                answerField.Text = "";
             }                 
             else
             {
