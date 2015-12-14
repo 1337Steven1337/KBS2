@@ -18,6 +18,11 @@ namespace Client.Tests.View.Diagram
             throw new NotImplementedException();
         }
 
+        public void Close()
+        {
+            throw new NotImplementedException();
+        }
+
         public IControlHandler GetHandler()
         {
             throw new NotImplementedException();
