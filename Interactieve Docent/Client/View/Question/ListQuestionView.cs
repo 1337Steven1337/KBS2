@@ -10,6 +10,7 @@ using Client.Model;
 using System.Net;
 using Client.View.Dialogs;
 using System.Linq;
+using Client.View.Diagram;
 
 namespace Client.View.Question
 {
@@ -29,6 +30,7 @@ namespace Client.View.Question
 
         #region Instances
         private ListQuestionController Controller { get; set; }
+        private DiagramController DiagramController { get; set; }
         #endregion
 
         #region Constructors
@@ -58,7 +60,10 @@ namespace Client.View.Question
 
         private void ListBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-
+            if(this.DiagramController != null && !this.DiagramController.IsClosed)
+            {
+                this.DiagramController.SetQuestion((Model.Question)this.listBoxQuestions.SelectedItem);
+            }
         }
         #endregion
 
@@ -172,10 +177,11 @@ namespace Client.View.Question
 
         private void btnShowResults_Click(object sender, EventArgs e)
         {
-            //Diagram.DiagramView b = new Diagram.DiagramView();
-            //DiagramController a = new DiagramController(b);
-            
-           
+
+            DiagramView view = new DiagramView();
+            this.DiagramController = new DiagramController(view);
+            this.DiagramController.SetQuestion((Model.Question)this.listBoxQuestions.SelectedItem);
+            view.Show();
         }
     }
 }

@@ -5,32 +5,24 @@ using System.Collections.Generic;
 using System.Windows.Forms.DataVisualization.Charting;
 using System.Drawing;
 using System;
+using Client.Service.Thread;
 
 namespace Client.View.Diagram
 {
     public partial class DiagramView : Form, IDiagramView
     {
         private DiagramController controller;
-        private Panel panel;
 
         public DiagramView()
         {
             InitializeComponent();
+
+            this.FormClosed += DiagramView_FormClosed;
         }
 
-        public void setController(DiagramController controller)
+        private void DiagramView_FormClosed(object sender, FormClosedEventArgs e)
         {
-            this.controller = controller;
-        }
-
-        public void setPanel<T>(Panel panel)
-        {
-            this.panel = panel;
-        }
-
-        public Panel getPanel()
-        {
-            return this.panel;
+            this.controller.Dispose();
         }
 
         public void Make(List<int> values, List<string> answerNames, string question)
@@ -59,6 +51,21 @@ namespace Client.View.Diagram
             chart1.Series.Add(series);
             //add question above the diagram
             textBox1.Text = question;
+        }
+
+        public IControlHandler GetHandler()
+        {
+            return new ControlHandler(this.textBox1);
+        }
+
+        public void AddToParent(IView parent)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void SetController(IController controller)
+        {
+            this.controller = (DiagramController)controller;
         }
     }
 }

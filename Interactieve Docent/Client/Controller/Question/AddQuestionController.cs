@@ -82,7 +82,6 @@ namespace Client.Controller.Question
             this.AnswersSaved.Clear();
             this.CurrentQuestion = question;
 
-
             foreach (Model.PredefinedAnswer answer in answers)
             {
                 this.AnswersSaved.Add(answer.Text, 0);
@@ -113,6 +112,15 @@ namespace Client.Controller.Question
             if (status == HttpStatusCode.Created && predefinedAnswer != null)
             {
                 AnswersSaved[predefinedAnswer.Text] = 1;
+
+                /*
+                if(this.CurrentQuestion.PredefinedAnswers == null)
+                {
+                    this.CurrentQuestion.PredefinedAnswers = new List<PredefinedAnswer>();
+                }
+
+                this.CurrentQuestion.PredefinedAnswers.Add(predefinedAnswer);
+                */
             }
             else
             {

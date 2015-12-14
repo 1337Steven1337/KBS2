@@ -4,12 +4,9 @@ using System.Windows.Forms;
 
 namespace Client.View.Diagram
 {
-    public interface IDiagramView
+    public interface IDiagramView : IView
     {
-        void setController(DiagramController controller);
         void Make(List<int> values, List<string> answerNames, string question);
         void Show();
-        void setPanel<T>(Panel panel);
-        //Panel getPanel();
     }
 }
