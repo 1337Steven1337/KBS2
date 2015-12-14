@@ -7,6 +7,7 @@ namespace Client.View.Diagram
     public interface IDiagramView : IView
     {
         void Make(List<int> values, List<string> answerNames, string question);
-        void Show();
+        void Close();
+        void Show(); //Kut github
     }
 }
