@@ -30,8 +30,17 @@ namespace Client.View.Question
             answersListBox.DisplayMember = "Text";
             rightAnswerComboBox.DisplayMember = "Text";
 
+            answerField.PreviewKeyDown += AnswerField_PreviewKeyDown;
             answersListBox.DataSource = AnswersList;            
             rightAnswerComboBox.DataSource = AnswersList;
+        }
+
+        private void AnswerField_PreviewKeyDown(object sender, PreviewKeyDownEventArgs e)
+        {
+            if(e.KeyCode == Keys.Enter)
+            {
+                BtnAddAnswer_Click(sender, e);
+            }
         }
 
         //Close the third panel, Which contains the addquestion fields
