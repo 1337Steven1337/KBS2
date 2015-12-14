@@ -15,6 +15,11 @@ namespace Client.View.Dialogs
         public FailedDialogView()
         {
             InitializeComponent();
+
+            this.TopMost = true;
+            this.Focus();
+            this.BringToFront();
+            System.Media.SystemSounds.Beep.Play();
         }
 
         public Label getLabelFailed()

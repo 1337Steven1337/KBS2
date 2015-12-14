@@ -15,6 +15,11 @@ namespace Client.View.Dialogs
         public SuccesDialogView()
         {
             InitializeComponent();
+
+            this.TopMost = true;
+            this.Focus();
+            this.BringToFront();
+            System.Media.SystemSounds.Beep.Play();
         }
 
         public Label getLabelSucces()
