@@ -6,12 +6,29 @@ using System.Text;
 using System.Threading.Tasks;
 using Client.Controller;
 using System.Windows.Forms;
+using Client.Service.Thread;
+using Client.View;
 
 namespace Client.Tests.View.Diagram
 {
     class TestDiagramView : IDiagramView
     {
+        public void AddToParent(IView parent)
+        {
+            throw new NotImplementedException();
+        }
+
+        public IControlHandler GetHandler()
+        {
+            throw new NotImplementedException();
+        }
+
         public void Make(List<int> values, List<string> answerNames, string question)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void SetController(IController controller)
         {
             throw new NotImplementedException();
         }
