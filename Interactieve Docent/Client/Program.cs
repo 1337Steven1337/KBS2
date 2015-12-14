@@ -12,6 +12,7 @@ using Client.Controller.QuestionList;
 using Client.Controller.Account;
 using Client.View.Account;
 using Client.View.Authorisation;
+using Client.View.Diagram;
 
 namespace Client
 {
@@ -42,9 +43,6 @@ namespace Client
 
             listQuestionListController.SelectedListChanged += questionController.LoadList;
             listQuestionListController.Load();
-            
-
-           
 
           //  AuthorisationView view = new AuthorisationView();
           //  AuthorisationController controller = new AuthorisationController(view);

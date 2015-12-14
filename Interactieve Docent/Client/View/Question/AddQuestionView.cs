@@ -173,6 +173,11 @@ namespace Client.View.Question
             {
                 this.ShowSaveFailed();
             }
-        }        
+        }
+
+        private void AddQuestionView_Load(object sender, EventArgs e)
+        {
+            //this.questionField.Focus();
+        }
     }
 }

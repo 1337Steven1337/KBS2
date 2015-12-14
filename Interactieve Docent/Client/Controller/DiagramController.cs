@@ -58,15 +58,18 @@ namespace Client.Controller
             }
             else
             {
-                if (this.Question.UserAnswers == null)
+                if (answer.Question_Id == this.Question.Id)
                 {
-                    this.Question.UserAnswers = new List<UserAnswer>();
+                    if (this.Question.UserAnswers == null)
+                    {
+                        this.Question.UserAnswers = new List<UserAnswer>();
+                    }
+
+                    this.Question.UserAnswers.Add(answer);
+
+                    //update the diagram 
+                    this.View.GetHandler().Invoke((Action)Redraw);
                 }
-
-                this.Question.UserAnswers.Add(answer);
-
-                //update the diagram 
-                this.View.GetHandler().Invoke((Action)Redraw);
             }
         }
         #endregion
@@ -109,15 +112,18 @@ namespace Client.Controller
             {
                 if (q.UserAnswers == null)
                 {
-                    q.UserAnswers = this.Answers;
+                    q.UserAnswers = this.Answers.FindAll(x => x.Question_Id == q.Id);
                 }
                 else
                 {
                     foreach (Model.UserAnswer ua in this.Answers)
                     {
-                        if(q.UserAnswers.Find(x => x.Id == ua.Id) == null)
+                        if (ua.Question_Id == this.Question.Id)
                         {
-                            q.UserAnswers.Add(ua);
+                            if (q.UserAnswers.Find(x => x.Id == ua.Id) == null)
+                            {
+                                q.UserAnswers.Add(ua);
+                            }
                         }
                     }
                 }
@@ -129,16 +135,19 @@ namespace Client.Controller
         //if another question is selected
         public void SetQuestion(Model.Question q)
         {
-            this.SignalRClient.Subscribe(q.List_Id);
+            if (q != null)
+            {
+                this.SignalRClient.Subscribe(q.List_Id);
 
-            if (q.PredefinedAnswers == null || q.UserAnswers == null)
-            {
-                this.Factory.FindById(q.Id, this.View.GetHandler(), this.SetCurrentQuestion);
-            }
-            else
-            {
-                this.Question = q;
-                this.View.GetHandler().Invoke((Action)Redraw);
+                if (q.PredefinedAnswers == null || q.UserAnswers == null)
+                {
+                    this.Factory.FindById(q.Id, this.View.GetHandler(), this.SetCurrentQuestion);
+                }
+                else
+                {
+                    this.Question = q;
+                    this.View.GetHandler().Invoke((Action)Redraw);
+                }
             }
         }
 
@@ -146,6 +155,11 @@ namespace Client.Controller
         {
             this.UserAnswerFactory.UserAnswerAdded -= UserAnswerFactory_userAnswerAdded;
             this.IsClosed = true;
+        }
+
+        public void Close()
+        {
+            this.View.Close();
         }
 
         public void Redraw()
