@@ -49,6 +49,11 @@ namespace Client.Service.SignalR
 
                 this.proxy.Invoke("SubscribeToLists");
             }
+
+            if(this.ConnectionStatusChanged != null)
+            {
+                this.ConnectionStatusChanged(obj);
+            }
         }
 
         public async void SubscribePincode(Model.Pincode code)

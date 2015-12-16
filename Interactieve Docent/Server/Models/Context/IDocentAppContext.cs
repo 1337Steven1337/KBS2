@@ -14,6 +14,7 @@ namespace Server.Models.Context
         DbSet<Server.Models.UserAnswer> UserAnswers { get; set; }
         DbSet<Server.Models.PredefinedAnswer> PredefinedAnswers { get; set; }
         DbSet<Server.Models.Account> Accounts { get; set; }
+        DbSet<Server.Models.Pincode> Pincodes { get; set; }
 
         int SaveChanges();
         Task<int> SaveChangesAsync();
@@ -23,5 +24,6 @@ namespace Server.Models.Context
         void MarkAsModified(UserAnswer item);
         void MarkAsModified(PredefinedAnswer item);
         void MarkAsModified(Account item);
+        void MarkAsModified(Pincode code);
     }
 }

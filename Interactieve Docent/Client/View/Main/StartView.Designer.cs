@@ -55,6 +55,7 @@
             // CodeTextBox
             // 
             this.CodeTextBox.Location = new System.Drawing.Point(56, 12);
+            this.CodeTextBox.MaxLength = 6;
             this.CodeTextBox.Name = "CodeTextBox";
             this.CodeTextBox.Size = new System.Drawing.Size(149, 20);
             this.CodeTextBox.TabIndex = 2;
@@ -71,6 +72,7 @@
             this.MinimizeBox = false;
             this.Name = "StartView";
             this.ShowIcon = false;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Login";
             this.ResumeLayout(false);
             this.PerformLayout();
