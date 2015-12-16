@@ -40,7 +40,6 @@ namespace Client.Tests.student
         [TestMethod]
         public void TestIfTimerIsNotRunning_WhenQuestionTimeIs0()
         {
-            bool expected = false;
             Model.Question question = new Model.Question();
             question.Time = 0;
             Assert.AreEqual(question.Time, 0);

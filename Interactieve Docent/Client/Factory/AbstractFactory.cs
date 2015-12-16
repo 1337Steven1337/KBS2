@@ -418,6 +418,8 @@ namespace Client.Factory
         /// <returns>Dictonary containing the values used to Save the instance</returns>
         protected abstract Dictionary<string, object> GetFields(T instance);
 
+        protected abstract Dictionary<string, object> UpdateFields(T instance);
+
         public void SetBaseFactory(IFactory<T> factory)
         {
             this.baseFactory = factory;
