@@ -13,7 +13,7 @@ namespace Client.Tests.Factory
     {
         private List<QuestionList> questionlists;
 
-        public TestQuestionListFactory()
+        public TestQuestionListFactory() 
         {
             questionlists = new List<QuestionList>();
             QuestionList ql1 = new QuestionList();
@@ -47,9 +47,9 @@ namespace Client.Tests.Factory
             callback(questionlists, HttpStatusCode.OK, null);
         }
 
-        public void FindByIdAsync(int id, Action<QuestionList, HttpStatusCode, IRestResponse> callback)
+        public void FindByIdAsync(object id, Action<QuestionList, HttpStatusCode, IRestResponse> callback)
         {
-            callback(questionlists[id], HttpStatusCode.OK, null);
+            callback(questionlists[(int)id], HttpStatusCode.OK, null);
         }
 
         public void SaveAsync(List<KeyValuePair<string, object>> data, Action<QuestionList, HttpStatusCode, IRestResponse> callback)
