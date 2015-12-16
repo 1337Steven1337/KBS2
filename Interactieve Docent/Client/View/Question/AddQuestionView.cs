@@ -17,6 +17,7 @@ namespace Client.View.Question
     {
         private AddQuestionController Controller;
         private BindingList<Model.PredefinedAnswer> AnswersList = new BindingList<Model.PredefinedAnswer>();
+        private Boolean Open;
 
         public AddQuestionView(bool edit)
         {
