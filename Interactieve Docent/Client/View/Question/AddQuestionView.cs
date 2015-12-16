@@ -18,7 +18,7 @@ namespace Client.View.Question
         private AddQuestionController Controller;
         private BindingList<Model.PredefinedAnswer> AnswersList = new BindingList<Model.PredefinedAnswer>();
 
-        public AddQuestionView()
+        public AddQuestionView(bool edit)
         {
             InitializeComponent();
 
@@ -29,6 +29,15 @@ namespace Client.View.Question
 
             answersListBox.DisplayMember = "Text";
             rightAnswerComboBox.DisplayMember = "Text";
+
+            if (edit == true)
+            {
+                btnSaveQuestion.Text = "Wijzig vraag";
+            }
+            else
+            {
+                btnSaveQuestion.Text = "Vraag toevoegen";
+            }
 
             answerField.PreviewKeyDown += AnswerField_PreviewKeyDown;
             answersListBox.DataSource = AnswersList;            

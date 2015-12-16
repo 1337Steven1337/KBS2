@@ -17,7 +17,7 @@ namespace Client.View.Question
     public partial class ListQuestionView : Form, IListView<Model.Question>
     {
         #region Delegates
-        public delegate void AddQuestionClickedDelegate(Model.QuestionList list);
+        public delegate void AddQuestionClickedDelegate(Model.QuestionList list, bool edit);
         #endregion
 
         #region Events
@@ -32,6 +32,16 @@ namespace Client.View.Question
         private ListQuestionController Controller { get; set; }
         private DiagramController DiagramController { get; set; }
         #endregion
+
+        public Boolean changeQuestion
+        {
+            get
+            {
+                return changeQuestion;
+            }
+            set { }
+                
+        }
 
         #region Constructors
         public ListQuestionView()
@@ -54,7 +64,7 @@ namespace Client.View.Question
         {
             if (this.AddQuestionClicked != null)
             {
-                this.AddQuestionClicked(this.Controller.CurrentList);
+                this.AddQuestionClicked(this.Controller.CurrentList, false);
             }
         }
 
@@ -190,7 +200,10 @@ namespace Client.View.Question
 
         private void listBoxQuestions_MouseDoubleClick(object sender, MouseEventArgs e)
         {
-            
+            if (this.AddQuestionClicked != null)
+            {
+                this.AddQuestionClicked(this.Controller.CurrentList, true);
+            }
         }
     }
 }
