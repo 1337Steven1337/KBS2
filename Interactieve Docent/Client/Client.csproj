@@ -195,6 +195,7 @@
     <Compile Include="View\IAddView.cs" />
     <Compile Include="View\IListView.cs" />
     <Compile Include="View\IView.cs" />
+    <Compile Include="View\Main\IStartView.cs" />
     <Compile Include="View\Main\MainView.cs">
       <SubType>Form</SubType>
     </Compile>

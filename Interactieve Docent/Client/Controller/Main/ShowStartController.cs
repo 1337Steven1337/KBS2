@@ -2,29 +2,37 @@
 using Client.Factory;
 using Client.View;
 using System.Net;
+using Client.Service.SignalR;
+using Client.View.Main;
 
 namespace Client.Controller.Main
 {
     public class ShowStartController : AbstractController<Model.Pincode>
     {
-        private IView View { get; set; }
+        private IStartView View { get; set; }
         private PincodeFactory PincodeFactory = new PincodeFactory();
 
         public ShowStartController(IView view)
         {
             this.SetView(view);
+            view.SetController(this);
         }
 
-        private void UseCode(Model.Pincode pincode, HttpStatusCode code)
+        private void UseCode(Model.Pincode pincode, HttpStatusCode status)
         {
-            if(pincode != null && code != HttpStatusCode.OK)
+            this.View.ShowCodeResult(pincode, status);
+
+            if (pincode != null && status == HttpStatusCode.OK)
             {
+                SignalRClient.GetInstance().SubscribePincode(pincode);
+
 
             }
-            else
-            {
+        }
 
-            }
+        public void ApplyTestCode(string code)
+        {
+            this.CheckCode(code);
         }
 
         public override IView GetView()
@@ -39,7 +47,7 @@ namespace Client.Controller.Main
 
         public override void SetView(IView view)
         {
-            this.View = view;
+            this.View = (IStartView)view;
         }
 
         public void CheckCode(string code)

@@ -19,6 +19,7 @@ namespace Server.Tests.Models.Context
             this.QuestionLists = new TestListDbSet();
             this.PredefinedAnswers = new TestPredefinedAnswerDbSet();
             this.Accounts = new TestAccountDbSet();
+            this.Pincodes = new TestPincodeDbSet();
         }
 
         public DbSet<Server.Models.Question> Questions { get; set; }
@@ -26,12 +27,14 @@ namespace Server.Tests.Models.Context
         public DbSet<Server.Models.UserAnswer> UserAnswers { get; set; }
         public DbSet<Server.Models.PredefinedAnswer> PredefinedAnswers { get; set; }
         public DbSet<Server.Models.Account> Accounts { get; set; }
+        public DbSet<Server.Models.Pincode> Pincodes { get; set; }
 
         public void MarkAsModified(Question item) { }
         public void MarkAsModified(QuestionList item) { }
         public void MarkAsModified(UserAnswer item) { }
         public void MarkAsModified(PredefinedAnswer item) { }
         public void MarkAsModified(Account item) { }
+        public void MarkAsModified(Pincode item) { }
 
         public int SaveChanges()
         {
