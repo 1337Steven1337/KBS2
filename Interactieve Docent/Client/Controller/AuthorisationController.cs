@@ -8,22 +8,21 @@ using Client.Model;
 using Client.View;
 using Client.View.Authorisation;
 using Client.Service.Login;
+using RestSharp;
+using System.Net;
 
 namespace Client.Controller
 {
-    class AuthorisationController : AbstractController<Model.Account>
+    public class AuthorisationController : AbstractController<Model.Account>
     {
-        private IView View;
+        private IAuthorisationView View;
         private LoginClient loginClient = new LoginClient();
+        private AccountFactory Factory = new AccountFactory();
 
-        public AuthorisationController(AuthorisationView view)
+        public AuthorisationController(IAuthorisationView view)
         {
             this.View = view;
-        }
-
-        public override IView GetView()
-        {
-            return this.View;
+            this.View.SetController(this);
         }
 
         public override void SetBaseFactory(IFactory<Model.Account> baseFactory)
@@ -31,15 +30,20 @@ namespace Client.Controller
             throw new NotImplementedException();
         }
 
-        public void login(Model.Account ac)
+        public void CheckAuthorisationResult(Model.Account acccount)
         {
+            this.Factory.FindByIdAsync(acccount.Id, this.View.ShowAuthorisationResult);
             //loginClient.sendshittodatabase(ac);
+        }
+
+        public override IView GetView()
+        {
+            return this.View;
         }
 
         public override void SetView(IView view)
         {
-            this.View = view;
-            this.View.SetController(this);
+            this.View = (IAuthorisationView)view;
         }
     }
 }

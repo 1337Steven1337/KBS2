@@ -30,7 +30,7 @@ namespace Client
 
 
 
-            /*MainView view = new MainView();
+            MainView view = new MainView();
             MainController maincontroller = new MainController(view);
 
             ListQuestionView viewQuestion = new ListQuestionView();
@@ -44,13 +44,13 @@ namespace Client
             listQuestionListController.SelectedListChanged += questionController.LoadList;
             listQuestionListController.Load();
 
-            AuthorisationView view = new AuthorisationView();
-            AuthorisationController controller = new AuthorisationController(view);
+            //  AuthorisationView view = new AuthorisationView();
+            //  AuthorisationController controller = new AuthorisationController(view);
 
-            AddAccountView view = new AddAccountView();
-            AddAccountController controller = new AddAccountController(view);*/
+            // AddAccountView view = new AddAccountView();
+            // AddAccountController controller = new AddAccountController(view);
 
-            Application.Run(new Student.QuestionForm(1));
+            Application.Run(view);
         }
     }
 }

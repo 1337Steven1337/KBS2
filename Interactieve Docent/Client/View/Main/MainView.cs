@@ -21,8 +21,6 @@ namespace Client.View.Main
         public MainView()
         {
             InitializeComponent();
-
-            
         }
 
         //Remove third column from mainView
