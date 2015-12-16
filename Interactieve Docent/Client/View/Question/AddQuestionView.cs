@@ -17,8 +17,9 @@ namespace Client.View.Question
     {
         private AddQuestionController Controller;
         private BindingList<Model.PredefinedAnswer> AnswersList = new BindingList<Model.PredefinedAnswer>();
-
-        public AddQuestionView(bool edit)
+        private BindingList<Model.PredefinedAnswer> RightAnswerList = new BindingList<Model.PredefinedAnswer>();
+        
+        public AddQuestionView(Model.Question question)
         {
             InitializeComponent();
 
@@ -30,18 +31,32 @@ namespace Client.View.Question
             answersListBox.DisplayMember = "Text";
             rightAnswerComboBox.DisplayMember = "Text";
 
-            if (edit == true)
+            answerField.PreviewKeyDown += AnswerField_PreviewKeyDown;
+            answersListBox.DataSource = AnswersList;
+            rightAnswerComboBox.DataSource = RightAnswerList;
+
+            if (question != null)
             {
-                btnSaveQuestion.Text = "Wijzig vraag";
+                EditQuestion(question);
+                labelTitle.Text = "Vraag wijzigen " + question.Id;
             }
             else
             {
-                btnSaveQuestion.Text = "Vraag toevoegen";
+                labelTitle.Text = "Nieuwe vraag";
             }
+        }
 
-            answerField.PreviewKeyDown += AnswerField_PreviewKeyDown;
-            answersListBox.DataSource = AnswersList;            
-            rightAnswerComboBox.DataSource = AnswersList;
+        private void EditQuestion(Model.Question question)
+        {
+            questionField.Text = question.Text;
+            timeField.Value = question.Time;
+            pointsField.Value = question.Points;
+
+            foreach(Model.PredefinedAnswer pa in question.PredefinedAnswers)
+            {
+                AnswersList.Add(pa);
+                RightAnswerList.Add(pa);
+            }
         }
 
         private void AnswerField_PreviewKeyDown(object sender, PreviewKeyDownEventArgs e)
@@ -75,6 +90,7 @@ namespace Client.View.Question
             {
                 Model.PredefinedAnswer pa = new Model.PredefinedAnswer() { Text = answer };
                 AnswersList.Add(pa);
+                RightAnswerList.Add(pa);
                 this.answerField.Text = "";
                 this.answerField.Focus();
             }                 

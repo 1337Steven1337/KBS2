@@ -12,6 +12,8 @@ using Client.Controller.QuestionList;
 using Client.Controller;
 using Client.Model;
 using Client.Factory;
+using Client.View.Dialogs;
+using System.Windows.Forms;
 
 namespace Client.Controller
 {
@@ -20,6 +22,7 @@ namespace Client.Controller
         private IView MainView;
         private ListQuestionController ListQuestionController;
         private AddQuestionView addQuestionView;
+        private AddQuestionController controller;
 
         public MainController(IView mainView)
         {
@@ -44,30 +47,30 @@ namespace Client.Controller
             }
         }
 
-        private void View_AddQuestionClicked(Model.QuestionList list, bool edit)
+        private void View_AddQuestionClicked(Model.QuestionList list, Model.Question question)
         {
-            if (addQuestionView == null)
+            if(addQuestionView != null)
             {
-                addQuestionView = new AddQuestionView(edit);
-                AddQuestionController controller = new AddQuestionController();
-                controller.SetView(addQuestionView);
-                controller.SetQuestionList(list);
-
-                controller.QuestionAdded += this.ListQuestionController.QuestionAdded;
-                controller.RemoveAddQuestionPanel += Controller_RemoveAddQuestionPanel;
-
-                addQuestionView.AddToParent((IView)this.MainView);
+                Controller_RemoveAddQuestionPanel(false);
             }
-            else
-            {
-                Console.WriteLine("Er is al een view open... faggot");
-            }
+
+            addQuestionView = new AddQuestionView(question);
+            controller = new AddQuestionController();
+            controller.SetView(addQuestionView);
+            controller.SetQuestionList(list);
+
+            controller.QuestionAdded += this.ListQuestionController.QuestionAdded;
+            controller.RemoveAddQuestionPanel += Controller_RemoveAddQuestionPanel;
+
+            addQuestionView.AddToParent((IView)this.MainView);
+           
+
         }
 
-        private void Controller_RemoveAddQuestionPanel()
+        private void Controller_RemoveAddQuestionPanel(bool resizeTable)
         {
             MainView view = (MainView)this.MainView;
-            view.RemoveAddQuestionPanel();
+            view.RemoveAddQuestionPanel(resizeTable);
             addQuestionView = null;
         }
 

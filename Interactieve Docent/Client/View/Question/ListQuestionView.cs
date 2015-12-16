@@ -17,7 +17,7 @@ namespace Client.View.Question
     public partial class ListQuestionView : Form, IListView<Model.Question>
     {
         #region Delegates
-        public delegate void AddQuestionClickedDelegate(Model.QuestionList list, bool edit);
+        public delegate void AddQuestionClickedDelegate(Model.QuestionList list, Model.Question question);
         #endregion
 
         #region Events
@@ -64,7 +64,7 @@ namespace Client.View.Question
         {
             if (this.AddQuestionClicked != null)
             {
-                this.AddQuestionClicked(this.Controller.CurrentList, false);
+                this.AddQuestionClicked(this.Controller.CurrentList, null);
             }
         }
 
@@ -201,12 +201,12 @@ namespace Client.View.Question
         {
             if (this.AddQuestionClicked != null)
             {
-                this.AddQuestionClicked(this.Controller.CurrentList, true);
+                this.AddQuestionClicked(this.Controller.CurrentList, getSelectedItem());
             }
 
-            var index = getSelectedItem();
-            var name = Questions.ToList().Find(x => x.Id == index.Id);
-            Console.WriteLine(name.Text);
+            //var index = getSelectedItem();
+            //var name = Questions.ToList().Find(x => x.Id == index.Id);
+            //Console.WriteLine(name.Text);
         }
     }
 }

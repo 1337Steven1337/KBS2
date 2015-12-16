@@ -73,6 +73,14 @@ namespace Client.Factory
 
             return values;
         }
+
+        protected override Dictionary<string, object> UpdateFields(Question question)
+        {
+            Dictionary<string, object> values = this.GetFields(question);
+            values.Add("Id", question.Id);
+
+            return values;
+        }
         #endregion
     }
 }
