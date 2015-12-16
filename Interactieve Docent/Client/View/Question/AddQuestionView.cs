@@ -17,7 +17,7 @@ namespace Client.View.Question
     {
         private AddQuestionController Controller;
         private BindingList<Model.PredefinedAnswer> AnswersList = new BindingList<Model.PredefinedAnswer>();
-        private Boolean Open;
+        public Boolean Open;
 
         public AddQuestionView(bool edit)
         {
@@ -31,6 +31,7 @@ namespace Client.View.Question
             answersListBox.DisplayMember = "Text";
             rightAnswerComboBox.DisplayMember = "Text";
 
+            Open = true;
             if (edit == true)
             {
                 btnSaveQuestion.Text = "Wijzig vraag";
@@ -56,6 +57,7 @@ namespace Client.View.Question
         //Close the third panel, Which contains the addquestion fields
         private void BtnQuit_Click(object sender, EventArgs e)
         {
+            Open = false;
             Controller.InvokeRemoveQuestionPanel();
         }
 
