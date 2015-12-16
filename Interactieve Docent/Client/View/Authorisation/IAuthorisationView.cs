@@ -14,5 +14,7 @@ namespace Client.View
     public interface IAuthorisationView : IView
     {
         void ShowAuthorisationResult(Model.Account ac, HttpStatusCode status);
+
+
     }
 }
