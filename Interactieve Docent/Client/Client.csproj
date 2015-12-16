@@ -111,7 +111,7 @@
     <Compile Include="Controller\IController.cs" />
     <Compile Include="Controller\Main\ShowMainController.cs" />
     <Compile Include="Controller\Main\ShowStartController.cs" />
-    <Compile Include="Controller\OpenQuestionController.cs" />
+    <Compile Include="Controller\OpenQuestion\ListOpenQuestionController.cs" />
     <Compile Include="Controller\QuestionList\ListQuestionListController.cs" />
     <Compile Include="Controller\Question\AddQuestionController.cs" />
     <Compile Include="Controller\Question\ListQuestionController.cs" />

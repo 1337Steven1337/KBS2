@@ -7,16 +7,16 @@ using Client.Factory;
 using Client.Model;
 using Client.View;
 
-namespace Client.Controller
+namespace Client.Controller.OpenQuestion
 {
-    public class OpenQuestionController : AbstractController<Model.OpenQuestion>
+    class ListOpenQuestionController : AbstractController<Model.OpenQuestion>
     {
         public override IView GetView()
         {
             throw new NotImplementedException();
         }
 
-        public override void SetBaseFactory(IFactory<OpenQuestion> baseFactory)
+        public override void SetBaseFactory(IFactory<Model.OpenQuestion> baseFactory)
         {
             throw new NotImplementedException();
         }
