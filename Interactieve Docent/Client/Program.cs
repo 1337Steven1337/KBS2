@@ -44,10 +44,6 @@ namespace Client
             listQuestionListController.SelectedListChanged += questionController.LoadList;
             listQuestionListController.Load();
 
-
-            Student.QuestionForm form = new Student.QuestionForm(1);
-            form.Show();
-
             //  AuthorisationView view = new AuthorisationView();
             //  AuthorisationController controller = new AuthorisationController(view);
 
