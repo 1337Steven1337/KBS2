@@ -370,7 +370,7 @@ namespace Client.Factory
             });
         }
 
-        /// <summary>
+        /// <summary> 
         /// Find all instances of a model
         /// </summary>
         /// <param name="control">The control of the thread which the callback will be called on</param>
