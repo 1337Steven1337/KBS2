@@ -169,6 +169,7 @@
     <Compile Include="View\Authorisation\AuthorisationView.Designer.cs">
       <DependentUpon>AuthorisationView.cs</DependentUpon>
     </Compile>
+    <Compile Include="View\Authorisation\IAuthorisationView.cs" />
     <Compile Include="View\Diagram\IDiagramView.cs" />
     <Compile Include="View\Diagram\DiagramView.cs">
       <SubType>Form</SubType>

@@ -4,28 +4,31 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Client.Controller;
+using Client.Model;
 using Client.Service.Thread;
+using RestSharp;
 
 namespace Client.View.Authorisation
 {
-    public partial class AuthorisationView : Form , IView
+    public partial class AuthorisationView : Form , IAuthorisationView
     {
         private AuthorisationController Controller { get; set; }
         public Boolean valid { private set; get; }
 
         public AuthorisationView()
-        {
+        {           
             valid = false;
             InitializeComponent();
         }
 
         public void AddToParent(IView parent)
         {
-            throw new NotImplementedException();
+            throw new NotImplementedException();            
         }
 
         public IControlHandler GetHandler()
@@ -42,10 +45,15 @@ namespace Client.View.Authorisation
         {
             valid = true;
             this.Enabled = false;
-            Model.Account ac = new Model.Account();
-            ac.Password = textBoxPassword.Text;
-            ac.Student = textBoxLogin.Text;
-            Controller.login(ac);
+            Model.Account acccount = new Model.Account();
+            acccount.Password = textBoxPassword.Text;
+            acccount.Student = textBoxLogin.Text;
+            Controller.CheckAuthorisationResult(acccount);
+        }
+
+        public void ShowAuthorisationResult(Model.Account ac, HttpStatusCode status)
+        {
+            Console.WriteLine(status);
         }
     }
 }
