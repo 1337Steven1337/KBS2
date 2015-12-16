@@ -89,7 +89,7 @@ namespace Client.Controller
             if (message.NewState == Microsoft.AspNet.SignalR.Client.ConnectionState.Connected)
             {
                 //if the status is connected subscribe to the list
-                SignalRClient.Subscribe(Question.List_Id);
+                SignalRClient.SubscribeList(Question.List_Id);
             }
             else if (message.NewState == Microsoft.AspNet.SignalR.Client.ConnectionState.Connecting)
             {
@@ -137,7 +137,7 @@ namespace Client.Controller
         {
             if (q != null)
             {
-                this.SignalRClient.Subscribe(q.List_Id);
+                this.SignalRClient.SubscribeList(q.List_Id);
 
                 if (q.PredefinedAnswers == null || q.UserAnswers == null)
                 {

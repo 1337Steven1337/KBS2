@@ -20,7 +20,7 @@ namespace Client.Student
 
         private void button1_Click(object sender, EventArgs e)
         {
-            SignalRClient.GetInstance().goToNextQuestionOnClick(1);
+            SignalRClient.GetInstance().GoToNextQuestionOnClick(1);
         }
     }
 }

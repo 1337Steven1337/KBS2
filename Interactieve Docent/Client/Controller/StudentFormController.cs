@@ -24,7 +24,7 @@ namespace Client.Controller
 
             //Connect (this) client to the session
             client = SignalRClient.GetInstance();
-            client.connectionStatusChanged += Client_connectionStatusChanged;
+            client.ConnectionStatusChanged += Client_connectionStatusChanged;
             client.Connect();
 
             //Adds an event to the QuestionAdded function which is called when a new question is added by the teacher.
@@ -81,7 +81,7 @@ namespace Client.Controller
         //Subscribes the client to a group/session
         private void Client_connectionStatusChanged(StateChange message)
         {
-            client.Subscribe(mainForm.List_Id);
+            client.SubscribeList(mainForm.List_Id);
         }
 
 

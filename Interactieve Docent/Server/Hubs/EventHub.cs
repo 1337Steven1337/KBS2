@@ -8,6 +8,30 @@ namespace Server.Hubs
 {
     public class EventHub : Hub
     {
+        public void SubscribeCode(string code)
+        {
+            Groups.Add(Context.ConnectionId, "Code-" + code);
+        } 
+
+        public void UnsubscribeCode(string code)
+        {
+            Groups.Remove(Context.ConnectionId, "Code-" + code);
+        }
+
+        public void SubscribeList(int id)
+        {
+            Groups.Add(Context.ConnectionId, "List-" + id);
+        }
+
+        public void UnsubscribeList(int id)
+        {
+            Groups.Remove(Context.ConnectionId, "List-" + id);
+        }
+
+        public void SubscribeToLists()
+        {
+            Groups.Add(Context.ConnectionId, "Misc-Lists");
+        }
         /// <summary>
         /// Subscribe point for the client, when the client is subscribed it will receive events
         /// </summary>
