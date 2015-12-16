@@ -19,7 +19,7 @@ namespace Server.Controllers
     public class QuestionListsController : ApiControllerWithHub<EventHub>
     {
         private IDocentAppContext db = new ServerContext();
-         
+
         public QuestionListsController() { }
         public QuestionListsController(IDocentAppContext context)
         {
@@ -76,7 +76,7 @@ namespace Server.Controllers
             {
                 await db.SaveChangesAsync();
 
-                this.getSubscribed("lists").QuestionListUpdated(new ListDTO(questionList));
+                this.getSubscribed("Misc-Lists").QuestionListUpdated(new ListDTO(questionList));
             }
             catch (DbUpdateConcurrencyException)
             {
@@ -105,7 +105,7 @@ namespace Server.Controllers
             db.QuestionLists.Add(questionList);
             await db.SaveChangesAsync();
 
-            this.getSubscribed("lists").QuestionListAdded(new ListDTO(questionList));
+            this.getSubscribed("Misc-Lists").QuestionListAdded(new ListDTO(questionList));
 
             return CreatedAtRoute("DefaultApi", new { id = questionList.Id }, questionList);
         }
@@ -123,7 +123,7 @@ namespace Server.Controllers
             db.QuestionLists.Remove(questionList);
             await db.SaveChangesAsync();
 
-            this.getSubscribed("lists").QuestionListRemoved(new ListDTO(questionList));
+            this.getSubscribed("Misc-Lists").QuestionListRemoved(new ListDTO(questionList));
 
             return Ok(questionList);
         }
