@@ -28,29 +28,29 @@ namespace Client
             Application.SetCompatibleTextRenderingDefault(false);
             //Application.Run(new Main());
 
-            
-            
-            //MainView view = new MainView();
-            //MainController maincontroller = new MainController(view);
 
-            //ListQuestionView viewQuestion = new ListQuestionView();
-            //ListQuestionController questionController = new ListQuestionController(viewQuestion);
-            //maincontroller.AddController(questionController);
 
-            //ListQuestionListView viewQuestionList = new ListQuestionListView();
-            //ListQuestionListController listQuestionListController = new ListQuestionListController(viewQuestionList);
-            //maincontroller.AddController(listQuestionListController);
+            MainView view = new MainView();
+            MainController maincontroller = new MainController(view);
 
-            //listQuestionListController.SelectedListChanged += questionController.LoadList;
-            //listQuestionListController.Load();
+            ListQuestionView viewQuestion = new ListQuestionView();
+            ListQuestionController questionController = new ListQuestionController(viewQuestion);
+            maincontroller.AddController(questionController);
 
-          //  AuthorisationView view = new AuthorisationView();
-          //  AuthorisationController controller = new AuthorisationController(view);
+            ListQuestionListView viewQuestionList = new ListQuestionListView();
+            ListQuestionListController listQuestionListController = new ListQuestionListController(viewQuestionList);
+            maincontroller.AddController(listQuestionListController);
 
-           // AddAccountView view = new AddAccountView();
-           // AddAccountController controller = new AddAccountController(view);
-             
-            Application.Run(new Student.QuestionForm(1));
+            listQuestionListController.SelectedListChanged += questionController.LoadList;
+            listQuestionListController.Load();
+
+            //  AuthorisationView view = new AuthorisationView();
+            //  AuthorisationController controller = new AuthorisationController(view);
+
+            // AddAccountView view = new AddAccountView();
+            // AddAccountController controller = new AddAccountController(view);
+
+            Application.Run(view);
         }
     }
 }

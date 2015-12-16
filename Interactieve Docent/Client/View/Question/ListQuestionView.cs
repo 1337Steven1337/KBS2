@@ -187,5 +187,10 @@ namespace Client.View.Question
             this.DiagramController.SetQuestion((Model.Question)this.listBoxQuestions.SelectedItem);
             view.Show();
         }
+
+        private void listBoxQuestions_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+            
+        }
     }
 }
