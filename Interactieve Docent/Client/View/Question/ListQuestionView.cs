@@ -140,7 +140,6 @@ namespace Client.View.Question
             //checks if selected item contains a question
             if(getSelectedItem() != null)
             {
-
                 //Show dialog for user to confirm Delete action
                 DialogResult dr = new DialogResult();
                 ConfirmDialogView confirm = new ConfirmDialogView();
@@ -190,7 +189,9 @@ namespace Client.View.Question
 
         private void listBoxQuestions_MouseDoubleClick(object sender, MouseEventArgs e)
         {
-            
+            var index = getSelectedItem();
+            var name = Questions.ToList().Find(x => x.Id == index.Id);
+            Console.WriteLine(name.Text);
         }
     }
 }
