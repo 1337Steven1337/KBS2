@@ -43,9 +43,9 @@ namespace Client.Controller
             }
         }
 
-        private void View_AddQuestionClicked(Model.QuestionList list, bool edit)
+        private void View_AddQuestionClicked(Model.QuestionList list)
         {
-            AddQuestionView addQuestionView = new AddQuestionView(edit);
+            AddQuestionView addQuestionView = new AddQuestionView();
             AddQuestionController controller = new AddQuestionController();
             controller.SetView(addQuestionView);
             controller.SetQuestionList(list);
