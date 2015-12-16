@@ -6,9 +6,9 @@ namespace Client.Service.Email
 {
     public class EmailClient : IEmailClient
     {
-        private const string FROM_ADDRESS = null;
-        private const string FROM_PASSWORD = null;
-        private const string FROM_HOST = null;
+        private const string FROM_ADDRESS = "InteractieveDocent@remcoschipper.com";
+        private const string FROM_PASSWORD = "c)(IxQ7L3?l1";
+        private const string FROM_HOST = "mail.remcoschipper.com";
         private const int FROM_PORT = 26;
         private const string TO_HOST = "student.windesheim.nl";
 

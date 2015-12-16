@@ -8,6 +8,6 @@ namespace Client.Service.Login
 {
     public class LoginClient
     {
-        //allkindsofshitidonotunderstandandicanstareatforhours
+        
     }
 }
