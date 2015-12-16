@@ -57,7 +57,7 @@ namespace Client.Factory
                     callback(response.Data, response.StatusCode, response);
                 }
             });
-        }
+        } 
         public void FindByIdAsync(object id, Action<T, HttpStatusCode, IRestResponse> callback)
         {
             RestRequest request = new RestRequest();
