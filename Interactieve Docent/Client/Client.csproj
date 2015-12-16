@@ -110,6 +110,7 @@
     <Compile Include="Controller\DiagramController.cs" />
     <Compile Include="Controller\IController.cs" />
     <Compile Include="Controller\Main\ShowMainController.cs" />
+    <Compile Include="Controller\Main\ShowStartController.cs" />
     <Compile Include="Controller\QuestionList\ListQuestionListController.cs" />
     <Compile Include="Controller\Question\AddQuestionController.cs" />
     <Compile Include="Controller\Question\ListQuestionController.cs" />
@@ -200,6 +201,12 @@
     <Compile Include="View\Main\MainView.Designer.cs">
       <DependentUpon>MainView.cs</DependentUpon>
     </Compile>
+    <Compile Include="View\Main\StartView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\Main\StartView.designer.cs">
+      <DependentUpon>StartView.cs</DependentUpon>
+    </Compile>
     <Compile Include="View\QuestionList\AddQuestionListView.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -263,6 +270,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="View\Main\MainView.resx">
       <DependentUpon>MainView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\Main\StartView.resx">
+      <DependentUpon>StartView.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="View\QuestionList\AddQuestionListView.resx">
       <DependentUpon>AddQuestionListView.cs</DependentUpon>

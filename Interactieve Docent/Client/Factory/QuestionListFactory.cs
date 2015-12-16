@@ -37,28 +37,9 @@ namespace Client.Factory
             this.SignalRClient.proxy.On<QuestionList>("QuestionListRemoved", this.OnQuestionListRemoved);
             this.SignalRClient.proxy.On<QuestionList>("QuestionListUpdated", this.OnQuestionListUpdated);
             this.SignalRClient.proxy.On("QuestionListContinue", this.OnQuestionListContinue);
-
-            if (this.SignalRClient.state == ConnectionState.Connected)
-            {
-                this.SignalRClient.Subscribe("lists");
-            }
-            else
-            {
-                this.SignalRClient.connectionStatusChanged += SignalRClient_connectionStatusChanged;
-                this.SignalRClient.Connect();
-            }
+            this.SignalRClient.Connect();
         }
         #endregion
-
-        #region Eventhandlers
-        private void SignalRClient_connectionStatusChanged(StateChange message)
-        {
-            if (message.NewState == ConnectionState.Connected)
-            {
-                this.SignalRClient.Subscribe("lists");
-            }
-        }
-        #endregion 
 
         #region Actions
         private void OnQuestionListAdded(QuestionList q)
