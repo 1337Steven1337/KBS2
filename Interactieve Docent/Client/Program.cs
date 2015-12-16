@@ -28,8 +28,8 @@ namespace Client
             Application.SetCompatibleTextRenderingDefault(false);
             //Application.Run(new Main());
 
-            
-            
+
+
             //MainView view = new MainView();
             //MainController maincontroller = new MainController(view);
 
@@ -44,13 +44,13 @@ namespace Client
             //listQuestionListController.SelectedListChanged += questionController.LoadList;
             //listQuestionListController.Load();
 
-          //  AuthorisationView view = new AuthorisationView();
-          //  AuthorisationController controller = new AuthorisationController(view);
+            AuthorisationView view = new AuthorisationView();
+            AuthorisationController controller = new AuthorisationController(view);
 
-           // AddAccountView view = new AddAccountView();
-           // AddAccountController controller = new AddAccountController(view);
-             
-            Application.Run(new Student.QuestionForm(1));
+            // AddAccountView view = new AddAccountView();
+            // AddAccountController controller = new AddAccountController(view);
+
+            Application.Run(view);
         }
     }
 }

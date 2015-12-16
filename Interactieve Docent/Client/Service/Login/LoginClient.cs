@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Client.Service.Login
 {
-    class LoginClient
+    public class LoginClient
     {
         //allkindsofshitidonotunderstandandicanstareatforhours
     }
