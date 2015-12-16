@@ -111,6 +111,7 @@
     <Compile Include="Controller\IController.cs" />
     <Compile Include="Controller\Main\ShowMainController.cs" />
     <Compile Include="Controller\Main\ShowStartController.cs" />
+    <Compile Include="Controller\OpenQuestion\ListOpenQuestionController.cs" />
     <Compile Include="Controller\QuestionList\ListQuestionListController.cs" />
     <Compile Include="Controller\Question\AddQuestionController.cs" />
     <Compile Include="Controller\Question\ListQuestionController.cs" />
@@ -119,6 +120,7 @@
     <Compile Include="Factory\AccountFactory.cs" />
     <Compile Include="Factory\BaseFactory.cs" />
     <Compile Include="Factory\IFactory.cs" />
+    <Compile Include="Factory\OpenQuestionFactory.cs" />
     <Compile Include="Factory\PincodeFactory.cs" />
     <Compile Include="Factory\PredefinedAnswerFactory.cs" />
     <Compile Include="Factory\QuestionFactory.cs" />
@@ -127,6 +129,7 @@
     <Compile Include="Factory\UserAnswerFactory.cs" />
     <Compile Include="Model\AbstractModel.cs" />
     <Compile Include="Model\Account.cs" />
+    <Compile Include="Model\OpenQuestion.cs" />
     <Compile Include="Model\Pincode.cs" />
     <Compile Include="Model\PredefinedAnswer.cs" />
     <Compile Include="Model\Question.cs" />
@@ -196,6 +199,7 @@
     <Compile Include="View\IAddView.cs" />
     <Compile Include="View\IListView.cs" />
     <Compile Include="View\IView.cs" />
+    <Compile Include="View\Main\IStartView.cs" />
     <Compile Include="View\Main\MainView.cs">
       <SubType>Form</SubType>
     </Compile>

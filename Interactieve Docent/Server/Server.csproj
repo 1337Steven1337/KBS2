@@ -171,6 +171,7 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountsController.cs" />
     <Compile Include="Controllers\ListsController.cs" />
+    <Compile Include="Controllers\PincodesController.cs" />
     <Compile Include="Controllers\PredefinedAnswersController.cs" />
     <Compile Include="Controllers\QuestionListsController.cs" />
     <Compile Include="Controllers\QuestionsController.cs" />
@@ -188,6 +189,7 @@
     <Compile Include="Models\DTO\TokenDTO.cs" />
     <Compile Include="Models\DTO\UserAnswerDTO.cs" />
     <Compile Include="Models\Context\IDocentAppContext.cs" />
+    <Compile Include="Models\Pincode.cs" />
     <Compile Include="Models\QuestionList.cs" />
     <Compile Include="Models\PredefinedAnswer.cs" />
     <Compile Include="Models\Question.cs" />
