@@ -143,7 +143,7 @@ namespace Client.Factory
         /// </summary>
         /// <param name="id">The ID of the instance you want to find</param>
         /// <param name="callback">Callback which is called when the request is completed</param>
-        public void FindByIdAsync(int id, Action<T, HttpStatusCode, IRestResponse> callback)
+        public void FindByIdAsync(object id, Action<T, HttpStatusCode, IRestResponse> callback)
         {
             this.baseFactory.FindByIdAsync(id, callback);
         }
@@ -153,7 +153,7 @@ namespace Client.Factory
         /// </summary>
         /// <param name="id">The ID of the instance you want to find</param>
         /// <param name="callback">Callback which is called when the request is completed</param>
-        public void FindByIdAsync(int id, Action<T, HttpStatusCode> callback)
+        public void FindByIdAsync(object id, Action<T, HttpStatusCode> callback)
         {
             this.FindByIdAsync(id, (o, s, r) =>
             {
@@ -169,7 +169,7 @@ namespace Client.Factory
         /// </summary>
         /// <param name="id">The ID of the instance you want to find</param>
         /// <param name="callback">Callback which is called when the request is completed</param>
-        public void FindByIdAsync(int id, Action<T> callback)
+        public void FindByIdAsync(object id, Action<T> callback)
         {
             this.FindByIdAsync(id, (o, s, r) =>
             {
@@ -334,7 +334,7 @@ namespace Client.Factory
         /// <param name="id">The ID of the instance to find</param>
         /// <param name="control">The control of the thread which the callback will be called on</param>
         /// <param name="callback">Callback which is called when the request is completed</param>
-        public void FindById(int id, IControlHandler control, Action<T, HttpStatusCode, IRestResponse> callback)
+        public void FindById(object id, IControlHandler control, Action<T, HttpStatusCode, IRestResponse> callback)
         {
             this.FindByIdAsync(id, (o, s, r) =>
             {
@@ -348,7 +348,7 @@ namespace Client.Factory
         /// <param name="id">The ID of the instance to find</param>
         /// <param name="control">The control of the thread which the callback will be called on</param>
         /// <param name="callback">Callback which is called when the request is completed</param>
-        public void FindById(int id, IControlHandler control, Action<T, HttpStatusCode> callback)
+        public void FindById(object id, IControlHandler control, Action<T, HttpStatusCode> callback)
         {
             this.FindByIdAsync(id, (o, s, r) =>
             {
@@ -362,7 +362,7 @@ namespace Client.Factory
         /// <param name="id">The ID of the instance to find</param>
         /// <param name="control">The control of the thread which the callback will be called on</param>
         /// <param name="callback">Callback which is called when the request is completed</param>
-        public void FindById(int id, IControlHandler control, Action<T> callback)
+        public void FindById(object id, IControlHandler control, Action<T> callback)
         {
             this.FindByIdAsync(id, (o, s, r) =>
             {
@@ -370,7 +370,7 @@ namespace Client.Factory
             });
         }
 
-        /// <summary>
+        /// <summary>  
         /// Find all instances of a model
         /// </summary>
         /// <param name="control">The control of the thread which the callback will be called on</param>

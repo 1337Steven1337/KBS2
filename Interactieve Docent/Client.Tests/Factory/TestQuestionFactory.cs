@@ -11,7 +11,7 @@ using RestSharp;
 namespace Client.Tests.Factory
 {
     class TestQuestionFactory : Client.Factory.IFactory<Question>
-    {
+    { 
         private List<Question> questions;
 
         public TestQuestionFactory()
@@ -42,9 +42,9 @@ namespace Client.Tests.Factory
             callback(questions, HttpStatusCode.OK, null);
         }
 
-        public void FindByIdAsync(int id, Action<Question, HttpStatusCode, global::RestSharp.IRestResponse> callback)
+        public void FindByIdAsync(object id, Action<Question, HttpStatusCode, global::RestSharp.IRestResponse> callback)
         {
-            callback(questions[id], HttpStatusCode.OK, null);
+            callback(questions[(int)id], HttpStatusCode.OK, null);
         }
 
         public void SaveAsync(List<KeyValuePair<string, object>> data, Action<Question, HttpStatusCode, global::RestSharp.IRestResponse> callback)

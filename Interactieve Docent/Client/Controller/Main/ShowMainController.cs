@@ -19,6 +19,7 @@ namespace Client.Controller
     {
         private IView MainView;
         private ListQuestionController ListQuestionController;
+        private AddQuestionView addQuestionView;
 
         public MainController(IView mainView)
         {
@@ -45,21 +46,29 @@ namespace Client.Controller
 
         private void View_AddQuestionClicked(Model.QuestionList list, bool edit)
         {
-            AddQuestionView addQuestionView = new AddQuestionView(edit);
-            AddQuestionController controller = new AddQuestionController();
-            controller.SetView(addQuestionView);
-            controller.SetQuestionList(list);
+            if (addQuestionView == null)
+            {
+                addQuestionView = new AddQuestionView(edit);
+                AddQuestionController controller = new AddQuestionController();
+                controller.SetView(addQuestionView);
+                controller.SetQuestionList(list);
 
-            controller.QuestionAdded += this.ListQuestionController.QuestionAdded;
-            controller.RemoveAddQuestionPanel += Controller_RemoveAddQuestionPanel;
+                controller.QuestionAdded += this.ListQuestionController.QuestionAdded;
+                controller.RemoveAddQuestionPanel += Controller_RemoveAddQuestionPanel;
 
-            addQuestionView.AddToParent((IView)this.MainView);
+                addQuestionView.AddToParent((IView)this.MainView);
+            }
+            else
+            {
+                Console.WriteLine("Er is al een view open... faggot");
+            }
         }
 
         private void Controller_RemoveAddQuestionPanel()
         {
             MainView view = (MainView)this.MainView;
             view.RemoveAddQuestionPanel();
+            addQuestionView = null;
         }
 
         public override IView GetView()
