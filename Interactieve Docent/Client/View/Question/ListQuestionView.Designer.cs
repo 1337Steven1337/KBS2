@@ -58,8 +58,8 @@ namespace Client.View.Question
             this.mainTablePanel.RowCount = 3;
             this.mainTablePanel.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.mainTablePanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.mainTablePanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 79F));
-            this.mainTablePanel.Size = new System.Drawing.Size(728, 862);
+            this.mainTablePanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 63F));
+            this.mainTablePanel.Size = new System.Drawing.Size(546, 690);
             this.mainTablePanel.TabIndex = 1;
             // 
             // titlePanel
@@ -69,7 +69,7 @@ namespace Client.View.Question
             this.titlePanel.Location = new System.Drawing.Point(0, 0);
             this.titlePanel.Margin = new System.Windows.Forms.Padding(0);
             this.titlePanel.Name = "titlePanel";
-            this.titlePanel.Size = new System.Drawing.Size(728, 129);
+            this.titlePanel.Size = new System.Drawing.Size(546, 103);
             this.titlePanel.TabIndex = 1;
             // 
             // labelTitle
@@ -81,7 +81,7 @@ namespace Client.View.Question
             this.labelTitle.Location = new System.Drawing.Point(0, 0);
             this.labelTitle.Margin = new System.Windows.Forms.Padding(0);
             this.labelTitle.Name = "labelTitle";
-            this.labelTitle.Size = new System.Drawing.Size(728, 129);
+            this.labelTitle.Size = new System.Drawing.Size(546, 103);
             this.labelTitle.TabIndex = 0;
             this.labelTitle.Text = "Vragen";
             this.labelTitle.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -96,12 +96,12 @@ namespace Client.View.Question
             this.buttonsTablePanel.Controls.Add(this.btnAddQuestion, 0, 0);
             this.buttonsTablePanel.Controls.Add(this.btnShowResults, 1, 0);
             this.buttonsTablePanel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.buttonsTablePanel.Location = new System.Drawing.Point(0, 783);
+            this.buttonsTablePanel.Location = new System.Drawing.Point(0, 627);
             this.buttonsTablePanel.Margin = new System.Windows.Forms.Padding(0);
             this.buttonsTablePanel.Name = "buttonsTablePanel";
             this.buttonsTablePanel.RowCount = 1;
             this.buttonsTablePanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.buttonsTablePanel.Size = new System.Drawing.Size(728, 79);
+            this.buttonsTablePanel.Size = new System.Drawing.Size(546, 63);
             this.buttonsTablePanel.TabIndex = 0;
             // 
             // btnDeleteQuestion
@@ -113,10 +113,10 @@ namespace Client.View.Question
             this.btnDeleteQuestion.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnDeleteQuestion.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnDeleteQuestion.ForeColor = System.Drawing.Color.White;
-            this.btnDeleteQuestion.Location = new System.Drawing.Point(242, 0);
+            this.btnDeleteQuestion.Location = new System.Drawing.Point(182, 0);
             this.btnDeleteQuestion.Margin = new System.Windows.Forms.Padding(0);
             this.btnDeleteQuestion.Name = "btnDeleteQuestion";
-            this.btnDeleteQuestion.Size = new System.Drawing.Size(242, 79);
+            this.btnDeleteQuestion.Size = new System.Drawing.Size(182, 63);
             this.btnDeleteQuestion.TabIndex = 2;
             this.btnDeleteQuestion.Text = "Vraag verwijderen";
             this.btnDeleteQuestion.UseVisualStyleBackColor = false;
@@ -134,7 +134,7 @@ namespace Client.View.Question
             this.btnAddQuestion.Location = new System.Drawing.Point(0, 0);
             this.btnAddQuestion.Margin = new System.Windows.Forms.Padding(0);
             this.btnAddQuestion.Name = "btnAddQuestion";
-            this.btnAddQuestion.Size = new System.Drawing.Size(242, 79);
+            this.btnAddQuestion.Size = new System.Drawing.Size(182, 63);
             this.btnAddQuestion.TabIndex = 0;
             this.btnAddQuestion.Text = "Vraag toevoegen";
             this.btnAddQuestion.UseVisualStyleBackColor = false;
@@ -147,10 +147,10 @@ namespace Client.View.Question
             this.btnShowResults.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnShowResults.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnShowResults.ForeColor = System.Drawing.Color.White;
-            this.btnShowResults.Location = new System.Drawing.Point(484, 0);
+            this.btnShowResults.Location = new System.Drawing.Point(364, 0);
             this.btnShowResults.Margin = new System.Windows.Forms.Padding(0);
             this.btnShowResults.Name = "btnShowResults";
-            this.btnShowResults.Size = new System.Drawing.Size(244, 79);
+            this.btnShowResults.Size = new System.Drawing.Size(182, 63);
             this.btnShowResults.TabIndex = 1;
             this.btnShowResults.Text = "Resultaat opvragen";
             this.btnShowResults.UseVisualStyleBackColor = false;
@@ -160,10 +160,10 @@ namespace Client.View.Question
             // 
             this.listBoxPanel.Controls.Add(this.listBoxQuestions);
             this.listBoxPanel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.listBoxPanel.Location = new System.Drawing.Point(0, 129);
+            this.listBoxPanel.Location = new System.Drawing.Point(0, 103);
             this.listBoxPanel.Margin = new System.Windows.Forms.Padding(0);
             this.listBoxPanel.Name = "listBoxPanel";
-            this.listBoxPanel.Size = new System.Drawing.Size(728, 654);
+            this.listBoxPanel.Size = new System.Drawing.Size(546, 524);
             this.listBoxPanel.TabIndex = 2;
             // 
             // listBoxQuestions
@@ -172,21 +172,19 @@ namespace Client.View.Question
             this.listBoxQuestions.Dock = System.Windows.Forms.DockStyle.Fill;
             this.listBoxQuestions.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.listBoxQuestions.FormattingEnabled = true;
-            this.listBoxQuestions.ItemHeight = 37;
+            this.listBoxQuestions.ItemHeight = 29;
             this.listBoxQuestions.Location = new System.Drawing.Point(0, 0);
-            this.listBoxQuestions.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.listBoxQuestions.Name = "listBoxQuestions";
-            this.listBoxQuestions.Size = new System.Drawing.Size(728, 654);
+            this.listBoxQuestions.Size = new System.Drawing.Size(546, 524);
             this.listBoxQuestions.TabIndex = 0;
             this.listBoxQuestions.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.listBoxQuestions_MouseDoubleClick);
             // 
             // ListQuestionView
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(728, 862);
+            this.ClientSize = new System.Drawing.Size(546, 690);
             this.Controls.Add(this.mainTablePanel);
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "ListQuestionView";
             this.Text = "ViewQuestion";
             this.mainTablePanel.ResumeLayout(false);
