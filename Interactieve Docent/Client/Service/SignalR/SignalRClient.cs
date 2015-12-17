@@ -109,6 +109,8 @@ namespace Client.Service.SignalR
             await this.proxy.Invoke("Next", id);
         }
 
+        
+
         public void Connect()
         {
             if (this.state == ConnectionState.Disconnected)
