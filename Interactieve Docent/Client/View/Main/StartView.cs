@@ -33,19 +33,14 @@ namespace Client.View.Main
 
         public void ShowCodeResult(Model.Pincode instance, HttpStatusCode status)
         {
-            LoginButton.Enabled = true;
-            CodeTextBox.Enabled = true;
-            CodeTextBox.Text = "";
-
-            if (status == HttpStatusCode.OK)
+            if(status == HttpStatusCode.OK)
             {
                 this.Hide();
                 this.StartMainScreen();
-                this.Controller.Close();
-                this.Close();
             }
             else
             {
+                LoginButton.Enabled = true;
                 FailedDialogView failed = new FailedDialogView();
                 failed.getLabelFailed().Text = "De code is incorrect.";
                 failed.ShowDialog();
@@ -62,7 +57,6 @@ namespace Client.View.Main
             if(this.CodeTextBox.Text != null && this.CodeTextBox.Text.Length == 6)
             {
                 LoginButton.Enabled = false;
-                CodeTextBox.Enabled = false;
                 Controller.CheckCode(this.CodeTextBox.Text);
             }
         }

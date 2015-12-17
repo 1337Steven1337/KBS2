@@ -42,12 +42,11 @@
             this.tableLayoutPanel1.Controls.Add(this.labelSucces, 0, 0);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
-            this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 2;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 80F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(300, 203);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(400, 250);
             this.tableLayoutPanel1.TabIndex = 0;
             // 
             // btnClose
@@ -59,10 +58,10 @@
             this.btnClose.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnClose.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnClose.ForeColor = System.Drawing.Color.White;
-            this.btnClose.Location = new System.Drawing.Point(0, 162);
+            this.btnClose.Location = new System.Drawing.Point(0, 200);
             this.btnClose.Margin = new System.Windows.Forms.Padding(0);
             this.btnClose.Name = "btnClose";
-            this.btnClose.Size = new System.Drawing.Size(300, 41);
+            this.btnClose.Size = new System.Drawing.Size(400, 50);
             this.btnClose.TabIndex = 0;
             this.btnClose.Text = "Sluiten";
             this.btnClose.UseVisualStyleBackColor = false;
@@ -73,24 +72,22 @@
             this.labelSucces.AutoSize = true;
             this.labelSucces.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelSucces.ForeColor = System.Drawing.Color.White;
-            this.labelSucces.Location = new System.Drawing.Point(2, 0);
-            this.labelSucces.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.labelSucces.Location = new System.Drawing.Point(3, 0);
             this.labelSucces.Name = "labelSucces";
-            this.labelSucces.Size = new System.Drawing.Size(41, 13);
+            this.labelSucces.Size = new System.Drawing.Size(52, 17);
             this.labelSucces.TabIndex = 1;
             this.labelSucces.Text = "label1";
             // 
-            // SuccesDialogView
+            // ViewSuccesDialog
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.ClientSize = new System.Drawing.Size(300, 203);
+            this.ClientSize = new System.Drawing.Size(400, 250);
             this.Controls.Add(this.tableLayoutPanel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.Name = "SuccesDialogView";
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
+            this.Name = "ViewSuccesDialog";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "ViewSuccesDialog";
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();

@@ -1,6 +1,18 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 using System.Windows.Forms;
+using Client.Controller;
 using Client.View.Main;
+using Client.View.Question;
+using Client.Controller.Question;
+using Client.View.QuestionList;
+using Client.Controller.QuestionList;
+using Client.Controller.Account;
+using Client.View.Account;
+using Client.View.Authorisation;
+using Client.View.Diagram;
 using Client.Controller.Main;
 
 namespace Client

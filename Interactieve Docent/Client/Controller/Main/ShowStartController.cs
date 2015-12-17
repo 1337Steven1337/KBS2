@@ -1,9 +1,9 @@
-﻿using Client.Factory;
+﻿using System;
+using Client.Factory;
 using Client.View;
 using System.Net;
 using Client.Service.SignalR;
 using Client.View.Main;
-using System.Windows.Forms;
 
 namespace Client.Controller.Main
 {
@@ -20,17 +20,19 @@ namespace Client.Controller.Main
 
         private void UseCode(Model.Pincode pincode, HttpStatusCode status)
         {
+            this.View.ShowCodeResult(pincode, status);
+
             if (pincode != null && status == HttpStatusCode.OK)
             {
                 SignalRClient.GetInstance().SubscribePincode(pincode);
-            }
 
-            this.View.ShowCodeResult(pincode, status);
+
+            }
         }
 
-        public void Close()
+        public void ApplyTestCode(string code)
         {
-            SignalRClient.GetInstance().Close();
+            this.CheckCode(code);
         }
 
         public override IView GetView()

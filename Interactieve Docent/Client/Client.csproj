@@ -183,12 +183,6 @@
     <Compile Include="View\Diagram\DiagramView.Designer.cs">
       <DependentUpon>DiagramView.cs</DependentUpon>
     </Compile>
-    <Compile Include="View\Dialogs\BackgroundDialogView.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="View\Dialogs\BackgroundDialogView.Designer.cs">
-      <DependentUpon>BackgroundDialogView.cs</DependentUpon>
-    </Compile>
     <Compile Include="View\Dialogs\FailedDialogView.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -271,9 +265,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="View\Diagram\DiagramView.resx">
       <DependentUpon>DiagramView.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="View\Dialogs\BackgroundDialogView.resx">
-      <DependentUpon>BackgroundDialogView.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="View\Dialogs\FailedDialogView.resx">
       <DependentUpon>FailedDialogView.cs</DependentUpon>

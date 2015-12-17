@@ -19,7 +19,6 @@ namespace Client.Service.SignalR
 
         private Model.Pincode CurrentCode { get; set; }
         private bool ShouldSubscribe = false;
-        private Model.Pincode ShouldSubscribeToCode { get; set; }
 
         private HubConnection connection { get; set; }
         public IHubProxy proxy { get; private set; }
@@ -44,9 +43,8 @@ namespace Client.Service.SignalR
             {
                 if (this.ShouldSubscribe)
                 {
-                    this.SubscribePincode(this.ShouldSubscribeToCode);
+                    this.SubscribePincode(this.CurrentCode);
                     this.ShouldSubscribe = false;
-                    this.ShouldSubscribeToCode = null;
                 }
 
                 this.proxy.Invoke("SubscribeToLists");
@@ -60,6 +58,8 @@ namespace Client.Service.SignalR
 
         public async void SubscribePincode(Model.Pincode code)
         {
+            this.CurrentCode = code;
+
             if (this.state == ConnectionState.Connected)
             {
                 if (this.CurrentCode != null)
@@ -67,13 +67,11 @@ namespace Client.Service.SignalR
                     this.UnsubscribePincode(this.CurrentCode);
                 }
 
-                this.CurrentCode = code;
-                await this.proxy.Invoke("SubscribeCode", code.Id);
+                await this.proxy.Invoke("SubscribeCode", code.Code);
             }
             else
             {
                 this.ShouldSubscribe = true;
-                this.ShouldSubscribeToCode = code;
 
                 if (this.state == ConnectionState.Disconnected)
                 {
@@ -84,9 +82,9 @@ namespace Client.Service.SignalR
 
         public async void UnsubscribePincode(Model.Pincode code)
         {
-            if (this.state == ConnectionState.Connected && code != null)
+            if (this.state == ConnectionState.Connected)
             {
-                await this.proxy.Invoke("UnsubscribeCode", code.Id);
+                await this.proxy.Invoke("UnsubscribeCode", code.Code);
             }
         }
 
@@ -116,11 +114,6 @@ namespace Client.Service.SignalR
             {
                 this.connection.Start();
             }
-        }
-
-        public void Close()
-        {
-            this.connection.Stop();
         }
 
         public static SignalRClient GetInstance()
