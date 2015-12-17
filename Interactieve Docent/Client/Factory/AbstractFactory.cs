@@ -408,7 +408,7 @@ namespace Client.Factory
                 control.Invoke(callback, o);
             });
         }
-
+         
         /// <summary>
         /// Saves an instance of the model
         /// </summary>

@@ -1,4 +1,4 @@
-﻿using System;
+﻿ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
@@ -30,6 +30,11 @@ namespace Client.Factory
             dictionary.Add("Code", instance.Code);
 
             return dictionary;
+        }
+
+        protected override Dictionary<string, object> UpdateFields(Pincode instance)
+        {
+            throw new NotImplementedException();
         }
     }
 }

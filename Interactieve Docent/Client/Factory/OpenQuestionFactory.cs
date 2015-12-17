@@ -1,4 +1,4 @@
-﻿using Client.Model;
+﻿ using Client.Model;
 using Microsoft.AspNet.SignalR.Client;
 using System;
 using System.Collections.Generic;
@@ -72,6 +72,11 @@ namespace Client.Factory
             values.Add("Text", question.Text);
 
             return values;
+        }
+
+        protected override Dictionary<string, object> UpdateFields(OpenQuestion instance)
+        {
+            throw new NotImplementedException();
         }
         #endregion
     }

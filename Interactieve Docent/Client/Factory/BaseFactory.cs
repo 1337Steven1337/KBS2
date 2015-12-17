@@ -24,7 +24,7 @@ namespace Client.Factory
         public void SetResource(string resource)
         {
             this.Resource = resource;
-        }
+        } 
 
         public void UpdateAsync(List<KeyValuePair<string, object>> data, Action<T, HttpStatusCode, IRestResponse> callback)
         {
