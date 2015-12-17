@@ -81,7 +81,10 @@ namespace Client.Controller
         //Subscribes the client to a group/session
         private void Client_connectionStatusChanged(StateChange message)
         {
-            client.SubscribeList(mainForm.List_Id);
+            if (message.NewState == ConnectionState.Connected)
+            {
+                client.SubscribeList(mainForm.List_Id);
+            }
         }
 
 
