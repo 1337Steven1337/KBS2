@@ -124,20 +124,12 @@ namespace Client.View.Question
             Questions.Add(question);
         }
 
-        public void ShowDeleteResult(Model.Question instance, HttpStatusCode status)
-        {
-            throw new NotImplementedException();
-        }
 
         public void DeleteItem(Model.Question item)
         {
             Questions.Remove(Questions.First(x => x.Id == item.Id));
         }
 
-        public void ShowSaveQuestionListResult(Model.Question instance, HttpStatusCode status)
-        {
-            throw new NotImplementedException();
-        }
 
         public void ShowDeleteQuestionListResult(Model.Question instance, HttpStatusCode status)
         {
@@ -203,10 +195,11 @@ namespace Client.View.Question
             {
                 this.AddQuestionClicked(this.Controller.CurrentList, getSelectedItem());
             }
+        }
 
-            //var index = getSelectedItem();
-            //var name = Questions.ToList().Find(x => x.Id == index.Id);
-            //Console.WriteLine(name.Text);
+        public void ShowSaveQuestionListResult(Model.Question instance, HttpStatusCode status)
+        {
+            throw new NotImplementedException();
         }
     }
 }

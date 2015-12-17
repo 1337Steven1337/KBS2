@@ -16,7 +16,8 @@ namespace Client.View.Question
     public partial class AddQuestionView : Form, IAddView<Model.Question>
     {
         private AddQuestionController Controller;
-        private BindingList<Model.PredefinedAnswer> AnswersList = new BindingList<Model.PredefinedAnswer>();
+        private BindingList<Model.PredefinedAnswer> CurrentAnswersList = new BindingList<Model.PredefinedAnswer>();
+        private BindingList<Model.PredefinedAnswer> OldAnswersList = new BindingList<Model.PredefinedAnswer>();
         private BindingList<Model.PredefinedAnswer> RightAnswerList = new BindingList<Model.PredefinedAnswer>();
         private Boolean Edit;
         private Model.Question Question;
@@ -35,7 +36,7 @@ namespace Client.View.Question
             rightAnswerComboBox.DisplayMember = "Text";
 
             answerField.PreviewKeyDown += AnswerField_PreviewKeyDown;
-            answersListBox.DataSource = AnswersList;
+            answersListBox.DataSource = CurrentAnswersList;
             rightAnswerComboBox.DataSource = RightAnswerList;
 
             if (question != null)
@@ -59,7 +60,8 @@ namespace Client.View.Question
 
             foreach(Model.PredefinedAnswer pa in question.PredefinedAnswers)
             {
-                AnswersList.Add(pa);
+                OldAnswersList.Add(pa);
+                CurrentAnswersList.Add(pa);
                 RightAnswerList.Add(pa);
             }
         }
@@ -81,7 +83,8 @@ namespace Client.View.Question
         //Delete selected answer from AnswersList
         private void BtnDeleteAnswer_Click(object sender, EventArgs e)
         {
-            AnswersList.Remove(GetSelectedAnswer());
+            CurrentAnswersList.Remove(GetSelectedAnswer());
+            RightAnswerList.Remove(GetSelectedAnswer());
         }
 
         //Add answer to AnswersList
@@ -91,10 +94,10 @@ namespace Client.View.Question
             String answer = answerField.Text;
             answer = answer.Trim();
 
-            if (answer != "" && AnswersList.ToList().Find(x => x.Text == answer) == null)
+            if (answer != "" && CurrentAnswersList.ToList().Find(x => x.Text == answer) == null)
             {
                 Model.PredefinedAnswer pa = new Model.PredefinedAnswer() { Text = answer };
-                AnswersList.Add(pa);
+                CurrentAnswersList.Add(pa);
                 RightAnswerList.Add(pa);
                 this.answerField.Text = "";
                 this.answerField.Focus();
@@ -207,7 +210,7 @@ namespace Client.View.Question
         {
             if(status == HttpStatusCode.Created && instance != null)
             {
-                this.Controller.SavePredefinedAnswers(AnswersList.ToList(), instance);
+                this.Controller.SavePredefinedAnswers(CurrentAnswersList.ToList(), instance);
             }
             else
             {
@@ -224,7 +227,19 @@ namespace Client.View.Question
         {
             if (status == HttpStatusCode.NoContent && instance != null)
             {
-                this.Controller.DeletePredefinedAnswers(AnswersList.ToList(), instance);
+                this.Controller.DeletePredefinedAnswers(OldAnswersList.ToList(), instance);
+            }
+            else
+            {
+                this.ShowSaveFailed();
+            }
+        }
+
+        public void ShowDeleteAnswersResult(Model.Question instance, HttpStatusCode status)
+        {
+            if (status == HttpStatusCode.OK && instance != null)
+            {
+                this.Controller.SavePredefinedAnswers(CurrentAnswersList.ToList(), instance);
             }
             else
             {

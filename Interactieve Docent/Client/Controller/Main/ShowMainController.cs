@@ -60,11 +60,10 @@ namespace Client.Controller
             controller.SetQuestionList(list);
 
             controller.QuestionAdded += this.ListQuestionController.QuestionAdded;
+            controller.QuestionUpdated += this.ListQuestionController.QuestionUpdated;        
             controller.RemoveAddQuestionPanel += Controller_RemoveAddQuestionPanel;
 
-            addQuestionView.AddToParent((IView)this.MainView);
-           
-
+            addQuestionView.AddToParent((IView)this.MainView);           
         }
 
         private void Controller_RemoveAddQuestionPanel(bool resizeTable)

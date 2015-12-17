@@ -22,6 +22,7 @@ namespace Client.Controller.Question
 
         #region Events
         public event QuestionAddedDelegate QuestionAdded;
+        public event QuestionAddedDelegate QuestionUpdated;
         public event RemoveAddQuestionPanelDelegate RemoveAddQuestionPanel;
         #endregion
 
@@ -59,7 +60,7 @@ namespace Client.Controller.Question
         {
             if (status == HttpStatusCode.NoContent && question != null)
             {
-                //this.View.ShowUpdateResult(question, status);
+                this.View.ShowUpdateResult(question, status);
             }
         }
 
@@ -98,8 +99,9 @@ namespace Client.Controller.Question
 
         public void DeletePredefinedAnswers(List<Model.PredefinedAnswer> answers, Model.Question question, IFactory<Model.PredefinedAnswer> baseFactory)
         {
-            this.AnswersSaved.Clear();
+            this.AnswersDeleted.Clear();
             this.CurrentQuestion = question;
+
             foreach (Model.PredefinedAnswer answer in answers)
             {
                 this.AnswersDeleted.Add(answer.Text, 0);
@@ -116,9 +118,8 @@ namespace Client.Controller.Question
 
         private void CallbackDeletePredefinedAnswers(PredefinedAnswer predefinedAnswer, HttpStatusCode status)
         {
-            if (status == HttpStatusCode.Created && predefinedAnswer != null)
+            if (status == HttpStatusCode.OK && predefinedAnswer != null)
             {
-
                 AnswersDeleted[predefinedAnswer.Text] = 1;
             }
             else
@@ -135,8 +136,8 @@ namespace Client.Controller.Question
                 }
                 else
                 {
-                    this.View.ShowSaveSucceed();
-                    //this.View.SavePredefinedAnswers(predefinedAnswer, );
+                    //this.View.ShowSaveSucceed();
+                    this.View.ShowDeleteAnswersResult(CurrentQuestion, status);
                 }
             }
         }
@@ -171,7 +172,6 @@ namespace Client.Controller.Question
                 {
                     answer.RightAnswer = false;
                 }
-
                 factory.Save(answer, this.View.GetHandler(), CallbackSavePredefinedAnswers);
             }
         }
@@ -196,7 +196,8 @@ namespace Client.Controller.Question
                 }
                 else
                 {
-                    this.View.ShowSaveSucceed();
+                    this.View.ShowSaveSucceed();                    
+                    QuestionUpdated(CurrentQuestion);
                 }
             }
         }

@@ -27,9 +27,16 @@ namespace Client.Controller.Question
         {
             this.View.AddItem(question);
         }
+
+        public void QuestionUpdated(Model.Question question)
+        {
+            //load list again because its updated (maybe at last index selected for highlighting)
+            this.LoadList(CurrentList);
+        }
         #endregion
 
         #region Methods
+
         private void FillList(List<Model.Question> questions, HttpStatusCode status)
         {
             if(status == HttpStatusCode.OK && questions != null)
