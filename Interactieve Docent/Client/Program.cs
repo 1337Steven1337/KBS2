@@ -53,9 +53,11 @@ namespace Client
             // AddAccountView view = new AddAccountView();
             // AddAccountController controller = new AddAccountController(view);
 
-            StartView view = new StartView();
-            ShowStartController controller = new ShowStartController(view);
-             
+            //StartView view = new StartView();
+            //ShowStartController controller = new ShowStartController(view);
+
+            View.Docent.DocentOmgevingView view = new View.Docent.DocentOmgevingView();
+            DocentOmgevingController controller = new DocentOmgevingController(view);
             Application.Run(view);
         }
     }

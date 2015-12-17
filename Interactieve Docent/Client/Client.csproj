@@ -108,6 +108,7 @@
     <Compile Include="Controller\Account\AddAccountController.cs" />
     <Compile Include="Controller\AuthorisationController.cs" />
     <Compile Include="Controller\DiagramController.cs" />
+    <Compile Include="Controller\DocentOmgevingController.cs" />
     <Compile Include="Controller\IController.cs" />
     <Compile Include="Controller\Main\ShowMainController.cs" />
     <Compile Include="Controller\Main\ShowStartController.cs" />
@@ -196,6 +197,12 @@
     <Compile Include="View\Dialogs\SuccesDialogView.Designer.cs">
       <DependentUpon>SuccesDialogView.cs</DependentUpon>
     </Compile>
+    <Compile Include="View\Docent\DocentOmgevingView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\Docent\DocentOmgevingView.Designer.cs">
+      <DependentUpon>DocentOmgevingView.cs</DependentUpon>
+    </Compile>
     <Compile Include="View\IAddView.cs" />
     <Compile Include="View\IListView.cs" />
     <Compile Include="View\IView.cs" />
@@ -272,6 +279,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="View\Dialogs\SuccesDialogView.resx">
       <DependentUpon>SuccesDialogView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\Docent\DocentOmgevingView.resx">
+      <DependentUpon>DocentOmgevingView.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="View\Main\MainView.resx">
       <DependentUpon>MainView.cs</DependentUpon>
