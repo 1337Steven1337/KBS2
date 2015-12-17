@@ -20,14 +20,12 @@ namespace Client.Controller.Main
 
         private void UseCode(Model.Pincode pincode, HttpStatusCode status)
         {
-            this.View.ShowCodeResult(pincode, status);
-
             if (pincode != null && status == HttpStatusCode.OK)
             {
                 SignalRClient.GetInstance().SubscribePincode(pincode);
-
-
             }
+
+            this.View.ShowCodeResult(pincode, status);
         }
 
         public void ApplyTestCode(string code)

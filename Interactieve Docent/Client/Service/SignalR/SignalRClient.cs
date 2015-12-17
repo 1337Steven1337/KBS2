@@ -18,6 +18,7 @@ namespace Client.Service.SignalR
         private static SignalRClient INSTANCE { get; set; }
 
         private Model.Pincode CurrentCode { get; set; }
+        private Model.Pincode ShouldSubscribeCode { get; set; }
         private bool ShouldSubscribe = false;
 
         private HubConnection connection { get; set; }
@@ -43,7 +44,7 @@ namespace Client.Service.SignalR
             {
                 if (this.ShouldSubscribe)
                 {
-                    this.SubscribePincode(this.CurrentCode);
+                    this.SubscribePincode(this.ShouldSubscribeCode);
                     this.ShouldSubscribe = false;
                 }
 
@@ -58,8 +59,6 @@ namespace Client.Service.SignalR
 
         public async void SubscribePincode(Model.Pincode code)
         {
-            this.CurrentCode = code;
-
             if (this.state == ConnectionState.Connected)
             {
                 if (this.CurrentCode != null)
@@ -67,11 +66,13 @@ namespace Client.Service.SignalR
                     this.UnsubscribePincode(this.CurrentCode);
                 }
 
-                await this.proxy.Invoke("SubscribeCode", code.Code);
+                this.CurrentCode = code;
+                await this.proxy.Invoke("SubscribeCode", code.Id);
             }
             else
             {
                 this.ShouldSubscribe = true;
+                this.ShouldSubscribeCode = code;
 
                 if (this.state == ConnectionState.Disconnected)
                 {
@@ -84,7 +85,7 @@ namespace Client.Service.SignalR
         {
             if (this.state == ConnectionState.Connected)
             {
-                await this.proxy.Invoke("UnsubscribeCode", code.Code);
+                await this.proxy.Invoke("UnsubscribeCode", code.Id);
             }
         }
 
