@@ -31,7 +31,7 @@
             this.tableFourColumn = new System.Windows.Forms.TableLayoutPanel();
             this.ImportAccountButton = new System.Windows.Forms.Button();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
-            this.OpenVraagButton = new System.Windows.Forms.Button();
+            this.OpenQuestionButton = new System.Windows.Forms.Button();
             this.tableFourColumn.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
@@ -76,7 +76,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.tableLayoutPanel1.ColumnCount = 1;
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel1.Controls.Add(this.OpenVraagButton, 0, 1);
+            this.tableLayoutPanel1.Controls.Add(this.OpenQuestionButton, 0, 1);
             this.tableLayoutPanel1.Controls.Add(this.ImportAccountButton, 0, 0);
             this.tableLayoutPanel1.Location = new System.Drawing.Point(3, 3);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
@@ -87,22 +87,22 @@
             this.tableLayoutPanel1.Size = new System.Drawing.Size(68, 252);
             this.tableLayoutPanel1.TabIndex = 1;
             // 
-            // OpenVraagButton
+            // OpenQuestionButton
             // 
-            this.OpenVraagButton.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.OpenQuestionButton.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.OpenVraagButton.AutoSize = true;
-            this.OpenVraagButton.BackColor = System.Drawing.Color.White;
-            this.OpenVraagButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.OpenVraagButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.OpenVraagButton.Location = new System.Drawing.Point(2, 32);
-            this.OpenVraagButton.Margin = new System.Windows.Forms.Padding(2);
-            this.OpenVraagButton.Name = "OpenVraagButton";
-            this.OpenVraagButton.Size = new System.Drawing.Size(64, 25);
-            this.OpenVraagButton.TabIndex = 1;
-            this.OpenVraagButton.Text = "Open vraag";
-            this.OpenVraagButton.UseVisualStyleBackColor = false;
-            this.OpenVraagButton.Click += new System.EventHandler(this.OpenVraagButton_Click);
+            this.OpenQuestionButton.AutoSize = true;
+            this.OpenQuestionButton.BackColor = System.Drawing.Color.White;
+            this.OpenQuestionButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.OpenQuestionButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.OpenQuestionButton.Location = new System.Drawing.Point(2, 32);
+            this.OpenQuestionButton.Margin = new System.Windows.Forms.Padding(2);
+            this.OpenQuestionButton.Name = "OpenQuestionButton";
+            this.OpenQuestionButton.Size = new System.Drawing.Size(64, 25);
+            this.OpenQuestionButton.TabIndex = 1;
+            this.OpenQuestionButton.Text = "Open vraag";
+            this.OpenQuestionButton.UseVisualStyleBackColor = false;
+            this.OpenQuestionButton.Click += new System.EventHandler(this.OpenQuestionButton_Click);
             // 
             // MainView
             // 
@@ -126,6 +126,6 @@
         private System.Windows.Forms.TableLayoutPanel tableFourColumn;
         private System.Windows.Forms.Button ImportAccountButton;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
-        private System.Windows.Forms.Button OpenVraagButton;
+        private System.Windows.Forms.Button OpenQuestionButton;
     }
 }
