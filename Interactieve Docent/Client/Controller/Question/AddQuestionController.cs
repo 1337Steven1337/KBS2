@@ -59,7 +59,7 @@ namespace Client.Controller.Question
         {
             if (status == HttpStatusCode.NoContent && question != null)
             {
-                this.View.ShowUpdateResult(question, status);
+                //this.View.ShowUpdateResult(question, status);
             }
         }
 
