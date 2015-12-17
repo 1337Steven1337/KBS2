@@ -11,11 +11,15 @@ using System.Windows.Forms;
 using Client.Controller;
 using Client.Model;
 using Client.Service.Thread;
+using Client.Controller.OpenQuestion;
+using Client.View.Dialogs;
 
 namespace Client.View.OpenQuestion
 {
     public partial class AddOpenQuestionView : Form, IAddView<Model.OpenQuestion>
     {
+        private AddOpenQuestionController Controller { get; set; }
+
         public AddOpenQuestionView()
         {
             InitializeComponent();
@@ -28,7 +32,7 @@ namespace Client.View.OpenQuestion
 
         public IControlHandler GetHandler()
         {
-            throw new NotImplementedException();
+            return new ControlHandler(this.QuestionTextBox);
         }
 
         public PredefinedAnswer GetSelectedAnswer()
@@ -38,27 +42,48 @@ namespace Client.View.OpenQuestion
 
         public void SetController(IController controller)
         {
-            
+            this.Controller = (AddOpenQuestionController)controller;
         }
 
         public void ShowSaveFailed()
         {
-            throw new NotImplementedException();
+            FailedDialogView failed = new FailedDialogView();
+            failed.getLabelFailed().Text = "Het opslaan is mislukt! Probeer het opnieuw.";
+
+            BackgroundDialogView background = new BackgroundDialogView(this, failed);
         }
 
         public void ShowSaveResult(Model.OpenQuestion instance, HttpStatusCode status)
         {
-            throw new NotImplementedException();
+            if(status == HttpStatusCode.Created)
+            {
+                this.ShowSaveSucceed();
+            }
+            else
+            {
+                this.ShowSaveFailed();
+            }
         }
 
         public void ShowSaveSucceed()
         {
-            throw new NotImplementedException();
+            SuccesDialogView succes = new SuccesDialogView();
+            succes.getLabelSucces().Text = "De vraag is nu zichtbaar voor de studenten.";
+
+            BackgroundDialogView background = new BackgroundDialogView(this, succes);
         }
 
         private void SaveButton_Click(object sender, EventArgs e)
         {
+            Model.OpenQuestion question = new Model.OpenQuestion();
+            question.Text = QuestionTextBox.Text;
 
+            this.Controller.Save(question);
+        }
+
+        private void QuestionTextBox_TextChanged(object sender, EventArgs e)
+        {
+            SaveButton.Enabled = (QuestionTextBox.Text != null && QuestionTextBox.Text.Length > 0);
         }
     }
 }
