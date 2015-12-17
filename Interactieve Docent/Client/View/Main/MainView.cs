@@ -135,5 +135,10 @@ namespace Client.View.Main
 
             BackgroundDialogView background = new BackgroundDialogView(this, view);
         }
+
+        private void OpenVraagButton_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
