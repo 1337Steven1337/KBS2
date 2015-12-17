@@ -13,6 +13,8 @@ using Client.View.Account;
 using Client.Controller.Account;
 using Client.View.Question;
 using Client.View.Dialogs;
+using Client.View.OpenQuestion;
+using Client.Controller.OpenQuestion;
 
 namespace Client.View.Main
 {
@@ -138,7 +140,10 @@ namespace Client.View.Main
 
         private void OpenQuestionButton_Click(object sender, EventArgs e)
         {
+            AddOpenQuestionView view = new AddOpenQuestionView();
+            AddOpenQuestionController controller = new AddOpenQuestionController(view);
 
+            BackgroundDialogView background = new BackgroundDialogView(this, view);
         }
     }
 }
