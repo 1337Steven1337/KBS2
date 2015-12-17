@@ -35,6 +35,7 @@ namespace Client.View.QuestionList
 
             btnAddQuestionList.Click += BtnAddQuestionList_Click;
             btnDeleteQuestionList.Click += BtnDeleteQuestionList_Click;
+            btnStartQuestionList.Click += BtnStartQuestionList_Click;
 
             listBoxQuestionLists.SelectedIndexChanged += listBox_SelectedIndexChanged;
             listBoxQuestionLists.PreviewKeyDown += ListBoxQuestionLists_PreviewKeyDown;
@@ -66,6 +67,7 @@ namespace Client.View.QuestionList
             }
             this.btnAddQuestionList.Enabled = true;
             this.btnDeleteQuestionList.Enabled = true;
+            this.btnStartQuestionList.Enabled = true;
             this.Controller.SelectedIndexChanged(this.getSelectedItem());
         }
 
@@ -142,6 +144,26 @@ namespace Client.View.QuestionList
                 }
             }
         }
+
+
+        private void BtnStartQuestionList_Click(object sender, EventArgs e)
+        {
+            if (getSelectedItem() != null)
+            {
+                //Show dialog for user to confirm Start action
+                DialogResult dr = new DialogResult();
+                ConfirmDialogView confirm = new ConfirmDialogView();
+                confirm.getLabelConfirm().Text = "Weet u zeker dat u deze lijst wilt starten?";
+                dr = confirm.ShowDialog();
+
+                //Confirm 
+                if (dr == DialogResult.Yes)
+                {
+                    this.Controller.DeleteQuestionList(this.getSelectedItem());
+                }
+            }
+        }
+        
 
         public void ShowDeleteQuestionListResult(Model.QuestionList list, HttpStatusCode status)
         {

@@ -39,9 +39,10 @@
             // buttonOk
             // 
             this.buttonOk.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.buttonOk.Location = new System.Drawing.Point(3, 38);
+            this.buttonOk.Location = new System.Drawing.Point(3, 48);
+            this.buttonOk.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.buttonOk.Name = "buttonOk";
-            this.buttonOk.Size = new System.Drawing.Size(118, 29);
+            this.buttonOk.Size = new System.Drawing.Size(134, 36);
             this.buttonOk.TabIndex = 0;
             this.buttonOk.Text = "Ok";
             this.buttonOk.UseVisualStyleBackColor = true;
@@ -50,9 +51,10 @@
             // buttonCancel
             // 
             this.buttonCancel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.buttonCancel.Location = new System.Drawing.Point(127, 38);
+            this.buttonCancel.Location = new System.Drawing.Point(143, 48);
+            this.buttonCancel.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.buttonCancel.Name = "buttonCancel";
-            this.buttonCancel.Size = new System.Drawing.Size(119, 29);
+            this.buttonCancel.Size = new System.Drawing.Size(134, 36);
             this.buttonCancel.TabIndex = 1;
             this.buttonCancel.Text = "Cancel";
             this.buttonCancel.UseVisualStyleBackColor = true;
@@ -64,16 +66,17 @@
             this.label.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label.Location = new System.Drawing.Point(3, 0);
             this.label.Name = "label";
-            this.label.Size = new System.Drawing.Size(118, 35);
+            this.label.Size = new System.Drawing.Size(134, 44);
             this.label.TabIndex = 2;
             this.label.Text = "Naam:";
             // 
             // textBox
             // 
             this.textBox.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.textBox.Location = new System.Drawing.Point(127, 3);
+            this.textBox.Location = new System.Drawing.Point(143, 4);
+            this.textBox.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.textBox.Name = "textBox";
-            this.textBox.Size = new System.Drawing.Size(119, 22);
+            this.textBox.Size = new System.Drawing.Size(134, 26);
             this.textBox.TabIndex = 3;
             // 
             // tableLayoutPanel1
@@ -87,20 +90,22 @@
             this.tableLayoutPanel1.Controls.Add(this.buttonOk, 0, 1);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
+            this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 2;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(249, 70);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(280, 88);
             this.tableLayoutPanel1.TabIndex = 4;
             // 
-            // ViewNewQuestionList
+            // AddQuestionListView
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(249, 70);
+            this.ClientSize = new System.Drawing.Size(280, 88);
             this.Controls.Add(this.tableLayoutPanel1);
-            this.Name = "ViewNewQuestionList";
+            this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.Name = "AddQuestionListView";
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
             this.ResumeLayout(false);

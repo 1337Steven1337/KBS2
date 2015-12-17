@@ -476,7 +476,7 @@ namespace Client.Factory
                 list.Add(entry);
             }
 
-            this.baseFactory.UpdateAsync(list, callback);
+            this.baseFactory.UpdateAsync(list, (o, s, r) => { callback(instance, s, r); });
         }
 
         /// <summary>

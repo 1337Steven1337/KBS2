@@ -74,7 +74,10 @@ namespace Client.Factory
 
         protected override Dictionary<string, object> UpdateFields(PredefinedAnswer instance)
         {
-            throw new NotImplementedException();
+            Dictionary<string, object> values = this.GetFields(instance);
+            values.Add("Id", instance.Id);
+
+            return values;
         }
         #endregion
     }

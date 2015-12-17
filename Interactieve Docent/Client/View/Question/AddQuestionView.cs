@@ -41,7 +41,7 @@ namespace Client.View.Question
             if (question != null)
             {
                 EditQuestion(question);
-                labelTitle.Text = "Vraag wijzigen " + question.Id;
+                labelTitle.Text = "Vraag wijzigen ";
                 Edit = true;
             }
             else
@@ -218,6 +218,18 @@ namespace Client.View.Question
         private void AddQuestionView_Load(object sender, EventArgs e)
         {
             //this.questionField.Focus();
+        }
+
+        public void ShowUpdateResult(Model.Question instance, HttpStatusCode status)
+        {
+            if (status == HttpStatusCode.NoContent && instance != null)
+            {
+                this.Controller.DeletePredefinedAnswers(AnswersList.ToList(), instance);
+            }
+            else
+            {
+                this.ShowSaveFailed();
+            }
         }
     }
 }
