@@ -60,5 +60,7 @@ namespace Server.Models.Context
         {
             Entry(item).State = EntityState.Modified;
         }
+
+        public System.Data.Entity.DbSet<Server.Models.OpenQuestion> OpenQuestions { get; set; }
     }
 }

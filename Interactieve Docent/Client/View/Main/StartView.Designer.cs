@@ -35,6 +35,7 @@
             // 
             // LoginButton
             // 
+            this.LoginButton.Enabled = false;
             this.LoginButton.Location = new System.Drawing.Point(70, 51);
             this.LoginButton.Name = "LoginButton";
             this.LoginButton.Size = new System.Drawing.Size(75, 23);
@@ -58,7 +59,8 @@
             this.CodeTextBox.MaxLength = 6;
             this.CodeTextBox.Name = "CodeTextBox";
             this.CodeTextBox.Size = new System.Drawing.Size(149, 20);
-            this.CodeTextBox.TabIndex = 2;
+            this.CodeTextBox.TabIndex = 0;
+            this.CodeTextBox.TextChanged += new System.EventHandler(this.CodeTextBox_TextChanged);
             // 
             // StartView
             // 

@@ -27,7 +27,7 @@ namespace Client.Factory
         {
             get
             {
-                throw new NotImplementedException();
+                return "OpenQuestions";
             }
         }
         #endregion
@@ -70,6 +70,7 @@ namespace Client.Factory
         {
             Dictionary<string, object> values = new Dictionary<string, object>();
             values.Add("Text", question.Text);
+            values.Add("Pincode_Id", question.Pincode_Id);
 
             return values;
         }
