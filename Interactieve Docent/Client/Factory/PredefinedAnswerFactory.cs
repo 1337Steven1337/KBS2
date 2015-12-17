@@ -1,6 +1,7 @@
-﻿using Client.Model;
+﻿ using Client.Model;
 using Microsoft.AspNet.SignalR.Client;
 using System.Collections.Generic;
+using System;
 
 namespace Client.Factory
 {
@@ -69,6 +70,11 @@ namespace Client.Factory
             values.Add("Question_Id", answer.Question_Id);
             values.Add("Right_Answer", answer.RightAnswer);
             return values;
+        }
+
+        protected override Dictionary<string, object> UpdateFields(PredefinedAnswer instance)
+        {
+            throw new NotImplementedException();
         }
         #endregion
     }

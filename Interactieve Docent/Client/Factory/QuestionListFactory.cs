@@ -1,6 +1,7 @@
 ﻿using Client.Model;
 using Microsoft.AspNet.SignalR.Client;
 using System.Collections.Generic;
+using System;
 
 namespace Client.Factory
 {
@@ -12,7 +13,7 @@ namespace Client.Factory
         public delegate void QuestionListUpdatedDelegate(QuestionList list);
         public delegate void QuestionListContinueDelegate();
         #endregion
-
+         
         #region Events
         public event QuestionListAddedDelegate QuestionListAdded;
         public event QuestionListRemovedDelegate QuestionListRemoved;
@@ -80,6 +81,11 @@ namespace Client.Factory
             values.Add("Ended", list.Ended);
 
             return values;
+        }
+
+        protected override Dictionary<string, object> UpdateFields(QuestionList instance)
+        {
+            throw new NotImplementedException();
         }
         #endregion
     }

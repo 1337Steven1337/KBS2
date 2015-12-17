@@ -24,6 +24,25 @@ namespace Client.Factory
         public void SetResource(string resource)
         {
             this.Resource = resource;
+        } 
+
+        public void UpdateAsync(List<KeyValuePair<string, object>> data, Action<T, HttpStatusCode, IRestResponse> callback)
+        {
+            RestRequest request = new RestRequest();
+            request.Resource = Resource;
+            request.Method = Method.PUT;
+
+            foreach (KeyValuePair<string, object> entry in data)
+            {
+                request.AddParameter(entry.Key, entry.Value);
+            }
+
+            this.RestClient.ExecuteAsync<T>(request, response => {
+                if (callback != null)
+                {
+                    callback(response.Data, response.StatusCode, response);
+                }
+            });
         }
 
         public void DeleteAsync(T instance, Action<T, HttpStatusCode, IRestResponse> callback)

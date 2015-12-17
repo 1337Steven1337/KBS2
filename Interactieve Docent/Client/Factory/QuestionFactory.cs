@@ -59,7 +59,7 @@ namespace Client.Factory
                 this.QuestionUpdated(q);
             }
         }
-        #endregion
+        #endregion 
 
         #region Overrides
         protected override Dictionary<string, object> GetFields(Question question)
@@ -70,6 +70,14 @@ namespace Client.Factory
             values.Add("Points", question.Points);
             values.Add("PredefinedAnswerCount", question.PredefinedAnswerCount);
             values.Add("List_Id", question.List_Id);
+
+            return values;
+        }
+
+        protected override Dictionary<string, object> UpdateFields(Question question)
+        {
+            Dictionary<string, object> values = this.GetFields(question);
+            values.Add("Id", question.Id);
 
             return values;
         }

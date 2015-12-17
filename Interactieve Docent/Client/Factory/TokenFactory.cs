@@ -12,7 +12,7 @@ namespace Client.Factory
 {
     class TokenFactory : AbstractFactory<Model.Token>
     {
-        protected override string Resource { get; }
+        protected override string Resource { get; } 
 
         public TokenFactory() : base(new BaseFactory<Model.Token>())
         {
@@ -39,6 +39,11 @@ namespace Client.Factory
                     callback(response.Data, response.StatusCode, response);
                 }
             });
+        }
+
+        protected override Dictionary<string, object> UpdateFields(Token instance)
+        {
+            throw new NotImplementedException();
         }
     }
 }

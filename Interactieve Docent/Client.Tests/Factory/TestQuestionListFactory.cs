@@ -23,7 +23,7 @@ namespace Client.Tests.Factory
             ql2.Id = 2;
             ql2.Name = "2";
             QuestionList ql3 = new QuestionList();
-            ql3.Id = 3;
+            ql3.Id = 3; 
             ql3.Name = "3";
             questionlists.Add(ql1);
             questionlists.Add(ql2);
@@ -63,6 +63,11 @@ namespace Client.Tests.Factory
         public void SetResource(string resource)
         {
             //Q
+        }
+
+        public void UpdateAsync(List<KeyValuePair<string, object>> data, Action<QuestionList, HttpStatusCode, IRestResponse> callback)
+        {
+            throw new NotImplementedException();
         }
     }
 }

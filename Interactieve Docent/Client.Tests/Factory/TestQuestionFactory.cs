@@ -20,7 +20,7 @@ namespace Client.Tests.Factory
             Question q1 = new Question();
             Question q2 = new Question();
             Question q3 = new Question();
-            questions.Add(q1);
+            questions.Add(q1); 
             questions.Add(q2);
             questions.Add(q3);
         }
@@ -62,6 +62,11 @@ namespace Client.Tests.Factory
         public void SetResource(string resource)
         {
             //Q
+        }
+
+        public void UpdateAsync(List<KeyValuePair<string, object>> data, Action<Question, HttpStatusCode, IRestResponse> callback)
+        {
+            throw new NotImplementedException();
         }
     }
 }
