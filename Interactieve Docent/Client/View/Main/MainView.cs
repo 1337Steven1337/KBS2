@@ -11,6 +11,7 @@ using System.Windows.Forms;
 using Client.Service.Thread;
 using Client.View.Account;
 using Client.Controller.Account;
+using Client.View.Question;
 
 namespace Client.View.Main
 {
@@ -24,25 +25,29 @@ namespace Client.View.Main
         }
 
         //Remove third column from mainView
-        public void RemoveAddQuestionPanel()
+        public void RemoveAddQuestionPanel(bool resizeTable)
         {
             tableFourColumn.SuspendLayout();
             tableFourColumn.Controls.RemoveAt(3);
-            float width = 0;
-            for (int i = 0; i < tableFourColumn.ColumnCount; i++)
+            if (resizeTable)
             {
-                if(i == 0){
-                    width = 10F;
-                }
-                else if (i > 0 && i < 3)
+                float width = 0;
+                for (int i = 0; i < tableFourColumn.ColumnCount; i++)
                 {
-                    width = 45F;
+                    if (i == 0)
+                    {
+                        width = 10F;
+                    }
+                    else if (i > 0 && i < 3)
+                    {
+                        width = 45F;
+                    }
+                    else
+                    {
+                        width = 0F;
+                    }
+                    tableFourColumn.ColumnStyles[i].Width = width;
                 }
-                else
-                {
-                    width = 0F;
-                }
-                tableFourColumn.ColumnStyles[i].Width = width;
             }
             tableFourColumn.ResumeLayout(true);
             tableFourColumn.PerformLayout();
@@ -95,6 +100,16 @@ namespace Client.View.Main
             }
             this.tableFourColumn.ResumeLayout(true);
             this.tableFourColumn.PerformLayout();
+        }
+
+        public void Confirm(bool edit)
+        {
+            DialogResult dr = new DialogResult();
+            ConfirmDialogView confirm = new ConfirmDialogView();
+            if (edit)
+            {
+                confirm.getLabelConfirm().Text = "";
+            }
         }
 
         public IControlHandler GetHandler()

@@ -12,6 +12,8 @@ using Client.Controller.QuestionList;
 using Client.Controller;
 using Client.Model;
 using Client.Factory;
+using Client.View.Dialogs;
+using System.Windows.Forms;
 
 namespace Client.Controller
 {
@@ -19,6 +21,8 @@ namespace Client.Controller
     {
         private IView MainView;
         private ListQuestionController ListQuestionController;
+        private AddQuestionView addQuestionView;
+        private AddQuestionController controller;
 
         public MainController(IView mainView)
         {
@@ -43,10 +47,15 @@ namespace Client.Controller
             }
         }
 
-        private void View_AddQuestionClicked(Model.QuestionList list)
+        private void View_AddQuestionClicked(Model.QuestionList list, Model.Question question)
         {
-            AddQuestionView addQuestionView = new AddQuestionView();
-            AddQuestionController controller = new AddQuestionController();
+            if(addQuestionView != null)
+            {
+                Controller_RemoveAddQuestionPanel(false);
+            }
+
+            addQuestionView = new AddQuestionView(question);
+            controller = new AddQuestionController();
             controller.SetView(addQuestionView);
             controller.SetQuestionList(list);
 
@@ -54,12 +63,15 @@ namespace Client.Controller
             controller.RemoveAddQuestionPanel += Controller_RemoveAddQuestionPanel;
 
             addQuestionView.AddToParent((IView)this.MainView);
+           
+
         }
 
-        private void Controller_RemoveAddQuestionPanel()
+        private void Controller_RemoveAddQuestionPanel(bool resizeTable)
         {
             MainView view = (MainView)this.MainView;
-            view.RemoveAddQuestionPanel();
+            view.RemoveAddQuestionPanel(resizeTable);
+            addQuestionView = null;
         }
 
         public override IView GetView()

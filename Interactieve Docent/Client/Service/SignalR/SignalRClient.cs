@@ -1,26 +1,25 @@
 ﻿using Client.Service.SignalR.EventArgs;
 using Microsoft.AspNet.SignalR.Client;
-using System;
-using System.Collections.Generic;
-using System.Net.Http;
 
 namespace Client.Service.SignalR
 {
     public class SignalRClient
     {
         #region Delegates
-        public delegate void ConnectionStatusChanged(StateChange message);
-        public delegate void SubscriptionStatusChanged(SubscriptionStatus message);
+        public delegate void ConnectionStatusChangedDelegate(StateChange message);
+        public delegate void SubscriptionStatusChangedDelegate(SubscriptionStatus message);
         #endregion
 
         #region Events
-        public event ConnectionStatusChanged connectionStatusChanged;
-        public event SubscriptionStatusChanged subscriptionStatusChanged;
+        public event ConnectionStatusChangedDelegate ConnectionStatusChanged;
+        public event SubscriptionStatusChangedDelegate SubscriptionStatusChanged;
         #endregion
 
-        #region Properties
-        private List<object> subscribeQueue = new List<object>();
-        private static SignalRClient client { get; set; }
+        private static SignalRClient INSTANCE { get; set; }
+
+        private Model.Pincode CurrentCode { get; set; }
+        private Model.Pincode ShouldSubscribeCode { get; set; }
+        private bool ShouldSubscribe = false;
 
         private HubConnection connection { get; set; }
         public IHubProxy proxy { get; private set; }
@@ -31,143 +30,101 @@ namespace Client.Service.SignalR
                 return (this.connection == null) ? ConnectionState.Disconnected : this.connection.State;
             }
         }
-        #endregion
 
-        #region Constructors
         private SignalRClient()
         {
             this.connection = new HubConnection(Properties.Api.Default.Host + Properties.Api.Default.SignalR);
+            this.connection.StateChanged += Connection_StateChanged;
             this.proxy = this.connection.CreateHubProxy("EventHub");
         }
-        #endregion
 
-        #region Eventhandlers
-        private void SignalRClient_connectionStatusChanged(StateChange message)
+        private void Connection_StateChanged(StateChange obj)
         {
-            if (this.subscribeQueue.Count > 0 && message.NewState == ConnectionState.Connected)
+            if (obj.NewState == ConnectionState.Connected)
             {
-                foreach (object o in this.subscribeQueue)
+                if (this.ShouldSubscribe)
                 {
-                    this.Subscribe(o);
+                    this.SubscribePincode(this.ShouldSubscribeCode);
+                    this.ShouldSubscribe = false;
                 }
+
+                this.proxy.Invoke("SubscribeToLists");
+            }
+
+            if(this.ConnectionStatusChanged != null)
+            {
+                this.ConnectionStatusChanged(obj);
             }
         }
-        #endregion
 
-        #region Methods
-        /// <summary>
-        /// Connects to the SignalR endpoint on the server
-        /// </summary>
-        public async void Connect()
+        public async void SubscribePincode(Model.Pincode code)
         {
-            if (this.state != ConnectionState.Connected && this.state != ConnectionState.Connecting)
+            if (this.state == ConnectionState.Connected)
             {
-                this.connection.StateChanged += Connection_StateChanged;
+                if (this.CurrentCode != null)
+                {
+                    this.UnsubscribePincode(this.CurrentCode);
+                }
 
-                try
+                this.CurrentCode = code;
+                await this.proxy.Invoke("SubscribeCode", code.Id);
+            }
+            else
+            {
+                this.ShouldSubscribe = true;
+                this.ShouldSubscribeCode = code;
+
+                if (this.state == ConnectionState.Disconnected)
                 {
                     await this.connection.Start();
                 }
-                catch (HttpRequestException)
-                {
-                    Console.WriteLine("Could not connect to the signalR server");
-                }
             }
         }
 
-        /// <summary>
-        /// Subscribes to a list on the server
-        /// </summary>
-        /// <param name="id">The id of the list to subscribe to</param>
-        public void Subscribe(int id)
+        public async void UnsubscribePincode(Model.Pincode code)
         {
-            this.Subscribe((object)id);
+            if (this.state == ConnectionState.Connected)
+            {
+                await this.proxy.Invoke("UnsubscribeCode", code.Id);
+            }
         }
 
-        /// <summary>
-        /// Subscribes to a list on the server
-        /// </summary>
-        /// <param name="name">The name of the list to subscribe to</param>
-        public void Subscribe(string name)
+        public void SubscribeList(Model.QuestionList list)
         {
-            this.Subscribe((object)name);
+            this.SubscribeList(list.Id);
         }
 
-        /// <summary>
-        /// Unsubscribe from a list on the server
-        /// </summary>
-        /// <param name="id">The id of the list to unsubscribe from</param>
-        public async void Unsubscribe(int id)
+        public async void SubscribeList(int id)
         {
-            await this.proxy.Invoke("Unsubscribe", id);
+            await this.proxy.Invoke("SubscribeList", id);
         }
 
+        public async void UnsubscribeList(Model.QuestionList list)
+        {
+            await this.proxy.Invoke("UnsubscribeList", list.Id);
+        }
 
-        /// <summary>
-        /// Tells the server to release a new question to the clients.
-        /// </summary>
-        /// <param name="id">The id of the list to send the question to</param>
-        public async void goToNextQuestionOnClick(int id)
+        public async void GoToNextQuestionOnClick(int id)
         {
             await this.proxy.Invoke("Next", id);
         }
 
-
-
-        /// <summary>
-        /// Subscribes to a list on the server
-        /// </summary>
-        /// <param name="id">The object (either a string or int) to subscribe to</param>
-        private async void Subscribe(object id)
+        public void Connect()
         {
-            this.connectionStatusChanged -= SignalRClient_connectionStatusChanged;
-
-            if (this.state == ConnectionState.Connected)
+            if (this.state == ConnectionState.Disconnected)
             {
-                await this.proxy.Invoke("Subscribe", id);
-
-                if (this.subscriptionStatusChanged != null)
-                {
-                    this.subscriptionStatusChanged(new SubscriptionStatus(id));
-                }
-            }
-            else
-            {
-                if (this.subscribeQueue.Count == 0)
-                {
-                    this.connectionStatusChanged += SignalRClient_connectionStatusChanged;
-                }
-
-                this.subscribeQueue.Add(id);
-            }
-
-        }
-
-        /// <summary>
-        /// Calls the connectionStateChanged event
-        /// </summary>
-        /// <param name="obj">The object with the relevant fields</param>
-        private void Connection_StateChanged(StateChange obj)
-        {
-            if (this.connectionStatusChanged != null)
-            {
-                this.connectionStatusChanged(obj);
+                this.connection.Start();
             }
         }
 
-        /// <summary>
-        /// Used to retrieve an instance of the SignalRClient
-        /// </summary>
-        /// <returns>The instance of the SignalRClient</returns>
         public static SignalRClient GetInstance()
         {
-            if(SignalRClient.client == null)
+            if (INSTANCE == null)
             {
-                SignalRClient.client = new SignalRClient();
+                INSTANCE = new SignalRClient();
             }
 
-            return SignalRClient.client;
+            return INSTANCE;
         }
-        #endregion
     }
 }

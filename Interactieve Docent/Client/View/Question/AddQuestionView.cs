@@ -17,10 +17,14 @@ namespace Client.View.Question
     {
         private AddQuestionController Controller;
         private BindingList<Model.PredefinedAnswer> AnswersList = new BindingList<Model.PredefinedAnswer>();
-
-        public AddQuestionView()
+        private BindingList<Model.PredefinedAnswer> RightAnswerList = new BindingList<Model.PredefinedAnswer>();
+        private Boolean Edit;
+        private Model.Question Question;
+        
+        public AddQuestionView(Model.Question question)
         {
             InitializeComponent();
+            this.Question = question;
 
             btnSaveQuestion.Click += BtnSaveQuestion_Click;
             btnAddAnswer.Click += BtnAddAnswer_Click;
@@ -31,8 +35,33 @@ namespace Client.View.Question
             rightAnswerComboBox.DisplayMember = "Text";
 
             answerField.PreviewKeyDown += AnswerField_PreviewKeyDown;
-            answersListBox.DataSource = AnswersList;            
-            rightAnswerComboBox.DataSource = AnswersList;
+            answersListBox.DataSource = AnswersList;
+            rightAnswerComboBox.DataSource = RightAnswerList;
+
+            if (question != null)
+            {
+                EditQuestion(question);
+                labelTitle.Text = "Vraag wijzigen " + question.Id;
+                Edit = true;
+            }
+            else
+            {
+                labelTitle.Text = "Nieuwe vraag";
+                Edit = false;
+            }
+        }
+
+        private void EditQuestion(Model.Question question)
+        {
+            questionField.Text = question.Text;
+            timeField.Value = question.Time;
+            pointsField.Value = question.Points;
+
+            foreach(Model.PredefinedAnswer pa in question.PredefinedAnswers)
+            {
+                AnswersList.Add(pa);
+                RightAnswerList.Add(pa);
+            }
         }
 
         private void AnswerField_PreviewKeyDown(object sender, PreviewKeyDownEventArgs e)
@@ -66,6 +95,7 @@ namespace Client.View.Question
             {
                 Model.PredefinedAnswer pa = new Model.PredefinedAnswer() { Text = answer };
                 AnswersList.Add(pa);
+                RightAnswerList.Add(pa);
                 this.answerField.Text = "";
                 this.answerField.Focus();
             }                 
@@ -88,13 +118,23 @@ namespace Client.View.Question
 
                 if (dr == DialogResult.Yes)
                 {
+                    
                     Dictionary<string, object> iDictionary = new Dictionary<string, object>();
                     iDictionary.Add("Text", questionField.Text.Trim());
                     iDictionary.Add("Points", pointsField.Value);
                     iDictionary.Add("Time", timeField.Value);
                     iDictionary.Add("PredefinedAnswerCount", this.answersListBox.Items.Count);
-
-                    this.Controller.SaveQuestion(iDictionary);
+                    
+                    if (Edit)
+                    {
+                        Dictionary<string, object> iDictionary2 = iDictionary;
+                        iDictionary2.Add("Id", Question.Id);
+                        this.Controller.UpdateQuestion(iDictionary2);
+                    }
+                    else
+                    {
+                        this.Controller.SaveQuestion(iDictionary);
+                    }
                 }
             }
             else

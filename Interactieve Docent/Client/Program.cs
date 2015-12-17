@@ -13,6 +13,7 @@ using Client.Controller.Account;
 using Client.View.Account;
 using Client.View.Authorisation;
 using Client.View.Diagram;
+using Client.Controller.Main;
 
 namespace Client
 {
@@ -28,8 +29,7 @@ namespace Client
             Application.SetCompatibleTextRenderingDefault(false);
             //Application.Run(new Main());
 
-
-
+            /*
             MainView view = new MainView();
             MainController maincontroller = new MainController(view);
 
@@ -44,12 +44,18 @@ namespace Client
             listQuestionListController.SelectedListChanged += questionController.LoadList;
             listQuestionListController.Load();
 
-            //  AuthorisationView view = new AuthorisationView();
-            //  AuthorisationController controller = new AuthorisationController(view);
+            Student.QuestionForm form = new Student.QuestionForm(1);
+            form.Show();
+            */
+            //AuthorisationView view = new AuthorisationView();
+            //AuthorisationController controller = new AuthorisationController(view);
 
             // AddAccountView view = new AddAccountView();
             // AddAccountController controller = new AddAccountController(view);
 
+            StartView view = new StartView();
+            ShowStartController controller = new ShowStartController(view);
+             
             Application.Run(view);
         }
     }

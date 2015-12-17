@@ -1,6 +1,7 @@
 ﻿using Client.Model;
 using Microsoft.AspNet.SignalR.Client;
 using System.Collections.Generic;
+using System;
 
 namespace Client.Factory
 {
@@ -11,7 +12,7 @@ namespace Client.Factory
         public delegate void UserAnswerRemovedDelegate(UserAnswer answer);
         public delegate void UserAnswerUpdatedDelegate(UserAnswer answer);
         #endregion
-
+         
         #region Events
         public event UserAnswerAddedDelegate UserAnswerAdded;
         public event UserAnswerRemovedDelegate UserAnswerRemoved;
@@ -69,6 +70,11 @@ namespace Client.Factory
             values.Add("PredefinedAnswer_Id", answer.PredefinedAnswer_Id);
 
             return values;
+        }
+
+        protected override Dictionary<string, object> UpdateFields(UserAnswer instance)
+        {
+            throw new NotImplementedException();
         }
         #endregion
     }

@@ -17,10 +17,7 @@ namespace Client.Factory
             }
         }
 
-        public AccountFactory() : base(new BaseFactory<Account>())
-        {
-
-        }
+        public AccountFactory() : base(new BaseFactory<Account>()) { }
 
         protected override Dictionary<string, object> GetFields(Account instance)
         {
@@ -29,6 +26,11 @@ namespace Client.Factory
             data.Add("Password", instance.Password);
 
             return data;
+        }
+
+        protected override Dictionary<string, object> UpdateFields(Account instance)
+        {
+            throw new NotImplementedException();
         }
     }
 }

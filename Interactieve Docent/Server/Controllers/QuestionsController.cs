@@ -29,16 +29,18 @@ namespace Server.Controllers
         // GET: api/Question
         public IQueryable<QuestionDTO> GetQuestions()
         {
-            var questions = from q in db.Questions select new QuestionDTO() {
-                Id = q.Id,
-                Text = q.Text,
-                List_Id = q.List.Id,
-                Time = q.Time,
-                Points = q.Points,
-                PredefinedAnswerCount = q.PredefinedAnswerCount,
-                PredefinedAnswers = q.PredefinedAnswers.Select(V => new PredefinedAnswerDTO { Id = V.Id, Text = V.Text, Question_Id = V.Question.Id }).ToList<PredefinedAnswerDTO>(),
-                UserAnswers = q.UserAnswers.Select(UA => new UserAnswerDTO {Id = UA.Id, Question_Id = UA.Question_Id, PredefinedAnswer_Id = UA.PredefinedAnswer_Id}).ToList<UserAnswerDTO>()                
-            };
+            var questions = from q in db.Questions
+                            select new QuestionDTO()
+                            {
+                                Id = q.Id,
+                                Text = q.Text,
+                                List_Id = q.List.Id,
+                                Time = q.Time,
+                                Points = q.Points,
+                                PredefinedAnswerCount = q.PredefinedAnswerCount,
+                                PredefinedAnswers = q.PredefinedAnswers.Select(V => new PredefinedAnswerDTO { Id = V.Id, Text = V.Text, Question_Id = V.Question.Id }).ToList<PredefinedAnswerDTO>(),
+                                UserAnswers = q.UserAnswers.Select(UA => new UserAnswerDTO { Id = UA.Id, Question_Id = UA.Question_Id, PredefinedAnswer_Id = UA.PredefinedAnswer_Id }).ToList<UserAnswerDTO>()
+                            };
 
             return questions;
         }
@@ -48,18 +50,18 @@ namespace Server.Controllers
         public QuestionDTO GetQuestionById(int id)
         {
             var questions = from q in db.Questions
-                         where q.Id == id
-                         select new QuestionDTO()
-                         {
-                             Id = q.Id,
-                             Text = q.Text,
-                             List_Id = q.List.Id,
-                             Time = q.Time,
-                             Points = q.Points,
-                             PredefinedAnswerCount = q.PredefinedAnswerCount,
-                             PredefinedAnswers = q.PredefinedAnswers.Select(V => new PredefinedAnswerDTO { Id = V.Id, Text = V.Text, Question_Id = V.Question.Id }).ToList<PredefinedAnswerDTO>(),
-                             UserAnswers = q.UserAnswers.Select(UA => new UserAnswerDTO { Id = UA.Id, Question_Id = UA.Question_Id, PredefinedAnswer_Id = UA.PredefinedAnswer_Id }).ToList<UserAnswerDTO>()
-                         };
+                            where q.Id == id
+                            select new QuestionDTO()
+                            {
+                                Id = q.Id,
+                                Text = q.Text,
+                                List_Id = q.List.Id,
+                                Time = q.Time,
+                                Points = q.Points,
+                                PredefinedAnswerCount = q.PredefinedAnswerCount,
+                                PredefinedAnswers = q.PredefinedAnswers.Select(V => new PredefinedAnswerDTO { Id = V.Id, Text = V.Text, Question_Id = V.Question.Id }).ToList<PredefinedAnswerDTO>(),
+                                UserAnswers = q.UserAnswers.Select(UA => new UserAnswerDTO { Id = UA.Id, Question_Id = UA.Question_Id, PredefinedAnswer_Id = UA.PredefinedAnswer_Id }).ToList<UserAnswerDTO>()
+                            };
 
             return questions.FirstOrDefault(x => x.Id == x.Id);
         }
@@ -84,7 +86,7 @@ namespace Server.Controllers
             {
                 await db.SaveChangesAsync();
 
-                this.getSubscribed(question.List_Id).QuestionUpdated(new QuestionDTO(question));
+                this.getSubscribed("List-" + question.List_Id).QuestionUpdated(new QuestionDTO(question));
             }
             catch (DbUpdateConcurrencyException)
             {
@@ -113,7 +115,7 @@ namespace Server.Controllers
             db.Questions.Add(question);
             await db.SaveChangesAsync();
 
-            this.getSubscribed(question.List_Id).QuestionAdded(new QuestionDTO(question));
+            this.getSubscribed("List-" + question.List_Id).QuestionAdded(new QuestionDTO(question));
 
             return CreatedAtRoute("DefaultApi", new { id = question.Id }, question);
         }
@@ -131,7 +133,7 @@ namespace Server.Controllers
             db.Questions.Remove(question);
             await db.SaveChangesAsync();
 
-            this.getSubscribed(question.List_Id).QuestionRemoved(new QuestionDTO(question));
+            this.getSubscribed("List-" + question.List_Id).QuestionRemoved(new QuestionDTO(question));
 
             return Ok(question);
         }

@@ -60,7 +60,7 @@ namespace Server.Controllers
                 await db.SaveChangesAsync();
 
                 Question question = db.Questions.Find(predefinedAnswer.Question_Id);
-                this.getSubscribed(question.List_Id).PredefinedAnswerUpdated(new PredefinedAnswerDTO(predefinedAnswer));
+                this.getSubscribed("List-" + question.List_Id).PredefinedAnswerUpdated(new PredefinedAnswerDTO(predefinedAnswer));
             }
             catch (DbUpdateConcurrencyException)
             {
@@ -90,7 +90,7 @@ namespace Server.Controllers
             await db.SaveChangesAsync();
 
             Question question = db.Questions.Find(predefinedAnswer.Question_Id);
-            this.getSubscribed(question.List_Id).PredefinedAnswerAdded(new PredefinedAnswerDTO(predefinedAnswer));
+            this.getSubscribed("List-" + question.List_Id).PredefinedAnswerAdded(new PredefinedAnswerDTO(predefinedAnswer));
 
             return CreatedAtRoute("DefaultApi", new { id = predefinedAnswer.Id }, predefinedAnswer);
         }
@@ -109,7 +109,7 @@ namespace Server.Controllers
             await db.SaveChangesAsync();
 
             Question question = db.Questions.Find(predefinedAnswer.Question_Id);
-            this.getSubscribed(question.List_Id).PredefinedAnswerDeleted (new PredefinedAnswerDTO(predefinedAnswer));
+            this.getSubscribed(question.List_Id).PredefinedAnswerDeleted(new PredefinedAnswerDTO(predefinedAnswer));
 
             return Ok(predefinedAnswer);
         }

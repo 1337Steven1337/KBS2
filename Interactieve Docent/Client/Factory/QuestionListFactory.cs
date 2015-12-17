@@ -1,6 +1,7 @@
 ﻿using Client.Model;
 using Microsoft.AspNet.SignalR.Client;
 using System.Collections.Generic;
+using System;
 
 namespace Client.Factory
 {
@@ -12,7 +13,7 @@ namespace Client.Factory
         public delegate void QuestionListUpdatedDelegate(QuestionList list);
         public delegate void QuestionListContinueDelegate();
         #endregion
-
+         
         #region Events
         public event QuestionListAddedDelegate QuestionListAdded;
         public event QuestionListRemovedDelegate QuestionListRemoved;
@@ -37,28 +38,9 @@ namespace Client.Factory
             this.SignalRClient.proxy.On<QuestionList>("QuestionListRemoved", this.OnQuestionListRemoved);
             this.SignalRClient.proxy.On<QuestionList>("QuestionListUpdated", this.OnQuestionListUpdated);
             this.SignalRClient.proxy.On("QuestionListContinue", this.OnQuestionListContinue);
-
-            if (this.SignalRClient.state == ConnectionState.Connected)
-            {
-                this.SignalRClient.Subscribe("lists");
-            }
-            else
-            {
-                this.SignalRClient.connectionStatusChanged += SignalRClient_connectionStatusChanged;
-                this.SignalRClient.Connect();
-            }
+            this.SignalRClient.Connect();
         }
         #endregion
-
-        #region Eventhandlers
-        private void SignalRClient_connectionStatusChanged(StateChange message)
-        {
-            if (message.NewState == ConnectionState.Connected)
-            {
-                this.SignalRClient.Subscribe("lists");
-            }
-        }
-        #endregion 
 
         #region Actions
         private void OnQuestionListAdded(QuestionList q)
@@ -99,6 +81,11 @@ namespace Client.Factory
             values.Add("Ended", list.Ended);
 
             return values;
+        }
+
+        protected override Dictionary<string, object> UpdateFields(QuestionList instance)
+        {
+            throw new NotImplementedException();
         }
         #endregion
     }

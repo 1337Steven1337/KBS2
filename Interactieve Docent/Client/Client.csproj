@@ -110,6 +110,8 @@
     <Compile Include="Controller\DiagramController.cs" />
     <Compile Include="Controller\IController.cs" />
     <Compile Include="Controller\Main\ShowMainController.cs" />
+    <Compile Include="Controller\Main\ShowStartController.cs" />
+    <Compile Include="Controller\OpenQuestion\ListOpenQuestionController.cs" />
     <Compile Include="Controller\QuestionList\ListQuestionListController.cs" />
     <Compile Include="Controller\Question\AddQuestionController.cs" />
     <Compile Include="Controller\Question\ListQuestionController.cs" />
@@ -118,6 +120,8 @@
     <Compile Include="Factory\AccountFactory.cs" />
     <Compile Include="Factory\BaseFactory.cs" />
     <Compile Include="Factory\IFactory.cs" />
+    <Compile Include="Factory\OpenQuestionFactory.cs" />
+    <Compile Include="Factory\PincodeFactory.cs" />
     <Compile Include="Factory\PredefinedAnswerFactory.cs" />
     <Compile Include="Factory\QuestionFactory.cs" />
     <Compile Include="Factory\QuestionListFactory.cs" />
@@ -125,6 +129,8 @@
     <Compile Include="Factory\UserAnswerFactory.cs" />
     <Compile Include="Model\AbstractModel.cs" />
     <Compile Include="Model\Account.cs" />
+    <Compile Include="Model\OpenQuestion.cs" />
+    <Compile Include="Model\Pincode.cs" />
     <Compile Include="Model\PredefinedAnswer.cs" />
     <Compile Include="Model\Question.cs" />
     <Compile Include="Model\QuestionList.cs" />
@@ -139,6 +145,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Service\Email\EmailClient.cs" />
     <Compile Include="Service\Email\IEmailClient.cs" />
+    <Compile Include="Service\Generate\Token.cs" />
     <Compile Include="Service\Login\LoginClient.cs" />
     <Compile Include="Service\SignalR\SignalRClient.cs" />
     <Compile Include="Service\SignalR\EventArgs\SubscriptionStatus.cs" />
@@ -169,6 +176,7 @@
     <Compile Include="View\Authorisation\AuthorisationView.Designer.cs">
       <DependentUpon>AuthorisationView.cs</DependentUpon>
     </Compile>
+    <Compile Include="View\Authorisation\IAuthorisationView.cs" />
     <Compile Include="View\Diagram\IDiagramView.cs" />
     <Compile Include="View\Diagram\DiagramView.cs">
       <SubType>Form</SubType>
@@ -191,11 +199,18 @@
     <Compile Include="View\IAddView.cs" />
     <Compile Include="View\IListView.cs" />
     <Compile Include="View\IView.cs" />
+    <Compile Include="View\Main\IStartView.cs" />
     <Compile Include="View\Main\MainView.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="View\Main\MainView.Designer.cs">
       <DependentUpon>MainView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\Main\StartView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\Main\StartView.designer.cs">
+      <DependentUpon>StartView.cs</DependentUpon>
     </Compile>
     <Compile Include="View\QuestionList\AddQuestionListView.cs">
       <SubType>Form</SubType>
@@ -260,6 +275,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="View\Main\MainView.resx">
       <DependentUpon>MainView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\Main\StartView.resx">
+      <DependentUpon>StartView.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="View\QuestionList\AddQuestionListView.resx">
       <DependentUpon>AddQuestionListView.cs</DependentUpon>

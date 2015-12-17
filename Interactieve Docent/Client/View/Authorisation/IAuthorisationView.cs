@@ -11,10 +11,10 @@ using System.Net;
 
 namespace Client.View
 {
-    public interface IView
+    public interface IAuthorisationView : IView
     {
-        IControlHandler GetHandler();
-        void AddToParent(IView parent);
-        void SetController(IController controller);
+        void ShowAuthorisationResult(Model.Account ac, HttpStatusCode status);
+
+
     }
 }

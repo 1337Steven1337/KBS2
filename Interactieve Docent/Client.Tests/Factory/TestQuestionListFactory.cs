@@ -13,7 +13,7 @@ namespace Client.Tests.Factory
     {
         private List<QuestionList> questionlists;
 
-        public TestQuestionListFactory()
+        public TestQuestionListFactory() 
         {
             questionlists = new List<QuestionList>();
             QuestionList ql1 = new QuestionList();
@@ -23,7 +23,7 @@ namespace Client.Tests.Factory
             ql2.Id = 2;
             ql2.Name = "2";
             QuestionList ql3 = new QuestionList();
-            ql3.Id = 3;
+            ql3.Id = 3; 
             ql3.Name = "3";
             questionlists.Add(ql1);
             questionlists.Add(ql2);
@@ -47,9 +47,9 @@ namespace Client.Tests.Factory
             callback(questionlists, HttpStatusCode.OK, null);
         }
 
-        public void FindByIdAsync(int id, Action<QuestionList, HttpStatusCode, IRestResponse> callback)
+        public void FindByIdAsync(object id, Action<QuestionList, HttpStatusCode, IRestResponse> callback)
         {
-            callback(questionlists[id], HttpStatusCode.OK, null);
+            callback(questionlists[(int)id], HttpStatusCode.OK, null);
         }
 
         public void SaveAsync(List<KeyValuePair<string, object>> data, Action<QuestionList, HttpStatusCode, IRestResponse> callback)
@@ -63,6 +63,11 @@ namespace Client.Tests.Factory
         public void SetResource(string resource)
         {
             //Q
+        }
+
+        public void UpdateAsync(List<KeyValuePair<string, object>> data, Action<QuestionList, HttpStatusCode, IRestResponse> callback)
+        {
+            throw new NotImplementedException();
         }
     }
 }

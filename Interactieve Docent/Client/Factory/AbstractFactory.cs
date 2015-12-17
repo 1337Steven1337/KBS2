@@ -143,7 +143,7 @@ namespace Client.Factory
         /// </summary>
         /// <param name="id">The ID of the instance you want to find</param>
         /// <param name="callback">Callback which is called when the request is completed</param>
-        public void FindByIdAsync(int id, Action<T, HttpStatusCode, IRestResponse> callback)
+        public void FindByIdAsync(object id, Action<T, HttpStatusCode, IRestResponse> callback)
         {
             this.baseFactory.FindByIdAsync(id, callback);
         }
@@ -153,7 +153,7 @@ namespace Client.Factory
         /// </summary>
         /// <param name="id">The ID of the instance you want to find</param>
         /// <param name="callback">Callback which is called when the request is completed</param>
-        public void FindByIdAsync(int id, Action<T, HttpStatusCode> callback)
+        public void FindByIdAsync(object id, Action<T, HttpStatusCode> callback)
         {
             this.FindByIdAsync(id, (o, s, r) =>
             {
@@ -169,7 +169,7 @@ namespace Client.Factory
         /// </summary>
         /// <param name="id">The ID of the instance you want to find</param>
         /// <param name="callback">Callback which is called when the request is completed</param>
-        public void FindByIdAsync(int id, Action<T> callback)
+        public void FindByIdAsync(object id, Action<T> callback)
         {
             this.FindByIdAsync(id, (o, s, r) =>
             {
@@ -334,7 +334,7 @@ namespace Client.Factory
         /// <param name="id">The ID of the instance to find</param>
         /// <param name="control">The control of the thread which the callback will be called on</param>
         /// <param name="callback">Callback which is called when the request is completed</param>
-        public void FindById(int id, IControlHandler control, Action<T, HttpStatusCode, IRestResponse> callback)
+        public void FindById(object id, IControlHandler control, Action<T, HttpStatusCode, IRestResponse> callback)
         {
             this.FindByIdAsync(id, (o, s, r) =>
             {
@@ -348,7 +348,7 @@ namespace Client.Factory
         /// <param name="id">The ID of the instance to find</param>
         /// <param name="control">The control of the thread which the callback will be called on</param>
         /// <param name="callback">Callback which is called when the request is completed</param>
-        public void FindById(int id, IControlHandler control, Action<T, HttpStatusCode> callback)
+        public void FindById(object id, IControlHandler control, Action<T, HttpStatusCode> callback)
         {
             this.FindByIdAsync(id, (o, s, r) =>
             {
@@ -362,7 +362,7 @@ namespace Client.Factory
         /// <param name="id">The ID of the instance to find</param>
         /// <param name="control">The control of the thread which the callback will be called on</param>
         /// <param name="callback">Callback which is called when the request is completed</param>
-        public void FindById(int id, IControlHandler control, Action<T> callback)
+        public void FindById(object id, IControlHandler control, Action<T> callback)
         {
             this.FindByIdAsync(id, (o, s, r) =>
             {
@@ -370,7 +370,7 @@ namespace Client.Factory
             });
         }
 
-        /// <summary>
+        /// <summary>  
         /// Find all instances of a model
         /// </summary>
         /// <param name="control">The control of the thread which the callback will be called on</param>
@@ -408,6 +408,117 @@ namespace Client.Factory
                 control.Invoke(callback, o);
             });
         }
+         
+        /// <summary>
+        /// Saves an instance of the model
+        /// </summary>
+        /// <param name="instance">The instance to Save</param>
+        /// <param name="control">The control of the thread which the callback will be called on</param>
+        /// <param name="callback">Callback which is called when the request is completed</param>
+        public void Update(T instance, IControlHandler control, Action<T, HttpStatusCode, IRestResponse> callback)
+        {
+            this.UpdateAsync(instance, (o, s, r) =>
+            {
+                control.Invoke(callback, o, s, r);
+            });
+        }
+
+        /// <summary>
+        /// Saves an instance of the model
+        /// </summary>
+        /// <param name="instance">The instance to Save</param>
+        /// <param name="control">The control of the thread which the callback will be called on</param>
+        /// <param name="callback">Callback which is called when the request is completed</param>
+        public void Update(T instance, IControlHandler control, Action<T, HttpStatusCode> callback)
+        {
+            this.UpdateAsync(instance, (o, s, r) =>
+            {
+                control.Invoke(callback, o, s);
+            });
+        }
+
+        /// <summary>
+        /// Saves an instance of the model
+        /// </summary>
+        /// <param name="instance">The instance to Save</param>
+        /// <param name="control">The control of the thread which the callback will be called on</param>
+        /// <param name="callback">Callback which is called when the request is completed</param>
+        public void Update(T instance, IControlHandler control, Action<T> callback)
+        {
+            this.UpdateAsync(instance, (o, s, r) =>
+            {
+                control.Invoke(callback, o);
+            });
+        }
+
+        /// <summary>
+        /// Saves an instance of the model
+        /// </summary>
+        /// <param name="instance">The instance to Save</param>
+        /// <param name="control">The control of the thread which the callback will be called on</param>
+        /// <param name="callback">Callback which is called when the request is completed</param>
+        public void Update(T instance)
+        {
+            this.UpdateAsync(instance);
+        }
+
+        /// <summary>
+        /// Saves an instance to the database
+        /// </summary>
+        /// <param name="instance">The instance to Save</param>
+        /// <param name="callback">Callback which is called when the request is completed</param>
+        public void UpdateAsync(T instance, Action<T, HttpStatusCode, IRestResponse> callback)
+        {
+            List<KeyValuePair<string, object>> list = new List<KeyValuePair<string, object>>();
+
+            foreach (KeyValuePair<string, object> entry in this.UpdateFields(instance))
+            {
+                list.Add(entry);
+            }
+
+            this.baseFactory.UpdateAsync(list, callback);
+        }
+
+        /// <summary>
+        /// Saves an instance to the database
+        /// </summary>
+        /// <param name="instance">The instance to Save</param>
+        /// <param name="callback">Callback which is called when the request is completed</param>
+        public void UpdateAsync(T instance, Action<T, HttpStatusCode> callback)
+        {
+            this.UpdateAsync(instance, (o, s, r) =>
+            {
+                if (callback != null)
+                {
+                    callback(o, s);
+                }
+            });
+        }
+
+        /// <summary>
+        /// Saves an instance to the database
+        /// </summary>
+        /// <param name="instance">The instance to Save</param>
+        /// <param name="callback">Callback which is called when the request is completed</param>
+        public void UpdateAsync(T instance, Action<T> callback)
+        {
+            this.UpdateAsync(instance, (o, s, r) =>
+            {
+                if (callback != null)
+                {
+                    callback(o);
+                }
+            });
+        }
+
+        /// <summary>
+        /// Saves an instance to the database
+        /// </summary>
+        /// <param name="instance">The instance to Save</param>
+        public void UpdateAsync(T instance)
+        {
+            this.UpdateAsync(instance, (o, s, r) => { });
+        }
         #endregion
 
         #region Methods
@@ -417,6 +528,8 @@ namespace Client.Factory
         /// <param name="instance">The instance to Save</param>
         /// <returns>Dictonary containing the values used to Save the instance</returns>
         protected abstract Dictionary<string, object> GetFields(T instance);
+
+        protected abstract Dictionary<string, object> UpdateFields(T instance);
 
         public void SetBaseFactory(IFactory<T> factory)
         {

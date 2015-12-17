@@ -26,6 +26,7 @@ namespace Server.Models.Context
         public DbSet<Server.Models.PredefinedAnswer> PredefinedAnswers { get; set; }
         public DbSet<Server.Models.Account> Accounts { get; set; }
         public DbSet<Server.Models.Token> Tokens { get; set; }
+        public DbSet<Server.Models.Pincode> Pincodes { get; set; }
 
         public void MarkAsModified(Question item)
         {
@@ -52,6 +53,10 @@ namespace Server.Models.Context
             Entry(item).State = EntityState.Modified;
         }
         public void MarkAsModified(Token item)
+        {
+            Entry(item).State = EntityState.Modified;
+        }
+        public void MarkAsModified(Pincode item)
         {
             Entry(item).State = EntityState.Modified;
         }
