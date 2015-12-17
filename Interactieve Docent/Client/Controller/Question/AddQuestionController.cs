@@ -53,6 +53,14 @@ namespace Client.Controller.Question
             this.View.ShowSaveResult(question, status);
         }
 
+        //private void CallbackUpdateQuestion(Model.Question question, HttpStatusCode status)
+        //{
+        //    if(status == HttpStatusCode.OK && question != null)
+        //    {
+        //        if()
+        //    }
+        //}
+
         public override void SetBaseFactory(IFactory<Model.Question> factory)
         {
             this.Factory.SetBaseFactory(factory);
