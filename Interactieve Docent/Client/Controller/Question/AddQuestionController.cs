@@ -17,7 +17,7 @@ namespace Client.Controller.Question
     {
         #region Delegates
         public delegate void QuestionAddedDelegate(Model.Question question);
-        public delegate void RemoveAddQuestionPanelDelegate();
+        public delegate void RemoveAddQuestionPanelDelegate(bool resizeTable);
         #endregion
 
         #region Events
@@ -62,6 +62,14 @@ namespace Client.Controller.Question
         {
             this.View = (IAddView<Model.Question>)view;
             this.View.SetController(this);
+        }
+
+        public void UpdateQuestion(Dictionary<string, object> data)
+        {
+            data.Add("List_Id", this.Parent.Id);
+
+            Model.Question question = new Model.Question(data);
+            Factory.Update(question, this.View.GetHandler(), this.CallbackSaveQuestion);
         }
 
         public void SaveQuestion(Dictionary<string, object> data)
@@ -150,7 +158,7 @@ namespace Client.Controller.Question
         {
             if (this.RemoveAddQuestionPanel != null)
             {
-                this.RemoveAddQuestionPanel();
+                this.RemoveAddQuestionPanel(true);
             }
         }
         #endregion

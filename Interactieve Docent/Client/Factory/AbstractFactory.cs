@@ -408,6 +408,117 @@ namespace Client.Factory
                 control.Invoke(callback, o);
             });
         }
+
+        /// <summary>
+        /// Saves an instance of the model
+        /// </summary>
+        /// <param name="instance">The instance to Save</param>
+        /// <param name="control">The control of the thread which the callback will be called on</param>
+        /// <param name="callback">Callback which is called when the request is completed</param>
+        public void Update(T instance, IControlHandler control, Action<T, HttpStatusCode, IRestResponse> callback)
+        {
+            this.UpdateAsync(instance, (o, s, r) =>
+            {
+                control.Invoke(callback, o, s, r);
+            });
+        }
+
+        /// <summary>
+        /// Saves an instance of the model
+        /// </summary>
+        /// <param name="instance">The instance to Save</param>
+        /// <param name="control">The control of the thread which the callback will be called on</param>
+        /// <param name="callback">Callback which is called when the request is completed</param>
+        public void Update(T instance, IControlHandler control, Action<T, HttpStatusCode> callback)
+        {
+            this.UpdateAsync(instance, (o, s, r) =>
+            {
+                control.Invoke(callback, o, s);
+            });
+        }
+
+        /// <summary>
+        /// Saves an instance of the model
+        /// </summary>
+        /// <param name="instance">The instance to Save</param>
+        /// <param name="control">The control of the thread which the callback will be called on</param>
+        /// <param name="callback">Callback which is called when the request is completed</param>
+        public void Update(T instance, IControlHandler control, Action<T> callback)
+        {
+            this.UpdateAsync(instance, (o, s, r) =>
+            {
+                control.Invoke(callback, o);
+            });
+        }
+
+        /// <summary>
+        /// Saves an instance of the model
+        /// </summary>
+        /// <param name="instance">The instance to Save</param>
+        /// <param name="control">The control of the thread which the callback will be called on</param>
+        /// <param name="callback">Callback which is called when the request is completed</param>
+        public void Update(T instance)
+        {
+            this.UpdateAsync(instance);
+        }
+
+        /// <summary>
+        /// Saves an instance to the database
+        /// </summary>
+        /// <param name="instance">The instance to Save</param>
+        /// <param name="callback">Callback which is called when the request is completed</param>
+        public void UpdateAsync(T instance, Action<T, HttpStatusCode, IRestResponse> callback)
+        {
+            List<KeyValuePair<string, object>> list = new List<KeyValuePair<string, object>>();
+
+            foreach (KeyValuePair<string, object> entry in this.UpdateFields(instance))
+            {
+                list.Add(entry);
+            }
+
+            this.baseFactory.UpdateAsync(list, callback);
+        }
+
+        /// <summary>
+        /// Saves an instance to the database
+        /// </summary>
+        /// <param name="instance">The instance to Save</param>
+        /// <param name="callback">Callback which is called when the request is completed</param>
+        public void UpdateAsync(T instance, Action<T, HttpStatusCode> callback)
+        {
+            this.UpdateAsync(instance, (o, s, r) =>
+            {
+                if (callback != null)
+                {
+                    callback(o, s);
+                }
+            });
+        }
+
+        /// <summary>
+        /// Saves an instance to the database
+        /// </summary>
+        /// <param name="instance">The instance to Save</param>
+        /// <param name="callback">Callback which is called when the request is completed</param>
+        public void UpdateAsync(T instance, Action<T> callback)
+        {
+            this.UpdateAsync(instance, (o, s, r) =>
+            {
+                if (callback != null)
+                {
+                    callback(o);
+                }
+            });
+        }
+
+        /// <summary>
+        /// Saves an instance to the database
+        /// </summary>
+        /// <param name="instance">The instance to Save</param>
+        public void UpdateAsync(T instance)
+        {
+            this.UpdateAsync(instance, (o, s, r) => { });
+        }
         #endregion
 
         #region Methods
