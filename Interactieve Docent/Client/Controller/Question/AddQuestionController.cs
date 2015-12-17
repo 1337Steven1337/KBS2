@@ -99,7 +99,11 @@ namespace Client.Controller.Question
         public void DeletePredefinedAnswers(List<Model.PredefinedAnswer> answers, Model.Question question, IFactory<Model.PredefinedAnswer> baseFactory)
         {
             this.AnswersSaved.Clear();
-            //this.CurrentQuestion = question;
+            this.CurrentQuestion = question;
+            foreach (Model.PredefinedAnswer answer in answers)
+            {
+                this.AnswersDeleted.Add(answer.Text, 0);
+            }
 
             PredefinedAnswerFactory factory = new PredefinedAnswerFactory();
             factory.SetBaseFactory(baseFactory);
@@ -114,6 +118,7 @@ namespace Client.Controller.Question
         {
             if (status == HttpStatusCode.Created && predefinedAnswer != null)
             {
+
                 AnswersDeleted[predefinedAnswer.Text] = 1;
             }
             else
@@ -131,6 +136,7 @@ namespace Client.Controller.Question
                 else
                 {
                     this.View.ShowSaveSucceed();
+                    //this.View.SavePredefinedAnswers(predefinedAnswer, );
                 }
             }
         }
@@ -185,7 +191,7 @@ namespace Client.Controller.Question
             {
                 if (AnswersSaved.ContainsValue(2))
                 {
-                    this.Factory.DeleteAsync(this.CurrentQuestion);
+                    //this.Factory.DeleteAsync(this.CurrentQuestion);
                     this.View.ShowSaveFailed();
                 }
                 else

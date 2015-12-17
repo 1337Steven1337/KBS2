@@ -111,6 +111,7 @@
     <Compile Include="Controller\IController.cs" />
     <Compile Include="Controller\Main\ShowMainController.cs" />
     <Compile Include="Controller\Main\ShowStartController.cs" />
+    <Compile Include="Controller\OpenQuestionController.cs" />
     <Compile Include="Controller\OpenQuestion\AddOpenQuestionController.cs" />
     <Compile Include="Controller\OpenQuestion\ListOpenQuestionController.cs" />
     <Compile Include="Controller\QuestionList\ListQuestionListController.cs" />
@@ -130,6 +131,7 @@
     <Compile Include="Factory\UserAnswerFactory.cs" />
     <Compile Include="Model\AbstractModel.cs" />
     <Compile Include="Model\Account.cs" />
+    <Compile Include="Model\DocentAccount.cs" />
     <Compile Include="Model\OpenQuestion.cs" />
     <Compile Include="Model\Pincode.cs" />
     <Compile Include="Model\PredefinedAnswer.cs" />
@@ -157,6 +159,12 @@
     </Compile>
     <Compile Include="Student\nextForm.Designer.cs">
       <DependentUpon>nextForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Student\OpenQuestion.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Student\OpenQuestion.Designer.cs">
+      <DependentUpon>OpenQuestion.cs</DependentUpon>
     </Compile>
     <Compile Include="Student\QuestionForm.cs">
       <SubType>Form</SubType>
@@ -206,6 +214,13 @@
     <Compile Include="View\IAddView.cs" />
     <Compile Include="View\IListView.cs" />
     <Compile Include="View\IView.cs" />
+    <Compile Include="View\Login\ILoginView.cs" />
+    <Compile Include="View\Login\LoginView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\Login\LoginView.Designer.cs">
+      <DependentUpon>LoginView.cs</DependentUpon>
+    </Compile>
     <Compile Include="View\Main\IStartView.cs" />
     <Compile Include="View\Main\MainView.cs">
       <SubType>Form</SubType>
@@ -268,6 +283,9 @@
     <EmbeddedResource Include="Student\nextForm.resx">
       <DependentUpon>nextForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Student\OpenQuestion.resx">
+      <DependentUpon>OpenQuestion.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Student\QuestionForm.resx">
       <DependentUpon>QuestionForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -288,6 +306,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="View\Dialogs\SuccesDialogView.resx">
       <DependentUpon>SuccesDialogView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\Login\LoginView.resx">
+      <DependentUpon>LoginView.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="View\Main\MainView.resx">
       <DependentUpon>MainView.cs</DependentUpon>
