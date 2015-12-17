@@ -212,6 +212,12 @@
     <Compile Include="View\Main\StartView.designer.cs">
       <DependentUpon>StartView.cs</DependentUpon>
     </Compile>
+    <Compile Include="View\OpenQuestion\ListOpenQuestionView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\OpenQuestion\ListOpenQuestionView.Designer.cs">
+      <DependentUpon>ListOpenQuestionView.cs</DependentUpon>
+    </Compile>
     <Compile Include="View\QuestionList\AddQuestionListView.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -278,6 +284,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="View\Main\StartView.resx">
       <DependentUpon>StartView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\OpenQuestion\ListOpenQuestionView.resx">
+      <DependentUpon>ListOpenQuestionView.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="View\QuestionList\AddQuestionListView.resx">
       <DependentUpon>AddQuestionListView.cs</DependentUpon>

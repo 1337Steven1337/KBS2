@@ -14,6 +14,7 @@ using Client.View.Account;
 using Client.View.Authorisation;
 using Client.View.Diagram;
 using Client.Controller.Main;
+using Client.View.OpenQuestion;
 
 namespace Client
 {
@@ -52,11 +53,12 @@ namespace Client
 
             // AddAccountView view = new AddAccountView();
             // AddAccountController controller = new AddAccountController(view);
+            
 
             StartView view = new StartView();
             ShowStartController controller = new ShowStartController(view);
-             
-            Application.Run(view);
+            Application.Run(new ListOpenQuestionView());
+            //Application.Run(view);
         }
     }
 }
