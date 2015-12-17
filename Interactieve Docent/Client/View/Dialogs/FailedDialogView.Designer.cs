@@ -43,11 +43,12 @@
             this.tableLayoutPanel1.Controls.Add(this.btnClose, 0, 1);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
+            this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 2;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 80F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(400, 250);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(300, 203);
             this.tableLayoutPanel1.TabIndex = 0;
             // 
             // labelFailed
@@ -55,9 +56,10 @@
             this.labelFailed.AutoSize = true;
             this.labelFailed.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelFailed.ForeColor = System.Drawing.Color.White;
-            this.labelFailed.Location = new System.Drawing.Point(3, 0);
+            this.labelFailed.Location = new System.Drawing.Point(2, 0);
+            this.labelFailed.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.labelFailed.Name = "labelFailed";
-            this.labelFailed.Size = new System.Drawing.Size(52, 17);
+            this.labelFailed.Size = new System.Drawing.Size(41, 13);
             this.labelFailed.TabIndex = 0;
             this.labelFailed.Text = "label1";
             // 
@@ -70,24 +72,25 @@
             this.btnClose.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnClose.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnClose.ForeColor = System.Drawing.Color.White;
-            this.btnClose.Location = new System.Drawing.Point(0, 200);
+            this.btnClose.Location = new System.Drawing.Point(0, 162);
             this.btnClose.Margin = new System.Windows.Forms.Padding(0);
             this.btnClose.Name = "btnClose";
-            this.btnClose.Size = new System.Drawing.Size(400, 50);
+            this.btnClose.Size = new System.Drawing.Size(300, 41);
             this.btnClose.TabIndex = 1;
             this.btnClose.Text = "Sluiten";
             this.btnClose.UseVisualStyleBackColor = false;
             this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
             // 
-            // ViewFailedDialog
+            // FailedDialogView
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(400, 250);
+            this.ClientSize = new System.Drawing.Size(300, 203);
             this.Controls.Add(this.tableLayoutPanel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Name = "ViewFailedDialog";
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Name = "FailedDialogView";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "ViewFailedDialog";
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();

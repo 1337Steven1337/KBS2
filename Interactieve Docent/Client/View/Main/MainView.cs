@@ -11,6 +11,7 @@ using System.Windows.Forms;
 using Client.Service.Thread;
 using Client.View.Account;
 using Client.Controller.Account;
+using Client.View.Dialogs;
 
 namespace Client.View.Main
 {
@@ -117,7 +118,12 @@ namespace Client.View.Main
             AddAccountView view = new AddAccountView();
             AddAccountController controller = new AddAccountController(view);
 
-            view.ShowDialog();
+            BackgroundDialogView background = new BackgroundDialogView(this, view);
+        }
+
+        private void OpenQuestionButton_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
