@@ -57,6 +57,7 @@ namespace Client.View.Question
             questionField.Text = question.Text;
             timeField.Value = question.Time;
             pointsField.Value = question.Points;
+            //question.PredefinedAnswers = OldAnswersList.ToList();
 
             foreach(Model.PredefinedAnswer pa in question.PredefinedAnswers)
             {
@@ -64,6 +65,17 @@ namespace Client.View.Question
                 CurrentAnswersList.Add(pa);
                 RightAnswerList.Add(pa);
             }
+        }
+
+        public void ClearAllFields()
+        {
+            questionField.Text = "";
+            timeField.Value = 0;
+            pointsField.Value = 0;
+            CurrentAnswersList.Clear();
+            answersListBox.DataSource = CurrentAnswersList;
+            RightAnswerList.Clear();
+            rightAnswerComboBox.DataSource = RightAnswerList;
         }
 
         private void AnswerField_PreviewKeyDown(object sender, PreviewKeyDownEventArgs e)
@@ -210,7 +222,7 @@ namespace Client.View.Question
         {
             if(status == HttpStatusCode.Created && instance != null)
             {
-                this.Controller.SavePredefinedAnswers(CurrentAnswersList.ToList(), instance);
+                this.Controller.SavePredefinedAnswers(CurrentAnswersList.ToList(), instance, false);
             }
             else
             {
@@ -239,7 +251,7 @@ namespace Client.View.Question
         {
             if (status == HttpStatusCode.OK && instance != null)
             {
-                this.Controller.SavePredefinedAnswers(CurrentAnswersList.ToList(), instance);
+                this.Controller.SavePredefinedAnswers(CurrentAnswersList.ToList(), instance, true);
             }
             else
             {

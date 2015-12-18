@@ -16,5 +16,6 @@ namespace Client.View
         void ShowSaveFailed();
         void ShowSaveSucceed();
         Model.PredefinedAnswer GetSelectedAnswer();
+        void ClearAllFields();
     }
 }

@@ -132,6 +132,11 @@ namespace Client.View.Account
         {
             throw new NotImplementedException();
         }
+
+        public void ClearAllFields()
+        {
+            throw new NotImplementedException();
+        }
         #endregion
     }
 }

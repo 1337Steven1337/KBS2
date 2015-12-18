@@ -25,13 +25,21 @@ namespace Client.Controller.Question
         #region Event
         public void QuestionAdded(Model.Question question)
         {
-            this.View.AddItem(question);
+            this.LoadList(CurrentList);
+
+            //questions dont get predefinedanswers, so when update the object is not filled with predefinedanswers.
+            //this.View.AddItem(question);
         }
 
         public void QuestionUpdated(Model.Question question)
         {
-            //load list again because its updated (maybe at last index selected for highlighting)
+            //Load questions again from server..
             this.LoadList(CurrentList);
+
+            //!!! better solution would be.. reset the question with the updated question. 
+            //var index = CurrentList.Questions.FindIndex(x => x.Id == question.Id);
+            //CurrentList.Questions.RemoveAt(index);
+            //CurrentList.Questions.Insert(index, question);
         }
         #endregion
 

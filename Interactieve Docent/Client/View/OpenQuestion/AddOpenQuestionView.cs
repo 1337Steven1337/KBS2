@@ -95,5 +95,10 @@ namespace Client.View.OpenQuestion
         {
             throw new NotImplementedException();
         }
+
+        public void ClearAllFields()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

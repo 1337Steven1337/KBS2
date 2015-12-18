@@ -67,5 +67,10 @@ namespace Client.Tests.View.Question
         {
             throw new NotImplementedException();
         }
+
+        public void ClearAllFields()
+        {
+            throw new NotImplementedException();
+        }
     }
 }
