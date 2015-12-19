@@ -16,13 +16,12 @@ namespace Client.Controller.Question
     public class AddQuestionController : AbstractController<Model.Question>
     {
         #region Delegates
-        public delegate void QuestionAddedDelegate(Model.Question question);
+        public delegate void UpdateListQuestionDelegate();
         public delegate void RemoveAddQuestionPanelDelegate(bool resizeTable);
         #endregion
 
         #region Events
-        public event QuestionAddedDelegate QuestionAdded;
-        public event QuestionAddedDelegate QuestionUpdated;
+        public event UpdateListQuestionDelegate UpdateListQuestion;
         public event RemoveAddQuestionPanelDelegate RemoveAddQuestionPanel;
         #endregion
 
@@ -129,12 +128,10 @@ namespace Client.Controller.Question
             {
                 if (AnswersDeleted.ContainsValue(2))
                 {
-                    //this.Factory.DeleteAsync(this.CurrentQuestion);
                     this.View.ShowSaveFailed();
                 }
                 else
                 {
-                    //this.View.ShowSaveSucceed();
                     this.View.ShowDeleteAnswersResult(CurrentQuestion, status);
                 }
             }
@@ -150,11 +147,6 @@ namespace Client.Controller.Question
         {
             this.AnswersSaved.Clear();
             this.CurrentQuestion = question;
-
-            //if (!IsUpdate)
-            //{
-            //    this.CurrentQuestion.PredefinedAnswers = answers;
-            //}
 
             foreach (Model.PredefinedAnswer answer in answers)
             {
@@ -203,16 +195,17 @@ namespace Client.Controller.Question
 
                     if (IsUpdate)
                     {
-                        QuestionUpdated(CurrentQuestion);
                         InvokeRemoveQuestionPanel();
                     }
                     else
                     {
-                        if (this.QuestionAdded != null)
-                        {
-                            QuestionAdded(CurrentQuestion);
-                        }
                         this.View.ClearAllFields();
+                    }
+
+                    //Reload list with questions
+                    if (this.UpdateListQuestion != null)
+                    {
+                        UpdateListQuestion();
                     }
                 }
             }

@@ -33,16 +33,6 @@ namespace Client.View.Question
         private DiagramController DiagramController { get; set; }
         #endregion
 
-        public Boolean changeQuestion
-        {
-            get
-            {
-                return changeQuestion;
-            }
-            set { }
-                
-        }
-
         #region Constructors
         public ListQuestionView()
         {
@@ -80,6 +70,7 @@ namespace Client.View.Question
         #region Methods
         public void FillList(List<Model.Question> list)
         {
+            labelTitle.Text = String.Format("Vragen uit: {0}", this.Controller.CurrentList.Name);
             this.Questions.Clear();
 
             foreach (Model.Question question in list)
@@ -123,7 +114,6 @@ namespace Client.View.Question
         {
             Questions.Add(question);
         }
-
 
         public void DeleteItem(Model.Question item)
         {

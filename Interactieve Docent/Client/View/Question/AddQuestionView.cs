@@ -39,6 +39,7 @@ namespace Client.View.Question
             answersListBox.DataSource = CurrentAnswersList;
             rightAnswerComboBox.DataSource = RightAnswerList;
 
+            //If question is not null, the user wants to edit a question.
             if (question != null)
             {
                 EditQuestion(question);
@@ -52,21 +53,27 @@ namespace Client.View.Question
             }
         }
 
+        //Loads the data from a selected question in Input fields
         private void EditQuestion(Model.Question question)
         {
             questionField.Text = question.Text;
             timeField.Value = question.Time;
             pointsField.Value = question.Points;
-            //question.PredefinedAnswers = OldAnswersList.ToList();
 
             foreach(Model.PredefinedAnswer pa in question.PredefinedAnswers)
             {
                 OldAnswersList.Add(pa);
                 CurrentAnswersList.Add(pa);
                 RightAnswerList.Add(pa);
+
+                if(pa.Right_Answer)
+                {
+                    rightAnswerComboBox.SelectedItem = pa;
+                }
             }
         }
 
+        //Clears all input fields in Addquestionview
         public void ClearAllFields()
         {
             questionField.Text = "";
@@ -201,7 +208,7 @@ namespace Client.View.Question
         //Get the Selelecteditem from Listbox
         public Model.PredefinedAnswer GetSelectedAnswer()
         {
-            return (Model.PredefinedAnswer)this.answersListBox.SelectedItem;
+            return (Model.PredefinedAnswer)this.rightAnswerComboBox.SelectedItem;
         }
 
         public void ShowSaveFailed()
@@ -228,11 +235,6 @@ namespace Client.View.Question
             {
                 this.ShowSaveFailed();
             }
-        }
-
-        private void AddQuestionView_Load(object sender, EventArgs e)
-        {
-            //this.questionField.Focus();
         }
 
         public void ShowUpdateResult(Model.Question instance, HttpStatusCode status)
