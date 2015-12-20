@@ -11,7 +11,7 @@ namespace Client.Tests.Controllers
     public class TestUpdateQuestion
     {
         [TestMethod]
-        public void TestShouldUpdateQuestion()
+        public void TestUpdateQuestion_ShouldReturnTrue()
         {
             TestUpdateQuestionView view = new TestUpdateQuestionView();
 
@@ -29,18 +29,12 @@ namespace Client.Tests.Controllers
             dataNew["Time"] = 2;
             dataNew["Text"] = "test2";
             dataNew["PredefinedAnswerCount"] = answersNew.Count;
-            dataNew["List_Id"] = list.Id;
             dataNew["Id"] = 1;
 
-            controller.DeletePredefinedAnswers(answersNew, new Model.Question(dataNew));
+            controller.UpdateQuestion(dataNew);
 
-            Dictionary<string, object> dataNew2 = new Dictionary<string, object>();
-            dataNew2 = dataNew;
-            dataNew2.Remove("List_Id");
-
-            controller.UpdateQuestion(dataNew2);
-
-            Assert.AreEqual(true, view.Compare(new Model.Question(dataNew2)));
+            Assert.AreEqual(true, view.questionIsUpdated);
         }
+
     }
 }

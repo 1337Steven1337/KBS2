@@ -12,40 +12,8 @@ using System.Net;
 namespace Client.Tests.View.Question
 {
     public class TestUpdateQuestionView : IAddView<Model.Question>
-    {
-        public List<Model.PredefinedAnswer> DeleteAnswersList = new List<Model.PredefinedAnswer>();
-        public Model.Question oldQuestion;
-
-        public TestUpdateQuestionView()
-        {
-            List<Model.PredefinedAnswer> answersOld = new List<Model.PredefinedAnswer>() { new Model.PredefinedAnswer() { Text = "test1" } };
-            Dictionary<string, object> dataOld = new Dictionary<string, object>();
-            dataOld["Points"] = 1;
-            dataOld["Time"] = 1;
-            dataOld["Text"] = "test1";
-            dataOld["PredefinedAnswerCount"] = answersOld.Count;
-            dataOld["List_Id"] = 1;
-            dataOld["Id"] = 1;
-
-            this.oldQuestion = new Model.Question(dataOld);
-        }
-
-        public Boolean Compare(Model.Question newQuestion) {
-            oldQuestion = newQuestion;
-
-            if (oldQuestion == newQuestion)
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }                   
-        }
-        public int CountDeleteAnswersList()
-        {
-            return DeleteAnswersList.Count;            
-        }
+    {    
+        public Boolean questionIsUpdated = false;
 
         public void AddToParent(IView parent)
         {
@@ -59,8 +27,7 @@ namespace Client.Tests.View.Question
 
         public PredefinedAnswer GetSelectedAnswer()
         {
-            return new PredefinedAnswer() { Text = "test2" };
-            //throw new NotImplementedException();
+            throw new NotImplementedException();
         }
 
         public void SetController(IController controller)
@@ -85,9 +52,9 @@ namespace Client.Tests.View.Question
 
         public void ShowUpdateResult(Model.Question instance, HttpStatusCode status)
         {
-            if (status == HttpStatusCode.NoContent)
+            if (status == HttpStatusCode.NoContent && instance != null)
             {
-                this.oldQuestion = instance;
+                this.questionIsUpdated = true;
             }
         }
 
