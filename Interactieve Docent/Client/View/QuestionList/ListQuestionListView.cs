@@ -134,7 +134,7 @@ namespace Client.View.QuestionList
                 //Show dialog for user to confirm Delete action
                 DialogResult dr = new DialogResult();
                 ConfirmDialogView confirm = new ConfirmDialogView();
-                confirm.getLabelConfirm().Text = "Weet u zeker dat u deze lijst wilt verwijderen?";
+                confirm.getLabelConfirm().Text = String.Format("Weet u zeker dat u {0} wilt verwijderen?", getSelectedItem().Name);
                 dr = confirm.ShowDialog();
 
                 //Confirm 
@@ -174,7 +174,7 @@ namespace Client.View.QuestionList
 
                 //Show dialog action succeed
                 SuccesDialogView succes = new SuccesDialogView();
-                succes.getLabelSucces().Text = "De lijst is succesvol verwijderd!!";
+                succes.getLabelSucces().Text = "De lijst is succesvol verwijderd.";
                 succes.ShowDialog();
             }
             else
@@ -197,6 +197,11 @@ namespace Client.View.QuestionList
         }
 
         public void ShowDeleteQuestionResult(Model.QuestionList instance, HttpStatusCode status)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void UpdateItem(Model.QuestionList item)
         {
             throw new NotImplementedException();
         }

@@ -11,14 +11,9 @@ using System.Net;
 
 namespace Client.Tests.View.Question
 {
-    public class TestAddQuestionView : IAddView<Model.Question>
-    {
-        public List<Model.Question> AddQuestionList = new List<Model.Question>();
-
-        public int CountAddQuestionList()
-        {
-            return AddQuestionList.Count;            
-        }
+    public class TestUpdateQuestionView : IAddView<Model.Question>
+    {    
+        public Boolean questionIsUpdated = false;
 
         public void AddToParent(IView parent)
         {
@@ -47,10 +42,7 @@ namespace Client.Tests.View.Question
 
         public void ShowSaveResult(Model.Question instance, HttpStatusCode status)
         {
-            if(status == HttpStatusCode.Created)
-            {
-                AddQuestionList.Add(instance);
-            }
+            throw new NotImplementedException();
         }
 
         public void ShowSaveSucceed()
@@ -60,7 +52,10 @@ namespace Client.Tests.View.Question
 
         public void ShowUpdateResult(Model.Question instance, HttpStatusCode status)
         {
-            throw new NotImplementedException();
+            if (status == HttpStatusCode.NoContent && instance != null)
+            {
+                this.questionIsUpdated = true;
+            }
         }
 
         public void ShowDeleteAnswersResult(Model.Question instance, HttpStatusCode status)

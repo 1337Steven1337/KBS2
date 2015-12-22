@@ -66,7 +66,14 @@ namespace Client.Tests.Factory
 
         public void UpdateAsync(List<KeyValuePair<string, object>> data, Action<Question, HttpStatusCode, IRestResponse> callback)
         {
-            throw new NotImplementedException();
+            Dictionary<string, object> properties = new Dictionary<string, object>();
+
+            foreach (KeyValuePair<string, object> values in data)
+            {
+                properties.Add(values.Key, values.Value);
+            }
+
+            callback(new Model.Question(properties), HttpStatusCode.NoContent, null);
         }
     }
 }

@@ -9,6 +9,7 @@ namespace Server.Models.DTO
     {
         public int Id { get; set; }
         public string Text { get; set; }
+        public bool Right_Answer { get; set; }
         public int Question_Id { get; set; }
 
         public PredefinedAnswerDTO() { }
@@ -17,6 +18,7 @@ namespace Server.Models.DTO
         {
             this.Id = predefinedAnswer.Id;
             this.Text = predefinedAnswer.Text;
+            this.Right_Answer = predefinedAnswer.Right_Answer;
             this.Question_Id = predefinedAnswer.Question_Id;
         }
     }

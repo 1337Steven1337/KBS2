@@ -85,5 +85,20 @@ namespace Client.View.OpenQuestion
         {
             SaveButton.Enabled = (QuestionTextBox.Text != null && QuestionTextBox.Text.Length > 0);
         }
+
+        public void ShowUpdateResult(Model.OpenQuestion instance, HttpStatusCode status)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void ShowDeleteAnswersResult(Model.OpenQuestion instance, HttpStatusCode status)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void ClearAllFields()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

@@ -68,7 +68,7 @@ namespace Client.Factory
             Dictionary<string, object> values = new Dictionary<string, object>();
             values.Add("Text", answer.Text);
             values.Add("Question_Id", answer.Question_Id);
-            values.Add("Right_Answer", answer.RightAnswer);
+            values.Add("Right_Answer", answer.Right_Answer);
             return values;
         }
 

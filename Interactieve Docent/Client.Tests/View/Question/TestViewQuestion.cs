@@ -70,5 +70,10 @@ namespace Client.Tests.View.Question
         {
             throw new NotImplementedException();
         }
+
+        public void UpdateItem(Model.Question item)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
