@@ -57,5 +57,10 @@ namespace Client.Tests.View.Question
         {
             throw new NotImplementedException();
         }
+
+        public void ShowUpdateResult(Model.Question instance, HttpStatusCode status)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

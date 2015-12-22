@@ -41,9 +41,11 @@ namespace Client.View.Main
             else
             {
                 LoginButton.Enabled = true;
+                CodeTextBox.Enabled = true;
+
                 FailedDialogView failed = new FailedDialogView();
                 failed.getLabelFailed().Text = "De code is incorrect.";
-                failed.ShowDialog();
+                BackgroundDialogView background = new BackgroundDialogView(this, failed);
             }
         }
 
@@ -57,6 +59,8 @@ namespace Client.View.Main
             if(this.CodeTextBox.Text != null && this.CodeTextBox.Text.Length == 6)
             {
                 LoginButton.Enabled = false;
+                CodeTextBox.Enabled = false;
+
                 Controller.CheckCode(this.CodeTextBox.Text);
             }
         }
@@ -78,6 +82,11 @@ namespace Client.View.Main
             listQuestionListController.Load();
 
             view.ShowDialog();
+        }
+
+        private void CodeTextBox_TextChanged(object sender, EventArgs e)
+        {
+            LoginButton.Enabled = (CodeTextBox.Text != null && CodeTextBox.Text.Length == 6);
         }
     }
 }

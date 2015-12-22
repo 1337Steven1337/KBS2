@@ -122,6 +122,11 @@ namespace Client.View.Account
         {
             throw new NotImplementedException();
         }
+
+        public void ShowUpdateResult(Model.Account instance, HttpStatusCode status)
+        {
+            throw new NotImplementedException();
+        }
         #endregion
     }
 }

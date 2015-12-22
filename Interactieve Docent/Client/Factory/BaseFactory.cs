@@ -34,7 +34,13 @@ namespace Client.Factory
 
             foreach (KeyValuePair<string, object> entry in data)
             {
+                if (entry.Key == "Id")
+                {
+                    request.Resource = Resource + "/" + Convert.ToInt32(entry.Value);
+                }
+
                 request.AddParameter(entry.Key, entry.Value);
+                
             }
 
             this.RestClient.ExecuteAsync<T>(request, response => {
