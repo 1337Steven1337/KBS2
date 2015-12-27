@@ -178,10 +178,13 @@
     <Compile Include="Controllers\QuestionsController.cs" />
     <Compile Include="Controllers\TokensController.cs" />
     <Compile Include="Controllers\UserAnswersController.cs" />
+    <Compile Include="Controllers\UserAnswerToOpenQuestionsController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Hubs\EventHub.cs" />
+    <Compile Include="Models\DTO\UserAnswerToOpenQuestionDTO.cs" />
+    <Compile Include="Models\UserAnswerToOpenQuestion.cs" />
     <Compile Include="Models\Account.cs" />
     <Compile Include="Models\DTO\AccountDTO.cs" />
     <Compile Include="Models\DTO\OpenQuestionDTO.cs" />
@@ -246,7 +249,7 @@
     <VisualStudio>
       <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
         <WebProjectProperties>
-          <UseIIS>True</UseIIS>
+          <UseIIS>False</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>57017</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
