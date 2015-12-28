@@ -87,5 +87,10 @@ namespace Client.Tests.View.Question
         {
             throw new NotImplementedException();
         }
+
+        public Model.Question getSelectedItem()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

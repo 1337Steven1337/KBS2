@@ -46,6 +46,11 @@ namespace Client.Tests.View.Question
             return null;
         }
 
+        public Model.Question getSelectedItem()
+        {
+            throw new NotImplementedException();
+        }
+
         public void SetController(IController controller)
         {
             //Should be implemented when the controller is needed

@@ -181,9 +181,18 @@ namespace Client.View.Question
 
         private void listBoxQuestions_MouseDoubleClick(object sender, MouseEventArgs e)
         {
-            if (this.AddQuestionClicked != null)
+            if (Controller.QuestionCanBeUpdated())
             {
-                this.AddQuestionClicked(this.Controller.CurrentList, getSelectedItem());
+                if (this.AddQuestionClicked != null)
+                {
+                    this.AddQuestionClicked(this.Controller.CurrentList, getSelectedItem());
+                }
+            }
+            else
+            {
+                FailedDialogView failed = new FailedDialogView();
+                failed.getLabelFailed().Text = "Deze vraag kan niet geupdate worden omdat er al antwoorden voor bestaan.";
+                failed.ShowDialog();
             }
         }
 

@@ -30,6 +30,17 @@ namespace Client.Controller.Question
         #endregion
 
         #region Methods
+        public bool QuestionCanBeUpdated()
+        {
+            foreach (var userAnswer in View.getSelectedItem().UserAnswers)
+            {
+                if (View.getSelectedItem().Id == userAnswer.Question_Id)
+                {
+                    return false;
+                }
+            }
+            return true;                       
+        }
 
         private void FillList(List<Model.Question> questions, HttpStatusCode status)
         {

@@ -205,6 +205,11 @@ namespace Client.View.QuestionList
         {
             throw new NotImplementedException();
         }
+
+        Model.Question IListView<Model.QuestionList>.getSelectedItem()
+        {
+            throw new NotImplementedException();
+        }
         #endregion
     }
 }
