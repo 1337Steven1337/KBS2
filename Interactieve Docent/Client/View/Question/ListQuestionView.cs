@@ -181,6 +181,7 @@ namespace Client.View.Question
 
         private void listBoxQuestions_MouseDoubleClick(object sender, MouseEventArgs e)
         {
+            //If question have answers from students, the question cannot be updated.
             if (Controller.QuestionCanBeUpdated())
             {
                 if (this.AddQuestionClicked != null)

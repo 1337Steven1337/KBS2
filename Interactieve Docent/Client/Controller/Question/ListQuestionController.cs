@@ -30,6 +30,7 @@ namespace Client.Controller.Question
         #endregion
 
         #region Methods
+        //If question have answers from students, the question cannot be updated.
         public bool QuestionCanBeUpdated()
         {
             foreach (var userAnswer in View.getSelectedItem().UserAnswers)
