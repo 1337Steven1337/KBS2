@@ -54,7 +54,7 @@ namespace Client.Controller.QuestionList
         {
             if (code == HttpStatusCode.OK && list != null)
             {
-                this.View.FillList(list);
+                this.View.FillList(list); 
             }
         }
         #endregion
@@ -81,9 +81,19 @@ namespace Client.Controller.QuestionList
             this.Factory.Save(list, this.View.GetHandler(), CallbackSaveQuestionlist);
         }
 
+        public void UpdateQuestionList(Model.QuestionList question)
+        {
+            this.Factory.Update(question, this.View.GetHandler(), CallbackUpdateQuestionlist);
+        }
+
         private void CallbackSaveQuestionlist(Model.QuestionList list, HttpStatusCode status)
         {
             this.View.ShowSaveQuestionListResult(list, status);
+        }
+
+        private void CallbackUpdateQuestionlist(Model.QuestionList list, HttpStatusCode status)
+        {
+            this.View.ShowUpdateQuestionListResult(list, status);
         }
 
         public void DeleteQuestionList(Model.QuestionList list)

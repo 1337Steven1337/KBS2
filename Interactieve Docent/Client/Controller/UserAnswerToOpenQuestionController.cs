@@ -14,7 +14,6 @@ namespace Client.Controller
     class UserAnswerToOpenQuestionController : AbstractController<Model.Question>
     {
         #region Variables & Instances
-        public List<string> Questions;
         private IResultView<Model.UserAnswerToOpenQuestion> View;
         public Model.OpenQuestion Question;
         private List<UserAnswerToOpenQuestion> Answers;
@@ -67,6 +66,7 @@ namespace Client.Controller
                 }
 
                 this.Answers.Add(answer);
+                this.View.GetHandler().Invoke((Action)Refresh);
             }
             else
             {
@@ -165,7 +165,7 @@ namespace Client.Controller
             //redraw the panel
             if (this.Question.UserAnswers != null)
             {
-                this.View.Make(this.Questions, this.Question.Text);
+                this.View.Refresh(this.Answers, this.Question);
             }
         }
 
