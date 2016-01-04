@@ -84,7 +84,7 @@ namespace Client.Controller.Account
 
         private string GeneratePassword(int length,string student)
         {
-            string password = Client.Service.Generate.Token.GenerateToken(length,student);
+            string password = Client.Service.Generate.Token.GenerateToken(length);
 
             if (this.UsedPasswords.ContainsValue(password))
             {

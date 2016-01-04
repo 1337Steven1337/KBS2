@@ -1,6 +1,6 @@
 ﻿namespace Client.View.OpenQuestion
 {
-    partial class ListOpenQuestionView
+    partial class UserAnswerToOpenQuestionView
     {
         /// <summary>
         /// Required designer variable.

@@ -15,6 +15,7 @@ using Client.View.Authorisation;
 using Client.View.Diagram;
 using Client.Controller.Main;
 using Client.View.OpenQuestion;
+using Client.Controller.OpenQuestion;
 
 namespace Client
 {
@@ -30,20 +31,20 @@ namespace Client
             Application.SetCompatibleTextRenderingDefault(false);
             //Application.Run(new Main());
 
-            
-            MainView view = new MainView();
-            MainController maincontroller = new MainController(view);
 
-            ListQuestionView viewQuestion = new ListQuestionView();
-            ListQuestionController questionController = new ListQuestionController(viewQuestion);
-            maincontroller.AddController(questionController);
+            //MainView view = new MainView();
+            //MainController maincontroller = new MainController(view);
 
-            ListQuestionListView viewQuestionList = new ListQuestionListView();
-            ListQuestionListController listQuestionListController = new ListQuestionListController(viewQuestionList);
-            maincontroller.AddController(listQuestionListController);
+            //ListQuestionView viewQuestion = new ListQuestionView();
+            //ListQuestionController questionController = new ListQuestionController(viewQuestion);
+            //maincontroller.AddController(questionController);
 
-            listQuestionListController.SelectedListChanged += questionController.LoadList;
-            listQuestionListController.Load();
+            //ListQuestionListView viewQuestionList = new ListQuestionListView();
+            //ListQuestionListController listQuestionListController = new ListQuestionListController(viewQuestionList);
+            //maincontroller.AddController(listQuestionListController);
+
+            //listQuestionListController.SelectedListChanged += questionController.LoadList;
+            //listQuestionListController.Load();
             /*
             Student.QuestionForm form = new Student.QuestionForm(1);
             form.Show();
@@ -58,7 +59,8 @@ namespace Client
             //StartView view = new StartView();
             //ShowStartController controller = new ShowStartController(view);
             //Application.Run(new ListOpenQuestionView());
-
+            UserAnswerToOpenQuestionView view = new UserAnswerToOpenQuestionView();
+            UserAnswerToOpenQuestionController controller = new UserAnswerToOpenQuestionController(view);
             Application.Run(view);
         }
     }

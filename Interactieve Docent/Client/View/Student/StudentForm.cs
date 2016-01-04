@@ -71,7 +71,7 @@ namespace Client.View.Student
         }
 
 
-        //Checks the HTTP response, if it is not OK then stop the questionList because the results are not valid anymore.
+        //Checks the HTTP response, if it is not Created then stop the questionList because the results are not valid anymore.
         private void saveAnswerCallBackHandler(Client.Model.UserAnswer ua, HttpStatusCode code)
         {
             if (code ==HttpStatusCode.Created)
