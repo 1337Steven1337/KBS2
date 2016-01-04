@@ -76,7 +76,7 @@ namespace Client.View.OpenQuestion
                 {
                     if (answer.Question_Id == this.Controller.Question.Id)
                     {
-                        this.list.Add(new KeyValuePair<string, string>(answer.Question_Id.ToString(), answer.Answer));
+                        this.list.Add(new KeyValuePair<string, string>("#naam", answer.Answer));
                     }
                 }
             }
@@ -84,7 +84,7 @@ namespace Client.View.OpenQuestion
             {
                 foreach (Model.UserAnswerToOpenQuestion answer in list)
                 {
-                    this.list.Add(new KeyValuePair<string, string>(answer.Question_Id.ToString(), answer.Answer));
+                    this.list.Add(new KeyValuePair<string, string>("#naam", answer.Answer));
                 }
             }
         }
@@ -119,9 +119,10 @@ namespace Client.View.OpenQuestion
             throw new NotImplementedException();
         }
 
-        public void Make(List<string> questions, string text)
+        public void Refresh(List<UserAnswerToOpenQuestion> answers, Model.OpenQuestion question)
         {
-            throw new NotImplementedException();
+            setText(question.Text);
+            FillList(answers);
         }
 
         public void setText(string text)
