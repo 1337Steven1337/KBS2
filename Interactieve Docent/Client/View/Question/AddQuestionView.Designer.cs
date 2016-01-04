@@ -396,7 +396,6 @@
             this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Name = "AddQuestionView";
             this.Text = "ViewAddQuestion";
-            this.Load += new System.EventHandler(this.AddQuestionView_Load);
             this.mainTablePanel.ResumeLayout(false);
             this.titlePanel.ResumeLayout(false);
             this.buttonsTablePanel.ResumeLayout(false);

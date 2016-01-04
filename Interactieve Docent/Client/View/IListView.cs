@@ -16,5 +16,6 @@ namespace Client.View
         void FillList(List<T> list);
         void AddItem(T item);
         void DeleteItem(T item);
+        Model.Question getSelectedItem();
     }
 }

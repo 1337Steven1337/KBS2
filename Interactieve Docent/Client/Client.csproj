@@ -247,6 +247,12 @@
     <Compile Include="View\OpenQuestion\AddOpenQuestionView.Designer.cs">
       <DependentUpon>AddOpenQuestionView.cs</DependentUpon>
     </Compile>
+    <Compile Include="View\OpenQuestion\ListOpenQuestionView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\OpenQuestion\ListOpenQuestionView.Designer.cs">
+      <DependentUpon>ListOpenQuestionView.cs</DependentUpon>
+    </Compile>
     <Compile Include="View\QuestionList\AddQuestionListView.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -328,6 +334,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="View\OpenQuestion\AddOpenQuestionView.resx">
       <DependentUpon>AddOpenQuestionView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\OpenQuestion\ListOpenQuestionView.resx">
+      <DependentUpon>ListOpenQuestionView.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="View\QuestionList\AddQuestionListView.resx">
       <DependentUpon>AddQuestionListView.cs</DependentUpon>

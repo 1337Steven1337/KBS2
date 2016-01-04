@@ -1,4 +1,7 @@
-﻿using System;
+﻿using Client.Factory;
+using Client.Service.SignalR;
+using Microsoft.AspNet.SignalR.Client;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Drawing;
@@ -11,10 +14,54 @@ namespace Client.Controller
 {
     class OpenQuestionController
     {
+
+        private Student.OpenQuestion mainForm;
+        private int currentQuestionIndex = -1;
+        SignalRClient client;
+
+        public OpenQuestionController(Student.OpenQuestion mainform)
+        {
+            this.mainForm = mainform;
+
+
+
+            //Connect (this) client to the session
+            client = SignalRClient.GetInstance();
+            client.ConnectionStatusChanged += Client_connectionStatusChanged;
+            client.Connect();
+        }
+
+
+        
+
+        //Subscribes the client to a group/session
+        private void Client_connectionStatusChanged(StateChange message)
+        {
+            if (message.NewState == ConnectionState.Connected)
+            {
+                client.SubscribeList(mainForm.Question_Id);
+            }
+        }
+
+
+
+        public int getCurrentQuestionIndex()
+        {
+            return this.currentQuestionIndex;
+        }
+
+        public void setCurrentQuestionIndex(int index)
+        {
+            this.currentQuestionIndex = index;
+        }
+
+
+
+
+
         public static Label Addlabel(string Question)
         {
             Label QuestionLabel = new Label();
-            int center = 0;
             QuestionLabel.AutoSize = false;
             QuestionLabel.TextAlign = ContentAlignment.TopCenter;
             QuestionLabel.AutoSize = true;
@@ -38,7 +85,7 @@ namespace Client.Controller
             Answerbox.Multiline = true;
             Answerbox.Width = width - 60;
             Answerbox.Height = heiggthOfTextbox;
-            Answerbox.Location = new Point(20, heiggthOfTextbox - (heiggthOfTextbox/5)*2);
+            Answerbox.Location = new Point(20, heiggthOfTextbox - (heiggthOfTextbox / 5) * 2);
             //Answerbox.RectangleToClient(rectangle);
             return Answerbox;
         }
@@ -47,10 +94,11 @@ namespace Client.Controller
         {
             Button SaveButton = new Button();
             SaveButton.Text = "Opslaan";
-            SaveButton.Size = new Size(80,50);
+            SaveButton.Size = new Size(80, 50);
             SaveButton.Location = new Point(width - 100, heigth - 100);
             return SaveButton;
         }
+
 
     }
 }

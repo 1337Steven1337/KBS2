@@ -46,6 +46,11 @@ namespace Client.Tests.View.Question
             return null;
         }
 
+        public Model.Question getSelectedItem()
+        {
+            throw new NotImplementedException();
+        }
+
         public void SetController(IController controller)
         {
             //Should be implemented when the controller is needed
@@ -67,6 +72,11 @@ namespace Client.Tests.View.Question
         }
 
         public void ShowSaveQuestionListResult(Model.Question instance, HttpStatusCode status)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void UpdateItem(Model.Question item)
         {
             throw new NotImplementedException();
         }

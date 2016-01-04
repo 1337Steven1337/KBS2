@@ -33,16 +33,6 @@ namespace Client.View.Question
         private DiagramController DiagramController { get; set; }
         #endregion
 
-        public Boolean changeQuestion
-        {
-            get
-            {
-                return changeQuestion;
-            }
-            set { }
-                
-        }
-
         #region Constructors
         public ListQuestionView()
         {
@@ -80,6 +70,7 @@ namespace Client.View.Question
         #region Methods
         public void FillList(List<Model.Question> list)
         {
+            labelTitle.Text = String.Format("Vragen uit: {0}", this.Controller.CurrentList.Name);
             this.Questions.Clear();
 
             foreach (Model.Question question in list)
@@ -124,20 +115,11 @@ namespace Client.View.Question
             Questions.Add(question);
         }
 
-        public void ShowDeleteResult(Model.Question instance, HttpStatusCode status)
-        {
-            throw new NotImplementedException();
-        }
-
         public void DeleteItem(Model.Question item)
         {
             Questions.Remove(Questions.First(x => x.Id == item.Id));
         }
 
-        public void ShowSaveQuestionListResult(Model.Question instance, HttpStatusCode status)
-        {
-            throw new NotImplementedException();
-        }
 
         public void ShowDeleteQuestionListResult(Model.Question instance, HttpStatusCode status)
         {
@@ -199,14 +181,25 @@ namespace Client.View.Question
 
         private void listBoxQuestions_MouseDoubleClick(object sender, MouseEventArgs e)
         {
-            if (this.AddQuestionClicked != null)
+            //If question have answers from students, the question cannot be updated.
+            if (Controller.QuestionCanBeUpdated())
             {
-                this.AddQuestionClicked(this.Controller.CurrentList, getSelectedItem());
+                if (this.AddQuestionClicked != null)
+                {
+                    this.AddQuestionClicked(this.Controller.CurrentList, getSelectedItem());
+                }
             }
+            else
+            {
+                FailedDialogView failed = new FailedDialogView();
+                failed.getLabelFailed().Text = "Deze vraag kan niet geupdate worden omdat er al antwoorden voor bestaan.";
+                failed.ShowDialog();
+            }
+        }
 
-            //var index = getSelectedItem();
-            //var name = Questions.ToList().Find(x => x.Id == index.Id);
-            //Console.WriteLine(name.Text);
+        public void ShowSaveQuestionListResult(Model.Question instance, HttpStatusCode status)
+        {
+            throw new NotImplementedException();
         }
     }
 }

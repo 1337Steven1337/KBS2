@@ -62,6 +62,7 @@
   </Choose>
   <ItemGroup>
     <Compile Include="Controllers\Questionstest.cs" />
+    <Compile Include="Controllers\TestUpdateQuestion.cs" />
     <Compile Include="Controllers\TestAddQuestion.cs" />
     <Compile Include="Controllers\TestLoadQuestionLists.cs" />
     <Compile Include="Controllers\TestLoadQuestions.cs" />
@@ -79,6 +80,7 @@
     <Compile Include="View\QuestionList\TestViewDeleteQuestionList.cs" />
     <Compile Include="View\QuestionList\TestViewQuestionList.cs" />
     <Compile Include="View\QuestionList\ViewDeleteQuestionList.cs" />
+    <Compile Include="View\Question\TestUpdateQuestionView.cs" />
     <Compile Include="View\Question\TestAddQuestionView.cs" />
     <Compile Include="View\Question\TestLoadQuestions.cs" />
     <Compile Include="View\Question\TestViewDeleteQuestion.cs" />

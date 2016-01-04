@@ -23,13 +23,26 @@ namespace Client.Controller.Question
         #endregion
 
         #region Event
-        public void QuestionAdded(Model.Question question)
+        public void UpdateListQuestion()
         {
-            this.View.AddItem(question);
+            this.LoadList(CurrentList);
         }
         #endregion
 
         #region Methods
+        //If question have answers from students, the question cannot be updated.
+        public bool QuestionCanBeUpdated()
+        {
+            foreach (var userAnswer in View.getSelectedItem().UserAnswers)
+            {
+                if (View.getSelectedItem().Id == userAnswer.Question_Id)
+                {
+                    return false;
+                }
+            }
+            return true;                       
+        }
+
         private void FillList(List<Model.Question> questions, HttpStatusCode status)
         {
             if(status == HttpStatusCode.OK && questions != null)

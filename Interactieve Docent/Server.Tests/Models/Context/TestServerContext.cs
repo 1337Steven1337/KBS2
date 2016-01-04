@@ -15,7 +15,9 @@ namespace Server.Tests.Models.Context
         public TestServerContext()
         {
             this.Questions = new TestQuestionDbSet();
+            this.OpenQuestions = new TestOpenQuestionDbSet();
             this.UserAnswers = new TestUserAnswerDbSet();
+            this.UserAnswerToOpenQuestions = new TestUserAnswerToOpenQuestionDbSet();
             this.QuestionLists = new TestListDbSet();
             this.PredefinedAnswers = new TestPredefinedAnswerDbSet();
             this.Accounts = new TestAccountDbSet();
@@ -23,15 +25,19 @@ namespace Server.Tests.Models.Context
         }
 
         public DbSet<Server.Models.Question> Questions { get; set; }
+        public DbSet<Server.Models.OpenQuestion> OpenQuestions { get; set; }
         public DbSet<Server.Models.QuestionList> QuestionLists { get; set; }
         public DbSet<Server.Models.UserAnswer> UserAnswers { get; set; }
+        public DbSet<Server.Models.UserAnswerToOpenQuestion> UserAnswerToOpenQuestions { get; set; }
         public DbSet<Server.Models.PredefinedAnswer> PredefinedAnswers { get; set; }
         public DbSet<Server.Models.Account> Accounts { get; set; }
         public DbSet<Server.Models.Pincode> Pincodes { get; set; }
 
         public void MarkAsModified(Question item) { }
+        public void MarkAsModified(OpenQuestion item) { }
         public void MarkAsModified(QuestionList item) { }
         public void MarkAsModified(UserAnswer item) { }
+        public void MarkAsModified(UserAnswerToOpenQuestion item) { }
         public void MarkAsModified(PredefinedAnswer item) { }
         public void MarkAsModified(Account item) { }
         public void MarkAsModified(Pincode item) { }

@@ -90,5 +90,15 @@ namespace Client.View.OpenQuestion
         {
             throw new NotImplementedException();
         }
+
+        public void ShowDeleteAnswersResult(Model.OpenQuestion instance, HttpStatusCode status)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void ClearAllFields()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

@@ -16,12 +16,12 @@ namespace Client.Controller.Question
     public class AddQuestionController : AbstractController<Model.Question>
     {
         #region Delegates
-        public delegate void QuestionAddedDelegate(Model.Question question);
+        public delegate void UpdateListQuestionDelegate();
         public delegate void RemoveAddQuestionPanelDelegate(bool resizeTable);
         #endregion
 
         #region Events
-        public event QuestionAddedDelegate QuestionAdded;
+        public event UpdateListQuestionDelegate UpdateListQuestion;
         public event RemoveAddQuestionPanelDelegate RemoveAddQuestionPanel;
         #endregion
 
@@ -29,6 +29,7 @@ namespace Client.Controller.Question
         private IAddView<Model.Question> View;
         private Model.QuestionList Parent { get; set; }
         private Model.Question CurrentQuestion;
+        private bool IsUpdate = false;
         private QuestionFactory Factory = new QuestionFactory();
         private Dictionary<string, int> AnswersSaved = new Dictionary<string, int>();
         private Dictionary<string, int> AnswersDeleted = new Dictionary<string, int>();
@@ -47,19 +48,16 @@ namespace Client.Controller.Question
         {
             if (status == HttpStatusCode.Created && question != null)
             {
-                if (this.QuestionAdded != null)
-                {
-                    QuestionAdded(question);
-                }
+                CurrentQuestion = question;
+                this.View.ShowSaveResult(question, status);
             }
-            this.View.ShowSaveResult(question, status);
         }
 
         private void CallbackUpdateQuestion(Model.Question question, HttpStatusCode status)
         {
             if (status == HttpStatusCode.NoContent && question != null)
             {
-                //this.View.ShowUpdateResult(question, status);
+                this.View.ShowUpdateResult(question, status);
             }
         }
 
@@ -98,10 +96,11 @@ namespace Client.Controller.Question
 
         public void DeletePredefinedAnswers(List<Model.PredefinedAnswer> answers, Model.Question question, IFactory<Model.PredefinedAnswer> baseFactory)
         {
-            this.AnswersSaved.Clear();
+            this.AnswersDeleted.Clear();
             this.CurrentQuestion = question;
+
             foreach (Model.PredefinedAnswer answer in answers)
-            {
+            {                
                 this.AnswersDeleted.Add(answer.Text, 0);
             }
 
@@ -116,9 +115,8 @@ namespace Client.Controller.Question
 
         private void CallbackDeletePredefinedAnswers(PredefinedAnswer predefinedAnswer, HttpStatusCode status)
         {
-            if (status == HttpStatusCode.Created && predefinedAnswer != null)
+            if (status == HttpStatusCode.OK && predefinedAnswer != null)
             {
-
                 AnswersDeleted[predefinedAnswer.Text] = 1;
             }
             else
@@ -130,19 +128,18 @@ namespace Client.Controller.Question
             {
                 if (AnswersDeleted.ContainsValue(2))
                 {
-                    //this.Factory.DeleteAsync(this.CurrentQuestion);
                     this.View.ShowSaveFailed();
                 }
                 else
                 {
-                    this.View.ShowSaveSucceed();
-                    //this.View.SavePredefinedAnswers(predefinedAnswer, );
+                    this.View.ShowDeleteAnswersResult(CurrentQuestion, status);
                 }
             }
         }
 
-        public void SavePredefinedAnswers(List<Model.PredefinedAnswer> answers, Model.Question question)
+        public void SavePredefinedAnswers(List<Model.PredefinedAnswer> answers, Model.Question question, bool IsUpdate)
         {
+            this.IsUpdate = IsUpdate;
             this.SavePredefinedAnswers(answers, question, new BaseFactory<PredefinedAnswer>());
         }
 
@@ -165,13 +162,12 @@ namespace Client.Controller.Question
 
                 if (answer.Text == this.View.GetSelectedAnswer().Text)
                 {
-                    answer.RightAnswer = true;
+                    answer.Right_Answer = true;
                 }
                 else
                 {
-                    answer.RightAnswer = false;
+                    answer.Right_Answer = false;
                 }
-
                 factory.Save(answer, this.View.GetHandler(), CallbackSavePredefinedAnswers);
             }
         }
@@ -191,12 +187,26 @@ namespace Client.Controller.Question
             {
                 if (AnswersSaved.ContainsValue(2))
                 {
-                    //this.Factory.DeleteAsync(this.CurrentQuestion);
                     this.View.ShowSaveFailed();
                 }
                 else
                 {
                     this.View.ShowSaveSucceed();
+
+                    if (IsUpdate)
+                    {
+                        InvokeRemoveQuestionPanel();
+                    }
+                    else
+                    {
+                        this.View.ClearAllFields();
+                    }
+
+                    //Reload list with questions
+                    if (this.UpdateListQuestion != null)
+                    {
+                        UpdateListQuestion();
+                    }
                 }
             }
         }
