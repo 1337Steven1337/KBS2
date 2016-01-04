@@ -11,6 +11,7 @@ using Client.Model;
 using System.Net;
 using Client.View.Dialogs;
 using Client.View.Question;
+using Client.View.Docent;
 using Client.Service.SignalR;
 
 namespace Client.View.QuestionList
@@ -23,6 +24,7 @@ namespace Client.View.QuestionList
 
         #region Instances
         private ListQuestionListController Controller { get; set; }
+        private DocentOmgevingController DocentOmgevingController { get; set; }
         #endregion
 
         #region Constructors
@@ -161,7 +163,13 @@ namespace Client.View.QuestionList
                 if (dr == DialogResult.Yes)
                 {
                     SignalRClient.GetInstance().StartQuestionList(this.getSelectedItem().Id,Properties.Settings.Default.Session_Id);
+
+                    //open docentomgeving
+                    DocentOmgevingView view = new DocentOmgevingView();
+                    this.DocentOmgevingController = new DocentOmgevingController(view);
+                    
                 }
+               
             }
         }
         
