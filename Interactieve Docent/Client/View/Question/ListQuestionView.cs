@@ -201,5 +201,10 @@ namespace Client.View.Question
         {
             throw new NotImplementedException();
         }
+
+        public void ShowUpdateQuestionListResult(Model.Question instance, HttpStatusCode status)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

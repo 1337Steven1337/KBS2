@@ -32,8 +32,8 @@ namespace Client
             //Application.Run(new Main());
 
 
-            //MainView view = new MainView();
-            //MainController maincontroller = new MainController(view);
+            MainView view = new MainView();
+            MainController maincontroller = new MainController(view);
 
             //ListQuestionView viewQuestion = new ListQuestionView();
             //ListQuestionController questionController = new ListQuestionController(viewQuestion);
@@ -56,8 +56,8 @@ namespace Client
             // AddAccountController controller = new AddAccountController(view);
 
 
-            StartView view = new StartView();
-            ShowStartController controller = new ShowStartController(view);
+            //StartView view = new StartView();
+            //ShowStartController controller = new ShowStartController(view);
             //Application.Run(new ListOpenQuestionView());
             
             Application.Run(view);
