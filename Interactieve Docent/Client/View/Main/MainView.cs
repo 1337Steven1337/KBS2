@@ -14,6 +14,8 @@ using Client.Controller.Account;
 using Client.View.Question;
 using Client.View.Dialogs;
 using System.Net;
+using Client.View.OpenQuestion;
+using Client.Controller.OpenQuestion;
 
 namespace Client.View.Main
 {
@@ -177,6 +179,14 @@ namespace Client.View.Main
         {
             AddAccountView view = new AddAccountView();
             AddAccountController controller = new AddAccountController(view);
+
+            BackgroundDialogView background = new BackgroundDialogView(this, view);
+        }
+
+        private void OpenQuestionButton_Click(object sender, EventArgs e)
+        {
+            AddOpenQuestionView view = new AddOpenQuestionView();
+            AddOpenQuestionController controller = new AddOpenQuestionController(view);
 
             BackgroundDialogView background = new BackgroundDialogView(this, view);
         }

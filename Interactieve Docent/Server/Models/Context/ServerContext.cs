@@ -21,8 +21,10 @@ namespace Server.Models.Context
         }
 
         public DbSet<Server.Models.Question> Questions { get; set; }
+        public DbSet<Server.Models.OpenQuestion> OpenQuestions { get; set; }
         public DbSet<Server.Models.QuestionList> QuestionLists { get; set; }
         public DbSet<Server.Models.UserAnswer> UserAnswers { get; set; }
+        public DbSet<Server.Models.UserAnswerToOpenQuestion> UserAnswerToOpenQuestions { get; set; }
         public DbSet<Server.Models.PredefinedAnswer> PredefinedAnswers { get; set; }
         public DbSet<Server.Models.Account> Accounts { get; set; }
         public DbSet<Server.Models.Token> Tokens { get; set; }
@@ -33,12 +35,22 @@ namespace Server.Models.Context
             Entry(item).State = EntityState.Modified;
         }
 
+        public void MarkAsModified(OpenQuestion item)
+        {
+            Entry(item).State = EntityState.Modified;
+        }
+
         public void MarkAsModified(QuestionList item)
         {
             Entry(item).State = EntityState.Modified;
         }
 
         public void MarkAsModified(UserAnswer item)
+        {
+            Entry(item).State = EntityState.Modified;
+        }
+
+        public void MarkAsModified(UserAnswerToOpenQuestion item)
         {
             Entry(item).State = EntityState.Modified;
         }

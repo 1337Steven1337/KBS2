@@ -106,11 +106,13 @@
     <Compile Include="Models\Context\TestServerContext.cs" />
     <Compile Include="Models\TestAccountDbSet.cs" />
     <Compile Include="Models\TestDbSet.cs" />
+    <Compile Include="Models\TestOpenQuestionDbSet.cs" />
     <Compile Include="Models\TestPincodeDbSet.cs" />
     <Compile Include="Models\TestPredefinedAnswerDbSet.cs" />
     <Compile Include="Models\TestUserAnswerDbSet.cs" />
     <Compile Include="Models\TestListDbSet.cs" />
     <Compile Include="Models\TestQuestionDbSet.cs" />
+    <Compile Include="Models\TestUserAnswerToOpeQuestionDbSet.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

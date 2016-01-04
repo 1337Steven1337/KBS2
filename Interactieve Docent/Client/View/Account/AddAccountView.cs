@@ -122,6 +122,21 @@ namespace Client.View.Account
         {
             throw new NotImplementedException();
         }
+
+        public void ShowUpdateResult(Model.Account instance, HttpStatusCode status)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void ShowDeleteAnswersResult(Model.Account instance, HttpStatusCode status)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void ClearAllFields()
+        {
+            throw new NotImplementedException();
+        }
         #endregion
     }
 }

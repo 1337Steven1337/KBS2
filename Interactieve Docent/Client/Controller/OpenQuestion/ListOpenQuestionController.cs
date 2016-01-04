@@ -47,7 +47,18 @@ namespace Client.Controller.OpenQuestion
         }
         #endregion
 
+        #region Overrides
         public override IView GetView()
+        {
+            return this.View;
+        }
+
+        public override void SetView(IView view)
+        {
+            this.View = (IListView<Model.OpenQuestion>)view;
+        }
+
+        public void SetBaseFactory(IFactory<Model.Question> baseFactory)
         {
             throw new NotImplementedException();
         }
@@ -56,10 +67,6 @@ namespace Client.Controller.OpenQuestion
         {
             throw new NotImplementedException();
         }
-
-        public override void SetView(IView view)
-        {
-            throw new NotImplementedException();
-        }
+        #endregion
     }
 }

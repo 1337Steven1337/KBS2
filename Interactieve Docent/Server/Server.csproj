@@ -171,24 +171,30 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountsController.cs" />
     <Compile Include="Controllers\ListsController.cs" />
+    <Compile Include="Controllers\OpenQuestionsController.cs" />
     <Compile Include="Controllers\PincodesController.cs" />
     <Compile Include="Controllers\PredefinedAnswersController.cs" />
     <Compile Include="Controllers\QuestionListsController.cs" />
     <Compile Include="Controllers\QuestionsController.cs" />
     <Compile Include="Controllers\TokensController.cs" />
     <Compile Include="Controllers\UserAnswersController.cs" />
+    <Compile Include="Controllers\UserAnswerToOpenQuestionsController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Hubs\EventHub.cs" />
+    <Compile Include="Models\DTO\UserAnswerToOpenQuestionDTO.cs" />
+    <Compile Include="Models\UserAnswerToOpenQuestion.cs" />
     <Compile Include="Models\Account.cs" />
     <Compile Include="Models\DTO\AccountDTO.cs" />
+    <Compile Include="Models\DTO\OpenQuestionDTO.cs" />
     <Compile Include="Models\DTO\PredefinedAnswerDTO.cs" />
     <Compile Include="Models\DTO\ListDTO.cs" />
     <Compile Include="Models\DTO\QuestionDTO.cs" />
     <Compile Include="Models\DTO\TokenDTO.cs" />
     <Compile Include="Models\DTO\UserAnswerDTO.cs" />
     <Compile Include="Models\Context\IDocentAppContext.cs" />
+    <Compile Include="Models\OpenQuestion.cs" />
     <Compile Include="Models\Pincode.cs" />
     <Compile Include="Models\QuestionList.cs" />
     <Compile Include="Models\PredefinedAnswer.cs" />
@@ -243,7 +249,7 @@
     <VisualStudio>
       <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
         <WebProjectProperties>
-          <UseIIS>True</UseIIS>
+          <UseIIS>False</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>57017</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>

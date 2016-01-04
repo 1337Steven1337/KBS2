@@ -136,5 +136,15 @@ namespace Client.Tests.View.QuestionList
         {
             throw new NotImplementedException();
         }
+
+        public void UpdateItem(Model.QuestionList item)
+        {
+            throw new NotImplementedException();
+        }
+
+        Model.Question IListView<Model.QuestionList>.getSelectedItem()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

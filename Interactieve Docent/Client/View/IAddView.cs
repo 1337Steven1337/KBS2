@@ -11,8 +11,11 @@ namespace Client.View
     public interface IAddView<T> : IView where T : AbstractModel, new()
     {
         void ShowSaveResult(T instance, HttpStatusCode status);
+        void ShowUpdateResult(T instance, HttpStatusCode status);
+        void ShowDeleteAnswersResult(T instance, HttpStatusCode status);
         void ShowSaveFailed();
         void ShowSaveSucceed();
         Model.PredefinedAnswer GetSelectedAnswer();
+        void ClearAllFields();
     }
 }
