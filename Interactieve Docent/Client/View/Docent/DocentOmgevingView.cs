@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Client.Controller;
+using Client.Controller.Question;
 using Client.Service.SignalR;
 using Client.Service.Thread;
 
@@ -15,10 +16,10 @@ namespace Client.View.Docent
 {
     public partial class DocentOmgevingView : Form, IView
     {
+        private DocentOmgevingController controller;
 
         public DocentOmgevingView()
         {
-
             InitializeComponent();
         }
 
@@ -34,7 +35,7 @@ namespace Client.View.Docent
 
         public void SetController(IController controller)
         {
-            throw new NotImplementedException();
+            this.controller = (DocentOmgevingController)controller;
         }
 
         private void NextQuestionButton_Click(object sender, EventArgs e)
@@ -44,7 +45,7 @@ namespace Client.View.Docent
 
         private void AddQuestionButton_Click(object sender, EventArgs e)
         {
-
+            AddQuestionController a = new AddQuestionController();
         }
 
         private void QuestionsListBox_SelectedIndexChanged(object sender, EventArgs e)
