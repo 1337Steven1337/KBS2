@@ -16,7 +16,7 @@ namespace Client.Controller
         #region Variables & Instances
         public List<string> Questions;
         private IResultView<Model.UserAnswerToOpenQuestion> View;
-        private Model.OpenQuestion Question;
+        public Model.OpenQuestion Question;
         private List<UserAnswerToOpenQuestion> Answers;
 
         private OpenQuestionFactory Factory = new OpenQuestionFactory();
@@ -32,6 +32,8 @@ namespace Client.Controller
             this.View.SetController(this);
             this.SignalRClient = SignalRClient.GetInstance();
 
+            Factory.OpenQuestionAdded += Factory_OpenQuestionAdded;
+
             //add events
             //questionController.selectedIndexChanged += QuestionController_selectedIndexChanged;
 
@@ -39,6 +41,19 @@ namespace Client.Controller
 
             LoadList();
             view.Show();
+        }
+
+        private void Factory_OpenQuestionAdded(Model.OpenQuestion openQuestion)
+        {
+            this.Question = openQuestion;
+            
+            this.View.GetHandler().Invoke((Action)UpdateView);
+        }
+
+        private void UpdateView()
+        {
+            this.View.setText(this.Question.Text);
+            this.UserAnswerToOpenQuestionFactory.FindAll(this.View.GetHandler(), this.FillList);
         }
 
         //do this is a student has answered a question
@@ -68,6 +83,11 @@ namespace Client.Controller
                     this.View.GetHandler().Invoke((Action)Refresh);
                 }
             }
+        }
+
+        internal void detach()
+        {
+            Factory.OpenQuestionAdded -= Factory_OpenQuestionAdded;
         }
         #endregion
 

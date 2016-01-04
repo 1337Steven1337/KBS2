@@ -20,5 +20,6 @@ namespace Client.View
         void Show();
         void Close();
         void Make(List<string> questions, string text);
+        void setText(string text);
     }
 }

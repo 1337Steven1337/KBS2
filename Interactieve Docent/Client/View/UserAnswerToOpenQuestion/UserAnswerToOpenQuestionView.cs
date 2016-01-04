@@ -12,6 +12,7 @@ using Client.Controller;
 using Client.Model;
 using Client.Service.Thread;
 using Client.Controller.OpenQuestion;
+using Client.Factory;
 
 namespace Client.View.OpenQuestion
 {
@@ -38,6 +39,8 @@ namespace Client.View.OpenQuestion
             dataGridView1.Columns[0].HeaderText = "Student";
             dataGridView1.Columns[1].HeaderText = "Antwoord";
 
+            
+
             //Controller.LoadList();
             //list.Add(new KeyValuePair<string, string>("Gekke Freek", "Een klein beetje kruidenboter flink uitgesmeerd op een half doorbakken sneetje stokbrood"));
             
@@ -47,11 +50,6 @@ namespace Client.View.OpenQuestion
         private void DataGridView1_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
         {
             dataGridView1.ClearSelection();
-        }
-
-        public void SetText(string text)
-        {
-            labelText.Text = text;
         }
 
         public IControlHandler GetHandler()
@@ -72,10 +70,22 @@ namespace Client.View.OpenQuestion
         public void FillList(List<Model.UserAnswerToOpenQuestion> list)
         {
             this.list.Clear();
-
-            foreach (Model.UserAnswerToOpenQuestion answer in list)
+            if (this.Controller.Question != null)
             {
-                this.list.Add(new KeyValuePair<string, string>(answer.Question_Id.ToString(), answer.Answer));
+                foreach (Model.UserAnswerToOpenQuestion answer in list)
+                {
+                    if (answer.Question_Id == this.Controller.Question.Id)
+                    {
+                        this.list.Add(new KeyValuePair<string, string>(answer.Question_Id.ToString(), answer.Answer));
+                    }
+                }
+            }
+            else
+            {
+                foreach (Model.UserAnswerToOpenQuestion answer in list)
+                {
+                    this.list.Add(new KeyValuePair<string, string>(answer.Question_Id.ToString(), answer.Answer));
+                }
             }
         }
 
@@ -112,6 +122,16 @@ namespace Client.View.OpenQuestion
         public void Make(List<string> questions, string text)
         {
             throw new NotImplementedException();
+        }
+
+        public void setText(string text)
+        {
+            this.label1.Text = text;
+        }
+
+        private void UserAnswerToOpenQuestionView_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            Controller.detach();
         }
     }
 }

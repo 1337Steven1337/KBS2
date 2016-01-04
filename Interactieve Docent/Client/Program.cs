@@ -56,11 +56,10 @@ namespace Client
             // AddAccountController controller = new AddAccountController(view);
 
 
-            //StartView view = new StartView();
-            //ShowStartController controller = new ShowStartController(view);
+            StartView view = new StartView();
+            ShowStartController controller = new ShowStartController(view);
             //Application.Run(new ListOpenQuestionView());
-            UserAnswerToOpenQuestionView view = new UserAnswerToOpenQuestionView();
-            UserAnswerToOpenQuestionController controller = new UserAnswerToOpenQuestionController(view);
+            
             Application.Run(view);
         }
     }
