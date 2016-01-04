@@ -13,6 +13,7 @@ using Client.View.Account;
 using Client.Controller.Account;
 using Client.View.Question;
 using Client.View.Dialogs;
+using System.Net;
 
 namespace Client.View.Main
 {
@@ -52,6 +53,50 @@ namespace Client.View.Main
             }
             tableFourColumn.ResumeLayout(true);
             tableFourColumn.PerformLayout();
+        }
+
+
+        //Checks the HTTP response, if it is not Created then tell the teacher something went wrong.
+        private void sessionSaveCallBackHandler(Model.Pincode pin, HttpStatusCode code)
+        {
+            if (code != HttpStatusCode.Created)
+            {
+                MessageBox.Show("Er ging iets mis met het maken van een sessie.");
+                Application.Exit();
+            }
+        }
+
+        //Checks the HTTP response
+        private void sessionCheckCallBackHandler(Model.Pincode pin, HttpStatusCode code)
+        {
+            if (code == HttpStatusCode.OK)
+            {
+                MessageBox.Show("Er ging iets mis met het maken van een sessie.");
+            }else if(code == HttpStatusCode.NotFound){
+                Factory.PincodeFactory pinFactory = new Client.Factory.PincodeFactory();
+                pinFactory.Save(pin, new ControlHandler(sessionLabel), sessionSaveCallBackHandler);
+            }
+
+        }
+
+        //Generate sessionID
+        public void GenerateSessionId()
+        {
+            string sessionToken = Client.Service.Generate.Token.GenerateToken(6);
+
+            Model.Pincode pincode = new Model.Pincode();
+            pincode.Id = Convert.ToInt32(sessionToken);
+
+            //Change property in settings
+            Properties.Settings.Default.Session_Id = pincode.Id;
+            Properties.Settings.Default.Save();
+
+            //Set sessionId label
+            this.sessionLabel.Text = sessionToken;
+
+            //Add session to the database
+            Factory.PincodeFactory pincodeFactory = new Client.Factory.PincodeFactory();
+            pincodeFactory.FindById(pincode.Id, new ControlHandler(sessionLabel),sessionCheckCallBackHandler); 
         }
 
         //Add view to mainTable 

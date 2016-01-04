@@ -27,7 +27,7 @@ namespace Client.Service.Generate
             }
         }
 
-        public static string GenerateToken(int length, string student)
+        public static string GenerateToken(int length)
         {
             char[] identifier = new char[length];
             byte[] randomData = new byte[length];

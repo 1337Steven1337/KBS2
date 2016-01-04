@@ -11,6 +11,7 @@ using Client.Model;
 using System.Net;
 using Client.View.Dialogs;
 using Client.View.Question;
+using Client.Service.SignalR;
 
 namespace Client.View.QuestionList
 {
@@ -159,7 +160,7 @@ namespace Client.View.QuestionList
                 //Confirm 
                 if (dr == DialogResult.Yes)
                 {
-                    this.Controller.DeleteQuestionList(this.getSelectedItem());
+                    SignalRClient.GetInstance().StartQuestionList(this.getSelectedItem().Id,Properties.Settings.Default.Session_Id);
                 }
             }
         }

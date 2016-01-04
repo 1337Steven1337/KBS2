@@ -27,7 +27,7 @@ namespace Client.Factory
         protected override Dictionary<string, object> GetFields(Pincode instance)
         {
             Dictionary<string, object> dictionary = new Dictionary<string, object>();
-            dictionary.Add("Code", instance.Code);
+            dictionary.Add("Code", instance.Id);
 
             return dictionary;
         }
