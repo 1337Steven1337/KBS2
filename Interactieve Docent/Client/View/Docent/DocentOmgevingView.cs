@@ -16,7 +16,7 @@ namespace Client.View.Docent
 {
     public partial class DocentOmgevingView : Form, IView
     {
-        private DocentOmgevingController controller;
+        private DocentOmgevingController Controller;
 
         public DocentOmgevingView()
         {
@@ -35,7 +35,7 @@ namespace Client.View.Docent
 
         public void SetController(IController controller)
         {
-            this.controller = (DocentOmgevingController)controller;
+            this.Controller = (DocentOmgevingController)controller;
         }
 
         private void NextQuestionButton_Click(object sender, EventArgs e)
@@ -51,6 +51,11 @@ namespace Client.View.Docent
         private void QuestionsListBox_SelectedIndexChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void StopQuestionList_Click(object sender, EventArgs e)
+        {
+            Controller.QuestionList.Ended = true;
         }
     }
 }

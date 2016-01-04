@@ -16,9 +16,11 @@ namespace Client.Controller
     class DocentOmgevingController : AbstractController<Model.Question>
     {
 
-       private DocentOmgevingView View;
-
+        private DocentOmgevingView View;
         private Model.Question Question;
+
+        //Test list
+        public Model.QuestionList QuestionList { get; private set; }
        
         private SignalRClient SignalRClient;
 
@@ -27,8 +29,11 @@ namespace Client.Controller
             this.View = view;
             this.View.SetController(this);
             this.SignalRClient = SignalRClient.GetInstance();
-            view.Show();
 
+            //Test list
+            QuestionList = new Model.QuestionList();
+
+            view.Show();
         }
 
         public override IView GetView()

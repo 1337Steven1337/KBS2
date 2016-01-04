@@ -67,6 +67,5 @@ namespace Server.Hubs
         {
             Clients.Group(listId).QuestionListContinue();
         }
-
     }
 }
