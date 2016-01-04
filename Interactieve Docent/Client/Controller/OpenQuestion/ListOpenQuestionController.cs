@@ -13,7 +13,7 @@ namespace Client.Controller.OpenQuestion
     class ListOpenQuestionController : AbstractController<Model.OpenQuestion>
     {
         #region Instances
-        private IListView<Model.OpenQuestion> View { get; set; }
+        private IResultView<Model.OpenQuestion> View { get; set; }
         private OpenQuestionFactory Factory = new OpenQuestionFactory();
         #endregion
 
@@ -22,6 +22,7 @@ namespace Client.Controller.OpenQuestion
         {
             this.SetView(view);
             this.View.SetController(this);
+            this.LoadList();
         }
         #endregion
 
@@ -41,9 +42,9 @@ namespace Client.Controller.OpenQuestion
             }
         }
 
-        public void LoadList(Model.QuestionList list)
+        public void LoadList()
         {
-            throw new NotImplementedException();
+            this.Factory.FindAll(this.View.GetHandler(), this.FillList);
         }
         #endregion
 
@@ -55,7 +56,7 @@ namespace Client.Controller.OpenQuestion
 
         public override void SetView(IView view)
         {
-            this.View = (IListView<Model.OpenQuestion>)view;
+            this.View = (IResultView<Model.OpenQuestion>)view;
         }
 
         public void SetBaseFactory(IFactory<Model.Question> baseFactory)

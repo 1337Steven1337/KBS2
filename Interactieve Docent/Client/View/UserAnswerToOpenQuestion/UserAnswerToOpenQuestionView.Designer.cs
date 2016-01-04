@@ -1,6 +1,6 @@
 ﻿namespace Client.View.OpenQuestion
 {
-    partial class ListOpenQuestionView
+    partial class UserAnswerToOpenQuestionView
     {
         /// <summary>
         /// Required designer variable.
@@ -80,7 +80,7 @@
             this.labelText.Dock = System.Windows.Forms.DockStyle.Fill;
             this.labelText.Location = new System.Drawing.Point(3, 0);
             this.labelText.Name = "labelText";
-            this.labelText.Size = new System.Drawing.Size(55, 18);
+            this.labelText.Size = new System.Drawing.Size(56, 18);
             this.labelText.TabIndex = 0;
             this.labelText.Text = "Vraag:";
             // 
@@ -88,9 +88,9 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label1.Location = new System.Drawing.Point(64, 0);
+            this.label1.Location = new System.Drawing.Point(65, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(209, 18);
+            this.label1.Size = new System.Drawing.Size(208, 18);
             this.label1.TabIndex = 1;
             this.label1.Text = "vraagtext";
             // 
@@ -105,14 +105,15 @@
             this.dataGridView1.Size = new System.Drawing.Size(282, 212);
             this.dataGridView1.TabIndex = 0;
             // 
-            // ListOpenQuestionView
+            // UserAnswerToOpenQuestionView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(282, 253);
             this.Controls.Add(this.splitContainer);
-            this.Name = "ListOpenQuestionView";
+            this.Name = "UserAnswerToOpenQuestionView";
             this.Text = "OpenQuestionView";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.UserAnswerToOpenQuestionView_FormClosing);
             this.splitContainer.Panel1.ResumeLayout(false);
             this.splitContainer.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer)).EndInit();
