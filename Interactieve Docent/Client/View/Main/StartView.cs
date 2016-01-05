@@ -69,11 +69,7 @@ namespace Client.View.Main
         }
 
         private void StartStudentScreen(Model.Pincode pin)
-        {
-            Client.Student.QuestionForm studentForm = new Client.Student.QuestionForm(pin.Id);
-            studentForm.Show();
-        }
-
+        {        
             //ListQuestionListView viewQuestionList = new ListQuestionListView();
             //ListQuestionListController listQuestionListController = new ListQuestionListController(viewQuestionList);
             //maincontroller.AddController(listQuestionListController);
@@ -91,7 +87,7 @@ namespace Client.View.Main
             AddOpenQuestionController controller2 = new AddOpenQuestionController(view2);
             view2.Show();
 
-            QuestionForm studentForm = new QuestionForm(1);
+            Client.Student.QuestionForm studentForm = new Client.Student.QuestionForm(pin.Id);
             studentForm.Show();
         }
 
