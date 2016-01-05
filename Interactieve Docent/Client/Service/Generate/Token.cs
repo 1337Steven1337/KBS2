@@ -47,5 +47,19 @@ namespace Client.Service.Generate
 
             return password;
         }
+
+
+        public static int GenerateSessionId(int length)
+        {
+            string sessionId = "";
+            Random rndm = new Random();
+
+            for (int idx = 0; idx < length; idx++)
+            {
+                sessionId = sessionId + rndm.Next(0,9);
+            }
+            return Convert.ToInt32(sessionId);
+        }
+
     }
 }

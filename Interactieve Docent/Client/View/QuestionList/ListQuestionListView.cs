@@ -11,6 +11,9 @@ using Client.Model;
 using System.Net;
 using Client.View.Dialogs;
 using Client.View.Question;
+using Client.View.Docent;
+using Client.Service.SignalR;
+using Client.Controller.Question;
 
 namespace Client.View.QuestionList
 {
@@ -147,7 +150,6 @@ namespace Client.View.QuestionList
             }
         }
 
-
         private void BtnStartQuestionList_Click(object sender, EventArgs e)
         {
             if (getSelectedItem() != null)
@@ -161,12 +163,17 @@ namespace Client.View.QuestionList
                 //Confirm 
                 if (dr == DialogResult.Yes)
                 {
-                    this.Controller.DeleteQuestionList(this.getSelectedItem());
+                    SignalRClient.GetInstance().StartQuestionList(this.getSelectedItem().Id, Properties.Settings.Default.Session_Id);
+
+                    //open docentomgeving
+                    DocentOmgevingView view = new DocentOmgevingView();
+                    ///HIER MOET NOG IETS GEBEUREN
+                    //this.DocentOmgevingController = new DocentOmgevingController(view, getSelectedItem());
+
                 }
             }
         }
         
-
         public void ShowDeleteQuestionListResult(Model.QuestionList list, HttpStatusCode status)
         {
             if (status == HttpStatusCode.OK && list != null)

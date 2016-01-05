@@ -11,6 +11,7 @@ namespace Server.Models.DTO
         public int Question_Id { get; set; }
         public string Answer { get; set; }
         public string Student { get; set; }
+
         public UserAnswerToOpenQuestionDTO() { }
 
         public UserAnswerToOpenQuestionDTO(UserAnswerToOpenQuestion userAnswer)

@@ -11,6 +11,7 @@ using Client.View.QuestionList;
 using Client.Controller.QuestionList;
 using Client.View.OpenQuestion;
 using Client.Controller.OpenQuestion;
+using Client.Student;
 
 namespace Client.View.Main
 {
@@ -38,7 +39,7 @@ namespace Client.View.Main
             if(status == HttpStatusCode.OK)
             {
                 this.Hide();
-                this.StartMainScreen();
+                this.StartStudentScreen(instance);
             }
             else
             {
@@ -67,15 +68,8 @@ namespace Client.View.Main
             }
         }
 
-        private void StartMainScreen()
-        {
-            //MainView view = new MainView();
-            //MainController maincontroller = new MainController(view);
-
-            //ListQuestionView viewQuestion = new ListQuestionView();
-            //ListQuestionController questionController = new ListQuestionController(viewQuestion);
-            //maincontroller.AddController(questionController);
-
+        private void StartStudentScreen(Model.Pincode pin)
+        {        
             //ListQuestionListView viewQuestionList = new ListQuestionListView();
             //ListQuestionListController listQuestionListController = new ListQuestionListController(viewQuestionList);
             //maincontroller.AddController(listQuestionListController);
@@ -85,12 +79,16 @@ namespace Client.View.Main
 
             //view.ShowDialog();
 
-            UserAnswerToOpenQuestionView view = new UserAnswerToOpenQuestionView();
-            UserAnswerToOpenQuestionController controller = new UserAnswerToOpenQuestionController(view);
-            view.Show();
+            //UserAnswerToOpenQuestionView view = new UserAnswerToOpenQuestionView();
+            //UserAnswerToOpenQuestionController controller = new UserAnswerToOpenQuestionController(view);
+            //view.Show();
+
             AddOpenQuestionView view2 = new AddOpenQuestionView();
             AddOpenQuestionController controller2 = new AddOpenQuestionController(view2);
             view2.Show();
+
+            Client.Student.QuestionForm studentForm = new Client.Student.QuestionForm(pin.Id);
+            studentForm.Show();
         }
 
         private void CodeTextBox_TextChanged(object sender, EventArgs e)

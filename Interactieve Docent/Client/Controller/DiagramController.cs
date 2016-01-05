@@ -8,6 +8,7 @@ using System;
 using Client.Service.SignalR;
 using Client.Service.Thread;
 using Client.View;
+using Client.View.Docent;
 
 namespace Client.Controller
 {
@@ -19,7 +20,6 @@ namespace Client.Controller
         public bool IsClosed = false;
 
         private IDiagramView View;
-
         private Model.Question Question;
         private List<UserAnswer> Answers;
 
@@ -43,6 +43,7 @@ namespace Client.Controller
 
             view.Show();
         }
+        
 
         //do this is a student has answered a question
         private void UserAnswerFactory_userAnswerAdded(UserAnswer answer)

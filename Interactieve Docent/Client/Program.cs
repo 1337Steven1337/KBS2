@@ -5,7 +5,6 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using Client.Controller;
 using Client.View.Main;
-using Client.View.Docent;
 using Client.View.Question;
 using Client.Controller.Question;
 using Client.View.QuestionList;
@@ -16,7 +15,6 @@ using Client.View.Authorisation;
 using Client.View.Diagram;
 using Client.Controller.Main;
 using Client.View.OpenQuestion;
-using Client.Controller.OpenQuestion;
 
 namespace Client
 {
@@ -30,7 +28,6 @@ namespace Client
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            //Application.Run(new Main());
 
 
             //MainView view = new MainView();
@@ -47,20 +44,19 @@ namespace Client
             //listQuestionListController.SelectedListChanged += questionController.LoadList;
             //listQuestionListController.Load();
 
+
+            //listQuestionListController.SelectedListChanged += questionController.LoadList;
+            //listQuestionListController.Load();
+
             //Student.QuestionForm form = new Student.QuestionForm(1);
             //form.Show();
 
-            //AuthorisationView view = new AuthorisationView();
-            //AuthorisationController controller = new AuthorisationController(view);
+            StartView startView = new StartView();
+            ShowStartController controller = new ShowStartController(startView);
 
-            // AddAccountView view = new AddAccountView();
-            // AddAccountController controller = new AddAccountController(view);
-
-            StartView view = new StartView();
-            ShowStartController controller = new ShowStartController(view);
             //Application.Run(new ListOpenQuestionView());
-
-            Application.Run(view);
+            
+            Application.Run(startView);
         }
     }
 }

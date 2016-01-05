@@ -1,4 +1,6 @@
-﻿namespace Client.View.Main
+﻿using System;
+
+namespace Client.View.Main
 {
     partial class StartView
     {
@@ -80,7 +82,6 @@
             this.PerformLayout();
 
         }
-
         #endregion
 
         private System.Windows.Forms.Button LoginButton;

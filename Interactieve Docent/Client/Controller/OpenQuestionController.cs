@@ -98,7 +98,5 @@ namespace Client.Controller
             SaveButton.Location = new Point(width - 100, heigth - 100);
             return SaveButton;
         }
-
-
     }
 }

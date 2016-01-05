@@ -43,6 +43,11 @@ namespace Client.Tests.Factory
             callback(questions[(int)id], HttpStatusCode.OK, null);
         }
 
+        public void FindByListIdAsync(object id, Action<Question, HttpStatusCode, global::RestSharp.IRestResponse> callback)
+        {
+            callback(questions[(int)id], HttpStatusCode.OK, null);
+        }
+
         public void SaveAsync(List<KeyValuePair<string, object>> data, Action<Question, HttpStatusCode, global::RestSharp.IRestResponse> callback)
         {
             Dictionary<string, object> properties = new Dictionary<string, object>();
