@@ -8,7 +8,7 @@ using System.Net;
 
 namespace Client.Controller
 {
-    class UserAnswerToOpenQuestionController : AbstractController<Model.Question>
+    public class UserAnswerToOpenQuestionController : AbstractController<Model.UserAnswerToOpenQuestion>
     {
         #region Variables & Instances
         private IResultView<Model.UserAnswerToOpenQuestion> View;
@@ -174,9 +174,9 @@ namespace Client.Controller
             throw new NotImplementedException();
         }
 
-        public override void SetBaseFactory(IFactory<Model.Question> baseFactory)
+        public override void SetBaseFactory(IFactory<Model.UserAnswerToOpenQuestion> baseFactory)
         {
-            throw new NotImplementedException();
+            this.UserAnswerToOpenQuestionFactory = (UserAnswerToOpenQuestionFactory)baseFactory;
         }
         #endregion
     }

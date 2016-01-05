@@ -75,36 +75,6 @@ namespace Client.View.OpenQuestion
             }
         }
 
-        public void ShowSaveQuestionListResult(UserAnswerToOpenQuestion instance, HttpStatusCode status)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void ShowDeleteQuestionListResult(UserAnswerToOpenQuestion instance, HttpStatusCode status)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void ShowDeleteQuestionResult(UserAnswerToOpenQuestion instance, HttpStatusCode status)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void AddItem(UserAnswerToOpenQuestion item)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void DeleteItem(UserAnswerToOpenQuestion item)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Model.OpenQuestion getSelectedItem()
-        {
-            throw new NotImplementedException();
-        }
-
         public void Refresh(List<UserAnswerToOpenQuestion> answers, Model.OpenQuestion question)
         {
             setText(question.Text);
