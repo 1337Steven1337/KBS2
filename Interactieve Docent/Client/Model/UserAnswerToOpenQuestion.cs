@@ -17,10 +17,9 @@ namespace Client.Model
 
         public UserAnswerToOpenQuestion(Dictionary<string, object> data)
         {
-            this.Id = Convert.ToInt32(data["Id"]);
-            this.Question_Id = Convert.ToInt32(data["Id"]);
-            this.Answer = Convert.ToString(data["Id"]);
-            this.Student = Convert.ToString(data["Id"]);
+            this.Question_Id = Convert.ToInt32(data["Question_Id"]);
+            this.Answer = Convert.ToString(data["Answer"]);
+            this.Student = Convert.ToString(data["Student"]);
         }
     }
 
