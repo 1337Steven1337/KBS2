@@ -76,7 +76,7 @@ namespace Client.View.OpenQuestion
                 {
                     if (answer.Question_Id == this.Controller.Question.Id)
                     {
-                        this.list.Add(new KeyValuePair<string, string>("#naam", answer.Answer));
+                        this.list.Add(new KeyValuePair<string, string>(answer.Student, answer.Answer));
                     }
                 }
             }
@@ -84,7 +84,7 @@ namespace Client.View.OpenQuestion
             {
                 foreach (Model.UserAnswerToOpenQuestion answer in list)
                 {
-                    this.list.Add(new KeyValuePair<string, string>("#naam", answer.Answer));
+                    this.list.Add(new KeyValuePair<string, string>(answer.Student, answer.Answer));
                 }
             }
         }

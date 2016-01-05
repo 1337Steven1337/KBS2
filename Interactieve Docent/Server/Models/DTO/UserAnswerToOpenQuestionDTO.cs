@@ -10,6 +10,7 @@ namespace Server.Models.DTO
         public int Id { get; set; }
         public int Question_Id { get; set; }
         public string Answer { get; set; }
+        public string Student { get; set; }
         public UserAnswerToOpenQuestionDTO() { }
 
         public UserAnswerToOpenQuestionDTO(UserAnswerToOpenQuestion userAnswer)
@@ -17,6 +18,7 @@ namespace Server.Models.DTO
             this.Id = userAnswer.Id;
             this.Question_Id = userAnswer.Question_Id;
             this.Answer = userAnswer.Answer;
+            this.Student = userAnswer.Student;
         }
     }
 }
