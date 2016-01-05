@@ -132,6 +132,7 @@
             this.StopQuestionList.TabIndex = 4;
             this.StopQuestionList.Text = "Stop Vragenlijst";
             this.StopQuestionList.UseVisualStyleBackColor = true;
+            this.StopQuestionList.Click += new System.EventHandler(this.StopQuestionList_Click);
             // 
             // DocentOmgevingView
             // 

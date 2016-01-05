@@ -1,4 +1,5 @@
 ﻿using Client.Controller;
+using Client.Factory;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -19,7 +20,7 @@ namespace Client.Student
         private Label QuestionLabel;
         public int Question_Id { get; set; }
         private OpenQuestionController controller;
-
+        private OpenQuestionFactory factory = new OpenQuestionFactory();
 
         public OpenQuestion(int Question_Id)
         {
@@ -33,8 +34,15 @@ namespace Client.Student
             Controls.Add(button);
             Controls.Add(QuestionLabel);
             Controls.Add(textbox);
+            factory.OpenQuestionAdded += QuestionText;
             GoToNextQuestion();
             InitializeComponent();
+        }
+
+
+        public void QuestionText(Model.OpenQuestion OQ)
+        {
+            QuestionLabel.Text = OQ.Text;
         }
 
         public string getCurrentQuestion()

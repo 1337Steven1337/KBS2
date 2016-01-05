@@ -12,6 +12,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using ConnectionState = Microsoft.AspNet.SignalR.Client.ConnectionState;
+using Client.Model;
 
 namespace Client.Student
 {
@@ -24,6 +25,7 @@ namespace Client.Student
         private Model.QuestionList questionList = new Model.QuestionList();
         private Controller.StudentFormController controller;
         private View.Student.StudentForm view;
+        private OpenQuestionFactory OpenQuestionFactory = new OpenQuestionFactory();
 
         public QuestionForm()
         {
@@ -40,7 +42,12 @@ namespace Client.Student
             view = new View.Student.StudentForm(this);
             view.initControlLocations();
             view.initWaitScreen();
+            OpenQuestionFactory.OpenQuestionAdded += LoadOpenQuestion;
+        }
 
+        private void LoadOpenQuestion(Model.OpenQuestion openQuestion)
+        {
+                                    
         }
 
         public Controller.StudentFormController  getController()

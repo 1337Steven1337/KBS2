@@ -19,7 +19,7 @@ namespace Client.View
         Model.OpenQuestion getSelectedItem();
         void Show();
         void Close();
-        void Make(List<string> questions, string text);
+        void Refresh(List<UserAnswerToOpenQuestion> answers, Model.OpenQuestion question);
         void setText(string text);
     }
 }

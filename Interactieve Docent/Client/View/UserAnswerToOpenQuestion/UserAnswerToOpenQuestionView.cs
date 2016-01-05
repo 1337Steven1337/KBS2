@@ -1,18 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
 using System.Net;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using Client.Controller;
 using Client.Model;
 using Client.Service.Thread;
-using Client.Controller.OpenQuestion;
-using Client.Factory;
 
 namespace Client.View.OpenQuestion
 {
@@ -30,19 +23,12 @@ namespace Client.View.OpenQuestion
             dataGridView1.Enabled = false;
 
             list = new BindingList<KeyValuePair<string, string>>();
-            //list.Add(new KeyValuePair<string, string>("Piet", "Pizza"));
-            //list.Add(new KeyValuePair<string, string>("Henk", "Shoarma met saus"));
             
             dataGridView1.DataSource = list;
             dataGridView1.TabStop = false;
             dataGridView1.DataBindingComplete += DataGridView1_DataBindingComplete;
             dataGridView1.Columns[0].HeaderText = "Student";
             dataGridView1.Columns[1].HeaderText = "Antwoord";
-
-            
-
-            //Controller.LoadList();
-            //list.Add(new KeyValuePair<string, string>("Gekke Freek", "Een klein beetje kruidenboter flink uitgesmeerd op een half doorbakken sneetje stokbrood"));
             
             dataGridView1.CurrentCell = null;
         }
@@ -76,7 +62,7 @@ namespace Client.View.OpenQuestion
                 {
                     if (answer.Question_Id == this.Controller.Question.Id)
                     {
-                        this.list.Add(new KeyValuePair<string, string>(answer.Question_Id.ToString(), answer.Answer));
+                        this.list.Add(new KeyValuePair<string, string>(answer.Student, answer.Answer));
                     }
                 }
             }
@@ -84,7 +70,7 @@ namespace Client.View.OpenQuestion
             {
                 foreach (Model.UserAnswerToOpenQuestion answer in list)
                 {
-                    this.list.Add(new KeyValuePair<string, string>(answer.Question_Id.ToString(), answer.Answer));
+                    this.list.Add(new KeyValuePair<string, string>(answer.Student, answer.Answer));
                 }
             }
         }
@@ -119,9 +105,10 @@ namespace Client.View.OpenQuestion
             throw new NotImplementedException();
         }
 
-        public void Make(List<string> questions, string text)
+        public void Refresh(List<UserAnswerToOpenQuestion> answers, Model.OpenQuestion question)
         {
-            throw new NotImplementedException();
+            setText(question.Text);
+            FillList(answers);
         }
 
         public void setText(string text)

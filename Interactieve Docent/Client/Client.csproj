@@ -114,7 +114,6 @@
     <Compile Include="Controller\Main\ShowStartController.cs" />
     <Compile Include="Controller\OpenQuestionController.cs" />
     <Compile Include="Controller\OpenQuestion\AddOpenQuestionController.cs" />
-    <Compile Include="Controller\OpenQuestion\ListOpenQuestionController.cs" />
     <Compile Include="Controller\QuestionList\ListQuestionListController.cs" />
     <Compile Include="Controller\Question\AddQuestionController.cs" />
     <Compile Include="Controller\Question\ListQuestionController.cs" />
@@ -251,6 +250,12 @@
     <Compile Include="View\OpenQuestion\AddOpenQuestionView.Designer.cs">
       <DependentUpon>AddOpenQuestionView.cs</DependentUpon>
     </Compile>
+    <Compile Include="View\QuestionList\RenameQuestionList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\QuestionList\RenameQuestionList.Designer.cs">
+      <DependentUpon>RenameQuestionList.cs</DependentUpon>
+    </Compile>
     <Compile Include="View\UserAnswerToOpenQuestion\UserAnswerToOpenQuestionView.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -338,6 +343,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="View\OpenQuestion\AddOpenQuestionView.resx">
       <DependentUpon>AddOpenQuestionView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\QuestionList\RenameQuestionList.resx">
+      <DependentUpon>RenameQuestionList.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="View\UserAnswerToOpenQuestion\UserAnswerToOpenQuestionView.resx">
       <DependentUpon>UserAnswerToOpenQuestionView.cs</DependentUpon>

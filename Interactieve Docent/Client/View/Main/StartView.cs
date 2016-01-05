@@ -69,28 +69,21 @@ namespace Client.View.Main
 
         private void StartMainScreen()
         {
-            //MainView view = new MainView();
-            //MainController maincontroller = new MainController(view);
+            MainView view = new MainView();
+            MainController maincontroller = new MainController(view);
 
-            //ListQuestionView viewQuestion = new ListQuestionView();
-            //ListQuestionController questionController = new ListQuestionController(viewQuestion);
-            //maincontroller.AddController(questionController);
+            ListQuestionView viewQuestion = new ListQuestionView();
+            ListQuestionController questionController = new ListQuestionController(viewQuestion);
+            maincontroller.AddController(questionController);
 
-            //ListQuestionListView viewQuestionList = new ListQuestionListView();
-            //ListQuestionListController listQuestionListController = new ListQuestionListController(viewQuestionList);
-            //maincontroller.AddController(listQuestionListController);
+            ListQuestionListView viewQuestionList = new ListQuestionListView();
+            ListQuestionListController listQuestionListController = new ListQuestionListController(viewQuestionList);
+            maincontroller.AddController(listQuestionListController);
 
-            //listQuestionListController.SelectedListChanged += questionController.LoadList;
-            //listQuestionListController.Load();
+            listQuestionListController.SelectedListChanged += questionController.LoadList;
+            listQuestionListController.Load();
 
-            //view.ShowDialog();
-
-            UserAnswerToOpenQuestionView view = new UserAnswerToOpenQuestionView();
-            UserAnswerToOpenQuestionController controller = new UserAnswerToOpenQuestionController(view);
-            view.Show();
-            AddOpenQuestionView view2 = new AddOpenQuestionView();
-            AddOpenQuestionController controller2 = new AddOpenQuestionController(view2);
-            view2.Show();
+            view.ShowDialog();
         }
 
         private void CodeTextBox_TextChanged(object sender, EventArgs e)

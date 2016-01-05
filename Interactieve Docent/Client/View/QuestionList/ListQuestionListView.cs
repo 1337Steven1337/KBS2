@@ -25,7 +25,8 @@ namespace Client.View.QuestionList
 
         #region Instances
         private ListQuestionListController Controller { get; set; }
-        private DocentOmgevingController DocentOmgevingController { get; set; }
+        private MainView main { get; set; }
+        private RenameQuestionList RenameQuestionListDialog { get; set; }
         #endregion
 
         #region Constructors
@@ -57,7 +58,7 @@ namespace Client.View.QuestionList
         #region Methods
         public void AddToParent(IView parent)
         {
-            MainView main = (MainView)parent;
+            main = (MainView)parent;
             main.AddTablePanel(this.mainTablePanel, 1);
         }
 
@@ -148,7 +149,7 @@ namespace Client.View.QuestionList
                 }
             }
         }
-        
+
         private void BtnStartQuestionList_Click(object sender, EventArgs e)
         {
             if (getSelectedItem() != null)
@@ -169,6 +170,7 @@ namespace Client.View.QuestionList
                   
                     this.DocentOmgevingController = new DocentOmgevingController(view, getSelectedItem());
 
+                    this.Controller.DeleteQuestionList(this.getSelectedItem());
                 }
             }
         }
@@ -192,7 +194,7 @@ namespace Client.View.QuestionList
                 failed.getLabelFailed().Text = "Oeps! Er is iets misgegaan! Probeer het opnieuw!";
                 failed.ShowDialog();
             }
-        }
+        }        
 
         public void AddItem(Model.QuestionList list)
         {
@@ -219,5 +221,33 @@ namespace Client.View.QuestionList
             throw new NotImplementedException();
         }
         #endregion
+
+        private void listBoxQuestionLists_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+            // if you double click on in the listbox check if there is a questionlist underneed your cursor
+            int index = this.listBoxQuestionLists.IndexFromPoint(e.Location);
+            if (index != System.Windows.Forms.ListBox.NoMatches)
+            {
+                //if there is open a dialog
+                RenameQuestionListDialog = new RenameQuestionList(this.getSelectedItem().Id, this.Controller);
+                // make the background go darker
+                BackgroundDialogView view = new BackgroundDialogView(main, RenameQuestionListDialog);
+                if (RenameQuestionListDialog.QuestionListNameChanged)
+                {
+                    //if the name is really changed reload the listbox to see the change
+                    this.Controller.Load();
+                }
+            }
+        }
+
+        public void ShowUpdateQuestionListResult(Model.QuestionList instance, HttpStatusCode status)
+        {
+            //check the result
+            if (status == HttpStatusCode.OK)
+            {
+                //if you get back an OK result then close the dialog 
+                RenameQuestionListDialog.Close();
+            }
+        }
     }
 }
