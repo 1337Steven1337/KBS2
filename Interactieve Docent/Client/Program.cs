@@ -47,8 +47,8 @@ namespace Client
             //listQuestionListController.SelectedListChanged += questionController.LoadList;
             //listQuestionListController.Load();
 
-            Student.QuestionForm form = new Student.QuestionForm(1);
-            form.Show();
+            //Student.QuestionForm form = new Student.QuestionForm(1);
+            //form.Show();
 
             //AuthorisationView view = new AuthorisationView();
             //AuthorisationController controller = new AuthorisationController(view);
@@ -56,11 +56,12 @@ namespace Client
             // AddAccountView view = new AddAccountView();
             // AddAccountController controller = new AddAccountController(view);
 
-            //StartView view = new StartView();
-            //ShowStartController controller = new ShowStartController(view);
+            StartView startView = new StartView();
+            ShowStartController controller = new ShowStartController(startView);
+
             //Application.Run(new ListOpenQuestionView());
-            
-            Application.Run(form);
+
+            Application.Run(startView);
         }
     }
 }

@@ -7,19 +7,41 @@ using System.Windows.Forms;
 using System.Drawing;
 using System.Net;
 using Client.Service.Thread;
+using Client.View.Dialogs;
+using Client.Factory;
+using Client.Student;
+using Client.Controller;
 
 namespace Client.View.Student
 {
-    class StudentForm
+    public class StudentForm
     {
         Client.Student.QuestionForm mainForm;
         private Button option = null;
         private List<Button> answerButtons = new List<Button>();
         float ButtonListCounter = 2;
 
+        private OpenQuestionFactory OpenQuestionFactory = new OpenQuestionFactory();
+        private Model.OpenQuestion openQuestion;
+        private OpenQuestionForm openQuestionForm;
+        private StudentFormController controller;
+
         public StudentForm(Client.Student.QuestionForm mainform)
         {
             this.mainForm = mainform;
+
+            openQuestionForm = new OpenQuestionForm();
+            openQuestionForm.getButton().Click += QuestionForm_Click;
+
+            //add openquestion form to mainForm
+            openQuestionForm.getTable().Location = mainForm.statusLabel.Location;
+            openQuestionForm.getTable().Visible = false;
+            mainForm.Controls.Add(openQuestionForm.getTable());
+        }
+
+        public void setController()
+        {
+            this.controller = mainForm.getController();
         }
 
         //This function sets the positions for each control in the QuestionForm
@@ -36,13 +58,34 @@ namespace Client.View.Student
             mainForm.chatBoxMessage.Location = new Point(mainForm.ClientSize.Width / 10 * 7, mainForm.Location.Y + mainForm.chatBox.Height);
             mainForm.sendMessageButton.Location = new Point(mainForm.ClientSize.Width / 10 * 9, mainForm.Location.Y + mainForm.chatBox.Height);
 
-
             mainForm.getProgressBar().Size = new Size(mainForm.ClientSize.Width / 10 * 7, mainForm.ClientSize.Height / 10);
             mainForm.getProgressBar().Location = new Point(0, mainForm.Location.Y + mainForm.ClientSize.Height / 2 + mainForm.ClientSize.Height / 10 - 5);
 
             mainForm.timeLabel.Location = new Point(mainForm.getProgressBar().Location.X + mainForm.getProgressBar().Width / 2 - mainForm.timeLabel.Width / 2, mainForm.getProgressBar().Location.Y + mainForm.getProgressBar().Height / 2 - mainForm.timeLabel.Height / 2);
         }
 
+        //Set openquestion
+        public void SetOpenQuestion(Model.OpenQuestion openQuestion)
+        {
+            this.openQuestion = openQuestion;
+
+            mainForm.statusLabel.Visible = false;
+            openQuestionForm.getLabel().Text = openQuestion.Text;
+            openQuestionForm.getTextBox().Text = "";
+            openQuestionForm.getTable().Visible = true;
+        }
+
+        //Save openquestion answer
+        private void QuestionForm_Click(object sender, EventArgs e)
+        {
+            controller.SaveOpenQuestionAnswer(openQuestion.Id, openQuestionForm.getTextBox().Text);
+        }
+
+        public void CloseOpenQuestion()
+        {
+            openQuestionForm.getTable().Visible = false;
+            openQuestionForm.getTextBox().Text = "";
+        }
 
         //Initializing waitScreen
         public void initWaitScreen()
@@ -55,7 +98,6 @@ namespace Client.View.Student
             mainForm.questionLabel.Visible = false;
             mainForm.timeLabel.Visible = false;
         }
-
 
 
         //Initializing questionScreen
@@ -74,17 +116,30 @@ namespace Client.View.Student
         //Checks the HTTP response, if it is not Created then stop the questionList because the results are not valid anymore.
         private void saveAnswerCallBackHandler(Client.Model.UserAnswer ua, HttpStatusCode code)
         {
-            if (code ==HttpStatusCode.Created)
+            if (code == HttpStatusCode.Created && ua != null)
             {
-                MessageBox.Show("Antwoord succesvol opgeslagen");
+                ShowSaveSucceed();
             }
             else
             {
-                MessageBox.Show("Er ging wat mis met het verwerken van je antwoord, de vragenlijst stopt.");
+                ShowSaveFailed();
                 //Return to main screen
             }
         }
 
+        public void ShowSaveFailed()
+        {
+            FailedDialogView failed = new FailedDialogView();
+            failed.getLabelFailed().Text = "Het opslaan is mislukt! Probeer het opnieuw.";
+            failed.ShowDialog();
+        }
+
+        public void ShowSaveSucceed()
+        {
+            SuccesDialogView succes = new SuccesDialogView();
+            succes.getLabelSucces().Text = "Antwoord is succesvol opgeslagen.";
+            succes.ShowDialog();
+        }
 
         //Saves the answer given by the user and then goes to the next question.
         public void AnswerSaveHandler(object sender, System.EventArgs e)

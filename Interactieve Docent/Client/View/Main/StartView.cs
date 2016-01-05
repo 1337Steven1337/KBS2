@@ -11,6 +11,7 @@ using Client.View.QuestionList;
 using Client.Controller.QuestionList;
 using Client.View.OpenQuestion;
 using Client.Controller.OpenQuestion;
+using Client.Student;
 
 namespace Client.View.Main
 {
@@ -85,12 +86,16 @@ namespace Client.View.Main
 
             //view.ShowDialog();
 
-            UserAnswerToOpenQuestionView view = new UserAnswerToOpenQuestionView();
-            UserAnswerToOpenQuestionController controller = new UserAnswerToOpenQuestionController(view);
-            view.Show();
+            //UserAnswerToOpenQuestionView view = new UserAnswerToOpenQuestionView();
+            //UserAnswerToOpenQuestionController controller = new UserAnswerToOpenQuestionController(view);
+            //view.Show();
+
             AddOpenQuestionView view2 = new AddOpenQuestionView();
             AddOpenQuestionController controller2 = new AddOpenQuestionController(view2);
             view2.Show();
+
+            QuestionForm studentForm = new QuestionForm(1);
+            studentForm.Show();
         }
 
         private void CodeTextBox_TextChanged(object sender, EventArgs e)

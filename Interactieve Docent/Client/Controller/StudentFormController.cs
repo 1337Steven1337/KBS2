@@ -7,6 +7,10 @@ using System.Windows.Forms;
 using Client.Service.SignalR;
 using Client.Factory;
 using Microsoft.AspNet.SignalR.Client;
+using Client.Model;
+using System.Net;
+using Client.Service.Thread;
+using Client.View.Student;
 
 namespace Client.Controller
 {
@@ -15,12 +19,12 @@ namespace Client.Controller
         private Student.QuestionForm mainForm;
         private int currentQuestionIndex = -1;
         SignalRClient client;
+        private StudentForm view;
 
         public StudentFormController(Student.QuestionForm mainform)
         {
             this.mainForm = mainform;
-
-
+            view = mainForm.getView();
 
             //Connect (this) client to the session
             client = SignalRClient.GetInstance();
@@ -41,16 +45,24 @@ namespace Client.Controller
             PredefinedAnswerFactory PAFactory = new PredefinedAnswerFactory();
             PAFactory.PredefinedAnswerAdded += PAFactory_predefinedAnswerAdded;
 
-
+            //Adds event, when an openquestion is added
+            OpenQuestionFactory OpenQuestionFactory = new OpenQuestionFactory();
+            OpenQuestionFactory.OpenQuestionAdded += openQuestionAdded;
         }
 
+        private void openQuestionAdded(Model.OpenQuestion openQuestion)
+        {
+            if (!mainForm.isBusy())
+            {
+                mainForm.Invoke((Action)delegate () { this.view.SetOpenQuestion(openQuestion); });
+            }
+        }
 
         //This function is called when the teacher presses "Next Question"
         //This function calls the goToNextQuestion function in the QuestionForm.
         private void LIFactory_continue()
         {
-
-                mainForm.Invoke((Action) delegate() { this.mainForm.goToNextQuestion(); });
+            mainForm.Invoke((Action) delegate() { this.mainForm.goToNextQuestion(); });
         }
 
 
@@ -85,9 +97,7 @@ namespace Client.Controller
             {
                 client.SubscribeList(mainForm.List_Id);
             }
-        }
-
-
+        }      
 
         public int getCurrentQuestionIndex()
         {
@@ -99,5 +109,30 @@ namespace Client.Controller
             this.currentQuestionIndex = index;   
         }
 
+        public void SaveOpenQuestionAnswer(int questionId, string answer)
+        {
+            UserAnswerToOpenQuestionFactory factory = new UserAnswerToOpenQuestionFactory();
+            Dictionary<string, object> data = new Dictionary<string, object>();
+            data.Add("Question_Id", questionId);
+            data.Add("Answer", answer);
+            data.Add("Student", "S1234567");
+
+            Model.UserAnswerToOpenQuestion openAnswer = new Model.UserAnswerToOpenQuestion(data);
+            factory.SaveAsync(openAnswer, saveOpenQuestionAnswerCallBack);
+        }
+
+        private void saveOpenQuestionAnswerCallBack(Model.UserAnswerToOpenQuestion answer, HttpStatusCode status)
+        {
+            if(answer != null && status == HttpStatusCode.Created)
+            {
+                mainForm.Invoke((Action)delegate () { view.ShowSaveSucceed(); });
+                mainForm.Invoke((Action)delegate () { view.CloseOpenQuestion(); });
+                mainForm.Invoke((Action)delegate () { view.initWaitScreen(); });
+            }
+            else
+            {
+                mainForm.Invoke((Action)delegate () {view.ShowSaveFailed(); });
+            }
+        }    
     }
 }
