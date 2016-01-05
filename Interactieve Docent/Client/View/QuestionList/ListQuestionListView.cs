@@ -216,13 +216,17 @@ namespace Client.View.QuestionList
 
         private void listBoxQuestionLists_MouseDoubleClick(object sender, MouseEventArgs e)
         {
+            // if you double click on in the listbox check if there is a questionlist underneed your cursor
             int index = this.listBoxQuestionLists.IndexFromPoint(e.Location);
             if (index != System.Windows.Forms.ListBox.NoMatches)
             {
+                //if there is open a dialog
                 RenameQuestionListDialog = new RenameQuestionList(this.getSelectedItem().Id, this.Controller);
+                // make the background go darker
                 BackgroundDialogView view = new BackgroundDialogView(main, RenameQuestionListDialog);
                 if (RenameQuestionListDialog.QuestionListNameChanged)
                 {
+                    //if the name is really changed reload the listbox to see the change
                     this.Controller.Load();
                 }
             }
@@ -230,7 +234,12 @@ namespace Client.View.QuestionList
 
         public void ShowUpdateQuestionListResult(Model.QuestionList instance, HttpStatusCode status)
         {
-            RenameQuestionListDialog.Close();
+            //check the result
+            if (status == HttpStatusCode.OK)
+            {
+                //if you get back an OK result then close the dialog 
+                RenameQuestionListDialog.Close();
+            }
         }
     }
 }
