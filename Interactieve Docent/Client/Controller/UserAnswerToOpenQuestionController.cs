@@ -1,8 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Client.Factory;
 using Client.Model;
 using Client.View;
@@ -33,15 +30,13 @@ namespace Client.Controller
 
             Factory.OpenQuestionAdded += Factory_OpenQuestionAdded;
 
-            //add events
-            //questionController.selectedIndexChanged += QuestionController_selectedIndexChanged;
-
             this.UserAnswerToOpenQuestionFactory.UserAnswerToOpenQuestionAdded += UserAnswerToOpenQuestionFactory_userAnswerToOpenQuestionAdded;
 
             LoadList();
             view.Show();
         }
 
+        //If teacher enters new question and sends it to database, refresh
         private void Factory_OpenQuestionAdded(Model.OpenQuestion openQuestion)
         {
             this.Question = openQuestion;
@@ -54,8 +49,8 @@ namespace Client.Controller
             this.View.setText(this.Question.Text);
             this.UserAnswerToOpenQuestionFactory.FindAll(this.View.GetHandler(), this.FillList);
         }
-
-        //do this is a student has answered a question
+        
+        //If student answers the question, add answer to panel
         private void UserAnswerToOpenQuestionFactory_userAnswerToOpenQuestionAdded(UserAnswerToOpenQuestion answer)
         {
             if (this.Question == null)
@@ -132,7 +127,7 @@ namespace Client.Controller
             this.Refresh();
         }
 
-        //if another question is selected
+        //If another question is selected
         public void SetQuestion(Model.OpenQuestion q)
         {
             if (q != null)
