@@ -11,8 +11,6 @@ using Client.Model;
 using System.Net;
 using Client.View.Dialogs;
 using Client.View.Question;
-using Client.View.Docent;
-using Client.Service.SignalR;
 
 namespace Client.View.QuestionList
 {
@@ -24,7 +22,8 @@ namespace Client.View.QuestionList
 
         #region Instances
         private ListQuestionListController Controller { get; set; }
-        private DocentOmgevingController DocentOmgevingController { get; set; }
+        private MainView main { get; set; }
+        private RenameQuestionList RenameQuestionListDialog { get; set; }
         #endregion
 
         #region Constructors
@@ -56,7 +55,7 @@ namespace Client.View.QuestionList
         #region Methods
         public void AddToParent(IView parent)
         {
-            MainView main = (MainView)parent;
+            main = (MainView)parent;
             main.AddTablePanel(this.mainTablePanel, 1);
         }
 
@@ -162,14 +161,8 @@ namespace Client.View.QuestionList
                 //Confirm 
                 if (dr == DialogResult.Yes)
                 {
-                    SignalRClient.GetInstance().StartQuestionList(this.getSelectedItem().Id,Properties.Settings.Default.Session_Id);
-
-                    //open docentomgeving
-                    DocentOmgevingView view = new DocentOmgevingView();
-                    this.DocentOmgevingController = new DocentOmgevingController(view);
-                    
+                    this.Controller.DeleteQuestionList(this.getSelectedItem());
                 }
-               
             }
         }
         
@@ -219,11 +212,25 @@ namespace Client.View.QuestionList
         {
             throw new NotImplementedException();
         }
+        #endregion
+
+        private void listBoxQuestionLists_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+            int index = this.listBoxQuestionLists.IndexFromPoint(e.Location);
+            if (index != System.Windows.Forms.ListBox.NoMatches)
+            {
+                RenameQuestionListDialog = new RenameQuestionList(this.getSelectedItem().Id, this.Controller);
+                BackgroundDialogView view = new BackgroundDialogView(main, RenameQuestionListDialog);
+                if (RenameQuestionListDialog.QuestionListNameChanged)
+                {
+                    this.Controller.Load();
+                }
+            }
+        }
 
         public void ShowUpdateQuestionListResult(Model.QuestionList instance, HttpStatusCode status)
         {
-            throw new NotImplementedException();
+            RenameQuestionListDialog.Close();
         }
-        #endregion
     }
 }
