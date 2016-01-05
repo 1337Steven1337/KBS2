@@ -7,10 +7,11 @@ using System.Windows.Forms;
 using System.Drawing;
 using System.Net;
 using Client.Service.Thread;
+using Client.Controller;
 
 namespace Client.View.Student
 {
-    class StudentForm
+    public class StudentForm : IView
     {
         Client.Student.QuestionForm mainForm;
         private Button option = null;
@@ -35,10 +36,13 @@ namespace Client.View.Student
             mainForm.chatBox.Location = new Point(mainForm.ClientSize.Width / 10 * 7, 0);
             mainForm.chatBoxMessage.Location = new Point(mainForm.ClientSize.Width / 10 * 7, mainForm.Location.Y + mainForm.chatBox.Height);
             mainForm.sendMessageButton.Location = new Point(mainForm.ClientSize.Width / 10 * 9, mainForm.Location.Y + mainForm.chatBox.Height);
-
+            
 
             mainForm.getProgressBar().Size = new Size(mainForm.ClientSize.Width / 10 * 7, mainForm.ClientSize.Height / 10);
             mainForm.getProgressBar().Location = new Point(0, mainForm.Location.Y + mainForm.ClientSize.Height / 2 + mainForm.ClientSize.Height / 10 - 5);
+
+            mainForm.questionCountLabel.Location = new Point(mainForm.getProgressBar().Location.X + mainForm.getProgressBar().Width - mainForm.questionCountLabel.Width, mainForm.getProgressBar().Location.Y - 2*mainForm.questionCountLabel.Height);
+
 
             mainForm.timeLabel.Location = new Point(mainForm.getProgressBar().Location.X + mainForm.getProgressBar().Width / 2 - mainForm.timeLabel.Width / 2, mainForm.getProgressBar().Location.Y + mainForm.getProgressBar().Height / 2 - mainForm.timeLabel.Height / 2);
         }
@@ -54,6 +58,7 @@ namespace Client.View.Student
             mainForm.getProgressBar().Visible = false;
             mainForm.questionLabel.Visible = false;
             mainForm.timeLabel.Visible = false;
+            mainForm.questionCountLabel.Visible = false;
         }
 
 
@@ -68,6 +73,7 @@ namespace Client.View.Student
             mainForm.getProgressBar().Visible = true;
             mainForm.questionLabel.Visible = true;
             mainForm.timeLabel.Visible = true;
+            mainForm.questionCountLabel.Visible = true;
         }
 
 
@@ -76,11 +82,11 @@ namespace Client.View.Student
         {
             if (code ==HttpStatusCode.Created)
             {
-                MessageBox.Show("Antwoord succesvol opgeslagen");
+               // MessageBox.Show("Antwoord succesvol opgeslagen");
             }
             else
             {
-                MessageBox.Show("Er ging wat mis met het verwerken van je antwoord, de vragenlijst stopt.");
+                MessageBox.Show("Er ging wat mis met het verwerken van je antwoord, de vragenlijst wordt gestopt.");
                 //Return to main screen
             }
         }
@@ -96,7 +102,7 @@ namespace Client.View.Student
       
             Factory.UserAnswerFactory uaf = new Factory.UserAnswerFactory();
             uaf.Save(ua, new ControlHandler(mainForm.timeLabel), saveAnswerCallBackHandler);
-            if (mainForm.getQuestionList().Questions.Count - 1 > 5)
+            if (mainForm.getQuestionList().Questions.Count - 1 > 0)
             {
                 mainForm.goToNextQuestion();
             }
@@ -172,6 +178,21 @@ namespace Client.View.Student
                 //Add button to controls
                 mainForm.Controls.Add(option);
             }
+        }
+
+        public IControlHandler GetHandler()
+        {
+            return new ControlHandler(mainForm.getProgressBar());
+        }
+
+        public void AddToParent(IView parent)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void SetController(IController controller)
+        {
+            throw new NotImplementedException();
         }
     }
 }

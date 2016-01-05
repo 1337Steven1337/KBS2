@@ -51,6 +51,10 @@ namespace Client.Tests.Factory
         {
             callback(questionlists[(int)id], HttpStatusCode.OK, null);
         }
+        public void FindByListIdAsync(object id, Action<QuestionList, HttpStatusCode, IRestResponse> callback)
+        {
+            callback(questionlists[(int)id], HttpStatusCode.OK, null);
+        }
 
         public void SaveAsync(List<KeyValuePair<string, object>> data, Action<QuestionList, HttpStatusCode, IRestResponse> callback)
         {

@@ -58,17 +58,17 @@
             this.tableLayoutPanel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.tableLayoutPanel1.ColumnCount = 1;
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel1.Controls.Add(this.OpenQuestionButton, 0, 1);
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel1.Controls.Add(this.sessionLabel, 0, 2);
+            this.tableLayoutPanel1.Controls.Add(this.OpenQuestionButton, 0, 1);
             this.tableLayoutPanel1.Controls.Add(this.ImportAccountButton, 0, 0);
             this.tableLayoutPanel1.Location = new System.Drawing.Point(4, 5);
             this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 3;
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 49.18033F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50.81967F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 292F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 12.5F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 12.5F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 75F));
             this.tableLayoutPanel1.Size = new System.Drawing.Size(103, 387);
             this.tableLayoutPanel1.TabIndex = 1;
             // 
@@ -80,9 +80,9 @@
             this.OpenQuestionButton.BackColor = System.Drawing.Color.White;
             this.OpenQuestionButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.OpenQuestionButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.OpenQuestionButton.Location = new System.Drawing.Point(3, 49);
+            this.OpenQuestionButton.Location = new System.Drawing.Point(3, 51);
             this.OpenQuestionButton.Name = "OpenQuestionButton";
-            this.OpenQuestionButton.Size = new System.Drawing.Size(97, 42);
+            this.OpenQuestionButton.Size = new System.Drawing.Size(97, 32);
             this.OpenQuestionButton.TabIndex = 1;
             this.OpenQuestionButton.Text = "Open vraag";
             this.OpenQuestionButton.UseVisualStyleBackColor = false;
@@ -109,7 +109,7 @@
             this.ImportAccountButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ImportAccountButton.Location = new System.Drawing.Point(3, 3);
             this.ImportAccountButton.Name = "ImportAccountButton";
-            this.ImportAccountButton.Size = new System.Drawing.Size(97, 40);
+            this.ImportAccountButton.Size = new System.Drawing.Size(97, 32);
             this.ImportAccountButton.TabIndex = 0;
             this.ImportAccountButton.Text = "Import Excel";
             this.ImportAccountButton.UseVisualStyleBackColor = false;

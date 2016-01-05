@@ -35,6 +35,7 @@
             this.sendMessageButton = new System.Windows.Forms.Button();
             this.timeLabel = new System.Windows.Forms.Label();
             this.statusLabel = new System.Windows.Forms.Label();
+            this.questionCountLabel = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // questionLabel
@@ -108,11 +109,25 @@
             this.statusLabel.TabIndex = 7;
             this.statusLabel.Text = "Wachten op vraag van de docent..";
             // 
-            // Questions
+            // questionCountLabel
+            // 
+            this.questionCountLabel.BackColor = System.Drawing.Color.Transparent;
+            this.questionCountLabel.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.questionCountLabel.Location = new System.Drawing.Point(806, 452);
+            this.questionCountLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.questionCountLabel.Name = "questionCountLabel";
+            this.questionCountLabel.Size = new System.Drawing.Size(126, 26);
+            this.questionCountLabel.TabIndex = 8;
+            this.questionCountLabel.Text = "0/0";
+            this.questionCountLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.questionCountLabel.Visible = false;
+            // 
+            // QuestionForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1335, 865);
+            this.Controls.Add(this.questionCountLabel);
             this.Controls.Add(this.statusLabel);
             this.Controls.Add(this.timeLabel);
             this.Controls.Add(this.sendMessageButton);
@@ -123,7 +138,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.MaximizeBox = false;
-            this.Name = "Questions";
+            this.Name = "QuestionForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Questions";
             this.ResumeLayout(false);
@@ -139,5 +154,6 @@
         public System.Windows.Forms.Button sendMessageButton;
         public System.Windows.Forms.Label timeLabel;
         public System.Windows.Forms.Label statusLabel;
+        public System.Windows.Forms.Label questionCountLabel;
     }
 }

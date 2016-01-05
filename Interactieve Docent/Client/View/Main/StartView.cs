@@ -36,7 +36,7 @@ namespace Client.View.Main
             if(status == HttpStatusCode.OK)
             {
                 this.Hide();
-                this.StartMainScreen();
+                this.StartStudentScreen(instance);
             }
             else
             {
@@ -65,24 +65,12 @@ namespace Client.View.Main
             }
         }
 
-        private void StartMainScreen()
+        private void StartStudentScreen(Model.Pincode pin)
         {
-            MainView view = new MainView();
-            MainController maincontroller = new MainController(view);
-
-            ListQuestionView viewQuestion = new ListQuestionView();
-            ListQuestionController questionController = new ListQuestionController(viewQuestion);
-            maincontroller.AddController(questionController);
-
-            ListQuestionListView viewQuestionList = new ListQuestionListView();
-            ListQuestionListController listQuestionListController = new ListQuestionListController(viewQuestionList);
-            maincontroller.AddController(listQuestionListController);
-
-            listQuestionListController.SelectedListChanged += questionController.LoadList;
-            listQuestionListController.Load();
-
-            view.ShowDialog();
+            Client.Student.QuestionForm studentForm = new Client.Student.QuestionForm(pin.Id);
+            studentForm.Show();
         }
+
 
         private void CodeTextBox_TextChanged(object sender, EventArgs e)
         {

@@ -12,13 +12,17 @@ namespace Client.Factory
         public delegate void QuestionListRemovedDelegate(QuestionList list);
         public delegate void QuestionListUpdatedDelegate(QuestionList list);
         public delegate void QuestionListContinueDelegate();
+        public delegate void QuestionListStartedDelegate(int listId);
+        public delegate void QuestionListStoppedDelegate(int listId);
         #endregion
-         
+
         #region Events
         public event QuestionListAddedDelegate QuestionListAdded;
+        public event QuestionListStartedDelegate QuestionListStarted;
         public event QuestionListRemovedDelegate QuestionListRemoved;
         public event QuestionListUpdatedDelegate QuestionListUpdated;
         public event QuestionListContinueDelegate QuestionListContinue;
+        public event QuestionListStoppedDelegate QuestionListStopped;
         #endregion
 
         #region Properties
@@ -38,6 +42,8 @@ namespace Client.Factory
             this.SignalRClient.proxy.On<QuestionList>("QuestionListRemoved", this.OnQuestionListRemoved);
             this.SignalRClient.proxy.On<QuestionList>("QuestionListUpdated", this.OnQuestionListUpdated);
             this.SignalRClient.proxy.On("QuestionListContinue", this.OnQuestionListContinue);
+            this.SignalRClient.proxy.On<int>("QuestionListStarted", this.OnQuestionListStarted);
+            this.SignalRClient.proxy.On<int>("QuestionListStopped", this.OnQuestionListStopped);
             this.SignalRClient.Connect();
         }
         #endregion
@@ -69,6 +75,20 @@ namespace Client.Factory
             if (this.QuestionListContinue != null)
             {
                 this.QuestionListContinue();
+            }
+        }
+        private void OnQuestionListStarted(int listId)
+        {
+            if (this.QuestionListStarted != null)
+            {
+                this.QuestionListStarted(listId);
+            }
+        }
+        private void OnQuestionListStopped(int listId)
+        {
+            if (this.QuestionListStopped != null)
+            {
+                this.QuestionListStopped(listId);
             }
         }
         #endregion
