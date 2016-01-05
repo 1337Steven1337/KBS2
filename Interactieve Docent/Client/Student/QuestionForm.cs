@@ -45,8 +45,10 @@ namespace Client.Student
             this.view.setController();
             view.initControlLocations();
             view.initWaitScreen();
+            questionTimer.Interval = 100;
+            questionTimer.Tick += Question_Timer;
         }
-        
+
         public StudentForm getView()
         {
             return this.view;
@@ -57,6 +59,7 @@ namespace Client.Student
             return this.controller;
         }
 
+
         public ProgressBar getProgressBar()
         {
             return this.questionTimeProgressBar;
@@ -66,6 +69,7 @@ namespace Client.Student
         {
             return this.questionList;
         }
+
 
         public bool isBusy()
         {
@@ -86,6 +90,9 @@ namespace Client.Student
         //It resets the timer variables and then goes to the nextquestion event
         private void Question_Timer(object sender, EventArgs e)
         {
+            //Update questioncounter label
+            this.questionCountLabel.Text = "Vraag: ( "+ (controller.getCurrentQuestionIndex() + 1)  + "/" + questionList.Questions.Count + ")";
+
             if (questionTimeProgressBar.Value > 0)
             {
                 questionTimeProgressBar.Value -= 100;
@@ -94,7 +101,6 @@ namespace Client.Student
             else if (questionTimeProgressBar.Value <= 0)
             {
                 busy = false;
-                questionTimer.Tick -= Question_Timer;
                 questionTimer.Stop();
 
                 if (this.questionList.Questions.Count - 1 > controller.getCurrentQuestionIndex())
@@ -113,24 +119,23 @@ namespace Client.Student
         public void goToNextQuestion()
         {
             view.cleanUpPreviousQuestion();
-            view.initQuestionScreen();
-            questionTimer.Stop();
-            questionTimeProgressBar.Value = questionTimeProgressBar.Maximum;
             view.getAnswerButtons().Clear();
-
+            questionTimer.Stop();
             controller.setCurrentQuestionIndex(controller.getCurrentQuestionIndex() + 1);
+
 
             if (this.questionList.Questions.Count - 1 >= controller.getCurrentQuestionIndex())
             {
+                
+                view.initQuestionScreen();
                 busy = true;
+                questionTimeProgressBar.Value = questionTimeProgressBar.Maximum;
 
                 currentQuestion = this.questionList.Questions[controller.getCurrentQuestionIndex()];
                 if (currentQuestion.Time > 1)
                 {
                     questionTimeProgressBar.Maximum = currentQuestion.Time * 1000;
                     questionTimeProgressBar.Value = currentQuestion.Time * 1000;
-                    questionTimer.Interval = 100;
-                    questionTimer.Tick += Question_Timer;
                     questionTimer.Start();
                 }
                 else

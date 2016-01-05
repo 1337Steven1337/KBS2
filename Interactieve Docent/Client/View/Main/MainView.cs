@@ -22,10 +22,12 @@ namespace Client.View.Main
     public partial class MainView : Form, IView
     {
         private MainController controller;
+        private int sessionPin = 0;
 
         public MainView()
         {
             InitializeComponent();
+            GenerateSessionId();
         }
 
         //Remove third column from mainView
@@ -61,9 +63,10 @@ namespace Client.View.Main
         //Checks the HTTP response, if it is not Created then tell the teacher something went wrong.
         private void sessionSaveCallBackHandler(Model.Pincode pin, HttpStatusCode code)
         {
+
             if (code != HttpStatusCode.Created)
             {
-                MessageBox.Show("Er ging iets mis met het maken van een sessie.");
+                MessageBox.Show("Er ging iets mis met het maken van een sessie, gelieve de applicatie opnieuw opstarten.");
                 Application.Exit();
             }
         }
@@ -71,34 +74,34 @@ namespace Client.View.Main
         //Checks the HTTP response
         private void sessionCheckCallBackHandler(Model.Pincode pin, HttpStatusCode code)
         {
-            if (code == HttpStatusCode.OK)
+            if (code == HttpStatusCode.Found)
             {
-                MessageBox.Show("Er ging iets mis met het maken van een sessie.");
+                GenerateSessionId();
             }else if(code == HttpStatusCode.NotFound){
                 Factory.PincodeFactory pinFactory = new Client.Factory.PincodeFactory();
+                pin = new Model.Pincode();
+                pin.Id = sessionPin;
                 pinFactory.Save(pin, new ControlHandler(sessionLabel), sessionSaveCallBackHandler);
             }
-
         }
 
         //Generate sessionID
         public void GenerateSessionId()
         {
-            string sessionToken = Client.Service.Generate.Token.GenerateToken(6);
-
-            Model.Pincode pincode = new Model.Pincode();
-            pincode.Id = Convert.ToInt32(sessionToken);
+            int sessionToken = Client.Service.Generate.Token.GenerateSessionId(6);
+            
+            sessionPin = sessionToken;
 
             //Change property in settings
-            Properties.Settings.Default.Session_Id = pincode.Id;
+            Properties.Settings.Default.Session_Id = sessionPin;
             Properties.Settings.Default.Save();
 
             //Set sessionId label
-            this.sessionLabel.Text = sessionToken;
+            this.sessionLabel.Text = sessionToken.ToString();
 
             //Add session to the database
             Factory.PincodeFactory pincodeFactory = new Client.Factory.PincodeFactory();
-            pincodeFactory.FindById(pincode.Id, new ControlHandler(sessionLabel),sessionCheckCallBackHandler); 
+            pincodeFactory.FindById(sessionPin, new ControlHandler(sessionLabel), sessionCheckCallBackHandler); 
         }
 
         //Add view to mainTable 

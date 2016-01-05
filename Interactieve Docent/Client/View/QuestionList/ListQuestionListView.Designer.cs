@@ -100,7 +100,7 @@
             this.buttonsTablePanel.Name = "buttonsTablePanel";
             this.buttonsTablePanel.RowCount = 1;
             this.buttonsTablePanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.buttonsTablePanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 62F));
+            this.buttonsTablePanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 63F));
             this.buttonsTablePanel.Size = new System.Drawing.Size(546, 63);
             this.buttonsTablePanel.TabIndex = 0;
             // 
@@ -120,7 +120,6 @@
             this.btnStartQuestionList.TabIndex = 2;
             this.btnStartQuestionList.Text = "Geselecteerde lijst starten";
             this.btnStartQuestionList.UseVisualStyleBackColor = false;
-            this.btnStartQuestionList.Click += new System.EventHandler(this.BtnStartQuestionList_Click);
             // 
             // btnAddQuestionList
             // 

@@ -39,7 +39,7 @@ namespace Client.View.Main
             if(status == HttpStatusCode.OK)
             {
                 this.Hide();
-                this.StartMainScreen();
+                this.StartStudentScreen(instance);
             }
             else
             {
@@ -68,14 +68,11 @@ namespace Client.View.Main
             }
         }
 
-        private void StartMainScreen()
+        private void StartStudentScreen(Model.Pincode pin)
         {
-            //MainView view = new MainView();
-            //MainController maincontroller = new MainController(view);
-
-            //ListQuestionView viewQuestion = new ListQuestionView();
-            //ListQuestionController questionController = new ListQuestionController(viewQuestion);
-            //maincontroller.AddController(questionController);
+            Client.Student.QuestionForm studentForm = new Client.Student.QuestionForm(pin.Id);
+            studentForm.Show();
+        }
 
             //ListQuestionListView viewQuestionList = new ListQuestionListView();
             //ListQuestionListController listQuestionListController = new ListQuestionListController(viewQuestionList);

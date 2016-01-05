@@ -56,31 +56,32 @@
             // splitContainer.Panel2
             // 
             this.splitContainer.Panel2.Controls.Add(this.dataGridView1);
-            this.splitContainer.Size = new System.Drawing.Size(282, 253);
-            this.splitContainer.SplitterDistance = 37;
+            this.splitContainer.Size = new System.Drawing.Size(982, 753);
+            this.splitContainer.SplitterDistance = 59;
             this.splitContainer.TabIndex = 1;
             // 
             // tableLayoutPanel1
             // 
             this.tableLayoutPanel1.ColumnCount = 2;
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 22.46377F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 77.53623F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 10.04098F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 89.95901F));
             this.tableLayoutPanel1.Controls.Add(this.labelText, 0, 0);
             this.tableLayoutPanel1.Controls.Add(this.label1, 1, 0);
             this.tableLayoutPanel1.Location = new System.Drawing.Point(3, 3);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 1;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(276, 18);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(976, 33);
             this.tableLayoutPanel1.TabIndex = 0;
             // 
             // labelText
             // 
             this.labelText.AutoSize = true;
             this.labelText.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.labelText.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelText.Location = new System.Drawing.Point(3, 0);
             this.labelText.Name = "labelText";
-            this.labelText.Size = new System.Drawing.Size(56, 18);
+            this.labelText.Size = new System.Drawing.Size(91, 33);
             this.labelText.TabIndex = 0;
             this.labelText.Text = "Vraag:";
             // 
@@ -88,11 +89,12 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label1.Location = new System.Drawing.Point(65, 0);
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(100, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(208, 18);
+            this.label1.Size = new System.Drawing.Size(873, 33);
             this.label1.TabIndex = 1;
-            this.label1.Text = "vraagtext";
+            this.label1.Text = "nog geen vraag gesteld...";
             // 
             // dataGridView1
             // 
@@ -102,16 +104,18 @@
             this.dataGridView1.Location = new System.Drawing.Point(0, 0);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowTemplate.Height = 24;
-            this.dataGridView1.Size = new System.Drawing.Size(282, 212);
+            this.dataGridView1.Size = new System.Drawing.Size(982, 690);
             this.dataGridView1.TabIndex = 0;
             // 
             // UserAnswerToOpenQuestionView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(282, 253);
+            this.ClientSize = new System.Drawing.Size(982, 753);
             this.Controls.Add(this.splitContainer);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Name = "UserAnswerToOpenQuestionView";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "OpenQuestionView";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.UserAnswerToOpenQuestionView_FormClosing);
             this.splitContainer.Panel1.ResumeLayout(false);
