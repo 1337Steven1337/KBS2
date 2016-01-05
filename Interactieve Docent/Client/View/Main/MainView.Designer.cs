@@ -47,10 +47,11 @@
             this.tableFourColumn.Controls.Add(this.tableLayoutPanel1, 0, 0);
             this.tableFourColumn.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableFourColumn.Location = new System.Drawing.Point(0, 0);
+            this.tableFourColumn.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tableFourColumn.Name = "tableFourColumn";
             this.tableFourColumn.RowCount = 1;
             this.tableFourColumn.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableFourColumn.Size = new System.Drawing.Size(1110, 397);
+            this.tableFourColumn.Size = new System.Drawing.Size(987, 318);
             this.tableFourColumn.TabIndex = 0;
             // 
             // tableLayoutPanel1
@@ -58,18 +59,18 @@
             this.tableLayoutPanel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.tableLayoutPanel1.ColumnCount = 1;
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel1.Controls.Add(this.sessionLabel, 0, 2);
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel1.Controls.Add(this.OpenQuestionButton, 0, 1);
+            this.tableLayoutPanel1.Controls.Add(this.sessionLabel, 0, 2);
             this.tableLayoutPanel1.Controls.Add(this.ImportAccountButton, 0, 0);
-            this.tableLayoutPanel1.Location = new System.Drawing.Point(4, 5);
-            this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.tableLayoutPanel1.Location = new System.Drawing.Point(4, 4);
+            this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 3;
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 12.5F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 12.5F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 75F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(103, 387);
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 49.18033F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50.81967F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 234F));
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(90, 310);
             this.tableLayoutPanel1.TabIndex = 1;
             // 
             // OpenQuestionButton
@@ -80,9 +81,10 @@
             this.OpenQuestionButton.BackColor = System.Drawing.Color.White;
             this.OpenQuestionButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.OpenQuestionButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.OpenQuestionButton.Location = new System.Drawing.Point(3, 51);
+            this.OpenQuestionButton.Location = new System.Drawing.Point(3, 39);
+            this.OpenQuestionButton.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.OpenQuestionButton.Name = "OpenQuestionButton";
-            this.OpenQuestionButton.Size = new System.Drawing.Size(97, 32);
+            this.OpenQuestionButton.Size = new System.Drawing.Size(84, 34);
             this.OpenQuestionButton.TabIndex = 1;
             this.OpenQuestionButton.Text = "Open vraag";
             this.OpenQuestionButton.UseVisualStyleBackColor = false;
@@ -92,9 +94,9 @@
             // 
             this.sessionLabel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.sessionLabel.Location = new System.Drawing.Point(3, 350);
+            this.sessionLabel.Location = new System.Drawing.Point(3, 280);
             this.sessionLabel.Name = "sessionLabel";
-            this.sessionLabel.Size = new System.Drawing.Size(97, 37);
+            this.sessionLabel.Size = new System.Drawing.Size(84, 30);
             this.sessionLabel.TabIndex = 2;
             this.sessionLabel.Text = "sessionID";
             this.sessionLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -107,9 +109,10 @@
             this.ImportAccountButton.BackColor = System.Drawing.Color.White;
             this.ImportAccountButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.ImportAccountButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ImportAccountButton.Location = new System.Drawing.Point(3, 3);
+            this.ImportAccountButton.Location = new System.Drawing.Point(3, 2);
+            this.ImportAccountButton.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.ImportAccountButton.Name = "ImportAccountButton";
-            this.ImportAccountButton.Size = new System.Drawing.Size(97, 32);
+            this.ImportAccountButton.Size = new System.Drawing.Size(84, 32);
             this.ImportAccountButton.TabIndex = 0;
             this.ImportAccountButton.Text = "Import Excel";
             this.ImportAccountButton.UseVisualStyleBackColor = false;
@@ -117,10 +120,11 @@
             // 
             // MainView
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1110, 397);
+            this.ClientSize = new System.Drawing.Size(987, 318);
             this.Controls.Add(this.tableFourColumn);
+            this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "MainView";
             this.Text = "ViewMain2";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;

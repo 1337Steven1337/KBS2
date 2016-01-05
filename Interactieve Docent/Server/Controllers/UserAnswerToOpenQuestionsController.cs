@@ -32,7 +32,8 @@ namespace Server.Controllers
                      {
                          Id = q.Id,
                          Question_Id = q.Question.Id,
-                         Answer = q.Answer
+                         Answer = q.Answer,
+                         Student = q.Student
                      };
 
             return ua;
@@ -48,7 +49,8 @@ namespace Server.Controllers
                               {
                                   Id = ua.Id,
                                   Question_Id = ua.Question.Id,
-                                  Answer = ua.Answer
+                                  Answer = ua.Answer,
+                                  Student = ua.Student
                               };
 
             return userAnswerToOpenQuestions.FirstOrDefault(x => x.Id == x.Id);

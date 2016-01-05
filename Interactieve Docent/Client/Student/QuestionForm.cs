@@ -12,6 +12,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using ConnectionState = Microsoft.AspNet.SignalR.Client.ConnectionState;
+using Client.Model;
 
 namespace Client.Student
 {
@@ -24,6 +25,7 @@ namespace Client.Student
         private Model.QuestionList questionList = new Model.QuestionList();
         private Controller.StudentFormController controller;
         private View.Student.StudentForm view;
+        private OpenQuestionFactory OpenQuestionFactory = new OpenQuestionFactory();
 
         public QuestionForm()
         {
@@ -118,13 +120,12 @@ namespace Client.Student
             view.cleanUpPreviousQuestion();
             view.getAnswerButtons().Clear();
             questionTimer.Stop();
-
-
             controller.setCurrentQuestionIndex(controller.getCurrentQuestionIndex() + 1);
+
 
             if (this.questionList.Questions.Count - 1 >= controller.getCurrentQuestionIndex())
             {
-
+                
                 view.initQuestionScreen();
                 busy = true;
                 questionTimeProgressBar.Value = questionTimeProgressBar.Maximum;

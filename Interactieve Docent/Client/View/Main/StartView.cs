@@ -9,6 +9,8 @@ using Client.View.Question;
 using Client.Controller.Question;
 using Client.View.QuestionList;
 using Client.Controller.QuestionList;
+using Client.View.OpenQuestion;
+using Client.Controller.OpenQuestion;
 
 namespace Client.View.Main
 {

@@ -67,6 +67,5 @@ namespace Server.Hubs
         {
             Clients.Group("Code-" + sessionId.ToString()).QuestionListStarted(listId);
         }
-
     }
 }

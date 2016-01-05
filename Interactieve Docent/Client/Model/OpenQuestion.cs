@@ -25,6 +25,8 @@ namespace Client.Model
         {
             return Text;
         }
+
+        public List<UserAnswerToOpenQuestion> UserAnswers { get; set; }
     }
 }
 
