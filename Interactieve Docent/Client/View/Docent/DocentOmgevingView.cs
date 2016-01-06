@@ -97,7 +97,11 @@ namespace Client.View.Docent
 
         private void AddQuestionButton_Click(object sender, EventArgs e)
         {
-            AddQuestionController a = new AddQuestionController();
+            AddQuestionView view = new AddQuestionView(null);
+            AddQuestionController controller = new AddQuestionController();
+            controller.SetView(view);
+            controller.SetQuestionList(this.controller.CurrentList);
+            view.Show();
         }
 
         private void QuestionsListBox_SelectedIndexChanged(object sender, EventArgs e)
