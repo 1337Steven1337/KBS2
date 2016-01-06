@@ -107,6 +107,8 @@ namespace Server.Controllers
 
             OpenQuestion question = db.OpenQuestions.Find(userAnswer.Question_Id);
 
+            this.getSubscribed("Code-" + question.Pincode_Id).UserAnswerToOpenQuestionAdded(new UserAnswerToOpenQuestionDTO(userAnswer));
+
             return CreatedAtRoute("DefaultApi", new { id = userAnswer.Id }, userAnswer);
         }
 

@@ -1,10 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Net;
-using System.Text;
-using System.Threading.Tasks;
-using Client;
 using Client.Model;
 using RestSharp;
 
@@ -66,7 +62,7 @@ namespace Client.Tests.Factory
 
         public void SetResource(string resource)
         {
-            //Q
+            throw new NotImplementedException();
         }
 
         public void UpdateAsync(List<KeyValuePair<string, object>> data, Action<Question, HttpStatusCode, IRestResponse> callback)

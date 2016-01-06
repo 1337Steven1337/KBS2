@@ -8,7 +8,7 @@ using System.Net;
 
 namespace Client.Controller
 {
-    class UserAnswerToOpenQuestionController : AbstractController<Model.Question>
+    public class UserAnswerToOpenQuestionController : AbstractController<Model.UserAnswerToOpenQuestion>
     {
         #region Variables & Instances
         private IResultView<Model.UserAnswerToOpenQuestion> View;
@@ -53,13 +53,13 @@ namespace Client.Controller
         //If student answers the question, add answer to panel
         private void UserAnswerToOpenQuestionFactory_userAnswerToOpenQuestionAdded(UserAnswerToOpenQuestion answer)
         {
+            if (this.Answers == null)
+            {
+                this.Answers = new List<UserAnswerToOpenQuestion>();
+            }
+
             if (this.Question == null)
             {
-                if (this.Answers == null)
-                {
-                    this.Answers = new List<UserAnswerToOpenQuestion>();
-                }
-
                 this.Answers.Add(answer);
                 this.View.GetHandler().Invoke((Action)Refresh);
             }
@@ -71,7 +71,7 @@ namespace Client.Controller
                     {
                         this.Question.UserAnswers = new List<UserAnswerToOpenQuestion>();
                     }
-
+                    this.Answers.Add(answer);
                     this.Question.UserAnswers.Add(answer);
 
                     //update the panel 
@@ -122,9 +122,14 @@ namespace Client.Controller
                         }
                     }
                 }
+                Refresh();
+            }
+            else
+            {
+                //q
             }
 
-            this.Refresh();
+            
         }
 
         //If another question is selected
@@ -174,9 +179,9 @@ namespace Client.Controller
             throw new NotImplementedException();
         }
 
-        public override void SetBaseFactory(IFactory<Model.Question> baseFactory)
+        public override void SetBaseFactory(IFactory<Model.UserAnswerToOpenQuestion> baseFactory)
         {
-            throw new NotImplementedException();
+            this.UserAnswerToOpenQuestionFactory = (UserAnswerToOpenQuestionFactory)baseFactory;
         }
         #endregion
     }

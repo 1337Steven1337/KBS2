@@ -13,6 +13,9 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using ConnectionState = Microsoft.AspNet.SignalR.Client.ConnectionState;
 using Client.Model;
+using System.Net;
+using Client.View.Student;
+using Client.Controller;
 
 namespace Client.Student
 {
@@ -23,37 +26,37 @@ namespace Client.Student
         private Timer questionTimer = new Timer();
         private Model.Question currentQuestion = null;
         private Model.QuestionList questionList = new Model.QuestionList();
-        private Controller.StudentFormController controller;
-        private View.Student.StudentForm view;
-        private OpenQuestionFactory OpenQuestionFactory = new OpenQuestionFactory();
+        private StudentFormController controller;
+        private StudentForm view;
 
         public QuestionForm()
         {
             
         }
 
-
         //Initializing controller & view
         public QuestionForm(int List_Id)
         {
             InitializeComponent();
             this.List_Id = List_Id;
-            controller = new Controller.StudentFormController(this);
-            view = new View.Student.StudentForm(this);
+            this.view = new StudentForm(this);
+            this.controller = new StudentFormController(this);
+
+            this.view.setController();
             view.initControlLocations();
             view.initWaitScreen();
             questionTimer.Interval = 100;
             questionTimer.Tick += Question_Timer;
         }
 
-        public Controller.StudentFormController  getController()
-        {
-            return this.controller;
-        }
-
-        public View.Student.StudentForm getView()
+        public StudentForm getView()
         {
             return this.view;
+        }
+
+        public StudentFormController getController()
+        {
+            return this.controller;
         }
 
 
@@ -83,7 +86,6 @@ namespace Client.Student
             return this.currentQuestion;
         }
 
-
         //If a time is set this is the event that is executed when the timer is over
         //It resets the timer variables and then goes to the nextquestion event
         private void Question_Timer(object sender, EventArgs e)
@@ -112,7 +114,6 @@ namespace Client.Student
                 }
             }
         }
-
 
         //Literally goes to the next question if there is one, otherwise it'll go back to the waitingscreen.
         public void goToNextQuestion()

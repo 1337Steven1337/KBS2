@@ -71,6 +71,7 @@
     <Compile Include="Controllers\TestViewDeleteQuestionList.cs" />
     <Compile Include="Factory\TestQuestionFactory.cs" />
     <Compile Include="Factory\TestQuestionListFactory.cs" />
+    <Compile Include="Factory\TestUserAnswerToOpenQuestionFactory.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TestControlHandler.cs" />
     <Compile Include="View\Diagram\DiagramTest.cs" />
@@ -86,6 +87,7 @@
     <Compile Include="View\Question\TestViewDeleteQuestion.cs" />
     <Compile Include="View\Question\TestViewQuestion.cs" />
     <Compile Include="View\Question\ViewDeleteQuestion.cs" />
+    <Compile Include="View\UserAnswerToOpenQuestion\TestUserAnswerToOpenQuestionView.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Client\Client.csproj">
