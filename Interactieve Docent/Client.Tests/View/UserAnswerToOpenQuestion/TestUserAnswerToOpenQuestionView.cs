@@ -5,11 +5,13 @@ using Client.Controller;
 using Client.Model;
 using Client.Service.Thread;
 using Client.View;
+using System.Windows.Forms;
 
 namespace Client.Tests.View.UserAnswerToOpenQuestion
 {
     public class TestUserAnswerToOpenQuestionView : IResultView<Model.UserAnswerToOpenQuestion>
     {
+        private int Count;
         private UserAnswerToOpenQuestionController Controller;
 
         public void AddToParent(IView parent)
@@ -24,12 +26,17 @@ namespace Client.Tests.View.UserAnswerToOpenQuestion
 
         public void FillList(List<Model.UserAnswerToOpenQuestion> list)
         {
-            throw new NotImplementedException();
+            this.Count = list.Count;
         }
 
         public IControlHandler GetHandler()
         {
-            throw new NotImplementedException();
+            return new ControlHandler(new Control());
+        }
+
+        public int getCount()
+        {
+            return Count;
         }
 
         public void Refresh(List<Model.UserAnswerToOpenQuestion> answers, OpenQuestion question)
@@ -49,7 +56,7 @@ namespace Client.Tests.View.UserAnswerToOpenQuestion
 
         public void Show()
         {
-            throw new NotImplementedException();
+            //q
         }
 
         public void AddItem(Model.UserAnswerToOpenQuestion ua)
