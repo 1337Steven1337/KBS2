@@ -36,7 +36,7 @@ namespace Client.Controller
             //loginClient.sendshittodatabase(ac);
         }
 
-        public override IView GetView()
+        public override IView GetView() 
         {
             return this.View;
         }

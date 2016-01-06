@@ -56,10 +56,10 @@ namespace Client.Controller
                 questionVotes[text] += 1;
             }
          */
-            Votes = questionVotes.Values.ToList<int>();
-            Questions = questionVotes.Keys.ToList<string>();
-           //  Votes = new List<int> { 1, 2, 3 };
-            // Questions = new List<string> { "a" , "b" , "c" };
+          //  Votes = questionVotes.Values.ToList<int>();
+          //  Questions = questionVotes.Keys.ToList<string>();
+             Votes = new List<int> { 1, 2, 3 };
+             Questions = new List<string> { "a" , "b" , "c" };
 
                 this.View.Make(Votes, Questions);
             
