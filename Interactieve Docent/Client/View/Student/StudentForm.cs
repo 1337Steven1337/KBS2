@@ -123,7 +123,8 @@ namespace Client.View.Student
         {
             if (code == HttpStatusCode.Created && ua != null)
             {
-                ShowSaveSucceed();
+                //ShowSaveSucceed();
+                //Dont show anything, it is really annoying if a dialog pops up every time.
             }
             else
             {
