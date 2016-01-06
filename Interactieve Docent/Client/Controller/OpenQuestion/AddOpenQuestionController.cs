@@ -30,7 +30,7 @@ namespace Client.Controller.OpenQuestion
 
         public void Save(Model.OpenQuestion question)
         {
-            question.Pincode_Id = "123456";
+            question.Pincode_Id = Client.Properties.Settings.Default.Session_Id.ToString();
             this.Factory.Save(question, this.View.GetHandler(), this.CallbackSaveQuestion);
         }
 
