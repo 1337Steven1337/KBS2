@@ -30,26 +30,26 @@ namespace Client
             Application.SetCompatibleTextRenderingDefault(false);
 
 
-            //MainView view = new MainView();
-            //MainController maincontroller = new MainController(view);
+            MainView view = new MainView();
+            MainController maincontroller = new MainController(view);
 
-            //ListQuestionView viewQuestion = new ListQuestionView();
-            //ListQuestionController questionController = new ListQuestionController(viewQuestion);
-            //maincontroller.AddController(questionController);
+            ListQuestionView viewQuestion = new ListQuestionView();
+            ListQuestionController questionController = new ListQuestionController(viewQuestion);
+            maincontroller.AddController(questionController);
 
-            //ListQuestionListView viewQuestionList = new ListQuestionListView();
-            //ListQuestionListController listQuestionListController = new ListQuestionListController(viewQuestionList);
-            //maincontroller.AddController(listQuestionListController);
+            ListQuestionListView viewQuestionList = new ListQuestionListView();
+            ListQuestionListController listQuestionListController = new ListQuestionListController(viewQuestionList);
+            maincontroller.AddController(listQuestionListController);
 
-            //listQuestionListController.SelectedListChanged += questionController.LoadList;
-            //listQuestionListController.Load();
+            listQuestionListController.SelectedListChanged += questionController.LoadList;
+            listQuestionListController.Load();
 
 
-            //listQuestionListController.SelectedListChanged += questionController.LoadList;
-            //listQuestionListController.Load();
+            listQuestionListController.SelectedListChanged += questionController.LoadList;
+            listQuestionListController.Load();
 
-            //Student.QuestionForm form = new Student.QuestionForm(1);
-            //form.Show();
+            view.Show();
+
 
             StartView startView = new StartView();
             ShowStartController controller = new ShowStartController(startView);
