@@ -67,7 +67,6 @@
     <Compile Include="Controllers\TestLoadQuestionLists.cs" />
     <Compile Include="Controllers\TestLoadQuestions.cs" />
     <Compile Include="Controllers\TestQuestionController.cs" />
-    <Compile Include="Controllers\TestUserAnswerToOpenQuestion.cs" />
     <Compile Include="Controllers\TestViewDeleteQuestion.cs" />
     <Compile Include="Controllers\TestViewDeleteQuestionList.cs" />
     <Compile Include="Factory\TestQuestionFactory.cs" />

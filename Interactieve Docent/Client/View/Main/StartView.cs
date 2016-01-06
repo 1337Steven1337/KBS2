@@ -79,9 +79,9 @@ namespace Client.View.Main
 
             //view.ShowDialog();
 
-            //UserAnswerToOpenQuestionView view = new UserAnswerToOpenQuestionView();
-            //UserAnswerToOpenQuestionController controller = new UserAnswerToOpenQuestionController(view);
-            //view.Show();
+            UserAnswerToOpenQuestionView view = new UserAnswerToOpenQuestionView();
+            UserAnswerToOpenQuestionController controller = new UserAnswerToOpenQuestionController(view);
+            view.Show();
 
             AddOpenQuestionView view2 = new AddOpenQuestionView();
             AddOpenQuestionController controller2 = new AddOpenQuestionController(view2);
