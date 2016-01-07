@@ -10,5 +10,8 @@ namespace Client.View.Main
     public interface IStartView : IView
     {
         void ShowCodeResult(Model.Pincode instance, HttpStatusCode status);
+        void ShowPasswordResult(bool result);
+        void Continue(); 
+        string GetPassword();
     }
 }

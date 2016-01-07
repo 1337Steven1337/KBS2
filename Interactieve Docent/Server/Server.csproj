@@ -183,6 +183,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Hubs\EventHub.cs" />
+    <Compile Include="LoginToken.cs" />
     <Compile Include="Models\DTO\UserAnswerToOpenQuestionDTO.cs" />
     <Compile Include="Models\UserAnswerToOpenQuestion.cs" />
     <Compile Include="Models\Account.cs" />

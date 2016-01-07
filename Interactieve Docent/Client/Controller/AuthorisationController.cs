@@ -15,8 +15,8 @@ namespace Client.Controller
 {
     public class AuthorisationController : AbstractController<Model.Account>
     {
-        private IAuthorisationView View;
-        private LoginClient loginClient = new LoginClient();
+        private IAuthorisationView View; 
+        private LoginClient loginClient = LoginClient.GetInstance();
         private AccountFactory Factory = new AccountFactory();
 
         public AuthorisationController(IAuthorisationView view)
