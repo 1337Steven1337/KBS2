@@ -22,7 +22,6 @@ namespace Client.Model
 
         public Question(Dictionary<string, object> data)
         {
-            this.Points = Convert.ToInt32(data["Points"]);
             this.Time = Convert.ToInt32(data["Time"]);
             this.Text = Convert.ToString(data["Text"]);
             this.PredefinedAnswerCount = Convert.ToInt32(data["PredefinedAnswerCount"]);
