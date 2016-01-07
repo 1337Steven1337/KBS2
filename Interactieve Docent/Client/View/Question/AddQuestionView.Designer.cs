@@ -34,27 +34,28 @@
             this.buttonsTablePanel = new System.Windows.Forms.TableLayoutPanel();
             this.btnSaveQuestion = new System.Windows.Forms.Button();
             this.btnQuit = new System.Windows.Forms.Button();
-            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            this.tableInputFields = new System.Windows.Forms.TableLayoutPanel();
             this.labelQuestionField = new System.Windows.Forms.Label();
             this.questionField = new System.Windows.Forms.RichTextBox();
             this.labelTimeField = new System.Windows.Forms.Label();
-            this.labelPointsField = new System.Windows.Forms.Label();
             this.labelAnswerField = new System.Windows.Forms.Label();
             this.answerField = new System.Windows.Forms.TextBox();
             this.timeField = new System.Windows.Forms.NumericUpDown();
-            this.pointsField = new System.Windows.Forms.NumericUpDown();
             this.answersListBox = new System.Windows.Forms.ListBox();
             this.labelAnswersListBox = new System.Windows.Forms.Label();
             this.rightAnswerComboBox = new System.Windows.Forms.ComboBox();
             this.btnAddAnswer = new System.Windows.Forms.Button();
             this.btnDeleteAnswer = new System.Windows.Forms.Button();
             this.labelRightAnswer = new System.Windows.Forms.Label();
+            this.tableRadioButtons = new System.Windows.Forms.TableLayoutPanel();
+            this.rbSetTime = new System.Windows.Forms.RadioButton();
+            this.rbNoTime = new System.Windows.Forms.RadioButton();
             this.mainTablePanel.SuspendLayout();
             this.titlePanel.SuspendLayout();
             this.buttonsTablePanel.SuspendLayout();
-            this.tableLayoutPanel1.SuspendLayout();
+            this.tableInputFields.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.timeField)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pointsField)).BeginInit();
+            this.tableRadioButtons.SuspendLayout();
             this.SuspendLayout();
             // 
             // mainTablePanel
@@ -63,7 +64,7 @@
             this.mainTablePanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.mainTablePanel.Controls.Add(this.titlePanel, 0, 0);
             this.mainTablePanel.Controls.Add(this.buttonsTablePanel, 0, 2);
-            this.mainTablePanel.Controls.Add(this.tableLayoutPanel1, 0, 1);
+            this.mainTablePanel.Controls.Add(this.tableInputFields, 0, 1);
             this.mainTablePanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.mainTablePanel.Location = new System.Drawing.Point(0, 0);
             this.mainTablePanel.Margin = new System.Windows.Forms.Padding(0);
@@ -72,7 +73,7 @@
             this.mainTablePanel.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.mainTablePanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.mainTablePanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 50F));
-            this.mainTablePanel.Size = new System.Drawing.Size(792, 554);
+            this.mainTablePanel.Size = new System.Drawing.Size(792, 658);
             this.mainTablePanel.TabIndex = 1;
             // 
             // titlePanel
@@ -107,7 +108,7 @@
             this.buttonsTablePanel.Controls.Add(this.btnSaveQuestion, 0, 0);
             this.buttonsTablePanel.Controls.Add(this.btnQuit, 1, 0);
             this.buttonsTablePanel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.buttonsTablePanel.Location = new System.Drawing.Point(0, 504);
+            this.buttonsTablePanel.Location = new System.Drawing.Point(0, 608);
             this.buttonsTablePanel.Margin = new System.Windows.Forms.Padding(0);
             this.buttonsTablePanel.Name = "buttonsTablePanel";
             this.buttonsTablePanel.RowCount = 1;
@@ -148,41 +149,40 @@
             this.btnQuit.Text = "Sluiten";
             this.btnQuit.UseVisualStyleBackColor = false;
             // 
-            // tableLayoutPanel1
+            // tableInputFields
             // 
-            this.tableLayoutPanel1.BackColor = System.Drawing.Color.White;
-            this.tableLayoutPanel1.ColumnCount = 3;
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 70F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 30F));
-            this.tableLayoutPanel1.Controls.Add(this.labelQuestionField, 0, 0);
-            this.tableLayoutPanel1.Controls.Add(this.questionField, 1, 0);
-            this.tableLayoutPanel1.Controls.Add(this.labelTimeField, 0, 1);
-            this.tableLayoutPanel1.Controls.Add(this.labelPointsField, 0, 2);
-            this.tableLayoutPanel1.Controls.Add(this.labelAnswerField, 0, 3);
-            this.tableLayoutPanel1.Controls.Add(this.answerField, 1, 3);
-            this.tableLayoutPanel1.Controls.Add(this.timeField, 1, 1);
-            this.tableLayoutPanel1.Controls.Add(this.pointsField, 1, 2);
-            this.tableLayoutPanel1.Controls.Add(this.answersListBox, 1, 5);
-            this.tableLayoutPanel1.Controls.Add(this.labelAnswersListBox, 0, 5);
-            this.tableLayoutPanel1.Controls.Add(this.rightAnswerComboBox, 1, 6);
-            this.tableLayoutPanel1.Controls.Add(this.btnAddAnswer, 2, 3);
-            this.tableLayoutPanel1.Controls.Add(this.btnDeleteAnswer, 2, 5);
-            this.tableLayoutPanel1.Controls.Add(this.labelRightAnswer, 0, 6);
-            this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel1.Location = new System.Drawing.Point(3, 84);
-            this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.tableLayoutPanel1.Name = "tableLayoutPanel1";
-            this.tableLayoutPanel1.RowCount = 7;
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 50F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(786, 418);
-            this.tableLayoutPanel1.TabIndex = 2;
+            this.tableInputFields.BackColor = System.Drawing.Color.White;
+            this.tableInputFields.ColumnCount = 3;
+            this.tableInputFields.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.tableInputFields.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 70F));
+            this.tableInputFields.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 30F));
+            this.tableInputFields.Controls.Add(this.labelQuestionField, 0, 0);
+            this.tableInputFields.Controls.Add(this.questionField, 1, 0);
+            this.tableInputFields.Controls.Add(this.rightAnswerComboBox, 1, 6);
+            this.tableInputFields.Controls.Add(this.answersListBox, 1, 5);
+            this.tableInputFields.Controls.Add(this.labelRightAnswer, 0, 6);
+            this.tableInputFields.Controls.Add(this.labelAnswersListBox, 0, 5);
+            this.tableInputFields.Controls.Add(this.answerField, 1, 4);
+            this.tableInputFields.Controls.Add(this.labelAnswerField, 0, 4);
+            this.tableInputFields.Controls.Add(this.timeField, 1, 2);
+            this.tableInputFields.Controls.Add(this.tableRadioButtons, 1, 1);
+            this.tableInputFields.Controls.Add(this.labelTimeField, 0, 2);
+            this.tableInputFields.Controls.Add(this.btnDeleteAnswer, 2, 5);
+            this.tableInputFields.Controls.Add(this.btnAddAnswer, 2, 4);
+            this.tableInputFields.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableInputFields.Location = new System.Drawing.Point(3, 84);
+            this.tableInputFields.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.tableInputFields.Name = "tableInputFields";
+            this.tableInputFields.RowCount = 7;
+            this.tableInputFields.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 50F));
+            this.tableInputFields.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.tableInputFields.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.tableInputFields.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.tableInputFields.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.tableInputFields.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.tableInputFields.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableInputFields.Size = new System.Drawing.Size(786, 522);
+            this.tableInputFields.TabIndex = 2;
             // 
             // labelQuestionField
             // 
@@ -217,26 +217,12 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.labelTimeField.AutoSize = true;
             this.labelTimeField.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelTimeField.Location = new System.Drawing.Point(3, 50);
+            this.labelTimeField.Location = new System.Drawing.Point(3, 85);
             this.labelTimeField.Name = "labelTimeField";
             this.labelTimeField.Size = new System.Drawing.Size(143, 26);
             this.labelTimeField.TabIndex = 2;
-            this.labelTimeField.Text = "Tijd (sec)*";
+            this.labelTimeField.Text = "Tijdslimiet (sec)*";
             this.labelTimeField.TextAlign = System.Drawing.ContentAlignment.TopRight;
-            // 
-            // labelPointsField
-            // 
-            this.labelPointsField.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.labelPointsField.AutoSize = true;
-            this.labelPointsField.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelPointsField.Location = new System.Drawing.Point(3, 76);
-            this.labelPointsField.Name = "labelPointsField";
-            this.labelPointsField.Size = new System.Drawing.Size(143, 26);
-            this.labelPointsField.TabIndex = 3;
-            this.labelPointsField.Text = "Punten*";
-            this.labelPointsField.TextAlign = System.Drawing.ContentAlignment.TopRight;
             // 
             // labelAnswerField
             // 
@@ -245,7 +231,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.labelAnswerField.AutoSize = true;
             this.labelAnswerField.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelAnswerField.Location = new System.Drawing.Point(3, 102);
+            this.labelAnswerField.Location = new System.Drawing.Point(3, 111);
             this.labelAnswerField.Name = "labelAnswerField";
             this.labelAnswerField.Size = new System.Drawing.Size(143, 49);
             this.labelAnswerField.TabIndex = 9;
@@ -254,9 +240,8 @@
             // 
             // answerField
             // 
-            this.answerField.Dock = System.Windows.Forms.DockStyle.Fill;
             this.answerField.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.answerField.Location = new System.Drawing.Point(152, 104);
+            this.answerField.Location = new System.Drawing.Point(152, 113);
             this.answerField.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.answerField.Multiline = true;
             this.answerField.Name = "answerField";
@@ -265,9 +250,8 @@
             // 
             // timeField
             // 
-            this.timeField.Dock = System.Windows.Forms.DockStyle.Fill;
             this.timeField.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.timeField.Location = new System.Drawing.Point(152, 52);
+            this.timeField.Location = new System.Drawing.Point(152, 87);
             this.timeField.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.timeField.Maximum = new decimal(new int[] {
             7200,
@@ -278,33 +262,21 @@
             this.timeField.Size = new System.Drawing.Size(439, 22);
             this.timeField.TabIndex = 2;
             this.timeField.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            // 
-            // pointsField
-            // 
-            this.pointsField.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pointsField.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.pointsField.Location = new System.Drawing.Point(152, 78);
-            this.pointsField.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.pointsField.Maximum = new decimal(new int[] {
-            10000,
+            this.timeField.Value = new decimal(new int[] {
+            10,
             0,
             0,
             0});
-            this.pointsField.Name = "pointsField";
-            this.pointsField.Size = new System.Drawing.Size(439, 22);
-            this.pointsField.TabIndex = 3;
-            this.pointsField.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // answersListBox
             // 
-            this.answersListBox.Dock = System.Windows.Forms.DockStyle.Fill;
             this.answersListBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.answersListBox.FormattingEnabled = true;
             this.answersListBox.ItemHeight = 16;
-            this.answersListBox.Location = new System.Drawing.Point(152, 153);
+            this.answersListBox.Location = new System.Drawing.Point(152, 162);
             this.answersListBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.answersListBox.Name = "answersListBox";
-            this.answersListBox.Size = new System.Drawing.Size(439, 208);
+            this.answersListBox.Size = new System.Drawing.Size(439, 196);
             this.answersListBox.TabIndex = 6;
             // 
             // labelAnswersListBox
@@ -314,20 +286,19 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.labelAnswersListBox.AutoSize = true;
             this.labelAnswersListBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelAnswersListBox.Location = new System.Drawing.Point(3, 151);
+            this.labelAnswersListBox.Location = new System.Drawing.Point(3, 160);
             this.labelAnswersListBox.Name = "labelAnswersListBox";
-            this.labelAnswersListBox.Size = new System.Drawing.Size(143, 212);
+            this.labelAnswersListBox.Size = new System.Drawing.Size(143, 200);
             this.labelAnswersListBox.TabIndex = 4;
             this.labelAnswersListBox.Text = "Antwoorden*";
             this.labelAnswersListBox.TextAlign = System.Drawing.ContentAlignment.TopRight;
             // 
             // rightAnswerComboBox
             // 
-            this.rightAnswerComboBox.Dock = System.Windows.Forms.DockStyle.Fill;
             this.rightAnswerComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.rightAnswerComboBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.rightAnswerComboBox.FormattingEnabled = true;
-            this.rightAnswerComboBox.Location = new System.Drawing.Point(152, 365);
+            this.rightAnswerComboBox.Location = new System.Drawing.Point(152, 362);
             this.rightAnswerComboBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.rightAnswerComboBox.Name = "rightAnswerComboBox";
             this.rightAnswerComboBox.Size = new System.Drawing.Size(439, 24);
@@ -342,7 +313,7 @@
             this.btnAddAnswer.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnAddAnswer.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnAddAnswer.ForeColor = System.Drawing.Color.White;
-            this.btnAddAnswer.Location = new System.Drawing.Point(597, 105);
+            this.btnAddAnswer.Location = new System.Drawing.Point(597, 114);
             this.btnAddAnswer.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnAddAnswer.Name = "btnAddAnswer";
             this.btnAddAnswer.Size = new System.Drawing.Size(186, 43);
@@ -360,7 +331,7 @@
             this.btnDeleteAnswer.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnDeleteAnswer.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnDeleteAnswer.ForeColor = System.Drawing.Color.White;
-            this.btnDeleteAnswer.Location = new System.Drawing.Point(597, 153);
+            this.btnDeleteAnswer.Location = new System.Drawing.Point(597, 162);
             this.btnDeleteAnswer.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnDeleteAnswer.Name = "btnDeleteAnswer";
             this.btnDeleteAnswer.Size = new System.Drawing.Size(186, 43);
@@ -375,18 +346,57 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.labelRightAnswer.AutoSize = true;
             this.labelRightAnswer.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelRightAnswer.Location = new System.Drawing.Point(3, 363);
+            this.labelRightAnswer.Location = new System.Drawing.Point(3, 360);
             this.labelRightAnswer.Name = "labelRightAnswer";
-            this.labelRightAnswer.Size = new System.Drawing.Size(143, 55);
+            this.labelRightAnswer.Size = new System.Drawing.Size(143, 162);
             this.labelRightAnswer.TabIndex = 14;
             this.labelRightAnswer.Text = "Juiste antwoord*";
             this.labelRightAnswer.TextAlign = System.Drawing.ContentAlignment.TopRight;
+            // 
+            // tableRadioButtons
+            // 
+            this.tableRadioButtons.ColumnCount = 2;
+            this.tableRadioButtons.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableRadioButtons.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableRadioButtons.Controls.Add(this.rbSetTime, 0, 0);
+            this.tableRadioButtons.Controls.Add(this.rbNoTime, 1, 0);
+            this.tableRadioButtons.Location = new System.Drawing.Point(152, 53);
+            this.tableRadioButtons.Name = "tableRadioButtons";
+            this.tableRadioButtons.RowCount = 1;
+            this.tableRadioButtons.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableRadioButtons.Size = new System.Drawing.Size(439, 29);
+            this.tableRadioButtons.TabIndex = 15;
+            // 
+            // rbSetTime
+            // 
+            this.rbSetTime.AutoSize = true;
+            this.rbSetTime.Checked = true;
+            this.rbSetTime.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.rbSetTime.Location = new System.Drawing.Point(3, 3);
+            this.rbSetTime.Name = "rbSetTime";
+            this.rbSetTime.Size = new System.Drawing.Size(213, 23);
+            this.rbSetTime.TabIndex = 0;
+            this.rbSetTime.TabStop = true;
+            this.rbSetTime.Text = "Tijdslimiet instellen";
+            this.rbSetTime.UseVisualStyleBackColor = true;
+            // 
+            // rbNoTime
+            // 
+            this.rbNoTime.AutoSize = true;
+            this.rbNoTime.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.rbNoTime.Location = new System.Drawing.Point(222, 3);
+            this.rbNoTime.Name = "rbNoTime";
+            this.rbNoTime.Size = new System.Drawing.Size(214, 23);
+            this.rbNoTime.TabIndex = 1;
+            this.rbNoTime.Text = "Geen tijdslimiet instellen";
+            this.rbNoTime.UseVisualStyleBackColor = true;
+            this.rbNoTime.CheckedChanged += new System.EventHandler(this.rbNoTime_CheckedChanged);
             // 
             // AddQuestionView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(792, 554);
+            this.ClientSize = new System.Drawing.Size(792, 658);
             this.Controls.Add(this.mainTablePanel);
             this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "AddQuestionView";
@@ -394,10 +404,11 @@
             this.mainTablePanel.ResumeLayout(false);
             this.titlePanel.ResumeLayout(false);
             this.buttonsTablePanel.ResumeLayout(false);
-            this.tableLayoutPanel1.ResumeLayout(false);
-            this.tableLayoutPanel1.PerformLayout();
+            this.tableInputFields.ResumeLayout(false);
+            this.tableInputFields.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.timeField)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pointsField)).EndInit();
+            this.tableRadioButtons.ResumeLayout(false);
+            this.tableRadioButtons.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -409,13 +420,11 @@
         private System.Windows.Forms.TableLayoutPanel buttonsTablePanel;
         private System.Windows.Forms.Button btnSaveQuestion;
         private System.Windows.Forms.Button btnQuit;
-        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
+        private System.Windows.Forms.TableLayoutPanel tableInputFields;
         private System.Windows.Forms.Label labelTimeField;
-        private System.Windows.Forms.Label labelPointsField;
         private System.Windows.Forms.Label labelAnswersListBox;
         private System.Windows.Forms.ListBox answersListBox;
         private System.Windows.Forms.NumericUpDown timeField;
-        private System.Windows.Forms.NumericUpDown pointsField;
         private System.Windows.Forms.Label labelAnswerField;
         private System.Windows.Forms.Button btnDeleteAnswer;
         private System.Windows.Forms.Button btnAddAnswer;
@@ -424,5 +433,8 @@
         private System.Windows.Forms.RichTextBox questionField;
         private System.Windows.Forms.ComboBox rightAnswerComboBox;
         private System.Windows.Forms.Label labelRightAnswer;
+        private System.Windows.Forms.TableLayoutPanel tableRadioButtons;
+        private System.Windows.Forms.RadioButton rbSetTime;
+        private System.Windows.Forms.RadioButton rbNoTime;
     }
 }

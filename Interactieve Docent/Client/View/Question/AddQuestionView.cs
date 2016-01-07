@@ -57,10 +57,17 @@ namespace Client.View.Question
         private void EditQuestion(Model.Question question)
         {
             questionField.Text = question.Text;
-            timeField.Value = question.Time;
-            pointsField.Value = question.Points;
+            
+            if(question.Time > 0)
+            {
+                timeField.Value = question.Time;
+            }
+            else
+            {
+                rbNoTime.Checked = true;
+            }
 
-            foreach(Model.PredefinedAnswer pa in question.PredefinedAnswers)
+            foreach (Model.PredefinedAnswer pa in question.PredefinedAnswers)
             {
                 OldAnswersList.Add(pa);
                 CurrentAnswersList.Add(pa);
@@ -77,8 +84,7 @@ namespace Client.View.Question
         public void ClearAllFields()
         {
             questionField.Text = "";
-            timeField.Value = 0;
-            pointsField.Value = 0;
+            timeField.Value = 10;
             CurrentAnswersList.Clear();
             answersListBox.DataSource = CurrentAnswersList;
             RightAnswerList.Clear();
@@ -140,11 +146,9 @@ namespace Client.View.Question
                 dr = confirm.ShowDialog();
 
                 if (dr == DialogResult.Yes)
-                {
-                    
+                {                    
                     Dictionary<string, object> iDictionary = new Dictionary<string, object>();
                     iDictionary.Add("Text", questionField.Text.Trim());
-                    iDictionary.Add("Points", pointsField.Value);
                     iDictionary.Add("Time", timeField.Value);
                     iDictionary.Add("PredefinedAnswerCount", this.answersListBox.Items.Count);
                     
@@ -173,21 +177,38 @@ namespace Client.View.Question
         //Validate all inputfields
         private Boolean ValidateFields()
         {
-            int Time = -1;
-            int Points = -1;
-
-            try
+            if (TimeIsSet())
             {
-                Time = Convert.ToInt32(timeField.Value);
-                Points = Convert.ToInt32(pointsField.Value);
+                //if time is smaller then 3, set time to standard 10 sec.
+                if (timeField.Value < 3)
+                {
+                    timeField.Value = 10;
+                }
+
+                int Time = -1;
+
+                try
+                {
+                    Time = Convert.ToInt32(timeField.Value);
+                }
+                catch (Exception)
+                {
+
+                }
+
+                return (Time >= 3 && questionField.Text != "" && answersListBox.Items.Count > 0);
             }
-            catch(Exception)
+            else
             {
-
+                //time is not set
+                timeField.Value = 0;
+                return (questionField.Text != "" && answersListBox.Items.Count > 0);
             }
+        }
 
-            //return true or false
-            return (Time > 0 && Points > 0 && questionField.Text != "" && answersListBox.Items.Count > 0);
+        private Boolean TimeIsSet()
+        {
+            return (rbSetTime.Checked);
         }
 
         //Add view to mainTable
@@ -263,6 +284,20 @@ namespace Client.View.Question
             else
             {
                 this.ShowSaveFailed();
+            }
+        }
+
+        private void rbNoTime_CheckedChanged(object sender, EventArgs e)
+        {
+            if(rbNoTime.Checked == true)
+            {
+                labelTimeField.Visible = false;
+                timeField.Visible = false;
+            }
+            else
+            {
+                labelTimeField.Visible = true;
+                timeField.Visible = true;
             }
         }
     }

@@ -192,7 +192,7 @@ namespace Client.View.Question
             else
             {
                 FailedDialogView failed = new FailedDialogView();
-                failed.getLabelFailed().Text = "Deze vraag kan niet geupdate worden omdat er al antwoorden voor bestaan.";
+                failed.getLabelFailed().Text = "Deze vraag kan niet geupdate worden omdat de vraag nog antwoorden bevat van studenten.";
                 failed.ShowDialog();
             }
         }
