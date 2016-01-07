@@ -167,7 +167,6 @@ namespace Client.View.QuestionList
 
                     //open docentomgeving
                     DocentOmgevingView view = new DocentOmgevingView();
-                    ///HIER MOET NOG IETS GEBEUREN
                     DocentOmgevingController Controller = new DocentOmgevingController(view, getSelectedItem());
 
                 }
