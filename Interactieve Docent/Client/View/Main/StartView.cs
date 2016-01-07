@@ -17,11 +17,17 @@ namespace Client.View.Main
 {
     public partial class StartView : Form, IStartView
     {
+        private Model.Pincode Code;
         private ShowStartController Controller;
 
         public StartView()
         {
             InitializeComponent();
+        }
+
+        public string GetPassword()
+        {
+            return this.PasswordTextBox.Text;
         }
 
         public void AddToParent(IView parent)
@@ -34,17 +40,40 @@ namespace Client.View.Main
             return new ControlHandler(this.CodeTextBox);
         }
 
+        public void Continue()
+        {
+            this.CodeTextBox.Invoke((Action)(() => {
+                this.Hide();
+                this.StartStudentScreen(this.Code);
+            }));
+
+        }
+
+        public void ShowPasswordResult(bool result)
+        {
+            if (!result)
+            {
+                LoginButton.Enabled = true;
+                CodeTextBox.Enabled = true;
+                PasswordTextBox.Enabled = true;
+
+                FailedDialogView failed = new FailedDialogView();
+                failed.getLabelFailed().Text = "Het wachtwoord is incorrect.";
+                BackgroundDialogView background = new BackgroundDialogView(this, failed);
+            }
+        }
+
         public void ShowCodeResult(Model.Pincode instance, HttpStatusCode status)
         {
-            if(status == HttpStatusCode.OK)
+            if (status == HttpStatusCode.OK)
             {
-                this.Hide();
-                this.StartStudentScreen(instance);
+                this.Code = instance;
             }
             else
             {
                 LoginButton.Enabled = true;
                 CodeTextBox.Enabled = true;
+                PasswordTextBox.Enabled = true;
 
                 FailedDialogView failed = new FailedDialogView();
                 failed.getLabelFailed().Text = "De code is incorrect.";
@@ -59,10 +88,12 @@ namespace Client.View.Main
 
         private void LoginButton_Click(object sender, EventArgs e)
         {
-            if(this.CodeTextBox.Text != null && this.CodeTextBox.Text.Length == 6)
+            if (this.CodeTextBox.Text != null && this.CodeTextBox.Text.Length == 6 &&
+                this.PasswordTextBox.Text != null && this.PasswordTextBox.Text.Length == 6)
             {
                 LoginButton.Enabled = false;
                 CodeTextBox.Enabled = false;
+                PasswordTextBox.Enabled = false;
 
                 Controller.CheckCode(this.CodeTextBox.Text);
             }
@@ -76,7 +107,12 @@ namespace Client.View.Main
 
         private void CodeTextBox_TextChanged(object sender, EventArgs e)
         {
-            LoginButton.Enabled = (CodeTextBox.Text != null && CodeTextBox.Text.Length == 6);
+            LoginButton.Enabled = (CodeTextBox.Text != null && CodeTextBox.Text.Length == 6 && this.PasswordTextBox.Text != null && this.PasswordTextBox.Text.Length == 6);
+        }
+
+        private void PasswordTextBox_TextChanged(object sender, EventArgs e)
+        {
+            LoginButton.Enabled = (CodeTextBox.Text != null && CodeTextBox.Text.Length == 6 && this.PasswordTextBox.Text != null && this.PasswordTextBox.Text.Length == 6);
         }
     }
 }
