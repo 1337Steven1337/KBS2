@@ -70,23 +70,6 @@ namespace Client.View.Main
 
         private void StartStudentScreen(Model.Pincode pin)
         {        
-            //ListQuestionListView viewQuestionList = new ListQuestionListView();
-            //ListQuestionListController listQuestionListController = new ListQuestionListController(viewQuestionList);
-            //maincontroller.AddController(listQuestionListController);
-
-            //listQuestionListController.SelectedListChanged += questionController.LoadList;
-            //listQuestionListController.Load();
-
-            //view.ShowDialog();
-
-            UserAnswerToOpenQuestionView view = new UserAnswerToOpenQuestionView();
-            UserAnswerToOpenQuestionController controller = new UserAnswerToOpenQuestionController(view);
-            view.Show();
-
-            AddOpenQuestionView view2 = new AddOpenQuestionView();
-            AddOpenQuestionController controller2 = new AddOpenQuestionController(view2);
-            view2.Show();
-
             Client.Student.QuestionForm studentForm = new Client.Student.QuestionForm(pin.Id);
             studentForm.Show();
         }
