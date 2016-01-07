@@ -32,9 +32,10 @@ namespace Client.View.Docent
 
             DiagramView view = new DiagramView();
             this.DiagramController = new DiagramController(view);
-            this.DiagramController.SetQuestion((Model.Question)this.QuestionsListBox.SelectedItem);
-            view.Show();
-
+            QuestionsListBox.SelectedItem = 0;
+            QuestionsListBox.Enabled=false;this.DiagramController.SetQuestion((Model.Question)this.QuestionsListBox.SelectedItem);
+           // view.Show();
+            
         }
         public void Make(List<int> values, List<string> answerNames)
         {
@@ -93,7 +94,9 @@ namespace Client.View.Docent
         private void NextQuestionButton_Click(object sender, EventArgs e)
         {
             SignalRClient.GetInstance().GoToNextQuestionOnClick(1);
-        }
+
+             QuestionsListBox.SetSelected((int)QuestionsListBox.SelectedIndex + 1, true);
+             }
 
         private void AddQuestionButton_Click(object sender, EventArgs e)
         {
@@ -102,11 +105,12 @@ namespace Client.View.Docent
             controller.SetView(view);
             controller.SetQuestionList(this.controller.CurrentList);
             view.Show();
+            Invalidate();
         }
 
         private void QuestionsListBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-
+           
         }
     }
 }

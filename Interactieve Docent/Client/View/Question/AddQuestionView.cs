@@ -103,6 +103,7 @@ namespace Client.View.Question
         private void BtnQuit_Click(object sender, EventArgs e)
         {
             Controller.InvokeRemoveQuestionPanel();
+            this.Close();
         }
 
         //Delete selected answer from AnswersList
@@ -162,6 +163,7 @@ namespace Client.View.Question
                         this.Controller.SaveQuestion(iDictionary);
                     }
                 }
+             
             }
             else
             {
@@ -169,6 +171,7 @@ namespace Client.View.Question
                 failed.getLabelFailed().Text = "U heeft nog niet alle velden ingevuld.";
                 failed.ShowDialog();
             }
+          
         }
 
         //Validate all inputfields
@@ -244,6 +247,7 @@ namespace Client.View.Question
             SuccesDialogView succes = new SuccesDialogView();
             succes.getLabelSucces().Text = "De vraag is succesvol opgeslagen.";
             succes.ShowDialog();
+            this.Close();
         }
 
         public void ShowSaveResult(Model.Question instance, HttpStatusCode status)

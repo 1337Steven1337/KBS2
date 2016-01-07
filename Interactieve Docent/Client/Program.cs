@@ -51,12 +51,15 @@ namespace Client
             view.Show();
 
 
-            //StartView startView = new StartView();
-            //ShowStartController controller = new ShowStartController(startView);
+            UserAnswerToOpenQuestionView openQuestionView = new UserAnswerToOpenQuestionView();
+            UserAnswerToOpenQuestionController openQuestionController = new UserAnswerToOpenQuestionController(openQuestionView);
+            openQuestionView.Show();
 
-            //Application.Run(new ListOpenQuestionView());
+
+            StartView startView = new StartView();
+            ShowStartController controller = new ShowStartController(startView);
             
-            Application.Run(view);
+            Application.Run(startView);
         }
     }
 }

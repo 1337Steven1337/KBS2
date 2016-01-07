@@ -56,7 +56,14 @@ namespace Client.Service.Generate
 
             for (int idx = 0; idx < length; idx++)
             {
-                sessionId = sessionId + rndm.Next(0,9);
+                if (idx == 0)
+                {
+                    sessionId = sessionId + rndm.Next(1, 9);
+                }
+                else
+                {
+                    sessionId = sessionId + rndm.Next(0, 9);
+                }
             }
             return Convert.ToInt32(sessionId);
         }
