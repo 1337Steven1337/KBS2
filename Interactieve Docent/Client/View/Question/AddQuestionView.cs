@@ -226,6 +226,7 @@ namespace Client.View.Question
             SuccesDialogView succes = new SuccesDialogView();
             succes.getLabelSucces().Text = "De vraag is succesvol opgeslagen.";
             succes.ShowDialog();
+           
             this.Close();
         }
 
