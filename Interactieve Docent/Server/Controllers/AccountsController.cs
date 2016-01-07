@@ -38,17 +38,28 @@ namespace Server.Controllers
 
         // GET: api/Accounts/5
         [ResponseType(typeof(AccountDTO))]
-        public AccountDTO GetAccount(int id)
+        public async Task<IHttpActionResult> GetAccountDTO(string id)
         {
-            var account = from a in db.Accounts
-                        where a.Id == id
-                        select new AccountDTO()
-                        {
-                            Id = a.Id,
-                            Student = a.Student,
-                        };
+            Account account = db.Accounts.Where(a => a.Password == LoginToken.Sha256(id)).FirstOrDefault();
 
-            return account.FirstOrDefault(x => x.Id == x.Id);
+            if (account == null)
+            {
+                return NotFound();
+            }
+
+            account.Token = LoginToken.Sha256(LoginToken.Generate(64));
+            db.MarkAsModified(account);
+
+            try
+            {
+                await db.SaveChangesAsync();
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+                throw;
+            }
+
+            return Ok(new AccountDTO(account));
         }
 
         // PUT: api/Accounts/5
