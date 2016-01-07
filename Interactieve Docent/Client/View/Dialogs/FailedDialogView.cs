@@ -7,10 +7,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using MetroFramework.Forms;
 
 namespace Client.View.Dialogs
 {
-    public partial class FailedDialogView : Form
+    public partial class FailedDialogView : MetroForm
     {
         public FailedDialogView()
         {
@@ -25,11 +26,6 @@ namespace Client.View.Dialogs
         public Label getLabelFailed()
         {
             return labelFailed;
-        }
-
-        private void btnClose_Click(object sender, EventArgs e)
-        {
-            Close();
         }
     }
 }

@@ -45,6 +45,18 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>Libraries\Excel.dll</HintPath>
     </Reference>
+    <Reference Include="MetroFramework, Version=1.3.5.0, Culture=neutral, PublicKeyToken=5f91a84759bf584a, processorArchitecture=MSIL">
+      <HintPath>..\packages\MetroModernUI.1.3.5.0\lib\net45\MetroFramework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="MetroFramework.Design, Version=1.3.5.0, Culture=neutral, PublicKeyToken=5f91a84759bf584a, processorArchitecture=MSIL">
+      <HintPath>..\packages\MetroModernUI.1.3.5.0\lib\net45\MetroFramework.Design.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="MetroFramework.Fonts, Version=1.3.5.0, Culture=neutral, PublicKeyToken=5f91a84759bf584a, processorArchitecture=MSIL">
+      <HintPath>..\packages\MetroModernUI.1.3.5.0\lib\net45\MetroFramework.Fonts.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Microsoft.AspNet.SignalR.Client, Version=2.2.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.AspNet.SignalR.Client.2.2.0\lib\net45\Microsoft.AspNet.SignalR.Client.dll</HintPath>
       <Private>True</Private>
@@ -84,6 +96,7 @@
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
+    <Reference Include="System.DirectoryServices" />
     <Reference Include="System.Net.Http.Formatting, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.5.2.3\lib\net45\System.Net.Http.Formatting.dll</HintPath>
       <Private>True</Private>
@@ -208,17 +221,23 @@
     <Compile Include="View\Dialogs\BackgroundDialogView.designer.cs">
       <DependentUpon>BackgroundDialogView.cs</DependentUpon>
     </Compile>
-    <Compile Include="View\Dialogs\FailedDialogView.cs">
+    <Compile Include="View\Dialogs\ConfirmDialogView.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="View\Dialogs\FailedDialogView.Designer.cs">
-      <DependentUpon>FailedDialogView.cs</DependentUpon>
+    <Compile Include="View\Dialogs\ConfirmDialogView.Designer.cs">
+      <DependentUpon>ConfirmDialogView.cs</DependentUpon>
     </Compile>
     <Compile Include="View\Dialogs\SuccesDialogView.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="View\Dialogs\SuccesDialogView.Designer.cs">
       <DependentUpon>SuccesDialogView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\Dialogs\FailedDialogView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\Dialogs\FailedDialogView.Designer.cs">
+      <DependentUpon>FailedDialogView.cs</DependentUpon>
     </Compile>
     <Compile Include="View\Docent\DocentOmgevingView.cs">
       <SubType>Form</SubType>
@@ -280,12 +299,6 @@
     <Compile Include="View\QuestionList\ListQuestionListView.Designer.cs">
       <DependentUpon>ListQuestionListView.cs</DependentUpon>
     </Compile>
-    <Compile Include="View\Dialogs\ConfirmDialogView.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="View\Dialogs\ConfirmDialogView.Designer.cs">
-      <DependentUpon>ConfirmDialogView.cs</DependentUpon>
-    </Compile>
     <Compile Include="View\Question\AddQuestionView.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -307,6 +320,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <EmbeddedResource Include="Student\nextForm.resx">
       <DependentUpon>nextForm.cs</DependentUpon>
@@ -332,11 +346,14 @@
     <EmbeddedResource Include="View\Dialogs\BackgroundDialogView.resx">
       <DependentUpon>BackgroundDialogView.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="View\Dialogs\FailedDialogView.resx">
-      <DependentUpon>FailedDialogView.cs</DependentUpon>
+    <EmbeddedResource Include="View\Dialogs\ConfirmDialogView.resx">
+      <DependentUpon>ConfirmDialogView.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="View\Dialogs\SuccesDialogView.resx">
       <DependentUpon>SuccesDialogView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\Dialogs\FailedDialogView.resx">
+      <DependentUpon>FailedDialogView.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="View\Login\LoginView.resx">
       <DependentUpon>LoginView.cs</DependentUpon>
@@ -367,9 +384,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="View\Question\AddQuestionView.resx">
       <DependentUpon>AddQuestionView.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="View\Dialogs\ConfirmDialogView.resx">
-      <DependentUpon>ConfirmDialogView.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="View\Question\ListQuestionView.resx">
       <DependentUpon>ListQuestionView.cs</DependentUpon>

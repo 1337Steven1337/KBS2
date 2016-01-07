@@ -10,10 +10,11 @@ using System.Net;
 using Client.View.Dialogs;
 using System.ComponentModel;
 using System.Linq;
+using MetroFramework.Forms;
 
 namespace Client.View.Question
 {
-    public partial class AddQuestionView : Form, IAddView<Model.Question>
+    public partial class AddQuestionView : MetroForm, IAddView<Model.Question>
     {
         private AddQuestionController Controller;
         private BindingList<Model.PredefinedAnswer> CurrentAnswersList = new BindingList<Model.PredefinedAnswer>();
@@ -43,12 +44,12 @@ namespace Client.View.Question
             if (question != null)
             {
                 EditQuestion(question);
-                labelTitle.Text = "Vraag wijzigen ";
+                titleTile.Text = "Vraag wijzigen ";
                 Edit = true;
             }
             else
             {
-                labelTitle.Text = "Nieuwe vraag";
+                titleTile.Text = "Nieuwe vraag";
                 Edit = false;
             }
         }
@@ -216,7 +217,7 @@ namespace Client.View.Question
         {
             MainView main = (MainView)parent;
 
-            main.AddTablePanel(this.mainTablePanel,3);
+            main.AddTablePanel(this.mainTablePanel, 3);
         }
 
         public IControlHandler GetHandler()

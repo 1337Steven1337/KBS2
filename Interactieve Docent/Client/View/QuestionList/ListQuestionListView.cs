@@ -1,4 +1,5 @@
 ﻿using System.Windows.Forms;
+using MetroFramework.Forms;
 using Client.Controller;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -17,7 +18,7 @@ using Client.Controller.Question;
 
 namespace Client.View.QuestionList
 {
-    public partial class ListQuestionListView : Form, IListView<Model.QuestionList>
+    public partial class ListQuestionListView : MetroForm, IListView<Model.QuestionList>
     {
         #region Properties
         public BindingList<Model.QuestionList> QuestionLists = new BindingList<Model.QuestionList>();
@@ -139,7 +140,7 @@ namespace Client.View.QuestionList
                 //Show dialog for user to confirm Delete action
                 DialogResult dr = new DialogResult();
                 ConfirmDialogView confirm = new ConfirmDialogView();
-                confirm.getLabelConfirm().Text = String.Format("Weet u zeker dat u {0} wilt verwijderen?", getSelectedItem().Name);
+                confirm.getLabelConfirm().Text = String.Format("Weet u zeker dat u de vraag: {0}{1}wilt verwijderen?", getSelectedItem().Name, "\n");
                 dr = confirm.ShowDialog();
 
                 //Confirm 
@@ -247,6 +248,11 @@ namespace Client.View.QuestionList
                 //if you get back an OK result then close the dialog 
                 RenameQuestionListDialog.Close();
             }
+        }
+
+        private void btnAddQuestionList_Click_1(object sender, EventArgs e)
+        {
+
         }
     }
 }

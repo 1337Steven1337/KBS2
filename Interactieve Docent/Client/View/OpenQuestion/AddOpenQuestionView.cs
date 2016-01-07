@@ -13,10 +13,11 @@ using Client.Model;
 using Client.Service.Thread;
 using Client.Controller.OpenQuestion;
 using Client.View.Dialogs;
+using MetroFramework.Forms;
 
 namespace Client.View.OpenQuestion
 {
-    public partial class AddOpenQuestionView : Form, IAddView<Model.OpenQuestion>
+    public partial class AddOpenQuestionView : MetroForm, IAddView<Model.OpenQuestion>
     {
         private AddOpenQuestionController Controller { get; set; }
 

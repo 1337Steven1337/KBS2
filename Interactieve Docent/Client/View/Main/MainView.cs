@@ -16,10 +16,11 @@ using Client.View.Dialogs;
 using System.Net;
 using Client.View.OpenQuestion;
 using Client.Controller.OpenQuestion;
+using MetroFramework.Forms;
 
 namespace Client.View.Main
 {
-    public partial class MainView : Form, IView
+    public partial class MainView : MetroForm, IView
     {
         private MainController controller;
         private int sessionPin = 0;
@@ -81,7 +82,7 @@ namespace Client.View.Main
                 Factory.PincodeFactory pinFactory = new Client.Factory.PincodeFactory();
                 pin = new Model.Pincode();
                 pin.Id = sessionPin;
-                pinFactory.Save(pin, new ControlHandler(sessionLabel), sessionSaveCallBackHandler);
+                pinFactory.Save(pin, new ControlHandler(this), sessionSaveCallBackHandler);
             }
         }
 
@@ -96,12 +97,12 @@ namespace Client.View.Main
             Properties.Settings.Default.Session_Id = sessionPin;
             Properties.Settings.Default.Save();
 
-            //Set sessionId label
-            this.sessionLabel.Text = sessionToken.ToString();
+            //Set sessionId on Form
+            this.Text = "Sessienummer: " + sessionToken.ToString();
 
             //Add session to the database
             Factory.PincodeFactory pincodeFactory = new Client.Factory.PincodeFactory();
-            pincodeFactory.FindById(sessionPin, new ControlHandler(sessionLabel), sessionCheckCallBackHandler); 
+            pincodeFactory.FindById(sessionPin, new ControlHandler(this), sessionCheckCallBackHandler); 
         }
 
         //Add view to mainTable 

@@ -1,4 +1,4 @@
-﻿namespace Client.View.Question
+﻿namespace Client.View.Dialogs
 {
     partial class ConfirmDialogView
     {
@@ -28,121 +28,92 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.tableMainTable = new System.Windows.Forms.TableLayoutPanel();
-            this.tableButtons = new System.Windows.Forms.TableLayoutPanel();
-            this.btnConfirm = new System.Windows.Forms.Button();
-            this.btnCancel = new System.Windows.Forms.Button();
-            this.labelConfirm = new System.Windows.Forms.Label();
-            this.tableMainTable.SuspendLayout();
-            this.tableButtons.SuspendLayout();
+            this.labelConfirm = new MetroFramework.Controls.MetroLabel();
+            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            this.btnNo = new MetroFramework.Controls.MetroButton();
+            this.btnYes = new MetroFramework.Controls.MetroButton();
+            this.tableLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // tableMainTable
-            // 
-            this.tableMainTable.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.tableMainTable.ColumnCount = 1;
-            this.tableMainTable.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableMainTable.Controls.Add(this.tableButtons, 0, 1);
-            this.tableMainTable.Controls.Add(this.labelConfirm, 0, 0);
-            this.tableMainTable.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableMainTable.ForeColor = System.Drawing.Color.White;
-            this.tableMainTable.Location = new System.Drawing.Point(0, 0);
-            this.tableMainTable.Name = "tableMainTable";
-            this.tableMainTable.RowCount = 2;
-            this.tableMainTable.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 80F));
-            this.tableMainTable.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
-            this.tableMainTable.Size = new System.Drawing.Size(400, 250);
-            this.tableMainTable.TabIndex = 0;
-            // 
-            // tableButtons
-            // 
-            this.tableButtons.ColumnCount = 2;
-            this.tableButtons.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableButtons.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableButtons.Controls.Add(this.btnConfirm, 0, 0);
-            this.tableButtons.Controls.Add(this.btnCancel, 1, 0);
-            this.tableButtons.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableButtons.Location = new System.Drawing.Point(0, 200);
-            this.tableButtons.Margin = new System.Windows.Forms.Padding(0);
-            this.tableButtons.Name = "tableButtons";
-            this.tableButtons.RowCount = 1;
-            this.tableButtons.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableButtons.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 50F));
-            this.tableButtons.Size = new System.Drawing.Size(400, 50);
-            this.tableButtons.TabIndex = 0;
-            // 
-            // btnConfirm
-            // 
-            this.btnConfirm.BackColor = System.Drawing.Color.Green;
-            this.btnConfirm.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnConfirm.DialogResult = System.Windows.Forms.DialogResult.Yes;
-            this.btnConfirm.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btnConfirm.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
-            this.btnConfirm.FlatAppearance.BorderSize = 0;
-            this.btnConfirm.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnConfirm.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnConfirm.ForeColor = System.Drawing.Color.White;
-            this.btnConfirm.Location = new System.Drawing.Point(0, 0);
-            this.btnConfirm.Margin = new System.Windows.Forms.Padding(0);
-            this.btnConfirm.Name = "btnConfirm";
-            this.btnConfirm.Size = new System.Drawing.Size(200, 50);
-            this.btnConfirm.TabIndex = 0;
-            this.btnConfirm.Text = "Ja";
-            this.btnConfirm.UseVisualStyleBackColor = false;
-            // 
-            // btnCancel
-            // 
-            this.btnCancel.BackColor = System.Drawing.Color.Maroon;
-            this.btnCancel.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.No;
-            this.btnCancel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btnCancel.FlatAppearance.BorderColor = System.Drawing.Color.Red;
-            this.btnCancel.FlatAppearance.BorderSize = 0;
-            this.btnCancel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnCancel.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnCancel.ForeColor = System.Drawing.Color.White;
-            this.btnCancel.Location = new System.Drawing.Point(200, 0);
-            this.btnCancel.Margin = new System.Windows.Forms.Padding(0);
-            this.btnCancel.Name = "btnCancel";
-            this.btnCancel.Size = new System.Drawing.Size(200, 50);
-            this.btnCancel.TabIndex = 1;
-            this.btnCancel.Text = "Nee";
-            this.btnCancel.UseVisualStyleBackColor = false;
             // 
             // labelConfirm
             // 
             this.labelConfirm.AutoSize = true;
-            this.labelConfirm.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelConfirm.ForeColor = System.Drawing.Color.White;
-            this.labelConfirm.Location = new System.Drawing.Point(3, 0);
+            this.labelConfirm.BackColor = System.Drawing.Color.Transparent;
+            this.labelConfirm.FontWeight = MetroFramework.MetroLabelWeight.Regular;
+            this.labelConfirm.Location = new System.Drawing.Point(23, 60);
             this.labelConfirm.Name = "labelConfirm";
-            this.labelConfirm.Size = new System.Drawing.Size(52, 17);
-            this.labelConfirm.TabIndex = 1;
-            this.labelConfirm.Text = "label1";
+            this.labelConfirm.Size = new System.Drawing.Size(95, 20);
+            this.labelConfirm.TabIndex = 0;
+            this.labelConfirm.Text = "labelConfirm";
+            this.labelConfirm.Theme = MetroFramework.MetroThemeStyle.Dark;
+            this.labelConfirm.UseCustomBackColor = true;
+            this.labelConfirm.UseStyleColors = true;
+            // 
+            // tableLayoutPanel1
+            // 
+            this.tableLayoutPanel1.ColumnCount = 2;
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel1.Controls.Add(this.btnNo, 1, 0);
+            this.tableLayoutPanel1.Controls.Add(this.btnYes, 0, 0);
+            this.tableLayoutPanel1.Location = new System.Drawing.Point(23, 191);
+            this.tableLayoutPanel1.Name = "tableLayoutPanel1";
+            this.tableLayoutPanel1.RowCount = 1;
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(354, 35);
+            this.tableLayoutPanel1.TabIndex = 1;
+            // 
+            // btnNo
+            // 
+            this.btnNo.DialogResult = System.Windows.Forms.DialogResult.No;
+            this.btnNo.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnNo.FontSize = MetroFramework.MetroButtonSize.Medium;
+            this.btnNo.Location = new System.Drawing.Point(180, 3);
+            this.btnNo.Name = "btnNo";
+            this.btnNo.Size = new System.Drawing.Size(171, 29);
+            this.btnNo.Style = MetroFramework.MetroColorStyle.Black;
+            this.btnNo.TabIndex = 13;
+            this.btnNo.Text = "Nee";
+            this.btnNo.UseSelectable = true;
+            this.btnNo.UseStyleColors = true;
+            // 
+            // btnYes
+            // 
+            this.btnYes.DialogResult = System.Windows.Forms.DialogResult.Yes;
+            this.btnYes.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnYes.FontSize = MetroFramework.MetroButtonSize.Medium;
+            this.btnYes.Location = new System.Drawing.Point(3, 3);
+            this.btnYes.Name = "btnYes";
+            this.btnYes.Size = new System.Drawing.Size(171, 29);
+            this.btnYes.Style = MetroFramework.MetroColorStyle.Black;
+            this.btnYes.TabIndex = 12;
+            this.btnYes.Text = "Ja";
+            this.btnYes.Theme = MetroFramework.MetroThemeStyle.Light;
+            this.btnYes.UseSelectable = true;
+            this.btnYes.UseStyleColors = true;
             // 
             // ConfirmDialogView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(400, 250);
-            this.Controls.Add(this.tableMainTable);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.Controls.Add(this.tableLayoutPanel1);
+            this.Controls.Add(this.labelConfirm);
             this.Name = "ConfirmDialogView";
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.TransparencyKey = System.Drawing.Color.Transparent;
-            this.tableMainTable.ResumeLayout(false);
-            this.tableMainTable.PerformLayout();
-            this.tableButtons.ResumeLayout(false);
+            this.Style = MetroFramework.MetroColorStyle.Default;
+            this.Text = "Bevestigen";
+            this.Theme = MetroFramework.MetroThemeStyle.Dark;
+            this.tableLayoutPanel1.ResumeLayout(false);
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
         #endregion
 
-        private System.Windows.Forms.TableLayoutPanel tableMainTable;
-        private System.Windows.Forms.TableLayoutPanel tableButtons;
-        private System.Windows.Forms.Button btnConfirm;
-        private System.Windows.Forms.Label labelConfirm;
-        private System.Windows.Forms.Button btnCancel;
+        private MetroFramework.Controls.MetroLabel labelConfirm;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
+        private MetroFramework.Controls.MetroButton btnNo;
+        private MetroFramework.Controls.MetroButton btnYes;
     }
 }

@@ -8,10 +8,11 @@ using Client.Service.Thread;
 using Client.Controller.Account;
 using Client.View.Dialogs;
 using System.Collections.Generic;
+using MetroFramework.Forms;
 
 namespace Client.View.Account
 {
-    public partial class AddAccountView : Form, IAddAccountView
+    public partial class AddAccountView : MetroForm, IAddAccountView
     {
         #region Instances
         private AddAccountController Controller { get; set; }
@@ -21,7 +22,6 @@ namespace Client.View.Account
         public AddAccountView()
         {
             InitializeComponent();
-
             this.SelectExcelFileDialog.FileOk += SelectExcelFileDialog_FileOk;
         }
         #endregion
