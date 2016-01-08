@@ -47,9 +47,9 @@ namespace Client
             view.Show();
 
 
-            //UserAnswerToOpenQuestionView openQuestionView = new UserAnswerToOpenQuestionView();
-            //UserAnswerToOpenQuestionController openQuestionController = new UserAnswerToOpenQuestionController(openQuestionView);
-            //openQuestionView.Show();
+            UserAnswerToOpenQuestionView openQuestionView = new UserAnswerToOpenQuestionView();
+            UserAnswerToOpenQuestionController openQuestionController = new UserAnswerToOpenQuestionController(openQuestionView);
+            openQuestionView.Show();
 
 
             StartView startView = new StartView();

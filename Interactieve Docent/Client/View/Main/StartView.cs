@@ -97,10 +97,6 @@ namespace Client.View.Main
         {        
             Client.Student.QuestionForm studentForm = new Client.Student.QuestionForm(pin.Id);
             studentForm.Show();
-
-            UserAnswerToOpenQuestionView openQuestionView = new UserAnswerToOpenQuestionView();
-            UserAnswerToOpenQuestionController openQuestionController = new UserAnswerToOpenQuestionController(openQuestionView);
-            openQuestionView.Show();
         }
 
         private void CodeTextBox_TextChanged(object sender, EventArgs e)
