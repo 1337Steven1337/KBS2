@@ -16,8 +16,6 @@ namespace Server.Controllers
 {
     public class UserAnswerToOpenQuestionsController : ApiControllerWithHub<EventHub>
     {
-        private IDocentAppContext db = new ServerContext();
-
         public UserAnswerToOpenQuestionsController() { }
         public UserAnswerToOpenQuestionsController(IDocentAppContext context)
         {

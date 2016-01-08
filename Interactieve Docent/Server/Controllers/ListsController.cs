@@ -21,8 +21,6 @@ namespace Server.Controllers
 {
     public class ListsController : ApiControllerWithHub<EventHub>
     {
-        private IDocentAppContext db = new ServerContext();
-
         public ListsController() { }
         public ListsController(IDocentAppContext context)
         {
