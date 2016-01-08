@@ -185,7 +185,7 @@
             this.answersListBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.answersListBox.Dock = System.Windows.Forms.DockStyle.Fill;
             this.answersListBox.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
-            this.answersListBox.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.answersListBox.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.answersListBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(29)))), ((int)(((byte)(29)))), ((int)(((byte)(29)))));
             this.answersListBox.FormattingEnabled = true;
             this.answersListBox.ItemHeight = 23;
@@ -201,8 +201,8 @@
             this.timeField.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(153)))), ((int)(((byte)(153)))), ((int)(((byte)(153)))));
             this.timeField.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.timeField.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.timeField.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.timeField.ForeColor = System.Drawing.Color.White;
+            this.timeField.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.timeField.ForeColor = System.Drawing.Color.Black;
             this.timeField.Location = new System.Drawing.Point(145, 103);
             this.timeField.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.timeField.Maximum = new decimal(new int[] {
@@ -296,7 +296,7 @@
             // 
             // 
             this.questionField.CustomButton.Image = null;
-            this.questionField.CustomButton.Location = new System.Drawing.Point(352, 2);
+            this.questionField.CustomButton.Location = new System.Drawing.Point(358, 2);
             this.questionField.CustomButton.Name = "";
             this.questionField.CustomButton.Size = new System.Drawing.Size(55, 55);
             this.questionField.CustomButton.Style = MetroFramework.MetroColorStyle.Blue;
@@ -306,7 +306,8 @@
             this.questionField.CustomButton.Visible = false;
             this.questionField.Dock = System.Windows.Forms.DockStyle.Fill;
             this.questionField.FontSize = MetroFramework.MetroTextBoxSize.Tall;
-            this.questionField.ForeColor = System.Drawing.Color.White;
+            this.questionField.FontWeight = MetroFramework.MetroTextBoxWeight.Bold;
+            this.questionField.ForeColor = System.Drawing.Color.Black;
             this.questionField.Lines = new string[0];
             this.questionField.Location = new System.Drawing.Point(145, 3);
             this.questionField.MaxLength = 32767;
@@ -393,6 +394,7 @@
             this.rightAnswerComboBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(153)))), ((int)(((byte)(153)))), ((int)(((byte)(153)))));
             this.rightAnswerComboBox.Dock = System.Windows.Forms.DockStyle.Fill;
             this.rightAnswerComboBox.FontSize = MetroFramework.MetroComboBoxSize.Tall;
+            this.rightAnswerComboBox.FontWeight = MetroFramework.MetroComboBoxWeight.Bold;
             this.rightAnswerComboBox.ForeColor = System.Drawing.Color.White;
             this.rightAnswerComboBox.FormattingEnabled = true;
             this.rightAnswerComboBox.ItemHeight = 29;
@@ -438,7 +440,7 @@
             // 
             // 
             this.answerField.CustomButton.Image = null;
-            this.answerField.CustomButton.Location = new System.Drawing.Point(382, 2);
+            this.answerField.CustomButton.Location = new System.Drawing.Point(388, 2);
             this.answerField.CustomButton.Name = "";
             this.answerField.CustomButton.Size = new System.Drawing.Size(25, 25);
             this.answerField.CustomButton.Style = MetroFramework.MetroColorStyle.Blue;
@@ -448,7 +450,8 @@
             this.answerField.CustomButton.Visible = false;
             this.answerField.Dock = System.Windows.Forms.DockStyle.Fill;
             this.answerField.FontSize = MetroFramework.MetroTextBoxSize.Tall;
-            this.answerField.ForeColor = System.Drawing.Color.White;
+            this.answerField.FontWeight = MetroFramework.MetroTextBoxWeight.Bold;
+            this.answerField.ForeColor = System.Drawing.Color.Black;
             this.answerField.Lines = new string[0];
             this.answerField.Location = new System.Drawing.Point(145, 134);
             this.answerField.MaxLength = 32767;

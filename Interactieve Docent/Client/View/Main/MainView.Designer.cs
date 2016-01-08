@@ -106,13 +106,11 @@
             // EndSessionButton
             // 
             this.EndSessionButton.BackColor = System.Drawing.Color.White;
-            this.EndSessionButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold);
             this.EndSessionButton.Location = new System.Drawing.Point(3, 69);
             this.EndSessionButton.Name = "EndSessionButton";
             this.EndSessionButton.Size = new System.Drawing.Size(84, 49);
             this.EndSessionButton.TabIndex = 3;
             this.EndSessionButton.Text = "Sessie Eindigen";
-            this.EndSessionButton.UseVisualStyleBackColor = false;
             this.EndSessionButton.Click += new System.EventHandler(this.EndSessionButton_Click);
             // 
             // MainView

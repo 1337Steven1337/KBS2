@@ -156,7 +156,7 @@ namespace Client.View.Question
                 // Set text color
                 PredefinedAnswer itemText = (PredefinedAnswer)answersListBox.Items[itemIndex];
 
-                SolidBrush itemTextColorBrush = (isItemSelected) ? new SolidBrush(Color.White) : new SolidBrush(Color.White);
+                SolidBrush itemTextColorBrush = (isItemSelected) ? new SolidBrush(Color.White) : new SolidBrush(Color.Black);
                 g.DrawString(itemText.Text, e.Font, itemTextColorBrush, answersListBox.GetItemRectangle(itemIndex).Location);
 
                 // Clean up
