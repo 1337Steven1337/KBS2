@@ -92,6 +92,7 @@
             this.titleTile.Location = new System.Drawing.Point(0, 0);
             this.titleTile.Name = "titleTile";
             this.titleTile.Size = new System.Drawing.Size(746, 82);
+            this.titleTile.Style = MetroFramework.MetroColorStyle.Orange;
             this.titleTile.TabIndex = 1;
             this.titleTile.Text = "Vraag toevoegen";
             this.titleTile.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -125,9 +126,10 @@
             this.btnQuit.Location = new System.Drawing.Point(379, 3);
             this.btnQuit.Name = "btnQuit";
             this.btnQuit.Size = new System.Drawing.Size(370, 44);
-            this.btnQuit.Style = MetroFramework.MetroColorStyle.Black;
+            this.btnQuit.Style = MetroFramework.MetroColorStyle.Orange;
             this.btnQuit.TabIndex = 12;
             this.btnQuit.Text = "Sluiten";
+            this.btnQuit.Theme = MetroFramework.MetroThemeStyle.Dark;
             this.btnQuit.UseSelectable = true;
             this.btnQuit.UseStyleColors = true;
             // 
@@ -137,15 +139,16 @@
             this.btnSaveQuestion.Location = new System.Drawing.Point(3, 3);
             this.btnSaveQuestion.Name = "btnSaveQuestion";
             this.btnSaveQuestion.Size = new System.Drawing.Size(370, 44);
-            this.btnSaveQuestion.Style = MetroFramework.MetroColorStyle.Black;
+            this.btnSaveQuestion.Style = MetroFramework.MetroColorStyle.Orange;
             this.btnSaveQuestion.TabIndex = 11;
             this.btnSaveQuestion.Text = "Opslaan";
+            this.btnSaveQuestion.Theme = MetroFramework.MetroThemeStyle.Dark;
             this.btnSaveQuestion.UseSelectable = true;
             this.btnSaveQuestion.UseStyleColors = true;
             // 
             // tableInputFields
             // 
-            this.tableInputFields.BackColor = System.Drawing.Color.White;
+            this.tableInputFields.BackColor = System.Drawing.Color.Transparent;
             this.tableInputFields.ColumnCount = 3;
             this.tableInputFields.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
             this.tableInputFields.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 70F));
@@ -178,22 +181,29 @@
             // 
             // answersListBox
             // 
+            this.answersListBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(153)))), ((int)(((byte)(153)))), ((int)(((byte)(153)))));
+            this.answersListBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.answersListBox.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.answersListBox.Font = new System.Drawing.Font("Segoe UI Semibold", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.answersListBox.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
+            this.answersListBox.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.answersListBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(29)))), ((int)(((byte)(29)))), ((int)(((byte)(29)))));
             this.answersListBox.FormattingEnabled = true;
             this.answersListBox.ItemHeight = 23;
-            this.answersListBox.Location = new System.Drawing.Point(154, 173);
+            this.answersListBox.Location = new System.Drawing.Point(145, 169);
             this.answersListBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.answersListBox.Name = "answersListBox";
-            this.answersListBox.Size = new System.Drawing.Size(410, 196);
+            this.answersListBox.Size = new System.Drawing.Size(416, 196);
             this.answersListBox.TabIndex = 6;
+            this.answersListBox.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.listBox_DrawItem);
             // 
             // timeField
             // 
+            this.timeField.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(153)))), ((int)(((byte)(153)))), ((int)(((byte)(153)))));
+            this.timeField.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.timeField.Dock = System.Windows.Forms.DockStyle.Fill;
             this.timeField.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.timeField.Location = new System.Drawing.Point(154, 103);
+            this.timeField.ForeColor = System.Drawing.Color.White;
+            this.timeField.Location = new System.Drawing.Point(145, 103);
             this.timeField.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.timeField.Maximum = new decimal(new int[] {
             7200,
@@ -201,7 +211,7 @@
             0,
             0});
             this.timeField.Name = "timeField";
-            this.timeField.Size = new System.Drawing.Size(410, 30);
+            this.timeField.Size = new System.Drawing.Size(416, 26);
             this.timeField.TabIndex = 2;
             this.timeField.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.timeField.Value = new decimal(new int[] {
@@ -218,11 +228,11 @@
             this.tableRadioButtons.Controls.Add(this.rbNoTime, 1, 0);
             this.tableRadioButtons.Controls.Add(this.rbSetTime, 0, 0);
             this.tableRadioButtons.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableRadioButtons.Location = new System.Drawing.Point(154, 69);
+            this.tableRadioButtons.Location = new System.Drawing.Point(145, 69);
             this.tableRadioButtons.Name = "tableRadioButtons";
             this.tableRadioButtons.RowCount = 1;
             this.tableRadioButtons.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableRadioButtons.Size = new System.Drawing.Size(410, 29);
+            this.tableRadioButtons.Size = new System.Drawing.Size(416, 29);
             this.tableRadioButtons.TabIndex = 15;
             // 
             // rbNoTime
@@ -230,14 +240,17 @@
             this.rbNoTime.AutoSize = true;
             this.rbNoTime.Dock = System.Windows.Forms.DockStyle.Fill;
             this.rbNoTime.FontSize = MetroFramework.MetroCheckBoxSize.Medium;
-            this.rbNoTime.FontWeight = MetroFramework.MetroCheckBoxWeight.Bold;
-            this.rbNoTime.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(29)))), ((int)(((byte)(29)))), ((int)(((byte)(29)))));
-            this.rbNoTime.Location = new System.Drawing.Point(208, 3);
+            this.rbNoTime.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(153)))), ((int)(((byte)(153)))), ((int)(((byte)(153)))));
+            this.rbNoTime.Location = new System.Drawing.Point(211, 3);
             this.rbNoTime.Name = "rbNoTime";
-            this.rbNoTime.Size = new System.Drawing.Size(199, 23);
+            this.rbNoTime.Size = new System.Drawing.Size(202, 23);
+            this.rbNoTime.Style = MetroFramework.MetroColorStyle.Orange;
             this.rbNoTime.TabIndex = 19;
             this.rbNoTime.Text = "Geen Tijdslimiet";
+            this.rbNoTime.Theme = MetroFramework.MetroThemeStyle.Dark;
+            this.rbNoTime.UseCustomForeColor = true;
             this.rbNoTime.UseSelectable = true;
+            this.rbNoTime.UseStyleColors = true;
             this.rbNoTime.CheckedChanged += new System.EventHandler(this.rbNoTime_CheckedChanged);
             // 
             // rbSetTime
@@ -246,15 +259,18 @@
             this.rbSetTime.Checked = true;
             this.rbSetTime.Dock = System.Windows.Forms.DockStyle.Fill;
             this.rbSetTime.FontSize = MetroFramework.MetroCheckBoxSize.Medium;
-            this.rbSetTime.FontWeight = MetroFramework.MetroCheckBoxWeight.Bold;
-            this.rbSetTime.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(29)))), ((int)(((byte)(29)))), ((int)(((byte)(29)))));
+            this.rbSetTime.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(153)))), ((int)(((byte)(153)))), ((int)(((byte)(153)))));
             this.rbSetTime.Location = new System.Drawing.Point(3, 3);
             this.rbSetTime.Name = "rbSetTime";
-            this.rbSetTime.Size = new System.Drawing.Size(199, 23);
+            this.rbSetTime.Size = new System.Drawing.Size(202, 23);
+            this.rbSetTime.Style = MetroFramework.MetroColorStyle.Orange;
             this.rbSetTime.TabIndex = 18;
             this.rbSetTime.TabStop = true;
             this.rbSetTime.Text = "Tijdslimiet instellen";
+            this.rbSetTime.Theme = MetroFramework.MetroThemeStyle.Dark;
+            this.rbSetTime.UseCustomForeColor = true;
             this.rbSetTime.UseSelectable = true;
+            this.rbSetTime.UseStyleColors = true;
             // 
             // labelQuestionField
             // 
@@ -262,17 +278,20 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.labelQuestionField.AutoSize = true;
-            this.labelQuestionField.FontWeight = MetroFramework.MetroLabelWeight.Bold;
-            this.labelQuestionField.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(29)))), ((int)(((byte)(29)))), ((int)(((byte)(29)))));
+            this.labelQuestionField.BackColor = System.Drawing.Color.Transparent;
+            this.labelQuestionField.FontWeight = MetroFramework.MetroLabelWeight.Regular;
+            this.labelQuestionField.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(153)))), ((int)(((byte)(153)))), ((int)(((byte)(153)))));
             this.labelQuestionField.Location = new System.Drawing.Point(3, 0);
             this.labelQuestionField.Name = "labelQuestionField";
-            this.labelQuestionField.Size = new System.Drawing.Size(145, 66);
+            this.labelQuestionField.Size = new System.Drawing.Size(136, 66);
             this.labelQuestionField.TabIndex = 16;
             this.labelQuestionField.Text = "Vraag*";
             this.labelQuestionField.TextAlign = System.Drawing.ContentAlignment.TopRight;
+            this.labelQuestionField.Theme = MetroFramework.MetroThemeStyle.Dark;
             // 
             // questionField
             // 
+            this.questionField.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(153)))), ((int)(((byte)(153)))), ((int)(((byte)(153)))));
             // 
             // 
             // 
@@ -286,9 +305,10 @@
             this.questionField.CustomButton.UseSelectable = true;
             this.questionField.CustomButton.Visible = false;
             this.questionField.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.questionField.FontSize = MetroFramework.MetroTextBoxSize.Medium;
+            this.questionField.FontSize = MetroFramework.MetroTextBoxSize.Tall;
+            this.questionField.ForeColor = System.Drawing.Color.White;
             this.questionField.Lines = new string[0];
-            this.questionField.Location = new System.Drawing.Point(154, 3);
+            this.questionField.Location = new System.Drawing.Point(145, 3);
             this.questionField.MaxLength = 32767;
             this.questionField.Multiline = true;
             this.questionField.Name = "questionField";
@@ -297,8 +317,10 @@
             this.questionField.SelectedText = "";
             this.questionField.SelectionLength = 0;
             this.questionField.SelectionStart = 0;
-            this.questionField.Size = new System.Drawing.Size(410, 60);
+            this.questionField.Size = new System.Drawing.Size(416, 60);
             this.questionField.TabIndex = 17;
+            this.questionField.UseCustomBackColor = true;
+            this.questionField.UseCustomForeColor = true;
             this.questionField.UseSelectable = true;
             this.questionField.WaterMarkColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(109)))), ((int)(((byte)(109)))));
             this.questionField.WaterMarkFont = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Pixel);
@@ -309,14 +331,15 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.labelTimeField.AutoSize = true;
-            this.labelTimeField.FontWeight = MetroFramework.MetroLabelWeight.Bold;
+            this.labelTimeField.FontWeight = MetroFramework.MetroLabelWeight.Regular;
             this.labelTimeField.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(29)))), ((int)(((byte)(29)))), ((int)(((byte)(29)))));
             this.labelTimeField.Location = new System.Drawing.Point(3, 101);
             this.labelTimeField.Name = "labelTimeField";
-            this.labelTimeField.Size = new System.Drawing.Size(145, 34);
+            this.labelTimeField.Size = new System.Drawing.Size(136, 30);
             this.labelTimeField.TabIndex = 18;
             this.labelTimeField.Text = "Tijdslimiet (sec)*";
             this.labelTimeField.TextAlign = System.Drawing.ContentAlignment.TopRight;
+            this.labelTimeField.Theme = MetroFramework.MetroThemeStyle.Dark;
             // 
             // labelAnswerField
             // 
@@ -324,14 +347,15 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.labelAnswerField.AutoSize = true;
-            this.labelAnswerField.FontWeight = MetroFramework.MetroLabelWeight.Bold;
+            this.labelAnswerField.FontWeight = MetroFramework.MetroLabelWeight.Regular;
             this.labelAnswerField.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(29)))), ((int)(((byte)(29)))), ((int)(((byte)(29)))));
-            this.labelAnswerField.Location = new System.Drawing.Point(3, 135);
+            this.labelAnswerField.Location = new System.Drawing.Point(3, 131);
             this.labelAnswerField.Name = "labelAnswerField";
-            this.labelAnswerField.Size = new System.Drawing.Size(145, 36);
+            this.labelAnswerField.Size = new System.Drawing.Size(136, 36);
             this.labelAnswerField.TabIndex = 19;
             this.labelAnswerField.Text = "Antwoord invoeren";
             this.labelAnswerField.TextAlign = System.Drawing.ContentAlignment.TopRight;
+            this.labelAnswerField.Theme = MetroFramework.MetroThemeStyle.Dark;
             // 
             // labelAnswersListBox
             // 
@@ -339,14 +363,15 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.labelAnswersListBox.AutoSize = true;
-            this.labelAnswersListBox.FontWeight = MetroFramework.MetroLabelWeight.Bold;
+            this.labelAnswersListBox.FontWeight = MetroFramework.MetroLabelWeight.Regular;
             this.labelAnswersListBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(29)))), ((int)(((byte)(29)))), ((int)(((byte)(29)))));
-            this.labelAnswersListBox.Location = new System.Drawing.Point(3, 171);
+            this.labelAnswersListBox.Location = new System.Drawing.Point(3, 167);
             this.labelAnswersListBox.Name = "labelAnswersListBox";
-            this.labelAnswersListBox.Size = new System.Drawing.Size(145, 200);
+            this.labelAnswersListBox.Size = new System.Drawing.Size(136, 200);
             this.labelAnswersListBox.TabIndex = 20;
             this.labelAnswersListBox.Text = "Antwoorden";
             this.labelAnswersListBox.TextAlign = System.Drawing.ContentAlignment.TopRight;
+            this.labelAnswersListBox.Theme = MetroFramework.MetroThemeStyle.Dark;
             // 
             // labelRightAnswer
             // 
@@ -354,23 +379,29 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.labelRightAnswer.AutoSize = true;
-            this.labelRightAnswer.FontWeight = MetroFramework.MetroLabelWeight.Bold;
-            this.labelRightAnswer.Location = new System.Drawing.Point(3, 371);
+            this.labelRightAnswer.FontWeight = MetroFramework.MetroLabelWeight.Regular;
+            this.labelRightAnswer.Location = new System.Drawing.Point(3, 367);
             this.labelRightAnswer.Name = "labelRightAnswer";
-            this.labelRightAnswer.Size = new System.Drawing.Size(145, 93);
+            this.labelRightAnswer.Size = new System.Drawing.Size(136, 97);
             this.labelRightAnswer.TabIndex = 21;
             this.labelRightAnswer.Text = "Juiste antwoord*";
             this.labelRightAnswer.TextAlign = System.Drawing.ContentAlignment.TopRight;
+            this.labelRightAnswer.Theme = MetroFramework.MetroThemeStyle.Dark;
             // 
             // rightAnswerComboBox
             // 
+            this.rightAnswerComboBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(153)))), ((int)(((byte)(153)))), ((int)(((byte)(153)))));
             this.rightAnswerComboBox.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.rightAnswerComboBox.FontSize = MetroFramework.MetroComboBoxSize.Tall;
+            this.rightAnswerComboBox.ForeColor = System.Drawing.Color.White;
             this.rightAnswerComboBox.FormattingEnabled = true;
-            this.rightAnswerComboBox.ItemHeight = 24;
-            this.rightAnswerComboBox.Location = new System.Drawing.Point(154, 374);
+            this.rightAnswerComboBox.ItemHeight = 29;
+            this.rightAnswerComboBox.Location = new System.Drawing.Point(145, 370);
             this.rightAnswerComboBox.Name = "rightAnswerComboBox";
-            this.rightAnswerComboBox.Size = new System.Drawing.Size(410, 30);
+            this.rightAnswerComboBox.Size = new System.Drawing.Size(416, 35);
+            this.rightAnswerComboBox.Style = MetroFramework.MetroColorStyle.Orange;
             this.rightAnswerComboBox.TabIndex = 22;
+            this.rightAnswerComboBox.Theme = MetroFramework.MetroThemeStyle.Dark;
             this.rightAnswerComboBox.UseSelectable = true;
             this.rightAnswerComboBox.UseStyleColors = true;
             // 
@@ -378,28 +409,31 @@
             // 
             this.btnAddAnswer.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnAddAnswer.Location = new System.Drawing.Point(570, 138);
+            this.btnAddAnswer.Location = new System.Drawing.Point(567, 134);
             this.btnAddAnswer.Name = "btnAddAnswer";
-            this.btnAddAnswer.Size = new System.Drawing.Size(173, 30);
-            this.btnAddAnswer.Style = MetroFramework.MetroColorStyle.Black;
+            this.btnAddAnswer.Size = new System.Drawing.Size(176, 30);
+            this.btnAddAnswer.Style = MetroFramework.MetroColorStyle.Orange;
             this.btnAddAnswer.TabIndex = 23;
             this.btnAddAnswer.Text = "Antwoord toevoegen";
+            this.btnAddAnswer.Theme = MetroFramework.MetroThemeStyle.Dark;
             this.btnAddAnswer.UseSelectable = true;
             this.btnAddAnswer.UseStyleColors = true;
             // 
             // btnDeleteAnswer
             // 
-            this.btnDeleteAnswer.Location = new System.Drawing.Point(570, 174);
+            this.btnDeleteAnswer.Location = new System.Drawing.Point(567, 170);
             this.btnDeleteAnswer.Name = "btnDeleteAnswer";
             this.btnDeleteAnswer.Size = new System.Drawing.Size(173, 30);
-            this.btnDeleteAnswer.Style = MetroFramework.MetroColorStyle.Black;
+            this.btnDeleteAnswer.Style = MetroFramework.MetroColorStyle.Orange;
             this.btnDeleteAnswer.TabIndex = 24;
             this.btnDeleteAnswer.Text = "Antwoord verwijderen";
+            this.btnDeleteAnswer.Theme = MetroFramework.MetroThemeStyle.Dark;
             this.btnDeleteAnswer.UseSelectable = true;
             this.btnDeleteAnswer.UseStyleColors = true;
             // 
             // answerField
             // 
+            this.answerField.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(153)))), ((int)(((byte)(153)))), ((int)(((byte)(153)))));
             // 
             // 
             // 
@@ -413,9 +447,10 @@
             this.answerField.CustomButton.UseSelectable = true;
             this.answerField.CustomButton.Visible = false;
             this.answerField.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.answerField.FontSize = MetroFramework.MetroTextBoxSize.Medium;
+            this.answerField.FontSize = MetroFramework.MetroTextBoxSize.Tall;
+            this.answerField.ForeColor = System.Drawing.Color.White;
             this.answerField.Lines = new string[0];
-            this.answerField.Location = new System.Drawing.Point(154, 138);
+            this.answerField.Location = new System.Drawing.Point(145, 134);
             this.answerField.MaxLength = 32767;
             this.answerField.Multiline = true;
             this.answerField.Name = "answerField";
@@ -424,8 +459,10 @@
             this.answerField.SelectedText = "";
             this.answerField.SelectionLength = 0;
             this.answerField.SelectionStart = 0;
-            this.answerField.Size = new System.Drawing.Size(410, 30);
+            this.answerField.Size = new System.Drawing.Size(416, 30);
             this.answerField.TabIndex = 25;
+            this.answerField.UseCustomBackColor = true;
+            this.answerField.UseCustomForeColor = true;
             this.answerField.UseSelectable = true;
             this.answerField.WaterMarkColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(109)))), ((int)(((byte)(109)))));
             this.answerField.WaterMarkFont = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Pixel);
@@ -440,7 +477,7 @@
             this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "AddQuestionView";
             this.Padding = new System.Windows.Forms.Padding(20, 30, 20, 20);
-            this.Style = MetroFramework.MetroColorStyle.Default;
+            this.Style = MetroFramework.MetroColorStyle.Orange;
             this.Text = "Vraag toevoegen";
             this.mainTablePanel.ResumeLayout(false);
             this.titlePanel.ResumeLayout(false);

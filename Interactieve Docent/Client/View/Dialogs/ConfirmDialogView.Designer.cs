@@ -43,6 +43,7 @@
             this.labelConfirm.Location = new System.Drawing.Point(23, 60);
             this.labelConfirm.Name = "labelConfirm";
             this.labelConfirm.Size = new System.Drawing.Size(95, 20);
+            this.labelConfirm.Style = MetroFramework.MetroColorStyle.Black;
             this.labelConfirm.TabIndex = 0;
             this.labelConfirm.Text = "labelConfirm";
             this.labelConfirm.Theme = MetroFramework.MetroThemeStyle.Dark;
@@ -71,9 +72,10 @@
             this.btnNo.Location = new System.Drawing.Point(180, 3);
             this.btnNo.Name = "btnNo";
             this.btnNo.Size = new System.Drawing.Size(171, 29);
-            this.btnNo.Style = MetroFramework.MetroColorStyle.Black;
+            this.btnNo.Style = MetroFramework.MetroColorStyle.Yellow;
             this.btnNo.TabIndex = 13;
             this.btnNo.Text = "Nee";
+            this.btnNo.Theme = MetroFramework.MetroThemeStyle.Dark;
             this.btnNo.UseSelectable = true;
             this.btnNo.UseStyleColors = true;
             // 
@@ -85,10 +87,10 @@
             this.btnYes.Location = new System.Drawing.Point(3, 3);
             this.btnYes.Name = "btnYes";
             this.btnYes.Size = new System.Drawing.Size(171, 29);
-            this.btnYes.Style = MetroFramework.MetroColorStyle.Black;
+            this.btnYes.Style = MetroFramework.MetroColorStyle.Yellow;
             this.btnYes.TabIndex = 12;
             this.btnYes.Text = "Ja";
-            this.btnYes.Theme = MetroFramework.MetroThemeStyle.Light;
+            this.btnYes.Theme = MetroFramework.MetroThemeStyle.Dark;
             this.btnYes.UseSelectable = true;
             this.btnYes.UseStyleColors = true;
             // 
@@ -99,10 +101,11 @@
             this.ClientSize = new System.Drawing.Size(400, 250);
             this.Controls.Add(this.tableLayoutPanel1);
             this.Controls.Add(this.labelConfirm);
+            this.Movable = false;
             this.Name = "ConfirmDialogView";
-            this.Style = MetroFramework.MetroColorStyle.Default;
+            this.Style = MetroFramework.MetroColorStyle.Yellow;
             this.Text = "Bevestigen";
-            this.Theme = MetroFramework.MetroThemeStyle.Dark;
+            this.Theme = MetroFramework.MetroThemeStyle.Default;
             this.tableLayoutPanel1.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();

@@ -12,6 +12,7 @@ using Client.View.Dialogs;
 using System.Linq;
 using Client.View.Diagram;
 using MetroFramework.Forms;
+using System.Drawing;
 
 namespace Client.View.Question
 {
@@ -67,11 +68,41 @@ namespace Client.View.Question
                 this.DiagramController.SetQuestion((Model.Question)this.listBoxQuestions.SelectedItem);
             }
         }
+
+        //Draw custom colors in Listbox
+        private void listBox_DrawItem(object sender, DrawItemEventArgs e)
+        {
+            e.DrawBackground();
+
+            bool isItemSelected = ((e.State & DrawItemState.Selected) == DrawItemState.Selected);
+            int itemIndex = e.Index;
+            if (itemIndex >= 0 && itemIndex < listBoxQuestions.Items.Count)
+            {
+                Graphics g = e.Graphics;
+
+                // Background Color
+                SolidBrush backgroundColorBrush = new SolidBrush((isItemSelected) ? Color.FromArgb(243, 119, 53) : Color.FromArgb(17, 17, 17));
+                g.FillRectangle(backgroundColorBrush, e.Bounds);
+
+                // Set text color
+                string itemText = listBoxQuestions.Items[itemIndex].ToString();
+
+                SolidBrush itemTextColorBrush = (isItemSelected) ? new SolidBrush(Color.White) : new SolidBrush(Color.FromArgb(153, 153, 153));
+                g.DrawString(itemText, e.Font, itemTextColorBrush, listBoxQuestions.GetItemRectangle(itemIndex).Location);
+
+                // Clean up
+                backgroundColorBrush.Dispose();
+                itemTextColorBrush.Dispose();
+            }
+
+            e.DrawFocusRectangle();
+        }
         #endregion
 
         #region Methods
         public void FillList(List<Model.Question> list)
         {
+            loadingSpinner.Visible = false;
             titleTile.Text = String.Format("Vragen uit: {0}", this.Controller.CurrentList.Name);
             this.Questions.Clear();
 

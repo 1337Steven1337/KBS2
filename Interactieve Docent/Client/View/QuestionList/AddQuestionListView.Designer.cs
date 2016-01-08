@@ -57,10 +57,10 @@
             this.buttonOk.Location = new System.Drawing.Point(3, 42);
             this.buttonOk.Name = "buttonOk";
             this.buttonOk.Size = new System.Drawing.Size(486, 34);
-            this.buttonOk.Style = MetroFramework.MetroColorStyle.Black;
+            this.buttonOk.Style = MetroFramework.MetroColorStyle.Orange;
             this.buttonOk.TabIndex = 7;
             this.buttonOk.Text = "Opslaan";
-            this.buttonOk.Theme = MetroFramework.MetroThemeStyle.Light;
+            this.buttonOk.Theme = MetroFramework.MetroThemeStyle.Dark;
             this.buttonOk.UseMnemonic = false;
             this.buttonOk.UseSelectable = true;
             this.buttonOk.UseStyleColors = true;
@@ -72,7 +72,7 @@
             // 
             // 
             this.textBox.CustomButton.Image = null;
-            this.textBox.CustomButton.Location = new System.Drawing.Point(208, 1);
+            this.textBox.CustomButton.Location = new System.Drawing.Point(454, 1);
             this.textBox.CustomButton.Name = "";
             this.textBox.CustomButton.Size = new System.Drawing.Size(31, 31);
             this.textBox.CustomButton.Style = MetroFramework.MetroColorStyle.Blue;
@@ -104,8 +104,8 @@
             this.ClientSize = new System.Drawing.Size(532, 159);
             this.Controls.Add(this.tableLayoutPanel1);
             this.Name = "AddQuestionListView";
+            this.Style = MetroFramework.MetroColorStyle.Orange;
             this.Text = "Vragenlijst toevoegen";
-            this.Theme = MetroFramework.MetroThemeStyle.Dark;
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
             this.ResumeLayout(false);

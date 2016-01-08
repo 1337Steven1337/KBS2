@@ -15,6 +15,7 @@ using Client.View.Question;
 using Client.View.Docent;
 using Client.Service.SignalR;
 using Client.Controller.Question;
+using System.Drawing;
 
 namespace Client.View.QuestionList
 {
@@ -35,6 +36,7 @@ namespace Client.View.QuestionList
         {
             InitializeComponent();
             this.Enabled = false;
+            
             listBoxQuestionLists.DisplayMember = "Name";
             listBoxQuestionLists.ValueMember = "Id";
             listBoxQuestionLists.DataSource = this.QuestionLists;
@@ -65,6 +67,7 @@ namespace Client.View.QuestionList
 
         public void FillList(List<Model.QuestionList> list)
         {
+            loadingSpinner.Visible = false;
             this.QuestionLists.Clear();
 
             foreach (Model.QuestionList questionList in list)
@@ -74,6 +77,7 @@ namespace Client.View.QuestionList
             this.btnAddQuestionList.Enabled = true;
             this.btnDeleteQuestionList.Enabled = true;
             this.btnStartQuestionList.Enabled = true;
+
             this.Controller.SelectedIndexChanged(this.getSelectedItem());
         }
 
@@ -221,6 +225,35 @@ namespace Client.View.QuestionList
         }
         #endregion
 
+        //Draw custom colors in Listbox
+        private void listBox_DrawItem(object sender, DrawItemEventArgs e)
+        {
+            e.DrawBackground();
+
+            bool isItemSelected = ((e.State & DrawItemState.Selected) == DrawItemState.Selected);
+            int itemIndex = e.Index;
+            if (itemIndex >= 0 && itemIndex < listBoxQuestionLists.Items.Count)
+            {
+                Graphics g = e.Graphics;
+
+                // Background Color
+                SolidBrush backgroundColorBrush = new SolidBrush((isItemSelected) ? Color.FromArgb(243, 119, 53) : Color.FromArgb(17, 17, 17));
+                g.FillRectangle(backgroundColorBrush, e.Bounds);
+
+                // Set text color
+                string itemText = listBoxQuestionLists.Items[itemIndex].ToString();
+
+                SolidBrush itemTextColorBrush = (isItemSelected) ? new SolidBrush(Color.White) : new SolidBrush(Color.FromArgb(153, 153, 153));
+                g.DrawString(itemText, e.Font, itemTextColorBrush, listBoxQuestionLists.GetItemRectangle(itemIndex).Location);
+
+                // Clean up
+                backgroundColorBrush.Dispose();
+                itemTextColorBrush.Dispose();
+            }
+
+            e.DrawFocusRectangle();
+        }
+
         private void listBoxQuestionLists_MouseDoubleClick(object sender, MouseEventArgs e)
         {
             // if you double click on in the listbox check if there is a questionlist underneed your cursor
@@ -247,11 +280,6 @@ namespace Client.View.QuestionList
                 //if you get back an OK result then close the dialog 
                 RenameQuestionListDialog.Close();
             }
-        }
-
-        private void btnAddQuestionList_Click_1(object sender, EventArgs e)
-        {
-
         }
     }
 }

@@ -37,6 +37,7 @@
             this.btnStartQuestionList = new MetroFramework.Controls.MetroButton();
             this.listBoxPanel = new System.Windows.Forms.Panel();
             this.listBoxQuestionLists = new System.Windows.Forms.ListBox();
+            this.loadingSpinner = new MetroFramework.Controls.MetroProgressSpinner();
             this.mainTablePanel.SuspendLayout();
             this.titlePanel.SuspendLayout();
             this.buttonsTablePanel.SuspendLayout();
@@ -77,6 +78,7 @@
             this.titleTile.Location = new System.Drawing.Point(0, 0);
             this.titleTile.Name = "titleTile";
             this.titleTile.Size = new System.Drawing.Size(439, 82);
+            this.titleTile.Style = MetroFramework.MetroColorStyle.Orange;
             this.titleTile.TabIndex = 0;
             this.titleTile.Text = "Vragenlijsten";
             this.titleTile.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -84,7 +86,6 @@
             this.titleTile.TileImageAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.titleTile.TileTextFontSize = MetroFramework.MetroTileTextSize.Tall;
             this.titleTile.TileTextFontWeight = MetroFramework.MetroTileTextWeight.Bold;
-            this.titleTile.UseCustomForeColor = true;
             this.titleTile.UseSelectable = true;
             this.titleTile.UseStyleColors = true;
             this.titleTile.UseTileImage = true;
@@ -116,9 +117,10 @@
             this.btnAddQuestionList.Location = new System.Drawing.Point(3, 3);
             this.btnAddQuestionList.Name = "btnAddQuestionList";
             this.btnAddQuestionList.Size = new System.Drawing.Size(142, 44);
-            this.btnAddQuestionList.Style = MetroFramework.MetroColorStyle.Black;
+            this.btnAddQuestionList.Style = MetroFramework.MetroColorStyle.Orange;
             this.btnAddQuestionList.TabIndex = 3;
             this.btnAddQuestionList.Text = "Vragenlijst toevoegen";
+            this.btnAddQuestionList.Theme = MetroFramework.MetroThemeStyle.Dark;
             this.btnAddQuestionList.UseMnemonic = false;
             this.btnAddQuestionList.UseSelectable = true;
             this.btnAddQuestionList.UseStyleColors = true;
@@ -131,9 +133,10 @@
             this.btnDeleteQuestionList.Location = new System.Drawing.Point(151, 3);
             this.btnDeleteQuestionList.Name = "btnDeleteQuestionList";
             this.btnDeleteQuestionList.Size = new System.Drawing.Size(142, 44);
-            this.btnDeleteQuestionList.Style = MetroFramework.MetroColorStyle.Black;
+            this.btnDeleteQuestionList.Style = MetroFramework.MetroColorStyle.Orange;
             this.btnDeleteQuestionList.TabIndex = 4;
             this.btnDeleteQuestionList.Text = "Vragenlijst verwijderen";
+            this.btnDeleteQuestionList.Theme = MetroFramework.MetroThemeStyle.Dark;
             this.btnDeleteQuestionList.UseSelectable = true;
             this.btnDeleteQuestionList.UseStyleColors = true;
             // 
@@ -145,15 +148,16 @@
             this.btnStartQuestionList.Location = new System.Drawing.Point(299, 3);
             this.btnStartQuestionList.Name = "btnStartQuestionList";
             this.btnStartQuestionList.Size = new System.Drawing.Size(143, 44);
-            this.btnStartQuestionList.Style = MetroFramework.MetroColorStyle.Black;
+            this.btnStartQuestionList.Style = MetroFramework.MetroColorStyle.Orange;
             this.btnStartQuestionList.TabIndex = 5;
             this.btnStartQuestionList.Text = "Vragenlijst starten";
-            this.btnStartQuestionList.Theme = MetroFramework.MetroThemeStyle.Light;
+            this.btnStartQuestionList.Theme = MetroFramework.MetroThemeStyle.Dark;
             this.btnStartQuestionList.UseSelectable = true;
             this.btnStartQuestionList.UseStyleColors = true;
             // 
             // listBoxPanel
             // 
+            this.listBoxPanel.Controls.Add(this.loadingSpinner);
             this.listBoxPanel.Controls.Add(this.listBoxQuestionLists);
             this.listBoxPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.listBoxPanel.Location = new System.Drawing.Point(3, 91);
@@ -163,9 +167,11 @@
             // 
             // listBoxQuestionLists
             // 
+            this.listBoxQuestionLists.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(17)))), ((int)(((byte)(17)))));
             this.listBoxQuestionLists.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.listBoxQuestionLists.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.listBoxQuestionLists.Font = new System.Drawing.Font("Segoe UI Semibold", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.listBoxQuestionLists.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
+            this.listBoxQuestionLists.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.listBoxQuestionLists.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(29)))), ((int)(((byte)(29)))), ((int)(((byte)(29)))));
             this.listBoxQuestionLists.FormattingEnabled = true;
             this.listBoxQuestionLists.ItemHeight = 23;
@@ -174,6 +180,21 @@
             this.listBoxQuestionLists.Size = new System.Drawing.Size(439, 373);
             this.listBoxQuestionLists.TabIndex = 0;
             this.listBoxQuestionLists.Tag = "ff";
+            this.listBoxQuestionLists.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.listBox_DrawItem);
+            // 
+            // loadingSpinner
+            // 
+            this.loadingSpinner.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(17)))), ((int)(((byte)(17)))));
+            this.loadingSpinner.Location = new System.Drawing.Point(0, 0);
+            this.loadingSpinner.Maximum = 100;
+            this.loadingSpinner.Name = "loadingSpinner";
+            this.loadingSpinner.Size = new System.Drawing.Size(50, 50);
+            this.loadingSpinner.Speed = 2F;
+            this.loadingSpinner.Style = MetroFramework.MetroColorStyle.Orange;
+            this.loadingSpinner.TabIndex = 0;
+            this.loadingSpinner.Theme = MetroFramework.MetroThemeStyle.Dark;
+            this.loadingSpinner.UseSelectable = true;
+            this.loadingSpinner.UseStyleColors = true;
             // 
             // ListQuestionListView
             // 
@@ -185,7 +206,7 @@
             this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "ListQuestionListView";
             this.Padding = new System.Windows.Forms.Padding(20, 30, 20, 20);
-            this.Style = MetroFramework.MetroColorStyle.Default;
+            this.Style = MetroFramework.MetroColorStyle.Orange;
             this.Text = "ViewQuestionList";
             this.mainTablePanel.ResumeLayout(false);
             this.titlePanel.ResumeLayout(false);
@@ -206,5 +227,6 @@
         private System.Windows.Forms.Panel titlePanel;
         private MetroFramework.Controls.MetroButton btnStartQuestionList;
         private MetroFramework.Controls.MetroTile titleTile;
+        private MetroFramework.Controls.MetroProgressSpinner loadingSpinner;
     }
 }

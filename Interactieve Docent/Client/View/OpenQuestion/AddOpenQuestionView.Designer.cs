@@ -42,7 +42,7 @@
             this.tableLayoutPanel1.Controls.Add(this.SaveButton, 0, 1);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(27, 74);
-            this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(4);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 2;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
@@ -87,9 +87,12 @@
             this.SaveButton.Location = new System.Drawing.Point(3, 111);
             this.SaveButton.Name = "SaveButton";
             this.SaveButton.Size = new System.Drawing.Size(535, 31);
+            this.SaveButton.Style = MetroFramework.MetroColorStyle.Orange;
             this.SaveButton.TabIndex = 3;
             this.SaveButton.Text = "Opslaan";
+            this.SaveButton.Theme = MetroFramework.MetroThemeStyle.Dark;
             this.SaveButton.UseSelectable = true;
+            this.SaveButton.UseStyleColors = true;
             // 
             // AddOpenQuestionView
             // 
@@ -97,16 +100,15 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(595, 244);
             this.Controls.Add(this.tableLayoutPanel1);
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "AddOpenQuestionView";
             this.Padding = new System.Windows.Forms.Padding(27, 74, 27, 25);
             this.ShowIcon = false;
             this.ShowInTaskbar = false;
-            this.Style = MetroFramework.MetroColorStyle.Default;
+            this.Style = MetroFramework.MetroColorStyle.Orange;
             this.Text = "Open vraag toevoegen";
-            this.Theme = MetroFramework.MetroThemeStyle.Dark;
             this.tableLayoutPanel1.ResumeLayout(false);
             this.ResumeLayout(false);
 

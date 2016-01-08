@@ -39,7 +39,7 @@
             this.labelFailed.Location = new System.Drawing.Point(23, 60);
             this.labelFailed.Name = "labelFailed";
             this.labelFailed.Size = new System.Drawing.Size(81, 20);
-            this.labelFailed.Style = MetroFramework.MetroColorStyle.Red;
+            this.labelFailed.Style = MetroFramework.MetroColorStyle.Black;
             this.labelFailed.TabIndex = 0;
             this.labelFailed.Text = "labelFailed";
             this.labelFailed.Theme = MetroFramework.MetroThemeStyle.Dark;
@@ -52,10 +52,11 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(400, 250);
             this.Controls.Add(this.labelFailed);
+            this.Movable = false;
             this.Name = "FailedDialogView";
             this.Style = MetroFramework.MetroColorStyle.Red;
             this.Text = "Fout Melding";
-            this.Theme = MetroFramework.MetroThemeStyle.Dark;
+            this.Theme = MetroFramework.MetroThemeStyle.Default;
             this.ResumeLayout(false);
             this.PerformLayout();
 

@@ -109,6 +109,7 @@
             this.Controls.Add(this.tableFourColumn);
             this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "MainView";
+            this.Style = MetroFramework.MetroColorStyle.Orange;
             this.Text = "ViewMain2";
             this.Theme = MetroFramework.MetroThemeStyle.Dark;
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;

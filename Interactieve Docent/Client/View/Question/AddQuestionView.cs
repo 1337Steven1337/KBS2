@@ -11,6 +11,7 @@ using Client.View.Dialogs;
 using System.ComponentModel;
 using System.Linq;
 using MetroFramework.Forms;
+using System.Drawing;
 
 namespace Client.View.Question
 {
@@ -135,6 +136,35 @@ namespace Client.View.Question
                 failed.getLabelFailed().Text = "Antwoordveld niet ingevuld of het antwoord bestaat al.";
                 failed.ShowDialog();
             }
+        }
+
+        //Draw custom colors in Listbox
+        private void listBox_DrawItem(object sender, DrawItemEventArgs e)
+        {
+            e.DrawBackground();
+
+            bool isItemSelected = ((e.State & DrawItemState.Selected) == DrawItemState.Selected);
+            int itemIndex = e.Index;
+            if (itemIndex >= 0 && itemIndex < answersListBox.Items.Count)
+            {
+                Graphics g = e.Graphics;
+
+                // Background Color
+                SolidBrush backgroundColorBrush = new SolidBrush((isItemSelected) ? Color.FromArgb(243, 119, 53) : Color.FromArgb(153, 153, 153));
+                g.FillRectangle(backgroundColorBrush, e.Bounds);
+
+                // Set text color
+                PredefinedAnswer itemText = (PredefinedAnswer)answersListBox.Items[itemIndex];
+
+                SolidBrush itemTextColorBrush = (isItemSelected) ? new SolidBrush(Color.White) : new SolidBrush(Color.White);
+                g.DrawString(itemText.Text, e.Font, itemTextColorBrush, answersListBox.GetItemRectangle(itemIndex).Location);
+
+                // Clean up
+                backgroundColorBrush.Dispose();
+                itemTextColorBrush.Dispose();
+            }
+
+            e.DrawFocusRectangle();
         }
 
         private void BtnSaveQuestion_Click(object sender, EventArgs e)

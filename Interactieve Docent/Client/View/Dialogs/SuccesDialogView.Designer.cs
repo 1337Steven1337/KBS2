@@ -39,7 +39,7 @@
             this.labelSucces.Location = new System.Drawing.Point(23, 60);
             this.labelSucces.Name = "labelSucces";
             this.labelSucces.Size = new System.Drawing.Size(81, 20);
-            this.labelSucces.Style = MetroFramework.MetroColorStyle.Green;
+            this.labelSucces.Style = MetroFramework.MetroColorStyle.Black;
             this.labelSucces.TabIndex = 0;
             this.labelSucces.Text = "labelFailed";
             this.labelSucces.Theme = MetroFramework.MetroThemeStyle.Dark;
@@ -52,10 +52,11 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(400, 250);
             this.Controls.Add(this.labelSucces);
+            this.Movable = false;
             this.Name = "SuccesDialogView";
             this.Style = MetroFramework.MetroColorStyle.Green;
             this.Text = "Succes";
-            this.Theme = MetroFramework.MetroThemeStyle.Dark;
+            this.Theme = MetroFramework.MetroThemeStyle.Default;
             this.ResumeLayout(false);
             this.PerformLayout();
 

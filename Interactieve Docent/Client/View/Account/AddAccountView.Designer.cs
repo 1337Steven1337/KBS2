@@ -64,7 +64,9 @@
             this.SaveProgressBar.Location = new System.Drawing.Point(3, 52);
             this.SaveProgressBar.Name = "SaveProgressBar";
             this.SaveProgressBar.Size = new System.Drawing.Size(517, 43);
+            this.SaveProgressBar.Style = MetroFramework.MetroColorStyle.Orange;
             this.SaveProgressBar.TabIndex = 4;
+            this.SaveProgressBar.Theme = MetroFramework.MetroThemeStyle.Dark;
             // 
             // table2Col
             // 
@@ -91,21 +93,26 @@
             this.label.Location = new System.Drawing.Point(64, 0);
             this.label.Name = "label";
             this.label.Size = new System.Drawing.Size(191, 20);
+            this.label.Style = MetroFramework.MetroColorStyle.Black;
             this.label.TabIndex = 0;
             this.label.Text = "Selecteer een excel bestand: ";
             this.label.UseCustomBackColor = true;
-            this.label.UseCustomForeColor = true;
+            this.label.UseStyleColors = true;
             // 
             // OpenDialogButton
             // 
+            this.OpenDialogButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.OpenDialogButton.Dock = System.Windows.Forms.DockStyle.Fill;
             this.OpenDialogButton.Location = new System.Drawing.Point(261, 3);
             this.OpenDialogButton.Name = "OpenDialogButton";
             this.OpenDialogButton.Size = new System.Drawing.Size(253, 37);
-            this.OpenDialogButton.Style = MetroFramework.MetroColorStyle.Yellow;
+            this.OpenDialogButton.Style = MetroFramework.MetroColorStyle.Orange;
             this.OpenDialogButton.TabIndex = 1;
             this.OpenDialogButton.Text = "Open Excelbestand";
+            this.OpenDialogButton.Theme = MetroFramework.MetroThemeStyle.Dark;
             this.OpenDialogButton.UseSelectable = true;
+            this.OpenDialogButton.UseStyleColors = true;
+            this.OpenDialogButton.Click += new System.EventHandler(this.OpenDialogButton_Click);
             // 
             // AddAccountView
             // 
@@ -115,11 +122,13 @@
             this.Controls.Add(this.tableMain);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Margin = new System.Windows.Forms.Padding(4);
+            this.Movable = false;
             this.Name = "AddAccountView";
             this.Padding = new System.Windows.Forms.Padding(27, 74, 27, 25);
+            this.ShowIcon = false;
             this.ShowInTaskbar = false;
+            this.Style = MetroFramework.MetroColorStyle.Orange;
             this.Text = "Accounts toevoegen";
-            this.Theme = MetroFramework.MetroThemeStyle.Dark;
             this.tableMain.ResumeLayout(false);
             this.table2Col.ResumeLayout(false);
             this.table2Col.PerformLayout();
