@@ -32,6 +32,8 @@
             this.tableLeftButtons = new System.Windows.Forms.TableLayoutPanel();
             this.OpenQuestionButton = new MetroFramework.Controls.MetroTile();
             this.ImportAccountButton = new MetroFramework.Controls.MetroTile();
+            this.ImportAccountButton = new MetroFramework.Controls.MetroTile();
+            this.EndSessionButton = new MetroFramework.Controls.MetroTile();
             this.tableFourColumn.SuspendLayout();
             this.tableLeftButtons.SuspendLayout();
             this.SuspendLayout();
@@ -101,6 +103,18 @@
             this.ImportAccountButton.UseSelectable = true;
             this.ImportAccountButton.Click += new System.EventHandler(this.ImportAccountButton_Click);
             // 
+            // EndSessionButton
+            // 
+            this.EndSessionButton.BackColor = System.Drawing.Color.White;
+            this.EndSessionButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold);
+            this.EndSessionButton.Location = new System.Drawing.Point(3, 69);
+            this.EndSessionButton.Name = "EndSessionButton";
+            this.EndSessionButton.Size = new System.Drawing.Size(84, 49);
+            this.EndSessionButton.TabIndex = 3;
+            this.EndSessionButton.Text = "Sessie Eindigen";
+            this.EndSessionButton.UseVisualStyleBackColor = false;
+            this.EndSessionButton.Click += new System.EventHandler(this.EndSessionButton_Click);
+            // 
             // MainView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -125,5 +139,6 @@
         private System.Windows.Forms.TableLayoutPanel tableLeftButtons;
         private MetroFramework.Controls.MetroTile OpenQuestionButton;
         private MetroFramework.Controls.MetroTile ImportAccountButton;
+        private MetroFramework.Controls.MetroTile EndSessionButton;
     }
 }

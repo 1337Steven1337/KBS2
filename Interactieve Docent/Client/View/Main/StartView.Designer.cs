@@ -43,7 +43,7 @@ namespace Client.View.Main
             this.LoginButton.Location = new System.Drawing.Point(85, 78);
             this.LoginButton.Name = "LoginButton";
             this.LoginButton.Size = new System.Drawing.Size(75, 23);
-            this.LoginButton.TabIndex = 0;
+            this.LoginButton.TabIndex = 2;
             this.LoginButton.Text = "Login";
             this.LoginButton.UseVisualStyleBackColor = true;
             this.LoginButton.Click += new System.EventHandler(this.LoginButton_Click);
@@ -63,7 +63,7 @@ namespace Client.View.Main
             this.CodeTextBox.MaxLength = 6;
             this.CodeTextBox.Name = "CodeTextBox";
             this.CodeTextBox.Size = new System.Drawing.Size(149, 20);
-            this.CodeTextBox.TabIndex = 0;
+            this.CodeTextBox.TabIndex = 1;
             this.CodeTextBox.TextChanged += new System.EventHandler(this.CodeTextBox_TextChanged);
             // 
             // PasswordTextBox
@@ -72,7 +72,7 @@ namespace Client.View.Main
             this.PasswordTextBox.MaxLength = 6;
             this.PasswordTextBox.Name = "PasswordTextBox";
             this.PasswordTextBox.Size = new System.Drawing.Size(149, 20);
-            this.PasswordTextBox.TabIndex = 2;
+            this.PasswordTextBox.TabIndex = 0;
             this.PasswordTextBox.TextChanged += new System.EventHandler(this.PasswordTextBox_TextChanged);
             // 
             // PasswordLabel

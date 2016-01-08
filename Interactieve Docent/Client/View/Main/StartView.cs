@@ -5,13 +5,7 @@ using Client.Service.Thread;
 using Client.Controller.Main;
 using System.Net;
 using Client.View.Dialogs;
-using Client.View.Question;
-using Client.Controller.Question;
-using Client.View.QuestionList;
-using Client.Controller.QuestionList;
 using Client.View.OpenQuestion;
-using Client.Controller.OpenQuestion;
-using Client.Student;
 
 namespace Client.View.Main
 {
