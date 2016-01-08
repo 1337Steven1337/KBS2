@@ -103,17 +103,6 @@
             this.ImportAccountButton.UseSelectable = true;
             this.ImportAccountButton.Click += new System.EventHandler(this.ImportAccountButton_Click);
             // 
-            // sessionLabel
-            // 
-            this.sessionLabel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.sessionLabel.Location = new System.Drawing.Point(3, 259);
-            this.sessionLabel.Name = "sessionLabel";
-            this.sessionLabel.Size = new System.Drawing.Size(84, 30);
-            this.sessionLabel.TabIndex = 2;
-            this.sessionLabel.Text = "sessionID";
-            this.sessionLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
             // EndSessionButton
             // 
             this.EndSessionButton.BackColor = System.Drawing.Color.White;
@@ -149,5 +138,6 @@
         private System.Windows.Forms.TableLayoutPanel tableLeftButtons;
         private MetroFramework.Controls.MetroTile OpenQuestionButton;
         private MetroFramework.Controls.MetroTile ImportAccountButton;
+        private MetroFramework.Controls.MetroTile EndSessionButton;
     }
 }
