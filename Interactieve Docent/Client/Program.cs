@@ -44,16 +44,12 @@ namespace Client
             listQuestionListController.SelectedListChanged += questionController.LoadList;
             listQuestionListController.Load();
 
-
-            listQuestionListController.SelectedListChanged += questionController.LoadList;
-            listQuestionListController.Load();
-
             view.Show();
 
 
-            UserAnswerToOpenQuestionView openQuestionView = new UserAnswerToOpenQuestionView();
-            UserAnswerToOpenQuestionController openQuestionController = new UserAnswerToOpenQuestionController(openQuestionView);
-            openQuestionView.Show();
+            //UserAnswerToOpenQuestionView openQuestionView = new UserAnswerToOpenQuestionView();
+            //UserAnswerToOpenQuestionController openQuestionController = new UserAnswerToOpenQuestionController(openQuestionView);
+            //openQuestionView.Show();
 
 
             StartView startView = new StartView();
