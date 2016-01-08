@@ -11,10 +11,11 @@ using System.Net;
 using Client.View.Dialogs;
 using System.Linq;
 using Client.View.Diagram;
+using MetroFramework.Forms;
 
 namespace Client.View.Question
 {
-    public partial class ListQuestionView : Form, IListView<Model.Question>
+    public partial class ListQuestionView : MetroForm, IListView<Model.Question>
     {
         #region Delegates
         public delegate void AddQuestionClickedDelegate(Model.QuestionList list, Model.Question question);
@@ -46,6 +47,7 @@ namespace Client.View.Question
             listBoxQuestions.SelectedIndexChanged += ListBox_SelectedIndexChanged;
             listBoxQuestions.PreviewKeyDown += ListBoxQuestions_PreviewKeyDown;
             btnAddQuestion.Click += BtnAddQuestion_Click;
+            btnDeleteQuestion.Click += btnDeleteQuestion_Click;
         }
         #endregion
 
@@ -70,7 +72,7 @@ namespace Client.View.Question
         #region Methods
         public void FillList(List<Model.Question> list)
         {
-            labelTitle.Text = String.Format("Vragen uit: {0}", this.Controller.CurrentList.Name);
+            titleTile.Text = String.Format("Vragen uit: {0}", this.Controller.CurrentList.Name);
             this.Questions.Clear();
 
             foreach (Model.Question question in list)
@@ -135,7 +137,7 @@ namespace Client.View.Question
                 //Show dialog for user to confirm Delete action
                 DialogResult dr = new DialogResult();
                 ConfirmDialogView confirm = new ConfirmDialogView();
-                confirm.getLabelConfirm().Text = String.Format("Weet u zeker dat u {0} wilt verwijderen?", getSelectedItem().Text);
+                confirm.getLabelConfirm().Text = String.Format("Weet u zeker dat u de vraag: {0}{1}wilt verwijderen?", getSelectedItem().Text, "\n");
                 dr = confirm.ShowDialog();
 
                 if (dr == DialogResult.Yes)
@@ -192,7 +194,7 @@ namespace Client.View.Question
             else
             {
                 FailedDialogView failed = new FailedDialogView();
-                failed.getLabelFailed().Text = "Deze vraag kan niet geupdate worden omdat er al antwoorden voor bestaan.";
+                failed.getLabelFailed().Text = "Deze vraag kan niet geupdate worden omdat de vraag nog antwoorden bevat van studenten.";
                 failed.ShowDialog();
             }
         }

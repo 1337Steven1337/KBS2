@@ -8,11 +8,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using MetroFramework.Forms;
 
 namespace Client.View.QuestionList
 {
     //Popup which shows when trying to add a new list
-    public partial class AddQuestionListView : Form
+    public partial class AddQuestionListView : MetroForm
     {
         public string text { private set; get; }
         public Boolean valid { set; get; }
@@ -37,15 +38,9 @@ namespace Client.View.QuestionList
             else
             {
                 FailedDialogView dlg = new FailedDialogView();
-                dlg.getLabelFailed().Text = "Gelieve alle velden in te vullen!";
+                dlg.getLabelFailed().Text = "Vul een naam in";
                 dlg.ShowDialog();
             }
-        }
-
-        private void buttonCancel_Click(object sender, EventArgs e)
-        {
-            //Do nothing
-            this.Close();
         }
     }
 }

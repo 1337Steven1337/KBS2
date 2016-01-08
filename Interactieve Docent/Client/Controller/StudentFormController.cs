@@ -183,7 +183,7 @@ namespace Client.Controller
             }
             else
             {
-                mainForm.Invoke((Action)delegate () {view.ShowSaveFailed(); });
+                mainForm.Invoke((Action)delegate () { view.ShowSaveFailed(); });
             }
         }    
     }

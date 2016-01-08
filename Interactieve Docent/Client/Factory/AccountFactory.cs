@@ -12,12 +12,12 @@ namespace Client.Factory
         protected override string Resource
         {
             get
-            {
+            { 
                 return "Accounts";
             }
         }
 
-        public AccountFactory() : base(new BaseFactory<Account>()) { }
+        public AccountFactory() : base(new BaseFactory<Account>(false)) { }
 
         protected override Dictionary<string, object> GetFields(Account instance)
         {
