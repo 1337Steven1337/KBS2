@@ -16,6 +16,9 @@ using Client.View.Dialogs;
 using System.Net;
 using Client.View.OpenQuestion;
 using Client.Controller.OpenQuestion;
+using Client.Factory;
+using Client.Model;
+using RestSharp;
 
 namespace Client.View.Main
 {
@@ -23,6 +26,12 @@ namespace Client.View.Main
     {
         private MainController controller;
         private int sessionPin = 0;
+
+        OpenQuestionFactory openQuestionFactory = new OpenQuestionFactory();
+        AccountFactory accountFactory = new AccountFactory();
+        UserAnswerFactory userAnswerFactory = new UserAnswerFactory();
+        Boolean removed = true;
+        int count = 0;
 
         public MainView()
         {
@@ -165,7 +174,7 @@ namespace Client.View.Main
 
         public IControlHandler GetHandler()
         {
-            throw new NotImplementedException();
+            return new ControlHandler(this.tableFourColumn);
         }
 
         public void AddToParent(IView parent)
@@ -192,6 +201,74 @@ namespace Client.View.Main
             AddOpenQuestionController controller = new AddOpenQuestionController(view);
 
             BackgroundDialogView background = new BackgroundDialogView(this, view);
+        }
+
+        private void EndSessionButton_Click(object sender, EventArgs e)
+        {
+            openQuestionFactory.FindAll(this.GetHandler(), DeleteSession);
+            userAnswerFactory.FindAll(this.GetHandler(), DeleteSession);
+            accountFactory.FindAll(this.GetHandler(), DeleteSession);
+        }
+
+        private void DeleteSession(List<Model.OpenQuestion> arg1, HttpStatusCode arg2, IRestResponse arg3)
+        {
+            foreach (Model.OpenQuestion item in arg1)
+            {
+                openQuestionFactory.Delete(item, this.GetHandler(), CallBackDeleted);
+            }
+            DeletedStatus();
+        }
+
+        private void DeleteSession(List<Model.Account> arg1, HttpStatusCode arg2, IRestResponse arg3)
+        {
+            foreach (Model.Account item in arg1)
+            {
+                accountFactory.Delete(item, this.GetHandler(), CallBackDeleted);
+            }
+            DeletedStatus();
+        }
+
+        private void DeleteSession(List<Model.UserAnswer> arg1, HttpStatusCode arg2, IRestResponse arg3)
+        {
+            foreach (Model.UserAnswer item in arg1)
+            {
+                userAnswerFactory.Delete(item, this.GetHandler(), CallBackDeleted);
+            }
+            DeletedStatus();
+        }
+
+        private void CallBackDeleted(Model.AbstractModel model, HttpStatusCode status)
+        {
+            //Check if all the to-be-deleted records have been deleted, if one has failed, removed is false
+            if(status != HttpStatusCode.OK)
+            {
+                removed = false;
+            }
+        }
+
+        private void DeletedStatus()
+        {
+            count++;
+            //Check if accounts, openquestions and useranswers have been removed
+            if (count == 3)
+            {
+                if (removed)
+                {
+                    //If everything is succesfully removed show succes
+                    SuccesDialogView view = new SuccesDialogView();
+                    view.Text = "Verwijderen gegevens voltooid! U kunt nu het programma afsluiten.";
+                    view.ShowDialog();
+                }
+                else
+                {
+                    //If everything is succesfully removed show fail
+                    FailedDialogView view = new FailedDialogView();
+                    view.Text = "Oeps! Er is iets misgegaan! Probeer het opnieuw!";
+                    view.ShowDialog();
+                }
+                count = 0;
+                removed = true;
+            }
         }
     }
 }
