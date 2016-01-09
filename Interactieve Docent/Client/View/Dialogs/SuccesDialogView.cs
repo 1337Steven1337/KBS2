@@ -7,10 +7,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using MetroFramework.Forms;
 
 namespace Client.View.Dialogs
 {
-    public partial class SuccesDialogView : Form
+    public partial class SuccesDialogView : MetroForm
     {
         public SuccesDialogView()
         {
@@ -25,11 +26,6 @@ namespace Client.View.Dialogs
         public Label getLabelSucces()
         {
             return labelSucces;
-        }
-
-        private void btnClose_Click(object sender, EventArgs e)
-        {
-            Close();
         }
     }
 }

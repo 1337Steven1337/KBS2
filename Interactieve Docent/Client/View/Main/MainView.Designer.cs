@@ -29,12 +29,13 @@
         private void InitializeComponent()
         {
             this.tableFourColumn = new System.Windows.Forms.TableLayoutPanel();
-            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
-            this.OpenQuestionButton = new System.Windows.Forms.Button();
-            this.sessionLabel = new System.Windows.Forms.Label();
-            this.ImportAccountButton = new System.Windows.Forms.Button();
+            this.tableLeftButtons = new System.Windows.Forms.TableLayoutPanel();
+            this.OpenQuestionButton = new MetroFramework.Controls.MetroTile();
+            this.ImportAccountButton = new MetroFramework.Controls.MetroTile();
+            this.ImportAccountButton = new MetroFramework.Controls.MetroTile();
+            this.EndSessionButton = new MetroFramework.Controls.MetroTile();
             this.tableFourColumn.SuspendLayout();
-            this.tableLayoutPanel1.SuspendLayout();
+            this.tableLeftButtons.SuspendLayout();
             this.SuspendLayout();
             // 
             // tableFourColumn
@@ -44,93 +45,88 @@
             this.tableFourColumn.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 45F));
             this.tableFourColumn.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 45F));
             this.tableFourColumn.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 0F));
-            this.tableFourColumn.Controls.Add(this.tableLayoutPanel1, 0, 0);
+            this.tableFourColumn.Controls.Add(this.tableLeftButtons, 0, 0);
             this.tableFourColumn.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableFourColumn.Location = new System.Drawing.Point(0, 0);
+            this.tableFourColumn.Location = new System.Drawing.Point(20, 60);
             this.tableFourColumn.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tableFourColumn.Name = "tableFourColumn";
             this.tableFourColumn.RowCount = 1;
             this.tableFourColumn.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableFourColumn.Size = new System.Drawing.Size(987, 318);
+            this.tableFourColumn.Size = new System.Drawing.Size(588, 238);
             this.tableFourColumn.TabIndex = 0;
             // 
-            // tableLayoutPanel1
+            // tableLeftButtons
             // 
-            this.tableLayoutPanel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.tableLeftButtons.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.tableLayoutPanel1.ColumnCount = 1;
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel1.Controls.Add(this.OpenQuestionButton, 0, 1);
-            this.tableLayoutPanel1.Controls.Add(this.sessionLabel, 0, 2);
-            this.tableLayoutPanel1.Controls.Add(this.ImportAccountButton, 0, 0);
-            this.tableLayoutPanel1.Location = new System.Drawing.Point(4, 4);
-            this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.tableLayoutPanel1.Name = "tableLayoutPanel1";
-            this.tableLayoutPanel1.RowCount = 3;
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 49.18033F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50.81967F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 234F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(90, 310);
-            this.tableLayoutPanel1.TabIndex = 1;
+            this.tableLeftButtons.ColumnCount = 1;
+            this.tableLeftButtons.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLeftButtons.Controls.Add(this.OpenQuestionButton, 0, 0);
+            this.tableLeftButtons.Controls.Add(this.ImportAccountButton, 0, 1);
+            this.tableLeftButtons.Location = new System.Drawing.Point(3, 3);
+            this.tableLeftButtons.Name = "tableLeftButtons";
+            this.tableLeftButtons.RowCount = 2;
+            this.tableLeftButtons.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 60F));
+            this.tableLeftButtons.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 55F));
+            this.tableLeftButtons.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLeftButtons.Size = new System.Drawing.Size(52, 228);
+            this.tableLeftButtons.TabIndex = 1;
             // 
             // OpenQuestionButton
             // 
-            this.OpenQuestionButton.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.OpenQuestionButton.AutoSize = true;
-            this.OpenQuestionButton.BackColor = System.Drawing.Color.White;
-            this.OpenQuestionButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.OpenQuestionButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.OpenQuestionButton.Location = new System.Drawing.Point(3, 39);
-            this.OpenQuestionButton.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.OpenQuestionButton.ActiveControl = null;
+            this.OpenQuestionButton.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.OpenQuestionButton.Location = new System.Drawing.Point(3, 3);
             this.OpenQuestionButton.Name = "OpenQuestionButton";
-            this.OpenQuestionButton.Size = new System.Drawing.Size(84, 34);
-            this.OpenQuestionButton.TabIndex = 1;
-            this.OpenQuestionButton.Text = "Open vraag";
-            this.OpenQuestionButton.UseVisualStyleBackColor = false;
+            this.OpenQuestionButton.Size = new System.Drawing.Size(46, 54);
+            this.OpenQuestionButton.Style = MetroFramework.MetroColorStyle.Teal;
+            this.OpenQuestionButton.TabIndex = 2;
+            this.OpenQuestionButton.Text = "Openvraag toevoegen";
+            this.OpenQuestionButton.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.OpenQuestionButton.TileTextFontWeight = MetroFramework.MetroTileTextWeight.Bold;
+            this.OpenQuestionButton.UseSelectable = true;
+            this.OpenQuestionButton.UseTileImage = true;
             this.OpenQuestionButton.Click += new System.EventHandler(this.OpenQuestionButton_Click);
-            // 
-            // sessionLabel
-            // 
-            this.sessionLabel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.sessionLabel.Location = new System.Drawing.Point(3, 280);
-            this.sessionLabel.Name = "sessionLabel";
-            this.sessionLabel.Size = new System.Drawing.Size(84, 30);
-            this.sessionLabel.TabIndex = 2;
-            this.sessionLabel.Text = "sessionID";
-            this.sessionLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // ImportAccountButton
             // 
-            this.ImportAccountButton.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.ImportAccountButton.AutoSize = true;
-            this.ImportAccountButton.BackColor = System.Drawing.Color.White;
-            this.ImportAccountButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.ImportAccountButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ImportAccountButton.Location = new System.Drawing.Point(3, 2);
-            this.ImportAccountButton.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.ImportAccountButton.ActiveControl = null;
+            this.ImportAccountButton.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ImportAccountButton.Location = new System.Drawing.Point(3, 63);
             this.ImportAccountButton.Name = "ImportAccountButton";
-            this.ImportAccountButton.Size = new System.Drawing.Size(84, 32);
-            this.ImportAccountButton.TabIndex = 0;
-            this.ImportAccountButton.Text = "Import Excel";
-            this.ImportAccountButton.UseVisualStyleBackColor = false;
+            this.ImportAccountButton.Size = new System.Drawing.Size(46, 162);
+            this.ImportAccountButton.Style = MetroFramework.MetroColorStyle.Green;
+            this.ImportAccountButton.TabIndex = 3;
+            this.ImportAccountButton.Text = "Importeer accounts";
+            this.ImportAccountButton.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.ImportAccountButton.TileTextFontWeight = MetroFramework.MetroTileTextWeight.Bold;
+            this.ImportAccountButton.UseSelectable = true;
             this.ImportAccountButton.Click += new System.EventHandler(this.ImportAccountButton_Click);
+            // 
+            // EndSessionButton
+            // 
+            this.EndSessionButton.BackColor = System.Drawing.Color.White;
+            this.EndSessionButton.Location = new System.Drawing.Point(3, 69);
+            this.EndSessionButton.Name = "EndSessionButton";
+            this.EndSessionButton.Size = new System.Drawing.Size(84, 49);
+            this.EndSessionButton.TabIndex = 3;
+            this.EndSessionButton.Text = "Sessie Eindigen";
+            this.EndSessionButton.Click += new System.EventHandler(this.EndSessionButton_Click);
             // 
             // MainView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(987, 318);
+            this.ClientSize = new System.Drawing.Size(628, 318);
             this.Controls.Add(this.tableFourColumn);
             this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "MainView";
+            this.Style = MetroFramework.MetroColorStyle.Orange;
             this.Text = "ViewMain2";
+            this.Theme = MetroFramework.MetroThemeStyle.Dark;
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.tableFourColumn.ResumeLayout(false);
-            this.tableLayoutPanel1.ResumeLayout(false);
-            this.tableLayoutPanel1.PerformLayout();
+            this.tableLeftButtons.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -138,9 +134,9 @@
         #endregion
 
         private System.Windows.Forms.TableLayoutPanel tableFourColumn;
-        private System.Windows.Forms.Button ImportAccountButton;
-        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
-        private System.Windows.Forms.Button OpenQuestionButton;
-        private System.Windows.Forms.Label sessionLabel;
+        private System.Windows.Forms.TableLayoutPanel tableLeftButtons;
+        private MetroFramework.Controls.MetroTile OpenQuestionButton;
+        private MetroFramework.Controls.MetroTile ImportAccountButton;
+        private MetroFramework.Controls.MetroTile EndSessionButton;
     }
 }

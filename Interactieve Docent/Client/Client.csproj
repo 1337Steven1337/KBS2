@@ -168,9 +168,7 @@
     <Compile Include="Student\QuestionForm.Designer.cs">
       <DependentUpon>QuestionForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="View\Account\AddAccountView.cs">
-      <SubType>Form</SubType>
-    </Compile>
+    <Compile Include="View\Account\AddAccountView.cs" />
     <Compile Include="View\Account\AddAccountView.Designer.cs">
       <DependentUpon>AddAccountView.cs</DependentUpon>
     </Compile>
@@ -195,15 +193,11 @@
     <Compile Include="View\Dialogs\BackgroundDialogView.designer.cs">
       <DependentUpon>BackgroundDialogView.cs</DependentUpon>
     </Compile>
-    <Compile Include="View\Dialogs\FailedDialogView.cs">
-      <SubType>Form</SubType>
-    </Compile>
+    <Compile Include="View\Dialogs\FailedDialogView.cs" />
     <Compile Include="View\Dialogs\FailedDialogView.Designer.cs">
       <DependentUpon>FailedDialogView.cs</DependentUpon>
     </Compile>
-    <Compile Include="View\Dialogs\SuccesDialogView.cs">
-      <SubType>Form</SubType>
-    </Compile>
+    <Compile Include="View\Dialogs\SuccesDialogView.cs" />
     <Compile Include="View\Dialogs\SuccesDialogView.Designer.cs">
       <DependentUpon>SuccesDialogView.cs</DependentUpon>
     </Compile>
@@ -225,9 +219,7 @@
       <DependentUpon>LoginView.cs</DependentUpon>
     </Compile>
     <Compile Include="View\Main\IStartView.cs" />
-    <Compile Include="View\Main\MainView.cs">
-      <SubType>Form</SubType>
-    </Compile>
+    <Compile Include="View\Main\MainView.cs" />
     <Compile Include="View\Main\MainView.Designer.cs">
       <DependentUpon>MainView.cs</DependentUpon>
     </Compile>
@@ -237,9 +229,7 @@
     <Compile Include="View\Main\StartView.designer.cs">
       <DependentUpon>StartView.cs</DependentUpon>
     </Compile>
-    <Compile Include="View\OpenQuestion\AddOpenQuestionView.cs">
-      <SubType>Form</SubType>
-    </Compile>
+    <Compile Include="View\OpenQuestion\AddOpenQuestionView.cs" />
     <Compile Include="View\OpenQuestion\AddOpenQuestionView.Designer.cs">
       <DependentUpon>AddOpenQuestionView.cs</DependentUpon>
     </Compile>
@@ -255,33 +245,23 @@
     <Compile Include="View\UserAnswerToOpenQuestion\UserAnswerToOpenQuestionView.Designer.cs">
       <DependentUpon>UserAnswerToOpenQuestionView.cs</DependentUpon>
     </Compile>
-    <Compile Include="View\QuestionList\AddQuestionListView.cs">
-      <SubType>Form</SubType>
-    </Compile>
+    <Compile Include="View\QuestionList\AddQuestionListView.cs" />
     <Compile Include="View\QuestionList\AddQuestionListView.Designer.cs">
       <DependentUpon>AddQuestionListView.cs</DependentUpon>
     </Compile>
-    <Compile Include="View\QuestionList\ListQuestionListView.cs">
-      <SubType>Form</SubType>
-    </Compile>
+    <Compile Include="View\QuestionList\ListQuestionListView.cs" />
     <Compile Include="View\QuestionList\ListQuestionListView.Designer.cs">
       <DependentUpon>ListQuestionListView.cs</DependentUpon>
     </Compile>
-    <Compile Include="View\Dialogs\ConfirmDialogView.cs">
-      <SubType>Form</SubType>
-    </Compile>
+    <Compile Include="View\Dialogs\ConfirmDialogView.cs" />
     <Compile Include="View\Dialogs\ConfirmDialogView.Designer.cs">
       <DependentUpon>ConfirmDialogView.cs</DependentUpon>
     </Compile>
-    <Compile Include="View\Question\AddQuestionView.cs">
-      <SubType>Form</SubType>
-    </Compile>
+    <Compile Include="View\Question\AddQuestionView.cs" />
     <Compile Include="View\Question\AddQuestionView.Designer.cs">
       <DependentUpon>AddQuestionView.cs</DependentUpon>
     </Compile>
-    <Compile Include="View\Question\ListQuestionView.cs">
-      <SubType>Form</SubType>
-    </Compile>
+    <Compile Include="View\Question\ListQuestionView.cs" />
     <Compile Include="View\Question\ListQuestionView.Designer.cs">
       <DependentUpon>ListQuestionView.cs</DependentUpon>
     </Compile>

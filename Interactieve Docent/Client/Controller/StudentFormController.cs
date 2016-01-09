@@ -117,7 +117,7 @@ namespace Client.Controller
         private void LIFactory_startList(int list) 
         {
             QuestionListFactory listFactory = new QuestionListFactory();
-            listFactory.FindById(list,mainForm.getView().GetHandler(),listStartedCallbackHandler);
+            listFactory.FindById(list,mainForm.getView().GetHandler(),listStartedCallbackHandler);            
             SignalRClient.GetInstance().SubscribeList(list);        
         }
 
@@ -164,6 +164,6 @@ namespace Client.Controller
         {
             this.currentQuestionIndex = index;   
         }
-        
-        }
+
+    }
 }

@@ -4,6 +4,7 @@ using Client.View;
 using System.Net;
 using Client.Service.SignalR;
 using Client.View.Main;
+using Client.Service.Login;
 
 namespace Client.Controller.Main
 {
@@ -50,7 +51,32 @@ namespace Client.Controller.Main
 
         public void CheckCode(string code)
         {
-            this.PincodeFactory.FindById(code, this.View.GetHandler(), this.UseCode);
+            this.PincodeFactory.FindById(code, this.View.GetHandler(), this.ProcessCodeResult);
+        }
+
+        private void CheckPassword()
+        {
+            LoginClient client = LoginClient.GetInstance();
+            client.Login(this.View.GetPassword(), (bool s) =>
+            {
+                if (s)
+                {
+                    this.View.Continue();
+                }
+                else
+                {
+                    this.View.ShowPasswordResult(s);
+                }
+            });
+        }
+
+        private void ProcessCodeResult(Model.Pincode pincode, HttpStatusCode status)
+        {
+            this.View.ShowCodeResult(pincode, status);
+            if (pincode != null && status == HttpStatusCode.OK)
+            {
+                this.CheckPassword();
+            }
         }
     }
 }

@@ -9,6 +9,7 @@ namespace Client.Tests.Factory
     class TestQuestionFactory : Client.Factory.IFactory<Question>
     { 
         private List<Question> questions;
+        private string Resource;
 
         public TestQuestionFactory()
         {
@@ -62,7 +63,7 @@ namespace Client.Tests.Factory
 
         public void SetResource(string resource)
         {
-            throw new NotImplementedException();
+            this.Resource = resource;
         }
 
         public void UpdateAsync(List<KeyValuePair<string, object>> data, Action<Question, HttpStatusCode, IRestResponse> callback)

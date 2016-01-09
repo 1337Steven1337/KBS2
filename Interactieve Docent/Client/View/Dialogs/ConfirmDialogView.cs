@@ -7,17 +7,20 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using MetroFramework.Forms;
 
-namespace Client.View.Question
+namespace Client.View.Dialogs
 {
-    public partial class ConfirmDialogView : Form
+    public partial class ConfirmDialogView : MetroForm
     {
-        public Boolean Confirmed { get; set; }
-
         public ConfirmDialogView()
         {
-            this.Confirmed = false;
             InitializeComponent();
+
+            this.TopMost = true;
+            this.Focus();
+            this.BringToFront();
+            System.Media.SystemSounds.Beep.Play();
         }
 
         public Label getLabelConfirm()

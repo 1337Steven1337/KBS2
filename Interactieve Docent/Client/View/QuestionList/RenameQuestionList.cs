@@ -1,4 +1,5 @@
 ﻿using Client.Controller.QuestionList;
+using Client.View.Dialogs;
 using Client.View.Question;
 using System;
 using System.Collections.Generic;

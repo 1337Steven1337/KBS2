@@ -44,10 +44,6 @@ namespace Client
             listQuestionListController.SelectedListChanged += questionController.LoadList;
             listQuestionListController.Load();
 
-
-            listQuestionListController.SelectedListChanged += questionController.LoadList;
-            listQuestionListController.Load();
-
             view.Show();
 
 

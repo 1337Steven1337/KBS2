@@ -13,11 +13,14 @@ namespace Server.Models
         [Key]
         [DataMember]
         public int Id { get; set; }
-
+           
         [DataMember]
         public string Student { get; set; } 
 
         [DataMember]
         public string Password { get; set; }
+
+        [DataMember]
+        public string Token { get; set; }
     }
 }

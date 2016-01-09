@@ -17,8 +17,6 @@ namespace Server.Controllers
 {
     public class OpenQuestionsController : ApiControllerWithHub<Hubs.EventHub>
     {
-        private ServerContext db = new ServerContext();
-
         // GET: api/OpenQuestions
         public IQueryable<OpenQuestion> GetOpenQuestions()
         {
@@ -52,7 +50,7 @@ namespace Server.Controllers
                 return BadRequest();
             }
 
-            db.Entry(openQuestion).State = EntityState.Modified;
+            db.MarkAsModified(openQuestion);
 
             try
             {

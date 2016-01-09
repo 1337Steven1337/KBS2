@@ -12,13 +12,12 @@ using System.Web.Http.Description;
 using Server.Models;
 using Server.Models.Context;
 using Server.Models.DTO;
+using Server.Hubs;
 
 namespace Server.Controllers
 {
-    public class AccountsController : ApiController
+    public class AccountsController : ApiControllerWithHub<EventHub>
     {
-        private IDocentAppContext db = new ServerContext();
-
         public AccountsController() { }
         public AccountsController(IDocentAppContext context)
         {
@@ -38,33 +37,17 @@ namespace Server.Controllers
 
         // GET: api/Accounts/5
         [ResponseType(typeof(AccountDTO))]
-        public AccountDTO GetAccount(int id)
+        public async Task<IHttpActionResult> GetAccount(string id)
         {
-            var account = from a in db.Accounts
-                        where a.Id == id
-                        select new AccountDTO()
-                        {
-                            Id = a.Id,
-                            Student = a.Student,
-                        };
+            string password = LoginToken.Sha256(id);
+            Account account = db.Accounts.Where(a => a.Password == password).FirstOrDefault();
 
-            return account.FirstOrDefault(x => x.Id == x.Id);
-        }
-
-        // PUT: api/Accounts/5
-        [ResponseType(typeof(void))]
-        public async Task<IHttpActionResult> PutAccount(int id, Account account)
-        {
-            if (!ModelState.IsValid)
+            if (account == null)
             {
-                return BadRequest(ModelState);
+                return NotFound();
             }
 
-            if (id != account.Id)
-            {
-                return BadRequest();
-            }
-
+            account.Token = LoginToken.Sha256(LoginToken.Generate(64));
             db.MarkAsModified(account);
 
             try
@@ -73,17 +56,10 @@ namespace Server.Controllers
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!AccountExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
+                throw;
             }
 
-            return StatusCode(HttpStatusCode.NoContent);
+            return Ok(new AccountDTO(account));
         }
 
         // POST: api/Accounts
@@ -101,22 +77,6 @@ namespace Server.Controllers
             return CreatedAtRoute("DefaultApi", new { id = account.Id }, new AccountDTO(account));
         }
 
-        // DELETE: api/Accounts/5
-        [ResponseType(typeof(Account))]
-        public async Task<IHttpActionResult> DeleteAccount(int id)
-        {
-            Account account = await db.Accounts.FindAsync(id);
-            if (account == null)
-            {
-                return NotFound();
-            }
-
-            db.Accounts.Remove(account);
-            await db.SaveChangesAsync();
-
-            return Ok(account);
-        }
-
         protected override void Dispose(bool disposing)
         {
             if (disposing)
@@ -124,11 +84,6 @@ namespace Server.Controllers
                 db.Dispose();
             }
             base.Dispose(disposing);
-        }
-
-        private bool AccountExists(int id)
-        {
-            return db.Accounts.Count(e => e.Id == id) > 0;
         }
     }
 }

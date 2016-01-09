@@ -1,5 +1,6 @@
 ﻿using Client.Factory;
 using Client.Model;
+using Client.Service.Login;
 using RestSharp;
 using System;
 using System.Collections.Generic;
@@ -13,12 +14,35 @@ namespace Client.Factory
     public class BaseFactory<T> : IFactory<T> where T : AbstractModel, new()
     {
         private RestClient RestClient = new RestClient();
+        private LoginClient LoginClient;
         private string Resource;
 
-        public BaseFactory()
+        public BaseFactory() : this(true) {}
+
+        public BaseFactory(bool requireLogin)
         {
             this.RestClient.BaseUrl = new Uri(Properties.Api.Default.Host + Properties.Api.Default.Rest);
             this.RestClient.AddDefaultHeader("Content-Type", "application/json");
+
+            if (requireLogin)
+            {
+                this.LoginClient = LoginClient.GetInstance();
+
+                if(this.LoginClient.GetToken() == null)
+                {
+                    this.LoginClient.CredentialsChanged += LoginClient_CredentialsChanged;
+                }
+                else
+                {
+                    this.RestClient.AddDefaultHeader("Authorization", this.LoginClient.GetToken());
+                }
+            }
+        }
+
+        private void LoginClient_CredentialsChanged(string token)
+        {
+            this.RestClient.AddDefaultHeader("Authorization", token);
+            this.LoginClient.CredentialsChanged -= LoginClient_CredentialsChanged;
         }
 
         public void SetResource(string resource)
