@@ -112,7 +112,6 @@
     <Compile Include="Controller\IController.cs" />
     <Compile Include="Controller\Main\ShowMainController.cs" />
     <Compile Include="Controller\Main\ShowStartController.cs" />
-    <Compile Include="Controller\OpenQuestionController.cs" />
     <Compile Include="Controller\OpenQuestion\AddOpenQuestionController.cs" />
     <Compile Include="Controller\QuestionList\ListQuestionListController.cs" />
     <Compile Include="Controller\Question\AddQuestionController.cs" />
@@ -162,18 +161,6 @@
     </Compile>
     <Compile Include="Student\nextForm.Designer.cs">
       <DependentUpon>nextForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Student\OpenQuestion.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Student\OpenQuestion.Designer.cs">
-      <DependentUpon>OpenQuestion.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Student\OpenQuestionForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Student\OpenQuestionForm.Designer.cs">
-      <DependentUpon>OpenQuestionForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Student\QuestionForm.cs">
       <SubType>Form</SubType>
@@ -310,12 +297,6 @@
     </Compile>
     <EmbeddedResource Include="Student\nextForm.resx">
       <DependentUpon>nextForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Student\OpenQuestion.resx">
-      <DependentUpon>OpenQuestion.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Student\OpenQuestionForm.resx">
-      <DependentUpon>OpenQuestionForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Student\QuestionForm.resx">
       <DependentUpon>QuestionForm.cs</DependentUpon>

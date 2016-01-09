@@ -15,7 +15,8 @@ namespace Client.Model
         public string Name { get; set; }
         public bool Ended { get; set; }
 
-        public List<Question> Questions = new List<Question>();
+        public List<Question> MCQuestions = new List<Question>();
+        public List<OpenQuestion> OpenQuestions = new List<OpenQuestion>();
 
         public QuestionList(Dictionary<string, object> data)
         {
