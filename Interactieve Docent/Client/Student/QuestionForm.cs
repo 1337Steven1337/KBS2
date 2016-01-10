@@ -43,6 +43,9 @@ namespace Client.Student
             this.view = new StudentForm(this);
             this.controller = new StudentFormController(this);
 
+            nextForm nxtform = new nextForm();
+            nxtform.Show();
+
             this.view.setController();
             view.initControlLocations();
             view.initWaitScreen();

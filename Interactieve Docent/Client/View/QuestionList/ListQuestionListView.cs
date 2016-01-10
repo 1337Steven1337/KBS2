@@ -281,5 +281,6 @@ namespace Client.View.QuestionList
                 RenameQuestionListDialog.Close();
             }
         }
+
     }
 }
