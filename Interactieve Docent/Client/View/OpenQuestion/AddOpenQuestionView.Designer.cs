@@ -41,13 +41,12 @@
             this.tableLayoutPanel1.Controls.Add(this.QuestionTextBox, 0, 0);
             this.tableLayoutPanel1.Controls.Add(this.SaveButton, 0, 1);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel1.Location = new System.Drawing.Point(27, 74);
-            this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(4);
+            this.tableLayoutPanel1.Location = new System.Drawing.Point(20, 60);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 2;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 37F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(541, 145);
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(406, 118);
             this.tableLayoutPanel1.TabIndex = 1;
             // 
             // QuestionTextBox
@@ -56,16 +55,18 @@
             // 
             // 
             this.QuestionTextBox.CustomButton.Image = null;
-            this.QuestionTextBox.CustomButton.Location = new System.Drawing.Point(435, 2);
+            this.QuestionTextBox.CustomButton.Location = new System.Drawing.Point(319, 1);
+            this.QuestionTextBox.CustomButton.Margin = new System.Windows.Forms.Padding(2);
             this.QuestionTextBox.CustomButton.Name = "";
-            this.QuestionTextBox.CustomButton.Size = new System.Drawing.Size(97, 97);
+            this.QuestionTextBox.CustomButton.Size = new System.Drawing.Size(81, 81);
             this.QuestionTextBox.CustomButton.Style = MetroFramework.MetroColorStyle.Blue;
             this.QuestionTextBox.CustomButton.TabIndex = 1;
             this.QuestionTextBox.CustomButton.Theme = MetroFramework.MetroThemeStyle.Light;
             this.QuestionTextBox.CustomButton.UseSelectable = true;
             this.QuestionTextBox.CustomButton.Visible = false;
             this.QuestionTextBox.Lines = new string[0];
-            this.QuestionTextBox.Location = new System.Drawing.Point(3, 3);
+            this.QuestionTextBox.Location = new System.Drawing.Point(2, 2);
+            this.QuestionTextBox.Margin = new System.Windows.Forms.Padding(2);
             this.QuestionTextBox.MaxLength = 32767;
             this.QuestionTextBox.Multiline = true;
             this.QuestionTextBox.Name = "QuestionTextBox";
@@ -74,7 +75,7 @@
             this.QuestionTextBox.SelectedText = "";
             this.QuestionTextBox.SelectionLength = 0;
             this.QuestionTextBox.SelectionStart = 0;
-            this.QuestionTextBox.Size = new System.Drawing.Size(535, 102);
+            this.QuestionTextBox.Size = new System.Drawing.Size(401, 83);
             this.QuestionTextBox.TabIndex = 2;
             this.QuestionTextBox.UseSelectable = true;
             this.QuestionTextBox.WaterMark = "Voer hier een open vraag in";
@@ -84,9 +85,10 @@
             // SaveButton
             // 
             this.SaveButton.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.SaveButton.Location = new System.Drawing.Point(3, 111);
+            this.SaveButton.Location = new System.Drawing.Point(2, 90);
+            this.SaveButton.Margin = new System.Windows.Forms.Padding(2);
             this.SaveButton.Name = "SaveButton";
-            this.SaveButton.Size = new System.Drawing.Size(535, 31);
+            this.SaveButton.Size = new System.Drawing.Size(402, 26);
             this.SaveButton.Style = MetroFramework.MetroColorStyle.Orange;
             this.SaveButton.TabIndex = 3;
             this.SaveButton.Text = "Opslaan";
@@ -96,19 +98,18 @@
             // 
             // AddOpenQuestionView
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(595, 244);
+            this.ClientSize = new System.Drawing.Size(446, 198);
             this.Controls.Add(this.tableLayoutPanel1);
-            this.Margin = new System.Windows.Forms.Padding(4);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "AddOpenQuestionView";
-            this.Padding = new System.Windows.Forms.Padding(27, 74, 27, 25);
             this.ShowIcon = false;
             this.ShowInTaskbar = false;
             this.Style = MetroFramework.MetroColorStyle.Orange;
             this.Text = "Open vraag toevoegen";
+            this.Load += new System.EventHandler(this.AddOpenQuestionView_Load);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.ResumeLayout(false);
 

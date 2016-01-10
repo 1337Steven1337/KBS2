@@ -101,5 +101,10 @@ namespace Client.View.OpenQuestion
         {
             throw new NotImplementedException();
         }
+
+        private void AddOpenQuestionView_Load(object sender, EventArgs e)
+        {
+            this.SaveButton.Click += SaveButton_Click;
+        }
     }
 }
