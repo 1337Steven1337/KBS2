@@ -33,18 +33,18 @@
             // 
             // labelSucces
             // 
-            this.labelSucces.AutoSize = true;
             this.labelSucces.BackColor = System.Drawing.Color.Transparent;
             this.labelSucces.FontWeight = MetroFramework.MetroLabelWeight.Regular;
             this.labelSucces.Location = new System.Drawing.Point(23, 60);
             this.labelSucces.Name = "labelSucces";
-            this.labelSucces.Size = new System.Drawing.Size(81, 20);
+            this.labelSucces.Size = new System.Drawing.Size(354, 170);
             this.labelSucces.Style = MetroFramework.MetroColorStyle.Black;
             this.labelSucces.TabIndex = 0;
             this.labelSucces.Text = "labelFailed";
             this.labelSucces.Theme = MetroFramework.MetroThemeStyle.Dark;
             this.labelSucces.UseCustomBackColor = true;
             this.labelSucces.UseStyleColors = true;
+            this.labelSucces.WrapToLine = true;
             // 
             // SuccesDialogView
             // 
@@ -58,7 +58,6 @@
             this.Text = "Succes";
             this.Theme = MetroFramework.MetroThemeStyle.Default;
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
