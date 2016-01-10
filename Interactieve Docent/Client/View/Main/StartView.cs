@@ -40,7 +40,6 @@ namespace Client.View.Main
                 this.Hide();
                 this.StartStudentScreen(this.Code);
             }));
-
         }
 
         public void ShowPasswordResult(bool result)

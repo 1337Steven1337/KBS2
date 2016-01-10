@@ -46,7 +46,6 @@ namespace Client
 
             view.Show();
 
-
             StartView startView = new StartView();
             ShowStartController controller = new ShowStartController(startView);
             

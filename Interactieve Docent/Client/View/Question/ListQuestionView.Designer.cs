@@ -30,19 +30,19 @@ namespace Client.View.Question
         private void InitializeComponent()
         {
             this.mainTablePanel = new System.Windows.Forms.TableLayoutPanel();
+            this.titlePanel = new System.Windows.Forms.Panel();
+            this.titleTile = new MetroFramework.Controls.MetroTile();
             this.buttonsTablePanel = new System.Windows.Forms.TableLayoutPanel();
             this.btnAddQuestion = new MetroFramework.Controls.MetroButton();
             this.btnDeleteQuestion = new MetroFramework.Controls.MetroButton();
             this.btnShowResults = new MetroFramework.Controls.MetroButton();
             this.listBoxPanel = new System.Windows.Forms.Panel();
-            this.listBoxQuestions = new System.Windows.Forms.ListBox();
-            this.titlePanel = new System.Windows.Forms.Panel();
-            this.titleTile = new MetroFramework.Controls.MetroTile();
             this.loadingSpinner = new MetroFramework.Controls.MetroProgressSpinner();
+            this.listBoxQuestions = new System.Windows.Forms.ListBox();
             this.mainTablePanel.SuspendLayout();
+            this.titlePanel.SuspendLayout();
             this.buttonsTablePanel.SuspendLayout();
             this.listBoxPanel.SuspendLayout();
-            this.titlePanel.SuspendLayout();
             this.SuspendLayout();
             // 
             // mainTablePanel
@@ -61,93 +61,6 @@ namespace Client.View.Question
             this.mainTablePanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 50F));
             this.mainTablePanel.Size = new System.Drawing.Size(445, 517);
             this.mainTablePanel.TabIndex = 1;
-            // 
-            // buttonsTablePanel
-            // 
-            this.buttonsTablePanel.ColumnCount = 3;
-            this.buttonsTablePanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
-            this.buttonsTablePanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
-            this.buttonsTablePanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
-            this.buttonsTablePanel.Controls.Add(this.btnAddQuestion, 0, 0);
-            this.buttonsTablePanel.Controls.Add(this.btnDeleteQuestion, 1, 0);
-            this.buttonsTablePanel.Controls.Add(this.btnShowResults, 2, 0);
-            this.buttonsTablePanel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.buttonsTablePanel.Location = new System.Drawing.Point(0, 467);
-            this.buttonsTablePanel.Margin = new System.Windows.Forms.Padding(0);
-            this.buttonsTablePanel.Name = "buttonsTablePanel";
-            this.buttonsTablePanel.RowCount = 1;
-            this.buttonsTablePanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.buttonsTablePanel.Size = new System.Drawing.Size(445, 50);
-            this.buttonsTablePanel.TabIndex = 0;
-            // 
-            // btnAddQuestion
-            // 
-            this.btnAddQuestion.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btnAddQuestion.Enabled = false;
-            this.btnAddQuestion.Location = new System.Drawing.Point(3, 3);
-            this.btnAddQuestion.Name = "btnAddQuestion";
-            this.btnAddQuestion.Size = new System.Drawing.Size(142, 44);
-            this.btnAddQuestion.Style = MetroFramework.MetroColorStyle.Orange;
-            this.btnAddQuestion.TabIndex = 3;
-            this.btnAddQuestion.Text = "Vraag toevoegen";
-            this.btnAddQuestion.Theme = MetroFramework.MetroThemeStyle.Dark;
-            this.btnAddQuestion.UseSelectable = true;
-            this.btnAddQuestion.UseStyleColors = true;
-            // 
-            // btnDeleteQuestion
-            // 
-            this.btnDeleteQuestion.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btnDeleteQuestion.Enabled = false;
-            this.btnDeleteQuestion.Location = new System.Drawing.Point(151, 3);
-            this.btnDeleteQuestion.Name = "btnDeleteQuestion";
-            this.btnDeleteQuestion.Size = new System.Drawing.Size(142, 44);
-            this.btnDeleteQuestion.Style = MetroFramework.MetroColorStyle.Orange;
-            this.btnDeleteQuestion.TabIndex = 5;
-            this.btnDeleteQuestion.Text = "Vraag verwijderen";
-            this.btnDeleteQuestion.Theme = MetroFramework.MetroThemeStyle.Dark;
-            this.btnDeleteQuestion.UseSelectable = true;
-            this.btnDeleteQuestion.UseStyleColors = true;
-            // 
-            // btnShowResults
-            // 
-            this.btnShowResults.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btnShowResults.Enabled = false;
-            this.btnShowResults.Location = new System.Drawing.Point(299, 3);
-            this.btnShowResults.Name = "btnShowResults";
-            this.btnShowResults.Size = new System.Drawing.Size(143, 44);
-            this.btnShowResults.Style = MetroFramework.MetroColorStyle.Orange;
-            this.btnShowResults.TabIndex = 4;
-            this.btnShowResults.Text = "Resultaten weergeven";
-            this.btnShowResults.Theme = MetroFramework.MetroThemeStyle.Dark;
-            this.btnShowResults.UseSelectable = true;
-            this.btnShowResults.UseStyleColors = true;
-            // 
-            // listBoxPanel
-            // 
-            this.listBoxPanel.Controls.Add(this.loadingSpinner);
-            this.listBoxPanel.Controls.Add(this.listBoxQuestions);
-            this.listBoxPanel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.listBoxPanel.Location = new System.Drawing.Point(3, 91);
-            this.listBoxPanel.Name = "listBoxPanel";
-            this.listBoxPanel.Size = new System.Drawing.Size(439, 373);
-            this.listBoxPanel.TabIndex = 2;
-            // 
-            // listBoxQuestions
-            // 
-            this.listBoxQuestions.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(17)))), ((int)(((byte)(17)))));
-            this.listBoxQuestions.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.listBoxQuestions.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.listBoxQuestions.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
-            this.listBoxQuestions.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.listBoxQuestions.ForeColor = System.Drawing.Color.White;
-            this.listBoxQuestions.FormattingEnabled = true;
-            this.listBoxQuestions.ItemHeight = 23;
-            this.listBoxQuestions.Location = new System.Drawing.Point(0, 0);
-            this.listBoxQuestions.Name = "listBoxQuestions";
-            this.listBoxQuestions.Size = new System.Drawing.Size(439, 373);
-            this.listBoxQuestions.TabIndex = 0;
-            this.listBoxQuestions.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.listBox_DrawItem);
-            this.listBoxQuestions.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.listBoxQuestions_MouseDoubleClick);
             // 
             // titlePanel
             // 
@@ -180,6 +93,80 @@ namespace Client.View.Question
             this.titleTile.UseSelectable = true;
             this.titleTile.UseStyleColors = true;
             // 
+            // buttonsTablePanel
+            // 
+            this.buttonsTablePanel.ColumnCount = 3;
+            this.buttonsTablePanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
+            this.buttonsTablePanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
+            this.buttonsTablePanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
+            this.buttonsTablePanel.Controls.Add(this.btnAddQuestion, 0, 0);
+            this.buttonsTablePanel.Controls.Add(this.btnDeleteQuestion, 1, 0);
+            this.buttonsTablePanel.Controls.Add(this.btnShowResults, 2, 0);
+            this.buttonsTablePanel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.buttonsTablePanel.Location = new System.Drawing.Point(0, 467);
+            this.buttonsTablePanel.Margin = new System.Windows.Forms.Padding(0);
+            this.buttonsTablePanel.Name = "buttonsTablePanel";
+            this.buttonsTablePanel.RowCount = 1;
+            this.buttonsTablePanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.buttonsTablePanel.Size = new System.Drawing.Size(445, 50);
+            this.buttonsTablePanel.TabIndex = 0;
+            // 
+            // btnAddQuestion
+            // 
+            this.btnAddQuestion.AutoSize = true;
+            this.btnAddQuestion.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnAddQuestion.Enabled = false;
+            this.btnAddQuestion.Location = new System.Drawing.Point(3, 3);
+            this.btnAddQuestion.Name = "btnAddQuestion";
+            this.btnAddQuestion.Size = new System.Drawing.Size(142, 44);
+            this.btnAddQuestion.Style = MetroFramework.MetroColorStyle.Orange;
+            this.btnAddQuestion.TabIndex = 3;
+            this.btnAddQuestion.Text = "Vraag toevoegen";
+            this.btnAddQuestion.Theme = MetroFramework.MetroThemeStyle.Dark;
+            this.btnAddQuestion.UseSelectable = true;
+            this.btnAddQuestion.UseStyleColors = true;
+            // 
+            // btnDeleteQuestion
+            // 
+            this.btnDeleteQuestion.AutoSize = true;
+            this.btnDeleteQuestion.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnDeleteQuestion.Enabled = false;
+            this.btnDeleteQuestion.Location = new System.Drawing.Point(151, 3);
+            this.btnDeleteQuestion.Name = "btnDeleteQuestion";
+            this.btnDeleteQuestion.Size = new System.Drawing.Size(142, 44);
+            this.btnDeleteQuestion.Style = MetroFramework.MetroColorStyle.Orange;
+            this.btnDeleteQuestion.TabIndex = 5;
+            this.btnDeleteQuestion.Text = "Vraag verwijderen";
+            this.btnDeleteQuestion.Theme = MetroFramework.MetroThemeStyle.Dark;
+            this.btnDeleteQuestion.UseSelectable = true;
+            this.btnDeleteQuestion.UseStyleColors = true;
+            // 
+            // btnShowResults
+            // 
+            this.btnShowResults.AutoSize = true;
+            this.btnShowResults.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnShowResults.Enabled = false;
+            this.btnShowResults.Location = new System.Drawing.Point(299, 3);
+            this.btnShowResults.Name = "btnShowResults";
+            this.btnShowResults.Size = new System.Drawing.Size(143, 44);
+            this.btnShowResults.Style = MetroFramework.MetroColorStyle.Orange;
+            this.btnShowResults.TabIndex = 4;
+            this.btnShowResults.Text = "Resultaten weergeven";
+            this.btnShowResults.Theme = MetroFramework.MetroThemeStyle.Dark;
+            this.btnShowResults.UseSelectable = true;
+            this.btnShowResults.UseStyleColors = true;
+            this.btnShowResults.Click += new System.EventHandler(this.btnShowResults_Click);
+            // 
+            // listBoxPanel
+            // 
+            this.listBoxPanel.Controls.Add(this.loadingSpinner);
+            this.listBoxPanel.Controls.Add(this.listBoxQuestions);
+            this.listBoxPanel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.listBoxPanel.Location = new System.Drawing.Point(3, 91);
+            this.listBoxPanel.Name = "listBoxPanel";
+            this.listBoxPanel.Size = new System.Drawing.Size(439, 373);
+            this.listBoxPanel.TabIndex = 2;
+            // 
             // loadingSpinner
             // 
             this.loadingSpinner.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(17)))), ((int)(((byte)(17)))));
@@ -193,6 +180,23 @@ namespace Client.View.Question
             this.loadingSpinner.Theme = MetroFramework.MetroThemeStyle.Dark;
             this.loadingSpinner.UseSelectable = true;
             this.loadingSpinner.UseStyleColors = true;
+            // 
+            // listBoxQuestions
+            // 
+            this.listBoxQuestions.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(17)))), ((int)(((byte)(17)))));
+            this.listBoxQuestions.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.listBoxQuestions.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.listBoxQuestions.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
+            this.listBoxQuestions.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.listBoxQuestions.ForeColor = System.Drawing.Color.White;
+            this.listBoxQuestions.FormattingEnabled = true;
+            this.listBoxQuestions.ItemHeight = 23;
+            this.listBoxQuestions.Location = new System.Drawing.Point(0, 0);
+            this.listBoxQuestions.Name = "listBoxQuestions";
+            this.listBoxQuestions.Size = new System.Drawing.Size(439, 373);
+            this.listBoxQuestions.TabIndex = 0;
+            this.listBoxQuestions.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.listBox_DrawItem);
+            this.listBoxQuestions.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.listBoxQuestions_MouseDoubleClick);
             // 
             // ListQuestionView
             // 
@@ -208,9 +212,10 @@ namespace Client.View.Question
             this.Text = "ViewQuestion";
             this.Theme = MetroFramework.MetroThemeStyle.Default;
             this.mainTablePanel.ResumeLayout(false);
-            this.buttonsTablePanel.ResumeLayout(false);
-            this.listBoxPanel.ResumeLayout(false);
             this.titlePanel.ResumeLayout(false);
+            this.buttonsTablePanel.ResumeLayout(false);
+            this.buttonsTablePanel.PerformLayout();
+            this.listBoxPanel.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }

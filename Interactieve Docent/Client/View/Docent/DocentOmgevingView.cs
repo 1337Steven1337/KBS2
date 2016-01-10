@@ -16,68 +16,79 @@ using Client.Model;
 using System.Net;
 using Client.View.Diagram;
 using System.Windows.Forms.DataVisualization.Charting;
+using MetroFramework.Forms;
+using Client.Factory;
 
 namespace Client.View.Docent
 {
-    public partial class DocentOmgevingView : Form, IView
+    public partial class DocentOmgevingView : MetroForm, IView
     {
         private DocentOmgevingController controller;
         private DiagramController DiagramController;
         public Model.Question CurrentQuestion;
         public int CurrentSelectedQuestion; //indicates which index is selected
 
+        public BindingList<Model.Question> Questions = new BindingList<Model.Question>();
 
-        public DocentOmgevingView()
+        public DocentOmgevingView(Model.QuestionList list)
         {
             InitializeComponent();
+            this.Size = new Size(1280, 720);
+            this.Text = "Vragenlijst: " + list.Name;
 
-            DiagramView view = new DiagramView();
-            this.DiagramController = new DiagramController(view);
-            QuestionsListBox.Enabled = false; //disabled list selection
-            this.DiagramController.SetQuestion((Model.Question)this.QuestionsListBox.SelectedItem);
-            // view.Show();
+            this.QuestionsListBox.DisplayMember = "Text";
+            this.QuestionsListBox.ValueMember = "Id";
+            this.QuestionsListBox.DataSource = this.Questions;
 
+            DiagramView diagramView = new DiagramView();
+            this.DiagramController = new DiagramController(diagramView);
+
+            AddQuestionView addQuestionView = new AddQuestionView(null);
+            AddQuestionController addQuestionController = new AddQuestionController();
+            addQuestionController.SetView(addQuestionView);
+            addQuestionController.SetQuestionList(list);
+
+            //use the event, to close the docentform when clicked on Quit
+            addQuestionController.RemoveAddQuestionPanel += CloseForm;
+            addQuestionController.QuestionSavedSucces += QuestionAdded;
+
+            this.tableLeft.Controls.Add(diagramView.getTable(), 0, 0);
+            this.tableWrapper.Controls.Add(addQuestionView.getTable(), 1, 0);           
         }
-        //fill diagram NEED WORK!
-        public void Make(List<int> values, List<string> answerNames)
+
+        private void CloseForm(bool resizeTable)
         {
-            //clear the chart
-            chart1.Series.Clear();
-
-            //   Dictionary<string, int> Columns = new Dictionary<string, int>();
-            //List<Color> Colors = new List<Color>() {
-            //    Color.Black, Color.Blue, Color.Red, Color.Green, Color.Pink
-            //};
-
-            //initialize new instances for a diagram
-            Series series = new Series();
-            series.ChartArea = "ChartArea1";
-            //  chart1.ChartAreas["ChartArea1"].RecalculateAxesScale();
-            //  series.IsVisibleInLegend = false;
-
-            //add columns to the diagram
-            for (int i = 0; i < answerNames.Count; i++)
-            {
-                series.Points.AddXY(answerNames[i], values[i]);
-                //give color to each individual column
-                //  series.Points[i].Color = (i < 5) ? Colors[i] : Colors[(int)Math.Floor(((double)i / 5))];
-            }
-            chart1.Series.Add(series);
+            this.Close();
         }
+
+        private void QuestionAdded()
+        {
+            this.Invoke((Action)delegate () { CurrentSelectedQuestion = QuestionsListBox.SelectedIndex; /*remember current question*/ });
+            this.Invoke((Action)delegate () { this.controller.LoadList(this.controller.CurrentList); });
+        }
+
         public Model.Question GetCurrentQuestion()
         {
             return (Model.Question)QuestionsListBox.SelectedItem;
         }
+
+        public void UpdateResultsDiagram()
+        {
+            this.DiagramController.SetQuestion(GetCurrentQuestion());
+        }
+
         //fill questionslistbox with the previous selected list
         public void FillList(List<Model.Question> list)
         {
-            this.QuestionsListBox.Items.Clear();
+            this.Questions.Clear();
         
             foreach (Model.Question question in list)
             {
-                this.QuestionsListBox.Items.AddRange(new object[] { question.Text });
+                this.Questions.Add(question);
             }
+
             QuestionsListBox.SelectedIndex = CurrentSelectedQuestion;
+            UpdateResultsDiagram();
         }
 
         public void AddToParent(IView parent)
@@ -100,30 +111,15 @@ namespace Client.View.Docent
         {
             SignalRClient.GetInstance().GoToNextQuestionOnClick(1); //go to next question
             int max = QuestionsListBox.Items.Count - 1; //can't go over the current amount of questions
+
             if (QuestionsListBox.SelectedIndex != max) { 
-              QuestionsListBox.SetSelected((int)QuestionsListBox.SelectedIndex + 1, true); //select next question in list so the teacher sees what question the students are anwering to.]
+                QuestionsListBox.SetSelected((int)QuestionsListBox.SelectedIndex + 1, true); //select next question in list so the teacher sees what question the students are anwering to.]
             }
+
+            UpdateResultsDiagram();
         }
 
-        //add a question to the list NEED TESTING IF THE QUESTION IS ADDED SO SIGNALR
-        private void AddQuestionButton_Click(object sender, EventArgs e)
-        {
-            AddQuestionView view = new AddQuestionView(null);
-            AddQuestionController controller = new AddQuestionController();
-            controller.SetView(view);
-            controller.SetQuestionList(this.controller.CurrentList);
-            view.Show();//open view to add the question
-            view.FormClosed += new FormClosedEventHandler(view_FormClosed);  
-
-        }
-        //when question added/canceled update list
-        private void view_FormClosed(object sender, FormClosedEventArgs e)
-        {
-            CurrentSelectedQuestion = QuestionsListBox.SelectedIndex; //remember current question
-            this.controller.LoadList(this.controller.CurrentList);
-            
-        }
-        private void QuestionsListBox_SelectedIndexChanged(object sender, EventArgs e)
+        private void QuitQuestionList_Click(object sender, EventArgs e)
         {
 
         }

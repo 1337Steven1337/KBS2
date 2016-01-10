@@ -40,6 +40,12 @@ namespace Client.View.Main
             GenerateSessionId();
         }
 
+        //Form onload
+        private void MainView_Load(object sender, EventArgs e)
+        {
+            this.ShowInTaskbar = true;
+        }
+
         //Remove third column from mainView
         public void RemoveAddQuestionPanel(bool resizeTable)
         {

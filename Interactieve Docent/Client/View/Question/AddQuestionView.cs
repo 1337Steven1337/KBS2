@@ -55,6 +55,11 @@ namespace Client.View.Question
             }
         }
 
+        public TableLayoutPanel getTable()
+        {
+            return mainTablePanel;
+        }
+
         //Loads the data from a selected question in Input fields
         private void EditQuestion(Model.Question question)
         {
@@ -193,8 +198,7 @@ namespace Client.View.Question
                     {
                         this.Controller.SaveQuestion(iDictionary);
                     }
-                }
-             
+                }             
             }
             else
             {
@@ -278,8 +282,6 @@ namespace Client.View.Question
             SuccesDialogView succes = new SuccesDialogView();
             succes.getLabelSucces().Text = "De vraag is succesvol opgeslagen.";
             succes.ShowDialog();
-           
-            this.Close();
         }
 
         public void ShowSaveResult(Model.Question instance, HttpStatusCode status)

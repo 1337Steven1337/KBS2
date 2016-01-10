@@ -12,6 +12,7 @@ namespace Client.Controller.Main
     {
         private IStartView View { get; set; }
         private PincodeFactory PincodeFactory = new PincodeFactory();
+        private Model.Pincode Code { get; set; }
 
         public ShowStartController(IView view)
         {
@@ -19,14 +20,12 @@ namespace Client.Controller.Main
             view.SetController(this);
         }
 
-        private void UseCode(Model.Pincode pincode, HttpStatusCode status)
+        private void UseCode(Model.Pincode pincode)
         {
-            if (pincode != null && status == HttpStatusCode.OK)
+            if (pincode != null)
             {
                 SignalRClient.GetInstance().SubscribePincode(pincode);
             }
-
-            this.View.ShowCodeResult(pincode, status);
         }
 
         public void ApplyTestCode(string code)
@@ -61,7 +60,10 @@ namespace Client.Controller.Main
             {
                 if (s)
                 {
+                    this.UseCode(this.Code);
                     this.View.Continue();
+
+                    this.Code = null;
                 }
                 else
                 {
@@ -75,6 +77,7 @@ namespace Client.Controller.Main
             this.View.ShowCodeResult(pincode, status);
             if (pincode != null && status == HttpStatusCode.OK)
             {
+                this.Code = pincode;
                 this.CheckPassword();
             }
         }

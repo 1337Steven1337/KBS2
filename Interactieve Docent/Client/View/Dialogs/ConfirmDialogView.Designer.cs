@@ -37,18 +37,18 @@
             // 
             // labelConfirm
             // 
-            this.labelConfirm.AutoSize = true;
             this.labelConfirm.BackColor = System.Drawing.Color.Transparent;
             this.labelConfirm.FontWeight = MetroFramework.MetroLabelWeight.Regular;
             this.labelConfirm.Location = new System.Drawing.Point(23, 60);
             this.labelConfirm.Name = "labelConfirm";
-            this.labelConfirm.Size = new System.Drawing.Size(95, 20);
+            this.labelConfirm.Size = new System.Drawing.Size(354, 128);
             this.labelConfirm.Style = MetroFramework.MetroColorStyle.Black;
             this.labelConfirm.TabIndex = 0;
             this.labelConfirm.Text = "labelConfirm";
             this.labelConfirm.Theme = MetroFramework.MetroThemeStyle.Dark;
             this.labelConfirm.UseCustomBackColor = true;
             this.labelConfirm.UseStyleColors = true;
+            this.labelConfirm.WrapToLine = true;
             // 
             // tableLayoutPanel1
             // 
@@ -108,7 +108,6 @@
             this.Theme = MetroFramework.MetroThemeStyle.Default;
             this.tableLayoutPanel1.ResumeLayout(false);
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 

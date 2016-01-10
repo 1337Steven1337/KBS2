@@ -148,7 +148,7 @@
             // 
             // tableInputFields
             // 
-            this.tableInputFields.BackColor = System.Drawing.Color.Transparent;
+            this.tableInputFields.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(17)))), ((int)(((byte)(17)))));
             this.tableInputFields.ColumnCount = 3;
             this.tableInputFields.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
             this.tableInputFields.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 70F));
@@ -288,6 +288,7 @@
             this.labelQuestionField.Text = "Vraag*";
             this.labelQuestionField.TextAlign = System.Drawing.ContentAlignment.TopRight;
             this.labelQuestionField.Theme = MetroFramework.MetroThemeStyle.Dark;
+            this.labelQuestionField.UseCustomBackColor = true;
             // 
             // questionField
             // 
@@ -341,6 +342,7 @@
             this.labelTimeField.Text = "Tijdslimiet (sec)*";
             this.labelTimeField.TextAlign = System.Drawing.ContentAlignment.TopRight;
             this.labelTimeField.Theme = MetroFramework.MetroThemeStyle.Dark;
+            this.labelTimeField.UseCustomBackColor = true;
             // 
             // labelAnswerField
             // 
@@ -357,6 +359,7 @@
             this.labelAnswerField.Text = "Antwoord invoeren";
             this.labelAnswerField.TextAlign = System.Drawing.ContentAlignment.TopRight;
             this.labelAnswerField.Theme = MetroFramework.MetroThemeStyle.Dark;
+            this.labelAnswerField.UseCustomBackColor = true;
             // 
             // labelAnswersListBox
             // 
@@ -373,6 +376,7 @@
             this.labelAnswersListBox.Text = "Antwoorden";
             this.labelAnswersListBox.TextAlign = System.Drawing.ContentAlignment.TopRight;
             this.labelAnswersListBox.Theme = MetroFramework.MetroThemeStyle.Dark;
+            this.labelAnswersListBox.UseCustomBackColor = true;
             // 
             // labelRightAnswer
             // 
@@ -388,6 +392,7 @@
             this.labelRightAnswer.Text = "Juiste antwoord*";
             this.labelRightAnswer.TextAlign = System.Drawing.ContentAlignment.TopRight;
             this.labelRightAnswer.Theme = MetroFramework.MetroThemeStyle.Dark;
+            this.labelRightAnswer.UseCustomBackColor = true;
             // 
             // rightAnswerComboBox
             // 
@@ -405,7 +410,6 @@
             this.rightAnswerComboBox.TabIndex = 22;
             this.rightAnswerComboBox.Theme = MetroFramework.MetroThemeStyle.Dark;
             this.rightAnswerComboBox.UseSelectable = true;
-            this.rightAnswerComboBox.UseStyleColors = true;
             // 
             // btnAddAnswer
             // 
@@ -425,7 +429,7 @@
             // 
             this.btnDeleteAnswer.Location = new System.Drawing.Point(567, 170);
             this.btnDeleteAnswer.Name = "btnDeleteAnswer";
-            this.btnDeleteAnswer.Size = new System.Drawing.Size(173, 30);
+            this.btnDeleteAnswer.Size = new System.Drawing.Size(176, 30);
             this.btnDeleteAnswer.Style = MetroFramework.MetroColorStyle.Orange;
             this.btnDeleteAnswer.TabIndex = 24;
             this.btnDeleteAnswer.Text = "Antwoord verwijderen";
@@ -482,6 +486,7 @@
             this.Padding = new System.Windows.Forms.Padding(20, 30, 20, 20);
             this.Style = MetroFramework.MetroColorStyle.Orange;
             this.Text = "Vraag toevoegen";
+            this.Theme = MetroFramework.MetroThemeStyle.Dark;
             this.mainTablePanel.ResumeLayout(false);
             this.titlePanel.ResumeLayout(false);
             this.buttonsTablePanel.ResumeLayout(false);

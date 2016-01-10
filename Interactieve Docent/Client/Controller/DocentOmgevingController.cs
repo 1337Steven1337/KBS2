@@ -32,38 +32,10 @@ namespace Client.Controller
             this.View = view;
             this.View.SetController(this);
             this.SignalRClient = SignalRClient.GetInstance();
+            this.CurrentList = QuestionList;
             this.LoadList(QuestionList);
-            this.CurrentQuestion = View.GetCurrentQuestion();
-            this.FillDiagram(CurrentQuestion);
-            view.Show();
-
-
         }
-        private void FillDiagram(Model.Question CurrentQuestion)
-        {
-            Dictionary<string, int> questionVotes = new Dictionary<string, int>();
 
-            //if the predefinedanswer is empty zet votes to zero
-          /*  foreach (PredefinedAnswer preAnswer in CurrentQuestion.PredefinedAnswers)
-            {
-                questionVotes[preAnswer.Text] = 0;
-            }
-            
-            //for every given answer were the userAnswer_Id is equal to a PredefinedAnswer_Id add one to votes
-            foreach (UserAnswer answer in CurrentQuestion.UserAnswers)
-            {
-                string text = CurrentQuestion.PredefinedAnswers.Find(x => x.Id == answer.PredefinedAnswer_Id).Text;
-                questionVotes[text] += 1;
-            }
-         */
-          //  Votes = questionVotes.Values.ToList<int>();
-          //  Questions = questionVotes.Keys.ToList<string>();
-             Votes = new List<int> { 1, 2, 3 };
-             Questions = new List<string> { "a" , "b" , "c" };
-
-                this.View.Make(Votes, Questions);
-            
-        }
         private void FillList(List<Model.Question> questions, HttpStatusCode status)
         {
             if (status == HttpStatusCode.OK && questions != null)

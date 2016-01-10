@@ -32,8 +32,8 @@
             this.tableLeftButtons = new System.Windows.Forms.TableLayoutPanel();
             this.OpenQuestionButton = new MetroFramework.Controls.MetroTile();
             this.ImportAccountButton = new MetroFramework.Controls.MetroTile();
-            this.EndSessionButton = new MetroFramework.Controls.MetroTile();
             this.SessionLabel = new MetroFramework.Controls.MetroLabel();
+            this.EndSessionButton = new MetroFramework.Controls.MetroTile();
             this.tableFourColumn.SuspendLayout();
             this.tableLeftButtons.SuspendLayout();
             this.SuspendLayout();
@@ -105,21 +105,8 @@
             this.ImportAccountButton.UseSelectable = true;
             this.ImportAccountButton.Click += new System.EventHandler(this.ImportAccountButton_Click);
             // 
-            // EndSessionButton
-            // 
-            this.EndSessionButton.ActiveControl = null;
-            this.EndSessionButton.BackColor = System.Drawing.Color.White;
-            this.EndSessionButton.Location = new System.Drawing.Point(3, 69);
-            this.EndSessionButton.Name = "EndSessionButton";
-            this.EndSessionButton.Size = new System.Drawing.Size(84, 49);
-            this.EndSessionButton.TabIndex = 3;
-            this.EndSessionButton.Text = "Sessie Eindigen";
-            this.EndSessionButton.UseSelectable = true;
-            this.EndSessionButton.Click += new System.EventHandler(this.EndSessionButton_Click);
-            // 
             // SessionLabel
             // 
-            this.SessionLabel.AutoSize = true;
             this.SessionLabel.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.SessionLabel.FontSize = MetroFramework.MetroLabelSize.Tall;
             this.SessionLabel.FontWeight = MetroFramework.MetroLabelWeight.Bold;
@@ -132,12 +119,26 @@
             this.SessionLabel.Theme = MetroFramework.MetroThemeStyle.Dark;
             this.SessionLabel.UseStyleColors = true;
             // 
+            // EndSessionButton
+            // 
+            this.EndSessionButton.ActiveControl = null;
+            this.EndSessionButton.BackColor = System.Drawing.Color.White;
+            this.EndSessionButton.Location = new System.Drawing.Point(3, 69);
+            this.EndSessionButton.Name = "EndSessionButton";
+            this.EndSessionButton.Size = new System.Drawing.Size(84, 49);
+            this.EndSessionButton.TabIndex = 3;
+            this.EndSessionButton.Text = "Sessie Eindigen";
+            this.EndSessionButton.UseSelectable = true;
+            this.EndSessionButton.Click += new System.EventHandler(this.EndSessionButton_Click);
+            // 
             // MainView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoSize = true;
             this.ClientSize = new System.Drawing.Size(628, 318);
             this.Controls.Add(this.tableFourColumn);
+            this.Cursor = System.Windows.Forms.Cursors.Default;
             this.DisplayHeader = false;
             this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "MainView";
@@ -146,9 +147,9 @@
             this.Text = "ViewMain2";
             this.Theme = MetroFramework.MetroThemeStyle.Dark;
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
+            this.Load += new System.EventHandler(this.MainView_Load);
             this.tableFourColumn.ResumeLayout(false);
             this.tableLeftButtons.ResumeLayout(false);
-            this.tableLeftButtons.PerformLayout();
             this.ResumeLayout(false);
 
         }

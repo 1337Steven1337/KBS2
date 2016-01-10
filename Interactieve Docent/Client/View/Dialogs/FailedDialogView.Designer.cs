@@ -33,23 +33,24 @@
             // 
             // labelFailed
             // 
-            this.labelFailed.AutoSize = true;
             this.labelFailed.BackColor = System.Drawing.Color.Transparent;
             this.labelFailed.FontWeight = MetroFramework.MetroLabelWeight.Regular;
             this.labelFailed.Location = new System.Drawing.Point(23, 60);
             this.labelFailed.Name = "labelFailed";
-            this.labelFailed.Size = new System.Drawing.Size(81, 20);
+            this.labelFailed.Size = new System.Drawing.Size(354, 170);
             this.labelFailed.Style = MetroFramework.MetroColorStyle.Black;
             this.labelFailed.TabIndex = 0;
             this.labelFailed.Text = "labelFailed";
             this.labelFailed.Theme = MetroFramework.MetroThemeStyle.Dark;
             this.labelFailed.UseCustomBackColor = true;
             this.labelFailed.UseStyleColors = true;
+            this.labelFailed.WrapToLine = true;
             // 
             // FailedDialogView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoSize = true;
             this.ClientSize = new System.Drawing.Size(400, 250);
             this.Controls.Add(this.labelFailed);
             this.Movable = false;
@@ -58,7 +59,6 @@
             this.Text = "Fout Melding";
             this.Theme = MetroFramework.MetroThemeStyle.Default;
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 

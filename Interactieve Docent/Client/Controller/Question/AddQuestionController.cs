@@ -18,11 +18,13 @@ namespace Client.Controller.Question
         #region Delegates
         public delegate void UpdateListQuestionDelegate();
         public delegate void RemoveAddQuestionPanelDelegate(bool resizeTable);
+        public delegate void QuestionSavedSuccesDelegate();
         #endregion
 
         #region Events
         public event UpdateListQuestionDelegate UpdateListQuestion;
         public event RemoveAddQuestionPanelDelegate RemoveAddQuestionPanel;
+        public event QuestionSavedSuccesDelegate QuestionSavedSucces;
         #endregion
 
         #region Properties
@@ -192,6 +194,7 @@ namespace Client.Controller.Question
                 else
                 {
                     this.View.ShowSaveSucceed();
+                    this.InvokeQuestionSavedSucces();
 
                     if (IsUpdate)
                     {
@@ -221,6 +224,14 @@ namespace Client.Controller.Question
             if (this.RemoveAddQuestionPanel != null)
             {
                 this.RemoveAddQuestionPanel(true);
+            }
+        }
+
+        public void InvokeQuestionSavedSucces()
+        {
+            if (this.QuestionSavedSucces != null)
+            {
+                this.QuestionSavedSucces();
             }
         }
         #endregion
