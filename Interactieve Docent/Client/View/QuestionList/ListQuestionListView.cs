@@ -170,9 +170,9 @@ namespace Client.View.QuestionList
                 {
                     SignalRClient.GetInstance().StartQuestionList(this.getSelectedItem().Id, Properties.Settings.Default.Session_Id);
 
-                    //open docentomgeving
-                    DocentOmgevingView view = new DocentOmgevingView();
-                    DocentOmgevingController Controller = new DocentOmgevingController(view, getSelectedItem());
+                    //open docentomgeving FIX DIT EERST
+                    //DocentOmgevingView view = new DocentOmgevingView();
+                    //DocentOmgevingController Controller = new DocentOmgevingController(view, getSelectedItem());
 
                 }
             }
