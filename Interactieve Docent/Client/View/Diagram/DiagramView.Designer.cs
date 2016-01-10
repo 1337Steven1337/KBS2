@@ -28,11 +28,11 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.chart1 = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.labelQuestion = new MetroFramework.Controls.MetroLabel();
+            this.chart1 = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.chart1)).BeginInit();
             this.SuspendLayout();
@@ -46,28 +46,28 @@
             this.panel1.Size = new System.Drawing.Size(463, 348);
             this.panel1.TabIndex = 0;
             // 
-            // chart1
-            // 
-            chartArea2.Name = "ChartArea1";
-            this.chart1.ChartAreas.Add(chartArea2);
-            legend2.Name = "Legend1";
-            this.chart1.Legends.Add(legend2);
-            this.chart1.Location = new System.Drawing.Point(0, 27);
-            this.chart1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.chart1.Name = "chart1";
-            this.chart1.Size = new System.Drawing.Size(463, 322);
-            this.chart1.TabIndex = 3;
-            // 
             // labelQuestion
             // 
-            this.labelQuestion.AutoSize = true;
             this.labelQuestion.FontSize = MetroFramework.MetroLabelSize.Tall;
             this.labelQuestion.FontWeight = MetroFramework.MetroLabelWeight.Bold;
             this.labelQuestion.Location = new System.Drawing.Point(0, 0);
             this.labelQuestion.Name = "labelQuestion";
-            this.labelQuestion.Size = new System.Drawing.Size(17, 25);
+            this.labelQuestion.Size = new System.Drawing.Size(463, 62);
             this.labelQuestion.TabIndex = 4;
-            this.labelQuestion.Text = " ";
+            this.labelQuestion.Text = " Vraag";
+            this.labelQuestion.WrapToLine = true;
+            // 
+            // chart1
+            // 
+            chartArea1.Name = "ChartArea1";
+            this.chart1.ChartAreas.Add(chartArea1);
+            legend1.Name = "Legend1";
+            this.chart1.Legends.Add(legend1);
+            this.chart1.Location = new System.Drawing.Point(0, 64);
+            this.chart1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.chart1.Name = "chart1";
+            this.chart1.Size = new System.Drawing.Size(463, 285);
+            this.chart1.TabIndex = 3;
             // 
             // DiagramView
             // 
@@ -81,7 +81,6 @@
             this.Style = MetroFramework.MetroColorStyle.Orange;
             this.Text = "Diagram";
             this.panel1.ResumeLayout(false);
-            this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.chart1)).EndInit();
             this.ResumeLayout(false);
 
