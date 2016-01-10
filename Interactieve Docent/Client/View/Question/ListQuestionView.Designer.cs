@@ -113,6 +113,7 @@ namespace Client.View.Question
             // 
             // btnAddQuestion
             // 
+            this.btnAddQuestion.AutoSize = true;
             this.btnAddQuestion.Dock = System.Windows.Forms.DockStyle.Fill;
             this.btnAddQuestion.Enabled = false;
             this.btnAddQuestion.Location = new System.Drawing.Point(3, 3);
@@ -127,6 +128,7 @@ namespace Client.View.Question
             // 
             // btnDeleteQuestion
             // 
+            this.btnDeleteQuestion.AutoSize = true;
             this.btnDeleteQuestion.Dock = System.Windows.Forms.DockStyle.Fill;
             this.btnDeleteQuestion.Enabled = false;
             this.btnDeleteQuestion.Location = new System.Drawing.Point(151, 3);
@@ -141,6 +143,7 @@ namespace Client.View.Question
             // 
             // btnShowResults
             // 
+            this.btnShowResults.AutoSize = true;
             this.btnShowResults.Dock = System.Windows.Forms.DockStyle.Fill;
             this.btnShowResults.Enabled = false;
             this.btnShowResults.Location = new System.Drawing.Point(299, 3);
@@ -211,6 +214,7 @@ namespace Client.View.Question
             this.mainTablePanel.ResumeLayout(false);
             this.titlePanel.ResumeLayout(false);
             this.buttonsTablePanel.ResumeLayout(false);
+            this.buttonsTablePanel.PerformLayout();
             this.listBoxPanel.ResumeLayout(false);
             this.ResumeLayout(false);
 

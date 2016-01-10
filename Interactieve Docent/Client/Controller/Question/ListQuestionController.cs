@@ -3,6 +3,8 @@ using Client.View;
 using Client.View.Question;
 using System.Collections.Generic;
 using System.Net;
+using Client.Model;
+using System;
 
 namespace Client.Controller.Question
 {
@@ -20,6 +22,7 @@ namespace Client.Controller.Question
             this.SetView(view);
             this.View.SetController(this);
         }
+
         #endregion
 
         #region Event

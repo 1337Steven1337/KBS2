@@ -13,6 +13,7 @@ using System.Linq;
 using Client.View.Diagram;
 using MetroFramework.Forms;
 using System.Drawing;
+using Client.Factory;
 
 namespace Client.View.Question
 {
@@ -50,6 +51,11 @@ namespace Client.View.Question
             btnAddQuestion.Click += BtnAddQuestion_Click;
             btnDeleteQuestion.Click += btnDeleteQuestion_Click;
             btnShowResults.Click += btnShowResults_Click;
+        }
+
+        private void QuestionAddedWhileLoopingThroughList()
+        {
+            throw new NotImplementedException();
         }
         #endregion
 
@@ -111,6 +117,7 @@ namespace Client.View.Question
             {
                 this.Questions.Add(question);
             }
+
             btnAddQuestion.Enabled = true;
             btnDeleteQuestion.Enabled = true;
             btnShowResults.Enabled = true;
@@ -210,8 +217,9 @@ namespace Client.View.Question
 
             DiagramView view = new DiagramView();
             this.DiagramController = new DiagramController(view);
-            this.DiagramController.SetQuestion((Model.Question)this.listBoxQuestions.SelectedItem);
             view.Show();
+
+            this.DiagramController.SetQuestion((Model.Question)this.listBoxQuestions.SelectedItem);
         }
 
         private void listBoxQuestions_MouseDoubleClick(object sender, MouseEventArgs e)

@@ -6,10 +6,12 @@ using System.Windows.Forms;
 using Client.Controller;
 using Client.Model;
 using Client.Service.Thread;
+using System.Drawing;
+using MetroFramework.Forms;
 
 namespace Client.View.OpenQuestion
 {
-    public partial class UserAnswerToOpenQuestionView : Form, IResultView<Model.UserAnswerToOpenQuestion>
+    public partial class UserAnswerToOpenQuestionView : MetroForm, IResultView<Model.UserAnswerToOpenQuestion>
     {
         #region Instances
         private UserAnswerToOpenQuestionController Controller { get; set; }
@@ -19,6 +21,8 @@ namespace Client.View.OpenQuestion
         public UserAnswerToOpenQuestionView()
         {
             InitializeComponent();
+            this.Size = new Size(1280, 720);
+            this.FormBorderStyle = FormBorderStyle.None;
 
             dataGridView1.Enabled = false;
 
@@ -83,7 +87,7 @@ namespace Client.View.OpenQuestion
 
         public void setText(string text)
         {
-            this.label1.Text = text;
+            this.Text = "Vraag: " + text;
         }
 
         private void UserAnswerToOpenQuestionView_FormClosing(object sender, FormClosingEventArgs e)

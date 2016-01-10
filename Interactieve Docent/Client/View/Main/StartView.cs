@@ -40,20 +40,22 @@ namespace Client.View.Main
                 this.Hide();
                 this.StartStudentScreen(this.Code);
             }));
-
         }
 
         public void ShowPasswordResult(bool result)
         {
             if (!result)
             {
-                LoginButton.Enabled = true;
-                CodeTextBox.Enabled = true;
-                PasswordTextBox.Enabled = true;
+                this.CodeTextBox.Invoke((Action)(() =>
+                {
+                    LoginButton.Enabled = true;
+                    CodeTextBox.Enabled = true;
+                    PasswordTextBox.Enabled = true;
 
-                FailedDialogView failed = new FailedDialogView();
-                failed.getLabelFailed().Text = "Het wachtwoord is incorrect.";
-                BackgroundDialogView background = new BackgroundDialogView(this, failed);
+                    FailedDialogView failed = new FailedDialogView();
+                    failed.getLabelFailed().Text = "Het wachtwoord is incorrect.";
+                    BackgroundDialogView background = new BackgroundDialogView(this, failed);
+                }));
             }
         }
 
@@ -65,13 +67,16 @@ namespace Client.View.Main
             }
             else
             {
-                LoginButton.Enabled = true;
-                CodeTextBox.Enabled = true;
-                PasswordTextBox.Enabled = true;
+                this.CodeTextBox.Invoke((Action)(() =>
+                {
+                    LoginButton.Enabled = true;
+                    CodeTextBox.Enabled = true;
+                    PasswordTextBox.Enabled = true;
 
-                FailedDialogView failed = new FailedDialogView();
-                failed.getLabelFailed().Text = "De code is incorrect.";
-                BackgroundDialogView background = new BackgroundDialogView(this, failed);
+                    FailedDialogView failed = new FailedDialogView();
+                    failed.getLabelFailed().Text = "De code is incorrect.";
+                    BackgroundDialogView background = new BackgroundDialogView(this, failed);
+                }));
             }
         }
 

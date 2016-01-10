@@ -53,6 +53,12 @@ namespace Client.View.Diagram
             labelQuestion.Text = question;
         }
 
+        //Returns the table, with all the fields included
+        public TableLayoutPanel getTable()
+        {
+            return tableWrapper;
+        }
+
         public IControlHandler GetHandler()
         {
             return new ControlHandler(this.labelQuestion);

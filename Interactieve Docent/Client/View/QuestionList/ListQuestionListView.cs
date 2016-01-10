@@ -144,7 +144,7 @@ namespace Client.View.QuestionList
                 //Show dialog for user to confirm Delete action
                 DialogResult dr = new DialogResult();
                 ConfirmDialogView confirm = new ConfirmDialogView();
-                confirm.getLabelConfirm().Text = String.Format("Weet u zeker dat u de vraag: {0}{1}wilt verwijderen?", getSelectedItem().Name, "\n");
+                confirm.getLabelConfirm().Text = String.Format("Weet u zeker dat u de vragenlijst: {0}{1}wilt verwijderen?", getSelectedItem().Name, "\n");
                 dr = confirm.ShowDialog();
 
                 //Confirm 
@@ -171,9 +171,10 @@ namespace Client.View.QuestionList
                     SignalRClient.GetInstance().StartQuestionList(this.getSelectedItem().Id, Properties.Settings.Default.Session_Id);
 
                     //open docentomgeving
-                    DocentOmgevingView view = new DocentOmgevingView();
+                    DocentOmgevingView view = new DocentOmgevingView(getSelectedItem());
                     DocentOmgevingController Controller = new DocentOmgevingController(view, getSelectedItem());
 
+                    BackgroundDialogView background = new BackgroundDialogView(main, view);
                 }
             }
         }

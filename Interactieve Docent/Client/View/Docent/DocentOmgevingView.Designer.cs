@@ -28,136 +28,109 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            this.splitContainer1 = new System.Windows.Forms.SplitContainer();
-            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
-            this.NextQuestionButton = new System.Windows.Forms.Button();
-            this.AddQuestionButton = new System.Windows.Forms.Button();
             this.QuestionsListBox = new System.Windows.Forms.ListBox();
-            this.chart1 = new System.Windows.Forms.DataVisualization.Charting.Chart();
-            this.StopQuestionList = new System.Windows.Forms.Button();
-            ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
-            this.splitContainer1.Panel1.SuspendLayout();
-            this.splitContainer1.SuspendLayout();
-            this.tableLayoutPanel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.chart1)).BeginInit();
+            this.tableWrapper = new System.Windows.Forms.TableLayoutPanel();
+            this.tableLeft = new System.Windows.Forms.TableLayoutPanel();
+            this.OpenDialogButton = new MetroFramework.Controls.MetroButton();
+            this.metroButton1 = new MetroFramework.Controls.MetroButton();
+            this.tableWrapper.SuspendLayout();
+            this.tableLeft.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // splitContainer1
-            // 
-            this.splitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.splitContainer1.Location = new System.Drawing.Point(0, 0);
-            this.splitContainer1.Name = "splitContainer1";
-            // 
-            // splitContainer1.Panel1
-            // 
-            this.splitContainer1.Panel1.Controls.Add(this.tableLayoutPanel1);
-            this.splitContainer1.Size = new System.Drawing.Size(462, 453);
-            this.splitContainer1.SplitterDistance = 321;
-            this.splitContainer1.TabIndex = 0;
-            // 
-            // tableLayoutPanel1
-            // 
-            this.tableLayoutPanel1.ColumnCount = 1;
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel1.Controls.Add(this.NextQuestionButton, 0, 2);
-            this.tableLayoutPanel1.Controls.Add(this.AddQuestionButton, 0, 3);
-            this.tableLayoutPanel1.Controls.Add(this.QuestionsListBox, 0, 1);
-            this.tableLayoutPanel1.Controls.Add(this.chart1, 0, 0);
-            this.tableLayoutPanel1.Controls.Add(this.StopQuestionList, 0, 4);
-            this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
-            this.tableLayoutPanel1.Name = "tableLayoutPanel1";
-            this.tableLayoutPanel1.RowCount = 5;
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 41F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 41F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 41F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(321, 453);
-            this.tableLayoutPanel1.TabIndex = 0;
-            // 
-            // NextQuestionButton
-            // 
-            this.NextQuestionButton.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.NextQuestionButton.Location = new System.Drawing.Point(3, 333);
-            this.NextQuestionButton.Name = "NextQuestionButton";
-            this.NextQuestionButton.Size = new System.Drawing.Size(315, 35);
-            this.NextQuestionButton.TabIndex = 0;
-            this.NextQuestionButton.Text = "Volgende vraag";
-            this.NextQuestionButton.UseVisualStyleBackColor = true;
-            this.NextQuestionButton.Click += new System.EventHandler(this.NextQuestionButton_Click);
-            // 
-            // AddQuestionButton
-            // 
-            this.AddQuestionButton.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.AddQuestionButton.Location = new System.Drawing.Point(3, 374);
-            this.AddQuestionButton.Name = "AddQuestionButton";
-            this.AddQuestionButton.Size = new System.Drawing.Size(315, 35);
-            this.AddQuestionButton.TabIndex = 1;
-            this.AddQuestionButton.Text = "Voeg vraag toe";
-            this.AddQuestionButton.UseVisualStyleBackColor = true;
-            this.AddQuestionButton.Click += new System.EventHandler(this.AddQuestionButton_Click);
             // 
             // QuestionsListBox
             // 
+            this.QuestionsListBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(153)))), ((int)(((byte)(153)))), ((int)(((byte)(153)))));
+            this.QuestionsListBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.QuestionsListBox.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.QuestionsListBox.Enabled = false;
             this.QuestionsListBox.FormattingEnabled = true;
             this.QuestionsListBox.ItemHeight = 16;
-            this.QuestionsListBox.Location = new System.Drawing.Point(3, 168);
+            this.QuestionsListBox.Location = new System.Drawing.Point(3, 210);
             this.QuestionsListBox.Name = "QuestionsListBox";
-            this.QuestionsListBox.Size = new System.Drawing.Size(315, 159);
+            this.QuestionsListBox.Size = new System.Drawing.Size(268, 118);
             this.QuestionsListBox.TabIndex = 2;
-            this.QuestionsListBox.SelectedIndexChanged += new System.EventHandler(this.QuestionsListBox_SelectedIndexChanged);
             // 
-            // chart1
+            // tableWrapper
             // 
-            chartArea1.Name = "ChartArea1";
-            this.chart1.ChartAreas.Add(chartArea1);
-            this.chart1.Dock = System.Windows.Forms.DockStyle.Fill;
-            legend1.Name = "Legend1";
-            this.chart1.Legends.Add(legend1);
-            this.chart1.Location = new System.Drawing.Point(3, 3);
-            this.chart1.Name = "chart1";
-            this.chart1.Size = new System.Drawing.Size(315, 159);
-            this.chart1.TabIndex = 3;
+            this.tableWrapper.ColumnCount = 2;
+            this.tableWrapper.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableWrapper.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableWrapper.Controls.Add(this.tableLeft, 0, 0);
+            this.tableWrapper.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableWrapper.Location = new System.Drawing.Point(20, 60);
+            this.tableWrapper.Name = "tableWrapper";
+            this.tableWrapper.RowCount = 1;
+            this.tableWrapper.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableWrapper.Size = new System.Drawing.Size(560, 420);
+            this.tableWrapper.TabIndex = 1;
             // 
-            // StopQuestionList
+            // tableLeft
             // 
-            this.StopQuestionList.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.StopQuestionList.Location = new System.Drawing.Point(3, 415);
-            this.StopQuestionList.Name = "StopQuestionList";
-            this.StopQuestionList.Size = new System.Drawing.Size(315, 35);
-            this.StopQuestionList.TabIndex = 4;
-            this.StopQuestionList.Text = "Stop Vragenlijst";
-            this.StopQuestionList.UseVisualStyleBackColor = true;
+            this.tableLeft.ColumnCount = 1;
+            this.tableLeft.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLeft.Controls.Add(this.QuestionsListBox, 0, 1);
+            this.tableLeft.Controls.Add(this.OpenDialogButton, 0, 2);
+            this.tableLeft.Controls.Add(this.metroButton1, 0, 3);
+            this.tableLeft.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLeft.Location = new System.Drawing.Point(3, 3);
+            this.tableLeft.Name = "tableLeft";
+            this.tableLeft.RowCount = 4;
+            this.tableLeft.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLeft.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 30F));
+            this.tableLeft.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10F));
+            this.tableLeft.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10F));
+            this.tableLeft.Size = new System.Drawing.Size(274, 414);
+            this.tableLeft.TabIndex = 0;
+            // 
+            // OpenDialogButton
+            // 
+            this.OpenDialogButton.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.OpenDialogButton.Location = new System.Drawing.Point(3, 334);
+            this.OpenDialogButton.Name = "OpenDialogButton";
+            this.OpenDialogButton.Size = new System.Drawing.Size(268, 35);
+            this.OpenDialogButton.Style = MetroFramework.MetroColorStyle.Orange;
+            this.OpenDialogButton.TabIndex = 3;
+            this.OpenDialogButton.Text = "Volgende vraag";
+            this.OpenDialogButton.Theme = MetroFramework.MetroThemeStyle.Dark;
+            this.OpenDialogButton.UseSelectable = true;
+            this.OpenDialogButton.UseStyleColors = true;
+            this.OpenDialogButton.Click += new System.EventHandler(this.NextQuestionButton_Click);
+            // 
+            // metroButton1
+            // 
+            this.metroButton1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.metroButton1.Location = new System.Drawing.Point(3, 375);
+            this.metroButton1.Name = "metroButton1";
+            this.metroButton1.Size = new System.Drawing.Size(268, 36);
+            this.metroButton1.Style = MetroFramework.MetroColorStyle.Orange;
+            this.metroButton1.TabIndex = 4;
+            this.metroButton1.Text = "Vragenlijst stoppen";
+            this.metroButton1.Theme = MetroFramework.MetroThemeStyle.Dark;
+            this.metroButton1.UseSelectable = true;
+            this.metroButton1.UseStyleColors = true;
+            this.metroButton1.Click += new System.EventHandler(this.QuitQuestionList_Click);
             // 
             // DocentOmgevingView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(462, 453);
-            this.Controls.Add(this.splitContainer1);
+            this.ClientSize = new System.Drawing.Size(600, 500);
+            this.Controls.Add(this.tableWrapper);
             this.Name = "DocentOmgevingView";
+            this.Style = MetroFramework.MetroColorStyle.Orange;
             this.Text = "DocentOmgevingView";
-            this.splitContainer1.Panel1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
-            this.splitContainer1.ResumeLayout(false);
-            this.tableLayoutPanel1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.chart1)).EndInit();
+            this.Theme = MetroFramework.MetroThemeStyle.Default;
+            this.tableWrapper.ResumeLayout(false);
+            this.tableLeft.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
 
         #endregion
-
-        private System.Windows.Forms.SplitContainer splitContainer1;
-        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
-        private System.Windows.Forms.Button NextQuestionButton;
-        private System.Windows.Forms.Button AddQuestionButton;
         private System.Windows.Forms.ListBox QuestionsListBox;
-        private System.Windows.Forms.DataVisualization.Charting.Chart chart1;
-        private System.Windows.Forms.Button StopQuestionList;
+        private System.Windows.Forms.TableLayoutPanel tableWrapper;
+        private System.Windows.Forms.TableLayoutPanel tableLeft;
+        private MetroFramework.Controls.MetroButton OpenDialogButton;
+        private MetroFramework.Controls.MetroButton metroButton1;
     }
 }
