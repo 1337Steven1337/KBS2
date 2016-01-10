@@ -49,6 +49,7 @@ namespace Client.View.Question
             listBoxQuestions.PreviewKeyDown += ListBoxQuestions_PreviewKeyDown;
             btnAddQuestion.Click += BtnAddQuestion_Click;
             btnDeleteQuestion.Click += btnDeleteQuestion_Click;
+            btnShowResults.Click += btnShowResults_Click;
         }
         #endregion
 
@@ -112,6 +113,7 @@ namespace Client.View.Question
             }
             btnAddQuestion.Enabled = true;
             btnDeleteQuestion.Enabled = true;
+            btnShowResults.Enabled = true;
         }
 
         public IControlHandler GetHandler()

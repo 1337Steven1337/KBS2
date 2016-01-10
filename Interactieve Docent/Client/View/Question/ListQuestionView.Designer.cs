@@ -30,19 +30,19 @@ namespace Client.View.Question
         private void InitializeComponent()
         {
             this.mainTablePanel = new System.Windows.Forms.TableLayoutPanel();
+            this.titlePanel = new System.Windows.Forms.Panel();
+            this.titleTile = new MetroFramework.Controls.MetroTile();
             this.buttonsTablePanel = new System.Windows.Forms.TableLayoutPanel();
             this.btnAddQuestion = new MetroFramework.Controls.MetroButton();
             this.btnDeleteQuestion = new MetroFramework.Controls.MetroButton();
             this.btnShowResults = new MetroFramework.Controls.MetroButton();
             this.listBoxPanel = new System.Windows.Forms.Panel();
-            this.listBoxQuestions = new System.Windows.Forms.ListBox();
-            this.titlePanel = new System.Windows.Forms.Panel();
-            this.titleTile = new MetroFramework.Controls.MetroTile();
             this.loadingSpinner = new MetroFramework.Controls.MetroProgressSpinner();
+            this.listBoxQuestions = new System.Windows.Forms.ListBox();
             this.mainTablePanel.SuspendLayout();
+            this.titlePanel.SuspendLayout();
             this.buttonsTablePanel.SuspendLayout();
             this.listBoxPanel.SuspendLayout();
-            this.titlePanel.SuspendLayout();
             this.SuspendLayout();
             // 
             // mainTablePanel
@@ -61,6 +61,37 @@ namespace Client.View.Question
             this.mainTablePanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 50F));
             this.mainTablePanel.Size = new System.Drawing.Size(445, 517);
             this.mainTablePanel.TabIndex = 1;
+            // 
+            // titlePanel
+            // 
+            this.titlePanel.Controls.Add(this.titleTile);
+            this.titlePanel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.titlePanel.Font = new System.Drawing.Font("Segoe UI", 16.2F, System.Drawing.FontStyle.Bold);
+            this.titlePanel.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.titlePanel.Location = new System.Drawing.Point(3, 3);
+            this.titlePanel.Name = "titlePanel";
+            this.titlePanel.Size = new System.Drawing.Size(439, 82);
+            this.titlePanel.TabIndex = 1;
+            // 
+            // titleTile
+            // 
+            this.titleTile.ActiveControl = null;
+            this.titleTile.BackColor = System.Drawing.Color.Orange;
+            this.titleTile.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.titleTile.ForeColor = System.Drawing.Color.White;
+            this.titleTile.Location = new System.Drawing.Point(0, 0);
+            this.titleTile.Name = "titleTile";
+            this.titleTile.Size = new System.Drawing.Size(439, 82);
+            this.titleTile.Style = MetroFramework.MetroColorStyle.Orange;
+            this.titleTile.TabIndex = 1;
+            this.titleTile.Text = "Vragen";
+            this.titleTile.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.titleTile.Theme = MetroFramework.MetroThemeStyle.Dark;
+            this.titleTile.TileTextFontSize = MetroFramework.MetroTileTextSize.Tall;
+            this.titleTile.TileTextFontWeight = MetroFramework.MetroTileTextWeight.Bold;
+            this.titleTile.UseCustomForeColor = true;
+            this.titleTile.UseSelectable = true;
+            this.titleTile.UseStyleColors = true;
             // 
             // buttonsTablePanel
             // 
@@ -121,6 +152,7 @@ namespace Client.View.Question
             this.btnShowResults.Theme = MetroFramework.MetroThemeStyle.Dark;
             this.btnShowResults.UseSelectable = true;
             this.btnShowResults.UseStyleColors = true;
+            this.btnShowResults.Click += new System.EventHandler(this.btnShowResults_Click);
             // 
             // listBoxPanel
             // 
@@ -131,6 +163,20 @@ namespace Client.View.Question
             this.listBoxPanel.Name = "listBoxPanel";
             this.listBoxPanel.Size = new System.Drawing.Size(439, 373);
             this.listBoxPanel.TabIndex = 2;
+            // 
+            // loadingSpinner
+            // 
+            this.loadingSpinner.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(17)))), ((int)(((byte)(17)))));
+            this.loadingSpinner.Location = new System.Drawing.Point(0, 0);
+            this.loadingSpinner.Maximum = 100;
+            this.loadingSpinner.Name = "loadingSpinner";
+            this.loadingSpinner.Size = new System.Drawing.Size(50, 50);
+            this.loadingSpinner.Speed = 2F;
+            this.loadingSpinner.Style = MetroFramework.MetroColorStyle.Orange;
+            this.loadingSpinner.TabIndex = 1;
+            this.loadingSpinner.Theme = MetroFramework.MetroThemeStyle.Dark;
+            this.loadingSpinner.UseSelectable = true;
+            this.loadingSpinner.UseStyleColors = true;
             // 
             // listBoxQuestions
             // 
@@ -149,51 +195,6 @@ namespace Client.View.Question
             this.listBoxQuestions.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.listBox_DrawItem);
             this.listBoxQuestions.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.listBoxQuestions_MouseDoubleClick);
             // 
-            // titlePanel
-            // 
-            this.titlePanel.Controls.Add(this.titleTile);
-            this.titlePanel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.titlePanel.Font = new System.Drawing.Font("Segoe UI", 16.2F, System.Drawing.FontStyle.Bold);
-            this.titlePanel.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.titlePanel.Location = new System.Drawing.Point(3, 3);
-            this.titlePanel.Name = "titlePanel";
-            this.titlePanel.Size = new System.Drawing.Size(439, 82);
-            this.titlePanel.TabIndex = 1;
-            // 
-            // titleTile
-            // 
-            this.titleTile.ActiveControl = null;
-            this.titleTile.BackColor = System.Drawing.Color.Orange;
-            this.titleTile.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.titleTile.ForeColor = System.Drawing.Color.White;
-            this.titleTile.Location = new System.Drawing.Point(0, 0);
-            this.titleTile.Name = "titleTile";
-            this.titleTile.Size = new System.Drawing.Size(439, 82);
-            this.titleTile.Style = MetroFramework.MetroColorStyle.Orange;
-            this.titleTile.TabIndex = 1;
-            this.titleTile.Text = "Vragen";
-            this.titleTile.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.titleTile.Theme = MetroFramework.MetroThemeStyle.Dark;
-            this.titleTile.TileTextFontSize = MetroFramework.MetroTileTextSize.Tall;
-            this.titleTile.TileTextFontWeight = MetroFramework.MetroTileTextWeight.Bold;
-            this.titleTile.UseCustomForeColor = true;
-            this.titleTile.UseSelectable = true;
-            this.titleTile.UseStyleColors = true;
-            // 
-            // loadingSpinner
-            // 
-            this.loadingSpinner.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(17)))), ((int)(((byte)(17)))));
-            this.loadingSpinner.Location = new System.Drawing.Point(0, 0);
-            this.loadingSpinner.Maximum = 100;
-            this.loadingSpinner.Name = "loadingSpinner";
-            this.loadingSpinner.Size = new System.Drawing.Size(50, 50);
-            this.loadingSpinner.Speed = 2F;
-            this.loadingSpinner.Style = MetroFramework.MetroColorStyle.Orange;
-            this.loadingSpinner.TabIndex = 1;
-            this.loadingSpinner.Theme = MetroFramework.MetroThemeStyle.Dark;
-            this.loadingSpinner.UseSelectable = true;
-            this.loadingSpinner.UseStyleColors = true;
-            // 
             // ListQuestionView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -208,9 +209,9 @@ namespace Client.View.Question
             this.Text = "ViewQuestion";
             this.Theme = MetroFramework.MetroThemeStyle.Default;
             this.mainTablePanel.ResumeLayout(false);
+            this.titlePanel.ResumeLayout(false);
             this.buttonsTablePanel.ResumeLayout(false);
             this.listBoxPanel.ResumeLayout(false);
-            this.titlePanel.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
