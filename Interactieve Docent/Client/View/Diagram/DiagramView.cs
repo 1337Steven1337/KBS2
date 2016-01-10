@@ -6,10 +6,10 @@ using System.Windows.Forms.DataVisualization.Charting;
 using System.Drawing;
 using System;
 using Client.Service.Thread;
-
+using MetroFramework.Forms;
 namespace Client.View.Diagram
 {
-    public partial class DiagramView : Form, IDiagramView
+    public partial class DiagramView : MetroForm, IDiagramView
     {
         private DiagramController controller;
 
@@ -50,12 +50,12 @@ namespace Client.View.Diagram
             }
             chart1.Series.Add(series);
             //add question above the diagram
-            textBox1.Text = question;
+            labelQuestion.Text = question;
         }
 
         public IControlHandler GetHandler()
         {
-            return new ControlHandler(this.textBox1);
+            return new ControlHandler(this.labelQuestion);
         }
 
         public void AddToParent(IView parent)

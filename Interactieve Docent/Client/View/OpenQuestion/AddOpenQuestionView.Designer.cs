@@ -93,6 +93,7 @@
             this.SaveButton.Theme = MetroFramework.MetroThemeStyle.Dark;
             this.SaveButton.UseSelectable = true;
             this.SaveButton.UseStyleColors = true;
+            this.SaveButton.Click += new System.EventHandler(this.SaveButton_Click);
             // 
             // AddOpenQuestionView
             // 

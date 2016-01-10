@@ -48,22 +48,21 @@
             this.tableMain.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableMain.Controls.Add(this.SaveProgressBar, 0, 1);
             this.tableMain.Controls.Add(this.table2Col, 0, 0);
-            this.tableMain.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableMain.Location = new System.Drawing.Point(27, 74);
             this.tableMain.Margin = new System.Windows.Forms.Padding(4);
             this.tableMain.Name = "tableMain";
             this.tableMain.RowCount = 2;
             this.tableMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableMain.Size = new System.Drawing.Size(523, 98);
+            this.tableMain.Size = new System.Drawing.Size(532, 75);
             this.tableMain.TabIndex = 2;
             // 
             // SaveProgressBar
             // 
             this.SaveProgressBar.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.SaveProgressBar.Location = new System.Drawing.Point(3, 52);
+            this.SaveProgressBar.Location = new System.Drawing.Point(3, 40);
             this.SaveProgressBar.Name = "SaveProgressBar";
-            this.SaveProgressBar.Size = new System.Drawing.Size(517, 43);
+            this.SaveProgressBar.Size = new System.Drawing.Size(526, 32);
             this.SaveProgressBar.Style = MetroFramework.MetroColorStyle.Orange;
             this.SaveProgressBar.TabIndex = 4;
             this.SaveProgressBar.Theme = MetroFramework.MetroThemeStyle.Dark;
@@ -80,7 +79,7 @@
             this.table2Col.Name = "table2Col";
             this.table2Col.RowCount = 1;
             this.table2Col.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.table2Col.Size = new System.Drawing.Size(517, 43);
+            this.table2Col.Size = new System.Drawing.Size(526, 31);
             this.table2Col.TabIndex = 5;
             // 
             // label
@@ -90,7 +89,7 @@
             this.label.BackColor = System.Drawing.Color.Transparent;
             this.label.CausesValidation = false;
             this.label.ForeColor = System.Drawing.Color.White;
-            this.label.Location = new System.Drawing.Point(64, 0);
+            this.label.Location = new System.Drawing.Point(69, 0);
             this.label.Name = "label";
             this.label.Size = new System.Drawing.Size(191, 20);
             this.label.Style = MetroFramework.MetroColorStyle.Black;
@@ -103,9 +102,9 @@
             // 
             this.OpenDialogButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.OpenDialogButton.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.OpenDialogButton.Location = new System.Drawing.Point(261, 3);
+            this.OpenDialogButton.Location = new System.Drawing.Point(266, 3);
             this.OpenDialogButton.Name = "OpenDialogButton";
-            this.OpenDialogButton.Size = new System.Drawing.Size(253, 37);
+            this.OpenDialogButton.Size = new System.Drawing.Size(257, 28);
             this.OpenDialogButton.Style = MetroFramework.MetroColorStyle.Orange;
             this.OpenDialogButton.TabIndex = 1;
             this.OpenDialogButton.Text = "Open Excelbestand";
@@ -118,7 +117,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(577, 197);
+            this.ClientSize = new System.Drawing.Size(590, 221);
             this.Controls.Add(this.tableMain);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Margin = new System.Windows.Forms.Padding(4);
@@ -129,6 +128,7 @@
             this.ShowInTaskbar = false;
             this.Style = MetroFramework.MetroColorStyle.Orange;
             this.Text = "Accounts toevoegen";
+            this.TransparencyKey = System.Drawing.Color.Empty;
             this.tableMain.ResumeLayout(false);
             this.table2Col.ResumeLayout(false);
             this.table2Col.PerformLayout();

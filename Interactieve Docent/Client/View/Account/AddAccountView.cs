@@ -22,6 +22,7 @@ namespace Client.View.Account
         public AddAccountView()
         {
             InitializeComponent();
+            FormBorderStyle = FormBorderStyle.None;
             this.SelectExcelFileDialog.FileOk += SelectExcelFileDialog_FileOk;
         }
         #endregion
