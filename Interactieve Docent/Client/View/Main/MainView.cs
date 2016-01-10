@@ -107,7 +107,7 @@ namespace Client.View.Main
             Properties.Settings.Default.Save();
 
             //Set sessionId on Form
-            this.Text = "Sessienummer: " + sessionToken.ToString();
+            SessionLabel.Text = sessionToken.ToString();
 
             //Add session to the database
             Factory.PincodeFactory pincodeFactory = new Client.Factory.PincodeFactory();
