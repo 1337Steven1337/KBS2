@@ -32,6 +32,7 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.dataGridView1 = new MetroFramework.Controls.MetroGrid();
+            this.QuestionText = new MetroFramework.Controls.MetroLabel();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -59,7 +60,6 @@
             dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(17)))), ((int)(((byte)(17)))));
             dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.dataGridView1.DefaultCellStyle = dataGridViewCellStyle2;
-            this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dataGridView1.EnableHeadersVisualStyles = false;
             this.dataGridView1.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
             this.dataGridView1.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
@@ -81,26 +81,42 @@
             this.dataGridView1.Style = MetroFramework.MetroColorStyle.Orange;
             this.dataGridView1.TabIndex = 0;
             // 
+            // QuestionText
+            // 
+            this.QuestionText.AutoSize = true;
+            this.QuestionText.FontSize = MetroFramework.MetroLabelSize.Tall;
+            this.QuestionText.Location = new System.Drawing.Point(20, 30);
+            this.QuestionText.Name = "QuestionText";
+            this.QuestionText.Size = new System.Drawing.Size(218, 25);
+            this.QuestionText.TabIndex = 1;
+            this.QuestionText.Text = "Nog geen vraag gesteld...";
+            this.QuestionText.Theme = MetroFramework.MetroThemeStyle.Dark;
+            // 
             // UserAnswerToOpenQuestionView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
             this.ClientSize = new System.Drawing.Size(482, 453);
+            this.Controls.Add(this.QuestionText);
             this.Controls.Add(this.dataGridView1);
+            this.DisplayHeader = false;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Name = "UserAnswerToOpenQuestionView";
+            this.Padding = new System.Windows.Forms.Padding(20, 30, 20, 20);
             this.Style = MetroFramework.MetroColorStyle.Orange;
             this.Text = "Nog geen vraag gesteld...";
             this.Theme = MetroFramework.MetroThemeStyle.Dark;
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.UserAnswerToOpenQuestionView_FormClosing);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
         #endregion
 
         private MetroFramework.Controls.MetroGrid dataGridView1;
+        private MetroFramework.Controls.MetroLabel QuestionText;
     }
 }
