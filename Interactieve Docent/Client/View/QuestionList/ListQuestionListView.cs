@@ -175,6 +175,7 @@ namespace Client.View.QuestionList
                     TeacherEnvironmentController Controller = new TeacherEnvironmentController(view, getSelectedItem());
 
                     BackgroundDialogView background = new BackgroundDialogView(main, view);
+                    main.UpdateQuestionList();
                 }
             }
         }

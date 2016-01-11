@@ -65,6 +65,12 @@ namespace Client.Controller
             addQuestionView.AddToParent((IView)this.MainView);           
         }
 
+        //Update QuestionList
+        public void UpdateList()
+        {
+            this.ListQuestionController.UpdateListQuestion();
+        }
+
         private void Controller_RemoveAddQuestionPanel(bool resizeTable)
         {
             MainView view = (MainView)this.MainView;
