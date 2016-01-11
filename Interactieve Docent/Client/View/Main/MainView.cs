@@ -26,7 +26,7 @@ namespace Client.View.Main
     public partial class MainView : MetroForm, IView
     {
         private MainController controller;
-        private int sessionPin = 999999;
+        private int sessionPin = 0;
 
         OpenQuestionFactory openQuestionFactory = new OpenQuestionFactory();
         AccountFactory accountFactory = new AccountFactory();
@@ -112,7 +112,7 @@ namespace Client.View.Main
         {
             int sessionToken = Client.Service.Generate.Token.GenerateSessionId(6);
             
-            //sessionPin = sessionToken;
+            sessionPin = sessionToken;
 
             //Change property in settings
             Properties.Settings.Default.Session_Id = sessionPin;
