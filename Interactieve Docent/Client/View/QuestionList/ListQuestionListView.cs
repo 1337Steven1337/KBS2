@@ -176,11 +176,11 @@ namespace Client.View.QuestionList
                     dr2 = confm.ShowDialog();
                     if (dr2 == DialogResult.Yes)
                     {
-                       SignalRClient.GetInstance().StartQuestionList(this.getSelectedItem().Id, Properties.Settings.Default.Session_Id,true);
+                       SignalRClient.GetInstance().StartQuestionList(this.getSelectedItem().Id, Properties.Settings.Default.Session_Id,false);
                     }
                     else
                     {
-                        SignalRClient.GetInstance().StartQuestionList(this.getSelectedItem().Id, Properties.Settings.Default.Session_Id,false);
+                        SignalRClient.GetInstance().StartQuestionList(this.getSelectedItem().Id, Properties.Settings.Default.Session_Id,true);
 
                     }
 

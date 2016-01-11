@@ -147,8 +147,7 @@ namespace Client.Student
                 questionTimer.Stop();
             }
             SignalRClient.GetInstance().UnsubscribeList(this.questionList);
-            this.questionList.MCQuestions.Clear();
-            this.questionList.OpenQuestions.Clear();
+            this.questionList = new QuestionList();
             this.questionList.Ended = true;
             goToNextQuestion();
 
@@ -213,6 +212,7 @@ namespace Client.Student
             else if (this.questionList.Ended)
             {
                 MessageBox.Show("De vragenlijst is gestopt.");
+                this.questionList.Ended = false;
                 
             }
             else

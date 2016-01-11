@@ -93,7 +93,7 @@ namespace Server.Controllers
         }
 
         // POST: api/UserAnswers
-        [ResponseType(typeof(UserAnswer))]
+        [ResponseType(typeof(UserAnswerDTO))]
         public async Task<IHttpActionResult> PostUserAnswer(UserAnswer userAnswer)
         {
             if (!ModelState.IsValid)
@@ -101,13 +101,14 @@ namespace Server.Controllers
                 return BadRequest(ModelState);
             }
 
+            userAnswer.Pincode_Id = "123456";
             db.UserAnswers.Add(userAnswer);
             await db.SaveChangesAsync();
 
             Question question = db.Questions.Find(userAnswer.Question_Id);
             this.getSubscribed("List-" + question.List_Id).UserAnswerAdded(new UserAnswerDTO(userAnswer));
 
-            return CreatedAtRoute("DefaultApi", new { id = userAnswer.Id }, userAnswer);
+            return CreatedAtRoute("DefaultApi", new { id = userAnswer.Id }, new UserAnswerDTO(userAnswer));
         }
 
         // DELETE: api/UserAnswers/5

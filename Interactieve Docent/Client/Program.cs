@@ -48,7 +48,7 @@ namespace Client
 
             StartView startView = new StartView();
             ShowStartController controller = new ShowStartController(startView);
-            
+
             Application.Run(startView);
         }
     }
