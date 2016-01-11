@@ -15,7 +15,7 @@ using System.Net;
 namespace Client.Controller
 {
 
-    class TeacherEnvironmentController : AbstractController<Model.Question>
+    public class TeacherEnvironmentController : AbstractController<Model.Question>
     {
 
         private TeacherEnvironmentView View;
@@ -23,7 +23,6 @@ namespace Client.Controller
         private QuestionFactory Factory = new QuestionFactory();
         public Model.QuestionList CurrentList;
 
-        
         public TeacherEnvironmentController(TeacherEnvironmentView view, Model.QuestionList QuestionList)
         {
             this.View = view;
