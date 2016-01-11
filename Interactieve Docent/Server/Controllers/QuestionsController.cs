@@ -18,8 +18,6 @@ namespace Server.Controllers
 {
     public class QuestionsController : ApiControllerWithHub<EventHub>
     {
-        private IDocentAppContext db = new ServerContext();
-
         public QuestionsController() { }
         public QuestionsController(IDocentAppContext context)
         {

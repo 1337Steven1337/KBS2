@@ -24,7 +24,8 @@ namespace Client.Student
         public int List_Id { get; set; }
         private bool busy = false;
         private Timer questionTimer = new Timer();
-        private Model.Question currentQuestion = null;
+        private Model.Question currentMCQuestion = null;
+        private Model.OpenQuestion currentOpenQuestion = null;
         private Model.QuestionList questionList = new Model.QuestionList();
         private StudentFormController controller;
         private StudentForm view;
@@ -41,6 +42,9 @@ namespace Client.Student
             this.List_Id = List_Id;
             this.view = new StudentForm(this);
             this.controller = new StudentFormController(this);
+
+            nextForm nxtform = new nextForm();
+            nxtform.Show();
 
             this.view.setController();
             view.initControlLocations();
@@ -81,18 +85,20 @@ namespace Client.Student
             return questionTimer;
         }
 
-        public Model.Question getCurrentQuestion()
+        public Model.Question getCurrentMCQuestion()
         {
-            return this.currentQuestion;
+            return this.currentMCQuestion;
+        }
+
+        public Model.OpenQuestion getCurrentOpenQuestion()
+        {
+            return this.currentOpenQuestion;
         }
 
         //If a time is set this is the event that is executed when the timer is over
         //It resets the timer variables and then goes to the nextquestion event
         private void Question_Timer(object sender, EventArgs e)
         {
-            //Update questioncounter label
-            this.questionCountLabel.Text = "Vraag: ( "+ (controller.getCurrentQuestionIndex() + 1)  + "/" + questionList.Questions.Count + ")";
-
             if (questionTimeProgressBar.Value > 0)
             {
                 questionTimeProgressBar.Value -= 100;
@@ -103,7 +109,7 @@ namespace Client.Student
                 busy = false;
                 questionTimer.Stop();
 
-                if (this.questionList.Questions.Count - 1 > controller.getCurrentQuestionIndex())
+                if (this.questionList.MCQuestions.Count - 1 > controller.getCurrentQuestionIndex())
                 {
                     goToNextQuestion();
                 }
@@ -118,45 +124,63 @@ namespace Client.Student
         //Literally goes to the next question if there is one, otherwise it'll go back to the waitingscreen.
         public void goToNextQuestion()
         {
+            view.startLabelTimer();
+
             view.cleanUpPreviousQuestion();
             view.getAnswerButtons().Clear();
             questionTimer.Stop();
             controller.setCurrentQuestionIndex(controller.getCurrentQuestionIndex() + 1);
 
 
-            if (this.questionList.Questions.Count - 1 >= controller.getCurrentQuestionIndex())
+            if (this.questionList.MCQuestions.Count + this.questionList.OpenQuestions.Count  - 1 >= controller.getCurrentQuestionIndex())
             {
-                
-                view.initQuestionScreen();
-                busy = true;
-                questionTimeProgressBar.Value = questionTimeProgressBar.Maximum;
-
-                currentQuestion = this.questionList.Questions[controller.getCurrentQuestionIndex()];
-                if (currentQuestion.Time > 1)
+                if (controller.getCurrentQuestionIndex() < this.questionList.MCQuestions.Count)
                 {
-                    questionTimeProgressBar.Maximum = currentQuestion.Time * 1000;
-                    questionTimeProgressBar.Value = currentQuestion.Time * 1000;
-                    questionTimer.Start();
+                    view.initMCQuestionScreen();
+                    busy = true;
+                    questionTimeProgressBar.Value = questionTimeProgressBar.Maximum;
+
+                    currentMCQuestion = this.questionList.MCQuestions[controller.getCurrentQuestionIndex()];
+                    if (currentMCQuestion.Time > 1)
+                    {
+                        questionTimeProgressBar.Maximum = currentMCQuestion.Time * 1000;
+                        questionTimeProgressBar.Value = currentMCQuestion.Time * 1000;
+                        questionTimer.Start();
+                        this.questionCountLabel.Location = new Point(this.getProgressBar().Location.X + this.getProgressBar().Width - this.questionCountLabel.Width, this.getProgressBar().Location.Y - this.questionCountLabel.Height);
+                    }
+                    else
+                    {
+                        questionTimeProgressBar.Visible = false;
+                        timeLabel.Visible = false;
+                        this.questionCountLabel.Location = new Point(this.getProgressBar().Location.X + this.getProgressBar().Width - this.questionCountLabel.Width, this.getProgressBar().Location.Y + this.getProgressBar().Height - this.questionCountLabel.Height);
+                    }
+                    this.view.adjustSizeOfButtons(currentMCQuestion);
+                    questionLabel.Text = currentMCQuestion.Text;
                 }
                 else
                 {
-                    questionTimeProgressBar.Visible = false;
-                    timeLabel.Visible = false;
+                    view.initOpenQuestionScreen();
+                    currentOpenQuestion = this.questionList.OpenQuestions[controller.getCurrentQuestionIndex() - this.questionList.MCQuestions.Count];
+                    busy = true;
+                    questionLabel.Text = currentOpenQuestion.Text;
                 }
-                questionLabel.Text = currentQuestion.Text;
-                this.view.adjustSizeOfButtons(currentQuestion);
+
+                
             }
             else if (this.questionList.Ended)
             {
                 MessageBox.Show("Realtime vragenlijst af.");
+                
             }
             else
             {
                 view.initWaitScreen();
                 questionTimer.Stop();
+                view.stopLabelTimer();
                 busy = false;
             }
         }
+
     }
 }
 

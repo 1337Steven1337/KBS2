@@ -18,8 +18,6 @@ namespace Server.Controllers
 {
     public class PredefinedAnswersController : ApiControllerWithHub<EventHub>
     {
-        private ServerContext db = new ServerContext();
-
         // GET: api/PredefinedAnswers
         public IQueryable<PredefinedAnswer> GetPredefinedAnswers()
         {
@@ -53,7 +51,7 @@ namespace Server.Controllers
                 return BadRequest();
             }
 
-            db.Entry(predefinedAnswer).State = EntityState.Modified;
+            db.MarkAsModified(predefinedAnswer);
 
             try
             {

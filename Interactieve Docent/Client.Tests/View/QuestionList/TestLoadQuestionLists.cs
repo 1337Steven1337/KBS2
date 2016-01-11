@@ -86,7 +86,7 @@ namespace Client.Tests.View.QuestionList
 
             Model.QuestionList list = view.getById(2);
 
-            Assert.AreEqual(list.Questions.Count, 2);
+            Assert.AreEqual(list.MCQuestions.Count, 2);
         }
 
         [TestMethod]
@@ -117,7 +117,7 @@ namespace Client.Tests.View.QuestionList
 
             Model.QuestionList list = view.getQuestionlists()[1];
 
-            Assert.AreEqual(list.Questions.Count, 0);
+            Assert.AreEqual(list.MCQuestions.Count, 0);
         }
     }
 }

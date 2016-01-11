@@ -30,9 +30,8 @@
         {
             this.questionLabel = new System.Windows.Forms.Label();
             this.questionTimeProgressBar = new System.Windows.Forms.ProgressBar();
-            this.chatBox = new System.Windows.Forms.RichTextBox();
-            this.chatBoxMessage = new System.Windows.Forms.RichTextBox();
-            this.sendMessageButton = new System.Windows.Forms.Button();
+            this.openQuestionBox = new System.Windows.Forms.RichTextBox();
+            this.sendOpenQuestionBtn = new System.Windows.Forms.Button();
             this.timeLabel = new System.Windows.Forms.Label();
             this.statusLabel = new System.Windows.Forms.Label();
             this.questionCountLabel = new System.Windows.Forms.Label();
@@ -60,35 +59,25 @@
             this.questionTimeProgressBar.Tag = "Time";
             this.questionTimeProgressBar.Value = 1000;
             // 
-            // chatBox
+            // openQuestionBox
             // 
-            this.chatBox.ForeColor = System.Drawing.Color.Silver;
-            this.chatBox.Location = new System.Drawing.Point(940, 2);
-            this.chatBox.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.chatBox.Name = "chatBox";
-            this.chatBox.Size = new System.Drawing.Size(394, 476);
-            this.chatBox.TabIndex = 3;
-            this.chatBox.Text = "Je bent nu aangemeld bij de chat\n";
+            this.openQuestionBox.ForeColor = System.Drawing.Color.Silver;
+            this.openQuestionBox.Location = new System.Drawing.Point(989, 14);
+            this.openQuestionBox.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.openQuestionBox.Name = "openQuestionBox";
+            this.openQuestionBox.Size = new System.Drawing.Size(251, 476);
+            this.openQuestionBox.TabIndex = 3;
+            this.openQuestionBox.Text = "Vul hier je antwoord in.";
             // 
-            // chatBoxMessage
+            // sendOpenQuestionBtn
             // 
-            this.chatBoxMessage.ForeColor = System.Drawing.Color.Silver;
-            this.chatBoxMessage.Location = new System.Drawing.Point(940, 485);
-            this.chatBoxMessage.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.chatBoxMessage.Name = "chatBoxMessage";
-            this.chatBoxMessage.Size = new System.Drawing.Size(313, 87);
-            this.chatBoxMessage.TabIndex = 4;
-            this.chatBoxMessage.Text = "Typ een bericht...";
-            // 
-            // sendMessageButton
-            // 
-            this.sendMessageButton.Location = new System.Drawing.Point(1257, 485);
-            this.sendMessageButton.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.sendMessageButton.Name = "sendMessageButton";
-            this.sendMessageButton.Size = new System.Drawing.Size(100, 83);
-            this.sendMessageButton.TabIndex = 5;
-            this.sendMessageButton.Text = "Send";
-            this.sendMessageButton.UseVisualStyleBackColor = true;
+            this.sendOpenQuestionBtn.Location = new System.Drawing.Point(989, 500);
+            this.sendOpenQuestionBtn.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.sendOpenQuestionBtn.Name = "sendOpenQuestionBtn";
+            this.sendOpenQuestionBtn.Size = new System.Drawing.Size(251, 83);
+            this.sendOpenQuestionBtn.TabIndex = 5;
+            this.sendOpenQuestionBtn.Text = "Verstuur";
+            this.sendOpenQuestionBtn.UseVisualStyleBackColor = true;
             // 
             // timeLabel
             // 
@@ -130,9 +119,8 @@
             this.Controls.Add(this.questionCountLabel);
             this.Controls.Add(this.statusLabel);
             this.Controls.Add(this.timeLabel);
-            this.Controls.Add(this.sendMessageButton);
-            this.Controls.Add(this.chatBoxMessage);
-            this.Controls.Add(this.chatBox);
+            this.Controls.Add(this.sendOpenQuestionBtn);
+            this.Controls.Add(this.openQuestionBox);
             this.Controls.Add(this.questionTimeProgressBar);
             this.Controls.Add(this.questionLabel);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
@@ -149,9 +137,8 @@
 
         public System.Windows.Forms.Label questionLabel;
         private System.Windows.Forms.ProgressBar questionTimeProgressBar;
-        public System.Windows.Forms.RichTextBox chatBox;
-        public System.Windows.Forms.RichTextBox chatBoxMessage;
-        public System.Windows.Forms.Button sendMessageButton;
+        public System.Windows.Forms.RichTextBox openQuestionBox;
+        public System.Windows.Forms.Button sendOpenQuestionBtn;
         public System.Windows.Forms.Label timeLabel;
         public System.Windows.Forms.Label statusLabel;
         public System.Windows.Forms.Label questionCountLabel;

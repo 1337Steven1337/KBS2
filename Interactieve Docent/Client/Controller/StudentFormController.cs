@@ -52,11 +52,14 @@ namespace Client.Controller
             OpenQuestionFactory.OpenQuestionAdded += openQuestionAdded;
         }
 
+        //Adds openquestions to the openquestion list and goes to the nextquestion if the student is not Busy making one.
         private void openQuestionAdded(Model.OpenQuestion openQuestion)
         {
+            this.mainForm.getQuestionList().OpenQuestions.Add(openQuestion);
+
             if (!mainForm.isBusy())
             {
-                mainForm.Invoke((Action)delegate () { this.view.SetOpenQuestion(openQuestion); });
+                mainForm.Invoke((Action)delegate () { mainForm.goToNextQuestion(); });
             }
         }
 
@@ -80,10 +83,10 @@ namespace Client.Controller
                 {
                     if (q.List_Id == mainForm.getQuestionList().Id)
                     {
-                        mainForm.Invoke((Action)delegate () { mainForm.getQuestionList().Questions.Add(q);});
+                        mainForm.Invoke((Action)delegate () { mainForm.getQuestionList().MCQuestions.Add(q);});
                     }
                 }
-                if (!mainForm.isBusy())
+                if (!mainForm.isBusy() && mainForm.getQuestionList().MCQuestions.Count > 0)
                 {
                     mainForm.Invoke((Action)delegate () { mainForm.goToNextQuestion(); });
                 }
@@ -115,19 +118,20 @@ namespace Client.Controller
         {
             QuestionListFactory listFactory = new QuestionListFactory();
             listFactory.FindById(list,mainForm.getView().GetHandler(),listStartedCallbackHandler);            
+            SignalRClient.GetInstance().SubscribeList(list);        
         }
 
 
         //This function adds the question (which is retrieved from the server) to the locally stored questionList
         public void Factory_questionAdded(Model.Question question)
         {
-            this.mainForm.getQuestionList().Questions.Add(question);
+            this.mainForm.getQuestionList().MCQuestions.Add(question);
         }
 
         //This function adds the PredefinedAnswers to the question once a question is added
         private void PAFactory_predefinedAnswerAdded(Model.PredefinedAnswer answer)
         {
-            Model.Question question = this.mainForm.getQuestionList().Questions.Find(x => x.Id == answer.Question_Id);
+            Model.Question question = this.mainForm.getQuestionList().MCQuestions.Find(x => x.Id == answer.Question_Id);
 
             if (question.PredefinedAnswers == null)
             {
@@ -161,30 +165,5 @@ namespace Client.Controller
             this.currentQuestionIndex = index;   
         }
 
-        public void SaveOpenQuestionAnswer(int questionId, string answer)
-        {
-            UserAnswerToOpenQuestionFactory factory = new UserAnswerToOpenQuestionFactory();
-            Dictionary<string, object> data = new Dictionary<string, object>();
-            data.Add("Question_Id", questionId);
-            data.Add("Answer", answer);
-            data.Add("Student", "S1234567");
-
-            Model.UserAnswerToOpenQuestion openAnswer = new Model.UserAnswerToOpenQuestion(data);
-            factory.SaveAsync(openAnswer, saveOpenQuestionAnswerCallBack);
-        }
-
-        private void saveOpenQuestionAnswerCallBack(Model.UserAnswerToOpenQuestion answer, HttpStatusCode status)
-        {
-            if(answer != null && status == HttpStatusCode.Created)
-            {
-                mainForm.Invoke((Action)delegate () { view.ShowSaveSucceed(); });
-                mainForm.Invoke((Action)delegate () { view.CloseOpenQuestion(); });
-                mainForm.Invoke((Action)delegate () { view.initWaitScreen(); });
-            }
-            else
-            {
-                mainForm.Invoke((Action)delegate () { view.ShowSaveFailed(); });
-            }
-        }    
     }
 }

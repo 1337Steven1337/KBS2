@@ -1,4 +1,5 @@
 ﻿using System.Windows.Forms;
+using MetroFramework.Forms;
 using Client.Controller;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -14,10 +15,11 @@ using Client.View.Question;
 using Client.View.Docent;
 using Client.Service.SignalR;
 using Client.Controller.Question;
+using System.Drawing;
 
 namespace Client.View.QuestionList
 {
-    public partial class ListQuestionListView : Form, IListView<Model.QuestionList>
+    public partial class ListQuestionListView : MetroForm, IListView<Model.QuestionList>
     {
         #region Properties
         public BindingList<Model.QuestionList> QuestionLists = new BindingList<Model.QuestionList>();
@@ -34,6 +36,7 @@ namespace Client.View.QuestionList
         {
             InitializeComponent();
             this.Enabled = false;
+            
             listBoxQuestionLists.DisplayMember = "Name";
             listBoxQuestionLists.ValueMember = "Id";
             listBoxQuestionLists.DataSource = this.QuestionLists;
@@ -64,6 +67,7 @@ namespace Client.View.QuestionList
 
         public void FillList(List<Model.QuestionList> list)
         {
+            loadingSpinner.Visible = false;
             this.QuestionLists.Clear();
 
             foreach (Model.QuestionList questionList in list)
@@ -73,6 +77,7 @@ namespace Client.View.QuestionList
             this.btnAddQuestionList.Enabled = true;
             this.btnDeleteQuestionList.Enabled = true;
             this.btnStartQuestionList.Enabled = true;
+
             this.Controller.SelectedIndexChanged(this.getSelectedItem());
         }
 
@@ -139,7 +144,7 @@ namespace Client.View.QuestionList
                 //Show dialog for user to confirm Delete action
                 DialogResult dr = new DialogResult();
                 ConfirmDialogView confirm = new ConfirmDialogView();
-                confirm.getLabelConfirm().Text = String.Format("Weet u zeker dat u {0} wilt verwijderen?", getSelectedItem().Name);
+                confirm.getLabelConfirm().Text = String.Format("Weet u zeker dat u de vragenlijst: {0}{1}wilt verwijderen?", getSelectedItem().Name, "\n");
                 dr = confirm.ShowDialog();
 
                 //Confirm 
@@ -166,9 +171,10 @@ namespace Client.View.QuestionList
                     SignalRClient.GetInstance().StartQuestionList(this.getSelectedItem().Id, Properties.Settings.Default.Session_Id);
 
                     //open docentomgeving
-                    DocentOmgevingView view = new DocentOmgevingView();
+                    DocentOmgevingView view = new DocentOmgevingView(getSelectedItem());
                     DocentOmgevingController Controller = new DocentOmgevingController(view, getSelectedItem());
 
+                    BackgroundDialogView background = new BackgroundDialogView(main, view);
                 }
             }
         }
@@ -220,6 +226,35 @@ namespace Client.View.QuestionList
         }
         #endregion
 
+        //Draw custom colors in Listbox
+        private void listBox_DrawItem(object sender, DrawItemEventArgs e)
+        {
+            e.DrawBackground();
+
+            bool isItemSelected = ((e.State & DrawItemState.Selected) == DrawItemState.Selected);
+            int itemIndex = e.Index;
+            if (itemIndex >= 0 && itemIndex < listBoxQuestionLists.Items.Count)
+            {
+                Graphics g = e.Graphics;
+
+                // Background Color
+                SolidBrush backgroundColorBrush = new SolidBrush((isItemSelected) ? Color.FromArgb(243, 119, 53) : Color.FromArgb(17, 17, 17));
+                g.FillRectangle(backgroundColorBrush, e.Bounds);
+
+                // Set text color
+                string itemText = listBoxQuestionLists.Items[itemIndex].ToString();
+
+                SolidBrush itemTextColorBrush = (isItemSelected) ? new SolidBrush(Color.White) : new SolidBrush(Color.FromArgb(153, 153, 153));
+                g.DrawString(itemText, e.Font, itemTextColorBrush, listBoxQuestionLists.GetItemRectangle(itemIndex).Location);
+
+                // Clean up
+                backgroundColorBrush.Dispose();
+                itemTextColorBrush.Dispose();
+            }
+
+            e.DrawFocusRectangle();
+        }
+
         private void listBoxQuestionLists_MouseDoubleClick(object sender, MouseEventArgs e)
         {
             // if you double click on in the listbox check if there is a questionlist underneed your cursor
@@ -247,5 +282,6 @@ namespace Client.View.QuestionList
                 RenameQuestionListDialog.Close();
             }
         }
+
     }
 }

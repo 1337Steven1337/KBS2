@@ -13,10 +13,11 @@ using Client.Model;
 using Client.Service.Thread;
 using Client.Controller.OpenQuestion;
 using Client.View.Dialogs;
+using MetroFramework.Forms;
 
 namespace Client.View.OpenQuestion
 {
-    public partial class AddOpenQuestionView : Form, IAddView<Model.OpenQuestion>
+    public partial class AddOpenQuestionView : MetroForm, IAddView<Model.OpenQuestion>
     {
         private AddOpenQuestionController Controller { get; set; }
 
@@ -99,6 +100,11 @@ namespace Client.View.OpenQuestion
         public void ClearAllFields()
         {
             throw new NotImplementedException();
+        }
+
+        private void AddOpenQuestionView_Load(object sender, EventArgs e)
+        {
+            this.SaveButton.Click += SaveButton_Click;
         }
     }
 }

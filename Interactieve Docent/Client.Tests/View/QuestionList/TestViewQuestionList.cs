@@ -84,7 +84,7 @@ namespace Client.Tests.View.QuestionList
             {
                 if(ql.Id == list_Id)
                 {
-                    ql.Questions.Add(q);
+                    ql.MCQuestions.Add(q);
                 }
             }
         }

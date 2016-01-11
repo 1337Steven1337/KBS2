@@ -44,6 +44,7 @@ namespace Client.Service.Login
                 else
                 {
                     this.Account = account;
+                    this.CredentialsChanged(this.Account.Token);
                     callback(true);
                 }
             });

@@ -40,8 +40,6 @@ namespace Client.Controller
             //questionController.selectedIndexChanged += QuestionController_selectedIndexChanged;
 
             this.UserAnswerFactory.UserAnswerAdded += UserAnswerFactory_userAnswerAdded;
-
-            view.Show();
         }
         
 

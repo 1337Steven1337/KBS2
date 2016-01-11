@@ -28,62 +28,120 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.OpenDialogButton = new System.Windows.Forms.Button();
             this.SelectExcelFileDialog = new System.Windows.Forms.OpenFileDialog();
-            this.label1 = new System.Windows.Forms.Label();
-            this.SaveProgressBar = new System.Windows.Forms.ProgressBar();
+            this.tableMain = new System.Windows.Forms.TableLayoutPanel();
+            this.SaveProgressBar = new MetroFramework.Controls.MetroProgressBar();
+            this.table2Col = new System.Windows.Forms.TableLayoutPanel();
+            this.label = new MetroFramework.Controls.MetroLabel();
+            this.OpenDialogButton = new MetroFramework.Controls.MetroButton();
+            this.tableMain.SuspendLayout();
+            this.table2Col.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // OpenDialogButton
-            // 
-            this.OpenDialogButton.Location = new System.Drawing.Point(221, 12);
-            this.OpenDialogButton.Name = "OpenDialogButton";
-            this.OpenDialogButton.Size = new System.Drawing.Size(75, 31);
-            this.OpenDialogButton.TabIndex = 0;
-            this.OpenDialogButton.Text = "open";
-            this.OpenDialogButton.UseVisualStyleBackColor = true;
-            this.OpenDialogButton.Click += new System.EventHandler(this.OpenDialogButton_Click);
             // 
             // SelectExcelFileDialog
             // 
             this.SelectExcelFileDialog.FileName = "openFileDialog1";
             // 
-            // label1
+            // tableMain
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(12, 21);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(142, 13);
-            this.label1.TabIndex = 1;
-            this.label1.Text = "Selecteer uw Excel bestand:";
+            this.tableMain.ColumnCount = 1;
+            this.tableMain.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableMain.Controls.Add(this.SaveProgressBar, 0, 1);
+            this.tableMain.Controls.Add(this.table2Col, 0, 0);
+            this.tableMain.Location = new System.Drawing.Point(27, 74);
+            this.tableMain.Margin = new System.Windows.Forms.Padding(4);
+            this.tableMain.Name = "tableMain";
+            this.tableMain.RowCount = 2;
+            this.tableMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableMain.Size = new System.Drawing.Size(532, 75);
+            this.tableMain.TabIndex = 2;
             // 
             // SaveProgressBar
             // 
-            this.SaveProgressBar.Location = new System.Drawing.Point(15, 49);
+            this.SaveProgressBar.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.SaveProgressBar.Location = new System.Drawing.Point(3, 40);
             this.SaveProgressBar.Name = "SaveProgressBar";
-            this.SaveProgressBar.Size = new System.Drawing.Size(281, 23);
-            this.SaveProgressBar.TabIndex = 2;
+            this.SaveProgressBar.Size = new System.Drawing.Size(526, 32);
+            this.SaveProgressBar.Style = MetroFramework.MetroColorStyle.Orange;
+            this.SaveProgressBar.TabIndex = 4;
+            this.SaveProgressBar.Theme = MetroFramework.MetroThemeStyle.Dark;
+            // 
+            // table2Col
+            // 
+            this.table2Col.ColumnCount = 2;
+            this.table2Col.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.table2Col.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.table2Col.Controls.Add(this.label, 0, 0);
+            this.table2Col.Controls.Add(this.OpenDialogButton, 1, 0);
+            this.table2Col.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.table2Col.Location = new System.Drawing.Point(3, 3);
+            this.table2Col.Name = "table2Col";
+            this.table2Col.RowCount = 1;
+            this.table2Col.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.table2Col.Size = new System.Drawing.Size(526, 31);
+            this.table2Col.TabIndex = 5;
+            // 
+            // label
+            // 
+            this.label.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label.AutoSize = true;
+            this.label.BackColor = System.Drawing.Color.Transparent;
+            this.label.CausesValidation = false;
+            this.label.ForeColor = System.Drawing.Color.White;
+            this.label.Location = new System.Drawing.Point(69, 0);
+            this.label.Name = "label";
+            this.label.Size = new System.Drawing.Size(191, 20);
+            this.label.Style = MetroFramework.MetroColorStyle.Black;
+            this.label.TabIndex = 0;
+            this.label.Text = "Selecteer een excel bestand: ";
+            this.label.UseCustomBackColor = true;
+            this.label.UseStyleColors = true;
+            // 
+            // OpenDialogButton
+            // 
+            this.OpenDialogButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.OpenDialogButton.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.OpenDialogButton.Location = new System.Drawing.Point(266, 3);
+            this.OpenDialogButton.Name = "OpenDialogButton";
+            this.OpenDialogButton.Size = new System.Drawing.Size(257, 28);
+            this.OpenDialogButton.Style = MetroFramework.MetroColorStyle.Orange;
+            this.OpenDialogButton.TabIndex = 1;
+            this.OpenDialogButton.Text = "Open Excelbestand";
+            this.OpenDialogButton.Theme = MetroFramework.MetroThemeStyle.Dark;
+            this.OpenDialogButton.UseSelectable = true;
+            this.OpenDialogButton.UseStyleColors = true;
+            this.OpenDialogButton.Click += new System.EventHandler(this.OpenDialogButton_Click);
             // 
             // AddAccountView
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(308, 84);
-            this.Controls.Add(this.SaveProgressBar);
-            this.Controls.Add(this.label1);
-            this.Controls.Add(this.OpenDialogButton);
+            this.ClientSize = new System.Drawing.Size(590, 221);
+            this.Controls.Add(this.tableMain);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
+            this.Margin = new System.Windows.Forms.Padding(4);
+            this.Movable = false;
             this.Name = "AddAccountView";
+            this.Padding = new System.Windows.Forms.Padding(27, 74, 27, 25);
+            this.ShowIcon = false;
+            this.ShowInTaskbar = false;
+            this.Style = MetroFramework.MetroColorStyle.Orange;
+            this.Text = "Accounts toevoegen";
+            this.TransparencyKey = System.Drawing.Color.Empty;
+            this.tableMain.ResumeLayout(false);
+            this.table2Col.ResumeLayout(false);
+            this.table2Col.PerformLayout();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
         #endregion
-
-        private System.Windows.Forms.Button OpenDialogButton;
         private System.Windows.Forms.OpenFileDialog SelectExcelFileDialog;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.ProgressBar SaveProgressBar;
+        private System.Windows.Forms.TableLayoutPanel tableMain;
+        private MetroFramework.Controls.MetroProgressBar SaveProgressBar;
+        private System.Windows.Forms.TableLayoutPanel table2Col;
+        private MetroFramework.Controls.MetroLabel label;
+        private MetroFramework.Controls.MetroButton OpenDialogButton;
     }
 }

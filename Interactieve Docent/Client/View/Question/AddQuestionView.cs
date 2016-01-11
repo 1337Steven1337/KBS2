@@ -10,10 +10,12 @@ using System.Net;
 using Client.View.Dialogs;
 using System.ComponentModel;
 using System.Linq;
+using MetroFramework.Forms;
+using System.Drawing;
 
 namespace Client.View.Question
 {
-    public partial class AddQuestionView : Form, IAddView<Model.Question>
+    public partial class AddQuestionView : MetroForm, IAddView<Model.Question>
     {
         private AddQuestionController Controller;
         private BindingList<Model.PredefinedAnswer> CurrentAnswersList = new BindingList<Model.PredefinedAnswer>();
@@ -43,14 +45,19 @@ namespace Client.View.Question
             if (question != null)
             {
                 EditQuestion(question);
-                labelTitle.Text = "Vraag wijzigen ";
+                titleTile.Text = "Vraag wijzigen ";
                 Edit = true;
             }
             else
             {
-                labelTitle.Text = "Nieuwe vraag";
+                titleTile.Text = "Nieuwe vraag";
                 Edit = false;
             }
+        }
+
+        public TableLayoutPanel getTable()
+        {
+            return mainTablePanel;
         }
 
         //Loads the data from a selected question in Input fields
@@ -136,6 +143,35 @@ namespace Client.View.Question
             }
         }
 
+        //Draw custom colors in Listbox
+        private void listBox_DrawItem(object sender, DrawItemEventArgs e)
+        {
+            e.DrawBackground();
+
+            bool isItemSelected = ((e.State & DrawItemState.Selected) == DrawItemState.Selected);
+            int itemIndex = e.Index;
+            if (itemIndex >= 0 && itemIndex < answersListBox.Items.Count)
+            {
+                Graphics g = e.Graphics;
+
+                // Background Color
+                SolidBrush backgroundColorBrush = new SolidBrush((isItemSelected) ? Color.FromArgb(243, 119, 53) : Color.FromArgb(153, 153, 153));
+                g.FillRectangle(backgroundColorBrush, e.Bounds);
+
+                // Set text color
+                PredefinedAnswer itemText = (PredefinedAnswer)answersListBox.Items[itemIndex];
+
+                SolidBrush itemTextColorBrush = (isItemSelected) ? new SolidBrush(Color.White) : new SolidBrush(Color.Black);
+                g.DrawString(itemText.Text, e.Font, itemTextColorBrush, answersListBox.GetItemRectangle(itemIndex).Location);
+
+                // Clean up
+                backgroundColorBrush.Dispose();
+                itemTextColorBrush.Dispose();
+            }
+
+            e.DrawFocusRectangle();
+        }
+
         private void BtnSaveQuestion_Click(object sender, EventArgs e)
         {
             if (ValidateFields())
@@ -162,8 +198,7 @@ namespace Client.View.Question
                     {
                         this.Controller.SaveQuestion(iDictionary);
                     }
-                }
-             
+                }             
             }
             else
             {
@@ -216,7 +251,7 @@ namespace Client.View.Question
         {
             MainView main = (MainView)parent;
 
-            main.AddTablePanel(this.mainTablePanel,3);
+            main.AddTablePanel(this.mainTablePanel, 3);
         }
 
         public IControlHandler GetHandler()
@@ -247,8 +282,6 @@ namespace Client.View.Question
             SuccesDialogView succes = new SuccesDialogView();
             succes.getLabelSucces().Text = "De vraag is succesvol opgeslagen.";
             succes.ShowDialog();
-           
-            this.Close();
         }
 
         public void ShowSaveResult(Model.Question instance, HttpStatusCode status)
