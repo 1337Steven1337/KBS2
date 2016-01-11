@@ -56,7 +56,17 @@ namespace Server.Hubs
         /// <param name="listId">The list ID to proceed with</param>
         public void Next(string listId)
         {
-            Clients.Group(listId).QuestionListContinue();
+            Clients.Group("Code-" + listId.ToString()).QuestionListContinue();
+        }
+
+
+        /// <summary>
+        /// Send the clients the event to continue to the next question
+        /// </summary>
+        /// <param name="listId">The list ID to proceed with</param>
+        public void Stop(string listId)
+        {
+            Clients.Group("Code-" + listId.ToString()).QuestionListStopped();
         }
 
         /// <summary>

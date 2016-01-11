@@ -43,9 +43,6 @@ namespace Client.Student
             this.view = new StudentForm(this);
             this.controller = new StudentFormController(this);
 
-            nextForm nxtform = new nextForm();
-            nxtform.Show();
-
             this.view.setController();
             view.initControlLocations();
             view.initWaitScreen();
@@ -121,6 +118,22 @@ namespace Client.Student
             }
         }
 
+
+        //When called it will stop the timer, and reset all the values back to their original value.
+        //Then calls initWaitScreen to reinitialize the waiting screen.
+        public void stopQuestionList()
+        {
+            if (isBusy())
+            {
+                questionTimer.Stop();
+            }
+
+            SignalRClient.GetInstance().UnsubscribeList(this.questionList);
+            this.questionList = new QuestionList();
+            goToNextQuestion();
+
+        }
+
         //Literally goes to the next question if there is one, otherwise it'll go back to the waitingscreen.
         public void goToNextQuestion()
         {
@@ -129,7 +142,17 @@ namespace Client.Student
             view.cleanUpPreviousQuestion();
             view.getAnswerButtons().Clear();
             questionTimer.Stop();
-            controller.setCurrentQuestionIndex(controller.getCurrentQuestionIndex() + 1);
+
+            if (controller.getCurrentQuestionIndex() == -5)
+            {
+                controller.setCurrentQuestionIndex(-1);
+            }
+            else
+            {
+                controller.setCurrentQuestionIndex(controller.getCurrentQuestionIndex() + 1);
+            }
+            
+            
 
 
             if (this.questionList.MCQuestions.Count + this.questionList.OpenQuestions.Count  - 1 >= controller.getCurrentQuestionIndex())

@@ -109,7 +109,7 @@ namespace Client.View.Docent
         //the students go to the next question
         private void NextQuestionButton_Click(object sender, EventArgs e)
         {
-            SignalRClient.GetInstance().GoToNextQuestionOnClick(1); //go to next question
+            SignalRClient.GetInstance().GoToNextQuestionOnClick(Properties.Settings.Default.Session_Id); //go to next question
             int max = QuestionsListBox.Items.Count - 1; //can't go over the current amount of questions
 
             if (QuestionsListBox.SelectedIndex != max) { 
@@ -121,7 +121,8 @@ namespace Client.View.Docent
 
         private void QuitQuestionList_Click(object sender, EventArgs e)
         {
-
+            SignalRClient.GetInstance().StopQuestionList(Properties.Settings.Default.Session_Id); //Stops the questionlist.
+            this.Close();
         }
     }
 }
