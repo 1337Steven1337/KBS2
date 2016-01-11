@@ -1,18 +1,22 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel;
-using System.Net;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 using Client.Controller;
-using Client.Model;
 using Client.Service.Thread;
-using Client.Controller.Account;
+using System.Net;
 using Client.View.Dialogs;
-using System.Collections.Generic;
-using MetroFramework.Forms;
+using Client.Model;
+using Client.Controller.Account;
 
 namespace Client.View.Account
 {
-    public partial class AddAccountView : MetroForm, IAddAccountView
+    public partial class AddAccountView : Form, IAddAccountView
     {
         #region Instances
         private AddAccountController Controller { get; set; }
@@ -21,23 +25,21 @@ namespace Client.View.Account
         #region Constructors
         public AddAccountView()
         {
-            InitializeComponent();
-            FormBorderStyle = FormBorderStyle.None;
-            this.SelectExcelFileDialog.FileOk += SelectExcelFileDialog_FileOk;
+            this.InitializeComponent();
         }
         #endregion
 
         #region Events
         private void OpenDialogButton_Click(object sender, EventArgs e)
         {
-            this.SelectExcelFileDialog.ShowDialog();
+            this.SelectFileDialog.ShowDialog();
         }
 
         private void SelectExcelFileDialog_FileOk(object sender, CancelEventArgs e)
         {
             if (!e.Cancel)
             {
-                this.Controller.ProcessFile(this.SelectExcelFileDialog.FileName);
+                this.Controller.ProcessFile(this.SelectFileDialog.FileName);
             }
         }
         #endregion
@@ -45,25 +47,25 @@ namespace Client.View.Account
         #region Methods
         public void EnableButton()
         {
-            this.OpenDialogButton.Enabled = true;
+            this.OpenButton.Enabled = true;
         }
 
         public void DisableButton()
         {
-            this.OpenDialogButton.Enabled = false;
+            this.OpenButton.Enabled = false;
         }
 
         public void UpdateProgressBar()
         {
-            this.SaveProgressBar.PerformStep();
+            this.ShowProgressBar.PerformStep();
         }
 
         public void ResetProgressBar(int step, int maxValue)
         {
-            this.SaveProgressBar.Maximum = maxValue;
-            this.SaveProgressBar.Minimum = 0;
-            this.SaveProgressBar.Step = 1;
-            this.SaveProgressBar.Value = 0;
+            this.ShowProgressBar.Maximum = maxValue;
+            this.ShowProgressBar.Minimum = 0;
+            this.ShowProgressBar.Step = 1;
+            this.ShowProgressBar.Value = 0;
         }
 
         public void ShowSaveSucceed()
@@ -96,7 +98,7 @@ namespace Client.View.Account
 
         public IControlHandler GetHandler()
         {
-            return new ControlHandler(this.OpenDialogButton);
+            return new ControlHandler(this.OpenButton);
         }
 
         public void SetController(IController controller)
@@ -139,5 +141,10 @@ namespace Client.View.Account
             throw new NotImplementedException();
         }
         #endregion
+
+        private void AddAccountView2_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }
