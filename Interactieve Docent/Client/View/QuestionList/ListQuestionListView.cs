@@ -176,7 +176,7 @@ namespace Client.View.QuestionList
         public void ShowDeleteQuestionListResult(Model.QuestionList list, HttpStatusCode status)
         {
             if (status == HttpStatusCode.OK && list != null)
-            {
+            { 
                 //Delete list from QuestionLists
                 DeleteItem(list);
 
