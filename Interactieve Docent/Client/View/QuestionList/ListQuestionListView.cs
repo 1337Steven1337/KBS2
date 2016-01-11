@@ -12,7 +12,7 @@ using Client.Model;
 using System.Net;
 using Client.View.Dialogs;
 using Client.View.Question;
-using Client.View.Docent;
+using Client.View.Teacher;
 using Client.Service.SignalR;
 using Client.Controller.Question;
 using System.Drawing;
@@ -171,8 +171,8 @@ namespace Client.View.QuestionList
                     SignalRClient.GetInstance().StartQuestionList(this.getSelectedItem().Id, Properties.Settings.Default.Session_Id);
 
                     //open docentomgeving
-                    DocentOmgevingView view = new DocentOmgevingView(getSelectedItem());
-                    DocentOmgevingController Controller = new DocentOmgevingController(view, getSelectedItem());
+                    TeacherEnvironmentView view = new TeacherEnvironmentView(getSelectedItem());
+                    TeacherEnvironmentController Controller = new TeacherEnvironmentController(view, getSelectedItem());
 
                     BackgroundDialogView background = new BackgroundDialogView(main, view);
                 }

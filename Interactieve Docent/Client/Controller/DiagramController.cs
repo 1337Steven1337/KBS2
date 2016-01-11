@@ -8,7 +8,7 @@ using System;
 using Client.Service.SignalR;
 using Client.Service.Thread;
 using Client.View;
-using Client.View.Docent;
+using Client.View.Teacher;
 
 namespace Client.Controller
 {

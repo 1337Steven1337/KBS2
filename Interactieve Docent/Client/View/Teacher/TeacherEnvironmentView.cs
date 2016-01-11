@@ -19,18 +19,18 @@ using System.Windows.Forms.DataVisualization.Charting;
 using MetroFramework.Forms;
 using Client.Factory;
 
-namespace Client.View.Docent
+namespace Client.View.Teacher
 {
-    public partial class DocentOmgevingView : MetroForm, IView
+    public partial class TeacherEnvironmentView : MetroForm, IView
     {
-        private DocentOmgevingController controller;
+        private TeacherEnvironmentController controller;
         private DiagramController DiagramController;
         public Model.Question CurrentQuestion;
         public int CurrentSelectedQuestion; //indicates which index is selected
 
         public BindingList<Model.Question> Questions = new BindingList<Model.Question>();
 
-        public DocentOmgevingView(Model.QuestionList list)
+        public TeacherEnvironmentView(Model.QuestionList list)
         {
             InitializeComponent();
             this.Size = new Size(1280, 720);
@@ -103,7 +103,7 @@ namespace Client.View.Docent
 
         public void SetController(IController controller)
         {
-            this.controller = (DocentOmgevingController)controller;
+            this.controller = (TeacherEnvironmentController)controller;
         }
 
         //the students go to the next question

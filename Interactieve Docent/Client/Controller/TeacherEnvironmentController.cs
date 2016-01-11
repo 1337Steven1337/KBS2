@@ -1,5 +1,5 @@
 ﻿using Client.View.Diagram;
-using Client.View.Docent;
+using Client.View.Teacher;
 using System.Windows.Forms;
 using Client.Model;
 using System.Collections.Generic;
@@ -15,19 +15,16 @@ using System.Net;
 namespace Client.Controller
 {
 
-    class DocentOmgevingController : AbstractController<Model.Question>
+    class TeacherEnvironmentController : AbstractController<Model.Question>
     {
 
-        private DocentOmgevingView View;
+        private TeacherEnvironmentView View;
         private SignalRClient SignalRClient;
         private QuestionFactory Factory = new QuestionFactory();
         public Model.QuestionList CurrentList;
-        public Model.Question CurrentQuestion;
 
-        public List<int> Votes;
-        public List<string> Questions;
-
-        public DocentOmgevingController(DocentOmgevingView view, Model.QuestionList QuestionList)
+        
+        public TeacherEnvironmentController(TeacherEnvironmentView view, Model.QuestionList QuestionList)
         {
             this.View = view;
             this.View.SetController(this);
