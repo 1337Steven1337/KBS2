@@ -17,5 +17,9 @@ namespace Server.Models.DTO
             this.Text = question.Text;
             this.Pincode_Id = question.Pincode_Id;
         }
+        public OpenQuestionDTO()
+        {
+
+        }
     }
 }

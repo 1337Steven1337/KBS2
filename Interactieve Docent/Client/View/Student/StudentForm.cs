@@ -186,6 +186,7 @@ namespace Client.View.Student
             Client.Model.UserAnswer ua = new Client.Model.UserAnswer();
             ua.PredefinedAnswer_Id = btn.ImageIndex;
             ua.Question_Id = mainForm.getCurrentMCQuestion().Id;
+            ua.Pincode_Id = Client.Properties.Settings.Default.Session_Id.ToString();
 
             Factory.UserAnswerFactory uaf = new Factory.UserAnswerFactory();
             uaf.Save(ua, new ControlHandler(mainForm.timeLabel), saveMCAnswerCallBackHandler);

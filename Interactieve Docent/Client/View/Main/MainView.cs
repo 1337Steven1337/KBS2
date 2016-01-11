@@ -26,7 +26,7 @@ namespace Client.View.Main
     public partial class MainView : MetroForm, IView
     {
         private MainController controller;
-        private int sessionPin = 0;
+        private int sessionPin = 999999;
 
         OpenQuestionFactory openQuestionFactory = new OpenQuestionFactory();
         AccountFactory accountFactory = new AccountFactory();
@@ -106,7 +106,7 @@ namespace Client.View.Main
         {
             int sessionToken = Client.Service.Generate.Token.GenerateSessionId(6);
             
-            sessionPin = sessionToken;
+            //sessionPin = sessionToken;
 
             //Change property in settings
             Properties.Settings.Default.Session_Id = sessionPin;
@@ -221,7 +221,10 @@ namespace Client.View.Main
         {
             foreach (Model.OpenQuestion item in arg1)
             {
-                openQuestionFactory.Delete(item, this.GetHandler(), CallBackDeleted);
+                if (item.Pincode_Id == Client.Properties.Settings.Default.Session_Id.ToString())
+                {
+                    openQuestionFactory.Delete(item, this.GetHandler(), CallBackDeleted);
+                }
             }
             DeletedStatus();
         }
@@ -230,7 +233,10 @@ namespace Client.View.Main
         {
             foreach (Model.Account item in arg1)
             {
-                accountFactory.Delete(item, this.GetHandler(), CallBackDeleted);
+                if (item.Pincode_Id == Client.Properties.Settings.Default.Session_Id.ToString())
+                {
+                    accountFactory.Delete(item, this.GetHandler(), CallBackDeleted);
+                }
             }
             DeletedStatus();
         }
@@ -239,7 +245,10 @@ namespace Client.View.Main
         {
             foreach (Model.UserAnswer item in arg1)
             {
-                userAnswerFactory.Delete(item, this.GetHandler(), CallBackDeleted);
+                if (item.Pincode_Id == Client.Properties.Settings.Default.Session_Id.ToString())
+                {
+                    userAnswerFactory.Delete(item, this.GetHandler(), CallBackDeleted);
+                }
             }
             DeletedStatus();
         }
@@ -263,14 +272,16 @@ namespace Client.View.Main
                 {
                     //If everything is succesfully removed show succes
                     SuccesDialogView view = new SuccesDialogView();
-                    view.Text = "Verwijderen gegevens voltooid! U kunt nu het programma afsluiten.";
+                    view.Text = "Succes";
+                    view.getLabelSucces().Text = "Verwijderen gegevens voltooid! U kunt nu het programma afsluiten.";
                     view.ShowDialog();
                 }
                 else
                 {
                     //If everything is succesfully removed show fail
                     FailedDialogView view = new FailedDialogView();
-                    view.Text = "Oeps! Er is iets misgegaan! Probeer het opnieuw!";
+                    view.Text = "Foutmelding";
+                    view.getLabelFailed().Text = "Oeps! Er is iets misgegaan! Probeer het opnieuw!";
                     view.ShowDialog();
                 }
                 count = 0;

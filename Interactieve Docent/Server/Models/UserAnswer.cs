@@ -28,7 +28,14 @@ namespace Server.Models
         public int Question_Id { get; set; }
 
         [DataMember]
+        public string Pincode_Id { get; set; }
+
+        [DataMember]
         [ForeignKey("Question_Id")]
         public virtual Question Question { get; set; }
+
+        [DataMember]
+        [ForeignKey("Pincode_Id")]
+        public virtual Pincode Pincode { get; set; }
     }
 }
