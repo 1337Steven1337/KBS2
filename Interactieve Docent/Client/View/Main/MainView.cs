@@ -46,6 +46,12 @@ namespace Client.View.Main
             this.ShowInTaskbar = true;
         }
 
+        public void UpdateQuestionList()
+        {
+            //Update QuestonList
+            controller.UpdateList();
+        }
+
         //Remove third column from mainView
         public void RemoveAddQuestionPanel(bool resizeTable)
         {
