@@ -58,7 +58,7 @@ namespace Client.Controller
         {
             this.mainForm.getQuestionList().OpenQuestions.Add(openQuestion);
 
-            if (!mainForm.isBusy())
+            if(!mainForm.isBusy())
             {
                 mainForm.Invoke((Action)delegate () { mainForm.goToNextQuestion(); });
             }
@@ -122,8 +122,9 @@ namespace Client.Controller
         }
 
         //This function will start a questionlist once the teacher starts a selected questionlist
-        private void LIFactory_startList(int list) 
+        private void LIFactory_startList(int list,bool tempo) 
         {
+            mainForm.setTempo(tempo);
             QuestionListFactory listFactory = new QuestionListFactory();
             listFactory.FindById(list,mainForm.getView().GetHandler(),listStartedCallbackHandler);            
             SignalRClient.GetInstance().SubscribeList(list);

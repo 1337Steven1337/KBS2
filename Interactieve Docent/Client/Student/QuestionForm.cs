@@ -24,6 +24,7 @@ namespace Client.Student
         public int List_Id { get; set; }
         private bool busy = false;
         private Timer questionTimer = new Timer();
+        private bool tempo = false;
         private Model.Question currentMCQuestion = null;
         private Model.OpenQuestion currentOpenQuestion = null;
         private Model.QuestionList questionList = new Model.QuestionList();
@@ -77,6 +78,16 @@ namespace Client.Student
             return busy;
         }
 
+        public bool getTempo()
+        {
+            return this.tempo;
+        }
+
+
+        public void setTempo(bool temp)
+        {
+            this.tempo = temp;
+        }
         public Timer getTimer()
         {
             return questionTimer;
@@ -108,7 +119,15 @@ namespace Client.Student
 
                 if (this.questionList.MCQuestions.Count - 1 > controller.getCurrentQuestionIndex())
                 {
-                    goToNextQuestion();
+                    if (!tempo)
+                    {
+                        goToNextQuestion();
+                    }
+                    else
+                    {
+                        view.cleanUpPreviousQuestion();
+                        view.initWaitScreen();
+                    }
                 }
                 else
                 {
@@ -127,9 +146,10 @@ namespace Client.Student
             {
                 questionTimer.Stop();
             }
-
             SignalRClient.GetInstance().UnsubscribeList(this.questionList);
-            this.questionList = new QuestionList();
+            this.questionList.MCQuestions.Clear();
+            this.questionList.OpenQuestions.Clear();
+            this.questionList.Ended = true;
             goToNextQuestion();
 
         }
@@ -143,16 +163,16 @@ namespace Client.Student
             view.getAnswerButtons().Clear();
             questionTimer.Stop();
 
-            if (controller.getCurrentQuestionIndex() == -5)
-            {
-                controller.setCurrentQuestionIndex(-1);
-            }
-            else
-            {
-                controller.setCurrentQuestionIndex(controller.getCurrentQuestionIndex() + 1);
-            }
+                if (controller.getCurrentQuestionIndex() == -5)
+                {
+                    controller.setCurrentQuestionIndex(-1);
+                }
+                else
+                {
+                    controller.setCurrentQuestionIndex(controller.getCurrentQuestionIndex() + 1);
+                }
             
-            
+
 
 
             if (this.questionList.MCQuestions.Count + this.questionList.OpenQuestions.Count  - 1 >= controller.getCurrentQuestionIndex())
@@ -192,7 +212,7 @@ namespace Client.Student
             }
             else if (this.questionList.Ended)
             {
-                MessageBox.Show("Realtime vragenlijst af.");
+                MessageBox.Show("De vragenlijst is gestopt.");
                 
             }
             else

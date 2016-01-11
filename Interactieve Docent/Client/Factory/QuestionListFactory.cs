@@ -12,7 +12,7 @@ namespace Client.Factory
         public delegate void QuestionListRemovedDelegate(QuestionList list);
         public delegate void QuestionListUpdatedDelegate(QuestionList list);
         public delegate void QuestionListContinueDelegate();
-        public delegate void QuestionListStartedDelegate(int listId);
+        public delegate void QuestionListStartedDelegate(int listId,bool tempo);
         public delegate void QuestionListStoppedDelegate();
         #endregion
 
@@ -42,7 +42,7 @@ namespace Client.Factory
             this.SignalRClient.proxy.On<QuestionList>("QuestionListRemoved", this.OnQuestionListRemoved);
             this.SignalRClient.proxy.On<QuestionList>("QuestionListUpdated", this.OnQuestionListUpdated);
             this.SignalRClient.proxy.On("QuestionListContinue", this.OnQuestionListContinue);
-            this.SignalRClient.proxy.On<int>("QuestionListStarted", this.OnQuestionListStarted);
+            this.SignalRClient.proxy.On<int,bool>("QuestionListStarted", this.OnQuestionListStarted);
             this.SignalRClient.proxy.On("QuestionListStopped", this.OnQuestionListStopped);
             this.SignalRClient.Connect();
         }
@@ -77,11 +77,11 @@ namespace Client.Factory
                 this.QuestionListContinue();
             }
         }
-        private void OnQuestionListStarted(int listId)
+        private void OnQuestionListStarted(int listId,bool tempo)
         {
             if (this.QuestionListStarted != null)
             {
-                this.QuestionListStarted(listId);
+                this.QuestionListStarted(listId,tempo);
             }
         }
         private void OnQuestionListStopped()

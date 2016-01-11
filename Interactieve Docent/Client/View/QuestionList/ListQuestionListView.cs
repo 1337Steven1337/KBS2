@@ -168,13 +168,28 @@ namespace Client.View.QuestionList
                 //Confirm 
                 if (dr == DialogResult.Yes)
                 {
-                    SignalRClient.GetInstance().StartQuestionList(this.getSelectedItem().Id, Properties.Settings.Default.Session_Id);
+
+
+                    DialogResult dr2 = new DialogResult();
+                    ConfirmDialogView confm = new ConfirmDialogView();
+                    confm.getLabelConfirm().Text = "Wilt u dat de studenten in eigen tempo door de vragenlijst heen gaan?";
+                    dr2 = confm.ShowDialog();
+                    if (dr2 == DialogResult.Yes)
+                    {
+                       SignalRClient.GetInstance().StartQuestionList(this.getSelectedItem().Id, Properties.Settings.Default.Session_Id,true);
+                    }
+                    else
+                    {
+                        SignalRClient.GetInstance().StartQuestionList(this.getSelectedItem().Id, Properties.Settings.Default.Session_Id,false);
+
+                    }
 
                     //open docentomgeving
                     TeacherEnvironmentView view = new TeacherEnvironmentView(getSelectedItem());
                     TeacherEnvironmentController Controller = new TeacherEnvironmentController(view, getSelectedItem());
 
                     BackgroundDialogView background = new BackgroundDialogView(main, view);
+
                 }
             }
         }

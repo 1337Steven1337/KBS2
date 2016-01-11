@@ -114,9 +114,9 @@ namespace Client.Service.SignalR
             await this.proxy.Invoke("Stop", id);
         }
 
-        public async void StartQuestionList(int id, int session_Id)
+        public async void StartQuestionList(int id, int session_Id, bool tempo)
         {
-            await this.proxy.Invoke("StartQuestionList",id,session_Id);
+            await this.proxy.Invoke("StartQuestionList",id,session_Id,tempo);
         }
 
         public void Connect()

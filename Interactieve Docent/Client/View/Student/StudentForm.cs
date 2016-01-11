@@ -191,7 +191,15 @@ namespace Client.View.Student
             uaf.Save(ua, new ControlHandler(mainForm.timeLabel), saveMCAnswerCallBackHandler);
             if (mainForm.getQuestionList().MCQuestions.Count - 1 > 0)
             {
-                mainForm.goToNextQuestion();
+                if (!mainForm.getTempo())
+                {
+                    mainForm.goToNextQuestion();
+                }
+                else
+                {
+                    this.cleanUpPreviousQuestion();
+                    this.initWaitScreen();
+                }
             }
             else
             {
@@ -208,19 +216,12 @@ namespace Client.View.Student
             ua.Id = btn.ImageIndex;
             ua.Question_Id = mainForm.getCurrentOpenQuestion().Id;
             ua.Answer = mainForm.openQuestionBox.Text;
-            ua.Student = "123456"; //Credentials
+            ua.Student = "S123456";
 
             Factory.UserAnswerToOpenQuestionFactory uaf = new Factory.UserAnswerToOpenQuestionFactory();
             uaf.Save(ua, new ControlHandler(mainForm.timeLabel), saveOpenAnswerCallBackHandler);
-            if (mainForm.getQuestionList().OpenQuestions.Count - 1 > 0)
-            {
-                mainForm.goToNextQuestion();
-            }
-            else
-            {
-                this.cleanUpPreviousQuestion();
-                this.initWaitScreen();
-            }
+            mainForm.goToNextQuestion();
+
         }
 
 
