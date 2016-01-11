@@ -103,7 +103,7 @@ namespace Client.Controller.Account
             Model.Account account = new Model.Account();
             account.Student = row.Cells[1].Text.ToLower();
             account.Password = Token.Sha256(this.GeneratePassword(5, account.Student));
-
+            account.Pincode_Id = Client.Properties.Settings.Default.Session_Id.ToString();
             this.Accounts.Add(account);
             this.AccountSaveResults.Add(account.Student, 0);
         }

@@ -29,7 +29,8 @@ namespace Server.Controllers
         {
             var accounts = from a in db.Accounts select new AccountDTO()  {
                 Id = a.Id,
-                Student = a.Student
+                Student = a.Student,
+                Pincode_Id = a.Pincode_Id
             };
 
             return accounts;
@@ -60,6 +61,22 @@ namespace Server.Controllers
             }
 
             return Ok(new AccountDTO(account));
+        }
+
+        // DELETE: api/Accounts/5
+        [ResponseType(typeof(AccountDTO))]
+        public async Task<IHttpActionResult> DeleteAccount(int id)
+        {
+            Account account = await db.Accounts.FindAsync(id);
+            if (account == null)
+            {
+                return NotFound();
+            }
+
+            db.Accounts.Remove(account);
+            await db.SaveChangesAsync();
+
+            return Ok(account);
         }
 
         // POST: api/Accounts

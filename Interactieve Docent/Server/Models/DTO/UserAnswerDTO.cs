@@ -7,10 +7,28 @@ namespace Server.Models.DTO
 {
     public class UserAnswerDTO
     {
+        private PredefinedAnswerDTO _PA = null;
+
+        public PredefinedAnswerDTO PredefinedAnswer
+        {
+            get
+            {
+                return _PA;
+            }
+        }
+
         public int Id { get; set; }
         public int Question_Id { get; set; }
         public int PredefinedAnswer_Id { get; set; }
-        public PredefinedAnswer PredefinedAnswer { get; set; }
+        public string Pincode_Id { get; set; }
+
+        public PredefinedAnswer _PredefinedAnswer {
+            set
+            {
+                this._PA = new PredefinedAnswerDTO(value);
+            }
+        }
+
         public UserAnswerDTO() { }
 
         public UserAnswerDTO(UserAnswer userAnswer)
@@ -18,6 +36,7 @@ namespace Server.Models.DTO
             this.Id = userAnswer.Id;
             this.Question_Id = userAnswer.Question_Id;
             this.PredefinedAnswer_Id = userAnswer.PredefinedAnswer_Id;
+            this.Pincode_Id = userAnswer.Pincode_Id;
         }
     }
 }

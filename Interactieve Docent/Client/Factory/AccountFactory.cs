@@ -24,7 +24,7 @@ namespace Client.Factory
             Dictionary<string, object> data = new Dictionary<string, object>();
             data.Add("Student", instance.Student);
             data.Add("Password", instance.Password);
-
+            data.Add("Pincode_Id", instance.Pincode_Id);
             return data;
         }
 

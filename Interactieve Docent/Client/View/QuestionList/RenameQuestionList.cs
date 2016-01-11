@@ -9,26 +9,25 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using MetroFramework.Forms;
+using MetroFramework.Components;
+using MetroFramework.Controls;
+using MetroFramework.Drawing;
+
+using MetroFramework;
 using System.Windows.Forms;
 
 namespace Client.View.QuestionList
 {
-    public partial class RenameQuestionList : Form
+    public partial class RenameQuestionList : MetroForm
     {
         private int QuestionListId;
-
-        private Button btnOk;
-        private Button btnCancel;
-
-        private TextBox textBox;
-
-        private Label textLabel;
 
         private ListQuestionListController Controller;
 
         public Boolean QuestionListNameChanged;
         
-        public RenameQuestionList(int Id, ListQuestionListController Controller)
+        public RenameQuestionList(int Id, String name, ListQuestionListController Controller)
         {
             InitializeComponent();
 
@@ -36,28 +35,10 @@ namespace Client.View.QuestionList
 
             this.QuestionListId = Id;
             this.QuestionListNameChanged = false;
-
-            textLabel = new Label() { Left = 50, Top = 20, Text = "Vraag:" }; ;
-            textBox = new TextBox() { Left = 50, Top = 50, Width = 400 };
-            btnCancel = new Button() { Left = 300, Top = 75, Width = 70, Height = 30, Text = "Annuleren" };
-            btnOk = new Button() { Left = 380, Top = 75, Width = 70, Height = 30, Text = "Opslaan" };
-
-            this.Width = 500;
-            this.Height = 150;
-            this.FormBorderStyle = FormBorderStyle.FixedDialog;
-            this.Text = "Wijzig vraag";
-            this.StartPosition = FormStartPosition.CenterScreen;
-            
-            this.Controls.Add(textLabel);
-            this.Controls.Add(textBox);
-            this.Controls.Add(btnOk);
-            this.Controls.Add(btnCancel);
-
-            this.btnOk.Click += BtnOk_Click;
-            this.btnCancel.Click += BtnCancel_Click;
+            this.textBox.Text = name;
         }
 
-        private void BtnOk_Click(object sender, EventArgs e)
+        private void BtnSave_Click(object sender, EventArgs e)
         {
             if (!String.IsNullOrEmpty(textBox.Text))
             {
@@ -104,7 +85,7 @@ namespace Client.View.QuestionList
 
             }
             else
-            {
+            { 
                 this.Close();
             }
         }

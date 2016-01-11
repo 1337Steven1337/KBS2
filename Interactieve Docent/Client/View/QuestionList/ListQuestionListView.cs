@@ -189,7 +189,6 @@ namespace Client.View.QuestionList
                     TeacherEnvironmentController Controller = new TeacherEnvironmentController(view, getSelectedItem());
 
                     BackgroundDialogView background = new BackgroundDialogView(main, view);
-
                 }
             }
         }
@@ -277,7 +276,7 @@ namespace Client.View.QuestionList
             if (index != System.Windows.Forms.ListBox.NoMatches)
             {
                 //if there is open a dialog
-                RenameQuestionListDialog = new RenameQuestionList(this.getSelectedItem().Id, this.Controller);
+                RenameQuestionListDialog = new RenameQuestionList(this.getSelectedItem().Id, this.getSelectedItem().Name, this.Controller);
                 // make the background go darker
                 BackgroundDialogView view = new BackgroundDialogView(main, RenameQuestionListDialog);
                 if (RenameQuestionListDialog.QuestionListNameChanged)

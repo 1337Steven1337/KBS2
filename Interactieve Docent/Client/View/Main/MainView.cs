@@ -46,6 +46,12 @@ namespace Client.View.Main
             this.ShowInTaskbar = true;
         }
 
+        public void UpdateQuestionList()
+        {
+            //Update QuestonList
+            controller.UpdateList();
+        }
+
         //Remove third column from mainView
         public void RemoveAddQuestionPanel(bool resizeTable)
         {
@@ -221,7 +227,10 @@ namespace Client.View.Main
         {
             foreach (Model.OpenQuestion item in arg1)
             {
-                openQuestionFactory.Delete(item, this.GetHandler(), CallBackDeleted);
+                if (item.Pincode_Id == Client.Properties.Settings.Default.Session_Id.ToString())
+                {
+                    openQuestionFactory.Delete(item, this.GetHandler(), CallBackDeleted);
+                }
             }
             DeletedStatus();
         }
@@ -230,7 +239,10 @@ namespace Client.View.Main
         {
             foreach (Model.Account item in arg1)
             {
-                accountFactory.Delete(item, this.GetHandler(), CallBackDeleted);
+                if (item.Pincode_Id == Client.Properties.Settings.Default.Session_Id.ToString())
+                {
+                    accountFactory.Delete(item, this.GetHandler(), CallBackDeleted);
+                }
             }
             DeletedStatus();
         }
@@ -239,7 +251,10 @@ namespace Client.View.Main
         {
             foreach (Model.UserAnswer item in arg1)
             {
-                userAnswerFactory.Delete(item, this.GetHandler(), CallBackDeleted);
+                if (item.Pincode_Id == Client.Properties.Settings.Default.Session_Id.ToString())
+                {
+                    userAnswerFactory.Delete(item, this.GetHandler(), CallBackDeleted);
+                }
             }
             DeletedStatus();
         }
@@ -263,14 +278,16 @@ namespace Client.View.Main
                 {
                     //If everything is succesfully removed show succes
                     SuccesDialogView view = new SuccesDialogView();
-                    view.Text = "Verwijderen gegevens voltooid! U kunt nu het programma afsluiten.";
+                    view.Text = "Succes";
+                    view.getLabelSucces().Text = "Verwijderen gegevens voltooid! U kunt nu het programma afsluiten.";
                     view.ShowDialog();
                 }
                 else
                 {
                     //If everything is succesfully removed show fail
                     FailedDialogView view = new FailedDialogView();
-                    view.Text = "Oeps! Er is iets misgegaan! Probeer het opnieuw!";
+                    view.Text = "Foutmelding";
+                    view.getLabelFailed().Text = "Oeps! Er is iets misgegaan! Probeer het opnieuw!";
                     view.ShowDialog();
                 }
                 count = 0;

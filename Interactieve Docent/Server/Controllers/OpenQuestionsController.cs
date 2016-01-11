@@ -18,9 +18,16 @@ namespace Server.Controllers
     public class OpenQuestionsController : ApiControllerWithHub<Hubs.EventHub>
     {
         // GET: api/OpenQuestions
-        public IQueryable<OpenQuestion> GetOpenQuestions()
+        public IQueryable<OpenQuestionDTO> GetOpenQuestions()
         {
-            return db.OpenQuestions;
+            var OpenQuestions = from q in db.OpenQuestions
+                                select new OpenQuestionDTO()
+                                {
+                                    Id = q.Id,
+                                    Text = q.Text,
+                                };
+
+            return OpenQuestions;
         }
 
         // GET: api/OpenQuestions/5

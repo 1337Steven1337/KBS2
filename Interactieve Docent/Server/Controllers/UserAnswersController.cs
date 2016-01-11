@@ -30,7 +30,8 @@ namespace Server.Controllers
                      {
                          Id = q.Id,
                          Question_Id = q.Question.Id,
-                         PredefinedAnswer = q.PredefinedAnswer
+                         _PredefinedAnswer = q.PredefinedAnswer,
+                         Pincode_Id = q.Pincode_Id
                      };
 
             return ua;
@@ -46,7 +47,8 @@ namespace Server.Controllers
                               {
                                   Id = ua.Id,
                                   Question_Id = ua.Question.Id,
-                                  PredefinedAnswer = ua.PredefinedAnswer
+                                  _PredefinedAnswer = ua.PredefinedAnswer,
+                                  Pincode_Id = ua.Pincode_Id
                               };
 
             return userAnswers.FirstOrDefault(x => x.Id == x.Id);

@@ -105,7 +105,12 @@ namespace Client.Factory
 
         protected override Dictionary<string, object> UpdateFields(QuestionList instance)
         {
-            throw new NotImplementedException();
+            Dictionary<string, object> values = new Dictionary<string, object>();
+            values.Add("Id", instance.Id);
+            values.Add("Name", instance.Name);
+            values.Add("Ended", instance.Ended);
+
+            return values;
         }
         #endregion
     }

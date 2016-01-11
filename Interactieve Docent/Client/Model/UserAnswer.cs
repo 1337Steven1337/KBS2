@@ -11,5 +11,6 @@ namespace Client.Model
         public override int Id { get; set; }
         public int Question_Id { get; set; }
         public int PredefinedAnswer_Id { get; set; }
+        public string Pincode_Id { get; set; }
     }
 }
