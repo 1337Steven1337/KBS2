@@ -1,6 +1,6 @@
-﻿namespace Client.View.Docent
+﻿namespace Client.View.Teacher
 {
-    partial class DocentOmgevingView
+    partial class TeacherEnvironmentView
     {
         /// <summary>
         /// Required designer variable.
@@ -110,15 +110,15 @@
             this.metroButton1.UseStyleColors = true;
             this.metroButton1.Click += new System.EventHandler(this.QuitQuestionList_Click);
             // 
-            // DocentOmgevingView
+            // TeacherEnvironmentView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(600, 500);
             this.Controls.Add(this.tableWrapper);
-            this.Name = "DocentOmgevingView";
+            this.Name = "TeacherEnvironmentView";
             this.Style = MetroFramework.MetroColorStyle.Orange;
-            this.Text = "DocentOmgevingView";
+            this.Text = "TeacherEnvironmentView";
             this.Theme = MetroFramework.MetroThemeStyle.Default;
             this.tableWrapper.ResumeLayout(false);
             this.tableLeft.ResumeLayout(false);

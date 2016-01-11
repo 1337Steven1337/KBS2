@@ -30,9 +30,11 @@
         {
             this.tableFourColumn = new System.Windows.Forms.TableLayoutPanel();
             this.tableLeftButtons = new System.Windows.Forms.TableLayoutPanel();
-            this.OpenQuestionButton = new MetroFramework.Controls.MetroTile();
-            this.ImportAccountButton = new MetroFramework.Controls.MetroTile();
             this.SessionLabel = new MetroFramework.Controls.MetroLabel();
+            this.ResultOpenQuestionButton = new MetroFramework.Controls.MetroButton();
+            this.EndSession = new MetroFramework.Controls.MetroButton();
+            this.ImportAccountButton = new MetroFramework.Controls.MetroButton();
+            this.OpenQuestionButton = new MetroFramework.Controls.MetroButton();
             this.EndSessionButton = new MetroFramework.Controls.MetroTile();
             this.tableFourColumn.SuspendLayout();
             this.tableLeftButtons.SuspendLayout();
@@ -59,51 +61,22 @@
             // 
             this.tableLeftButtons.ColumnCount = 1;
             this.tableLeftButtons.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLeftButtons.Controls.Add(this.OpenQuestionButton, 0, 0);
-            this.tableLeftButtons.Controls.Add(this.ImportAccountButton, 0, 1);
-            this.tableLeftButtons.Controls.Add(this.SessionLabel, 0, 2);
+            this.tableLeftButtons.Controls.Add(this.SessionLabel, 0, 4);
+            this.tableLeftButtons.Controls.Add(this.ResultOpenQuestionButton, 0, 2);
+            this.tableLeftButtons.Controls.Add(this.EndSession, 0, 3);
+            this.tableLeftButtons.Controls.Add(this.ImportAccountButton, 0, 0);
+            this.tableLeftButtons.Controls.Add(this.OpenQuestionButton, 0, 1);
             this.tableLeftButtons.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLeftButtons.Location = new System.Drawing.Point(3, 3);
             this.tableLeftButtons.Name = "tableLeftButtons";
-            this.tableLeftButtons.RowCount = 3;
+            this.tableLeftButtons.RowCount = 5;
             this.tableLeftButtons.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 60F));
             this.tableLeftButtons.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 55F));
-            this.tableLeftButtons.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLeftButtons.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 55F));
+            this.tableLeftButtons.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 55F));
             this.tableLeftButtons.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tableLeftButtons.Size = new System.Drawing.Size(52, 262);
             this.tableLeftButtons.TabIndex = 1;
-            // 
-            // OpenQuestionButton
-            // 
-            this.OpenQuestionButton.ActiveControl = null;
-            this.OpenQuestionButton.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.OpenQuestionButton.Location = new System.Drawing.Point(3, 3);
-            this.OpenQuestionButton.Name = "OpenQuestionButton";
-            this.OpenQuestionButton.Size = new System.Drawing.Size(46, 54);
-            this.OpenQuestionButton.Style = MetroFramework.MetroColorStyle.Orange;
-            this.OpenQuestionButton.TabIndex = 2;
-            this.OpenQuestionButton.Text = "Openvraag toevoegen";
-            this.OpenQuestionButton.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.OpenQuestionButton.Theme = MetroFramework.MetroThemeStyle.Dark;
-            this.OpenQuestionButton.TileTextFontWeight = MetroFramework.MetroTileTextWeight.Bold;
-            this.OpenQuestionButton.UseSelectable = true;
-            this.OpenQuestionButton.UseTileImage = true;
-            this.OpenQuestionButton.Click += new System.EventHandler(this.OpenQuestionButton_Click);
-            // 
-            // ImportAccountButton
-            // 
-            this.ImportAccountButton.ActiveControl = null;
-            this.ImportAccountButton.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ImportAccountButton.Location = new System.Drawing.Point(3, 63);
-            this.ImportAccountButton.Name = "ImportAccountButton";
-            this.ImportAccountButton.Size = new System.Drawing.Size(46, 49);
-            this.ImportAccountButton.Style = MetroFramework.MetroColorStyle.Orange;
-            this.ImportAccountButton.TabIndex = 3;
-            this.ImportAccountButton.Text = "Importeer accounts";
-            this.ImportAccountButton.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.ImportAccountButton.TileTextFontWeight = MetroFramework.MetroTileTextWeight.Bold;
-            this.ImportAccountButton.UseSelectable = true;
-            this.ImportAccountButton.Click += new System.EventHandler(this.ImportAccountButton_Click);
             // 
             // SessionLabel
             // 
@@ -118,6 +91,70 @@
             this.SessionLabel.Text = "Sessie";
             this.SessionLabel.Theme = MetroFramework.MetroThemeStyle.Dark;
             this.SessionLabel.UseStyleColors = true;
+            // 
+            // ResultOpenQuestionButton
+            // 
+            this.ResultOpenQuestionButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(119)))), ((int)(((byte)(53)))));
+            this.ResultOpenQuestionButton.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ResultOpenQuestionButton.Location = new System.Drawing.Point(3, 118);
+            this.ResultOpenQuestionButton.Name = "ResultOpenQuestionButton";
+            this.ResultOpenQuestionButton.Size = new System.Drawing.Size(46, 49);
+            this.ResultOpenQuestionButton.Style = MetroFramework.MetroColorStyle.White;
+            this.ResultOpenQuestionButton.TabIndex = 5;
+            this.ResultOpenQuestionButton.Text = "Resultaten open vraag";
+            this.ResultOpenQuestionButton.Theme = MetroFramework.MetroThemeStyle.Dark;
+            this.ResultOpenQuestionButton.UseCustomBackColor = true;
+            this.ResultOpenQuestionButton.UseSelectable = true;
+            this.ResultOpenQuestionButton.UseStyleColors = true;
+            this.ResultOpenQuestionButton.Click += new System.EventHandler(this.ResultOpenQuestionButton_Click);
+            // 
+            // EndSession
+            // 
+            this.EndSession.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(119)))), ((int)(((byte)(53)))));
+            this.EndSession.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.EndSession.Location = new System.Drawing.Point(3, 173);
+            this.EndSession.Name = "EndSession";
+            this.EndSession.Size = new System.Drawing.Size(46, 49);
+            this.EndSession.Style = MetroFramework.MetroColorStyle.White;
+            this.EndSession.TabIndex = 6;
+            this.EndSession.Text = "Sessie eindigen";
+            this.EndSession.Theme = MetroFramework.MetroThemeStyle.Dark;
+            this.EndSession.UseCustomBackColor = true;
+            this.EndSession.UseSelectable = true;
+            this.EndSession.UseStyleColors = true;
+            this.EndSession.Click += new System.EventHandler(this.EndSessionButton_Click);
+            // 
+            // ImportAccountButton
+            // 
+            this.ImportAccountButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(119)))), ((int)(((byte)(53)))));
+            this.ImportAccountButton.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ImportAccountButton.Location = new System.Drawing.Point(3, 3);
+            this.ImportAccountButton.Name = "ImportAccountButton";
+            this.ImportAccountButton.Size = new System.Drawing.Size(46, 54);
+            this.ImportAccountButton.Style = MetroFramework.MetroColorStyle.White;
+            this.ImportAccountButton.TabIndex = 7;
+            this.ImportAccountButton.Text = "Accounts importeren";
+            this.ImportAccountButton.Theme = MetroFramework.MetroThemeStyle.Dark;
+            this.ImportAccountButton.UseCustomBackColor = true;
+            this.ImportAccountButton.UseSelectable = true;
+            this.ImportAccountButton.UseStyleColors = true;
+            this.ImportAccountButton.Click += new System.EventHandler(this.ImportAccountButton_Click);
+            // 
+            // OpenQuestionButton
+            // 
+            this.OpenQuestionButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(119)))), ((int)(((byte)(53)))));
+            this.OpenQuestionButton.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.OpenQuestionButton.Location = new System.Drawing.Point(3, 63);
+            this.OpenQuestionButton.Name = "OpenQuestionButton";
+            this.OpenQuestionButton.Size = new System.Drawing.Size(46, 49);
+            this.OpenQuestionButton.Style = MetroFramework.MetroColorStyle.White;
+            this.OpenQuestionButton.TabIndex = 8;
+            this.OpenQuestionButton.Text = "Open vraag toevoegen";
+            this.OpenQuestionButton.Theme = MetroFramework.MetroThemeStyle.Dark;
+            this.OpenQuestionButton.UseCustomBackColor = true;
+            this.OpenQuestionButton.UseSelectable = true;
+            this.OpenQuestionButton.UseStyleColors = true;
+            this.OpenQuestionButton.Click += new System.EventHandler(this.OpenQuestionButton_Click);
             // 
             // EndSessionButton
             // 
@@ -158,9 +195,11 @@
 
         private System.Windows.Forms.TableLayoutPanel tableFourColumn;
         private System.Windows.Forms.TableLayoutPanel tableLeftButtons;
-        private MetroFramework.Controls.MetroTile OpenQuestionButton;
-        private MetroFramework.Controls.MetroTile ImportAccountButton;
         private MetroFramework.Controls.MetroTile EndSessionButton;
         private MetroFramework.Controls.MetroLabel SessionLabel;
+        private MetroFramework.Controls.MetroButton ResultOpenQuestionButton;
+        private MetroFramework.Controls.MetroButton EndSession;
+        private MetroFramework.Controls.MetroButton ImportAccountButton;
+        private MetroFramework.Controls.MetroButton OpenQuestionButton;
     }
 }
