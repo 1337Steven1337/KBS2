@@ -276,12 +276,11 @@ namespace Client.View.QuestionList
         public void ShowUpdateQuestionListResult(Model.QuestionList instance, HttpStatusCode status)
         {
             //check the result
-            if (status == HttpStatusCode.OK)
+            if (status == HttpStatusCode.NoContent)
             {
                 //if you get back an OK result then close the dialog 
                 RenameQuestionListDialog.Close();
             }
         }
-
     }
 }
