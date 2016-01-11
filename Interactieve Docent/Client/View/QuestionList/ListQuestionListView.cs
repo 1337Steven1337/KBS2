@@ -20,7 +20,7 @@ using System.Drawing;
 namespace Client.View.QuestionList
 {
     public partial class ListQuestionListView : MetroForm, IListView<Model.QuestionList>
-    {
+    { 
         #region Properties
         public BindingList<Model.QuestionList> QuestionLists = new BindingList<Model.QuestionList>();
         #endregion
@@ -263,7 +263,7 @@ namespace Client.View.QuestionList
             if (index != System.Windows.Forms.ListBox.NoMatches)
             {
                 //if there is open a dialog
-                RenameQuestionListDialog = new RenameQuestionList(this.getSelectedItem().Id, this.Controller);
+                RenameQuestionListDialog = new RenameQuestionList(this.getSelectedItem().Id, this.getSelectedItem().Name, this.Controller);
                 // make the background go darker
                 BackgroundDialogView view = new BackgroundDialogView(main, RenameQuestionListDialog);
                 if (RenameQuestionListDialog.QuestionListNameChanged)
@@ -277,12 +277,11 @@ namespace Client.View.QuestionList
         public void ShowUpdateQuestionListResult(Model.QuestionList instance, HttpStatusCode status)
         {
             //check the result
-            if (status == HttpStatusCode.OK)
+            if (status == HttpStatusCode.NoContent)
             {
                 //if you get back an OK result then close the dialog 
                 RenameQuestionListDialog.Close();
             }
         }
-
     }
 }

@@ -32,7 +32,7 @@ namespace Client.Controller
 
             this.UserAnswerToOpenQuestionFactory.UserAnswerToOpenQuestionAdded += UserAnswerToOpenQuestionFactory_userAnswerToOpenQuestionAdded;
 
-            LoadList();
+            //LoadList();
             view.Show();
         }
 

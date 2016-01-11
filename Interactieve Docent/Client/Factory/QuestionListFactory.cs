@@ -13,7 +13,7 @@ namespace Client.Factory
         public delegate void QuestionListUpdatedDelegate(QuestionList list);
         public delegate void QuestionListContinueDelegate();
         public delegate void QuestionListStartedDelegate(int listId);
-        public delegate void QuestionListStoppedDelegate(int listId);
+        public delegate void QuestionListStoppedDelegate();
         #endregion
 
         #region Events
@@ -43,7 +43,7 @@ namespace Client.Factory
             this.SignalRClient.proxy.On<QuestionList>("QuestionListUpdated", this.OnQuestionListUpdated);
             this.SignalRClient.proxy.On("QuestionListContinue", this.OnQuestionListContinue);
             this.SignalRClient.proxy.On<int>("QuestionListStarted", this.OnQuestionListStarted);
-            this.SignalRClient.proxy.On<int>("QuestionListStopped", this.OnQuestionListStopped);
+            this.SignalRClient.proxy.On("QuestionListStopped", this.OnQuestionListStopped);
             this.SignalRClient.Connect();
         }
         #endregion
@@ -84,11 +84,11 @@ namespace Client.Factory
                 this.QuestionListStarted(listId);
             }
         }
-        private void OnQuestionListStopped(int listId)
+        private void OnQuestionListStopped()
         {
             if (this.QuestionListStopped != null)
             {
-                this.QuestionListStopped(listId);
+                this.QuestionListStopped();
             }
         }
         #endregion
@@ -105,7 +105,12 @@ namespace Client.Factory
 
         protected override Dictionary<string, object> UpdateFields(QuestionList instance)
         {
-            throw new NotImplementedException();
+            Dictionary<string, object> values = new Dictionary<string, object>();
+            values.Add("Id", instance.Id);
+            values.Add("Name", instance.Name);
+            values.Add("Ended", instance.Ended);
+
+            return values;
         }
         #endregion
     }

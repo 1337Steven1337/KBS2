@@ -41,6 +41,7 @@ namespace Client.Controller
             QuestionListFactory listFactory = new QuestionListFactory();
             listFactory.QuestionListContinue += LIFactory_continue;
             listFactory.QuestionListStarted += LIFactory_startList;
+            listFactory.QuestionListStopped += LIFactory_stopped;
 
 
             //Adds an event to the PredefinedAnswerAdded function which is called for each PredefinedAnswer in the next question.
@@ -67,7 +68,14 @@ namespace Client.Controller
         //This function calls the goToNextQuestion function in the QuestionForm.
         private void LIFactory_continue()
         {
-                mainForm.Invoke((Action) delegate() { this.mainForm.goToNextQuestion(); });
+            mainForm.Invoke((Action)delegate () { this.mainForm.goToNextQuestion(); });
+        }
+
+        //This function is called when the teacher presses "Stop list"
+        //This function calls the clearQuestionLists
+        private void LIFactory_stopped()
+        {
+            mainForm.Invoke((Action)delegate () { this.mainForm.stopQuestionList(); });
         }
 
         //This function will add the question to the questionlist underneath.
@@ -118,7 +126,11 @@ namespace Client.Controller
         {
             QuestionListFactory listFactory = new QuestionListFactory();
             listFactory.FindById(list,mainForm.getView().GetHandler(),listStartedCallbackHandler);            
-            SignalRClient.GetInstance().SubscribeList(list);        
+            SignalRClient.GetInstance().SubscribeList(list);
+            if (mainForm.getController().getCurrentQuestionIndex() > -1)
+            {
+                mainForm.getController().setCurrentQuestionIndex(-1);
+            }      
         }
 
 

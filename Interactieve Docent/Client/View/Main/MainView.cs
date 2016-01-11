@@ -283,5 +283,12 @@ namespace Client.View.Main
                 removed = true;
             }
         }
+
+        private void ResultOpenQuestionButton_Click(object sender, EventArgs e)
+        {
+            UserAnswerToOpenQuestionView view = new UserAnswerToOpenQuestionView();
+            UserAnswerToOpenQuestionController controller = new UserAnswerToOpenQuestionController(view);
+            view.Show();
+        }
     }
 }

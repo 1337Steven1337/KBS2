@@ -87,7 +87,8 @@ namespace Client.View.OpenQuestion
 
         public void setText(string text)
         {
-            this.Text = "Vraag: " + text;
+            this.Text = "Resultaten open vraag";
+            this.QuestionText.Text = "Vraag: " + text;
         }
 
         private void UserAnswerToOpenQuestionView_FormClosing(object sender, FormClosingEventArgs e)

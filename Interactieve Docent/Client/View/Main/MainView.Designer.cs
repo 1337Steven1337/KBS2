@@ -31,11 +31,11 @@
             this.tableFourColumn = new System.Windows.Forms.TableLayoutPanel();
             this.tableLeftButtons = new System.Windows.Forms.TableLayoutPanel();
             this.SessionLabel = new MetroFramework.Controls.MetroLabel();
-            this.EndSessionButton = new MetroFramework.Controls.MetroTile();
             this.ResultOpenQuestionButton = new MetroFramework.Controls.MetroButton();
             this.EndSession = new MetroFramework.Controls.MetroButton();
             this.ImportAccountButton = new MetroFramework.Controls.MetroButton();
             this.OpenQuestionButton = new MetroFramework.Controls.MetroButton();
+            this.EndSessionButton = new MetroFramework.Controls.MetroTile();
             this.tableFourColumn.SuspendLayout();
             this.tableLeftButtons.SuspendLayout();
             this.SuspendLayout();
@@ -92,18 +92,6 @@
             this.SessionLabel.Theme = MetroFramework.MetroThemeStyle.Dark;
             this.SessionLabel.UseStyleColors = true;
             // 
-            // EndSessionButton
-            // 
-            this.EndSessionButton.ActiveControl = null;
-            this.EndSessionButton.BackColor = System.Drawing.Color.White;
-            this.EndSessionButton.Location = new System.Drawing.Point(3, 69);
-            this.EndSessionButton.Name = "EndSessionButton";
-            this.EndSessionButton.Size = new System.Drawing.Size(84, 49);
-            this.EndSessionButton.TabIndex = 3;
-            this.EndSessionButton.Text = "Sessie Eindigen";
-            this.EndSessionButton.UseSelectable = true;
-            this.EndSessionButton.Click += new System.EventHandler(this.EndSessionButton_Click);
-            // 
             // ResultOpenQuestionButton
             // 
             this.ResultOpenQuestionButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(119)))), ((int)(((byte)(53)))));
@@ -118,6 +106,7 @@
             this.ResultOpenQuestionButton.UseCustomBackColor = true;
             this.ResultOpenQuestionButton.UseSelectable = true;
             this.ResultOpenQuestionButton.UseStyleColors = true;
+            this.ResultOpenQuestionButton.Click += new System.EventHandler(this.ResultOpenQuestionButton_Click);
             // 
             // EndSession
             // 
@@ -133,6 +122,7 @@
             this.EndSession.UseCustomBackColor = true;
             this.EndSession.UseSelectable = true;
             this.EndSession.UseStyleColors = true;
+            this.EndSession.Click += new System.EventHandler(this.EndSessionButton_Click);
             // 
             // ImportAccountButton
             // 
@@ -165,6 +155,18 @@
             this.OpenQuestionButton.UseSelectable = true;
             this.OpenQuestionButton.UseStyleColors = true;
             this.OpenQuestionButton.Click += new System.EventHandler(this.OpenQuestionButton_Click);
+            // 
+            // EndSessionButton
+            // 
+            this.EndSessionButton.ActiveControl = null;
+            this.EndSessionButton.BackColor = System.Drawing.Color.White;
+            this.EndSessionButton.Location = new System.Drawing.Point(3, 69);
+            this.EndSessionButton.Name = "EndSessionButton";
+            this.EndSessionButton.Size = new System.Drawing.Size(84, 49);
+            this.EndSessionButton.TabIndex = 3;
+            this.EndSessionButton.Text = "Sessie Eindigen";
+            this.EndSessionButton.UseSelectable = true;
+            this.EndSessionButton.Click += new System.EventHandler(this.EndSessionButton_Click);
             // 
             // MainView
             // 
