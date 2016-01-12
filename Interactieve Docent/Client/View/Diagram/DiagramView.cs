@@ -1,12 +1,12 @@
 ﻿using System.Windows.Forms;
 using Client.Controller;
-using Client.Model;
 using System.Collections.Generic;
 using System.Windows.Forms.DataVisualization.Charting;
 using System.Drawing;
 using System;
 using Client.Service.Thread;
 using MetroFramework.Forms;
+
 namespace Client.View.Diagram
 {
     public partial class DiagramView : MetroForm, IDiagramView
