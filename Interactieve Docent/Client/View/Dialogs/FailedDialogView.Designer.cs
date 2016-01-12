@@ -56,7 +56,7 @@
             this.Movable = false;
             this.Name = "FailedDialogView";
             this.Style = MetroFramework.MetroColorStyle.Red;
-            this.Text = "Fout Melding";
+            this.Text = "Foutmelding";
             this.Theme = MetroFramework.MetroThemeStyle.Default;
             this.ResumeLayout(false);
 
