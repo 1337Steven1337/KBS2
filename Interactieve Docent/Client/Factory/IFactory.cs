@@ -1,12 +1,9 @@
-﻿ using Client.Model;
+﻿using Client.Model;
 using RestSharp;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Net;
-using System.Text;
-using System.Threading.Tasks;
-
+ 
 namespace Client.Factory
 {
     public interface IFactory<T> where T : AbstractModel

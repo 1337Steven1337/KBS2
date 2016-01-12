@@ -1,22 +1,21 @@
-﻿using Client.Factory;
-using Client.Model;
+﻿using Client.Model;
 using Client.Service.Login;
 using RestSharp;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Net;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Client.Factory
 {
     public class BaseFactory<T> : IFactory<T> where T : AbstractModel, new()
     {
+        #region Properties
         private RestClient RestClient = new RestClient();
         private LoginClient LoginClient;
         private string Resource;
+        #endregion
 
+        #region Constructors
         public BaseFactory() : this(true) {}
 
         public BaseFactory(bool requireLogin)
@@ -38,18 +37,24 @@ namespace Client.Factory
                 }
             }
         }
+        #endregion
 
+        #region Actions
         private void LoginClient_CredentialsChanged(string token)
         {
             this.RestClient.AddDefaultHeader("Authorization", token);
             this.LoginClient.CredentialsChanged -= LoginClient_CredentialsChanged;
         }
+        #endregion
 
+        #region Setters
         public void SetResource(string resource)
         {
             this.Resource = resource;
-        } 
+        }
+        #endregion
 
+        #region Factory methods
         public void UpdateAsync(List<KeyValuePair<string, object>> data, Action<T, HttpStatusCode, IRestResponse> callback)
         {
             RestRequest request = new RestRequest();
@@ -128,10 +133,13 @@ namespace Client.Factory
                 callback(response.Data, response.StatusCode, response);
             });
         }
+        #endregion
 
+        #region UnimplementedException
         public void ExecuteAsync<C>(IRestRequest request, Action<IRestResponse<C>> callback) where C : new()
         {
             throw new NotImplementedException();
         }
+        #endregion
     }
 }

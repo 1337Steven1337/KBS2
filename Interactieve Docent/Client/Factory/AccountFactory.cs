@@ -1,23 +1,23 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Client.Model;
 
 namespace Client.Factory
 {
     public class AccountFactory : AbstractFactory<Account>
     {
+        public AccountFactory() : base(new BaseFactory<Account>(false)) { }
+
+        /// <summary>
+        /// Returns the end-point on the server
+        /// </summary>
         protected override string Resource
         {
             get
-            { 
+            {
                 return "Accounts";
             }
         }
-
-        public AccountFactory() : base(new BaseFactory<Account>(false)) { }
 
         protected override Dictionary<string, object> GetFields(Account instance)
         {

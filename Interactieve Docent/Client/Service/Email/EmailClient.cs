@@ -33,7 +33,7 @@ namespace Client.Service.Email
         public void Send(string student, string password)
         {
             MailMessage mail = new MailMessage(FROM_ADDRESS, student + "@" + TO_HOST);
-            mail.Subject = "Interactieve Teacher - Account Created.";
+            mail.Subject = "Interactieve Docent - Account Created.";
             mail.Body = "U kunt nu inloggen met uw leerlingnummer en het gegenereerde wachtwoord (" + password + ") deze blijft geldig tot het einde van het college";
 
             this.Client.Send(mail);

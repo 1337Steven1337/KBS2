@@ -523,20 +523,33 @@ namespace Client.Factory
 
         #region Methods
         /// <summary>
-        /// Prepares the instance to Save it
+        /// Prepares the instance to save it
         /// </summary>
-        /// <param name="instance">The instance to Save</param>
+        /// <param name="instance">The instance to save</param>
         /// <returns>Dictonary containing the values used to Save the instance</returns>
         protected abstract Dictionary<string, object> GetFields(T instance);
 
+        /// <summary>
+        /// Prepares the instance to update it
+        /// </summary>
+        /// <param name="instance">The instance to update</param>
+        /// <returns>Dictonary containing the values used to save the instance</returns>
         protected abstract Dictionary<string, object> UpdateFields(T instance);
 
+        /// <summary>
+        /// Set the base factory to use, this defines the source of the data
+        /// </summary>
+        /// <param name="factory">The factory to use</param>
         public void SetBaseFactory(IFactory<T> factory)
         {
             this.baseFactory = factory;
             this.baseFactory.SetResource(this.Resource);
         }
 
+        /// <summary>
+        /// Returns the data source
+        /// </summary>
+        /// <returns></returns>
         public IFactory<T> GetBaseFactory()
         {
             return this.baseFactory;
