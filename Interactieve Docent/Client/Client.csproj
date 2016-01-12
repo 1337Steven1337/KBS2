@@ -166,7 +166,6 @@
     <Compile Include="Service\Generate\Token.cs" />
     <Compile Include="Service\Login\LoginClient.cs" />
     <Compile Include="Service\SignalR\SignalRClient.cs" />
-    <Compile Include="Service\SignalR\EventArgs\SubscriptionStatus.cs" />
     <Compile Include="Service\Thread\ControlHandler.cs" />
     <Compile Include="Service\Thread\IControlHandler.cs" />
     <Compile Include="Student\nextForm.cs">

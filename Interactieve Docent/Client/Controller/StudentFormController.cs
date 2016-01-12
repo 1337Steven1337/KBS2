@@ -7,9 +7,7 @@ using System.Windows.Forms;
 using Client.Service.SignalR;
 using Client.Factory;
 using Microsoft.AspNet.SignalR.Client;
-using Client.Model;
 using System.Net;
-using Client.Service.Thread;
 using Client.View.Student;
 
 namespace Client.Controller
