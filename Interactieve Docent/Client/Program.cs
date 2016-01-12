@@ -21,7 +21,6 @@ namespace Client
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
 
-
             MainView view = new MainView();
             MainController maincontroller = new MainController(view);
 

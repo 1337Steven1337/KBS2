@@ -1,12 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using Client.Factory;
 using Client.View;
 using Excel;
 using Client.View.Account;
-using System.Security.Cryptography;
 using System.Net;
 using RestSharp;
 using Client.Service.Email;
