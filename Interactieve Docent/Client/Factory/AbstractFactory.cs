@@ -12,8 +12,11 @@ namespace Client.Factory
     public abstract class AbstractFactory<T> where T : AbstractModel, new()
     {
         #region Properties
+        /// <summary>
+        /// Returns the end-point on the server
+        /// </summary>
         protected abstract string Resource { get; }
-        private IFactory<T> baseFactory { get; set; }
+        private IFactory<T> BaseFactory { get; set; }
         #endregion
 
         #region Instances
@@ -36,7 +39,7 @@ namespace Client.Factory
         /// <param name="callback">Callback which is called when the request is completed</param>
         public void DeleteAsync(T instance, Action<T, HttpStatusCode, IRestResponse> callback)
         {
-            this.baseFactory.DeleteAsync(instance, callback);
+            this.BaseFactory.DeleteAsync(instance, callback);
         }
 
         /// <summary>
@@ -94,7 +97,7 @@ namespace Client.Factory
                 list.Add(entry);
             }
 
-            this.baseFactory.SaveAsync(list, callback);
+            this.BaseFactory.SaveAsync(list, callback);
         }
 
         /// <summary>
@@ -145,7 +148,7 @@ namespace Client.Factory
         /// <param name="callback">Callback which is called when the request is completed</param>
         public void FindByIdAsync(object id, Action<T, HttpStatusCode, IRestResponse> callback)
         {
-            this.baseFactory.FindByIdAsync(id, callback);
+            this.BaseFactory.FindByIdAsync(id, callback);
         }
 
         /// <summary>
@@ -186,7 +189,7 @@ namespace Client.Factory
         /// <param name="callback">Callback which is called when the request is completed</param>
         public void FindAllAsync(Action<List<T>, HttpStatusCode, IRestResponse> callback)
         {
-            this.baseFactory.FindAllAsync(callback);
+            this.BaseFactory.FindAllAsync(callback);
         }
 
         /// <summary>
@@ -476,7 +479,7 @@ namespace Client.Factory
                 list.Add(entry);
             }
 
-            this.baseFactory.UpdateAsync(list, (o, s, r) => { callback(instance, s, r); });
+            this.BaseFactory.UpdateAsync(list, (o, s, r) => { callback(instance, s, r); });
         }
 
         /// <summary>
@@ -542,8 +545,8 @@ namespace Client.Factory
         /// <param name="factory">The factory to use</param>
         public void SetBaseFactory(IFactory<T> factory)
         {
-            this.baseFactory = factory;
-            this.baseFactory.SetResource(this.Resource);
+            this.BaseFactory = factory;
+            this.BaseFactory.SetResource(this.Resource);
         }
 
         /// <summary>
@@ -552,7 +555,7 @@ namespace Client.Factory
         /// <returns></returns>
         public IFactory<T> GetBaseFactory()
         {
-            return this.baseFactory;
+            return this.BaseFactory;
         }
         #endregion
     }

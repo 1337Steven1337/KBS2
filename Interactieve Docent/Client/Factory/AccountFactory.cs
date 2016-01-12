@@ -8,9 +8,6 @@ namespace Client.Factory
     {
         public AccountFactory() : base(new BaseFactory<Account>(false)) { }
 
-        /// <summary>
-        /// Returns the end-point on the server
-        /// </summary>
         protected override string Resource
         {
             get

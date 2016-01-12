@@ -7,12 +7,10 @@ namespace Client.Service.SignalR
     {
         #region Delegates
         public delegate void ConnectionStatusChangedDelegate(StateChange message);
-        public delegate void SubscriptionStatusChangedDelegate(SubscriptionStatus message);
         #endregion
 
         #region Events
         public event ConnectionStatusChangedDelegate ConnectionStatusChanged;
-        public event SubscriptionStatusChangedDelegate SubscriptionStatusChanged;
         #endregion
 
         private static SignalRClient INSTANCE { get; set; }
