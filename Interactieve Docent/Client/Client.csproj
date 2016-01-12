@@ -145,7 +145,6 @@
     <Compile Include="Factory\UserAnswerToOpenQuestionFactory.cs" />
     <Compile Include="Model\AbstractModel.cs" />
     <Compile Include="Model\Account.cs" />
-    <Compile Include="Model\DocentAccount.cs" />
     <Compile Include="Model\OpenQuestion.cs" />
     <Compile Include="Model\Pincode.cs" />
     <Compile Include="Model\PredefinedAnswer.cs" />
