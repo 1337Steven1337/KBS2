@@ -73,15 +73,11 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
-    <Compile Include="Controllers\Questionstest.cs" />
     <Compile Include="Controllers\TestUpdateQuestion.cs" />
     <Compile Include="Controllers\TestAddQuestion.cs" />
     <Compile Include="Controllers\TestLoadQuestionLists.cs" />
-    <Compile Include="Controllers\TestLoadQuestions.cs" />
-    <Compile Include="Controllers\TestQuestionController.cs" />
     <Compile Include="Controllers\TestViewDeleteQuestion.cs" />
     <Compile Include="Controllers\TestViewDeleteQuestionList.cs" />
-    <Compile Include="Controllers\TestTeacherEnvironment.cs" />
     <Compile Include="Factory\TestQuestionFactory.cs" />
     <Compile Include="Factory\TestQuestionListFactory.cs" />
     <Compile Include="Factory\TestUserAnswerToOpenQuestionFactory.cs" />
@@ -96,11 +92,9 @@
     <Compile Include="View\QuestionList\ViewDeleteQuestionList.cs" />
     <Compile Include="View\Question\TestUpdateQuestionView.cs" />
     <Compile Include="View\Question\TestAddQuestionView.cs" />
-    <Compile Include="View\Question\TestLoadQuestions.cs" />
     <Compile Include="View\Question\TestViewDeleteQuestion.cs" />
     <Compile Include="View\Question\TestViewQuestion.cs" />
     <Compile Include="View\Question\ViewDeleteQuestion.cs" />
-    <Compile Include="View\UserAnswerToOpenQuestion\TestUserAnswerToOpenQuestionView.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Client\Client.csproj">
@@ -108,9 +102,7 @@
       <Name>Client</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Models\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <None Include="app.config" />
     <None Include="packages.config" />
