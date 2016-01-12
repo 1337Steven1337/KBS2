@@ -3,7 +3,7 @@
   <Profiles />
   <Settings>
     <Setting Name="Host" Type="System.String" Scope="Application">
-      <Value Profile="(Default)">http://localhost:27017/</Value>
+      <Value Profile="(Default)">http://localhost:57017/</Value>
     </Setting>
     <Setting Name="SignalR" Type="System.String" Scope="Application">
       <Value Profile="(Default)">signalr</Value>
