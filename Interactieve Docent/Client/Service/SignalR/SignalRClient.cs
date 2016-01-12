@@ -1,5 +1,4 @@
-﻿using Client.Service.SignalR.EventArgs;
-using Microsoft.AspNet.SignalR.Client;
+﻿using Microsoft.AspNet.SignalR.Client;
 
 namespace Client.Service.SignalR
 {
@@ -13,14 +12,19 @@ namespace Client.Service.SignalR
         public event ConnectionStatusChangedDelegate ConnectionStatusChanged;
         #endregion
 
+        #region Instances
         private static SignalRClient INSTANCE { get; set; }
-
+        
         private Model.Pincode CurrentCode { get; set; }
         private Model.Pincode ShouldSubscribeCode { get; set; }
-        private bool ShouldSubscribe = false;
 
         private HubConnection connection { get; set; }
         public IHubProxy proxy { get; private set; }
+        #endregion
+
+        #region Properties
+        private bool ShouldSubscribe = false;
+
         public ConnectionState state
         {
             get
@@ -28,14 +32,18 @@ namespace Client.Service.SignalR
                 return (this.connection == null) ? ConnectionState.Disconnected : this.connection.State;
             }
         }
+        #endregion
 
+        #region Constructors
         private SignalRClient()
         {
             this.connection = new HubConnection(Properties.Api.Default.Host + Properties.Api.Default.SignalR);
             this.connection.StateChanged += Connection_StateChanged;
             this.proxy = this.connection.CreateHubProxy("EventHub");
         }
+        #endregion
 
+        #region Actions
         private void Connection_StateChanged(StateChange obj)
         {
             if (obj.NewState == ConnectionState.Connected)
@@ -54,7 +62,9 @@ namespace Client.Service.SignalR
                 this.ConnectionStatusChanged(obj);
             }
         }
+        #endregion
 
+        #region Methods
         public async void SubscribePincode(Model.Pincode code)
         {
             if (this.state == ConnectionState.Connected)
@@ -124,7 +134,9 @@ namespace Client.Service.SignalR
                 this.connection.Start();
             }
         }
+        #endregion
 
+        #region Getters
         public static SignalRClient GetInstance()
         {
             if (INSTANCE == null)
@@ -134,5 +146,6 @@ namespace Client.Service.SignalR
 
             return INSTANCE;
         }
+        #endregion
     }
 }
