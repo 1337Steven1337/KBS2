@@ -8,15 +8,13 @@ using Client.View.Account;
 using System.Net;
 using RestSharp;
 using Client.Service.Email;
-using Client.Service.Generate;
+using Client.Service.Generate; 
 
 
-namespace Client.Controller.Account
+namespace Client.Controller.Account 
 {
     public class AddAccountController : AbstractController<Model.Account>
     {
-
-
         #region Instances
         private IAddAccountView View { get; set; }
         private IEmailClient EmailClient { get; set; }
@@ -53,17 +51,19 @@ namespace Client.Controller.Account
                 }
                 catch (Exception)
                 {
+                    //Mark the account as e-mail failed
                     this.AccountSaveResults[account.Student] = 3;
                 }
             } 
             else
             {
+                //Mark the account as save failed
                 this.AccountSaveResults[account.Student] = 2;
             }
 
             if(this.AccountSaveResults.ContainsValue(0))
             {
-
+                //Do nothing, the import is still running
             }
             else if ((this.AccountSaveResults.ContainsValue(2) || this.AccountSaveResults.ContainsValue(3)))
             {

@@ -1,17 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Client.Factory;
 using Client.Model;
 using Client.View;
-using Client.View.Question;
 using System.Net;
-using RestSharp;
-using Client.View.Dialogs;
-
-namespace Client.Controller.Question
+ 
+namespace Client.Controller.Question 
 {
     public class AddQuestionController : AbstractController<Model.Question>
     {

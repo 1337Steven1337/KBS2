@@ -1,17 +1,12 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Client.Factory;
-using Client.Model;
 using Client.View;
-using System.Net;
+using System.Net; 
 
-namespace Client.Controller.OpenQuestion
+namespace Client.Controller.OpenQuestion 
 {
     public class AddOpenQuestionController : AbstractController<Model.OpenQuestion>
-    {
+    { 
         private IAddView<Model.OpenQuestion> View { get; set; }
         private OpenQuestionFactory Factory = new OpenQuestionFactory();
 
