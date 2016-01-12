@@ -6,11 +6,9 @@ using System.Linq;
 using Client.Factory;
 using System;
 using Client.Service.SignalR;
-using Client.Service.Thread;
 using Client.View;
-using Client.View.Teacher;
 
-namespace Client.Controller
+namespace Client.Controller 
 {
     public class DiagramController : AbstractController<Model.Question>
     {

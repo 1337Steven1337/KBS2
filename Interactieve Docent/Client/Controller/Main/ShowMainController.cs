@@ -1,24 +1,16 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Client.View.Main;
 using Client.View.Question;
 using Client.View.QuestionList;
 using Client.Controller.Question;
 using Client.View;
 using Client.Controller.QuestionList;
-using Client.Controller;
-using Client.Model;
-using Client.Factory;
-using Client.View.Dialogs;
-using System.Windows.Forms;
+using Client.Factory; 
 
 namespace Client.Controller
 {
     public class MainController : AbstractController<Model.Question>
-    {
+    { 
         private IView MainView;
         private ListQuestionController ListQuestionController;
         private AddQuestionView addQuestionView;

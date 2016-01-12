@@ -1,14 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Client.View;
+﻿using Client.View;
 using Client.Factory;
 using Client.Model;
 
 namespace Client.Controller
-{
+{ 
     public abstract class AbstractController<T> : IController where T : AbstractModel, new()
     {
         public Factory.IFactory<T> BaseFactory { get; set; }

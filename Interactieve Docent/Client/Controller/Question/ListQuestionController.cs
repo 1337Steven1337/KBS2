@@ -5,8 +5,8 @@ using System.Collections.Generic;
 using System.Net;
 using Client.Model;
 using System;
-
-namespace Client.Controller.Question
+ 
+namespace Client.Controller.Question 
 {
     public class ListQuestionController : AbstractController<Model.Question>
     {

@@ -1,6 +1,4 @@
-﻿using Client.Controller;
-using System.Collections.Generic;
-using System.Windows.Forms;
+﻿using System.Collections.Generic;
 
 namespace Client.View.Diagram
 {

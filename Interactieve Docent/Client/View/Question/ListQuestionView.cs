@@ -214,12 +214,14 @@ namespace Client.View.Question
             {
                 this.DiagramController.Close();
             }
+            if (listBoxQuestions.SelectedItem != null)
+            {
+                DiagramView view = new DiagramView();
+                this.DiagramController = new DiagramController(view);
+                view.Show();
 
-            DiagramView view = new DiagramView();
-            this.DiagramController = new DiagramController(view);
-            view.Show();
-
-            this.DiagramController.SetQuestion((Model.Question)this.listBoxQuestions.SelectedItem);
+                this.DiagramController.SetQuestion((Model.Question)this.listBoxQuestions.SelectedItem);
+            }
         }
 
         private void listBoxQuestions_MouseDoubleClick(object sender, MouseEventArgs e)

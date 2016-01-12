@@ -1,15 +1,14 @@
-﻿using System;
-using Client.Factory;
+﻿using Client.Factory;
 using Client.View;
 using System.Net;
 using Client.Service.SignalR;
 using Client.View.Main;
-using Client.Service.Login;
+using Client.Service.Login; 
 
 namespace Client.Controller.Main
 {
     public class ShowStartController : AbstractController<Model.Pincode>
-    {
+    { 
         private IStartView View { get; set; }
         private PincodeFactory PincodeFactory = new PincodeFactory();
         private Model.Pincode Code { get; set; }

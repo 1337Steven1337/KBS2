@@ -120,7 +120,6 @@
   <ItemGroup>
     <Compile Include="Controller\AbstractController.cs" />
     <Compile Include="Controller\Account\AddAccountController.cs" />
-    <Compile Include="Controller\AuthorisationController.cs" />
     <Compile Include="Controller\DiagramController.cs" />
     <Compile Include="Controller\TeacherEnvironmentController.cs" />
     <Compile Include="Controller\IController.cs" />
@@ -146,7 +145,6 @@
     <Compile Include="Factory\UserAnswerToOpenQuestionFactory.cs" />
     <Compile Include="Model\AbstractModel.cs" />
     <Compile Include="Model\Account.cs" />
-    <Compile Include="Model\DocentAccount.cs" />
     <Compile Include="Model\OpenQuestion.cs" />
     <Compile Include="Model\Pincode.cs" />
     <Compile Include="Model\PredefinedAnswer.cs" />
@@ -167,7 +165,6 @@
     <Compile Include="Service\Generate\Token.cs" />
     <Compile Include="Service\Login\LoginClient.cs" />
     <Compile Include="Service\SignalR\SignalRClient.cs" />
-    <Compile Include="Service\SignalR\EventArgs\SubscriptionStatus.cs" />
     <Compile Include="Service\Thread\ControlHandler.cs" />
     <Compile Include="Service\Thread\IControlHandler.cs" />
     <Compile Include="Student\nextForm.cs">
@@ -189,13 +186,6 @@
       <DependentUpon>AddAccountView.cs</DependentUpon>
     </Compile>
     <Compile Include="View\Account\IAddAccountView.cs" />
-    <Compile Include="View\Authorisation\AuthorisationView.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="View\Authorisation\AuthorisationView.Designer.cs">
-      <DependentUpon>AuthorisationView.cs</DependentUpon>
-    </Compile>
-    <Compile Include="View\Authorisation\IAuthorisationView.cs" />
     <Compile Include="View\Diagram\IDiagramView.cs" />
     <Compile Include="View\Diagram\DiagramView.cs">
       <SubType>Form</SubType>
@@ -231,13 +221,6 @@
     <Compile Include="View\IListView.cs" />
     <Compile Include="View\IResultView.cs" />
     <Compile Include="View\IView.cs" />
-    <Compile Include="View\Login\ILoginView.cs" />
-    <Compile Include="View\Login\LoginView.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="View\Login\LoginView.Designer.cs">
-      <DependentUpon>LoginView.cs</DependentUpon>
-    </Compile>
     <Compile Include="View\Main\IStartView.cs" />
     <Compile Include="View\Main\MainView.cs">
       <SubType>Form</SubType>
@@ -318,9 +301,6 @@
     <EmbeddedResource Include="View\Account\AddAccountView.resx">
       <DependentUpon>AddAccountView.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="View\Authorisation\AuthorisationView.resx">
-      <DependentUpon>AuthorisationView.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="View\Diagram\DiagramView.resx">
       <DependentUpon>DiagramView.cs</DependentUpon>
     </EmbeddedResource>
@@ -332,9 +312,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="View\Dialogs\SuccesDialogView.resx">
       <DependentUpon>SuccesDialogView.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="View\Login\LoginView.resx">
-      <DependentUpon>LoginView.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="View\Teacher\TeacherEnvironmentView.resx">
       <DependentUpon>TeacherEnvironmentView.cs</DependentUpon>
