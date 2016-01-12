@@ -24,7 +24,7 @@ using MetroFramework.Forms;
 namespace Client.View.Main
 {
     public partial class MainView : MetroForm, IView
-    {
+    { 
         private MainController controller;
         private int sessionPin = 0;
 
@@ -177,7 +177,6 @@ namespace Client.View.Main
 
         public void Confirm(bool edit)
         {
-            DialogResult dr = new DialogResult();
             ConfirmDialogView confirm = new ConfirmDialogView();
             if (edit)
             {
