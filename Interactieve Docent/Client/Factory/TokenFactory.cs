@@ -12,17 +12,12 @@ namespace Client.Factory
 {
     class TokenFactory : AbstractFactory<Model.Token>
     {
-        protected override string Resource { get; } 
-
         public TokenFactory() : base(new BaseFactory<Model.Token>())
         {
 
         }
 
-        protected override Dictionary<string, object> GetFields(Token instance)
-        {
-            throw new NotImplementedException();
-        }
+        protected override string Resource { get; }
 
         public void saveAsync(Account account, Action<Token, HttpStatusCode, IRestResponse> callback)
         {
@@ -39,6 +34,11 @@ namespace Client.Factory
                     callback(response.Data, response.StatusCode, response);
                 }
             });
+        }
+
+        protected override Dictionary<string, object> GetFields(Token instance)
+        {
+            throw new NotImplementedException();
         }
 
         protected override Dictionary<string, object> UpdateFields(Token instance)
