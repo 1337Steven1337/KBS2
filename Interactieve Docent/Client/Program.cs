@@ -18,29 +18,40 @@ namespace Client
         [STAThread]
         static void Main()
         {
+            bool student = false;
+
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
 
-            MainView view = new MainView();
-            MainController maincontroller = new MainController(view);
+            Form AppView = null;
 
-            ListQuestionView viewQuestion = new ListQuestionView();
-            ListQuestionController questionController = new ListQuestionController(viewQuestion);
-            maincontroller.AddController(questionController);
+            if (student)
+            {
+                StartView view = new StartView();
+                ShowStartController controller = new ShowStartController(view);
 
-            ListQuestionListView viewQuestionList = new ListQuestionListView();
-            ListQuestionListController listQuestionListController = new ListQuestionListController(viewQuestionList);
-            maincontroller.AddController(listQuestionListController);
+                AppView = view;
+            }
+            else
+            {
+                MainView view = new MainView();
+                MainController maincontroller = new MainController(view);
 
-            listQuestionListController.SelectedListChanged += questionController.LoadList;
-            listQuestionListController.Load();
+                ListQuestionView viewQuestion = new ListQuestionView();
+                ListQuestionController questionController = new ListQuestionController(viewQuestion);
+                maincontroller.AddController(questionController);
 
-            view.Show();
+                ListQuestionListView viewQuestionList = new ListQuestionListView();
+                ListQuestionListController listQuestionListController = new ListQuestionListController(viewQuestionList);
+                maincontroller.AddController(listQuestionListController);
 
-            StartView startView = new StartView();
-            ShowStartController controller = new ShowStartController(startView);
+                listQuestionListController.SelectedListChanged += questionController.LoadList;
+                listQuestionListController.Load();
 
-            Application.Run(startView);
+                AppView = view;
+            }
+
+            Application.Run(AppView);
         }
     }
 }
