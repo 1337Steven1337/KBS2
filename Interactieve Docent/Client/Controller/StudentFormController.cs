@@ -10,6 +10,7 @@ using Microsoft.AspNet.SignalR.Client;
 using System.Net;
 using Client.View.Student;
 using Client.View.Dialogs;
+using Client.Service.Thread;
 
 namespace Client.Controller
 {
