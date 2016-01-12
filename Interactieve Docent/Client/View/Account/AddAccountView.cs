@@ -1,11 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using Client.Controller;
 using Client.Service.Thread;
@@ -68,6 +63,18 @@ namespace Client.View.Account
             this.ShowProgressBar.Value = 0;
         }
 
+        public IControlHandler GetHandler()
+        {
+            return new ControlHandler(this.OpenButton);
+        }
+
+        public void SetController(IController controller)
+        {
+            this.Controller = (AddAccountController)controller;
+        }
+        #endregion
+
+        #region Result handlers
         public void ShowSaveSucceed()
         {
             SuccesDialogView succes = new SuccesDialogView();
@@ -95,17 +102,9 @@ namespace Client.View.Account
             failed.getLabelFailed().Text = "Kon een of meerdere e-mails niet versturen.";
             failed.ShowDialog();
         }
+        #endregion
 
-        public IControlHandler GetHandler()
-        {
-            return new ControlHandler(this.OpenButton);
-        }
-
-        public void SetController(IController controller)
-        {
-            this.Controller = (AddAccountController)controller;
-        }
-
+        #region NotImplemented
         public PredefinedAnswer GetSelectedAnswer()
         {
             throw new NotImplementedException();
@@ -140,11 +139,6 @@ namespace Client.View.Account
         {
             throw new NotImplementedException();
         }
-        #endregion
-
-        private void AddAccountView2_Load(object sender, EventArgs e)
-        {
-
-        }
+        #endregion 
     }
 }
