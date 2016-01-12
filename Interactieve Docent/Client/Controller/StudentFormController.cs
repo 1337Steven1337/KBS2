@@ -11,6 +11,7 @@ using Client.Model;
 using System.Net;
 using Client.Service.Thread;
 using Client.View.Student;
+using Client.View.Dialogs;
 
 namespace Client.Controller
 {
@@ -115,6 +116,7 @@ namespace Client.Controller
                 mainForm.getQuestionList().Name = list.Name;
                 mainForm.getQuestionList().Ended = list.Ended;
                 mainForm.getQuestionList().Position = list.Position;
+                mainForm.getQuestionList().Ended = false;
 
                 QuestionFactory questionFactory = new QuestionFactory();
                 questionFactory.FindAll(mainForm.getView().GetHandler(),addQuestionsCallbackHandler);
@@ -131,9 +133,113 @@ namespace Client.Controller
             if (mainForm.getController().getCurrentQuestionIndex() > -1)
             {
                 mainForm.getController().setCurrentQuestionIndex(-1);
+                mainForm.getQuestionList().OpenQuestions.Clear();
+                mainForm.getQuestionList().MCQuestions.Clear();
             }      
         }
 
+        //Checks the HTTP response, if it is not Created then stop the questionList because the results are not valid anymore.
+        private void saveMCAnswerCallBackHandler(Client.Model.UserAnswer ua, HttpStatusCode code)
+        {
+            if (code == HttpStatusCode.Created && ua != null)
+            {
+                //ShowSaveSucceed();
+                //Dont show anything, it is really annoying if a dialog pops up every time.
+            }
+            else
+            {
+                ShowSaveFailed();
+                //Return to main screen
+            }
+        }
+
+
+
+        //Checks the HTTP response, if it is not Created then stop the questionList because the results are not valid anymore.
+        private void saveOpenAnswerCallBackHandler(Client.Model.UserAnswerToOpenQuestion ua, HttpStatusCode code)
+        {
+            if (code == HttpStatusCode.Created && ua != null)
+            {
+                //ShowSaveSucceed();
+                //Dont show anything, it is really annoying if a dialog pops up every time.
+            }
+            else
+            {
+                ShowSaveFailed();
+                //Return to main screen
+            }
+        }
+
+
+
+        public void ShowSaveFailed()
+        {
+            FailedDialogView failed = new FailedDialogView();
+            failed.getLabelFailed().Text = "Het opslaan is mislukt! Probeer het opnieuw.";
+            failed.ShowDialog();
+        }
+
+        public void ShowSaveSucceed()
+        {
+            SuccesDialogView succes = new SuccesDialogView();
+            succes.getLabelSucces().Text = "Antwoord is succesvol opgeslagen.";
+            succes.ShowDialog();
+        }
+
+        //Saves the answer given by the user and then goes to the next question.
+        public void AnswerMCSaveHandler(object sender, System.EventArgs e)
+        {
+            Button btn = (Button)sender;
+            Client.Model.UserAnswer ua = new Client.Model.UserAnswer();
+            ua.PredefinedAnswer_Id = btn.ImageIndex;
+            ua.Question_Id = mainForm.getCurrentMCQuestion().Id;
+            ua.Pincode_Id = Client.Properties.Settings.Default.Session_Id.ToString();
+
+            Factory.UserAnswerFactory uaf = new Factory.UserAnswerFactory();
+            uaf.Save(ua, new ControlHandler(mainForm.timeLabel), saveMCAnswerCallBackHandler);
+            if (mainForm.getQuestionList().MCQuestions.Count - 1 > 0)
+            {
+                if (!mainForm.getTempo())
+                {
+                    mainForm.goToNextQuestion();
+                }
+                else
+                {
+                    view.cleanUpPreviousQuestion();
+                    view.initWaitScreen();
+                }
+            }
+            else
+            {
+                view.cleanUpPreviousQuestion();
+                view.initWaitScreen();
+            }
+        }
+
+
+        //Saves the answer given by the user and then goes to the next question.
+        public void AnswerOpenQuestionSaveHandler(object sender, System.EventArgs e)
+        {
+            Button btn = (Button)sender;
+            Model.UserAnswerToOpenQuestion ua = new Model.UserAnswerToOpenQuestion();
+            ua.Id = btn.ImageIndex;
+            ua.Question_Id = mainForm.getCurrentOpenQuestion().Id;
+            ua.Answer = mainForm.openQuestionBox.Text;
+            ua.Student = "S123456";
+
+            Factory.UserAnswerToOpenQuestionFactory uaf = new Factory.UserAnswerToOpenQuestionFactory();
+            uaf.Save(ua, new ControlHandler(mainForm.timeLabel), saveOpenAnswerCallBackHandler);
+            mainForm.setBusy(false);
+
+            if (mainForm.getController().getCurrentQuestionIndex() < mainForm.getQuestionList().MCQuestions.Count + mainForm.getQuestionList().OpenQuestions.Count - 1)
+            {
+                mainForm.goToNextQuestion();
+            }
+            else
+            {
+                mainForm.getView().initWaitScreen();
+            }
+        }
 
         //This function adds the question (which is retrieved from the server) to the locally stored questionList
         public void Factory_questionAdded(Model.Question question)

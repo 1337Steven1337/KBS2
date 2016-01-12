@@ -44,6 +44,9 @@ namespace Client.Student
             this.view = new StudentForm(this);
             this.controller = new StudentFormController(this);
 
+            this.sendOpenQuestionBtn.Click += new System.EventHandler(controller.AnswerOpenQuestionSaveHandler);
+
+
             this.view.setController();
             view.initControlLocations();
             view.initWaitScreen();
@@ -76,6 +79,12 @@ namespace Client.Student
         public bool isBusy()
         {
             return busy;
+        }
+
+
+        public void setBusy(bool busy)
+        {
+            this.busy = busy;
         }
 
         public bool getTempo()
@@ -147,8 +156,15 @@ namespace Client.Student
                 questionTimer.Stop();
             }
             SignalRClient.GetInstance().UnsubscribeList(this.questionList);
-            this.questionList = new QuestionList();
             this.questionList.Ended = true;
+            this.questionList.MCQuestions.Clear();
+            this.questionList.OpenQuestions.Clear();
+            this.busy = false;
+            view.cleanUpPreviousQuestion();
+            view.getAnswerButtons().Clear();
+            view.initWaitScreen();
+            controller.setCurrentQuestionIndex(1);
+
             goToNextQuestion();
 
         }
@@ -162,14 +178,12 @@ namespace Client.Student
             view.getAnswerButtons().Clear();
             questionTimer.Stop();
 
-                if (controller.getCurrentQuestionIndex() == -5)
-                {
-                    controller.setCurrentQuestionIndex(-1);
-                }
-                else
-                {
-                    controller.setCurrentQuestionIndex(controller.getCurrentQuestionIndex() + 1);
-                }
+
+            if (controller.getCurrentQuestionIndex() < this.questionList.MCQuestions.Count + this.questionList.OpenQuestions.Count) {
+                controller.setCurrentQuestionIndex(controller.getCurrentQuestionIndex() + 1);
+            }
+
+                
             
 
 
@@ -224,6 +238,11 @@ namespace Client.Student
             }
         }
 
+        private void openQuestionBox_Click(object sender, EventArgs e)
+        {
+            openQuestionBox.Text = "";
+            openQuestionBox.ForeColor = Color.Black;
+        }
     }
 }
 

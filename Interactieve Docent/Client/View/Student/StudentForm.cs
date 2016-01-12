@@ -40,7 +40,6 @@ namespace Client.View.Student
         }
 
 
-
         public void startLabelTimer()
         {
             updateQuestionCountLabelTimer.Start();
@@ -123,7 +122,6 @@ namespace Client.View.Student
             mainForm.timeLabel.Visible = false;
             mainForm.questionCountLabel.Visible = true;
             mainForm.questionCountLabel.Location = new Point(mainForm.getProgressBar().Location.X + mainForm.getProgressBar().Width - mainForm.questionCountLabel.Width, mainForm.sendOpenQuestionBtn.Location.Y - mainForm.questionCountLabel.Height);
-            mainForm.sendOpenQuestionBtn.Click += AnswerOpenQuestionSaveHandler;
         }
 
 
@@ -131,99 +129,7 @@ namespace Client.View.Student
 
 
 
-        //Checks the HTTP response, if it is not Created then stop the questionList because the results are not valid anymore.
-        private void saveMCAnswerCallBackHandler(Client.Model.UserAnswer ua, HttpStatusCode code)
-        {
-            if (code == HttpStatusCode.Created && ua != null)
-            {
-                //ShowSaveSucceed();
-                //Dont show anything, it is really annoying if a dialog pops up every time.
-            }
-            else
-            {
-                ShowSaveFailed();
-                //Return to main screen
-            }
-        }
 
-
-
-        //Checks the HTTP response, if it is not Created then stop the questionList because the results are not valid anymore.
-        private void saveOpenAnswerCallBackHandler(Client.Model.UserAnswerToOpenQuestion ua, HttpStatusCode code)
-        {
-            if (code == HttpStatusCode.Created && ua != null)
-            {
-                //ShowSaveSucceed();
-                //Dont show anything, it is really annoying if a dialog pops up every time.
-            }
-            else
-            {
-                ShowSaveFailed();
-                //Return to main screen
-            }
-        }
-
-
-
-        public void ShowSaveFailed()
-        {
-            FailedDialogView failed = new FailedDialogView();
-            failed.getLabelFailed().Text = "Het opslaan is mislukt! Probeer het opnieuw.";
-            failed.ShowDialog();
-        }
-
-        public void ShowSaveSucceed()
-        {
-            SuccesDialogView succes = new SuccesDialogView();
-            succes.getLabelSucces().Text = "Antwoord is succesvol opgeslagen.";
-            succes.ShowDialog();
-        }
-
-        //Saves the answer given by the user and then goes to the next question.
-        public void AnswerMCSaveHandler(object sender, System.EventArgs e)
-        {
-            Button btn = (Button)sender;
-            Client.Model.UserAnswer ua = new Client.Model.UserAnswer();
-            ua.PredefinedAnswer_Id = btn.ImageIndex;
-            ua.Question_Id = mainForm.getCurrentMCQuestion().Id;
-            ua.Pincode_Id = Client.Properties.Settings.Default.Session_Id.ToString();
-
-            Factory.UserAnswerFactory uaf = new Factory.UserAnswerFactory();
-            uaf.Save(ua, new ControlHandler(mainForm.timeLabel), saveMCAnswerCallBackHandler);
-            if (mainForm.getQuestionList().MCQuestions.Count - 1 > 0)
-            {
-                if (!mainForm.getTempo())
-                {
-                    mainForm.goToNextQuestion();
-                }
-                else
-                {
-                    this.cleanUpPreviousQuestion();
-                    this.initWaitScreen();
-                }
-            }
-            else
-            {
-                this.cleanUpPreviousQuestion();
-                this.initWaitScreen();
-            }
-        }
-
-        //Saves the answer given by the user and then goes to the next question.
-        public void AnswerOpenQuestionSaveHandler(object sender, System.EventArgs e)
-        {
-            Button btn = (Button)sender;
-            Model.UserAnswerToOpenQuestion ua = new Model.UserAnswerToOpenQuestion();
-            ua.Id = btn.ImageIndex;
-            ua.Question_Id = mainForm.getCurrentOpenQuestion().Id;
-            ua.Answer = mainForm.openQuestionBox.Text;
-            ua.Student = "S123456";
-
-            Factory.UserAnswerToOpenQuestionFactory uaf = new Factory.UserAnswerToOpenQuestionFactory();
-            uaf.Save(ua, new ControlHandler(mainForm.timeLabel), saveOpenAnswerCallBackHandler);
-            mainForm.goToNextQuestion();
-
-        }
 
 
         //Creates a new Button to add to the controls
@@ -260,7 +166,7 @@ namespace Client.View.Student
                 }
 
                 //Adding eventhandler
-                option.Click += AnswerMCSaveHandler;
+                option.Click += controller.AnswerMCSaveHandler;
 
                 //Initializing variables 
                 int percentagePerButton = (int)Math.Ceiling((double)mainForm.getCurrentMCQuestion().PredefinedAnswers.Count / 2);

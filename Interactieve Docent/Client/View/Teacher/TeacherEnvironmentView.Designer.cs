@@ -44,10 +44,11 @@
             this.QuestionsListBox.Dock = System.Windows.Forms.DockStyle.Fill;
             this.QuestionsListBox.Enabled = false;
             this.QuestionsListBox.FormattingEnabled = true;
-            this.QuestionsListBox.ItemHeight = 16;
-            this.QuestionsListBox.Location = new System.Drawing.Point(3, 210);
+            this.QuestionsListBox.ItemHeight = 20;
+            this.QuestionsListBox.Location = new System.Drawing.Point(3, 262);
+            this.QuestionsListBox.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.QuestionsListBox.Name = "QuestionsListBox";
-            this.QuestionsListBox.Size = new System.Drawing.Size(268, 118);
+            this.QuestionsListBox.Size = new System.Drawing.Size(303, 147);
             this.QuestionsListBox.TabIndex = 2;
             // 
             // tableWrapper
@@ -57,11 +58,12 @@
             this.tableWrapper.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableWrapper.Controls.Add(this.tableLeft, 0, 0);
             this.tableWrapper.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableWrapper.Location = new System.Drawing.Point(20, 60);
+            this.tableWrapper.Location = new System.Drawing.Point(22, 75);
+            this.tableWrapper.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.tableWrapper.Name = "tableWrapper";
             this.tableWrapper.RowCount = 1;
             this.tableWrapper.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableWrapper.Size = new System.Drawing.Size(560, 420);
+            this.tableWrapper.Size = new System.Drawing.Size(631, 525);
             this.tableWrapper.TabIndex = 1;
             // 
             // tableLeft
@@ -72,22 +74,24 @@
             this.tableLeft.Controls.Add(this.OpenDialogButton, 0, 2);
             this.tableLeft.Controls.Add(this.metroButton1, 0, 3);
             this.tableLeft.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLeft.Location = new System.Drawing.Point(3, 3);
+            this.tableLeft.Location = new System.Drawing.Point(3, 4);
+            this.tableLeft.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.tableLeft.Name = "tableLeft";
             this.tableLeft.RowCount = 4;
             this.tableLeft.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLeft.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 30F));
             this.tableLeft.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10F));
             this.tableLeft.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10F));
-            this.tableLeft.Size = new System.Drawing.Size(274, 414);
+            this.tableLeft.Size = new System.Drawing.Size(309, 517);
             this.tableLeft.TabIndex = 0;
             // 
             // OpenDialogButton
             // 
             this.OpenDialogButton.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.OpenDialogButton.Location = new System.Drawing.Point(3, 334);
+            this.OpenDialogButton.Location = new System.Drawing.Point(3, 417);
+            this.OpenDialogButton.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.OpenDialogButton.Name = "OpenDialogButton";
-            this.OpenDialogButton.Size = new System.Drawing.Size(268, 35);
+            this.OpenDialogButton.Size = new System.Drawing.Size(303, 43);
             this.OpenDialogButton.Style = MetroFramework.MetroColorStyle.Orange;
             this.OpenDialogButton.TabIndex = 3;
             this.OpenDialogButton.Text = "Volgende vraag";
@@ -99,9 +103,10 @@
             // metroButton1
             // 
             this.metroButton1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.metroButton1.Location = new System.Drawing.Point(3, 375);
+            this.metroButton1.Location = new System.Drawing.Point(3, 468);
+            this.metroButton1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.metroButton1.Name = "metroButton1";
-            this.metroButton1.Size = new System.Drawing.Size(268, 36);
+            this.metroButton1.Size = new System.Drawing.Size(303, 45);
             this.metroButton1.Style = MetroFramework.MetroColorStyle.Orange;
             this.metroButton1.TabIndex = 4;
             this.metroButton1.Text = "Vragenlijst stoppen";
@@ -112,14 +117,17 @@
             // 
             // TeacherEnvironmentView
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(600, 500);
+            this.ClientSize = new System.Drawing.Size(675, 625);
             this.Controls.Add(this.tableWrapper);
+            this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name = "TeacherEnvironmentView";
+            this.Padding = new System.Windows.Forms.Padding(22, 75, 22, 25);
             this.Style = MetroFramework.MetroColorStyle.Orange;
             this.Text = "TeacherEnvironmentView";
             this.Theme = MetroFramework.MetroThemeStyle.Default;
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.TeacherEnvironmentView_FormClosing);
             this.tableWrapper.ResumeLayout(false);
             this.tableLeft.ResumeLayout(false);
             this.ResumeLayout(false);

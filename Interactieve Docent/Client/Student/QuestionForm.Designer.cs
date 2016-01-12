@@ -68,6 +68,7 @@
             this.openQuestionBox.Size = new System.Drawing.Size(251, 476);
             this.openQuestionBox.TabIndex = 3;
             this.openQuestionBox.Text = "Vul hier je antwoord in.";
+            this.openQuestionBox.Click += new System.EventHandler(this.openQuestionBox_Click);
             // 
             // sendOpenQuestionBtn
             // 

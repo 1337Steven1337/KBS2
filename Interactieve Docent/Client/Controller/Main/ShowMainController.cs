@@ -52,9 +52,9 @@ namespace Client.Controller
             if(addQuestionView != null)
             {
                 Controller_RemoveAddQuestionPanel(false);
-            }
+            } 
 
-            addQuestionView = new AddQuestionView(question);
+            addQuestionView = new AddQuestionView(question,false);
             controller = new AddQuestionController();
             controller.SetView(addQuestionView);
             controller.SetQuestionList(list);

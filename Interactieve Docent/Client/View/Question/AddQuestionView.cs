@@ -12,6 +12,7 @@ using System.ComponentModel;
 using System.Linq;
 using MetroFramework.Forms;
 using System.Drawing;
+using Client.Service.SignalR;
 
 namespace Client.View.Question
 {
@@ -22,12 +23,14 @@ namespace Client.View.Question
         private BindingList<Model.PredefinedAnswer> OldAnswersList = new BindingList<Model.PredefinedAnswer>();
         private BindingList<Model.PredefinedAnswer> RightAnswerList = new BindingList<Model.PredefinedAnswer>();
         private Boolean Edit;
+        private bool isTeacher = false;
         private Model.Question Question;
         
-        public AddQuestionView(Model.Question question)
+        public AddQuestionView(Model.Question question,bool isTeacherForm)
         {
             InitializeComponent();
             this.Question = question;
+            this.isTeacher = isTeacherForm;
 
             btnSaveQuestion.Click += BtnSaveQuestion_Click;
             btnAddAnswer.Click += BtnAddAnswer_Click;
@@ -109,8 +112,18 @@ namespace Client.View.Question
         //Close the third panel, Which contains the addquestion fields
         private void BtnQuit_Click(object sender, EventArgs e)
         {
-            Controller.InvokeRemoveQuestionPanel();
-            this.Close();
+            if (isTeacher == false)
+            {
+                Controller.InvokeRemoveQuestionPanel();
+                this.Close();
+            }
+            else
+            {
+                SignalRClient.GetInstance().StopQuestionList(Properties.Settings.Default.Session_Id); //Stops the questionlist.
+                Controller.InvokeRemoveQuestionPanel();
+                this.Close();
+            }
+
         }
 
         //Delete selected answer from AnswersList
@@ -333,5 +346,6 @@ namespace Client.View.Question
                 timeField.Visible = true;
             }
         }
+
     }
 }

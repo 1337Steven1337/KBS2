@@ -216,6 +216,8 @@ namespace Client.View.Main
             BackgroundDialogView background = new BackgroundDialogView(this, view);
         }
 
+        
+
         private void EndSessionButton_Click(object sender, EventArgs e)
         {
             openQuestionFactory.FindAll(this.GetHandler(), DeleteSession);
@@ -300,6 +302,13 @@ namespace Client.View.Main
             UserAnswerToOpenQuestionView view = new UserAnswerToOpenQuestionView();
             UserAnswerToOpenQuestionController controller = new UserAnswerToOpenQuestionController(view);
             view.Show();
+        }
+
+        private void MainView_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            openQuestionFactory.FindAll(this.GetHandler(), DeleteSession);
+            userAnswerFactory.FindAll(this.GetHandler(), DeleteSession);
+            accountFactory.FindAll(this.GetHandler(), DeleteSession);
         }
     }
 }

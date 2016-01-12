@@ -46,7 +46,7 @@ namespace Client.View.Teacher
             DiagramView diagramView = new DiagramView();
             this.DiagramController = new DiagramController(diagramView);
 
-            AddQuestionView addQuestionView = new AddQuestionView(null);
+            AddQuestionView addQuestionView = new AddQuestionView(null,true);
             AddQuestionController addQuestionController = new AddQuestionController();
             addQuestionController.SetView(addQuestionView);
             addQuestionController.SetQuestionList(list);
@@ -123,6 +123,12 @@ namespace Client.View.Teacher
         }
 
         private void QuitQuestionList_Click(object sender, EventArgs e)
+        {
+            SignalRClient.GetInstance().StopQuestionList(Properties.Settings.Default.Session_Id); //Stops the questionlist.
+            this.Close();
+        }
+
+        private void TeacherEnvironmentView_FormClosing(object sender, FormClosingEventArgs e)
         {
             SignalRClient.GetInstance().StopQuestionList(Properties.Settings.Default.Session_Id); //Stops the questionlist.
             this.Close();
