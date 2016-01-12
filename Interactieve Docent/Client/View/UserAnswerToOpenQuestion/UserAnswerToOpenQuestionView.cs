@@ -21,7 +21,8 @@ namespace Client.View.OpenQuestion
         public UserAnswerToOpenQuestionView()
         {
             InitializeComponent();
-            this.Size = new Size(1280, 720);
+            this.Size = new Size(Screen.PrimaryScreen.Bounds.Width / 100 * 80, Screen.PrimaryScreen.Bounds.Height / 100 * 80);
+            dataGridView1.Size = new Size(this.Size.Width, this.Size.Height);
             this.FormBorderStyle = FormBorderStyle.None;
 
             dataGridView1.Enabled = false;
@@ -33,7 +34,8 @@ namespace Client.View.OpenQuestion
             dataGridView1.DataBindingComplete += DataGridView1_DataBindingComplete;
             dataGridView1.Columns[0].HeaderText = "Student";
             dataGridView1.Columns[1].HeaderText = "Antwoord";
-            
+            dataGridView1.Columns[1].Width = this.Size.Width;
+
             dataGridView1.CurrentCell = null;
         }
 
